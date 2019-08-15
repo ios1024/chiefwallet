@@ -14,6 +14,8 @@ import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.interfaces.OnSelectListener;
 import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.R;
+import com.spark.chiefwallet.api.AppClient;
+import com.spark.chiefwallet.api.pojo.ArticleListBean;
 import com.spark.chiefwallet.base.ARouterPath;
 import com.spark.chiefwallet.ui.toast.Toasty;
 import com.spark.chiefwallet.util.CheckErrorUtil;
@@ -38,6 +40,7 @@ import me.spark.mvvm.binding.command.BindingAction;
 import me.spark.mvvm.binding.command.BindingCommand;
 import me.spark.mvvm.utils.EventBean;
 import me.spark.mvvm.utils.EventBusUtils;
+import me.spark.mvvm.utils.SPUtils;
 import me.spark.mvvm.utils.StringUtils;
 
 /**
@@ -50,6 +53,7 @@ import me.spark.mvvm.utils.StringUtils;
  * ================================================
  */
 public class RegisterViewModel extends BaseViewModel {
+    private String strAreaCode = "86";
     private GT3GeetestUtilsBind gt3GeetestUtils;
     private String cid;
     private String[] mCountryArray;
@@ -57,6 +61,8 @@ public class RegisterViewModel extends BaseViewModel {
     private List<CountryEntity> mCountryEntityList;
     private String countryEnName;                      //值传递 国籍 enName
     public int type = 0;                                //0 - 手机注册 1 - 邮箱注册
+    public String bannerPicBean;
+    private String aboutAppUrl, rivacyUrl, clauseUrl, helpCenterUrl;
 
     public RegisterViewModel(@NonNull Application application) {
         super(application);
@@ -72,8 +78,7 @@ public class RegisterViewModel extends BaseViewModel {
     public ObservableField<String> registerHint = new ObservableField<>(App.getInstance().getString(R.string.phone_num_hint));
     //手机号码
     public ObservableField<String> phoneNum = new ObservableField<>("");
-    public ObservableField<String> countryCode = new ObservableField<>("");
-    public ObservableField<String> countryName = new ObservableField<>("");
+    public ObservableField<String> countryName = new ObservableField<>("中国 +86");
 
     //国籍选择
     public BindingCommand chooseCountryOnClickCommand = new BindingCommand(new BindingAction() {
@@ -82,6 +87,30 @@ public class RegisterViewModel extends BaseViewModel {
             loadCountryInfo();
         }
     });
+
+    //服务条款
+    public BindingCommand termsofserviceOnClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            ARouter.getInstance().build(ARouterPath.ACTIVITY_EMEX_WEBDETAILS)
+                    .withString("title", App.getInstance().getString(R.string.register_clause))
+                    .withString("link", StringUtils.isEmpty(clauseUrl) ? "" : clauseUrl)
+                    .navigation();
+        }
+    }); //隐私政策
+    public BindingCommand rivacyOnClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            ARouter.getInstance().build(ARouterPath.ACTIVITY_EMEX_WEBDETAILS)
+                    .withString("title", App.getInstance().getString(R.string.register_rivacy))
+                    .withString("link", StringUtils.isEmpty(rivacyUrl) ? "" : rivacyUrl)
+                    .navigation();
+        }
+    });
+
+    public void getArticleList() {
+        AppClient.getInstance().getArticleList();
+    }
 
     //获取短信验证码
     public BindingCommand getCodeOnClickCommand = new BindingCommand(new BindingAction() {
@@ -94,12 +123,12 @@ public class RegisterViewModel extends BaseViewModel {
                         Toasty.showError(mContext.getString(R.string.valid_phone));
                         return;
                     }
-                    if (StringUtils.isEmpty(countryCode.get()) || StringUtils.isEmpty(countryName.get())) {
+                    if (StringUtils.isEmpty(strAreaCode) || StringUtils.isEmpty(countryName.get())) {
                         Toasty.showError(mContext.getString(R.string.choose_country));
                         return;
                     }
                     showDialog(mContext.getString(R.string.loading));
-                    CaptchaGetClient.getInstance().phoneCaptcha(countryCode.get() + phoneNum.get());
+                    CaptchaGetClient.getInstance().phoneCaptcha(strAreaCode + phoneNum.get());
                     break;
                 //邮箱注册
                 case 1:
@@ -115,6 +144,10 @@ public class RegisterViewModel extends BaseViewModel {
         }
     });
 
+    public void typeContext(int type) {
+        this.type = type;
+    }
+
     //获取国籍列表
     private void loadCountryInfo() {
         //避免重复请求
@@ -125,7 +158,7 @@ public class RegisterViewModel extends BaseViewModel {
                                 @Override
                                 public void onSelect(int position, String text) {
                                     countryEnName = mCountryEntityList.get(position).getEnName();
-                                    updateCountryInfo(mCountryEntityList.get(position).getZhName() + "(" + mCountryEntityList.get(position).getEnName() + ")", mCountryEntityList.get(position).getAreaCode());
+                                    updateCountryInfo(mCountryEntityList.get(position).getZhName() + " +" + mCountryEntityList.get(position).getAreaCode(), mCountryEntityList.get(position).getAreaCode());
                                 }
                             })
                     .show();
@@ -156,7 +189,7 @@ public class RegisterViewModel extends BaseViewModel {
                                                 @Override
                                                 public void onSelect(int position, String text) {
                                                     countryEnName = objList.get(position).getEnName();
-                                                    updateCountryInfo(objList.get(position).getZhName() + "(" + objList.get(position).getEnName() + ")", objList.get(position).getAreaCode());
+                                                    updateCountryInfo(objList.get(position).getZhName() + " +" + objList.get(position).getAreaCode(), mCountryEntityList.get(position).getAreaCode());
                                                 }
                                             })
                                     .show();
@@ -180,7 +213,7 @@ public class RegisterViewModel extends BaseViewModel {
                         @Override
                         public void run() {
                             ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_VERIFYCODE)
-                                    .withString("phoneNum", countryCode.get() + phoneNum.get())
+                                    .withString("phoneNum", strAreaCode + phoneNum.get())
                                     .withString("strCountry", countryEnName)
                                     .withInt("type", type)
                                     .navigation();
@@ -271,7 +304,7 @@ public class RegisterViewModel extends BaseViewModel {
                                 String checkData = "gee::" + captcha.getGeetest_challenge() + "$" + captcha.getGeetest_validate() + "$" + captcha.getGeetest_seccode();
                                 switch (type) {
                                     case 0:
-                                        CaptchaGetClient.getInstance().phoneCaptchaWithHeader(countryCode.get() + phoneNum.get(), checkData, cid);
+                                        CaptchaGetClient.getInstance().phoneCaptchaWithHeader(strAreaCode + phoneNum.get(), checkData, cid);
                                         break;
                                     case 1:
                                         CaptchaGetClient.getInstance().emailCaptchaWithHeader(phoneNum.get(), checkData, cid);
@@ -288,6 +321,24 @@ public class RegisterViewModel extends BaseViewModel {
             case EvKey.registerSuccess:
                 finish();
                 break;
+            case EvKey.articleList:
+                if (eventBean.isStatue()) {
+                    ArticleListBean mArticleListBean = (ArticleListBean) eventBean.getObject();
+                    for (int i = 0; i < mArticleListBean.getData().size(); i++) {
+
+                        if (mArticleListBean.getData().get(i).getName().contains("法律")
+                                || mArticleListBean.getData().get(i).getName().contains("政策")) {
+                            rivacyUrl = mArticleListBean.getData().get(i).getRedirectUrl();
+                        }
+                        if (mArticleListBean.getData().get(i).getName().contains("用户")) {
+                            clauseUrl = mArticleListBean.getData().get(i).getRedirectUrl();
+                        }
+
+                    }
+                } else {
+                    Toasty.showError(App.getInstance().getString(R.string.network_abnormal));
+                }
+                break;
             default:
                 break;
         }
@@ -298,13 +349,10 @@ public class RegisterViewModel extends BaseViewModel {
      * 更新国籍展示
      *
      * @param strCountry
-     * @param strAreaCode
      */
-    public void updateCountryInfo(String strCountry, String strAreaCode) {
+    public void updateCountryInfo(String strCountry, String code) {
+        strAreaCode = code;
         countryName.set(strCountry);
-        if (type == 0) {
-            countryCode.set(strAreaCode);
-        }
     }
 
     @Override
