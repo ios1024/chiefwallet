@@ -100,6 +100,7 @@
     <string name="register_success">注册成功</string>
 
     <!--登录-->
+    <string name="welcome_to_login">欢迎登录</string>
     <string name="login">登录</string>
     <string name="login_tip">登录到Exchief，即刻开启财富之旅！</string>
     <string name="user_count">账户</string>

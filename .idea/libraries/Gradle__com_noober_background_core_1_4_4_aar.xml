@@ -1,12 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: com.noober.background:core:1.4.4@aar">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../../../gradle/caches/transforms-2/files-2.1/8e4cbd9a39cfb65b4df0498e6350963e/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/../../../gradle/caches/transforms-2/files-2.1/8e4cbd9a39cfb65b4df0498e6350963e/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/627871c125e6e8fbe7fd15f3b80dcbc5/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/627871c125e6e8fbe7fd15f3b80dcbc5/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$PROJECT_DIR$/../../../gradle/caches/modules-2/files-2.1/com.noober.background/core/1.4.4/a395e7573f94390b9915810c47d5b031c0482c94/core-1.4.4-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.noober.background/core/1.4.4/a395e7573f94390b9915810c47d5b031c0482c94/core-1.4.4-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

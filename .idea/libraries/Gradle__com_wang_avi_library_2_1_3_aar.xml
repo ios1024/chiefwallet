@@ -1,12 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: com.wang.avi:library:2.1.3@aar">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/../../../gradle/caches/transforms-2/files-2.1/7840188afc5b3dd8ce3255c37bf0ec12/res" />
-      <root url="jar://$PROJECT_DIR$/../../../gradle/caches/transforms-2/files-2.1/7840188afc5b3dd8ce3255c37bf0ec12/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d153a538fd9d308a7f7f56a5b8104eaf/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d153a538fd9d308a7f7f56a5b8104eaf/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$PROJECT_DIR$/../../../gradle/caches/modules-2/files-2.1/com.wang.avi/library/2.1.3/b24ad2ac7fd480af6dc1d0302f5328b46c586200/library-2.1.3-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.wang.avi/library/2.1.3/b24ad2ac7fd480af6dc1d0302f5328b46c586200/library-2.1.3-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

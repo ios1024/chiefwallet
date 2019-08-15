@@ -1,12 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: com.youth.banner:banner:1.4.10@aar">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/../../../gradle/caches/transforms-2/files-2.1/78ffc8ec2d7b0f8c44bc9695323d2847/res" />
-      <root url="jar://$PROJECT_DIR$/../../../gradle/caches/transforms-2/files-2.1/78ffc8ec2d7b0f8c44bc9695323d2847/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/56c798409d8343c259032d38fac01244/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/56c798409d8343c259032d38fac01244/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$PROJECT_DIR$/../../../gradle/caches/modules-2/files-2.1/com.youth.banner/banner/1.4.10/eae835ac9b7ca690031f2b42fbcc88edab66ce5f/banner-1.4.10-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.youth.banner/banner/1.4.10/eae835ac9b7ca690031f2b42fbcc88edab66ce5f/banner-1.4.10-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
