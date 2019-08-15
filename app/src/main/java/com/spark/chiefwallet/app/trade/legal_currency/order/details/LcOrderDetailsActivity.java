@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.BR;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.base.ARouterPath;
@@ -56,15 +57,15 @@ public class LcOrderDetailsActivity extends BaseActivity<ActivityLcOrderDetailsB
 
         switch (orderDetailsBean.getStatus()) {
             case 0:
-                titleText = "已取消";
+                titleText = App.getInstance().getString(R.string.cancelled);
                 statusDrawable = getResources().getDrawable(R.mipmap.icon_cancel);
                 break;
             case 3:
-                titleText = "已完成";
+                titleText = App.getInstance().getString(R.string.completed);
                 statusDrawable = getResources().getDrawable(R.mipmap.icon_completed);
                 break;
             case 4:
-                titleText = "申诉中";
+                titleText = App.getInstance().getString(R.string.str_order_appealing);
                 statusDrawable = getResources().getDrawable(R.mipmap.icon_appeal);
                 break;
         }
@@ -93,15 +94,15 @@ public class LcOrderDetailsActivity extends BaseActivity<ActivityLcOrderDetailsB
                 if (binding.root.isLoadingCurrentState()) binding.root.showContent();
                 switch (orderDetailsResult.getData().getStatus()) {
                     case 0:
-                        titleText = "已取消";
+                        titleText = App.getInstance().getString(R.string.cancelled);
                         statusDrawable = getResources().getDrawable(R.mipmap.icon_cancel);
                         break;
                     case 3:
-                        titleText = "已完成";
+                        titleText = App.getInstance().getString(R.string.completed);
                         statusDrawable = getResources().getDrawable(R.mipmap.icon_completed);
                         break;
                     case 4:
-                        titleText = "申诉中";
+                        titleText = App.getInstance().getString(R.string.str_order_appealing);
                         statusDrawable = getResources().getDrawable(R.mipmap.icon_appeal);
                         break;
                 }
@@ -112,7 +113,7 @@ public class LcOrderDetailsActivity extends BaseActivity<ActivityLcOrderDetailsB
             @Override
             public void onFail(String message) {
                 Toasty.showError(message);
-                binding.root.showError(R.drawable.svg_no_data, "请求错误", message, "重试", new View.OnClickListener() {
+                binding.root.showError(R.drawable.svg_no_data, App.getInstance().getApplicationContext().getString(R.string.str_http_error), message, App.getInstance().getApplicationContext().getString(R.string.retry), new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         initData();

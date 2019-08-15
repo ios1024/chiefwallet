@@ -184,7 +184,7 @@
                                 android:paddingLeft="10dp"
                                 android:paddingRight="10dp"
                                 android:paddingTop="6dp"
-                                android:text="沟通"
+                                android:text="@string/str_go_chat"
                                 app:bl_corners_radius="4dp"
                                 app:bl_solid_color="@color/white"
                                 app:bl_stroke_color="@color/gray_common"
@@ -205,7 +205,7 @@
                                 <TextView
                                     style="@style/textBlackNormal"
                                     android:layout_weight="1"
-                                    android:text="支付方式"
+                                    android:text="@string/str_paypay"
                                     android:textStyle="bold"/>
 
                                 <ImageView
@@ -239,7 +239,7 @@
                             <TextView
                                 style="@style/textBlackNormal"
                                 android:layout_weight="1"
-                                android:text="单价"/>
+                                android:text="@string/str_price_single"/>
 
                             <TextView
                                 style="@style/textBlackNormal"
@@ -252,7 +252,7 @@
                             <TextView
                                 style="@style/textBlackNormal"
                                 android:layout_weight="1"
-                                android:text="数量"/>
+                                android:text="@string/number"/>
 
                             <TextView
                                 style="@style/textBlackNormal"
@@ -265,7 +265,7 @@
                             <TextView
                                 style="@style/textBlackNormal"
                                 android:layout_weight="1"
-                                android:text="金额"/>
+                                android:text="@string/str_money"/>
 
                             <TextView
                                 style="@style/textBlackNormal"
@@ -278,7 +278,7 @@
                             <TextView
                                 style="@style/textBlackNormal"
                                 android:layout_weight="1"
-                                android:text="创建时间"/>
+                                android:text="@string/str_createtime"/>
 
                             <TextView
                                 style="@style/textBlackNormal"
@@ -290,7 +290,7 @@
 
                             <TextView
                                 style="@style/textBlackNormal"
-                                android:text="订单号"/>
+                                android:text="@string/str_order_sn"/>
 
                             <TextView
                                 style="@style/textBlackNormal"
@@ -311,7 +311,7 @@
 
                             <TextView
                                 style="@style/textBlackNormal"
-                                android:text="参考号"/>
+                                android:text="@string/str_reference_sn"/>
 
                             <TextView
                                 style="@style/textBlackNormal"

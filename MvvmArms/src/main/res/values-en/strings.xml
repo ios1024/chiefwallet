@@ -29,13 +29,13 @@
     <string name="invite_qrcode">Scan the QR code and invite you to join Exchief</string>
     <string name="save2album">Save to album</string>
     <string name="copy_link">Copy link</string>
-    <string name="rule_see">查看规则</string>
-    <string name="rule">1、好友接受您的邀请进行注册后，交易扣除手续费的同时，会产生相应的返佣\n\n
-2、目前支持合约交易的返佣活动，即被邀请人只要进行合约交易就会获得对应手续费返佣\n\n
-3、当前返佣比例为15%，返佣周期为永久返佣，返佣结算会自动进入您的币币账户\n\n
-4、返佣额=实际交易手续费*返佣比例\n\n
-5、禁止一切违规作弊行为，如大小号互刷等，一经发现将取消返佣资格并作废已结算的返佣\n\n
-6、活动如有调整，以SSCoin最新的规则为准，活动最终解释权归SSCoin所有</string>
+    <string name="rule_see">View the rules</string>
+    <string name="rule">1. After the friend accepts your invitation to register, the transaction fee will be deducted and the commission will be returned accordingly\n\n
+2. Currently, we support the commission return activity of contract transaction, that is, the invitee will get the commission back as long as the contract transaction is carried out\n\n
+3. The current return commission proportion is 15%, and the return commission cycle is permanent. The return commission settlement will automatically enter your currency account\n\n
+4. Amount of returned commission = actual transaction fee * proportion of returned commission\n\n
+5. All illegal and cheating behaviors, such as mutual brush of size and number, will be prohibited. Once found, the returned commission will be disqualified and cancelled\n\n
+6. If the activity is adjusted, the latest rules of SSCoin shall prevail, and SSCoin shall have the right to the final interpretation of the activity</string>
 
     <!--me-->
     <string name="finance">Finance</string>
@@ -46,7 +46,7 @@
     <string name="safe">Safe</string>
     <string name="identityAuthentication">IdentityAuthentication</string>
     <string name="safeCenter">SafeCenter</string>
-    <string name="safe_tips">In order to protect your assets, you must protect your private key, password and other sensitive information, Exchief staff will not ask you for these sensitive information through any channel, please be careful！</string>
+    <string name="safe_tips">In order to protect your assets, you must protect your private key, password and other sensitive information, Exchief staff will not ask you for these sensitive information through any channel, please be careful!</string>
     <string name="setting">Setting</string>
     <string name="receiptset">ReceiptSetting</string>
     <string name="mentionAddress">MentionAddress</string>
@@ -76,7 +76,7 @@
     <string name="get_verify_code">Get verification code</string>
     <string name="verify_code">Code</string>
     <string name="verify_code_hint">Please enter the verification code</string>
-    <string name="resend_load">S Resend</string>
+    <string name="resend_load">s Resend</string>
     <string name="resend">Resend</string>
     <string name="input_your_phone">Please enter your registered mobile phone</string>
     <string name="input_your_email">Please enter your registered email</string>
@@ -101,12 +101,12 @@
 
     <!--登录-->
     <string name="login">Login</string>
-    <string name="login_tip">Login to Exchief and start a journey of wealth！</string>
+    <string name="login_tip">Login to Exchief and start a journey of wealth!</string>
     <string name="user_count">Account</string>
     <string name="user_count_hint">Mobile phone number / mailbox</string>
     <string name="user_password">Password</string>
     <string name="user_password_hint">Please enter your password</string>
-    <string name="pwd_forget">Forgot Password ？</string>
+    <string name="pwd_forget">Forgot Password ?</string>
     <string name="count_not_null">Account cannot be empty</string>
     <string name="pwd_not_null">Password cannot be empty</string>
     <string name="loading">Loading</string>
@@ -171,7 +171,7 @@
     <string name="pending_order_time">Pending Order Time</string>
     <string name="pending_withdraw_time">Pending Withdraw Time</string>
     <string name="trade_details">Trade Details</string>
-    <string name="hands">Hands</string>
+    <string name="hands">&#160;Hands</string>
     <string name="pending_order">Pending Order</string>
     <string name="take_profit_Close">Take profit and close</string>
     <string name="take_loss_Close">Stop Loss and close</string>
@@ -338,8 +338,8 @@
     <string name="commission_value">Commission value</string>
     <string name="leverage_multiple">Leverage multiple</string>
     <string name="commission_margin2">Commission margin</string>
-    <string name="stop_profit_price_hint">Please enter stop profit price</string>
-    <string name="stop_loss_price_hint">Please enter stop loss price</string>
+    <string name="stop_profit_price_hint">Enter stop profit price</string>
+    <string name="stop_loss_price_hint">Enter stop loss price</string>
     <string name="optimal_price">Optimal price</string>
     <string name="commission_buy">Commission buy</string>
     <string name="commission_sell">Commission sell</string>
@@ -388,7 +388,7 @@
     <string name="save_success">Save success</string>
     <string name="save_failed">Save failed</string>
     <string name="no_notes">No notes at the moment</string>
-    <string name="coin_recharge_tips">*Tips: You need to confirm the entire network node to get the account.Any non %1$s recharge the assets to %2$s cannot be retrieved after the address！Minimum recharge amount：%3$s，less than %4$s will not be able to arrive and cannot be returned.</string>
+    <string name="coin_recharge_tips">*Tips: You need to confirm the entire network node to get the account.Any non %1$s recharge the assets to %2$s cannot be retrieved after the address!Minimum recharge amount:%3$s，less than %4$s will not be able to arrive and cannot be returned.</string>
     <string name="coin_out_label_hint">Enter or long press the paste label</string>
     <string name="coin_out_num_hint">Please enter mention amount</string>
     <string name="fee">Fee:&#160;</string>
@@ -408,7 +408,7 @@
     <string name="transfer_record">Transfer Record</string>
     <string name="all">All</string>
     <string name="no_date">No date</string>
-    <string name="success">success</string>
+    <string name="success">&#160;success</string>
     <string name="safety_verification">Safety Verification</string>
     <string name="confirm_order">Confirm Order</string>
     <string name="actual_arrival">Actual arrival</string>
@@ -526,7 +526,7 @@
     <string name="register_time">Register time</string>
     <string name="user_name">Username</string>
     <string name="recommended_level">Recommended level</string>
-    <string name="level">Level</string>
+    <string name="level">&#160;Level</string>
     <string name="publish_time">Release time</string>
     <string name="version_update">Version update</string>
     <string name="discover_new_version">Discover new version</string>
@@ -536,44 +536,252 @@
     <string name="username_hint">Please enter user name</string>
     <!--trade-->
     <string-array name="bank_list">
-        <item>中国工商银行</item>
-        <item>中国农业银行</item>
-        <item>中国建设银行</item>
-        <item>中国邮政储蓄银行</item>
-        <item>招商银行</item>
-        <item>中国银行</item>
-        <item>交通银行</item>
-        <item>中信银行</item>
-        <item>华夏银行</item>
-        <item>中国民生银行</item>
-        <item>广发银行</item>
-        <item>平安银行</item>
-        <item>兴业银行</item>
-        <item>上海浦东发展银行</item>
-        <item>浙商银行</item>
-        <item>渤海银行</item>
-        <item>恒丰银行</item>
-        <item>花旗银行</item>
-        <item>渣打银行</item>
-        <item>汇丰银行</item>
-        <item>中国光大银行</item>
-        <item>上海银行</item>
-        <item>江苏银行</item>
-        <item>重庆银行</item>
-        <item>天津银行</item>
-        <item>厦门银行</item>
-        <item>城市商业银行</item>
-        <item>农村商业银行</item>
-        <item>徽商银行</item>
+        <item>Industrial and Commercial Bank of China</item>
+        <item>Agricultural Bank of China</item>
+        <item>China Construction Bank</item>
+        <item>Postal Savings Bank of China</item>
+        <item>China Merchants Bank</item>
+        <item>Bank of China</item>
+        <item>Bank of Communications</item>
+        <item>China CITIC Bank</item>
+        <item>Huaxia Bank</item>
+        <item>China Minsheng Bank</item>
+        <item>China Guangfa Bank</item>
+        <item>Ping An Bank</item>
+        <item>Industrial Bank</item>
+        <item>Shanghai Pudong Development Bank</item>
+        <item>China Zheshang Bank</item>
+        <item>China Bohai Bank</item>
+        <item>HengFeng Bank</item>
+        <item>Citibank N.A.</item>
+        <item>Standard Chartered Bank</item>
+        <item>HSBC</item>
+        <item>China Everbright Bank</item>
+        <item>Bank of Shanghai</item>
+        <item>Bank of Jiangsu</item>
+        <item>Bank of Chongqing</item>
+        <item>Bank of Tianjin</item>
+        <item>Xiamen Bank</item>
+        <item>Urban Commercial Bank</item>
+        <item>Rural Commercial Bank</item>
+        <item>Huishang Bank</item>
     </string-array>
 
-    <string name="customactivityoncrash_error_activity_error_occurred_explanation">发生意外错误。\n抱歉，给您带来不便。</string>
-    <string name="customactivityoncrash_error_activity_restart_app">重新启动</string>
-    <string name="customactivityoncrash_error_activity_close_app">关闭程序</string>
-    <string name="customactivityoncrash_error_activity_error_details">错误日志</string>
-    <string name="customactivityoncrash_error_activity_error_details_title">错误详情</string>
-    <string name="customactivityoncrash_error_activity_error_details_close">关闭</string>
-    <string name="customactivityoncrash_error_activity_error_details_copy">复制日志</string>
-    <string name="customactivityoncrash_error_activity_error_details_copied">复制日志</string>
-    <string name="customactivityoncrash_error_activity_error_details_clipboard_label">错误信息</string>
+    <string name="customactivityoncrash_error_activity_error_occurred_explanation">Unexpected error.\nSorry for the inconvenience.</string>
+    <string name="customactivityoncrash_error_activity_restart_app">Restart</string>
+    <string name="customactivityoncrash_error_activity_close_app">Close the program</string>
+    <string name="customactivityoncrash_error_activity_error_details">The error log</string>
+    <string name="customactivityoncrash_error_activity_error_details_title">Error details</string>
+    <string name="customactivityoncrash_error_activity_error_details_close">Shut down</string>
+    <string name="customactivityoncrash_error_activity_error_details_copy">Copy the log</string>
+    <string name="customactivityoncrash_error_activity_error_details_copied">Copy the log</string>
+    <string name="customactivityoncrash_error_activity_error_details_clipboard_label">The error message</string>
+    <string name="str_auth_first">Please authenticate your id card!</string>
+    <string name="str_paid">Payment has been</string>
+    <string name="str_please_within">Please</string>
+    <string name="str_complete_within">Complete the payment within 30 minutes. Click [contact the other party] if there is any problem.</string>
+    <string name="str_unpay">Waiting for payment</string>
+    <string name="str_http_error">Request error</string>
+    <string name="str_qr_code">Payment code</string>
+    <string name="str_ad_remove">The Shelves</string>
+    <string name="str_update">Update</string>
+    <string name="str_shelves">Shelves</string>
+    <string name="str_b2b_account_no_support">B2B account does not support the currency</string>
+    <string name="str_c2c_account_no_support">C2C account does not support the currency</string>
+    <string name="str_amount_buy">Buy by quantity</string>
+    <string name="str_money_buy">Buy at price</string>
+    <string name="str_amount_sell">Sell by quantity</string>
+    <string name="str_money_sell">Sell at a price</string>
+    <string name="str_after_order">After the order of the transaction&#160;</string>
+    <string name="str_will_lock">&#160;Please feel free to purchase the hosting lock</string>
+    <string name="str_coin_can_banlance">Available balance:&#160;</string>
+    <string name="str_ad_buy_way">Buying patterns</string>
+    <string name="str_ad_sell_way">Selling way</string>
+    <string name="str_price">The price:&#160;</string>
+    <string name="str_trade_amount">The Trade amount:&#160;</string>
+    <string name="str_enter_money">Please enter trading quota</string>
+    <string name="str_enter_number">Please enter quantity</string>
+    <string name="str_and">&#160;And&#160;</string>
+    <string name="str_buy_amount">Buy the number</string>
+    <string name="str_sell_amount">Sell quantity</string>
+    <string name="str_regist_phone">Please enter your registered mobile phone&#160;</string>
+    <string name="str_regist_phone_code">&#160;Received verification code</string>
+    <string name="str_version">Version updated</string>
+    <string name="str_email_code_success">Get the mailbox verification code successfully</string>
+    <string name="str_email_bind_success">Bind mailbox successfully</string>
+    <string name="str_phone_code_success">Get the mobile phone verification code successfully</string>
+    <string name="str_appeal_success">Successfully Appeal</string>
+    <string name="str_cancel_success">Order cancelled successfully</string>
+    <string name="str_release_success">The order has been released successfully.</string>
+    <string name="str_email_address_hint">Please enter a valid email address</string>
+    <string name="str_pay_success">Pay for success</string>
+    <string name="str_enter_login_pass">Please enter your login password</string>
+    <string name="str_enter_alipay">Please enter alipay account number</string>
+    <string name="str_upload">Please upload qr code of receipt</string>
+    <string name="str_enter_wechat">Please enter your WeChat account</string>
+    <string name="str_enter_other">Please enter other account</string>
+    <string name="str_payway_only_one">Only one account can be selected for the same collection method</string>
+    <string name="str_slect_country">Please select location</string>
+    <string name="str_set_fixed_price">Please set a fixed price</string>
+    <string name="str_set_float_rate">Please enter floating scale</string>
+    <string name="str_set_buy_amount">Please enter purchase quantity</string>
+    <string name="str_set_payway">Please select payment method</string>
+    <string name="str_set_limit">Payment period (15~30 minutes)</string>
+    <string name="str_set_min">Please enter the minimum amount per transaction</string>
+    <string name="str_set_max">Please enter the maximum amount per transaction</string>
+    <string name="str_desc">Please describe your problem first</string>
+    <string name="str_at_least_one">Please upload at least one proof</string>
+    <string name="str_appeal_time">30 minutes after the payment is completed the appeal is allowed.</string>
+    <string name="str_set_paypay">Please choose the mode of payment first</string>
+    <string name="str_enter_bank_name">Please select your bank account</string>
+    <string name="str_enter_branch">Please enter bank branch</string>
+    <string name="str_enter_bank_number">Please enter user card number</string>
+    <string name="str_enter_paypal">Please enter your PayPal account</string>
+    <string name="str_pulish_ad_to_up">Operation successful, whether to shelves?</string>
+    <string name="str_confirm_cancel">Confirm cancellation order?</string>
+    <string name="str_order_detail">To view the order</string>
+    <string name="str_order_appeal">Order a complaint</string>
+    <string name="str_enter_content">Please enter send content</string>
+    <string name="str_upload_picture">Upload Picture</string>
+    <string name="str_appeal_tip">Note: in order to solve the problem for you more quickly, please upload the corresponding photos, such as the payment completion page</string>
+    <string name="str_bank_name">Bank</string>
+    <string name="str_branch">Branch</string>
+    <string name="str_bank_number">Bank card number</string>
+    <string name="str_country">Home</string>
+    <string name="str_coin_type">Currency type</string>
+    <string name="str_fixed_price">Fixed price</string>
+    <string name="str_float_rate">A floating rate</string>
+    <string name="str_trade_price">The transaction price</string>
+    <string name="str_payway">Payment methods</string>
+    <string name="str_limit">The payment term</string>
+    <string name="text_minute">Minutes</string>
+    <string name="str_min">Minimum turnover</string>
+    <string name="str_max">Maximum turnover</string>
+    <string name="str_enter_reamrk">Please enter remarks...</string>
+    <string name="str_auto_reply">Auto reply</string>
+    <string name="str_enter_reply">Please enter your reply...</string>
+    <string name="str_ip">The IP address</string>
+    <string name="str_enter_ip">Please enter IP address</string>
+    <string name="str_enter_sms_code">Please enter SMS verification code</string>
+    <string name="str_api_tip">Emex provides you with a powerful API, through which you can use market query, automatic trading and other services. See how to use it through the API documentation</string>
+    <string name="str_api_tip2">Each user creates up to 5 sets of API keys</string>
+    <string name="str_api_tip3">Please do not disclose your API Key to avoid asset losses. For security reasons, it is recommended to bind IP for API Key, and each API Key can be bound to up to 4 IP. Fill in a single address directly, multiple IP addresses half Angle commas, such as 192.168.1.1, 192.168.1.2 instead, 192.168.1.3</string>
+    <string name="str_create">Create</string>
+    <string name="str_send">Send</string>
+    <string name="simplified_chinese">Simplified Chinese</string>
+    <string name="str_english">English</string>
+    <string name="str_order_record">Order record</string>
+    <string name="str_order_appealing">In the complaint</string>
+    <string name="str_go_chat">Chat</string>
+    <string name="str_store">Merchants</string>
+    <string name="str_paypay">Method of payment</string>
+    <string name="str_price_single">The unit price</string>
+    <string name="str_money">Money</string>
+    <string name="str_createtime">Creation time</string>
+    <string name="str_order_sn">The order number</string>
+    <string name="str_reference_sn">Reference no.</string>
+    <string name="str_remain_time">Remaining time of payment</string>
+    <string name="str_qr_code_pay">Payment code</string>
+    <string name="str_wechat">WeChat</string>
+    <string name="str_alipay">Alipay</string>
+    <string name="str_bank">Bank</string>
+    <string name="str_paypal">PayPal</string>
+    <string name="str_other">Other</string>
+    <string name="str_copy_number">Copy Card number</string>
+    <string name="str_pay_tip">* please click the above amount and click below [I have paid]</string>
+    <string name="str_has_paid">I have the payment</string>
+    <string name="str_order_manager">The order management</string>
+    <string name="str_valuation_methods">Valuation methods</string>
+    <string name="send_verify_code">Send verification code</string>
+    <string name="str_login">Login</string>
+    <string name="str_buy">Buy</string>
+    <string name="str_api">API interface</string>
+    <string name="str_night_mode">Night mode</string>
+    <string name="str_price_cny">Price(CNY)</string>
+    <string name="str_amount_btc">Number(BTC)</string>
+    <string name="str_money_acturl">The actual clinch a deal(CNY)</string>
+    <string name="str_money_all">Trading in total(CNY)</string>
+    <string name="str_lock_up">Lock up</string>
+    <string name="str_lock_up_amount">Lock up the number</string>
+    <string name="str_release_amount">Released quantity</string>
+    <string name="str_pay_alipay">Alipay payment</string>
+    <string name="str_pay_wechat">WeChat pay</string>
+    <string name="str_pay_bank">Bank card payment</string>
+    <string name="str_trade_type">Transaction type</string>
+    <string name="str_area">Area</string>
+    <string name="str_update_pass">Change the password</string>
+    <string name="str_push_ad">Advertising</string>
+    <string name="str_ad_status">State of advertising</string>
+    <string name="str_remain_amount">Number remaining</string>
+    <string name="str_withdrawn_confirm">Consign to withdraw sheet confirmation</string>
+    <string name="str_confirm">Confirm</string>
+    <string name="str_continue">Continue</string>
+    <string name="select">Choose</string>
+    <string name="str_buy_price">Buy the unit price</string>
+    <string name="str_buy_number">Purchase quantity</string>
+    <string name="str_buy_money_all">The total amount of purchase</string>
+    <string name="str_buy_now">Immediate payment</string>
+    <string name="str_buy_create">Create order</string>
+    <string name="str_sell">Sell</string>
+    <string name="str_close_confirm">Confirm the positions</string>
+    <string name="str_profit">Profit</string>
+    <string name="str_loss">Loss</string>
+    <string name="str_loading">Loading</string>
+    <string name="str_paste">Paste</string>
+    <string name="str_ad_update">Modify the ads</string>
+    <string name="str_create_api">Create API</string>
+    <string name="str_create_api_record">Create record</string>
+    <string name="str_ad_push_buy">Release purchase</string>
+    <string name="str_ad_push_sell">Released for sale</string>
+    <string name="str_auth_success">Authentication success</string>
+    <string name="str_connect_error">Abnormal network connection</string>
+    <string name="str_confirm_delete">Confirm the deletion</string>
+    <string name="str_deleteing">Deleteing...</string>
+    <string name="str_uploading">Uploading</string>
+    <string name="str_binding">Binding</string>
+    <string name="str_reseting">Reseting</string>
+    <string name="str_requesting">Requesting...</string>
+    <string name="str_publishing">Released...</string>
+    <string name="str_wait">Please later...</string>
+    <string name="str_un_pay">Not paying</string>
+    <string name="str_bind">The binding</string>
+    <string name="str_ad_float_rate_tip">A floating percentage is a percentage of the current market price</string>
+    <string name="str_ad_fixed_price_tip">After enabling, your currency price will not fluctuate with the market, the price remains unchanged</string>
+    <string name="str_publish">Release</string>
+    <string name="str_select_bank">Please select bank</string>
+    <string name="str_receive_bind_alipay_bind">Binding alipay collection</string>
+    <string name="str_receive_bind_alipay_account">Alipay account</string>
+    <string name="str_receive_bind_wechat_bind">Bind WeChat to collect payment</string>
+    <string name="str_receive_bind_wechat_account">WeChat account</string>
+    <string name="str_receive_bind_bank_bind">Binding bank card collection</string>
+    <string name="str_receive_bind_paypal_bind">Bound to PayPal for payment</string>
+    <string name="str_receive_bind_paypal_account">PayPal account</string>
+    <string name="str_receive_bind_other_bind">Bind other collections</string>
+    <string name="str_receive_bind_other_account">Other account</string>
+    <string name="str_receive_bind_alipay_edit">Edit alipay collection</string>
+    <string name="str_receive_bind_wechat_edit">Edit WeChat collection</string>
+    <string name="str_receive_bind_bank_edit">Edit bank card collection</string>
+    <string name="str_receive_bind_paypal_edit">Edit PayPal collection</string>
+    <string name="str_receive_bind_other_edit">Edit Other collection</string>
+    <string name="str_set_sell_amount">Please enter quantity sold</string>
+    <string name="str_macket_price">Current market reference price:&#160;</string>
+    <string name="str_deal">Deal&#160;</string>
+    <string name="str_seller">Seller:&#160;</string>
+    <string name="str_buyer">Buyers:&#160;</string>
+    <string name="str_number">Number: &#160;</string>
+    <string name="str_limit_money">Limit: &#160;</string>
+    <string name="str_locking">In the lock up</string>
+    <string name="str_locked">Lock up due to</string>
+    <string name="str_un_lock">Are unlocked</string>
+    <string name="str_cancel_order">Cancel the order</string>
+    <string name="str_confirm_release">Confirm the release</string>
+    <string name="str_wait_release">Wait for the release</string>
+    <string name="str_check_release">Please check the payment information carefully before releasing</string>
+    <string name="str_seller_deal">Seller processing</string>
+    <string name="str_buyer_paid">Buyer paid</string>
+    <string name="str_notice_detail">Notice details</string>
+    <string name="str_depth">Depth</string>
+    <string name="str_introduction">Introduction</string>
+    <string name="str_gains">&#160;Gains</string>
+    <string name="str_count">&#160;Count</string>
 </resources>

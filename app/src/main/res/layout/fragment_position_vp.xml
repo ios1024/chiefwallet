@@ -29,7 +29,7 @@
 
             <TextView
                 style="@style/textBlackSmall"
-                android:text="持仓总盈亏："/>
+                android:text="@string/total_profit_loss"/>
 
             <TextView
                 style="@style/textBlackSmall"
@@ -45,7 +45,7 @@
                 android:paddingTop="8dp"
                 android:paddingRight="16dp"
                 android:paddingBottom="8dp"
-                android:text="一键平仓"
+                android:text="@string/one_key_close"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 app:bl_corners_radius="4dp"

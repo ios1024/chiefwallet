@@ -9,6 +9,7 @@ import android.view.WindowManager;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.BR;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.base.ARouterPath;
@@ -51,7 +52,7 @@ public class LcOrderPaidDetailsActivity extends BaseActivity<ActivityLcOrderPaid
         StatueBarUtils.setStatusBarLightMode(this, true);
         StatueBarUtils.addMarginTopEqualStatusBarHeight(binding.fakeStatusBar);
         StatueBarUtils.setStatusBarColor(this, ContextCompat.getColor(this, R.color.commission_bg));
-        binding.title.setText("已付款");
+        binding.title.setText(App.getInstance().getApplicationContext().getString(R.string.str_paid));
         viewModel.initContext(this);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
     }
@@ -80,7 +81,7 @@ public class LcOrderPaidDetailsActivity extends BaseActivity<ActivityLcOrderPaid
             @Override
             public void onFail(String message) {
                 Toasty.showError(message);
-                binding.root.showError(R.drawable.svg_no_data, "请求错误", message, "重试", new View.OnClickListener() {
+                binding.root.showError(R.drawable.svg_no_data, App.getInstance().getApplicationContext().getString(R.string.str_http_error), message, App.getInstance().getApplicationContext().getString(R.string.retry), new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         initData();

@@ -101,7 +101,7 @@ public class IdentityActivity extends BaseActivity<ActivityIdentityBinding, Iden
 
                             @Override
                             public void onFail(String message) {
-                                binding.root.showError(R.drawable.svg_no_data, "请求错误", message, "重试", new View.OnClickListener() {
+                                binding.root.showError(R.drawable.svg_no_data, App.getInstance().getApplicationContext().getString(R.string.str_http_error), message, App.getInstance().getApplicationContext().getString(R.string.retry), new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
                                         initData();
@@ -124,7 +124,7 @@ public class IdentityActivity extends BaseActivity<ActivityIdentityBinding, Iden
 
                 @Override
                 public void onFail(String message) {
-                    binding.root.showError(R.drawable.svg_no_data, "请求错误", message, "重试", new View.OnClickListener() {
+                    binding.root.showError(R.drawable.svg_no_data, App.getInstance().getApplicationContext().getString(R.string.str_http_error), message, App.getInstance().getApplicationContext().getString(R.string.retry), new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             initData();

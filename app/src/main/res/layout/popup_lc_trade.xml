@@ -44,7 +44,7 @@
             <TextView
                 android:id="@+id/tvTradeType"
                 style="@style/textGrayCommonSmall"
-                android:text="购买方式"
+                android:text="@string/str_ad_buy_way"
                 android:textStyle="bold"/>
 
             <LinearLayout
@@ -129,7 +129,7 @@
 
                 <TextView
                     style="@style/textBlackNormal"
-                    android:text="交易额"
+                    android:text="@string/turnover"
                     android:textStyle="bold"/>
 
                 <LinearLayout
@@ -168,7 +168,7 @@
                 android:layout_height="?attr/actionBarSize"
                 android:layout_margin="16dp"
                 android:gravity="center"
-                android:text="下单"
+                android:text="@string/str_buy_create"
                 android:textStyle="bold"
                 app:bl_corners_radius="4dp"
                 app:bl_pressed_color="@color/base_dark"

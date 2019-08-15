@@ -301,7 +301,7 @@ public class KlineHttpHorizontalViewModel extends BaseViewModel {
         CharSequence text = new SpanUtils()
                 .append("≈" + MathUtils.getRundNumber(allThumbResult.getCnyLegalAsset(), 2, null) + Constant.CNY)
                 .setForegroundColor(ContextCompat.getColor(App.getInstance(), R.color.white))
-                .append(" 涨幅" + (isCoinPairPushChgUp() ? "+" : "") + MathUtils.getRundNumber(allThumbResult.getChg() * 100, 2, "########0.") + "%")
+                .append(App.getInstance().getString(R.string.str_gains) + (isCoinPairPushChgUp() ? "+" : "") + MathUtils.getRundNumber(allThumbResult.getChg() * 100, 2, "########0.") + "%")
                 .setForegroundColor(isCoinPairPushChgUp() ? ContextCompat.getColor(App.getInstance(), R.color.green) : ContextCompat.getColor(App.getInstance(), R.color.red))
                 .create();
 

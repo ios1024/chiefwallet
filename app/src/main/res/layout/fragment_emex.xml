@@ -418,8 +418,8 @@
                                         android:layout_marginTop="8dp"
                                         android:layout_marginRight="16dp"
                                         android:layout_marginBottom="16dp"
-                                        android:visibility="gone"
-                                        android:text="@{emexViewModel.cfdAcconutTrans}"/>
+                                        android:text="@{emexViewModel.cfdAcconutTrans}"
+                                        android:visibility="gone"/>
                                 </LinearLayout>
                             </android.support.v7.widget.CardView>
 

@@ -3,8 +3,11 @@ package com.spark.otcclient.pojo;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.spark.otcclient.R;
+
 import java.util.List;
 
+import me.spark.mvvm.base.BaseApplication;
 import me.spark.mvvm.base.Constant;
 import me.spark.mvvm.utils.MathUtils;
 import me.spark.mvvm.utils.StringUtils;
@@ -436,7 +439,7 @@ public class FindPageResult implements Parcelable {
              * @return
              */
             public String getNameFirstChar() {
-                return StringUtils.isEmpty(realName) ? "未" : realName.substring(0, 1);
+                return StringUtils.isEmpty(realName) ? "" : realName.substring(0, 1);
             }
 
             /**
@@ -445,7 +448,7 @@ public class FindPageResult implements Parcelable {
              * @return
              */
             public String formatNum() {
-                return "数量: " + MathUtils.getRundNumber(remainAmount, 2, null) + " " + coinName;
+                return BaseApplication.getInstance().getString(R.string.str_number) + MathUtils.getRundNumber(remainAmount, 2, null) + " " + coinName;
             }
 
             /**
@@ -454,7 +457,7 @@ public class FindPageResult implements Parcelable {
              * @return
              */
             public String formatLimit() {
-                return "限额: " +
+                return BaseApplication.getInstance().getString(R.string.str_limit_money) +
                         MathUtils.getRundNumber(minLimit, 2, null)
                         + " - " +
                         MathUtils.getRundNumber(maxLimit, 2, null)
@@ -521,7 +524,7 @@ public class FindPageResult implements Parcelable {
              * @return
              */
             public String buyOrSell() {
-                return advertiseType == 0 ? "出售" : "购买";
+                return advertiseType == 0 ? BaseApplication.getInstance().getString(R.string.sell2) : BaseApplication.getInstance().getString(R.string.buy2);
             }
 
 

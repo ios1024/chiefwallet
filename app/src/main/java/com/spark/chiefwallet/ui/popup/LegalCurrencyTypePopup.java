@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.view.View;
 
 import com.lxj.xpopup.core.AttachPopupView;
+import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.ui.popup.impl.OnTypeChooseListener;
 
@@ -44,10 +45,10 @@ public class LegalCurrencyTypePopup extends AttachPopupView {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.lc_buy:
-                mOnTypeChooseListener.onChooseType(1, "我要买");
+                mOnTypeChooseListener.onChooseType(1, App.getInstance().getString(R.string.str_buy));
                 break;
             case R.id.lc_sell:
-                mOnTypeChooseListener.onChooseType(0, "我要卖");
+                mOnTypeChooseListener.onChooseType(0, App.getInstance().getString(R.string.str_sell));
                 break;
         }
         dismiss();

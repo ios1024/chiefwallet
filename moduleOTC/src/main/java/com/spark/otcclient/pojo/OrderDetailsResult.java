@@ -291,16 +291,7 @@ public class OrderDetailsResult implements Parcelable {
         }
 
         public String getOrderType() {
-//                return orderType;
             String typeText = "";
-//                switch (tradeType) {
-//                    case 0:
-//                        typeText = "购买";
-//                        break;
-//                    case 1:
-//                        typeText = "出售";
-//                        break;
-//                }
             if (orderType.equals("0")) {
                 if (String.valueOf(memberId).equals(BaseApplication.getInstance().getCurrentUser().getId())) {
                     typeText = "1";

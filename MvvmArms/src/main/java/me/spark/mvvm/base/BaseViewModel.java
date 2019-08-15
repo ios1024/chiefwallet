@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import io.reactivex.disposables.Disposable;
+import me.spark.mvvm.R;
 import me.spark.mvvm.bus.event.SingleLiveEvent;
 
 /**
@@ -66,7 +67,7 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
     }
 
     public void showDialog() {
-        showDialog("请稍后...");
+        showDialog(BaseApplication.getInstance().getString(R.string.str_wait));
     }
 
     public void showDialog(String title) {

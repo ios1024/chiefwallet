@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.BR;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.base.ARouterPath;
@@ -73,7 +74,7 @@ public class EmailActivity extends BaseActivity<ActivityEmailBinding, EmailViewM
                         binding.llCountdownView.setVisibility(View.INVISIBLE);
                     }
                 });
-                Toasty.showSuccess("获取邮箱验证码成功");
+                Toasty.showSuccess(App.getInstance().getApplicationContext().getString(R.string.str_email_code_success));
             }
         });
     }
@@ -83,11 +84,11 @@ public class EmailActivity extends BaseActivity<ActivityEmailBinding, EmailViewM
         switch (view.getId()) {
             case R.id.get_sms_code:
                 if (StringUtils.isEmpty(viewModel.email.get())) {
-                    Toasty.showError(getString(R.string.email_address_hint));
+                    Toasty.showError(App.getInstance().getApplicationContext().getString(R.string.email_address_hint));
                     return;
                 }
                 if (!RegexUtils.isEmail(viewModel.email.get())) {
-                    Toasty.showError("请输入有效的邮箱地址");
+                    Toasty.showError(App.getInstance().getApplicationContext().getString(R.string.str_email_address_hint));
                     return;
                 }
                 viewModel.getEmailCode(this);

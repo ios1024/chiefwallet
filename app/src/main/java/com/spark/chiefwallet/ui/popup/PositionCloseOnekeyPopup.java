@@ -10,6 +10,7 @@ import com.example.modulecfd.CfdClient;
 import com.example.modulecfd.pojo.CfdOrderPostBean;
 import com.example.modulecfd.pojo.CfdPositionResult;
 import com.lxj.xpopup.core.BottomPopupView;
+import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.R;
 
 import java.util.List;
@@ -67,12 +68,12 @@ public class PositionCloseOnekeyPopup extends BottomPopupView {
         CharSequence profitText = new SpanUtils()
                 .append(String.valueOf(mProfit))
                 .setForegroundColor(ContextCompat.getColor(mContext, R.color.green))
-                .append(" 单")
+                .append(App.getInstance().getString(R.string.str_count))
                 .create();
         CharSequence lossText = new SpanUtils()
                 .append(String.valueOf(mLoss))
                 .setForegroundColor(ContextCompat.getColor(mContext, R.color.red))
-                .append(" 单")
+                .append(App.getInstance().getString(R.string.str_count))
                 .create();
         mProfitNum.setText(profitText);
         mLossNum.setText(lossText);

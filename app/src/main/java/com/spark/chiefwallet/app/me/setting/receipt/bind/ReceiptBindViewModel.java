@@ -76,7 +76,7 @@ public class ReceiptBindViewModel extends BaseViewModel {
         public void call() {
             new XPopup.Builder(mContext)
                     .maxHeight((int) (XPopupUtils.getWindowHeight(mContext) * .85f))
-                    .asBottomList("请选择银行", bankList,
+                    .asBottomList(App.getInstance().getString(R.string.str_select_bank), bankList,
                             new OnSelectListener() {
                                 @Override
                                 public void onSelect(int position, String text) {
@@ -91,13 +91,10 @@ public class ReceiptBindViewModel extends BaseViewModel {
     public BindingCommand submitCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
-            switch (bottomText.get()) {
-                case "绑定":
-                    bind();
-                    break;
-                case "重置":
-                    update();
-                    break;
+            if (bottomText.get().equals(App.getInstance().getString(R.string.str_bind))) {
+                bind();
+            } else if (bottomText.get().equals(App.getInstance().getString(R.string.reset))) {
+                update();
             }
         }
     });
@@ -110,34 +107,34 @@ public class ReceiptBindViewModel extends BaseViewModel {
         if (typeBean == null) {
             switch (type) {
                 case Constant.alipay:
-                    titleText.set("绑定支付宝收款");
-                    typeText.set("支付宝账号");
-                    typeHintText.set("请输入支付宝账号");
+                    titleText.set(App.getInstance().getString(R.string.str_receive_bind_alipay_bind));
+                    typeText.set(App.getInstance().getString(R.string.str_receive_bind_alipay_account));
+                    typeHintText.set(App.getInstance().getString(R.string.str_enter_alipay));
                     break;
                 case Constant.wechat:
-                    titleText.set("绑定微信收款");
-                    typeText.set("微信账号");
-                    typeHintText.set("请输入微信账号");
+                    titleText.set(App.getInstance().getString(R.string.str_receive_bind_wechat_bind));
+                    typeText.set(App.getInstance().getString(R.string.str_receive_bind_wechat_account));
+                    typeHintText.set(App.getInstance().getString(R.string.str_enter_wechat));
                     break;
                 case Constant.card:
-                    titleText.set("绑定银行卡收款");
+                    titleText.set(App.getInstance().getString(R.string.str_receive_bind_bank_bind));
                     typeVisiable.set(false);
                     qrCodeVisiable.set(false);
                     break;
                 case Constant.PAYPAL:
-                    titleText.set("绑定PayPal收款");
-                    typeText.set("PayPal账号");
-                    typeHintText.set("请输入PayPal账号");
+                    titleText.set(App.getInstance().getString(R.string.str_receive_bind_paypal_bind));
+                    typeText.set(App.getInstance().getString(R.string.str_receive_bind_paypal_account));
+                    typeHintText.set(App.getInstance().getString(R.string.str_enter_paypal));
                     qrCodeVisiable.set(false);
                     break;
                 case Constant.other:
-                    titleText.set("绑定其他收款");
-                    typeText.set("其他账号");
-                    typeHintText.set("请输入其他账号");
+                    titleText.set(App.getInstance().getString(R.string.str_receive_bind_other_bind));
+                    typeText.set(App.getInstance().getString(R.string.str_receive_bind_other_account));
+                    typeHintText.set(App.getInstance().getString(R.string.str_enter_other));
                     qrCodeVisiable.set(false);
                     break;
             }
-            bottomText.set("绑定");
+            bottomText.set(App.getInstance().getString(R.string.str_bind));
         } else {
             if (StringUtils.isEmpty(typeBean.getRealName())) {
                 nameText.set(App.getInstance().getCurrentUser().getRealName());
@@ -146,21 +143,21 @@ public class ReceiptBindViewModel extends BaseViewModel {
             }
             switch (typeBean.getPayType()) {
                 case Constant.alipay:
-                    titleText.set("编辑支付宝收款");
-                    typeText.set("支付宝账号");
-                    typeHintText.set("请输入支付宝账号");
+                    titleText.set(App.getInstance().getString(R.string.str_receive_bind_alipay_edit));
+                    typeText.set(App.getInstance().getString(R.string.str_receive_bind_alipay_account));
+                    typeHintText.set(App.getInstance().getString(R.string.str_enter_alipay));
                     typeAddressText.set(typeBean.getPayAddress());
                     qrCodeUrl.set(typeBean.getQrCodeUrl());
                     break;
                 case Constant.wechat:
-                    titleText.set("编辑微信收款");
-                    typeText.set("微信账号");
-                    typeHintText.set("请输入微信账号");
+                    titleText.set(App.getInstance().getString(R.string.str_receive_bind_wechat_edit));
+                    typeText.set(App.getInstance().getString(R.string.str_receive_bind_wechat_account));
+                    typeHintText.set(App.getInstance().getString(R.string.str_enter_wechat));
                     typeAddressText.set(typeBean.getPayAddress());
                     qrCodeUrl.set(typeBean.getQrCodeUrl());
                     break;
                 case Constant.card:
-                    titleText.set("编辑绑定银行卡收款");
+                    titleText.set(App.getInstance().getString(R.string.str_receive_bind_bank_edit));
                     typeVisiable.set(false);
                     qrCodeVisiable.set(false);
                     bankText.set(typeBean.getBank());
@@ -168,22 +165,22 @@ public class ReceiptBindViewModel extends BaseViewModel {
                     bankAddressText.set(typeBean.getPayAddress());
                     break;
                 case Constant.PAYPAL:
-                    titleText.set("编辑PayPal收款");
-                    typeText.set("PayPal账号");
-                    typeHintText.set("请输入PayPal账号");
+                    titleText.set(App.getInstance().getString(R.string.str_receive_bind_paypal_edit));
+                    typeText.set(App.getInstance().getString(R.string.str_receive_bind_paypal_account));
+                    typeHintText.set(App.getInstance().getString(R.string.str_enter_paypal));
                     typeAddressText.set(typeBean.getPayAddress());
                     qrCodeVisiable.set(false);
                     break;
                 case Constant.other:
-                    titleText.set("编辑其他收款");
-                    typeText.set("其他账号");
-                    typeHintText.set("请输入其他账号");
+                    titleText.set(App.getInstance().getString(R.string.str_receive_bind_other_edit));
+                    typeText.set(App.getInstance().getString(R.string.str_receive_bind_other_account));
+                    typeHintText.set(App.getInstance().getString(R.string.str_enter_other));
                     typeAddressText.set(typeBean.getPayAddress());
                     qrCodeVisiable.set(false);
                     break;
             }
             updateTypeId = typeBean.getId();
-            bottomText.set("重置");
+            bottomText.set(App.getInstance().getString(R.string.reset));
         }
     }
 
@@ -192,7 +189,7 @@ public class ReceiptBindViewModel extends BaseViewModel {
      */
     private void bind() {
         if (verify()) {
-            showDialog("正在绑定");
+            showDialog(App.getInstance().getString(R.string.str_binding));
             PayControlClient.getInstance().payTypeAdd(payTypeAddBean);
         }
     }
@@ -202,7 +199,7 @@ public class ReceiptBindViewModel extends BaseViewModel {
      */
     private void update() {
         if (verify()) {
-            showDialog("正在重置");
+            showDialog(App.getInstance().getString(R.string.str_reseting));
             PayControlClient.getInstance().payTypeUpdate(updateTypeId, payTypeAddBean);
         }
     }
@@ -213,19 +210,19 @@ public class ReceiptBindViewModel extends BaseViewModel {
     private boolean verify() {
         boolean isVerifySuccess = false;
         if (StringUtils.isEmpty(nameText.get())) {
-            Toasty.showError("请输入姓名！");
+            Toasty.showError(App.getInstance().getString(R.string.name_hint));
             return isVerifySuccess;
         }
         payTypeAddBean.setRealName(nameText.get().trim());
         switch (type) {
             case Constant.alipay:
                 if (StringUtils.isEmpty(typeAddressText.get())) {
-                    Toasty.showError("请输入支付宝账号！");
+                    Toasty.showError(App.getInstance().getString(R.string.str_enter_alipay));
                 } else {
                     if (StringUtils.isEmpty(qrCodeUrl.get())) {
-                        Toasty.showError("请上传收款二维码！");
+                        Toasty.showError(App.getInstance().getString(R.string.str_upload));
                     } else if (StringUtils.isEmpty(pwdText.get())) {
-                        Toasty.showError("请输入资金密码！");
+                        Toasty.showError(App.getInstance().getString(R.string.trade_pwd_hint));
                     } else {
                         payTypeAddBean.setPayAddress(typeAddressText.get().trim());
                         payTypeAddBean.setQrCodeUrl(qrCodeUrl.get());
@@ -237,11 +234,11 @@ public class ReceiptBindViewModel extends BaseViewModel {
                 break;
             case Constant.wechat:
                 if (StringUtils.isEmpty(typeAddressText.get())) {
-                    Toasty.showError("请输入微信账号！");
+                    Toasty.showError(App.getInstance().getString(R.string.str_enter_wechat));
                 } else if (StringUtils.isEmpty(qrCodeUrl.get())) {
-                    Toasty.showError("请上传收款二维码！");
+                    Toasty.showError(App.getInstance().getString(R.string.str_upload));
                 } else if (StringUtils.isEmpty(pwdText.get())) {
-                    Toasty.showError("请输入资金密码！");
+                    Toasty.showError(App.getInstance().getString(R.string.trade_pwd_hint));
                 } else {
                     payTypeAddBean.setPayAddress(typeAddressText.get().trim());
                     payTypeAddBean.setQrCodeUrl(qrCodeUrl.get());
@@ -252,13 +249,13 @@ public class ReceiptBindViewModel extends BaseViewModel {
                 break;
             case Constant.card:
                 if (StringUtils.isEmpty(bankText.get())) {
-                    Toasty.showError("请选择开户行！");
+                    Toasty.showError(App.getInstance().getString(R.string.str_enter_bank_name));
                 } else if (StringUtils.isEmpty(branchText.get())) {
-                    Toasty.showError("请输入开户行支行！");
+                    Toasty.showError(App.getInstance().getString(R.string.str_enter_branch));
                 } else if (StringUtils.isEmpty(bankAddressText.get())) {
-                    Toasty.showError("请输入用户卡号！");
+                    Toasty.showError(App.getInstance().getString(R.string.str_enter_bank_number));
                 } else if (StringUtils.isEmpty(pwdText.get())) {
-                    Toasty.showError("请输入资金密码！");
+                    Toasty.showError(App.getInstance().getString(R.string.trade_pwd_hint));
                 } else {
                     payTypeAddBean.setBank(bankText.get());
                     payTypeAddBean.setBranch(branchText.get());
@@ -270,10 +267,10 @@ public class ReceiptBindViewModel extends BaseViewModel {
                 break;
             case Constant.PAYPAL:
                 if (StringUtils.isEmpty(typeAddressText.get())) {
-                    Toasty.showError("请输入PayPal账号！");
+                    Toasty.showError(App.getInstance().getString(R.string.str_enter_paypal));
                 } else {
                     if (StringUtils.isEmpty(pwdText.get())) {
-                        Toasty.showError("请输入资金密码！");
+                        Toasty.showError(App.getInstance().getString(R.string.trade_pwd_hint));
                     } else {
                         payTypeAddBean.setPayAddress(typeAddressText.get().trim());
                         payTypeAddBean.setTradePwd(pwdText.get().trim());
@@ -284,10 +281,10 @@ public class ReceiptBindViewModel extends BaseViewModel {
                 break;
             case Constant.other:
                 if (StringUtils.isEmpty(typeAddressText.get())) {
-                    Toasty.showError("请输入其他账号！");
+                    Toasty.showError(App.getInstance().getString(R.string.str_enter_other));
                 } else {
                     if (StringUtils.isEmpty(pwdText.get())) {
-                        Toasty.showError("请输入资金密码！");
+                        Toasty.showError(App.getInstance().getString(R.string.trade_pwd_hint));
                     } else {
                         payTypeAddBean.setPayAddress(typeAddressText.get().trim());
                         payTypeAddBean.setTradePwd(pwdText.get().trim());
@@ -308,7 +305,7 @@ public class ReceiptBindViewModel extends BaseViewModel {
                 dismissDialog();
                 if (eventBean.isStatue()) {
                     qrCodeUrl.set(((UploadPicResult) eventBean.getObject()).getData());
-                    Toasty.showSuccess("上传成功！");
+                    Toasty.showSuccess(App.getInstance().getApplicationContext().getString(R.string.upload_success));
                 } else {
                     Toasty.showError(eventBean.getMessage());
                 }
@@ -317,7 +314,7 @@ public class ReceiptBindViewModel extends BaseViewModel {
             case EvKey.payTypeAdd:
                 dismissDialog();
                 if (eventBean.isStatue()) {
-                    Toasty.showSuccess(bottomText.get() + "成功！");
+                    Toasty.showSuccess(bottomText.get() + App.getInstance().getApplicationContext().getString(R.string.success));
                     finish();
                 } else {
                     Toasty.showError(eventBean.getMessage());
@@ -327,7 +324,7 @@ public class ReceiptBindViewModel extends BaseViewModel {
             case EvKey.payTypeUpdate:
                 dismissDialog();
                 if (eventBean.isStatue()) {
-                    Toasty.showSuccess(bottomText.get() + "成功！");
+                    Toasty.showSuccess(bottomText.get() + App.getInstance().getApplicationContext().getString(R.string.success));
                     finish();
                 } else {
                     Toasty.showError(eventBean.getMessage());

@@ -26,7 +26,7 @@
             <TextView
                 style="@style/textBlackSmall"
                 android:layout_marginLeft="16dp"
-                android:text="订单管理"
+                android:text="@string/str_order_manager"
                 android:textSize="@dimen/sp_30"
                 android:textStyle="bold"/>
 

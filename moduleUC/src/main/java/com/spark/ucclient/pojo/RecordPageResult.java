@@ -240,7 +240,7 @@ public class RecordPageResult implements Parcelable {
             }
 
             public String formatLevel() {
-                return (level + 1) + " 级";
+                return (level + 1) + BaseApplication.getInstance().getString(R.string.level);
             }
 
             public String formatStatue() {

@@ -17,6 +17,7 @@ import com.afollestad.materialdialogs.Theme;
 import java.util.List;
 
 import me.spark.mvvm.R;
+import me.spark.mvvm.base.BaseApplication;
 
 
 /**
@@ -120,8 +121,8 @@ public class MaterialDialogUtils {
 
         MaterialDialog.Builder builder = new MaterialDialog.Builder(context)
                 .title(content)
-                .positiveText("确定")
-                .negativeText("取消")
+                .positiveText(BaseApplication.getInstance().getString(R.string.ensure))
+                .negativeText(BaseApplication.getInstance().getString(R.string.cancel))
 //                .btnStackedGravity(GravityEnum.END)         //按钮排列位置
 //                .stackingBehavior(StackingBehavior.ALWAYS)  //按钮排列方式
 //                .iconRes(R.mipmap.ic_launcher)
@@ -148,8 +149,8 @@ public class MaterialDialogUtils {
 
         MaterialDialog.Builder builder = new MaterialDialog.Builder(context)
                 .content(content)
-                .positiveText("确定")
-                .negativeText("取消");
+                .positiveText(BaseApplication.getInstance().getString(R.string.ensure))
+                .negativeText(BaseApplication.getInstance().getString(R.string.cancel));
 
         return builder;
     }
@@ -168,7 +169,7 @@ public class MaterialDialogUtils {
         MaterialDialog.Builder builder = new MaterialDialog.Builder(context)
                 .title(title)
                 .content(content)
-                .positiveText("确定");
+                .positiveText(BaseApplication.getInstance().getString(R.string.ensure));
 
         return builder;
     }
@@ -185,8 +186,8 @@ public class MaterialDialogUtils {
         MaterialDialog.Builder builder = new MaterialDialog.Builder(context)
                 .title(title)
                 .content(content)
-                .positiveText("确定")
-                .negativeText("取消");
+                .positiveText(BaseApplication.getInstance().getString(R.string.ensure))
+                .negativeText(BaseApplication.getInstance().getString(R.string.cancel));
 
         return builder;
     }
@@ -202,8 +203,8 @@ public class MaterialDialogUtils {
         MaterialDialog.Builder builder = new MaterialDialog.Builder(context)
                 .title(title)
                 .content(content)
-                .positiveText("复制")
-                .negativeText("取消");
+                .positiveText(BaseApplication.getInstance().getString(R.string.copy))
+                .negativeText(BaseApplication.getInstance().getString(R.string.cancel));
 
         return builder;
     }
@@ -218,7 +219,7 @@ public class MaterialDialogUtils {
         MaterialDialog.Builder builder = new MaterialDialog.Builder(context)
                 .items(arrays)
                 .itemsColor(0XFF456ea6)
-                .negativeText("取消");
+                .negativeText(BaseApplication.getInstance().getString(R.string.cancel));
         if (!TextUtils.isEmpty(title)) {
             builder.title(title);
         }
@@ -243,7 +244,7 @@ public class MaterialDialogUtils {
 
                     }
                 })
-                .negativeText("取消")
+                .negativeText(BaseApplication.getInstance().getString(R.string.cancel));
 //                .checkBoxPromptRes(R.string.app_name, false, null)
                 ;
 
@@ -271,7 +272,7 @@ public class MaterialDialogUtils {
                         return true; // allow selection
                     }
                 })
-                .positiveText("选择");
+                .positiveText(BaseApplication.getInstance().getString(R.string.select));
 
         return builder;
     }
@@ -326,7 +327,7 @@ public class MaterialDialogUtils {
         MaterialDialog dialog = new MaterialDialog.Builder(context)
                 .title(title)
                 .customView(content, true)
-                .positiveText("确定")
+                .positiveText(BaseApplication.getInstance().getString(R.string.ensure))
                 .negativeText(android.R.string.cancel)
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
@@ -391,8 +392,8 @@ public class MaterialDialogUtils {
                 .inputType(InputType.TYPE_CLASS_TEXT |
                         InputType.TYPE_TEXT_VARIATION_PERSON_NAME |
                         InputType.TYPE_TEXT_FLAG_CAP_WORDS)
-                .positiveText("确定")
-                .negativeText("取消")
+                .positiveText(BaseApplication.getInstance().getString(R.string.ensure))
+                .negativeText(BaseApplication.getInstance().getString(R.string.cancel))
                 .input("hint", "prefill", true, new MaterialDialog.InputCallback() {
                     @Override
                     public void onInput(@NonNull MaterialDialog dialog, CharSequence input) {

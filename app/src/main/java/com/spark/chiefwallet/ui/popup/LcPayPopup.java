@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lxj.xpopup.core.BottomPopupView;
+import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.api.pojo.PayTypeBean;
 import com.spark.chiefwallet.ui.SmoothCheckBox;
@@ -79,7 +80,7 @@ public class LcPayPopup extends BottomPopupView {
     }
 
     private void initView() {
-        mTitleSub.setText("下单后此交易的" + mRecordsBean.getCoinName() + "将托管锁定请放心购买");
+        mTitleSub.setText(App.getInstance().getApplicationContext().getString(R.string.str_after_order) + mRecordsBean.getCoinName() + App.getInstance().getApplicationContext().getString(R.string.str_will_lock));
         mPrice.setText(DfUtils.numberFormat(mRecordsBean.getPrice(), mRecordsBean.getPrice() == 0 ? 0 : 8) + " CNY");
         mNum.setText(DfUtils.numberFormat(mRecordsBean.getNumber(), mRecordsBean.getNumber() == 0 ? 0 : 8) + " " + mRecordsBean.getCoinName());
         mAccount.setText(DfUtils.numberFormat(mRecordsBean.getMoney(), mRecordsBean.getMoney() == 0 ? 0 : 8) + " CNY");
@@ -143,7 +144,7 @@ public class LcPayPopup extends BottomPopupView {
                     LcTradeClient.getInstance().orderPayMent(orderPayBean);
                     dismiss();
                 } else {
-                    Toasty.showError("请先选择支付方式！");
+                    Toasty.showError(App.getInstance().getString(R.string.str_set_paypay));
                 }
                 break;
             case R.id.cancel:

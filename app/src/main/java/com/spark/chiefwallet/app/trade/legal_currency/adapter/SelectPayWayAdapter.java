@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.android.databinding.library.baseAdapters.BR;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.ui.SmoothCheckBox;
 import com.spark.otcclient.pojo.PayListBean;
@@ -68,11 +69,11 @@ public class SelectPayWayAdapter extends BaseQuickAdapter<PayListBean.DataBean, 
         switch (item.getPayType()) {
             case Constant.alipay:
                 helper.setImageResource(R.id.ivType, R.drawable.svg_alipay);
-                helper.setText(R.id.tvBankName, "支付宝");
+                helper.setText(R.id.tvBankName, App.getInstance().getString(R.string.str_alipay));
                 break;
             case Constant.wechat:
                 helper.setImageResource(R.id.ivType, R.drawable.svg_wechatpay);
-                helper.setText(R.id.tvBankName, "微信");
+                helper.setText(R.id.tvBankName, App.getInstance().getString(R.string.str_wechat));
                 break;
             case Constant.card:
                 helper.setImageResource(R.id.ivType, R.drawable.svg_bankpay);
@@ -80,15 +81,15 @@ public class SelectPayWayAdapter extends BaseQuickAdapter<PayListBean.DataBean, 
                 break;
             case Constant.PAYPAL:
                 helper.setImageResource(R.id.ivType, R.drawable.svg_pay_paypal);
-                helper.setText(R.id.tvBankName, "PayPal");
+                helper.setText(R.id.tvBankName, App.getInstance().getString(R.string.str_paypal));
                 break;
             case Constant.other:
                 helper.setImageResource(R.id.ivType, R.drawable.svg_pay_other);
-                helper.setText(R.id.tvBankName, "其他");
+                helper.setText(R.id.tvBankName, App.getInstance().getString(R.string.str_other));
                 break;
             default:
                 helper.setImageResource(R.id.ivType, R.drawable.svg_pay_other);
-                helper.setText(R.id.tvBankName, "其他");
+                helper.setText(R.id.tvBankName, App.getInstance().getString(R.string.str_other));
                 break;
         }
         if (item.getIsSelected() == 1) {

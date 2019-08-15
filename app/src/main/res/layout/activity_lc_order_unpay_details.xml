@@ -119,7 +119,7 @@
                             <TextView
                                 style="@style/textBlackNormal"
                                 android:gravity="center"
-                                android:text="剩余支付时间"/>
+                                android:text="@string/str_remain_time"/>
 
                             <cn.iwgang.countdownview.CountdownView
                                 android:id="@+id/countdownView_buy"
@@ -186,7 +186,7 @@
 
                                 <TextView
                                     style="@style/textBlackNormal"
-                                    android:text="微信"/>
+                                    android:text="@string/str_wechat"/>
 
                                 <TextView
                                     style="@style/textGrayCommonSmall"
@@ -206,7 +206,7 @@
                                 android:paddingLeft="10dp"
                                 android:paddingRight="10dp"
                                 android:paddingTop="6dp"
-                                android:text="付款码"
+                                android:text="@string/str_qr_code_pay"
                                 app:bl_corners_radius="4dp"
                                 app:bl_solid_color="@color/white"
                                 app:bl_stroke_color="@color/gray_common"
@@ -239,7 +239,7 @@
 
                                 <TextView
                                     style="@style/textBlackNormal"
-                                    android:text="支付宝"/>
+                                    android:text="@string/str_alipay"/>
 
                                 <TextView
                                     style="@style/textGrayCommonSmall"
@@ -259,7 +259,7 @@
                                 android:paddingLeft="10dp"
                                 android:paddingRight="10dp"
                                 android:paddingTop="6dp"
-                                android:text="付款码"
+                                android:text="@string/str_qr_code_pay"
                                 app:bl_corners_radius="4dp"
                                 app:bl_solid_color="@color/white"
                                 app:bl_stroke_color="@color/gray_common"
@@ -292,7 +292,7 @@
 
                                 <TextView
                                     style="@style/textBlackNormal"
-                                    android:text="银行卡"/>
+                                    android:text="@string/str_bank"/>
 
                                 <TextView
                                     style="@style/textGrayCommonSmall"
@@ -322,7 +322,7 @@
                                 android:paddingLeft="10dp"
                                 android:paddingRight="10dp"
                                 android:paddingTop="6dp"
-                                android:text="复制卡号"
+                                android:text="@string/str_copy_number"
                                 app:bl_corners_radius="4dp"
                                 app:bl_solid_color="@color/white"
                                 app:bl_stroke_color="@color/gray_common"
@@ -336,7 +336,7 @@
                             style="@style/textGrayCommonFont13"
                             android:layout_marginLeft="16dp"
                             android:layout_marginTop="12dp"
-                            android:text="*请按如上金额打款，打款后点击下方 [我已付款]"/>
+                            android:text="@string/str_pay_tip"/>
 
                         <TextView
                             android:id="@+id/time_tips"
@@ -356,7 +356,7 @@
                             android:layout_height="?attr/actionBarSize"
                             android:layout_margin="16dp"
                             android:gravity="center"
-                            android:text="我已付款"
+                            android:text="@string/str_has_paid"
                             android:textColor="@color/black"
                             android:textStyle="bold"
                             app:bl_corners_radius="4dp"
@@ -401,7 +401,7 @@
                                 <TextView
                                     style="@style/textBlackNormal"
                                     android:gravity="center"
-                                    android:text="剩余支付时间"/>
+                                    android:text="@string/str_remain_time"/>
 
                                 <cn.iwgang.countdownview.CountdownView
                                     android:id="@+id/countdownView_sell"
@@ -483,7 +483,7 @@
                                 android:paddingLeft="10dp"
                                 android:paddingRight="10dp"
                                 android:paddingTop="6dp"
-                                android:text="沟通"
+                                android:text="@string/str_go_chat"
                                 app:bl_corners_radius="4dp"
                                 app:bl_solid_color="@color/white"
                                 app:bl_stroke_color="@color/gray_common"
@@ -505,7 +505,7 @@
                                 <TextView
                                     style="@style/textBlackNormal"
                                     android:layout_weight="1"
-                                    android:text="支付方式"
+                                    android:text="@string/str_paypay"
                                     android:textStyle="bold"/>
 
                                 <ImageView
@@ -536,7 +536,7 @@
                             <TextView
                                 style="@style/textBlackNormal"
                                 android:layout_weight="1"
-                                android:text="单价"/>
+                                android:text="@string/str_price_single"/>
 
                             <TextView
                                 style="@style/textBlackNormal"
@@ -549,7 +549,7 @@
                             <TextView
                                 style="@style/textBlackNormal"
                                 android:layout_weight="1"
-                                android:text="数量"/>
+                                android:text="@string/number"/>
 
                             <TextView
                                 style="@style/textBlackNormal"
@@ -562,7 +562,7 @@
                             <TextView
                                 style="@style/textBlackNormal"
                                 android:layout_weight="1"
-                                android:text="金额"/>
+                                android:text="@string/str_money"/>
 
                             <TextView
                                 style="@style/textBlackNormal"
@@ -575,7 +575,7 @@
                             <TextView
                                 style="@style/textBlackNormal"
                                 android:layout_weight="1"
-                                android:text="创建时间"/>
+                                android:text="@string/str_createtime"/>
 
                             <TextView
                                 style="@style/textBlackNormal"
@@ -587,7 +587,7 @@
 
                             <TextView
                                 style="@style/textBlackNormal"
-                                android:text="订单号"/>
+                                android:text="@string/str_order_sn"/>
 
                             <TextView
                                 style="@style/textBlackNormal"
@@ -608,7 +608,7 @@
 
                             <TextView
                                 style="@style/textBlackNormal"
-                                android:text="参考号"/>
+                                android:text="@string/str_reference_sn"/>
 
                             <TextView
                                 style="@style/textBlackNormal"

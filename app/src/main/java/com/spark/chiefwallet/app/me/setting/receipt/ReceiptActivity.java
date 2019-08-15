@@ -13,6 +13,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.lxj.xpopup.XPopup;
+import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.BR;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.app.me.setting.receipt.adapter.PayWayAdapter;
@@ -175,11 +176,11 @@ public class ReceiptActivity extends BaseActivity<ActivityReceiptBinding, Receip
     private void showDialog(final PayListBean.DataBean payWaySetting) {
         new XPopup.Builder(this)
                 .autoOpenSoftInput(true)
-                .asCustom(new TradePwdPopup(this, "确认删除", new OnEtContentListener() {
+                .asCustom(new TradePwdPopup(this, App.getInstance().getString(R.string.str_confirm_delete), new OnEtContentListener() {
                     @Override
                     public void onCEtContentInput(String content) {
                         showKeyboard(false);
-                        showDialog("删除中...");
+                        showDialog(App.getInstance().getString(R.string.str_deleteing));
                         PayControlClient.getInstance().payTypeDelete(payWaySetting.getId(), content);
                     }
                 }))

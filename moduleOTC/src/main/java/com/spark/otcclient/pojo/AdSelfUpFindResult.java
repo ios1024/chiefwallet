@@ -357,7 +357,7 @@ public class AdSelfUpFindResult implements Parcelable {
          * @return
          */
         public boolean isSupportAliPay() {
-            return payMode.contains("alipay");
+            return payMode.contains(Constant.alipay);
         }
 
         /**
@@ -366,7 +366,7 @@ public class AdSelfUpFindResult implements Parcelable {
          * @return
          */
         public boolean isSupportWeChatPay() {
-            return payMode.contains("wechat");
+            return payMode.contains(Constant.wechat);
         }
 
         /**

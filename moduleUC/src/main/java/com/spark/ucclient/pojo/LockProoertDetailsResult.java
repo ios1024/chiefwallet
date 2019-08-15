@@ -3,8 +3,11 @@ package com.spark.ucclient.pojo;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.spark.ucclient.R;
+
 import java.util.List;
 
+import me.spark.mvvm.base.BaseApplication;
 import me.spark.mvvm.utils.DfUtils;
 
 /**
@@ -299,13 +302,13 @@ public class LockProoertDetailsResult implements Parcelable {
                 String typeText = "";
                 switch (status) {
                     case 0:
-                        typeText = "锁仓中 ";
+                        typeText = BaseApplication.getInstance().getString(R.string.str_locking);
                         break;
                     case 1:
-                        typeText = "锁仓到期";
+                        typeText = BaseApplication.getInstance().getString(R.string.str_locked);
                         break;
                     case 2:
-                        typeText = "已解锁";
+                        typeText = BaseApplication.getInstance().getString(R.string.str_un_lock);
                         break;
                 }
 

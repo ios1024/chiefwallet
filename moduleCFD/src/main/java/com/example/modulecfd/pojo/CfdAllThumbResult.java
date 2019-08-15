@@ -4,8 +4,11 @@ import android.graphics.Color;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.example.modulecfd.R;
+
 import java.util.List;
 
+import me.spark.mvvm.base.BaseApplication;
 import me.spark.mvvm.utils.MathUtils;
 import me.spark.mvvm.utils.SpanUtils;
 
@@ -103,7 +106,7 @@ public class CfdAllThumbResult implements Parcelable {
         dest.writeString(responseString);
     }
 
-    public static class DataBean implements Parcelable{
+    public static class DataBean implements Parcelable {
         /**
          * symbol : BTC/USDT
          * open : 9311.9657
@@ -386,7 +389,7 @@ public class CfdAllThumbResult implements Parcelable {
         }
 
         public String init24HourCount() {
-            return "24h量 " + (int) volume;
+            return BaseApplication.getInstance().getString(R.string._24h_size) + (int) volume;
         }
 
         //币种

@@ -45,7 +45,7 @@
                 <TextView
                     style="@style/textBlackSmall"
                     android:layout_marginLeft="32dp"
-                    android:text="已撤单"
+                    android:text="@string/withdrawn"
                     android:textColor="@color/base_dark"/>
             </LinearLayout>
 
@@ -67,7 +67,7 @@
 
                     <TextView
                         style="@style/textGrayCommonFont13"
-                        android:text="挂单价"/>
+                        android:text="@string/hanging_unit_price"/>
 
                     <TextView
                         style="@style/textBlackSmall"
@@ -78,7 +78,7 @@
                     <TextView
                         style="@style/textGrayCommonFont13"
                         android:layout_marginTop="12dp"
-                        android:text="止损价"/>
+                        android:text="@string/stop_loss_price"/>
 
                     <TextView
                         style="@style/textBlackSmall"
@@ -95,7 +95,7 @@
 
                     <TextView
                         style="@style/textGrayCommonFont13"
-                        android:text="止盈价"/>
+                        android:text="@string/stop_profit_price"/>
 
                     <TextView
                         style="@style/textBlackSmall"
@@ -106,7 +106,7 @@
                     <TextView
                         style="@style/textGrayCommonFont13"
                         android:layout_marginTop="12dp"
-                        android:text="撤单时间"/>
+                        android:text="@string/pending_withdraw_time"/>
 
                     <TextView
                         style="@style/textBlackSmall"
@@ -124,7 +124,7 @@
 
                     <TextView
                         style="@style/textGrayCommonFont13"
-                        android:text="挂单时间"/>
+                        android:text="@string/pending_order_time"/>
 
                     <TextView
                         style="@style/textBlackSmall"

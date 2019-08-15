@@ -311,7 +311,7 @@
                 <TextView
                     style="@style/textBlackNormal"
                     android:layout_weight="1"
-                    android:text="API接口"/>
+                    android:text="@string/str_api"/>
 
                 <ImageView style="@style/imgEnter"/>
             </LinearLayout>
@@ -350,7 +350,7 @@
 
                 <TextView
                     style="@style/textBlackNormal"
-                    android:text="计价方式"/>
+                    android:text="@string/str_valuation_methods"/>
 
                 <TextView
                     style="@style/textGrayCommonSmall"
@@ -406,7 +406,7 @@
                 <TextView
                     style="@style/textBlackNormal"
                     android:layout_weight="1"
-                    android:text="夜晚模式"/>
+                    android:text="@string/str_night_mode"/>
 
                 <com.sevenheaven.iosswitch.ShSwitchView
                     android:layout_width="54dp"

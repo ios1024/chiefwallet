@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.lxj.xpopup.core.BottomPopupView;
+import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.ui.popup.impl.OnPositionChooseListener;
 import com.spark.otcclient.pojo.AdSelfDownFindResult;
@@ -95,7 +96,7 @@ public class AdStatuePopup extends BottomPopupView {
         switch (type) {
             //上架中
             case 0:
-                mStatueTv.setText(upBean.getAdvertiseType() == 0 ? "购买" : "售出");
+                mStatueTv.setText(upBean.getAdvertiseType() == 0 ? App.getInstance().getApplicationContext().getString(R.string.buy2) : App.getInstance().getApplicationContext().getString(R.string.sell2));
                 mStatueTv.setTextColor(upBean.getAdvertiseType() == 0 ?
                         ContextCompat.getColor(mContext, R.color.green) :
                         ContextCompat.getColor(mContext, R.color.orange));
@@ -103,13 +104,13 @@ public class AdStatuePopup extends BottomPopupView {
                         + " - " +
                         MathUtils.getRundNumber(upBean.getMaxLimit(), 2, null) + " CNY");
                 mRemainingNum.setText(upBean.getRemainAmount() + " " + upBean.getCoinName());
-                mBtnUpdate.setText("下架");
+                mBtnUpdate.setText(App.getInstance().getApplicationContext().getString(R.string.str_ad_remove));
                 mBtnStatue.setVisibility(GONE);
                 mBtnDelete.setVisibility(GONE);
                 break;
             //已下架
             case 1:
-                mStatueTv.setText(downBean.getAdvertiseType() == 0 ? "购买" : "售出");
+                mStatueTv.setText(downBean.getAdvertiseType() == 0 ? App.getInstance().getApplicationContext().getString(R.string.buy2) : App.getInstance().getApplicationContext().getString(R.string.sell2));
                 mStatueTv.setTextColor(downBean.getAdvertiseType() == 0 ?
                         ContextCompat.getColor(mContext, R.color.green) :
                         ContextCompat.getColor(mContext, R.color.orange));
@@ -117,10 +118,10 @@ public class AdStatuePopup extends BottomPopupView {
                         + " - " +
                         MathUtils.getRundNumber(downBean.getMaxLimit(), 2, null) + " CNY");
                 mRemainingNum.setText(downBean.getRemainAmount() + " " + downBean.getCoinName());
-                mBtnUpdate.setText("修改");
-                mBtnStatue.setText("上架");
+                mBtnUpdate.setText(App.getInstance().getApplicationContext().getString(R.string.str_update));
+                mBtnStatue.setText(App.getInstance().getApplicationContext().getString(R.string.str_shelves));
                 mBtnDelete.setVisibility(VISIBLE);
-                mBtnDelete.setText("删除");
+                mBtnDelete.setText(App.getInstance().getApplicationContext().getString(R.string.delete));
                 break;
         }
     }

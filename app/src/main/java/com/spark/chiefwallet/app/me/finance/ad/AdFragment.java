@@ -140,7 +140,7 @@ public class AdFragment extends BaseFragment<FragmentAdBinding, AdFgViewModel> {
                                             case 2:
                                                 new XPopup.Builder(getContext())
                                                         .autoOpenSoftInput(true)
-                                                        .asCustom(new TradePwdPopup(getContext(), "确认删除", new OnEtContentListener() {
+                                                        .asCustom(new TradePwdPopup(getContext(), getString(R.string.str_confirm_delete), new OnEtContentListener() {
                                                             @Override
                                                             public void onCEtContentInput(String content) {
                                                                 showKeyboard(false);

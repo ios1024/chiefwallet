@@ -31,7 +31,7 @@
                 android:layout_marginLeft="16dp"
                 android:drawableRight="@drawable/svg_pull_down"
                 android:drawablePadding="4dp"
-                android:text="我要买"
+                android:text="@string/str_buy"
                 android:textStyle="bold"/>
 
             <View

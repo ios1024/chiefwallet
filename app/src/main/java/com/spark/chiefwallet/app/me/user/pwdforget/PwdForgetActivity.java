@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.BR;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.base.ARouterPath;
@@ -74,7 +75,7 @@ public class PwdForgetActivity extends BaseActivity<ActivityPwdForgetBinding, Pw
                         binding.llCountdownView.setVisibility(View.INVISIBLE);
                     }
                 });
-                Toasty.showSuccess("获取手机验证码成功");
+                Toasty.showSuccess(App.getInstance().getApplicationContext().getString(R.string.str_phone_code_success));
             }
         });
     }

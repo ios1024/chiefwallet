@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.lxj.xpopup.core.AttachPopupView;
+import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.ui.popup.impl.OnTypeChooseListener;
 
@@ -48,11 +49,11 @@ public class LcBuyTypePopup extends AttachPopupView {
         super.onCreate();
         ButterKnife.bind(this);
         if (mTradeType == 1) {
-            byPrice.setText("按价格购买");
-            byNum.setText("按数量购买");
+            byPrice.setText(App.getInstance().getApplicationContext().getString(R.string.str_money_buy));
+            byNum.setText(App.getInstance().getApplicationContext().getString(R.string.str_amount_buy));
         } else {
-            byPrice.setText("按价格出售");
-            byNum.setText("按数量出售");
+            byPrice.setText(App.getInstance().getApplicationContext().getString(R.string.str_money_sell));
+            byNum.setText(App.getInstance().getApplicationContext().getString(R.string.str_amount_sell));
         }
     }
 

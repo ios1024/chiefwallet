@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import me.spark.mvvm.R;
+import me.spark.mvvm.base.BaseApplication;
 import me.spark.mvvm.ui.dialog.impl.OnBtnClickL;
 
 
@@ -53,9 +55,9 @@ public abstract class BaseAlertDialog<T extends BaseAlertDialog<T>> extends Base
     protected TextView mTvBtnRight;
     protected TextView mTvBtnMiddle;
     /** btn text(按钮内容) */
-    protected String mBtnLeftText = "取消";
-    protected String mBtnRightText = "确定";
-    protected String mBtnMiddleText = "继续";
+    protected String mBtnLeftText = BaseApplication.getInstance().getString(R.string.cancel);
+    protected String mBtnRightText = BaseApplication.getInstance().getString(R.string.ensure);
+    protected String mBtnMiddleText = BaseApplication.getInstance().getString(R.string.str_continue);
     /** btn textcolor(按钮字体颜色) */
     protected int mLeftBtnTextColor;
     protected int mRightBtnTextColor;

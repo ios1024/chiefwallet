@@ -95,7 +95,7 @@ public class LcViewModel extends BaseViewModel {
                 dismissDialog();
                 if (!eventBean.getObject().equals(coinName)) return;
                 if (eventBean.isStatue()) {
-                    Toasty.showSuccess("下单成功！");
+                    Toasty.showSuccess(App.getInstance().getApplicationContext().getString(R.string.order_success));
                     ARouter.getInstance().build(ARouterPath.ACTIVITY_TRADE_LC_ORDER)
                             .navigation();
                 } else {

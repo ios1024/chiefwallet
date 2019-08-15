@@ -3,6 +3,8 @@ package me.spark.mvvm.base;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.spark.mvvm.R;
+
 /**
  * ================================================
  * 作    者：v1ncent
@@ -76,11 +78,11 @@ public class Constant {
     public static int ccFirstLoadSymbolType = 0;
     public static String ccFirstLoadSymbol;
 
-    public static final String Pay_alipay = "支付宝";  // 支付宝
-    public static final String Pay_wechat = "微信";    // 微信
-    public static final String Pay_card = "银行卡";   // 银行卡
-    public static final String Pay_PAYPAL = "PayPal"; // PAYPAL
-    public static final String Pay_other = "其他"; // 其他
+    public static final String Pay_alipay = BaseApplication.getInstance().getString(R.string.str_alipay);  // 支付宝
+    public static final String Pay_wechat = BaseApplication.getInstance().getString(R.string.str_wechat);    // 微信
+    public static final String Pay_card = BaseApplication.getInstance().getString(R.string.str_bank);   // 银行卡
+    public static final String Pay_PAYPAL = BaseApplication.getInstance().getString(R.string.str_paypal); // PAYPAL
+    public static final String Pay_other = BaseApplication.getInstance().getString(R.string.str_other); // 其他
 
 
     //cas

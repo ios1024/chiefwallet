@@ -10,6 +10,6 @@
         android:layout_height="wrap_content"
         android:background="@drawable/sms_code_bg"
         android:padding="8dp"
-        android:text="粘贴"
+        android:text="@string/str_paste"
         android:textColor="#ffffff"/>
 </LinearLayout>

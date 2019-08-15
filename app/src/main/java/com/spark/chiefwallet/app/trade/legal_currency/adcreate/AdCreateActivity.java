@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.BR;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.app.trade.legal_currency.adcreate.upload.AdUploadFragment;
@@ -38,7 +39,7 @@ import me.spark.mvvm.utils.EventBusUtils;
 @Route(path = ARouterPath.ACTIVITY_TRADE_AD_CREATE)
 public class AdCreateActivity extends BaseActivity<ActivityAdCreateBinding, AdCreateViewModel> {
     private TitleBean mTitleModel;
-    private String[] mTitles = new String[]{"发布购买", "发布出售"};
+    private String[] mTitles = new String[]{App.getInstance().getString(R.string.str_ad_push_buy), App.getInstance().getString(R.string.str_ad_push_sell)};
     private ArrayList<Fragment> mFragments = new ArrayList<>();
     private SlideTabPagerAdapter mAdapter;
     @Autowired(name = "ads")
@@ -78,7 +79,7 @@ public class AdCreateActivity extends BaseActivity<ActivityAdCreateBinding, AdCr
     public void initData() {
         super.initData();
         if (ads != null) {
-            mTitleModel.setTitleName("修改广告");
+            mTitleModel.setTitleName(App.getInstance().getString(R.string.str_ad_update));
             binding.adCreateTab.setVisibility(View.GONE);
             if (ads.getAdvertiseType() == 0) binding.adCreateVp.setCurrentItem(0);
             else binding.adCreateVp.setCurrentItem(1);

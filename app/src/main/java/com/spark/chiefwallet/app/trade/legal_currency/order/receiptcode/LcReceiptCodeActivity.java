@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.BR;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.base.ARouterPath;
@@ -51,7 +52,7 @@ public class LcReceiptCodeActivity extends BaseActivity<ActivityLcReceiptCodeBin
         StatueBarUtils.setStatusBarLightMode(this, true);
         StatueBarUtils.addMarginTopEqualStatusBarHeight(binding.fakeStatusBar);
         StatueBarUtils.setStatusBarColor(this, ContextCompat.getColor(this, R.color.commission_bg));
-        binding.title.setText("收款码");
+        binding.title.setText(App.getInstance().getApplicationContext().getString(R.string.str_qr_code));
         viewModel.imgCode.set(codeUrl);
     }
 
@@ -64,9 +65,9 @@ public class LcReceiptCodeActivity extends BaseActivity<ActivityLcReceiptCodeBin
                     public void onGranted(List<String> permissionsGranted) {
                         boolean isSaveSUccess = ImageUtils.saveImageToGallery(LcReceiptCodeActivity.this, ImageUtils.getBitmap(binding.imgReceiptCode.getDrawable()));
                         if (isSaveSUccess) {
-                            Toasty.showSuccess("保存成功！");
+                            Toasty.showSuccess(App.getInstance().getApplicationContext().getString(R.string.save_success));
                         } else {
-                            Toasty.showError("保存失败！");
+                            Toasty.showError(App.getInstance().getApplicationContext().getString(R.string.save_failed));
                         }
                     }
 

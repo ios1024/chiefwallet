@@ -35,18 +35,6 @@
             android:text=""
             android:textColor="@color/gray_51"/>
 
-        <!--<com.spark.emex.ui.VerificationCodeInput-->
-        <!--android:id="@+id/verify_code"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:layout_marginTop="16dp"-->
-        <!--app:box="4"-->
-        <!--app:child_h_padding="8dp"-->
-        <!--app:child_height="60dp"-->
-        <!--app:child_width="60dp"-->
-        <!--app:inputType="number"/>-->
-
         <com.spark.chiefwallet.ui.SMSCodeView
             android:id="@+id/verify_code"
             android:layout_width="match_parent"

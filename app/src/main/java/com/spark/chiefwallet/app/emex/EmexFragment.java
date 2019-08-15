@@ -97,7 +97,7 @@ public class EmexFragment extends BaseFragment<FragmentEmexBinding, EmexViewMode
             @Override
             public void OnBannerClick(int position) {
                 ARouter.getInstance().build(ARouterPath.ACTIVITY_EMEX_WEBDETAILS)
-                        .withString("title", "详情")
+                        .withString("title", App.getInstance().getString(R.string.details))
                         .withString("link", bannerPicBean.getAppCarousel().get(position).getLink())
                         .navigation();
             }
@@ -186,7 +186,7 @@ public class EmexFragment extends BaseFragment<FragmentEmexBinding, EmexViewMode
                     @Override
                     public void onItemClickListener(View mView, Object mData, int mPosition) {
                         ARouter.getInstance().build(ARouterPath.ACTIVITY_EMEX_WEBDETAILS)
-                                .withString("title", "公告详情")
+                                .withString("title", App.getInstance().getString(R.string.str_notice_detail))
                                 .withString("link", announceBean.getData().getRecords().get(mPosition).getRedirectUrl())
                                 .navigation();
                     }

@@ -11,6 +11,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.interfaces.OnConfirmListener;
 import com.spark.chiefwallet.App;
+import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.api.pojo.PayTypeBean;
 import com.spark.chiefwallet.base.ARouterPath;
 import com.spark.chiefwallet.ui.popup.TradePwdPopup;
@@ -112,8 +113,8 @@ public class LcOrderPaidDetailsViewModel extends BaseViewModel {
                 //取消订单
                 case "0":
                     new XPopup.Builder(mContext)
-                            .asConfirm("温馨提示", "确认取消订单？",
-                                    "取消", "确定",
+                            .asConfirm(mContext.getString(R.string.tips), mContext.getString(R.string.str_confirm_cancel),
+                                    mContext.getString(R.string.cancel), mContext.getString(R.string.ensure),
                                     new OnConfirmListener() {
                                         @Override
                                         public void onConfirm() {
@@ -169,7 +170,7 @@ public class LcOrderPaidDetailsViewModel extends BaseViewModel {
                             .withParcelable("orderDetails", mRecordsBean)
                             .navigation();
                 } else {
-                    Toasty.showError("付款完成30分钟后才允许申诉");
+                    Toasty.showError(App.getInstance().getString(R.string.str_appeal_time));
                 }
             } else {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm");
@@ -181,7 +182,7 @@ public class LcOrderPaidDetailsViewModel extends BaseViewModel {
                             .withParcelable("orderDetails", mRecordsBean)
                             .navigation();
                 } else {
-                    Toasty.showError("付款完成30分钟后才允许申诉");
+                    Toasty.showError(App.getInstance().getString(R.string.str_appeal_time));
                 }
             }
 
@@ -258,7 +259,7 @@ public class LcOrderPaidDetailsViewModel extends BaseViewModel {
                 break;
             case EvKey.lcOrderCancel:
                 if (eventBean.isStatue()) {
-                    Toasty.showSuccess("订单取消成功！");
+                    Toasty.showSuccess(App.getInstance().getApplicationContext().getString(R.string.str_cancel_success));
                     stopFlush();
                     finish();
                 } else {
@@ -267,7 +268,7 @@ public class LcOrderPaidDetailsViewModel extends BaseViewModel {
                 break;
             case EvKey.lcOrderRelease:
                 if (eventBean.isStatue()) {
-                    Toasty.showSuccess("订单放行成功！");
+                    Toasty.showSuccess(App.getInstance().getApplicationContext().getString(R.string.str_release_success));
                     stopFlush();
                     finish();
                 } else {
@@ -321,11 +322,11 @@ public class LcOrderPaidDetailsViewModel extends BaseViewModel {
     }
 
     private void initDate(OrderDetailsResult orderDetailsResult) {
-        titleRightTV.set(mRecordsBean.getOrderType().equals("0") ? "取消订单" : "订单申诉");
+        titleRightTV.set(mRecordsBean.getOrderType().equals("0") ? App.getInstance().getString(R.string.str_cancel_order) : App.getInstance().getString(R.string.str_order_appeal));
         isBuyOrSell.set(mRecordsBean.getOrderType().equals("0"));
-        btnTV.set(mRecordsBean.getOrderType().equals("0") ? "订单申诉" : "确认放行");
-        typeTips.set(mRecordsBean.getOrderType().equals("0") ? "等待放行" : "请仔细核对付款信息无误后放行");
-        tradeUserTips.set(mRecordsBean.getOrderType().equals("0") ? "卖家处理中" : "买家已付款");
+        btnTV.set(mRecordsBean.getOrderType().equals("0") ? App.getInstance().getString(R.string.str_order_appeal) : App.getInstance().getString(R.string.str_confirm_release));
+        typeTips.set(mRecordsBean.getOrderType().equals("0") ? App.getInstance().getString(R.string.str_wait_release) : App.getInstance().getString(R.string.str_check_release));
+        tradeUserTips.set(mRecordsBean.getOrderType().equals("0") ? App.getInstance().getString(R.string.str_seller_deal) : App.getInstance().getString(R.string.str_buyer_paid));
 
         mPayTypeBean = App.gson.fromJson("{\"payTypeBean\":" + orderDetailsResult.getData().getPayData() + "}", PayTypeBean.class);
         for (PayTypeBean.PayTypeBeanBean payTypeBeanBean : mPayTypeBean.getPayTypeBean()) {

@@ -87,7 +87,7 @@ public class PhoneViewModel extends BaseViewModel {
                 return;
             }
             if (!RegexUtils.isMobileExact(phoneNum.get())) {
-                Toasty.showError("请输入有效的有效手机号码");
+                Toasty.showError(App.getInstance().getString(R.string.valid_phone));
                 return;
             }
 
@@ -102,7 +102,7 @@ public class PhoneViewModel extends BaseViewModel {
             }
 
             if (StringUtils.isEmpty(pwd.get())) {
-                Toasty.showError("请输入登录密码");
+                Toasty.showError(App.getInstance().getString(R.string.str_enter_login_pass));
                 return;
             }
 
@@ -257,7 +257,7 @@ public class PhoneViewModel extends BaseViewModel {
                     if (user != null) {
                         App.getInstance().setCurrentUser(user);
                     }
-                    Toasty.showSuccess("绑定邮箱成功");
+                    Toasty.showSuccess(App.getInstance().getApplicationContext().getString(R.string.str_email_bind_success));
                     finish();
                 } else {
                     Toasty.showError(eventBean.getMessage());

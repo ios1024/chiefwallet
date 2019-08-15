@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.lxj.xpopup.core.BottomPopupView;
 import com.spark.acclient.pojo.CoinExtractBean;
 import com.spark.acclient.pojo.CoinExtractSubmitBean;
+import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.ui.popup.impl.OnCoinExtractSubmitListener;
 import com.spark.chiefwallet.ui.toast.Toasty;
@@ -81,7 +82,7 @@ public class CoinExtractSubmitPopup extends BottomPopupView {
         switch (view.getId()) {
             case R.id.submit:
                 if (TextUtils.isEmpty(mTradePwd.getText().toString())) {
-                    Toasty.showError("请输入资金密码！");
+                    Toasty.showError(App.getInstance().getString(R.string.trade_pwd_hint));
                     return;
                 }
 

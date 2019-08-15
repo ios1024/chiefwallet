@@ -43,7 +43,7 @@
                         style="@style/textBlackNormal"
                         android:drawablePadding="8dp"
                         android:gravity="center"
-                        android:text="支付宝" />
+                        android:text="@string/str_alipay" />
 
                 </LinearLayout>
 
@@ -73,7 +73,7 @@
                         style="@style/textBlackNormal"
                         android:drawablePadding="8dp"
                         android:gravity="center"
-                        android:text="微信" />
+                        android:text="@string/str_wechat" />
 
                 </LinearLayout>
 
@@ -103,7 +103,7 @@
                         style="@style/textBlackNormal"
                         android:drawablePadding="8dp"
                         android:gravity="center"
-                        android:text="银行卡" />
+                        android:text="@string/str_bank" />
 
                 </LinearLayout>
 
@@ -133,7 +133,7 @@
                         style="@style/textBlackNormal"
                         android:drawablePadding="8dp"
                         android:gravity="center"
-                        android:text="paypal" />
+                        android:text="@string/str_paypal" />
 
                 </LinearLayout>
 
@@ -163,7 +163,7 @@
                         style="@style/textBlackNormal"
                         android:drawablePadding="8dp"
                         android:gravity="center"
-                        android:text="其他" />
+                        android:text="@string/str_other" />
 
                 </LinearLayout>
 

@@ -11,6 +11,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.interfaces.OnConfirmListener;
 import com.spark.chiefwallet.App;
+import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.api.pojo.PayTypeBean;
 import com.spark.chiefwallet.base.ARouterPath;
 import com.spark.chiefwallet.ui.popup.LcPayPopup;
@@ -157,8 +158,8 @@ public class LcOrderUnPAYDetailsViewModel extends BaseViewModel {
                 //取消订单
                 case "0":
                     new XPopup.Builder(mContext)
-                            .asConfirm("温馨提示", "确认取消订单？",
-                                    "取消", "确定",
+                            .asConfirm(mContext.getString(R.string.tips), mContext.getString(R.string.str_confirm_cancel),
+                                    mContext.getString(R.string.cancel), mContext.getString(R.string.ensure),
                                     new OnConfirmListener() {
                                         @Override
                                         public void onConfirm() {
@@ -194,7 +195,7 @@ public class LcOrderUnPAYDetailsViewModel extends BaseViewModel {
         switch (eventBean.getOrigin()) {
             case EvKey.lcOrderPayMent:
                 if (eventBean.isStatue()) {
-                    Toasty.showSuccess("支付成功！");
+                    Toasty.showSuccess(App.getInstance().getApplicationContext().getString(R.string.str_pay_success));
                     if (!isGoToNext) {
                         isGoToNext = true;
                         ARouter.getInstance()
@@ -259,15 +260,15 @@ public class LcOrderUnPAYDetailsViewModel extends BaseViewModel {
             case EvKey.findMerchantDetails:
                 if (eventBean.isStatue()) {
                     FindMerchantDetailsResult findMerchantDetailsResult = (FindMerchantDetailsResult) eventBean.getObject();
-                    dealNumber.set("成交" + (findMerchantDetailsResult.getData().getTotalSuccessBuyOrder() + findMerchantDetailsResult.getData().getTotalSuccessSellOrder()) +
-                            "手");
+                    dealNumber.set(App.getInstance().getString(R.string.str_deal) + (findMerchantDetailsResult.getData().getTotalSuccessBuyOrder() + findMerchantDetailsResult.getData().getTotalSuccessSellOrder()) +
+                            App.getInstance().getString(R.string.hands));
                 } else {
                     Toasty.showError(eventBean.getMessage());
                 }
                 break;
             case EvKey.lcOrderCancel:
                 if (eventBean.isStatue()) {
-                    Toasty.showSuccess("订单取消成功！");
+                    Toasty.showSuccess(App.getInstance().getApplicationContext().getString(R.string.str_cancel_success));
                     stopFlush();
                     finish();
                 } else {
@@ -314,7 +315,7 @@ public class LcOrderUnPAYDetailsViewModel extends BaseViewModel {
     }
 
     private void initDate(OrderDetailsResult orderDetailsResult) {
-        titleRightTV.set(mRecordsBean.getOrderType().equals("0") ? "取消订单" : "");
+        titleRightTV.set(mRecordsBean.getOrderType().equals("0") ? App.getInstance().getString(R.string.str_cancel_order) : "");
         mPayTypeBean = App.gson.fromJson("{\"payTypeBean\":" + orderDetailsResult.getData().getPayData() + "}", PayTypeBean.class);
         for (PayTypeBean.PayTypeBeanBean payTypeBeanBean : mPayTypeBean.getPayTypeBean()) {
             if (payTypeBeanBean.getPayType().contains(Constant.wechat)) {

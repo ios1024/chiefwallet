@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.BR;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.base.ARouterPath;
@@ -73,7 +74,7 @@ public class PhoneActivity extends BaseActivity<ActivityPhoneBinding, PhoneViewM
                         binding.llCountdownView.setVisibility(View.INVISIBLE);
                     }
                 });
-                Toasty.showSuccess("获取手机验证码成功");
+                Toasty.showSuccess(App.getInstance().getApplicationContext().getString(R.string.str_phone_code_success));
             }
         });
     }
@@ -91,7 +92,7 @@ public class PhoneActivity extends BaseActivity<ActivityPhoneBinding, PhoneViewM
                     return;
                 }
                 if (!RegexUtils.isMobileExact(viewModel.phoneNum.get())) {
-                    Toasty.showError("请输入有效的手机号码");
+                    Toasty.showError(getString(R.string.valid_phone));
                     return;
                 }
                 viewModel.getPhoneCode();

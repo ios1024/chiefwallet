@@ -25,6 +25,7 @@ import com.spark.wsclient.pojo.ChatBean;
 import com.spark.wsclient.utils.WsConstant;
 import com.spark.wsclient.utils.WsUtils;
 
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -32,7 +33,6 @@ import java.util.List;
 import me.spark.mvvm.base.BaseActivity;
 import me.spark.mvvm.http.impl.OnRequestListener;
 import me.spark.mvvm.utils.EventBusUtils;
-import me.spark.mvvm.utils.LogUtils;
 import me.spark.mvvm.utils.WebSocketRequest;
 
 /**
@@ -80,7 +80,7 @@ public class ChatActivity extends BaseActivity<ActivityChatBinding, ChatViewMode
         mTitleModel.setShowTitleLine(true);
         binding.chatTitle.titleLeftImg.setImageDrawable(getResources().getDrawable(R.drawable.svg_cancel));
         mTitleModel.setShowRightTV(true);
-        mTitleModel.setRightTV("查看订单");
+        mTitleModel.setRightTV(App.getInstance().getString(R.string.str_order_detail));
         binding.chatTitle.setViewTitle(mTitleModel);
         setTitleListener(binding.chatTitle.titleRootLeft, binding.chatTitle.titleRootRight);
 
@@ -208,13 +208,12 @@ public class ChatActivity extends BaseActivity<ActivityChatBinding, ChatViewMode
                 Collections.reverse(chatEntities);
                 adapter.notifyDataSetChanged();
                 if (pageIndex == 1) binding.rvChat.smoothScrollToPosition(chatEntities.size() - 1);
-                else layoutManager.scrollToPosition(entityList.size());
+                else layoutManager.scrollToPosition(entityList.size() + 3);
             }
 
             @Override
             public void onFail(String message) {
                 binding.swipeLayout.setRefreshing(false);
-                LogUtils.e("获取历史聊天记录失败onFail", message);
             }
         });
     }

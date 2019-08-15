@@ -88,7 +88,7 @@
 
                         <TextView
                             style="@style/textBlackNormal"
-                            android:text="成交总额"
+                            android:text="@string/total_turnover"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -174,7 +174,7 @@
                             <TextView
                                 style="@style/textGrayCommonFont13"
                                 android:layout_marginTop="4dp"
-                                android:text="申诉中"/>
+                                android:text="@string/str_order_appealing"/>
                         </LinearLayout>
 
                         <TextView
@@ -187,7 +187,7 @@
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
                             android:paddingTop="6dp"
-                            android:text="沟通"
+                            android:text="@string/str_go_chat"
                             app:bl_corners_radius="4dp"
                             app:bl_solid_color="@color/white"
                             app:bl_stroke_color="@color/gray_common"
@@ -201,7 +201,7 @@
                         <TextView
                             style="@style/textBlackNormal"
                             android:layout_weight="1"
-                            android:text="商户"/>
+                            android:text="@string/str_store"/>
 
                         <TextView
                             style="@style/textBlackNormal"
@@ -215,7 +215,7 @@
                         <TextView
                             style="@style/textBlackNormal"
                             android:layout_weight="1"
-                            android:text="支付方式"/>
+                            android:text="@string/str_paypay"/>
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -244,7 +244,7 @@
                         <TextView
                             style="@style/textBlackNormal"
                             android:layout_weight="1"
-                            android:text="单价"/>
+                            android:text="@string/str_price_single"/>
 
                         <TextView
                             style="@style/textBlackNormal"
@@ -257,7 +257,7 @@
                         <TextView
                             style="@style/textBlackNormal"
                             android:layout_weight="1"
-                            android:text="数量"/>
+                            android:text="@string/number"/>
 
                         <TextView
                             style="@style/textBlackNormal"
@@ -270,7 +270,7 @@
                         <TextView
                             style="@style/textBlackNormal"
                             android:layout_weight="1"
-                            android:text="金额"/>
+                            android:text="@string/str_money"/>
 
                         <TextView
                             style="@style/textBlackNormal"
@@ -283,7 +283,7 @@
                         <TextView
                             style="@style/textBlackNormal"
                             android:layout_weight="1"
-                            android:text="创建时间"/>
+                            android:text="@string/str_createtime"/>
 
                         <TextView
                             style="@style/textBlackNormal"
@@ -295,7 +295,7 @@
 
                         <TextView
                             style="@style/textBlackNormal"
-                            android:text="订单号"/>
+                            android:text="@string/str_order_sn"/>
 
                         <TextView
                             style="@style/textBlackNormal"
@@ -316,7 +316,7 @@
 
                         <TextView
                             style="@style/textBlackNormal"
-                            android:text="参考号"/>
+                            android:text="@string/str_reference_sn"/>
 
                         <TextView
                             style="@style/textBlackNormal"

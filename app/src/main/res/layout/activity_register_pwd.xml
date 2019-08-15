@@ -29,8 +29,7 @@
 
         <TextView
             style="@style/textBlackNormal"
-            android:layout_marginBottom="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_margin="16dp"
             android:text="@string/pwd_tip"
             android:textColor="@color/gray_70"/>
 
@@ -149,6 +148,8 @@
             style="@style/textGrayCommonSmall"
             android:text="@string/register_tip"
             android:textSize="@dimen/font_mini"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
             android:textStyle="bold"/>
 
         <LinearLayout
