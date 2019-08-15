@@ -105,7 +105,7 @@ public class LcVPFragment extends BaseFragment<FragmentLcVpBinding, LcViewModel>
                                                                 public void onCEtContentInput(String content) {
                                                                     showKeyboard(false);
                                                                     orderCreateBean.setTradePwd(content);
-                                                                    showDialog("请求中...");
+                                                                    showDialog(App.getInstance().getString(R.string.loading));
                                                                     LcTradeClient.getInstance().orderCreate(orderCreateBean, getArguments().getString(COIN_NAME));
                                                                 }
                                                             }))

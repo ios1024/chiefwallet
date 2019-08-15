@@ -262,7 +262,7 @@ public class CasClient extends BaseHttpClient {
                             if (casConfig.getCode() == BaseRequestCode.OK) {
                                 EventBusUtils.postSuccessEvent(EvKey.casConfig, casConfig.getCode(), s, casConfig);
                             } else {
-                                EventBusUtils.postErrorEvent(EvKey.casConfig, casConfig.getCode(), "网络连接异常！");
+                                EventBusUtils.postErrorEvent(EvKey.casConfig, casConfig.getCode(), BaseApplication.getInstance().getString(R.string.str_connect_error));
                             }
                         } catch (Exception e) {
                             postException(EvKey.casConfig, e);

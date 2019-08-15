@@ -68,13 +68,13 @@
                 <TextView
                     style="@style/textGrayCommonFont13"
                     android:layout_marginLeft="48dp"
-                    android:text="交易总共(CNY)"/>
+                    android:text="@string/str_money_all"/>
 
                 <TextView
                     style="@style/textGrayCommonFont13"
                     android:layout_weight="1"
                     android:gravity="right"
-                    android:text="时间"/>
+                    android:text="@string/time"/>
             </LinearLayout>
 
             <LinearLayout

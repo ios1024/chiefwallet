@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.view.View;
 
 import com.lxj.xpopup.core.AttachPopupView;
+import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.ui.popup.impl.OnKlineMoreListener;
 
@@ -47,16 +48,16 @@ public class KlineMorePopup extends AttachPopupView {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.popup_kline_more_15min:
-                mOnKlineMoreListener.onSelectMore("15分钟", 5);
+                mOnKlineMoreListener.onSelectMore(App.getInstance().getString(R.string.min15_text), 5);
                 break;
             case R.id.popup_kline_more_30min:
-                mOnKlineMoreListener.onSelectMore("30分钟", 6);
+                mOnKlineMoreListener.onSelectMore(App.getInstance().getString(R.string.min30_text), 6);
                 break;
             case R.id.popup_kline_more_1week:
-                mOnKlineMoreListener.onSelectMore("1周", 7);
+                mOnKlineMoreListener.onSelectMore(App.getInstance().getString(R.string.week1_text), 7);
                 break;
             case R.id.popup_kline_more_1month:
-                mOnKlineMoreListener.onSelectMore("1月", 8);
+                mOnKlineMoreListener.onSelectMore(App.getInstance().getString(R.string.month1_text), 8);
                 break;
         }
     }

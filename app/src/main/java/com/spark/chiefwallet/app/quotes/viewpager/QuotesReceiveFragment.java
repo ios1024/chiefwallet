@@ -221,9 +221,12 @@ public class QuotesReceiveFragment extends BaseFragment<FragmentQuotesReceiveBin
                         break;
                 }
                 mQuotesThumbAdapter.notifyDataSetChanged();
+
                 if (mThumbList.isEmpty()) {
                     mQuotesThumbAdapter.setEmptyView(R.layout.view_rv_empty, binding.thumbRv);
                 }
+                if (!binding.thumbRoot.isContentCurrentState())
+                    binding.thumbRoot.showContent();
             }
         });
         viewModel.uc.isLogin.observe(this, new Observer<Boolean>() {

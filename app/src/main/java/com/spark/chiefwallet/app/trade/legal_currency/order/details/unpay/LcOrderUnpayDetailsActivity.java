@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.BR;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.base.ARouterPath;
@@ -53,7 +54,7 @@ public class LcOrderUnpayDetailsActivity extends BaseActivity<ActivityLcOrderUnp
         StatueBarUtils.setStatusBarLightMode(this, true);
         StatueBarUtils.addMarginTopEqualStatusBarHeight(binding.fakeStatusBar);
         StatueBarUtils.setStatusBarColor(this, ContextCompat.getColor(this, R.color.commission_bg));
-        binding.title.setText("等待付款");
+        binding.title.setText(App.getInstance().getApplicationContext().getString(R.string.str_unpay));
         viewModel.initContext(this);
     }
 
@@ -68,13 +69,14 @@ public class LcOrderUnpayDetailsActivity extends BaseActivity<ActivityLcOrderUnp
             }
         });
     }
+
     @Override
     public void initData() {
         if (!binding.root.isLoadingCurrentState()) binding.root.showLoading();
         viewModel.initViewDate(orderDetailsBean, new OnRequestListener<OrderDetailsResult>() {
             @Override
             public void onSuccess(OrderDetailsResult orderDetailsResult) {
-                binding.timeTips.setText("*请在" + orderDetailsResult.getData().getTimeLimit() + "分钟内完成支付，如遇到问题点击 [联系对方]");
+                binding.timeTips.setText("*" + App.getInstance().getApplicationContext().getString(R.string.str_please_within) + " " + orderDetailsResult.getData().getTimeLimit() + " " + App.getInstance().getApplicationContext().getString(R.string.str_complete_within));
                 timeCountDown = (long) orderDetailsResult.getData().getTimeLimit() * 60 * 1000 - (System.currentTimeMillis() - orderDetailsResult.getData().getCreateTime());
                 LogUtils.e("timeCountDown", timeCountDown);
                 if (orderDetailsResult.getData().getOrderType().equals("0")) {
@@ -88,7 +90,7 @@ public class LcOrderUnpayDetailsActivity extends BaseActivity<ActivityLcOrderUnp
             @Override
             public void onFail(String message) {
                 Toasty.showError(message);
-                binding.root.showError(R.drawable.svg_no_data, "请求错误", message, "重试", new View.OnClickListener() {
+                binding.root.showError(R.drawable.svg_no_data, App.getInstance().getApplicationContext().getString(R.string.str_http_error), message, App.getInstance().getApplicationContext().getString(R.string.retry), new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         initData();

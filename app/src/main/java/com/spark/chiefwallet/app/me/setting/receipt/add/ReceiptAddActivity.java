@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.BR;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.base.ARouterPath;
@@ -46,7 +47,7 @@ public class ReceiptAddActivity extends BaseActivity<ActivityReceiptAddBinding, 
 
         //TitleSet
         mTitleModel = new TitleBean();
-        mTitleModel.setTitleName("添加");
+        mTitleModel.setTitleName(App.getInstance().getString(R.string.add));
         binding.receiptTitle.setViewTitle(mTitleModel);
         setTitleListener(binding.receiptTitle.titleRootLeft);
     }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.BR;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.app.me.setting.apiinterface.apicreate.ApiCreateFragment;
@@ -32,7 +33,7 @@ import me.spark.mvvm.base.BaseActivity;
 public class ApiInterfaceActivity extends BaseActivity<ActivityApiInterfaceBinding, ApiInterfaceVeiwModel> {
     private TitleBean mTitleModel;
     private ArrayList<Fragment> mFragments = new ArrayList<>();
-    private final String[] mTitles = {"创建API", "创建记录"};
+    private final String[] mTitles = {App.getInstance().getString(R.string.str_create_api), App.getInstance().getString(R.string.str_create_api_record)};
     private SlideTabPagerAdapter mAdapter;
 
     @Override

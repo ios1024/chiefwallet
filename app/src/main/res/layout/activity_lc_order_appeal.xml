@@ -23,7 +23,7 @@
             android:layout_height="112dp"
             android:background="@null"
             android:gravity="top"
-            android:hint="请描述你的问题…"
+            android:hint="@string/str_desc"
             android:padding="16dp"
             android:text="@={lcOrderAppealViewModel.appealContent}"
             android:textColor="@color/black"
@@ -32,7 +32,7 @@
         <TextView
             style="@style/textBlackSmall"
             android:layout_margin="16dp"
-            android:text="上传凭证"/>
+            android:text="@string/str_upload_picture"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -77,6 +77,6 @@
         <TextView
             style="@style/textGrayCommonFont13"
             android:layout_margin="16dp"
-            android:text="注：为了更加快速的为您解决问题，请您上传相应的照片，比如支付完成页面等"/>
+            android:text="@string/str_appeal_tip"/>
     </LinearLayout>
 </layout>

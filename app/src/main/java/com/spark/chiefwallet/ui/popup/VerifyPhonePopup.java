@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lxj.xpopup.impl.FullScreenPopupView;
+import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.ui.VerificationCodeInput;
 import com.spark.chiefwallet.ui.impl.OnVerifyPhoneListener;
@@ -53,7 +54,7 @@ public class VerifyPhonePopup extends FullScreenPopupView implements View.OnClic
         mSmsSendAgain = findViewById(R.id.sms_send_again);
         mSmsClose.setOnClickListener(this);
         mSmsSendAgain.setOnClickListener(this);
-        mSmsPhone.setText("请输入您注册手机" + phoneNum + "收到的验证码");
+        mSmsPhone.setText(App.getInstance().getString(R.string.str_regist_phone) + phoneNum + App.getInstance().getString(R.string.str_regist_phone_code));
         mPhoneInput.setOnCompleteListener(new VerificationCodeInput.Listener() {
             @Override
             public void onComplete(String smsCode) {

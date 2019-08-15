@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.lxj.xpopup.core.BottomPopupView;
+import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.R;
 import com.spark.modulespot.SpotCoinClient;
 import com.spark.modulespot.pojo.OpenOrdersResult;
@@ -57,10 +58,10 @@ public class CancelOrderPopup extends BottomPopupView {
     }
 
     private void initView() {
-        mTvPopupType.setText(listBean.getSide() == 0 ? "买入" : "卖出");
-        mTvPopupPrice.setText(DfUtils.numberFormat(listBean.getPrice(),8) + " " + listBean.getSymbol().split("/")[1]);
-        mTvPopupNum.setText(DfUtils.numberFormat(listBean.getOrderQty(),8) + " " + listBean.getSymbol().split("/")[0]);
-        mTvPopupAmount.setText(DfUtils.numberFormat(listBean.getTradedAmount(),8) + " " + listBean.getSymbol().split("/")[1]);
+        mTvPopupType.setText(listBean.getSide() == 0 ? App.getInstance().getString(R.string.buy) : App.getInstance().getString(R.string.sell));
+        mTvPopupPrice.setText(DfUtils.numberFormat(listBean.getPrice(), 8) + " " + listBean.getSymbol().split("/")[1]);
+        mTvPopupNum.setText(DfUtils.numberFormat(listBean.getOrderQty(), 8) + " " + listBean.getSymbol().split("/")[0]);
+        mTvPopupAmount.setText(DfUtils.numberFormat(listBean.getTradedAmount(), 8) + " " + listBean.getSymbol().split("/")[1]);
     }
 
     @OnClick({R.id.tv_confirm,

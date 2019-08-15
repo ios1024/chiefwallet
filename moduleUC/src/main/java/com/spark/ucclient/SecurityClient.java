@@ -142,7 +142,7 @@ public class SecurityClient extends BaseHttpClient {
                         try {
                             GeneralResult generalResult = BaseApplication.gson.fromJson(s, GeneralResult.class);
                             if (generalResult.getCode() == BaseRequestCode.OK) {
-                                EventBusUtils.postSuccessEvent(certifiedType == 0 ? EvKey.uploadAuthIDCard : EvKey.uploadAuthPort, generalResult.getCode(), "认证成功！", type);
+                                EventBusUtils.postSuccessEvent(certifiedType == 0 ? EvKey.uploadAuthIDCard : EvKey.uploadAuthPort, generalResult.getCode(), BaseApplication.getInstance().getString(R.string.str_auth_success), type);
                             } else {
                                 if (generalResult.getCode() == BaseRequestCode.ERROR_401) {
                                     uodateLogin(generalResult);
@@ -251,7 +251,7 @@ public class SecurityClient extends BaseHttpClient {
                             GeneralResult generalResult = BaseApplication.gson.fromJson(s, GeneralResult.class);
                             if (generalResult.getCode() == BaseRequestCode.OK) {
                                 CommonResult updateLoginPwdResult = BaseApplication.gson.fromJson(s, CommonResult.class);
-                                EventBusUtils.postSuccessEvent(EvKey.updateLoginPwd, updateLoginPwdResult.getCode(), "修改成功！");
+                                EventBusUtils.postSuccessEvent(EvKey.updateLoginPwd, updateLoginPwdResult.getCode(), BaseApplication.getInstance().getString(R.string.successfully_modified));
                             } else {
                                 if (generalResult.getCode() == BaseRequestCode.ERROR_401) {
                                     uodateLogin(generalResult);

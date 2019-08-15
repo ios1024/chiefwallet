@@ -19,6 +19,7 @@ import com.spark.acclient.FinanceClient;
 import com.spark.acclient.pojo.CoinSupportBean;
 import com.spark.acclient.pojo.CoinTransBean;
 import com.spark.acclient.pojo.MerberWalletResult;
+import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.base.ARouterPath;
 import com.spark.chiefwallet.ui.PointLengthFilter;
@@ -452,7 +453,7 @@ public class CoinTransPopup extends BottomPopupView {
                 requstFocus();
             } else {
                 mBtnTrans.setEnabled(false);
-                mBtnTrans.setText("币币账户暂不支持该币种！");
+                mBtnTrans.setText(App.getInstance().getApplicationContext().getString(R.string.str_b2b_account_no_support));
             }
         } else if (text.contains(mContext.getString(R.string.c2c_account))) {
             if (Arrays.asList(c2cList).contains(singleCoinName)) {
@@ -461,7 +462,7 @@ public class CoinTransPopup extends BottomPopupView {
                 requstFocus();
             } else {
                 mBtnTrans.setEnabled(false);
-                mBtnTrans.setText("法币账户暂不支持该币种！");
+                mBtnTrans.setText(App.getInstance().getApplicationContext().getString(R.string.str_c2c_account_no_support));
             }
         }
     }

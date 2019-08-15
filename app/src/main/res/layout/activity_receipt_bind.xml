@@ -48,11 +48,11 @@
                     <TextView
                         style="@style/textBlackSmall"
                         android:layout_width="72dp"
-                        android:text="姓名"/>
+                        android:text="@string/name"/>
 
                     <EditText
                         style="@style/trade_input"
-                        android:hint="请输入姓名"
+                        android:hint="@string/name_hint"
                         android:text="@={receiptBindViewModel.nameText}"
                         android:textSize="@dimen/font_normal"/>
 
@@ -98,12 +98,12 @@
                         <TextView
                             style="@style/textBlackSmall"
                             android:layout_width="72dp"
-                            android:text="开户行"/>
+                            android:text="@string/str_bank_name"/>
 
                         <EditText
                             style="@style/trade_input"
                             android:enabled="false"
-                            android:hint="请选择"
+                            android:hint="@string/please_choose"
                             android:text="@={receiptBindViewModel.bankText}"
                             android:textSize="@dimen/font_normal"/>
 
@@ -129,11 +129,11 @@
                         <TextView
                             style="@style/textBlackSmall"
                             android:layout_width="72dp"
-                            android:text="支行"/>
+                            android:text="@string/str_branch"/>
 
                         <EditText
                             style="@style/trade_input"
-                            android:hint="请输入开户行支行"
+                            android:hint="@string/str_enter_branch"
                             android:text="@={receiptBindViewModel.branchText}"
                             android:textSize="@dimen/font_normal"/>
                     </LinearLayout>
@@ -149,11 +149,11 @@
                         <TextView
                             style="@style/textBlackSmall"
                             android:layout_width="72dp"
-                            android:text="银行卡号"/>
+                            android:text="@string/str_bank_number"/>
 
                         <EditText
                             style="@style/trade_input"
-                            android:hint="请输入用户卡号"
+                            android:hint="@string/str_enter_bank_number"
                             android:text="@={receiptBindViewModel.bankAddressText}"
                             android:textSize="@dimen/font_normal"/>
                     </LinearLayout>
@@ -170,11 +170,11 @@
                     <TextView
                         style="@style/textBlackSmall"
                         android:layout_width="72dp"
-                        android:text="资金密码"/>
+                        android:text="@string/legal_currency_pwd"/>
 
                     <EditText
                         style="@style/trade_input"
-                        android:hint="请输入资金密码"
+                        android:hint="@string/trade_pwd_hint"
                         android:inputType="textPassword"
                         android:text="@={receiptBindViewModel.pwdText}"
                         android:textSize="@dimen/font_normal"/>
@@ -206,7 +206,7 @@
                         <TextView
                             style="@style/textGrayCommonNormal"
                             android:layout_marginTop="12dp"
-                            android:text="上传收款二维码"/>
+                            android:text="@string/str_upload"/>
                     </LinearLayout>
 
                     <ImageView

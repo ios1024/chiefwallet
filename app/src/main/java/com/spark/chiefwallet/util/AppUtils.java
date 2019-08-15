@@ -27,6 +27,7 @@ import java.util.List;
 
 import constacne.UiType;
 import listener.OnInitUiListener;
+import me.spark.mvvm.base.BaseApplication;
 import me.spark.mvvm.utils.Utils;
 import model.UiConfig;
 import model.UpdateConfig;
@@ -635,7 +636,7 @@ public final class AppUtils {
                         TextView title = view.findViewById(R.id.tv_update_title);
                         TextView content = view.findViewById(R.id.tv_update_content);
                         TextView versionCode = view.findViewById(R.id.tv_version_name);
-                        title.setText("版本更新啦");
+                        title.setText(BaseApplication.getInstance().getString(me.spark.mvvm.R.string.str_version));
                         String[] strings = updateBean.getData().getUpdateRemark().split(";");
                         StringBuilder stringBuilder = new StringBuilder();
                         for (String string : strings) {

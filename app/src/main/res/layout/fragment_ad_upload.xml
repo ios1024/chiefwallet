@@ -30,7 +30,7 @@
                 <TextView
                     style="@style/textBlackSmall"
                     android:layout_width="92dp"
-                    android:text="选择币种"/>
+                    android:text="@string/choose_coin"/>
 
                 <TextView
                     style="@style/textBlackNormal"
@@ -56,7 +56,7 @@
                 <TextView
                     style="@style/textBlackSmall"
                     android:layout_width="92dp"
-                    android:text="所在地"/>
+                    android:text="@string/str_country"/>
 
                 <TextView
                     style="@style/textBlackNormal"
@@ -82,7 +82,7 @@
                 <TextView
                     style="@style/textBlackSmall"
                     android:layout_width="92dp"
-                    android:text="货币类型"/>
+                    android:text="@string/str_coin_type"/>
 
                 <TextView
                     style="@style/textBlackNormal"
@@ -107,7 +107,7 @@
                 <TextView
                     style="@style/textBlackSmall"
                     android:layout_width="92dp"
-                    android:text="固定价格"/>
+                    android:text="@string/str_fixed_price"/>
 
                 <TextView
                     style="@style/textBlackNormal"
@@ -137,12 +137,12 @@
                     <TextView
                         style="@style/textBlackSmall"
                         android:layout_width="92dp"
-                        android:text="浮动比例"/>
+                        android:text="@string/str_float_rate"/>
 
                     <EditText
                         android:id="@+id/ad_premium_price"
                         style="@style/trade_input"
-                        android:hint="请输入浮动比例"
+                        android:hint="@string/str_set_float_rate"
                         android:inputType="numberDecimal"
                         android:text="@={adUploadViewModel.premiumPrice}"
                         android:textSize="@dimen/font_normal"/>
@@ -188,12 +188,12 @@
                     <TextView
                         style="@style/textBlackSmall"
                         android:layout_width="92dp"
-                        android:text="固定价格"/>
+                        android:text="@string/str_fixed_price"/>
 
                     <EditText
                         android:id="@+id/ad_fix_price"
                         style="@style/trade_input"
-                        android:hint="请设置固定价格"
+                        android:hint="@string/str_set_fixed_price"
                         android:inputType="numberDecimal"
                         android:text="@={adUploadViewModel.fixedPrice}"
                         android:textSize="@dimen/font_normal"/>
@@ -213,7 +213,7 @@
                 <TextView
                     style="@style/textBlackSmall"
                     android:layout_width="92dp"
-                    android:text="交易价格"/>
+                    android:text="@string/str_trade_price"/>
 
                 <TextView
                     style="@style/textBlackNormal"
@@ -258,7 +258,7 @@
                 <TextView
                     style="@style/textBlackSmall"
                     android:layout_width="92dp"
-                    android:text="收款方式"/>
+                    android:text="@string/str_payway"/>
 
                 <TextView
                     style="@style/textBlackNormal"
@@ -282,18 +282,18 @@
                 <TextView
                     style="@style/textBlackSmall"
                     android:layout_width="92dp"
-                    android:text="付款期限"/>
+                    android:text="@string/str_limit"/>
 
                 <EditText
                     style="@style/trade_input"
-                    android:hint="请输入付款期限（15~30）"
+                    android:hint="@string/str_set_limit"
                     android:inputType="number"
                     android:text="@={adUploadViewModel.tradeDeadline}"
                     android:textSize="@dimen/font_normal"/>
 
                 <TextView
                     style="@style/textGrayCommonNormal"
-                    android:text="分钟"/>
+                    android:text="@string/text_minute"/>
             </LinearLayout>
 
             <View
@@ -306,11 +306,11 @@
                 <TextView
                     style="@style/textBlackSmall"
                     android:layout_width="92dp"
-                    android:text="最小交易额"/>
+                    android:text="@string/str_min"/>
 
                 <EditText
                     style="@style/trade_input"
-                    android:hint="请输入每笔交易最小限额"
+                    android:hint="@string/str_set_min"
                     android:inputType="numberDecimal"
                     android:text="@={adUploadViewModel.minAmount}"
                     android:textSize="@dimen/font_normal"/>
@@ -330,11 +330,11 @@
                 <TextView
                     style="@style/textBlackSmall"
                     android:layout_width="92dp"
-                    android:text="最大交易额"/>
+                    android:text="@string/str_max"/>
 
                 <EditText
                     style="@style/trade_input"
-                    android:hint="请输入每笔交易最大限额"
+                    android:hint="@string/str_set_max"
                     android:inputType="numberDecimal"
                     android:text="@={adUploadViewModel.maxAmount}"
                     android:textSize="@dimen/font_normal"/>
@@ -352,7 +352,7 @@
                 style="@style/trade_input"
                 android:layout_height="92dp"
                 android:gravity="top"
-                android:hint="请输入备注信息..."
+                android:hint="@string/str_enter_reamrk"
                 android:padding="16dp"
                 android:text="@={adUploadViewModel.remarks}"/>
 
@@ -363,7 +363,7 @@
                 <TextView
                     style="@style/textBlackSmall"
                     android:layout_width="92dp"
-                    android:text="自动回复"/>
+                    android:text="@string/str_auto_reply"/>
 
                 <TextView
                     style="@style/textBlackNormal"
@@ -385,7 +385,7 @@
                 style="@style/trade_input"
                 android:layout_height="92dp"
                 android:gravity="top"
-                android:hint="请输入回复内容..."
+                android:hint="@string/str_enter_reply"
                 android:padding="16dp"
                 android:text="@={adUploadViewModel.autoResponse}"
                 android:visibility="@{adUploadViewModel.isAutoResponse ? View.VISIBLE : View.GONE}"/>

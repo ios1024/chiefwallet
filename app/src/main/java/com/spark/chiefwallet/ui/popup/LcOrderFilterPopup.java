@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.lxj.xpopup.impl.PartShadowPopupView;
+import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.ui.flowlayout.FlowLayout;
 import com.spark.chiefwallet.ui.flowlayout.TagAdapter;
@@ -39,10 +40,20 @@ public class LcOrderFilterPopup extends PartShadowPopupView {
     @BindView(R.id.btn_ensure)
     TextView mBtnEnsure;
 
+    private String all = App.getInstance().getString(R.string.all);
+    private String sell = App.getInstance().getString(R.string.sell2);
+    private String buy = App.getInstance().getString(R.string.buy2);
+
+    private String str_un_pay = App.getInstance().getString(R.string.str_un_pay);
+    private String str_paid = App.getInstance().getString(R.string.str_paid);
+    private String completed = App.getInstance().getString(R.string.completed);
+    private String cancelled = App.getInstance().getString(R.string.cancelled);
+    private String str_order_appealing = App.getInstance().getString(R.string.str_order_appealing);
+
     //交易类型
-    private String[] mAdtype = new String[]{"全部", "出售", "购买"};
+    private String[] mAdtype = new String[]{all, sell, buy};
     //订单状态
-    private String[] mStatus = new String[]{"全部", "未付款", "已付款", "已完成", "已取消", "申诉中"};
+    private String[] mStatus = new String[]{all, str_un_pay, str_paid, completed, cancelled, str_order_appealing};
     //
     private String[] mCoinName = Constant.lcCoinNameArray;
 
@@ -71,7 +82,7 @@ public class LcOrderFilterPopup extends PartShadowPopupView {
 
     private void initView() {
         mCoinName = new String[Constant.lcCoinNameArray.length + 1];
-        mCoinName[0] = "全部";
+        mCoinName[0] = App.getInstance().getString(R.string.all);
         for (int i = 0; i < Constant.lcCoinNameArray.length; i++) {
             mCoinName[i + 1] = Constant.lcCoinNameArray[i];
         }
@@ -148,38 +159,27 @@ public class LcOrderFilterPopup extends PartShadowPopupView {
                 break;
             case R.id.btn_ensure:
                 String adType = "", status = "", coinName = "";
-                switch (selectAdtype) {
-                    case "全部":
-                        adType = "";
-                        break;
-                    case "出售":
-                        adType = "1";
-                        break;
-                    case "购买":
-                        adType = "0";
-                        break;
+                if (selectAdtype.equals(all)) {
+                    adType = "";
+                } else if (selectAdtype.equals(sell)) {
+                    adType = "1";
+                } else if (selectAdtype.equals(buy)) {
+                    adType = "0";
                 }
-                switch (selectStatus) {
-                    case "全部":
-                        status = "-1";
-                        break;
-                    case "未付款":
-                        status = "1";
-                        break;
-                    case "已付款":
-                        status = "2";
-                        break;
-                    case "已完成":
-                        status = "3";
-                        break;
-                    case "已取消":
-                        status = "0";
-                        break;
-                    case "申诉中":
-                        status = "4";
-                        break;
+                if (selectStatus.equals(all)) {
+                    status = "-1";
+                } else if (selectStatus.equals(str_un_pay)) {
+                    status = "1";
+                } else if (selectStatus.equals(str_paid)) {
+                    status = "2";
+                } else if (selectStatus.equals(completed)) {
+                    status = "3";
+                } else if (selectStatus.equals(cancelled)) {
+                    status = "0";
+                } else if (selectStatus.equals(str_order_appealing)) {
+                    status = "4";
                 }
-                coinName = selectCoinName.equals("全部") ? "" : selectCoinName;
+                coinName = selectCoinName.equals(App.getInstance().getString(R.string.all)) ? "" : selectCoinName;
                 mOnLcFilterListener.onLcSelect(adType, status, coinName);
                 dismiss();
                 break;

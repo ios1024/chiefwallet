@@ -67,7 +67,7 @@ public class LegalCurrencyViewModel extends BaseViewModel {
     }
 
     public void loadCountry(OnRequestListener onRequestListener) {
-        showDialog("正在请求...");
+        showDialog(App.getInstance().getString(R.string.str_requesting));
         this.mOnRequestListener = onRequestListener;
         AdvertiseScanClient.getInstance().getTradeAreaList();
     }
@@ -148,7 +148,7 @@ public class LegalCurrencyViewModel extends BaseViewModel {
                     if (mCoinTransPopup != null && mCoinTransPopup.isShow()) {
                         mCoinTransPopup.dismiss();
                     }
-                    Toasty.showSuccess("划转成功！");
+                    Toasty.showSuccess(App.getInstance().getApplicationContext().getString(R.string.coin_trans_success));
                 } else {
                     Toasty.showError(eventBean.getMessage());
                 }

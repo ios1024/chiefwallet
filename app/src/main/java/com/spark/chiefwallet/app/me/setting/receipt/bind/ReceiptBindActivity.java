@@ -11,6 +11,7 @@ import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.interfaces.OnSelectListener;
+import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.BR;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.base.ARouterPath;
@@ -88,13 +89,13 @@ public class ReceiptBindActivity extends BaseActivity<ActivityReceiptBindBinding
         mPhotoSelectUtils = new PhotoSelectUtils(this, new PhotoSelectUtils.PhotoSelectListener() {
             @Override
             public void onFinish(File outputFile, Uri outputUri) {
-                showDialog("正在上传");
+                showDialog(App.getInstance().getString(R.string.str_uploading));
                 PayControlClient.getInstance().uploadQRCode(outputFile, view.getWidth(), view.getHeight());
             }
         }, true);
 
         new XPopup.Builder(this)
-                .asBottomList("请选择", new String[]{"拍照", "相册"},
+                .asBottomList(App.getInstance().getString(R.string.please_choose), new String[]{App.getInstance().getString(R.string.take_photo), App.getInstance().getString(R.string.album)},
                         new OnSelectListener() {
                             @Override
                             public void onSelect(int position, String text) {

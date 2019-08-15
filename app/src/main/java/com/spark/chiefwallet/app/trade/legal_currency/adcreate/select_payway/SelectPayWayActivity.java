@@ -178,7 +178,7 @@ public class SelectPayWayActivity extends BaseActivity<ActivitySelectPaywayBindi
         if (hashMap.containsKey(payType)) {
             PayListBean.DataBean temp = hashMap.get(payType);
             if (temp.getId() != payWaySetting.getId()) {
-                Toasty.showError("同一种收款方式只能选择一个账户");
+                Toasty.showError(getString(R.string.str_payway_only_one));
             } else {
                 hashMap.remove(payType);
                 for (PayListBean.DataBean dataBean : mCoinAddressList) {

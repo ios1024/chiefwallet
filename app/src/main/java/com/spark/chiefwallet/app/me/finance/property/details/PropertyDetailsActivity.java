@@ -18,6 +18,7 @@ import com.lxj.xpopup.interfaces.OnSelectListener;
 import com.lxj.xpopup.util.XPopupUtils;
 import com.spark.acclient.pojo.CoinTransDetailsResult;
 import com.spark.acclient.pojo.SpotWalletResult;
+import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.BR;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.app.me.finance.property.adapter.PropertyDetailsAdapter;
@@ -257,7 +258,7 @@ public class PropertyDetailsActivity extends BaseActivity<ActivityPropertyDetail
             case R.id.filter:
                 new XPopup.Builder(this)
                         .maxHeight((int) (XPopupUtils.getWindowHeight(this) * .85f))
-                        .asBottomList("请选择", filterTypeList,
+                        .asBottomList(App.getInstance().getString(R.string.please_choose), filterTypeList,
                                 new OnSelectListener() {
                                     @Override
                                     public void onSelect(int position, String text) {

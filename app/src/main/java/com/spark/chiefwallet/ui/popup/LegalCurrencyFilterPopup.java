@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.lxj.xpopup.impl.PartShadowPopupView;
+import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.ui.flowlayout.FlowLayout;
 import com.spark.chiefwallet.ui.flowlayout.TagAdapter;
@@ -49,7 +50,7 @@ public class LegalCurrencyFilterPopup extends PartShadowPopupView {
     //区域
     private String[] mRegion;
     //支付方式
-    private String[] mPayType = new String[]{"全部", "支付宝", "微信", "银行卡"};
+    private String[] mPayType = new String[]{App.getInstance().getString(R.string.all), App.getInstance().getString(R.string.str_alipay), App.getInstance().getString(R.string.str_wechat), App.getInstance().getString(R.string.str_bank)};
 
     private TagAdapter mTagAdapterRegion, mTagAdapterPayType;
     private Context mContext;
@@ -79,7 +80,7 @@ public class LegalCurrencyFilterPopup extends PartShadowPopupView {
 
     private void initView() {
         mRegion = new String[mTradeAreaListResult.getData().size() + 1];
-        mRegion[0] = "全部";
+        mRegion[0] = App.getInstance().getString(R.string.all);
         for (int i = 0; i < mTradeAreaListResult.getData().size(); i++) {
             mRegion[i + 1] = mTradeAreaListResult.getData().get(i).getZhName();
         }

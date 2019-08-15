@@ -224,10 +224,10 @@ public class MeViewModel extends BaseViewModel {
         mContext = context;
         switch (LanguageSPUtil.getInstance(App.getInstance()).getSelectLanguage()) {
             case 0:
-                languageSelect.set("简体中文");
+                languageSelect.set(App.getInstance().getString(R.string.simplified_chinese));
                 break;
             case 1:
-                languageSelect.set("English");
+                languageSelect.set(App.getInstance().getString(R.string.str_english));
                 break;
         }
     }

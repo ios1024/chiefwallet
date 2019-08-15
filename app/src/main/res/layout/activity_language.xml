@@ -43,7 +43,7 @@
                 <TextView
                     style="@style/textBlackNormal"
                     android:layout_weight="1"
-                    android:text="简体中文"/>
+                    android:text="@string/simplified_chinese"/>
 
                 <com.spark.chiefwallet.ui.SmoothCheckBox
                     android:id="@+id/chinese"
@@ -63,7 +63,7 @@
                 <TextView
                     style="@style/textBlackNormal"
                     android:layout_weight="1"
-                    android:text="English"/>
+                    android:text="@string/str_english"/>
 
                 <com.spark.chiefwallet.ui.SmoothCheckBox
                     android:id="@+id/english"

@@ -11,6 +11,7 @@ import android.widget.RadioGroup;
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.lxj.xpopup.XPopup;
+import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.BR;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.api.pojo.CoinPairPushBean;
@@ -54,7 +55,7 @@ public class KlineActivity extends BaseActivity<ActivityKlineBinding, KlineViewM
     @Autowired(name = "quotesVPClick")
     CoinPairPushBean mCoinPairPushBean;
 
-    private final String[] mTitlesType = {"深度", "成交", "简介"};
+    private final String[] mTitlesType = {App.getInstance().getString(R.string.str_depth), App.getInstance().getString(R.string.str_deal), App.getInstance().getString(R.string.str_introduction)};
     private ArrayList<CustomTabEntity> mTabEntitiesType = new ArrayList<>();
     private DepthFragment mDepthFragment;
     private DealFragment mDealFragment;

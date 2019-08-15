@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.view.View;
 
 import com.lxj.xpopup.core.AttachPopupView;
+import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.ui.popup.impl.OnTypeChooseListener;
 
@@ -45,13 +46,13 @@ public class AdPayModePopup extends AttachPopupView {
     public void OnClick(View view) {
         switch (view.getId()) {
             case R.id.mode_alipay:
-                mOnTypeChooseListener.onChooseType(0, "支付宝");
+                mOnTypeChooseListener.onChooseType(0, App.getInstance().getString(R.string.str_alipay));
                 break;
             case R.id.mode_wechatpay:
-                mOnTypeChooseListener.onChooseType(1, "微信");
+                mOnTypeChooseListener.onChooseType(1, App.getInstance().getString(R.string.str_wechat));
                 break;
             case R.id.mode_bankpay:
-                mOnTypeChooseListener.onChooseType(2, "银行卡");
+                mOnTypeChooseListener.onChooseType(2, App.getInstance().getString(R.string.str_bank));
                 break;
         }
         dismiss();

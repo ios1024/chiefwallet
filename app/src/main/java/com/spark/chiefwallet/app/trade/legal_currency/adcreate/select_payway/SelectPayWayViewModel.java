@@ -4,6 +4,8 @@ import android.app.Application;
 import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
 
+import com.spark.chiefwallet.App;
+import com.spark.chiefwallet.R;
 import com.spark.otcclient.PayControlClient;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -32,7 +34,7 @@ public class SelectPayWayViewModel extends BaseViewModel {
 
     private OnRequestListener mOnRequestListener;
 
-    public ObservableField<String> titleText = new ObservableField<>("请选择收款方式");
+    public ObservableField<String> titleText = new ObservableField<>(App.getInstance().getString(R.string.str_set_payway));
     public UIChangeObservable uc = new UIChangeObservable();
 
     public class UIChangeObservable {

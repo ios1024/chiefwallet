@@ -30,7 +30,7 @@
 
                 <TextView
                     style="@style/textBlackNormal"
-                    android:text="锁仓"
+                    android:text="@string/str_lock_up"
                     android:textColor="@color/green"
                     android:textStyle="bold"/>
 
@@ -80,7 +80,7 @@
                     android:layout_width="50dp"
                     android:layout_weight="1"
                     android:gravity="left"
-                    android:text="锁仓数量"/>
+                    android:text="@string/str_lock_up_amount"/>
 
                 <TextView
                     style="@style/textGrayCommonFont13"
@@ -88,7 +88,7 @@
                     android:layout_weight="1"
                     android:layout_marginLeft="16dp"
                     android:gravity="right"
-                    android:text="已释放数量"/>
+                    android:text="@string/str_release_amount"/>
             </LinearLayout>
         </LinearLayout>
 

@@ -13,6 +13,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.lxj.xpopup.XPopup;
+import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.BR;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.app.trade.legal_currency.adapter.LcOrderAdapter;
@@ -137,7 +138,7 @@ public class LcOrderActivity extends BaseActivity<ActivityLcOrderBinding, LcOrde
     protected void onTitleRightClick() {
         //查询所有的币种
         if (Constant.lcCoinNameArray == null) {
-            showDialog("请求中");
+            showDialog(App.getInstance().getString(R.string.loading));
             viewModel.getVCoinSupport(new OnRequestListener<TradeCoinListResult>() {
                 @Override
                 public void onSuccess(TradeCoinListResult tradeCoinListResult) {

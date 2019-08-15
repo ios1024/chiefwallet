@@ -60,7 +60,7 @@
 
                 <TextView
                     style="@style/textGrayCommonFont13"
-                    android:text="高"
+                    android:text="@string/high"
                     android:textSize="@dimen/font_mini"/>
 
                 <TextView
@@ -73,7 +73,7 @@
                 <TextView
                     style="@style/textGrayCommonFont13"
                     android:layout_marginLeft="6dp"
-                    android:text="低"
+                    android:text="@string/low"
                     android:textSize="@dimen/font_mini"/>
 
                 <TextView
@@ -86,7 +86,7 @@
                 <TextView
                     style="@style/textGrayCommonFont13"
                     android:layout_marginLeft="6dp"
-                    android:text="24H量"
+                    android:text="@string/_24h_size"
                     android:textSize="@dimen/font_mini"/>
 
                 <TextView

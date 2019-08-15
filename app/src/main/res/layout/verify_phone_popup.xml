@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:gravity="center"
-        android:text="验证码"
+        android:text="@string/verify_code"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"/>
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        android:text="请输入您注册手机189****8392收到的验证码"
+        android:text=""
         android:textColor="@color/black"
         android:textSize="14sp"/>
 
@@ -68,7 +68,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="S后重新发送"
+            android:text="@string/resend_load"
             android:textColor="#718495"
             android:textSize="14sp"/>
 
@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:enabled="false"
-            android:text="重新发送"
+            android:text="@string/resend"
             android:textColor="#718495"
             android:textSize="14sp"/>
 

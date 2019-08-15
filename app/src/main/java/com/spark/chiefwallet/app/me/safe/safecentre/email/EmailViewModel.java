@@ -65,7 +65,7 @@ public class EmailViewModel extends BaseViewModel {
                 return;
             }
             if (!RegexUtils.isEmail(email.get())) {
-                Toasty.showError("请输入有效的邮箱地址");
+                Toasty.showError(App.getInstance().getApplicationContext().getString(R.string.str_email_address_hint));
                 return;
             }
 
@@ -75,7 +75,7 @@ public class EmailViewModel extends BaseViewModel {
             }
 
             if (StringUtils.isEmpty(pwd.get())) {
-                Toasty.showError("请输入登录密码");
+                Toasty.showError(App.getInstance().getApplicationContext().getString(R.string.str_enter_login_pass));
                 return;
             }
 
@@ -183,7 +183,7 @@ public class EmailViewModel extends BaseViewModel {
                     if (user != null) {
                         App.getInstance().setCurrentUser(user);
                     }
-                    Toasty.showSuccess("绑定邮箱成功");
+                    Toasty.showSuccess(App.getInstance().getApplicationContext().getString(R.string.str_email_bind_success));
                     finish();
                 } else {
                     Toasty.showError(eventBean.getMessage());

@@ -111,11 +111,11 @@ public class WsService extends AbsWorkService implements WsStatueListener {
             bbTradeThread.start();
         }
         //CFD交易模块
-//        if (cfdTradeThread == null) {
-//            cfdTradeThread = new WsThread(WsConstant.CODE_CFD_TRADE, WsHost.cfdTradeWssUrl);
-//            cfdTradeThread.setSocketListener(this);
-//            cfdTradeThread.start();
-//        }
+        if (cfdTradeThread == null) {
+            cfdTradeThread = new WsThread(WsConstant.CODE_CFD_TRADE, WsHost.cfdTradeWssUrl);
+            cfdTradeThread.setSocketListener(this);
+            cfdTradeThread.start();
+        }
 
         //聊天模块
         if (ChatThread == null) {
@@ -169,9 +169,9 @@ public class WsService extends AbsWorkService implements WsStatueListener {
             case WsConstant.CODE_BB_TRADE:
                 sendThread = bbTradeThread;
                 break;
-//            case WsConstant.CODE_CFD_TRADE:
-//                sendThread = cfdTradeThread;
-//                break;
+            case WsConstant.CODE_CFD_TRADE:
+                sendThread = cfdTradeThread;
+                break;
             case WsConstant.CODE_CHAT:
                 sendThread = ChatThread;
                 break;
@@ -213,11 +213,11 @@ public class WsService extends AbsWorkService implements WsStatueListener {
             bbTradeThread.getHandler().sendEmptyMessage(MessageType.CONNECT);
         }
 
-//        if (cfdTradeThread.getHandler() == null) {
-//            onConnectError(WsConstant.CODE_CFD_TRADE, new Throwable("WebSocket dose not ready"));
-//        } else {
-//            cfdTradeThread.getHandler().sendEmptyMessage(MessageType.CONNECT);
-//        }
+        if (cfdTradeThread.getHandler() == null) {
+            onConnectError(WsConstant.CODE_CFD_TRADE, new Throwable("WebSocket dose not ready"));
+        } else {
+            cfdTradeThread.getHandler().sendEmptyMessage(MessageType.CONNECT);
+        }
 
         if (ChatThread.getHandler() == null) {
             onConnectError(WsConstant.CODE_CHAT, new Throwable("WebSocket dose not ready"));
@@ -237,7 +237,7 @@ public class WsService extends AbsWorkService implements WsStatueListener {
                     //BB 行情
                     senBytes(WsConstant.CODE_KLINE, DataUtils.initBytes(WsCMD.SUBSCRIBE_THUMB, BaseApplication.gson.toJson(WsUtils.setSubscribeThumbSPOTJsonMap()).getBytes()));
                     //BB CfD
-//                    senBytes(WsConstant.CODE_KLINE, DataUtils.initBytes(WsCMD.SUBSCRIBE_CFD_THUMB, BaseApplication.gson.toJson(WsUtils.setSubscribeThumbCFDJsonMap()).getBytes()));
+                    senBytes(WsConstant.CODE_KLINE, DataUtils.initBytes(WsCMD.SUBSCRIBE_CFD_THUMB, BaseApplication.gson.toJson(WsUtils.setSubscribeThumbCFDJsonMap()).getBytes()));
                 }
                 break;
             //盘口
@@ -262,13 +262,13 @@ public class WsService extends AbsWorkService implements WsStatueListener {
                 senBytes(WsConstant.CODE_BB_TRADE, DataUtils.initBytes(WsCMD.JSONLOGIN, BaseApplication.gson.toJson(WsUtils.setLoginJsonMap(SPUtils.getInstance().getSpotCookie())).getBytes()));
                 break;
             //CFD交易
-//            case WsConstant.CODE_CFD_TRADE:
-//                LogUtils.e(TAG, "CFD交易WebSocket连接成功！");
-//                HeartBeatUtils.getInstance().startCfdTradeHeartBeat();
-//                //登录CFD交易ws
-//                if (StringUtils.isEmpty(SPUtils.getInstance().getSpotCookie())) return;
-//                senBytes(WsConstant.CODE_CFD_TRADE, DataUtils.initBytes(WsCMD.JSONLOGIN, BaseApplication.gson.toJson(WsUtils.setLoginJsonMap(SPUtils.getInstance().getCfdCookie())).getBytes()));
-//                break;
+            case WsConstant.CODE_CFD_TRADE:
+                LogUtils.e(TAG, "CFD交易WebSocket连接成功！");
+                HeartBeatUtils.getInstance().startCfdTradeHeartBeat();
+                //登录CFD交易ws
+                if (StringUtils.isEmpty(SPUtils.getInstance().getSpotCookie())) return;
+                senBytes(WsConstant.CODE_CFD_TRADE, DataUtils.initBytes(WsCMD.JSONLOGIN, BaseApplication.gson.toJson(WsUtils.setLoginJsonMap(SPUtils.getInstance().getCfdCookie())).getBytes()));
+                break;
             //聊天
             case WsConstant.CODE_CHAT:
                 LogUtils.e(TAG, "聊天WebSocket连接成功！");

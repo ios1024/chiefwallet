@@ -12,6 +12,7 @@ import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.interfaces.OnSelectListener;
+import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.BR;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.base.ARouterPath;
@@ -70,9 +71,9 @@ public class LcOrderAppealActivity extends BaseActivity<ActivityLcOrderAppealBin
 
         //TitleSet
         mTitleModel = new TitleBean();
-        mTitleModel.setTitleName("订单申诉");
+        mTitleModel.setTitleName(App.getInstance().getString(R.string.str_order_appeal));
         mTitleModel.setShowRightTV(true);
-        mTitleModel.setRightTV("提交");
+        mTitleModel.setRightTV(App.getInstance().getString(R.string.commit));
         binding.orderTitle.titleLeftImg.setImageDrawable(getResources().getDrawable(R.drawable.svg_cancel));
         binding.orderTitle.titleRightTv.setTextColor(ContextCompat.getColor(this, R.color.base_dark));
         binding.orderTitle.setViewTitle(mTitleModel);
@@ -82,13 +83,13 @@ public class LcOrderAppealActivity extends BaseActivity<ActivityLcOrderAppealBin
     @Override
     protected void onTitleRightClick() {
         if (StringUtils.isEmpty(viewModel.appealContent.get())) {
-            Toasty.showError("请先描述你的问题！");
+            Toasty.showError(App.getInstance().getString(R.string.str_desc));
             return;
         }
         if (StringUtils.isEmpty(viewModel.imgOne.get())
                 && StringUtils.isEmpty(viewModel.imgTwo.get())
                 && StringUtils.isEmpty(viewModel.imgThree.get())) {
-            Toasty.showError("请上传至少一张凭证！");
+            Toasty.showError(App.getInstance().getString(R.string.str_at_least_one));
             return;
         }
 
@@ -99,7 +100,7 @@ public class LcOrderAppealActivity extends BaseActivity<ActivityLcOrderAppealBin
         orderAppealBean.setPicturesTwo(viewModel.imgTwo.get());
         orderAppealBean.setPicturesThree(viewModel.imgThree.get());
 
-        showDialog("请求中...");
+        showDialog(App.getInstance().getString(R.string.loading));
         LcTradeClient.getInstance().orderAppeal(orderAppealBean);
     }
 
@@ -130,13 +131,13 @@ public class LcOrderAppealActivity extends BaseActivity<ActivityLcOrderAppealBin
         mPhotoSelectUtils = new PhotoSelectUtils(this, new PhotoSelectUtils.PhotoSelectListener() {
             @Override
             public void onFinish(File outputFile, Uri outputUri) {
-                showDialog("正在上传");
+                showDialog(App.getInstance().getString(R.string.str_uploading));
                 LcTradeClient.getInstance().uploadIdCardPic(outputFile, type, view.getWidth(), view.getHeight());
             }
         }, true);
 
         new XPopup.Builder(this)
-                .asBottomList("请选择", new String[]{"拍照", "相册"},
+                .asBottomList(App.getInstance().getString(R.string.please_choose), new String[]{App.getInstance().getString(R.string.take_photo), App.getInstance().getString(R.string.album)},
                         new OnSelectListener() {
                             @Override
                             public void onSelect(int position, String text) {

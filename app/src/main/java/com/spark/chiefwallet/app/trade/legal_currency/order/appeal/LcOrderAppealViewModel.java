@@ -4,6 +4,8 @@ import android.app.Application;
 import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
 
+import com.spark.chiefwallet.App;
+import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.ui.toast.Toasty;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -61,7 +63,7 @@ public class LcOrderAppealViewModel extends BaseViewModel {
             case EvKey.lcOrderAppeal:
                 dismissDialog();
                 if (eventBean.isStatue()) {
-                    Toasty.showSuccess("申诉成功！");
+                    Toasty.showSuccess(App.getInstance().getApplicationContext().getString(R.string.str_appeal_success));
                     finish();
                 } else {
                     Toasty.showError(eventBean.getMessage());

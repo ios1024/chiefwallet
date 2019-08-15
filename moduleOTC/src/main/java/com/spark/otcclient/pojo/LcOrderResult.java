@@ -3,9 +3,12 @@ package com.spark.otcclient.pojo;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.spark.otcclient.R;
+
 import java.util.List;
 
 import me.spark.mvvm.base.BaseApplication;
+import me.spark.mvvm.utils.DateUtils;
 import me.spark.mvvm.utils.DfUtils;
 
 /**
@@ -374,16 +377,7 @@ public class LcOrderResult implements Parcelable {
             }
 
             public String getOrderType() {
-//                return orderType;
                 String typeText = "";
-//                switch (tradeType) {
-//                    case 0:
-//                        typeText = "购买";
-//                        break;
-//                    case 1:
-//                        typeText = "出售";
-//                        break;
-//                }
                 if (orderType.equals("0")) {
                     if (String.valueOf(memberId).equals(BaseApplication.getInstance().getCurrentUser().getId())) {
                         typeText = "1";
@@ -463,8 +457,6 @@ public class LcOrderResult implements Parcelable {
             }
 
             public String getTradeToUsername() {
-                //return tradeToUsername;
-                //return (initTypeColor() ? trateToRealname : tradeToUsername);
                 if (orderType.equals("0")) {
                     return (initTypeColor() ? tradeToUsername : trateToRealname);
                 }
@@ -505,26 +497,18 @@ public class LcOrderResult implements Parcelable {
 
             public String initType() {
                 String typeText = "";
-//                switch (tradeType) {
-//                    case 0:
-//                        typeText = "购买";
-//                        break;
-//                    case 1:
-//                        typeText = "出售";
-//                        break;
-//                }
                 if (orderType.equals("0")) {
                     if (String.valueOf(memberId).equals(BaseApplication.getInstance().getCurrentUser().getId())) {
-                        typeText = "出售";
+                        typeText = BaseApplication.getInstance().getString(R.string.sell2);
                     } else {
-                        typeText = "购买";
+                        typeText = BaseApplication.getInstance().getString(R.string.buy2);
                     }
                 }
                 if (orderType.equals("1")) {
                     if (String.valueOf(memberId).equals(BaseApplication.getInstance().getCurrentUser().getId())) {
-                        typeText = "购买";
+                        typeText = BaseApplication.getInstance().getString(R.string.buy2);
                     } else {
-                        typeText = "出售";
+                        typeText = BaseApplication.getInstance().getString(R.string.sell2);
                     }
                 }
 
@@ -532,37 +516,26 @@ public class LcOrderResult implements Parcelable {
             }
 
             public boolean initTypeColor() {
-                /*boolean typeColor = false;
-                switch (orderType) {
-                    case "0":
-                        typeColor = true;
-                        break;
-                    case "1":
-                        typeColor = false;
-                        break;
-                }
-
-                return typeColor;*/
-                return initType().equals("购买");
+                return initType().equals(BaseApplication.getInstance().getString(R.string.buy2));
             }
 
             public String initStatueType() {
                 String typeText = "";
                 switch (status) {
                     case 0:
-                        typeText = "已取消";
+                        typeText = BaseApplication.getInstance().getString(R.string.cancelled);
                         break;
                     case 1:
-                        typeText = "未付款";
+                        typeText = BaseApplication.getInstance().getString(R.string.str_un_pay);
                         break;
                     case 2:
-                        typeText = "已付款";
+                        typeText = BaseApplication.getInstance().getString(R.string.str_paid);
                         break;
                     case 3:
-                        typeText = "已完成";
+                        typeText = BaseApplication.getInstance().getString(R.string.completed);
                         break;
                     case 4:
-                        typeText = "申诉中";
+                        typeText = BaseApplication.getInstance().getString(R.string.str_order_appealing);
                         break;
                 }
 
@@ -570,7 +543,7 @@ public class LcOrderResult implements Parcelable {
             }
 
             public String initNumber() {
-                return "数量(" + coinName + ")";
+                return BaseApplication.getInstance().getString(R.string.number) + "(" + coinName + ")";
             }
 
             public String initNumberText() {
@@ -582,15 +555,15 @@ public class LcOrderResult implements Parcelable {
             }
 
             public String formatDate() {
-                return me.spark.mvvm.utils.DateUtils.formatDate("yyyy.MM.dd HH:mm", createTime);
+                return DateUtils.formatDate("yyyy.MM.dd HH:mm", createTime);
             }
 
             public String initTradeToUsername() {
                 if (orderType.equals("0")) {
-                    return (initTypeColor() ? "卖家：" + tradeToUsername : "买家：" + trateToRealname);
+                    return (initTypeColor() ? BaseApplication.getInstance().getString(R.string.str_seller) + tradeToUsername : BaseApplication.getInstance().getString(R.string.str_buyer) + trateToRealname);
                 }
                 if (orderType.equals("1")) {
-                    return (initTypeColor() ? "卖家：" + trateToRealname : "买家：" + tradeToUsername);
+                    return (initTypeColor() ? BaseApplication.getInstance().getString(R.string.str_seller) + trateToRealname : BaseApplication.getInstance().getString(R.string.str_buyer) + tradeToUsername);
                 }
                 return "";
             }

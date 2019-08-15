@@ -9,5 +9,5 @@
     <TextView
         style="@style/textGrayCommonSmall"
         android:layout_margin="16dp"
-        android:text="交易对"/>
+        android:text=""/>
 </LinearLayout>

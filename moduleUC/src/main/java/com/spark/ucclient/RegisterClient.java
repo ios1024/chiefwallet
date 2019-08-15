@@ -32,7 +32,6 @@ import me.spark.mvvm.utils.LogUtils;
  */
 public class RegisterClient extends BaseHttpClient {
 
-
     private static RegisterClient ucClient;
 
     private RegisterClient() {
@@ -279,4 +278,5 @@ public class RegisterClient extends BaseHttpClient {
                     }
                 });
     }
+
 }

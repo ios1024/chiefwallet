@@ -26,7 +26,7 @@
             <TextView
                 style="@style/textBlackSmall"
                 android:layout_marginLeft="16dp"
-                android:text="收款设置"
+                android:text="@string/receiptset"
                 android:textSize="@dimen/sp_30"
                 android:textStyle="bold"/>
 

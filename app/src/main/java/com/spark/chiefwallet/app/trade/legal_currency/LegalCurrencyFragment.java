@@ -85,7 +85,7 @@ public class LegalCurrencyFragment extends BaseFragment<FragmentLegalCurrentBind
 
                 @Override
                 public void onFail(String message) {
-                    binding.legalCurrentRoot.showError(R.drawable.svg_no_network, "网络异常", message, "请重试", new View.OnClickListener() {
+                    binding.legalCurrentRoot.showError(R.drawable.svg_no_network, getString(R.string.network_abnormal), message, getString(R.string.retry), new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             loadLazyData();

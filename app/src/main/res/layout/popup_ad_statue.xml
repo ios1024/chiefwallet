@@ -14,7 +14,7 @@
         android:layout_height="?attr/actionBarSize"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="我的广告"
+        android:text="@string/myAdvertising"
         android:textSize="@dimen/font_xlager"
         android:textStyle="bold" />
 
@@ -24,7 +24,7 @@
 
         <TextView
             style="@style/textBlackNormal"
-            android:text="广告状态"
+            android:text="@string/str_ad_status"
             android:textStyle="bold" />
 
         <TextView
@@ -43,7 +43,7 @@
 
         <TextView
             style="@style/textBlackNormal"
-            android:text="限额"
+            android:text="@string/limit"
             android:textStyle="bold" />
 
         <TextView
@@ -61,7 +61,7 @@
 
         <TextView
             style="@style/textBlackNormal"
-            android:text="剩余数量"
+            android:text="@string/str_remain_amount"
             android:textStyle="bold" />
 
         <TextView
@@ -137,7 +137,7 @@
         android:layout_marginTop="8dp"
         android:background="@color/white"
         android:gravity="center"
-        android:text="取消"
+        android:text="@string/cancel"
         app:bl_ripple_color="@color/gray_456"
         app:bl_ripple_enable="true"
         app:bl_solid_color="@color/white"

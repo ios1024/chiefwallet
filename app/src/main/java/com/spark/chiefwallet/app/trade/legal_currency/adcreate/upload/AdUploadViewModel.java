@@ -11,6 +11,7 @@ import com.lxj.xpopup.interfaces.OnCancelListener;
 import com.lxj.xpopup.interfaces.OnConfirmListener;
 import com.lxj.xpopup.interfaces.OnSelectListener;
 import com.spark.chiefwallet.App;
+import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.base.ARouterPath;
 import com.spark.chiefwallet.ui.toast.Toasty;
 import com.spark.otcclient.AdvertiseScanClient;
@@ -67,9 +68,9 @@ public class AdUploadViewModel extends BaseViewModel {
     public ObservableField<String> coinType = new ObservableField<>("");
     public ObservableField<Boolean> isFixedPrice = new ObservableField<>(false);
     public ObservableField<String> fixedPrice = new ObservableField<>("");
-    public ObservableField<String> fixedPriceTips = new ObservableField<>("浮动比例是指以当前市场价格多少百分比进行交易");
+    public ObservableField<String> fixedPriceTips = new ObservableField<>(App.getInstance().getString(R.string.str_ad_float_rate_tip));
     public ObservableField<String> premiumPrice = new ObservableField<>("");
-    public ObservableField<String> premiumPriceTips = new ObservableField<>("启用后，您的币价不会随市场波动，价格不变");
+    public ObservableField<String> premiumPriceTips = new ObservableField<>(App.getInstance().getString(R.string.str_ad_fixed_price_tip));
     public ObservableField<String> tradePrice = new ObservableField<>("");
     public ObservableField<String> tradeNumber = new ObservableField<>("");
     public ObservableField<String> payMode = new ObservableField<>("");
@@ -79,9 +80,9 @@ public class AdUploadViewModel extends BaseViewModel {
     public ObservableField<String> remarks = new ObservableField<>("");
     public ObservableField<Boolean> isAutoResponse = new ObservableField<>(false);
     public ObservableField<String> autoResponse = new ObservableField<>("");
-    public ObservableField<String> tradeNumberHint = new ObservableField<>("请输入买入数量");
-    public ObservableField<String> adTypeTag = new ObservableField<>("买入数量");
-    public ObservableField<String> submitBtn = new ObservableField<>("发布");
+    public ObservableField<String> tradeNumberHint = new ObservableField<>(App.getInstance().getString(R.string.str_set_buy_amount));
+    public ObservableField<String> adTypeTag = new ObservableField<>(App.getInstance().getString(R.string.str_buy_amount));
+    public ObservableField<String> submitBtn = new ObservableField<>(App.getInstance().getString(R.string.str_publish));
 
 
     public double ratePrice;
@@ -102,18 +103,18 @@ public class AdUploadViewModel extends BaseViewModel {
         this.mContext = context;
         this.adType = adType;
         if (adType == 0) {
-            adTypeTag.set("买入数量");
-            tradeNumberHint.set("请输入买入数量");
+            adTypeTag.set(App.getInstance().getString(R.string.str_buy_amount));
+            tradeNumberHint.set(App.getInstance().getString(R.string.str_set_buy_amount));
         } else {
-            adTypeTag.set("卖出数量");
-            tradeNumberHint.set("请输入卖出数量");
+            adTypeTag.set(App.getInstance().getString(R.string.str_sell_amount));
+            tradeNumberHint.set(App.getInstance().getString(R.string.str_set_sell_amount));
         }
         this.ads = ads;
         if (ads != null) {
-            submitBtn.set("修改");
+            submitBtn.set(App.getInstance().getString(R.string.str_update));
             payIds = ads.getPayIds();
         } else {
-            submitBtn.set("发布");
+            submitBtn.set(App.getInstance().getString(R.string.str_publish));
         }
     }
 
@@ -135,7 +136,7 @@ public class AdUploadViewModel extends BaseViewModel {
         @Override
         public void call() {
             new XPopup.Builder(mContext)
-                    .asBottomList("请选择币种", Constant.lcCoinNameArray,
+                    .asBottomList(App.getInstance().getString(R.string.coin_type_hint), Constant.lcCoinNameArray,
                             new OnSelectListener() {
                                 @Override
                                 public void onSelect(int position, String text) {
@@ -147,7 +148,7 @@ public class AdUploadViewModel extends BaseViewModel {
                                         }
                                     }
                                     if (coinInfo != null) {
-                                        tradeNumberHint.set("大于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit() + "") + " 且 " + "小于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit() + ""));
+                                        tradeNumberHint.set(">= " + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit() + "") + App.getInstance().getString(R.string.str_and) + " <= " + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit() + ""));
                                     }
                                     coinName.set(text);
                                     AdvertiseScanClient.getInstance().priceFind(text, "CNY", adType);
@@ -162,7 +163,7 @@ public class AdUploadViewModel extends BaseViewModel {
         public void call() {
             if (coinAddressArray != null) {
                 new XPopup.Builder(mContext)
-                        .asBottomList("请选择所在地", coinAddressArray,
+                        .asBottomList(App.getInstance().getString(R.string.str_slect_country), coinAddressArray,
                                 new OnSelectListener() {
                                     @Override
                                     public void onSelect(int position, String text) {
@@ -173,7 +174,7 @@ public class AdUploadViewModel extends BaseViewModel {
                                 })
                         .show();
             } else {
-                showDialog("正在请求...");
+                showDialog(App.getInstance().getString(R.string.str_requesting));
                 AdvertiseScanClient.getInstance().getTradeAreaList(adType);
             }
         }
@@ -195,47 +196,47 @@ public class AdUploadViewModel extends BaseViewModel {
 
     private void submit() {
         if (StringUtils.isEmpty(coinName.get())) {
-            Toasty.showError("请选择币种！");
+            Toasty.showError(App.getInstance().getString(R.string.coin_type_hint));
             return;
         }
         if (StringUtils.isEmpty(coinAddress.get())) {
-            Toasty.showError("请选择所在地！");
+            Toasty.showError(App.getInstance().getString(R.string.str_slect_country));
             return;
         }
 
         if (isFixedPrice.get()) {
             if (StringUtils.isEmpty(fixedPrice.get())) {
-                Toasty.showError("请设置固定价格！");
+                Toasty.showError(App.getInstance().getString(R.string.str_set_fixed_price));
                 return;
             }
         } else {
             if (StringUtils.isEmpty(premiumPrice.get())) {
-                Toasty.showError("请输入浮动比例！");
+                Toasty.showError(App.getInstance().getString(R.string.str_set_float_rate));
                 return;
             }
         }
         if (StringUtils.isEmpty(tradeNumber.get())) {
-            Toasty.showError("请输入买入数量！");
+            Toasty.showError(App.getInstance().getString(R.string.str_set_buy_amount));
             return;
         }
         if (StringUtils.isEmpty(payMode.get())) {
-            Toasty.showError("请选择收款方式！");
+            Toasty.showError(App.getInstance().getString(R.string.str_set_payway));
             return;
         }
         if (StringUtils.isEmpty(tradeDeadline.get())) {
-            Toasty.showError("请输入付款期限（15~30）分钟！");
+            Toasty.showError(App.getInstance().getString(R.string.str_set_limit));
             return;
         }
         if (Double.valueOf(tradeDeadline.get()) > 30 || Double.valueOf(tradeDeadline.get()) < 15) {
-            Toasty.showError("请输入付款期限（15~30）分钟！");
+            Toasty.showError(App.getInstance().getString(R.string.str_set_limit));
             return;
         }
         if (StringUtils.isEmpty(minAmount.get())) {
-            Toasty.showError("请输入每笔交易最小限额！");
+            Toasty.showError(App.getInstance().getString(R.string.str_set_min));
             return;
         }
         if (StringUtils.isEmpty(maxAmount.get())) {
-            Toasty.showError("请输入每笔交易最大限额！");
+            Toasty.showError(App.getInstance().getString(R.string.str_set_max));
             return;
         }
 
@@ -247,9 +248,9 @@ public class AdUploadViewModel extends BaseViewModel {
             if (!StringUtils.isEmpty(count) && !StringUtils.isEmpty(min) && Double.valueOf(min) != 0) {
                 if (Double.valueOf(count) < Double.valueOf(min)) {
                     if (adType == 0) {
-                        Toasty.showError("买入数量" + "必须" + "大于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit() + "") + " 且 " + "小于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit() + ""));
+                        Toasty.showError(App.getInstance().getString(R.string.str_buy_amount) + " >= " + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit() + "") + App.getInstance().getString(R.string.str_and) + " <= " + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit() + ""));
                     } else {
-                        Toasty.showError("卖出数量" + "必须" + "大于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit() + "") + " 且 " + "小于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit() + ""));
+                        Toasty.showError(App.getInstance().getString(R.string.str_sell_amount) + " >= " + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit() + "") + App.getInstance().getString(R.string.str_and) + " <= " + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit() + ""));
                     }
                     return;
                 }
@@ -278,7 +279,7 @@ public class AdUploadViewModel extends BaseViewModel {
         /* 广告商家类型 0 普通 1 商家 */
         adCreateBean.setTradeType(0);
 
-        showDialog("正在发布...");
+        showDialog(App.getInstance().getString(R.string.str_publishing));
         if (ads == null) {
             AdvertiseScanClient.getInstance().createAd(adCreateBean, adType);
         } else {
@@ -335,7 +336,7 @@ public class AdUploadViewModel extends BaseViewModel {
                         coinAddressArray[i] = tradeAreaListResult.getData().get(i).getZhName();
                     }
                     new XPopup.Builder(mContext)
-                            .asBottomList("请选择所在地", coinAddressArray,
+                            .asBottomList(App.getInstance().getString(R.string.str_slect_country), coinAddressArray,
                                     new OnSelectListener() {
                                         @Override
                                         public void onSelect(int position, String text) {
@@ -364,13 +365,11 @@ public class AdUploadViewModel extends BaseViewModel {
                 if (eventBean.getType() != adType) return;
                 dismissDialog();
                 if (eventBean.isStatue()) {
-                    /*Toasty.showSuccess("创建成功！");
-                    finish();*/
                     new XPopup.Builder(mContext)
                             .dismissOnBackPressed(false)
                             .dismissOnTouchOutside(false)
-                            .asConfirm("温馨提示", "操作成功，是否去上架？",
-                                    "取消", "确定",
+                            .asConfirm(mContext.getString(R.string.tips), mContext.getString(R.string.str_pulish_ad_to_up),
+                                    mContext.getString(R.string.cancel), mContext.getString(R.string.ensure),
                                     new OnConfirmListener() {
                                         @Override
                                         public void onConfirm() {
@@ -446,8 +445,8 @@ public class AdUploadViewModel extends BaseViewModel {
             AdvertiseSelfClient.getInstance().selfAdvertiseUpFind(ads.getId());
         }
         ratePrice = findPriceResult.getData();
-        fixedPriceTips.set("当前市场参考价格：" + ratePrice + " CNY" + "\n" + "浮动比例是指以当前市场价格多少百分比进行交易");
-        premiumPriceTips.set("当前市场参考价格：" + ratePrice + " CNY" + "\n" + "启用后，您的币价不会随市场波动，价格不变");
+        fixedPriceTips.set(App.getInstance().getString(R.string.str_macket_price) + ratePrice + " CNY" + "\n" + App.getInstance().getString(R.string.str_ad_float_rate_tip));
+        premiumPriceTips.set(App.getInstance().getString(R.string.str_macket_price) + ratePrice + " CNY" + "\n" + App.getInstance().getString(R.string.str_ad_fixed_price_tip));
         if (isFixedPrice.get()) {
             tradePrice.set(fixedPrice.get());
         } else {
@@ -468,9 +467,9 @@ public class AdUploadViewModel extends BaseViewModel {
             if (!StringUtils.isEmpty(count) && !StringUtils.isEmpty(max) && !StringUtils.isEmpty(min) && Double.valueOf(max) != 0 && Double.valueOf(min) != 0) {
                 if (Double.valueOf(count) > Double.valueOf(max)) {
                     if (adType == 0) {
-                        Toasty.showError("买入数量" + "必须" + "大于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit() + "") + " 且 " + "小于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit() + ""));
+                        Toasty.showError(App.getInstance().getString(R.string.str_buy_amount) + " >= " + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit() + "") + App.getInstance().getString(R.string.str_and) + " <= " + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit() + ""));
                     } else {
-                        Toasty.showError("卖出数量" + "必须" + "大于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit() + "") + " 且 " + "小于等于" + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit() + ""));
+                        Toasty.showError(App.getInstance().getString(R.string.str_sell_amount) + " >= " + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit() + "") + App.getInstance().getString(R.string.str_and) + " <= " + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit() + ""));
                     }
                     if (Double.valueOf(count) > Double.valueOf(max)) {
                         tradeNumber.set(max);

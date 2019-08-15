@@ -18,7 +18,7 @@
         <TextView
             style="@style/textGrayCommonSmall"
             android:layout_margin="16dp"
-            android:text="交易类型"/>
+            android:text="@string/str_trade_type"/>
 
         <com.spark.chiefwallet.ui.flowlayout.TagFlowLayout
             android:id="@+id/fl_ad_type"
@@ -31,7 +31,7 @@
         <TextView
             style="@style/textGrayCommonSmall"
             android:layout_margin="16dp"
-            android:text="订单状态"/>
+            android:text="@string/order_statue"/>
 
         <com.spark.chiefwallet.ui.flowlayout.TagFlowLayout
             android:id="@+id/fl_status"
@@ -44,7 +44,7 @@
         <TextView
             style="@style/textGrayCommonSmall"
             android:layout_margin="16dp"
-            android:text="币种"/>
+            android:text="@string/coin_type"/>
 
         <com.spark.chiefwallet.ui.flowlayout.TagFlowLayout
             android:id="@+id/fl_coin_name"
@@ -70,7 +70,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="取消"
+                android:text="@string/cancel"
                 app:bl_ripple_color="@color/gray_ccc"
                 app:bl_ripple_enable="true"
                 app:bl_solid_color="@color/white"
@@ -83,7 +83,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="确定"
+                android:text="@string/ensure"
                 android:textColor="@color/black"
                 app:bl_ripple_color="@color/gray_ccc"
                 app:bl_ripple_enable="true"

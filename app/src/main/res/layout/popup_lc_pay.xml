@@ -18,7 +18,7 @@
         <TextView
             style="@style/textBlackNormal"
             android:layout_gravity="center"
-            android:text="确认订单"
+            android:text="@string/confirm_order"
             android:textStyle="bold"/>
 
         <TextView
@@ -36,7 +36,7 @@
 
         <TextView
             style="@style/textBlackSmall"
-            android:text="购买单价"
+            android:text="@string/str_buy_price"
             android:textStyle="bold"/>
 
         <TextView
@@ -52,7 +52,7 @@
 
         <TextView
             style="@style/textBlackSmall"
-            android:text="购买数量"
+            android:text="@string/str_buy_number"
             android:textStyle="bold"/>
 
         <TextView
@@ -68,7 +68,7 @@
 
         <TextView
             style="@style/textBlackSmall"
-            android:text="购买总额"
+            android:text="@string/str_buy_money_all"
             android:textStyle="bold"/>
 
         <TextView
@@ -95,7 +95,7 @@
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
             android:layout_weight="1"
-            android:text="微信"/>
+            android:text="@string/str_wechat"/>
 
         <com.spark.chiefwallet.ui.SmoothCheckBox
             android:id="@+id/wechat_cb"
@@ -122,7 +122,7 @@
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
             android:layout_weight="1"
-            android:text="支付宝"/>
+            android:text="@string/str_alipay"/>
 
         <com.spark.chiefwallet.ui.SmoothCheckBox
             android:id="@+id/alipay_cb"
@@ -149,7 +149,7 @@
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
             android:layout_weight="1"
-            android:text="银行卡"/>
+            android:text="@string/str_bank"/>
 
         <com.spark.chiefwallet.ui.SmoothCheckBox
             android:id="@+id/bank_cb"
@@ -174,7 +174,7 @@
             android:layout_height="?attr/actionBarSize"
             android:layout_margin="16dp"
             android:gravity="center"
-            android:text="立即支付"
+            android:text="@string/str_buy_now"
             android:textColor="@color/black"
             android:textStyle="bold"
             app:bl_corners_radius="4dp"
@@ -192,7 +192,7 @@
         android:layout_marginTop="8dp"
         android:background="@color/white"
         android:gravity="center"
-        android:text="取消"
+        android:text="@string/cancel"
         app:bl_ripple_color="@color/gray_456"
         app:bl_ripple_enable="true"
         app:bl_solid_color="@color/white"

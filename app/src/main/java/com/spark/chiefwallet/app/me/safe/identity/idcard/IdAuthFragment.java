@@ -77,7 +77,7 @@ public class IdAuthFragment extends BaseFragment<FragmentIdAuthBinding, IdAuthVi
     @Override
     public void loadLazyData() {
         if (mAuthInfoEntity == null) {
-            binding.authInfo.setText("请进行身份证认证!");
+            binding.authInfo.setText(App.getInstance().getApplicationContext().getString(R.string.str_auth_first));
         } else {
             //审核不通过
             if (mAuthInfoEntity.getData().getAuditStatus() == 2) {
