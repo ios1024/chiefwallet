@@ -10,9 +10,18 @@ package com.spark.wsclient.base;
  * ================================================
  */
 public class WsHost {
-    public static String klineWssUrl = "ws://ws.bitotc.bench.bitpay.com/kline";         //K线
-    public static String bbTradeWssUrl = "ws://ws.bitotc.bench.bitpay.com/trade";       //BB交易
-    public static String cfdTradeWssUrl = "ws://ws.bitotc.bench.bitpay.com/cfdTrade";   //CFD交易
-    public static String handicapWssUrl = "ws://ws.bitotc.bench.bitpay.com/quote";      //盘口
+//    public static String klineWssUrl = "ws://ws.bitotc.bench.bitpay.com/kline";         //K线
+//    public static String bbTradeWssUrl = "ws://ws.bitotc.bench.bitpay.com/trade";       //BB交易
+//    public static String cfdTradeWssUrl = "ws://ws.bitotc.bench.bitpay.com/cfdTrade";   //CFD交易
+//    public static String handicapWssUrl = "ws://ws.bitotc.bench.bitpay.com/quote";      //盘口
+//    public static String chatWssUrl = "ws://192.168.2.12:28905/ws";                     //聊天
+
+
+    public static String klineWssUrl = "wss://ws.camall.com/kline";         //K线
+    public static String bbTradeWssUrl = "wss://ws.camall.com/trade";       //BB交易
+    public static String cfdTradeWssUrl = "wss://ws.camall.com/cfdTrade";   //CFD交易
+    public static String handicapWssUrl = "wss://ws.camall.com/quote";      //盘口
     public static String chatWssUrl = "ws://192.168.2.12:28905/ws";                     //聊天
+
+
 }
