@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:binding="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="meViewModel"
+            type="com.spark.chiefwallet.app.me.MeViewModel"/>
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="48dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <!--昵称-->
+                <TextView
+                    android:id="@+id/me_nickname"
+                    style="@style/textBlackNormal"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="18dp"
+                    android:text="@{meViewModel.nickname}"
+                    android:textSize="@dimen/font_xxlager"
+                    android:textStyle="bold"
+                    binding:onClickCommand="@{meViewModel.loginOnClickCommand}"/>
+
+                <ImageView
+                    onClickCommand="@{meViewModel.nickNameModifyOnClickCommand}"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginLeft="8dp"
+                    android:visibility="@{meViewModel.isLogOut ? View.VISIBLE : View.GONE}"
+                    android:layout_marginBottom="16dp"
+                    android:src="@drawable/svg_modify"/>
+            </LinearLayout>
+            <!--电话-->
+            <TextView
+                style="@style/textGrayCommonNormal"
+                android:layout_marginTop="10dp"
+                android:text="@{meViewModel.mobilePhone}"
+                android:textSize="@dimen/font_normal"/>
+
+            <!--财务-->
+            <LinearLayout
+                style="@style/meTitle"
+                android:layout_marginTop="48dp">
+
+                <ImageView
+                    style="@style/meItemImg"
+                    android:src="@drawable/svg_wallet"/>
+
+                <TextView
+                    style="@style/textGrayCommonSmall"
+                    android:layout_marginLeft="8dp"
+                    android:text="@string/finance"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <View style="@style/line_ccc"/>
+
+            <!--我的资产-->
+            <LinearLayout
+                style="@style/meItem"
+                app:bl_ripple_color="@color/gray_ccc"
+                app:bl_ripple_enable="true"
+                app:bl_solid_color="@color/white"
+                binding:onClickCommand="@{meViewModel.propertyOnClickCommand}">
+
+                <TextView
+                    style="@style/textBlackNormal"
+                    android:text="@string/myAssets"/>
+
+                <TextView
+                    style="@style/textGrayCommonSmall"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text=""
+                    android:textSize="@dimen/font_13"/>
+
+                <ImageView style="@style/imgEnter"/>
+            </LinearLayout>
+
+            <View
+                style="@style/line_ccc"
+                android:layout_marginLeft="16dp"/>
+
+            <!--订单管理-->
+            <LinearLayout
+                style="@style/meItem"
+                app:bl_ripple_color="@color/gray_ccc"
+                app:bl_ripple_enable="true"
+                app:bl_solid_color="@color/white"
+                binding:onClickCommand="@{meViewModel.orderOnClickCommand}">
+
+                <TextView
+                    style="@style/textBlackNormal"
+                    android:layout_weight="1"
+                    android:text="@string/myBill"/>
+
+                <ImageView style="@style/imgEnter"/>
+            </LinearLayout>
+
+            <View
+                style="@style/line_ccc"
+                android:layout_marginLeft="16dp"/>
+
+            <!--我的广告-->
+            <LinearLayout
+                style="@style/meItem"
+                app:bl_ripple_color="@color/gray_ccc"
+                app:bl_ripple_enable="true"
+                app:bl_solid_color="@color/white"
+                binding:onClickCommand="@{meViewModel.adOnClickCommand}">
+
+                <TextView
+                    style="@style/textBlackNormal"
+                    android:layout_weight="1"
+                    android:text="@string/myAdvertising"/>
+
+                <ImageView style="@style/imgEnter"/>
+            </LinearLayout>
+
+            <View
+                style="@style/line_ccc"
+                android:layout_marginLeft="16dp"/>
+
+            <!--财务记录-->
+            <LinearLayout
+                style="@style/meItem"
+                app:bl_ripple_color="@color/gray_ccc"
+                app:bl_ripple_enable="true"
+                app:bl_solid_color="@color/white"
+                binding:onClickCommand="@{meViewModel.recordOnClickCommand}">
+
+                <TextView
+                    style="@style/textBlackNormal"
+                    android:layout_weight="1"
+                    android:text="@string/myPromotion"/>
+
+                <ImageView style="@style/imgEnter"/>
+            </LinearLayout>
+
+            <View
+                style="@style/line_ccc"
+                android:layout_marginLeft="16dp"/>
+
+            <!--安全-->
+            <LinearLayout
+                style="@style/meTitle"
+                android:layout_marginTop="12dp">
+
+                <ImageView
+                    style="@style/meItemImg"
+                    android:src="@drawable/svg_safe"/>
+
+                <TextView
+                    style="@style/textGrayCommonSmall"
+                    android:layout_marginLeft="8dp"
+                    android:text="@string/safe"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <View style="@style/line_ccc"/>
+
+            <!--身份认证-->
+            <LinearLayout
+                style="@style/meItem"
+                app:bl_ripple_color="@color/gray_ccc"
+                app:bl_ripple_enable="true"
+                app:bl_solid_color="@color/white"
+                binding:onClickCommand="@{meViewModel.authenticationOnClickCommand}">
+
+                <TextView
+                    style="@style/textBlackNormal"
+                    android:layout_weight="1"
+                    android:text="@string/identityAuthentication"/>
+
+                <ImageView style="@style/imgEnter"/>
+            </LinearLayout>
+
+            <View
+                style="@style/line_ccc"
+                android:layout_marginLeft="16dp"/>
+
+            <!--安全中心-->
+            <LinearLayout
+                style="@style/meItem"
+                app:bl_ripple_color="@color/gray_ccc"
+                app:bl_ripple_enable="true"
+                app:bl_solid_color="@color/white"
+                binding:onClickCommand="@{meViewModel.safeCertreOnClickCommand}">
+
+                <TextView
+                    style="@style/textBlackNormal"
+                    android:layout_weight="1"
+                    android:text="@string/safeCenter"/>
+
+                <ProgressBar
+                    android:id="@+id/me_pgb"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="92dp"
+                    android:layout_height="6dp"
+                    android:layout_margin="12dp"
+                    android:max="100"
+                    android:visibility="@{meViewModel.isLogOut ? View.VISIBLE : View.GONE}"/>
+
+                <ImageView style="@style/imgEnter"/>
+            </LinearLayout>
+
+            <View
+                style="@style/line_ccc"
+                android:layout_marginLeft="16dp"/>
+
+            <TextView
+                style="@style/textGrayCommonSmall"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="12dp"
+                android:lineSpacingMultiplier="1.1"
+                android:text="@string/safe_tips"
+                android:textSize="@dimen/font_mini"/>
+
+            <!--安全-->
+            <LinearLayout
+                style="@style/meTitle"
+                android:layout_marginTop="12dp">
+
+                <ImageView
+                    style="@style/meItemImg"
+                    android:src="@drawable/svg_setting"/>
+
+                <TextView
+                    style="@style/textGrayCommonSmall"
+                    android:layout_marginLeft="8dp"
+                    android:text="@string/setting"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <View style="@style/line_ccc"/>
+
+            <!--收款设置-->
+            <LinearLayout
+                style="@style/meItem"
+                app:bl_ripple_color="@color/gray_ccc"
+                app:bl_ripple_enable="true"
+                app:bl_solid_color="@color/white"
+                binding:onClickCommand="@{meViewModel.receiptOnClickCommand}">
+
+                <TextView
+                    style="@style/textBlackNormal"
+                    android:layout_weight="1"
+                    android:text="@string/receiptset"/>
+
+                <ImageView style="@style/imgEnter"/>
+            </LinearLayout>
+
+            <View
+                style="@style/line_ccc"
+                android:layout_marginLeft="16dp"/>
+
+            <!--提币地址-->
+            <LinearLayout
+                style="@style/meItem"
+                app:bl_ripple_color="@color/gray_ccc"
+                app:bl_ripple_enable="true"
+                app:bl_solid_color="@color/white"
+                binding:onClickCommand="@{meViewModel.coinAddressOnClickCommand}">
+
+                <TextView
+                    style="@style/textBlackNormal"
+                    android:layout_weight="1"
+                    android:text="@string/mentionAddress"/>
+
+                <ImageView style="@style/imgEnter"/>
+            </LinearLayout>
+
+            <View
+                style="@style/line_ccc"
+                android:layout_marginLeft="16dp"/>
+
+            <!--API接口-->
+            <LinearLayout
+                style="@style/meItem"
+                android:visibility="gone"
+                app:bl_ripple_color="@color/gray_ccc"
+                app:bl_ripple_enable="true"
+                app:bl_solid_color="@color/white"
+                binding:onClickCommand="@{meViewModel.apiInterfaceOnClickCommand}">
+
+                <TextView
+                    style="@style/textBlackNormal"
+                    android:layout_weight="1"
+                    android:text="API接口"/>
+
+                <ImageView style="@style/imgEnter"/>
+            </LinearLayout>
+
+            <View
+                style="@style/line_ccc"
+                android:layout_marginLeft="16dp"
+                android:visibility="gone"/>
+
+            <!--系统-->
+            <LinearLayout
+                style="@style/meTitle"
+                android:layout_marginTop="12dp">
+
+                <ImageView
+                    style="@style/meItemImg"
+                    android:src="@drawable/svg_system"/>
+
+                <TextView
+                    style="@style/textGrayCommonSmall"
+                    android:layout_marginLeft="8dp"
+                    android:text="@string/system"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <View style="@style/line_ccc"/>
+
+            <!--计价方式-->
+            <LinearLayout
+                style="@style/meItem"
+                android:visibility="gone"
+                app:bl_ripple_color="@color/gray_ccc"
+                app:bl_ripple_enable="true"
+                app:bl_solid_color="@color/white"
+                binding:onClickCommand="@{meViewModel.valueTypeOnClickCommand}">
+
+                <TextView
+                    style="@style/textBlackNormal"
+                    android:text="计价方式"/>
+
+                <TextView
+                    style="@style/textGrayCommonSmall"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="CNY"
+                    android:textSize="@dimen/font_13"/>
+
+                <ImageView style="@style/imgEnter"/>
+            </LinearLayout>
+
+            <View
+                style="@style/line_ccc"
+                android:layout_marginLeft="16dp"
+                android:visibility="gone"/>
+
+            <!--语言-->
+            <LinearLayout
+                style="@style/meItem"
+                app:bl_ripple_color="@color/gray_ccc"
+                app:bl_ripple_enable="true"
+                app:bl_solid_color="@color/white"
+                binding:onClickCommand="@{meViewModel.languageOnClickCommand}">
+
+                <TextView
+                    style="@style/textBlackNormal"
+                    android:text="@string/language"/>
+
+                <TextView
+                    style="@style/textGrayCommonSmall"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="@{meViewModel.languageSelect}"
+                    android:textSize="@dimen/font_13"/>
+
+                <ImageView style="@style/imgEnter"/>
+            </LinearLayout>
+
+            <View
+                style="@style/line_ccc"
+                android:layout_marginLeft="16dp"/>
+
+            <!--夜晚模式-->
+            <LinearLayout
+                style="@style/meItem"
+                android:visibility="gone"
+                app:bl_ripple_color="@color/gray_ccc"
+                app:bl_ripple_enable="true"
+                app:bl_solid_color="@color/white">
+
+                <TextView
+                    style="@style/textBlackNormal"
+                    android:layout_weight="1"
+                    android:text="夜晚模式"/>
+
+                <com.sevenheaven.iosswitch.ShSwitchView
+                    android:layout_width="54dp"
+                    android:layout_height="38dp"
+                    app:shadowSpace="7dp"
+                    app:tintColor="@color/base"/>
+            </LinearLayout>
+
+            <View
+                style="@style/line_ccc"
+                android:layout_marginLeft="16dp"
+                android:visibility="gone"/>
+
+            <!--关于EMEX-->
+            <LinearLayout
+                style="@style/meItem"
+                app:bl_ripple_color="@color/gray_ccc"
+                app:bl_ripple_enable="true"
+                app:bl_solid_color="@color/white"
+                binding:onClickCommand="@{meViewModel.aboutOnClickCommand}">
+
+                <TextView
+                    style="@style/textBlackNormal"
+                    android:text="@string/aboutus"/>
+
+                <TextView
+                    style="@style/textGrayCommonSmall"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="@{meViewModel.versionName}"
+                    android:textSize="@dimen/font_13"/>
+
+                <ImageView
+                    style="@style/imgEnter"
+                    android:visibility="visible"/>
+            </LinearLayout>
+
+            <View style="@style/line_ccc"/>
+
+            <TextView
+                android:id="@+id/tvLogout"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:text="@string/loginout"
+                android:textColor="@color/login_out"
+                android:textSize="@dimen/font_normal"
+                android:visibility="@{meViewModel.isLogOut ? View.VISIBLE : View.GONE}"
+                app:bl_ripple_color="@color/gray_ccc"
+                app:bl_ripple_enable="true"
+                app:bl_solid_color="@color/white"
+                binding:onClickCommand="@{meViewModel.logoutOnClickCommand}"/>
+
+            <View style="@style/line_ccc"/>
+        </LinearLayout>
+    </ScrollView>
+</layout>

@@ -1,0 +1,240 @@
+package com.spark.chiefwallet.ui.popup;
+
+import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
+import android.text.Editable;
+import android.text.InputFilter;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.lxj.xpopup.XPopup;
+import com.lxj.xpopup.core.BottomPopupView;
+import com.spark.acclient.pojo.SpotWalletResult;
+import com.spark.chiefwallet.R;
+import com.spark.chiefwallet.ui.PointLengthFilter;
+import com.spark.chiefwallet.ui.popup.impl.OnOrderCreateListener;
+import com.spark.chiefwallet.ui.popup.impl.OnTypeChooseListener;
+import com.spark.chiefwallet.ui.toast.Toasty;
+import com.spark.otcclient.pojo.FindPageResult.DataBean.RecordsBean;
+import com.spark.otcclient.pojo.OrderCreateBean;
+
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import me.spark.mvvm.utils.MathUtils;
+import me.spark.mvvm.utils.SpanUtils;
+import me.spark.mvvm.utils.StringUtils;
+
+/**
+ * ================================================
+ * 作    者：v1ncent
+ * 版    本：1.0.0
+ * 创建日期：2019/5/5
+ * 描    述：
+ * 修订历史：
+ * ================================================
+ */
+public class LcTradePopup extends BottomPopupView {
+    @BindView(R.id.coin_name)
+    TextView mCoinName;
+    @BindView(R.id.price)
+    TextView mPrice;
+    @BindView(R.id.buy_type)
+    TextView mBuyType;
+    @BindView(R.id.buy_type_root)
+    LinearLayout mBuyTypeRoot;
+    @BindView(R.id.number)
+    EditText mNumber;
+    @BindView(R.id.limit)
+    TextView mLimit;
+    @BindView(R.id.trade_volume)
+    TextView mTradeVolume;
+    @BindView(R.id.trade_num)
+    TextView mTradeNum;
+    @BindView(R.id.order)
+    TextView mOrder;
+    @BindView(R.id.cancel)
+    TextView mCancel;
+    @BindView(R.id.type_title)
+    TextView mTypeTitle;
+    @BindView(R.id.type_unit)
+    TextView mTypeUnit;
+    @BindView(R.id.ll_limit)
+    LinearLayout mLlLimit;
+    @BindView(R.id.tvTradeType)
+    TextView tvTradeType;
+    @BindView(R.id.trade_use)
+    TextView mTradeUse;
+
+    private Context mContext;
+    private RecordsBean mRecordsBean;
+    private PointLengthFilter mPointLengthFilter;
+    private int buyType = 0;// 0 - 按价格购买  1 - 按数量购买
+    private int mTradeType;// 1 - 买  0 - 卖
+    private OnOrderCreateListener mOnOrderCreateListener;
+    private double money, number;
+    private List<SpotWalletResult.DataBean> walletList;
+
+    public LcTradePopup(@NonNull Context context, List<SpotWalletResult.DataBean> walletList, int tradeType, RecordsBean recordsBean, OnOrderCreateListener onOrderCreateListener) {
+        super(context);
+        this.mContext = context;
+        this.walletList = walletList;
+        this.mTradeType = tradeType;
+        this.mRecordsBean = recordsBean;
+        this.mOnOrderCreateListener = onOrderCreateListener;
+    }
+
+    @Override
+    protected int getImplLayoutId() {
+        return R.layout.popup_lc_trade;
+    }
+
+    @Override
+    protected void onCreate() {
+        super.onCreate();
+        ButterKnife.bind(this);
+        initView();
+    }
+
+    private void initView() {
+        tvTradeType.setText(mTradeType == 1 ? "购买方式" : "出售方式");
+        mCoinName.setText((mTradeType == 1 ? "购买" : "出售") + mRecordsBean.getCoinName());
+        mPrice.setText(new SpanUtils().append("价格：")
+                .append(String.valueOf(mRecordsBean.getPrice())).setForegroundColor(ContextCompat.getColor(mContext, R.color.green)).setFontSize(16, true)
+                .append(" CNY").create());
+        mBuyType.setText(mTradeType == 1 ? "按价格购买" : "按价格出售");
+        mTypeTitle.setText("价格");
+        mTypeUnit.setText("CNY");
+        mLimit.setText("限额：" + MathUtils.getRundNumber(mRecordsBean.getMinLimit(), 2, null) + " - " + MathUtils.getRundNumber(mRecordsBean.getMaxLimit(), 2, null) + " CNY");
+        mTradeVolume.setText("-- CNY");
+        mTradeNum.setText("交易数量：-- " + mRecordsBean.getCoinName());
+
+        mPointLengthFilter = new PointLengthFilter(2);
+        mNumber.setFilters(new InputFilter[]{mPointLengthFilter});
+
+        mNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (StringUtils.isEmpty(s.toString())) return;
+                switch (buyType) {
+                    //按价格购买
+                    case 0:
+                        money = Double.valueOf(MathUtils.getRundNumber(Double.valueOf(s.toString()), 2, null));
+                        number = Double.valueOf(MathUtils.getRundNumber(Double.valueOf(s.toString()) / mRecordsBean.getPrice(), 8, null));
+                        break;
+                    //按数量购买
+                    case 1:
+                        money = Double.valueOf(MathUtils.getRundNumber(Double.valueOf(s.toString()) * mRecordsBean.getPrice(), 2, null));
+                        number = Double.valueOf(MathUtils.getRundNumber(Double.valueOf(s.toString()), 8, null));
+                        break;
+                }
+                mTradeVolume.setText(MathUtils.getRundNumber(money, 2, null) + " CNY");
+                mTradeNum.setText("交易数量：" + MathUtils.getRundNumber(number, 8, null) + mRecordsBean.getCoinName());
+            }
+        });
+
+        getUseMoney();
+    }
+
+    private void getUseMoney() {
+        for (SpotWalletResult.DataBean dataBean : walletList) {
+            if (mRecordsBean.getCoinName().equals(dataBean.getCoinId())) {
+                mTradeUse.setText("可用余额：" + MathUtils.getRundNumber(dataBean.getBalance(), 8, null) + mRecordsBean.getCoinName());
+            }
+        }
+    }
+
+    @OnClick({R.id.buy_type_root,
+            R.id.order,
+            R.id.cancel})
+    public void OnClick(View view) {
+        switch (view.getId()) {
+            case R.id.buy_type_root:
+                new XPopup.Builder(getContext())
+                        .atView(view)
+                        .asCustom(new LcBuyTypePopup(getContext(), new OnTypeChooseListener() {
+                            @Override
+                            public void onChooseType(int type, String content) {
+                                mBuyType.setText(content);
+                                buyType = type;
+                                switch (type) {
+                                    case 0:
+                                        mTypeTitle.setText("价格");
+                                        mTypeUnit.setText("CNY");
+                                        mPointLengthFilter = new PointLengthFilter(2);
+                                        mNumber.setFilters(new InputFilter[]{mPointLengthFilter});
+                                        mLlLimit.setVisibility(VISIBLE);
+                                        break;
+                                    case 1:
+                                        mTypeTitle.setText("数量");
+                                        mTypeUnit.setText(mRecordsBean.getCoinName());
+                                        mPointLengthFilter = new PointLengthFilter(8);
+                                        mNumber.setFilters(new InputFilter[]{mPointLengthFilter});
+                                        mLlLimit.setVisibility(GONE);
+                                        break;
+                                }
+                                mNumber.setText("");
+                                mTradeVolume.setText("-- CNY");
+                                mTradeNum.setText("交易数量：-- " + mRecordsBean.getCoinName());
+                            }
+                        }, mTradeType))
+                        .show();
+                break;
+            case R.id.order:
+                if (TextUtils.isEmpty(mNumber.getText().toString().trim())) {
+                    Toasty.showError(buyType == 0 ? "请输入交易额度！" : "请输入数量！");
+                    return;
+                }
+
+                double max = mRecordsBean.getMaxLimit();
+                double min = mRecordsBean.getMinLimit();
+
+                if (money > max || money < min) {
+                    if (mTradeType == 0) {
+                        Toasty.showError("出售必须大于等于" + min + " 且 " + "小于等于" + max);
+                        return;
+                    } else {
+                        Toasty.showError("购买必须大于等于" + min + " 且 " + "小于等于" + max);
+                        return;
+                    }
+                }
+
+                OrderCreateBean orderCreateBean = new OrderCreateBean();
+                orderCreateBean.setAdvertiseId(mRecordsBean.getId());
+                orderCreateBean.setMoney(money);
+                orderCreateBean.setNumber(number);
+                orderCreateBean.setRemark(mRecordsBean.getRemark());
+                orderCreateBean.setOrderType(mTradeType == 0 ? "1" : "0");
+                orderCreateBean.setPrice(mRecordsBean.getPrice());
+                if (mTradeType == 1) {
+                    orderCreateBean.setTradePwd("");
+                }
+                /* 1按数量购买  2按金额购买 */
+                orderCreateBean.setTradeType(buyType);
+
+                mOnOrderCreateListener.onOrderCreate(orderCreateBean);
+                dismiss();
+                break;
+            case R.id.cancel:
+                dismiss();
+                break;
+        }
+    }
+}

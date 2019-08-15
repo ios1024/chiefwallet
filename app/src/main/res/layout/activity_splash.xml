@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="splashViewModel"
+            type="com.spark.chiefwallet.app.SplashViewModel"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="168dp"
+            android:layout_height="168dp"
+            android:layout_marginTop="96dp"
+            android:src="@drawable/bitrade"/>
+
+        <TextView
+            style="@style/textBlackNormal"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="24dp"
+            android:gravity="bottom"
+            android:text="@string/splash_tips"
+            android:textColor="@color/gray_common"/>
+    </LinearLayout>
+</layout>

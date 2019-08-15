@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.gongwen:marqueelibrary:1.1.3@aar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../gradle/caches/transforms-2/files-2.1/14ec14e0b2bc861d0af9ad22c84dc433/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../../gradle/caches/transforms-2/files-2.1/14ec14e0b2bc861d0af9ad22c84dc433/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../../gradle/caches/modules-2/files-2.1/com.gongwen/marqueelibrary/1.1.3/505984a1df838c01a1b84ac04da2ec810934ee38/marqueelibrary-1.1.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,579 @@
+<resources>
+    <string name="app_name_main">Exchief</string>
+    <!--tab-->
+    <string name="Emex">Exchief</string>
+    <string name="quotes">Market</string>
+    <string name="trade">Trade</string>
+    <string name="invite">Invite</string>
+    <string name="me">Mine</string>
+
+    <!--splash-->
+    <string name="favorites">Favorites</string>
+    <string name="splash_tips">Trusted digital asset trading service platform</string>
+
+    <!--接口返回-->
+    <string name="network_abnormal">Network Abnormal</string>
+
+    <!--邀请页-->
+    <string name="invite_title">Invite friends to trade for big rebates</string>
+    <string name="invite_content">From now on, invite your friends to trade to get a permanent rebate, and the commission fee is up to 15%. Are you ready?</string>
+    <string name="invited_man_num">Invited (number)</string>
+    <string name="generate_poster">Generate exclusive posters</string>
+    <string name="paste_share">Copy share link</string>
+    <string name="share_to">Share to</string>
+    <string name="invite_friend">Invite Friends</string>
+    <string name="rebated">By the commission（USDT）</string>
+    <string name="view_rules">View the rules</string>
+    <string name="copied_to_clipboard">Copied to clipboard</string>
+    <string name="invite_poster_title">Click to save the poster and send it to a friend</string>
+    <string name="invite_qrcode">Scan the QR code and invite you to join Exchief</string>
+    <string name="save2album">Save to album</string>
+    <string name="copy_link">Copy link</string>
+    <string name="rule_see">查看规则</string>
+    <string name="rule">1、好友接受您的邀请进行注册后，交易扣除手续费的同时，会产生相应的返佣\n\n
+2、目前支持合约交易的返佣活动，即被邀请人只要进行合约交易就会获得对应手续费返佣\n\n
+3、当前返佣比例为15%，返佣周期为永久返佣，返佣结算会自动进入您的币币账户\n\n
+4、返佣额=实际交易手续费*返佣比例\n\n
+5、禁止一切违规作弊行为，如大小号互刷等，一经发现将取消返佣资格并作废已结算的返佣\n\n
+6、活动如有调整，以SSCoin最新的规则为准，活动最终解释权归SSCoin所有</string>
+
+    <!--me-->
+    <string name="finance">Finance</string>
+    <string name="myAssets">MyAssets</string>
+    <string name="myBill">MyBill</string>
+    <string name="myAdvertising">MyAdvertising</string>
+    <string name="myPromotion">MyPromotion</string>
+    <string name="safe">Safe</string>
+    <string name="identityAuthentication">IdentityAuthentication</string>
+    <string name="safeCenter">SafeCenter</string>
+    <string name="safe_tips">In order to protect your assets, you must protect your private key, password and other sensitive information, Exchief staff will not ask you for these sensitive information through any channel, please be careful！</string>
+    <string name="setting">Setting</string>
+    <string name="receiptset">ReceiptSetting</string>
+    <string name="mentionAddress">MentionAddress</string>
+    <string name="system">System</string>
+    <string name="language">Language</string>
+    <string name="aboutus">AboutUs</string>
+    <string name="loginout">LoginOut</string>
+    <string name="no_login">NoLogin</string>
+    <string name="logout_success">LoginOut Success</string>
+    <string name="login_success">Login Success</string>
+    <string name="version">Version Code&#160;</string>
+    <string name="logout_success_check">Login is invalid. Please login again.</string>
+
+    <!--注册-->
+    <string name="register_phone">Sign up by Phone</string>
+    <string name="register_email">Sign up by Email</string>
+    <string name="register_description">One account with all Exchief services!</string>
+    <string name="register_description_email">One account with all Exchief services!</string>
+    <string name="phone_num">Phone Number</string>
+    <string name="phone_num_hint">Please enter your cell phone number</string>
+    <string name="email_num">Email account</string>
+    <string name="email_num_hint">Please enter your email account</string>
+    <string name="country">Country</string>
+    <string name="choose_country">Please choose country</string>
+    <string name="valid_phone">Please enter a valid phone number</string>
+    <string name="valid_email">Please enter a valid email account</string>
+    <string name="get_verify_code">Get verification code</string>
+    <string name="verify_code">Code</string>
+    <string name="verify_code_hint">Please enter the verification code</string>
+    <string name="resend_load">S Resend</string>
+    <string name="resend">Resend</string>
+    <string name="input_your_phone">Please enter your registered mobile phone</string>
+    <string name="input_your_email">Please enter your registered email</string>
+    <string name="code_get">Received verification code</string>
+    <string name="pwd_setting">Set password</string>
+    <string name="pwd_tip">For your asset security, it is recommended to set a more complicated password</string>
+    <string name="pwd_login">Login Password</string>
+    <string name="pwd_login_setting">Please set the login password</string>
+    <string name="pwd_ensure">Confirm Password</string>
+    <string name="pwd_again">Please enter it again</string>
+    <string name="invite_code">Invitation Code&#160;&#160;&#160;&#160;</string>
+    <string name="invite_code_hint">Please enter invitation Code</string>
+    <string name="select_fill">Optional</string>
+    <string name="pwd_login_not_null">Login password cannot be empty</string>
+    <string name="pwd_login_again_not_null">Confirm password can not be blank</string>
+    <string name="pwd_twic_not_same">Inconsistent password entered twice</string>
+    <string name="register">Register</string>
+    <string name="register_tip">By clicking the "Register" button, you are aware of and agree to the following agreement by Exchief</string>
+    <string name="register_clause">User terms</string>
+    <string name="register_rivacy">Privacy Policy</string>
+    <string name="register_success">Registration success</string>
+
+    <!--登录-->
+    <string name="login">Login</string>
+    <string name="login_tip">Login to Exchief and start a journey of wealth！</string>
+    <string name="user_count">Account</string>
+    <string name="user_count_hint">Mobile phone number / mailbox</string>
+    <string name="user_password">Password</string>
+    <string name="user_password_hint">Please enter your password</string>
+    <string name="pwd_forget">Forgot Password ？</string>
+    <string name="count_not_null">Account cannot be empty</string>
+    <string name="pwd_not_null">Password cannot be empty</string>
+    <string name="loading">Loading</string>
+    <string name="sms_get_error">Verification code failed to be obtained. Please try again later</string>
+    <string name="pwd_error">Please enter a 6-20 digit uppercase and lowercase letter + numeric combination password</string>
+
+    <!--我的资产-->
+    <string-array name="property_tab">
+        <item>B2B Account</item>
+        <item>C2C Account</item>
+    </string-array>
+    <string name="coin_in">Charge</string>
+    <string name="coin_out">Mention</string>
+    <string name="trans_in">Trans In</string>
+    <string name="trans_out">Trans Out</string>
+    <string name="unknown">Unknown</string>
+    <string name="coin_trans">Transform</string>
+    <string name="total_assets_convert">（Total assets Convert）</string>
+    <string name="no_support_coin">No supportable currency</string>
+    <string name="coin_out_success">Mention Apply Success</string>
+    <string name="coin_trans_success">Transform Success</string>
+    <string name="error_occurred">An error occurred</string>
+    <string name="retry">Retry</string>
+    <string name="margin">Margin</string>
+    <string-array name="contract_account_tab">
+        <item>Trade Record</item>
+        <item>Transfer Record</item>
+    </string-array>
+    <string name="available_funds">Available funds&#160;:&#160;</string>
+    <string name="freezing_funds">Freezing funds&#160;:&#160;</string>
+    <string name="open_type">Open Type</string>
+    <string name="position_charge">Position Fee</string>
+    <string name="trade_coin">Trade Coin</string>
+    <string name="open_fee">Open Fee</string>
+    <string name="statue">Order Statue</string>
+    <string name="trade_number">Trade Number</string>
+    <string name="close_fee">Close Fee</string>
+    <string name="profitloss">ProfitLoss</string>
+    <string name="bullish">Bullish</string>
+    <string name="bearish">Bearish</string>
+    <string name="market_price">MarketPrice</string>
+    <string name="limit_price">LimitPrice</string>
+    <string name="buy">Buy</string>
+    <string name="buy_ensure">Buy Conform</string>
+    <string name="sell">Sell</string>
+    <string name="sell_ensure">Sell Conform</string>
+    <string name="in_position">In Position</string>
+    <string name="completed">Completed</string>
+    <string name="type">Type</string>
+    <string name="trade_profitloss">Trade Profitloss</string>
+    <string name="contract_number">Contract Number</string>
+    <string name="hanging_unit_price">Hanging Price</string>
+    <string name="open_price">Open Price</string>
+    <string name="close_price">Close Price</string>
+    <string name="positions">Positions</string>
+    <string name="stop_profit_price">Stop Profit Price</string>
+    <string name="stop_loss_price">Stop Loss Price</string>
+    <string name="position_fee">Position Fee</string>
+    <string name="open_time">Open Time</string>
+    <string name="close_type">Close Type</string>
+    <string name="close_time">Close Time</string>
+    <string name="pending_order_time">Pending Order Time</string>
+    <string name="pending_withdraw_time">Pending Withdraw Time</string>
+    <string name="trade_details">Trade Details</string>
+    <string name="hands">Hands</string>
+    <string name="pending_order">Pending Order</string>
+    <string name="take_profit_Close">Take profit and close</string>
+    <string name="take_loss_Close">Stop Loss and close</string>
+    <string name="self_close">Self Closs</string>
+    <string name="forced_close">The forced liquidation</string>
+    <string name="hazard_rate_forced_close">Hazard Rate when Hazard Rate</string>
+    <string name="withdrawn">Withdrawn</string>
+    <string-array name="my_order_tab">
+        <item>InviteFriend</item>
+        <item>RebateRecord</item>
+    </string-array>
+    <string-array name="auth_tab">
+        <item>ID card</item>
+        <item>Passports</item>
+    </string-array>
+    <string-array name="auth_id_tab">
+        <item>ID card</item>
+    </string-array>
+    <string-array name="auth_passport_tab">
+        <item>Passports</item>
+    </string-array>
+    <string name="country_list_null">Nationality list is empty</string>
+    <string name="usernameorpwderror">Incorrect user name or password</string>
+    <string name="camera_permission">Permissions are not available, please turn on camera permissions</string>
+    <string name="storage_permission">Permission is not available, please turn on storage permission</string>
+    <string name="name">Name</string>
+    <string name="name_hint">Please enter your name</string>
+    <string name="id_card">ID card</string>
+    <string name="id_card_hint">Please enter your IdCard</string>
+    <string name="id_card_verify">Please enter a valid ID number</string>
+    <string name="id_card_up">Click to upload ID card front</string>
+    <string name="id_card_down">Click to upload ID card negative</string>
+    <string name="id_card_handheld">Click to upload ID card handheld</string>
+    <string name="passport_up">Click to upload the passport front</string>
+    <string name="passport_down">Click to upload the passport negative</string>
+    <string name="passport_handheld">Click to upload the passport handheld</string>
+    <string name="id_card_auth_description">*Please be sure to upload pictures in jpeg PNG BMP format no less than 8M. Handheld photos should be clear with no cover. We attach great importance to your privacy</string>
+    <string name="upload">Upload</string>
+    <string name="passport_num">Passport ID</string>
+    <string name="passport_num_hint">Please enter your PassportId</string>
+    <string name="upload_success">Upload Success</string>
+    <string name="ensure">Confirm</string>
+    <string name="reset">Reset</string>
+    <string name="login_pwd_update">Modify the login password</string>
+    <string name="old_pwd">Old Password</string>
+    <string name="pwd">Password</string>
+    <string name="old_pwd_hint">Please enter your old password</string>
+    <string name="pwd_hint">Please enter your  password</string>
+    <string name="new_pwd">New Password</string>
+    <string name="new_pwd_hint">Please enter your new password</string>
+    <string name="new_pwd_ensure">Confirm the new password</string>
+    <string name="new_pwd_ensure_hint">Please enter your new password again</string>
+    <string name="pwd_inconsistent">Inconsistent input password twice</string>
+    <string name="safe_center">Security center</string>
+    <string name="safe_grade">Security Level</string>
+    <string name="email">Email</string>
+    <string name="google_certification">Google Authenticator</string>
+    <string name="legal_currency_pwd">Fund password</string>
+    <string name="fingerprint_recognition">Fingerprint recognition</string>
+    <string name="system_opening">When opening a program</string>
+    <string name="sensitive_operation">Sensitive operation</string>
+    <string name="no_setting">Not set</string>
+    <string name="has_setting">Has been set</string>
+    <string name="pwd_reset">Reset login Password</string>
+    <string name="choose_coin">Select currency</string>
+    <string name="record">Record</string>
+    <string name="cancel">Cancel</string>
+    <string name="copy_address">Copy the address</string>
+    <string name="save_img">Long press to save the QR code to the album</string>
+    <string name="coin_recharge">Recharge</string>
+    <string name="coin_recharge_address">Mention address</string>
+    <string name="label">Label</string>
+    <string name="extract_all">Mention All</string>
+    <string name="commit">Commit</string>
+    <string name="add_coin_address">Add Mention Address</string>
+    <string name="coin_type">Currency</string>
+    <string name="coin_type_hint">Please select a currency</string>
+    <string name="address">Address</string>
+    <string name="address_hint">Please enter the mention address</string>
+    <string name="remark">Remark</string>
+    <string name="remark_hint">Please enter the remark</string>
+    <string name="add">Add</string>
+    <string name="choose_bank">Select Bank</string>
+    <string name="trade_pwd_update">Modify the legal currency fund password</string>
+    <string name="input_hint">Please enter</string>
+    <string name="trade_pwd">Fund password</string>
+    <string name="trade_pwd_hint">Please enter the fund password</string>
+    <string name="front_photo_of_the_document">Front photo of the document</string>
+    <string name="back_photo_of_the_document">Back photo of the document</string>
+    <string name="handheld_photo_of_the_document">Handheld photo of the document</string>
+    <string name="please_choose">Please Choose</string>
+    <string name="take_photo">Take a photo</string>
+    <string name="album">Album</string>
+    <string name="unauthorized">Unauthorized</string>
+    <string name="approving">Approving</string>
+    <string name="approving_error">Approving error</string>
+    <string name="resubmit">Resubmit</string>
+    <string name="authorized">Authorized</string>
+    <string name="audit_failure">Audit failure:</string>
+    <string name="image_uploaded_successfully">Image uploaded successfully</string>
+    <string name="low">Low</string>
+    <string name="middle">Middle</string>
+    <string name="high">High</string>
+    <string name="complete_certification">Please complete the following safety certification</string>
+    <string name="certification_completed">Safety certification is completed</string>
+    <string name="update_phone">Modify phone number</string>
+    <string name="verify_code_new">New Code</string>
+    <string name="email_bind">Bind mailbox</string>
+    <string name="phone_bind">Binding phone</string>
+    <string name="email_address">Email address</string>
+    <string name="sms_code">SMS code</string>
+    <string name="email_code">Email code</string>
+    <string name="email_address_hint">Please entry the email address</string>
+    <string name="google_bind">Bind Google Authenticator</string>
+    <string name="google_open">Turn on Google verification</string>
+    <string name="google_bind_tips">Google Verification is a third-party independent security solution launched by Google Inc., which can provide further security protection for your financial operations (such as coin withdrawal). When you enable Google certification, Google verification will be used instead of SMS verification</string>
+    <string name="open_now">Instant Boost</string>
+    <string name="download_and_install">Download and install</string>
+    <string name="download_and_install_tips">Search for Google Authenticator and install it in major app markets</string>
+    <string name="enter_key">Enter key</string>
+    <string name="enter_key_tips">After the installation is complete, open Google Authenticator, click the "+" in the upper right corner (Android is in the lower right corner), select the "Manually enter the key" page and fill in your EMEX account name and the lower key</string>
+    <string name="copy">Copy</string>
+    <string name="verification">Verification</string>
+    <string name="google_verification_tips">After the addition is successful, you will get a 6-digit verification code with a timed effect. Please fill in the verification code in the input box below (need to be verified)</string>
+    <string name="google_code">Google verification code</string>
+    <string name="google_code_hint">Please enter 6 Google Verified Code</string>
+    <string name="confirm_open">Confirm open</string>
+    <string name="mention_address_edit">MentionAddress Edit</string>
+    <string name="delete">Delete</string>
+    <string name="item">Item</string>
+    <string name="add_success">Add Success</string>
+    <string name="delete_success">Delete Success</string>
+    <string name="language_selection"> Language Selection</string>
+    <string name="app_about">About Exchief</string>
+    <string name="official_website">Official website</string>
+    <string name="contact_customer_service">Contact customer service</string>
+    <!--me-->
+
+    <!--trade-->
+    <string name="contract_account">Contract Account</string>
+    <string name="trade_at_best_price">Trade at best price</string>
+    <string name="occupation_margin">Occupation margin:&#160;</string>
+    <string name="freezing_margin">Freezing margin:&#160;</string>
+    <string name="equity">Equity:&#160;</string>
+    <string name="risk_rate">Risk rate:&#160;</string>
+    <string-array name="contract_tab">
+        <item>Positions</item>
+        <item>Commission</item>
+        <item>Traded</item>
+        <item>Withdrawn</item>
+    </string-array>
+    <string name="select_multiplier">Please select multiplier</string>
+    <string name="can_open">Open:</string>
+    <string name="commission_margin">Margin:</string>
+    <string name="order_success">Ordered Success</string>
+    <string name="lever">Lever</string>
+    <string name="price_bigger_0">Price must be greater than 0</string>
+    <string name="no_high_market_price">See many hang unit price must not be higher than market price</string>
+    <string name="no_low_market_price">The unit price shall not be lower than the market price</string>
+    <string name="number_bigger_0">The number of positions must be greater than 0</string>
+    <string name="currency_switches">Currency switches</string>
+    <string name="hand_size">Hands size</string>
+    <string name="contract_multiplier">Contract multiplier</string>
+    <string name="commission_value">Commission value</string>
+    <string name="leverage_multiple">Leverage multiple</string>
+    <string name="commission_margin2">Commission margin</string>
+    <string name="stop_profit_price_hint">Please enter stop profit price</string>
+    <string name="stop_loss_price_hint">Please enter stop loss price</string>
+    <string name="optimal_price">Optimal price</string>
+    <string name="commission_buy">Commission buy</string>
+    <string name="commission_sell">Commission sell</string>
+    <string name="total_profit_loss">Total ProfitLoss:&#160;</string>
+    <string name="one_key_close">One Key Close</string>
+    <string name="position_close_success">Close price success</string>
+    <string name="set_profit_loss_success">Set profitLoss success</string>
+    <string name="log2view">Please log in to view</string>
+    <string name="current_price">Close Price</string>
+    <string name="set_profit_loss">Set ProfitLoss</string>
+    <string name="position_close">Close</string>
+    <string name="withdrawal">Withdrawal</string>
+    <string name="withdrawal_success">Withdrawal success</string>
+    <string name="commission_order">Commission Order</string>
+    <string name="profit_loss_set_tip1">The surplus price should be larger than the unit price</string>
+    <string name="profit_loss_set_tip2">Long term stop loss should be less than the unit price</string>
+    <string name="profit_loss_set_tip3">Short ending profit price should be less than the unit price</string>
+    <string name="profit_loss_set_tip4">The stop loss price should be greater than the unit price</string>
+    <string name="profitLossSettingUp">The order is [see more] contract, the higher the profit price, the higher the profit, the lower the stop price, the higher the risk resistance ability; if the set profit price is lower than the latest price, the stop price is higher than the latest price, it will trigger Strong, please pay attention to the settings</string>
+    <string name="profitLossSettingDown">The order is [empty] contract. The lower the profit price, the higher the profit. The higher the stop price, the higher the risk resistance. If the stop profit price is higher than the latest price, the stop price is lower than the latest price, which will trigger. Strong, please pay attention to the settings</string>
+    <string name="profitLossSettingCancelUp">The order is [see more] contract, the higher the profit price, the higher the profit, the lower the stop price, the higher the risk resistance, please pay attention to the setting</string>
+    <string name="profitLossSettingCancelDown">The order is [small] contract, the lower the profit price, the higher the profit, the higher the stop price, the higher the risk resistance, please pay attention to the setting</string>
+    <string name="order_number">Order number</string>
+    <string name="details">Details</string>
+    <string name="to_trade">Go to trade</string>
+    <string name="_24h_high">H</string>
+    <string name="_24h_low">L</string>
+    <string name="_24h_size">24H&#160;</string>
+    <string name="line_text">Line</string>
+    <string name="min1_text">1min</string>
+    <string name="min5_text">5min</string>
+    <string name="hour1_text">1hour</string>
+    <string name="day1_text">1day</string>
+    <string name="min15_text">15min</string>
+    <string name="min30_text">30min</string>
+    <string name="week1_text">1week</string>
+    <string name="month1_text">1mon</string>
+    <string name="more">More</string>
+    <string name="hide">Hide</string>
+    <string name="kline_main">Main</string>
+    <string name="kline_child">Sub</string>
+    <string name="buy_plate">Buy</string>
+    <string name="sell_plate">Sell</string>
+    <string name="number">Number</string>
+    <string name="price">Price</string>
+    <string name="save_success">Save success</string>
+    <string name="save_failed">Save failed</string>
+    <string name="no_notes">No notes at the moment</string>
+    <string name="coin_recharge_tips">*Tips: You need to confirm the entire network node to get the account.Any non %1$s recharge the assets to %2$s cannot be retrieved after the address！Minimum recharge amount：%3$s，less than %4$s will not be able to arrive and cannot be returned.</string>
+    <string name="coin_out_label_hint">Enter or long press the paste label</string>
+    <string name="coin_out_num_hint">Please enter mention amount</string>
+    <string name="fee">Fee:&#160;</string>
+    <string name="fee2">Fee</string>
+    <string name="coin_out_tips">*Mention notice</string>
+    <string name="available">Available:&#160;</string>
+    <string name="low_limit">Support amount:the minimum withdrawal amount is</string>
+    <string name="mention_address_cannot_empty">Mention cannot be empty</string>
+    <string name="label_cannot_empty">Label cannot be empty</string>
+    <string name="number_cannot_empty">Number cannot be empty</string>
+    <string name="about_fee">About fee</string>
+    <string name="about_fee_tips">Increase the fee available to increase the speed&#160;</string>
+    <string name="fee_range">The fee range is&#160;</string>
+    <string name="choose_coin_address">Choose a coin address</string>
+    <string name="charge_record">Charge Record</string>
+    <string name="mention_record">Mention Record</string>
+    <string name="transfer_record">Transfer Record</string>
+    <string name="all">All</string>
+    <string name="no_date">No date</string>
+    <string name="success">success</string>
+    <string name="safety_verification">Safety Verification</string>
+    <string name="confirm_order">Confirm Order</string>
+    <string name="actual_arrival">Actual arrival</string>
+    <string name="b2b_account">B2B Account</string>
+    <string name="c2c_account">C2C Account</string>
+    <string name="cfd_account">CFD Account</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="trans_number_hint">Please enter the number of transfers</string>
+    <string name="trans_cannot_0">The number of transfers cannot be 0</string>
+    <string name="trans_correct_number_hint">Please enter the correct number of inputs</string>
+    <string name="trans_type_choose">Please select the currency to be transferred</string>
+    <string-array name="property_details_tab">
+        <item>All</item>
+        <item>Charge</item>
+        <item>Mention</item>
+        <item>Trans In</item>
+        <item>Trans Out</item>
+        <item>Buy</item>
+        <item>Sell</item>
+    </string-array>
+    <string-array name="property_details_tab_2">
+        <item>All</item>
+        <item>Charge</item>
+        <item>Mention</item>
+        <item>Trans In</item>
+        <item>Trans Out</item>
+        <item>Buy</item>
+        <item>Sell</item>
+        <item>Locked warehouse</item>
+    </string-array>
+    <string name="details2">Details</string>
+    <string name="usable">Available</string>
+    <string name="freeze">Freeze</string>
+    <string name="convert2cny">RMB equivalent</string>
+    <string name="financial_record">Financial record</string>
+    <string-array name="open_order_tab">
+        <item>Current commission</item>
+        <item>Historical commission</item>
+    </string-array>
+    <string-array name="open_order_filter_tab">
+        <item>All</item>
+        <item>Buy</item>
+        <item>Sell</item>
+    </string-array>
+    <string name="transaction_pair">Transaction pair</string>
+    <string name="order_statue">Order Status</string>
+    <string name="cancelled">Cancelled</string>
+    <string name="undo">Undo</string>
+    <string name="traded">Traded</string>
+    <string name="transaction_details">Transaction details</string>
+    <string name="total_turnover">Total turnover</string>
+    <string name="direction">Direction</string>
+    <string name="average_transaction_price">Average transaction price</string>
+    <string name="transaction_volume">Volume</string>
+    <string name="time">Time</string>
+    <string name="final_price">Final price</string>
+    <string-array name="ad_tab">
+        <item>On shelf</item>
+        <item>Sold out</item>
+    </string-array>
+    <string name="successfully_on_the_shelves">Successfully on the shelves</string>
+    <string name="successfully_removed">Successfully removed</string>
+    <string name="on_the_shelf">On the shelf</string>
+    <string name="has_been_removed">Has been removed</string>
+    <string name="buy2">Buy</string>
+    <string name="sell2">Sell</string>
+    <string name="limit">Limit&#160;</string>
+    <string name="lc_pwd_set">Set the fund password</string>
+    <string name="lc_pwd_update">Modify the fund password</string>
+    <string name="lc_pwd_reset">Reset the fund password</string>
+    <string name="set_success">Set Success</string>
+    <string name="following">Following</string>
+    <string name="view_full_market">View full market</string>
+    <string-array name="kline_tab">
+        <item>Depth</item>
+        <item>Deal</item>
+    </string-array>
+    <string name="add_collection_success">Add collection success</string>
+    <string name="cancel_collection_success">Cancel collection success</string>
+    <string name="transfer_of_funds">Transfer of funds</string>
+    <string name="current_commission">Current commission</string>
+    <string name="commission_num_bigger_0">The number of delegates must be greater than 0</string>
+    <string name="sms_code_error">SMS verification code error</string>
+    <string-array name="trade_tab">
+        <item>C2C Trade</item>
+        <item>B2B Trade</item>
+    </string-array>
+    <string name="turnover">Turnover:&#160;</string>
+    <string name="buy_after_login">Buy after login</string>
+    <string name="sell_after_login">Sell after login</string>
+    <string name="submit_success">Submit success</string>
+    <string name="successful_withdrawal_of_application">Successful withdrawal of application</string>
+    <string name="mention_success">Mention success</string>
+    <string name="b2b">B2B</string>
+    <string name="quotes_search_hint">Search for the currency you are interested in</string>
+    <string name="search_not_null">Search content cannot be empty</string>
+    <string name="add_optional">Add optional</string>
+    <string name="market_price_buy">MarketPriceBuy</string>
+    <string name="limit_price_buy">LimitPriceBuy</string>
+    <string name="market_price_sell">MarketPriceSell</string>
+    <string name="limit_price_sell">LimitPriceSell</string>
+    <string name="tips">Tips</string>
+    <string name="confirm_2_logout">Confirm logout?</string>
+    <string name="maximum_transactions">Maximum number of transactions is&#160;</string>
+    <string name="invite_share_title">Digital currency exchange</string>
+    <string name="invite_share_code">Invite Code</string>
+    <string name="pending_review">Pending review</string>
+    <string name="pending_payment">Pending payment</string>
+    <string name="in_payment">In payment</string>
+    <string name="payment_rejection">Payment rejection</string>
+    <string name="audit_rejection">Audit rejection</string>
+    <string name="payment_Fail">Payment Fail</string>
+    <string name="help_center">Help center</string>
+    <string name="register_time">Register time</string>
+    <string name="user_name">Username</string>
+    <string name="recommended_level">Recommended level</string>
+    <string name="level">Level</string>
+    <string name="publish_time">Release time</string>
+    <string name="version_update">Version update</string>
+    <string name="discover_new_version">Discover new version</string>
+    <string name="already_the_latest_version">Already the latest version</string>
+    <string name="successfully_modified">Successfully modified</string>
+    <string name="modify_username">Modify username</string>
+    <string name="username_hint">Please enter user name</string>
+    <!--trade-->
+    <string-array name="bank_list">
+        <item>中国工商银行</item>
+        <item>中国农业银行</item>
+        <item>中国建设银行</item>
+        <item>中国邮政储蓄银行</item>
+        <item>招商银行</item>
+        <item>中国银行</item>
+        <item>交通银行</item>
+        <item>中信银行</item>
+        <item>华夏银行</item>
+        <item>中国民生银行</item>
+        <item>广发银行</item>
+        <item>平安银行</item>
+        <item>兴业银行</item>
+        <item>上海浦东发展银行</item>
+        <item>浙商银行</item>
+        <item>渤海银行</item>
+        <item>恒丰银行</item>
+        <item>花旗银行</item>
+        <item>渣打银行</item>
+        <item>汇丰银行</item>
+        <item>中国光大银行</item>
+        <item>上海银行</item>
+        <item>江苏银行</item>
+        <item>重庆银行</item>
+        <item>天津银行</item>
+        <item>厦门银行</item>
+        <item>城市商业银行</item>
+        <item>农村商业银行</item>
+        <item>徽商银行</item>
+    </string-array>
+
+    <string name="customactivityoncrash_error_activity_error_occurred_explanation">发生意外错误。\n抱歉，给您带来不便。</string>
+    <string name="customactivityoncrash_error_activity_restart_app">重新启动</string>
+    <string name="customactivityoncrash_error_activity_close_app">关闭程序</string>
+    <string name="customactivityoncrash_error_activity_error_details">错误日志</string>
+    <string name="customactivityoncrash_error_activity_error_details_title">错误详情</string>
+    <string name="customactivityoncrash_error_activity_error_details_close">关闭</string>
+    <string name="customactivityoncrash_error_activity_error_details_copy">复制日志</string>
+    <string name="customactivityoncrash_error_activity_error_details_copied">复制日志</string>
+    <string name="customactivityoncrash_error_activity_error_details_clipboard_label">错误信息</string>
+</resources>
