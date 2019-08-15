@@ -43,4 +43,9 @@
     <color name="commission_bg">#1B2532</color>
     <color name="transparent">#00000000</color>
 
+    <!--登录注册-->
+    <color name="welcomelogin">#B2BAD1</color>
+
+
+
 </resources>

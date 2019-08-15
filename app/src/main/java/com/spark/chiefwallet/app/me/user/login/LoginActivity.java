@@ -51,22 +51,24 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
 
         //TitleSet
         mTitleModel = new TitleBean();
-        mTitleModel.setShowLeftImg(true);
+//        mTitleModel.setShowLeftImg(true);
         mTitleModel.setShowRightTV(true);
-        mTitleModel.setRightTV(getString(R.string.register));
-        binding.loginTitle.titleLeftImg.setImageDrawable(getResources().getDrawable(R.drawable.svg_cancel));
+//        mTitleModel.setRightTV(getString(R.string.register));
+        binding.loginTitle.titleRightImg.setImageDrawable(getResources().getDrawable(R.drawable.svg_cancel));
         binding.loginTitle.setViewTitle(mTitleModel);
         setTitleListener(binding.loginTitle.titleRootLeft, binding.loginTitle.titleRootRight);
 
         viewModel.initContext(this);
     }
 
+
     @Override
     protected void onTitleRightClick() {
-        //注册
-        ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_REGISTER)
-                .navigation();
+//        //注册
+//        ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_REGISTER)
+//                .navigation();
         finish();
+
     }
 
     @Override
