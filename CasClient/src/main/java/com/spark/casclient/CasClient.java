@@ -1,5 +1,7 @@
 package com.spark.casclient;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.spark.casclient.base.CasHost;
 import com.spark.casclient.pojo.CasConfig;
@@ -59,6 +61,7 @@ public class CasClient extends BaseHttpClient {
     public void login(String username,
                       String password,
                       String rememberMe) {
+
         EasyHttp.post(CasHost.casUrl)
                 .baseUrl(BaseHost.LOGIN_HOST)
                 .headers("tid", DeviceUtils.getTid())
@@ -332,6 +335,7 @@ public class CasClient extends BaseHttpClient {
 
     /**
      * 验证极验
+     *
      * @param check
      * @param cid
      */

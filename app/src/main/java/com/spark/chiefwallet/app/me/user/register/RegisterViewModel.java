@@ -65,7 +65,7 @@ public class RegisterViewModel extends BaseViewModel {
     private String[] mCountryArray;
     private Context mContext;
     private List<CountryEntity> mCountryEntityList;
-    private String countryEnName;                      //值传递 国籍 enName
+    private String countryEnName = "中国";                      //值传递 国籍 enName
     public int type = 0;                                //0 - 手机注册 1 - 邮箱注册
     public String bannerPicBean;
     private String aboutAppUrl, rivacyUrl, clauseUrl, helpCenterUrl;
@@ -209,7 +209,9 @@ public class RegisterViewModel extends BaseViewModel {
             }
 
             showDialog(App.getInstance().getString(R.string.loading));
-            AppClient.getInstance().checkPromotionLimit();
+//            AppClient.getInstance().checkPromotionLimit();//
+            registerRequest();
+
         }
     });
 
@@ -304,16 +306,16 @@ public class RegisterViewModel extends BaseViewModel {
         switch (type) {
             case 0:
                 if (StringUtils.isNotEmpty(cid, checkData)) {
-                    RegisterClient.getInstance().registerByPhone(cid, checkData, "", newPwd.get(), strAreaCode, inviteCode.get(), phoneNum.get());
+                    RegisterClient.getInstance().registerByPhone(cid, checkData, "", newPwd.get(), countryEnName, inviteCode.get(), strAreaCode + phoneNum.get());
                 } else {
-                    RegisterClient.getInstance().registerByPhone("", verifyCode.get(), newPwd.get(), strAreaCode, inviteCode.get(), phoneNum.get());
+                    RegisterClient.getInstance().registerByPhone("", verifyCode.get(), newPwd.get(), countryEnName, inviteCode.get(), strAreaCode + phoneNum.get());
                 }
                 break;
             case 1:
                 if (StringUtils.isNotEmpty(cid, checkData)) {
-                    RegisterClient.getInstance().registerByEmail(cid, checkData, "", newPwd.get(), strAreaCode, inviteCode.get(), phoneNum.get());
+                    RegisterClient.getInstance().registerByEmail(cid, checkData, "", newPwd.get(), countryEnName, inviteCode.get(), phoneNum.get());
                 } else {
-                    RegisterClient.getInstance().registerByEmail("", verifyCode.get(), newPwd.get(), strAreaCode, inviteCode.get(), phoneNum.get());
+                    RegisterClient.getInstance().registerByEmail("", verifyCode.get(), newPwd.get(), countryEnName, inviteCode.get(), phoneNum.get());
                 }
                 break;
         }

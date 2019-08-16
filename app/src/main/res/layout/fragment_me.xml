@@ -57,6 +57,7 @@
                             android:layout_height="50dp"
                             android:layout_marginLeft="15dp"
                             android:layout_weight="1"
+                            android:orientation="vertical"
                             android:gravity="center_vertical">
                             <!--昵称-->
                             <TextView
