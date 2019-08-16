@@ -8,6 +8,8 @@ import android.support.annotation.NonNull;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.interfaces.OnConfirmListener;
+import com.spark.acclient.FinanceClient;
+import com.spark.acclient.pojo.SpotWalletResult;
 import com.spark.casclient.CasClient;
 import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.R;
@@ -22,16 +24,22 @@ import com.spark.ucclient.MemberClient;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.math.BigDecimal;
+
 import me.spark.mvvm.base.BaseRequestCode;
 import me.spark.mvvm.base.BaseViewModel;
 import me.spark.mvvm.base.EvKey;
 import me.spark.mvvm.binding.command.BindingAction;
 import me.spark.mvvm.binding.command.BindingCommand;
 import me.spark.mvvm.bus.event.SingleLiveEvent;
+import me.spark.mvvm.http.impl.OnRequestListener;
 import me.spark.mvvm.pojo.User;
+import me.spark.mvvm.utils.DfUtils;
 import me.spark.mvvm.utils.EventBean;
 import me.spark.mvvm.utils.EventBusUtils;
 import me.spark.mvvm.utils.LanguageSPUtil;
+import me.spark.mvvm.utils.MathUtils;
+import me.spark.mvvm.utils.SPUtils;
 
 /**
  * ================================================
@@ -56,12 +64,24 @@ public class MeViewModel extends BaseViewModel {
     public ObservableField<Boolean> isLogOut = new ObservableField<>(App.getInstance().isAppLogin());
     public ObservableField<String> languageSelect = new ObservableField<>("");
     public ObservableField<String> versionName = new ObservableField<>(getApplication().getApplicationContext().getString(R.string.version) + AppUtils.getContextVersionName());
+    public ObservableField<Integer> qiehuanbizhong = new ObservableField<>(0);
     //昵称
     public ObservableField<String> nickname = new ObservableField<>(App.getInstance().isAppLogin() ?
             App.getInstance().getCurrentUser().getUsername() : App.getInstance().getString(R.string.no_login));
     //昵称
     public ObservableField<String> mobilePhone = new ObservableField<>(App.getInstance().isAppLogin() ?
             (App.getInstance().getCurrentUser().getLogintype() == 0 ? App.getInstance().getCurrentUser().getMobilePhone() : App.getInstance().getCurrentUser().getEmail()) : "");
+
+    //
+    public ObservableField<String> otcAcconut = new ObservableField<>();
+    public ObservableField<String> otcAcconutTrans = new ObservableField<>();
+    private String otcAcconutText = "------ USDT";
+    private String otcAcconutTransText = "≈ ---- CNY";
+    private OnRequestListener onRequestListener, onRequestListenerAnnounce;
+    private double spotWalletTotal = 0, spotWalletTrans = 0, otcWalletTotal = 0, otcWalletTrans = 0, cfdWalletTotal = 0, cfdWalletTrans = 0;
+    private String spotAcconutText = "------ USDT";
+    private String spotAcconutTransText = "≈ ---- CNY";
+    private boolean isLoadAcountDate = false;
 
     //修改昵称
     public BindingCommand nickNameModifyOnClickCommand = new BindingCommand(new BindingAction() {
@@ -237,6 +257,23 @@ public class MeViewModel extends BaseViewModel {
         if (!isVisible2User && isOnPause && (!eventBean.getOrigin().equals(EvKey.loginStatue)))
             return;
         switch (eventBean.getOrigin()) {
+            //spot钱包查询业务处理
+            case EvKey.coinWallet:
+                if (eventBean.getType() != 0 && eventBean.getType() != 1 && eventBean.getType() != 2)
+                    return;
+                if (eventBean.isStatue()) {
+                    if (eventBean.getType() == 0) {
+                        updateSpotInfo((SpotWalletResult) eventBean.getObject());
+                        FinanceClient.getInstance().getCoinWallet("OTC");
+                    } else if (eventBean.getType() == 1) {
+                        updateOtcInfo((SpotWalletResult) eventBean.getObject());
+//                        FinanceClient.getInstance().getCoinWallet("CFD");
+                    }
+//                    else if (eventBean.getType() == 2) {
+//                        updateCfdInfo((SpotWalletResult) eventBean.getObject());
+//                    }
+                }
+                break;
             case EvKey.modifyUserName:
                 if (eventBean.isStatue()) {
                     isUpdateUserName = true;
@@ -273,6 +310,11 @@ public class MeViewModel extends BaseViewModel {
                         mobilePhone.set(curUser.getLogintype() == 0 ? curUser.getMobilePhone() : curUser.getEmail());
                         initSafeLevel();
                     } else {
+                        if (!isLoadAcountDate) {
+                            updateAccount();
+                        } else {
+                            initText();
+                        }
                         nickname.set(App.getInstance().getString(R.string.no_login));
                         mobilePhone.set("");
                     }
@@ -297,6 +339,92 @@ public class MeViewModel extends BaseViewModel {
             default:
                 break;
         }
+    }
+
+    /**
+     * 请求资产信息
+     */
+    public void updateAccount() {
+        spotWalletTotal = 0;
+        spotWalletTrans = 0;
+        FinanceClient.getInstance().getCoinWallet("SPOT");
+    }
+
+    /**
+     * 更新币币钱包信息
+     *
+     * @param spotWalletResult
+     */
+    private void updateSpotInfo(SpotWalletResult spotWalletResult) {
+        if (onRequestListener == null) return;
+        spotWalletTotal = 0;
+        spotWalletTrans = 0;
+        for (SpotWalletResult.DataBean dataBean : spotWalletResult.getData()) {
+            spotWalletTotal = new BigDecimal(dataBean.getTotalPlatformAssetBalance()).add(new BigDecimal(spotWalletTotal)).doubleValue();
+            spotWalletTrans = new BigDecimal(dataBean.getTotalLegalAssetBalance()).add(new BigDecimal(spotWalletTrans)).doubleValue();
+        }
+    }
+
+    /**
+     * 更新法币钱包信息
+     *
+     * @param spotWalletResult
+     */
+    private void updateOtcInfo(SpotWalletResult spotWalletResult) {
+        if (onRequestListener == null) return;
+        otcWalletTotal = 0;
+        otcWalletTrans = 0;
+        for (SpotWalletResult.DataBean dataBean : spotWalletResult.getData()) {
+            otcWalletTotal = new BigDecimal(dataBean.getTotalPlatformAssetBalance()).add(new BigDecimal(otcWalletTotal)).doubleValue();
+            otcWalletTrans = new BigDecimal(dataBean.getTotalLegalAssetBalance()).add(new BigDecimal(otcWalletTrans)).doubleValue();
+        }
+
+        spotAcconutText = String.valueOf(spotWalletTotal);
+        spotAcconutTransText = String.valueOf(spotWalletTrans);
+        otcAcconutText = String.valueOf(otcWalletTotal);
+        otcAcconutTransText = String.valueOf(otcWalletTrans);
+        initText();
+    }
+
+    public void initText() {
+        if (!App.getInstance().isAppLogin()) {
+
+            otcAcconut.set("------ USDT");
+            otcAcconutTrans.set("≈ ---- CNY");
+//            cfdAcconut.set("------ USDT");
+//            cfdAcconutTrans.set("≈ ---- CNY");
+        } else {
+            isLoadAcountDate = true;
+            if (SPUtils.getInstance().isHideAccount()) {
+
+
+                otcAcconut.set("****** USDT USDT");
+                otcAcconutTrans.set("≈ **** CNY");
+//                cfdAcconut.set("****** USDT USDT");
+//                cfdAcconutTrans.set("≈ **** CNY");
+            } else {
+                if (qiehuanbizhong.get() == 0) {
+                    otcAcconut.set(initAccount(Double.valueOf(otcAcconutText)));
+                    otcAcconutTrans.set(initAccountTrans(Double.valueOf(otcAcconutTransText)));
+                } else {
+                    otcAcconut.set(initAccount(Double.valueOf(spotAcconutText)));
+                    otcAcconutTrans.set(initAccountTrans(Double.valueOf(spotAcconutTransText)));
+                }
+
+//                cfdAcconut.set(initAccount(Double.valueOf(cfdAcconutText)));
+//                cfdAcconutTrans.set(initAccountTrans(Double.valueOf(cfdAcconutTransText)));
+            }
+        }
+    }
+
+    private String initAccount(double account) {
+        String close = DfUtils.formatNum(MathUtils.getRundNumber(account, 4, null));
+        return close + " USDT";
+    }
+
+    private String initAccountTrans(double accountTrans) {
+        String close = DfUtils.formatNum(MathUtils.getRundNumber(accountTrans, 4, null));
+        return "≈ " + close + " CNY";
     }
 
     private void initSafeLevel() {

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.databinding.ObservableField;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.geetest.sdk.Bind.GT3GeetestBindListener;
@@ -16,6 +17,9 @@ import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.api.AppClient;
 import com.spark.chiefwallet.api.pojo.ArticleListBean;
+import com.spark.chiefwallet.api.pojo.PromotionCodeLimitResult;
+import com.spark.chiefwallet.app.me.user.pwdforget.PwdForgetViewModel;
+import com.spark.chiefwallet.app.me.user.register.verificationcode.VerifyCodeActivity;
 import com.spark.chiefwallet.base.ARouterPath;
 import com.spark.chiefwallet.ui.toast.Toasty;
 import com.spark.chiefwallet.util.CheckErrorUtil;
@@ -31,6 +35,7 @@ import org.json.JSONObject;
 
 import java.util.List;
 
+import me.spark.mvvm.base.AppManager;
 import me.spark.mvvm.base.BaseHost;
 import me.spark.mvvm.base.BaseRequestCode;
 import me.spark.mvvm.base.BaseResponseError;
@@ -38,6 +43,7 @@ import me.spark.mvvm.base.BaseViewModel;
 import me.spark.mvvm.base.EvKey;
 import me.spark.mvvm.binding.command.BindingAction;
 import me.spark.mvvm.binding.command.BindingCommand;
+import me.spark.mvvm.bus.event.SingleLiveEvent;
 import me.spark.mvvm.utils.EventBean;
 import me.spark.mvvm.utils.EventBusUtils;
 import me.spark.mvvm.utils.SPUtils;
@@ -63,6 +69,7 @@ public class RegisterViewModel extends BaseViewModel {
     public int type = 0;                                //0 - 手机注册 1 - 邮箱注册
     public String bannerPicBean;
     private String aboutAppUrl, rivacyUrl, clauseUrl, helpCenterUrl;
+    private String checkData = "";
 
     public RegisterViewModel(@NonNull Application application) {
         super(application);
@@ -78,7 +85,15 @@ public class RegisterViewModel extends BaseViewModel {
     public ObservableField<String> registerHint = new ObservableField<>(App.getInstance().getString(R.string.phone_num_hint));
     //手机号码
     public ObservableField<String> phoneNum = new ObservableField<>("");
+    public ObservableField<String> verifyCode = new ObservableField<>("");
+    public ObservableField<String> newPwd = new ObservableField<>("");
+    public ObservableField<String> newPwdAgain = new ObservableField<>("");
+    public ObservableField<String> hitphoneNum = new ObservableField<>(App.getInstance().getResources().getString(R.string.phone_num_hint));
+    public ObservableField<String> inviteCode = new ObservableField<>("");
     public ObservableField<String> countryName = new ObservableField<>("中国 +86");
+
+    public ObservableField<String> tiaolie = new ObservableField<>("0");
+
 
     //国籍选择
     public BindingCommand chooseCountryOnClickCommand = new BindingCommand(new BindingAction() {
@@ -107,45 +122,162 @@ public class RegisterViewModel extends BaseViewModel {
                     .navigation();
         }
     });
+    //密码显示开关
+    public BindingCommand pwdSwitchOnClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            uc.pwdSwitchEvent.setValue(uc.pwdSwitchEvent.getValue() == null || !uc.pwdSwitchEvent.getValue());
+        }
+    }); //密码显示开关
+    public BindingCommand newpwdSwitchOnClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            uc.newpwdSwitchEvent.setValue(uc.newpwdSwitchEvent.getValue() == null || !uc.newpwdSwitchEvent.getValue());
+
+        }
+    });
+
+    //y阅读条例
+    public BindingCommand checkBoxOnClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            if (tiaolie.get().equals(0)) {
+                tiaolie.set("1");
+            } else
+                tiaolie.set("0");
+
+        }
+    });
+    //提交登录
+    public BindingCommand submissionOnClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+
+            if (type == 0) {
+                if (StringUtils.isEmpty(phoneNum.get())) {
+                    Toasty.showError(App.getInstance().getString(R.string.phone_num_hint));
+                    return;
+                }
+//                if (!RegexUtils.isMobileExact(phoneNum.get())) {
+//                    Toasty.showError(App.getInstance().getString(R.string.valid_phone));
+//                    return;
+//                }
+            } else {
+                if (StringUtils.isEmpty(phoneNum.get())) {
+                    Toasty.showError(App.getInstance().getString(R.string.email_address_hint));
+                    return;
+                }
+                if (!RegexUtils.isEmail(phoneNum.get())) {
+                    Toasty.showError(App.getInstance().getString(R.string.valid_email));
+                    return;
+                }
+            }
+
+
+            if (StringUtils.isEmpty(countryName.get()) || StringUtils.isEmpty(countryName.get())) {
+                Toasty.showError(mContext.getString(R.string.choose_country));
+                return;
+            }
+
+            if (StringUtils.isEmpty(verifyCode.get())) {
+                Toasty.showError(App.getInstance().getString(R.string.verify_code_hint));
+                return;
+            }
+
+            if (StringUtils.isEmpty(newPwd.get())) {
+                Toasty.showError(App.getInstance().getString(R.string.new_pwd_hint));
+                return;
+            }
+
+            if (!RegexUtils.isPassword(newPwd.get())) {
+                Toasty.showError(App.getInstance().getString(R.string.pwd_error));
+                return;
+            }
+
+            if (StringUtils.isEmpty(newPwdAgain.get())) {
+                Toasty.showError(App.getInstance().getString(R.string.new_pwd_ensure_hint));
+                return;
+            }
+
+            if (!newPwd.get().equals(newPwdAgain.get())) {
+                Toasty.showError(App.getInstance().getString(R.string.pwd_inconsistent));
+                return;
+            }
+            if (tiaolie.get().equals("0")) {
+                Toasty.showError(App.getInstance().getString(R.string.checklist));
+                return;
+            }
+
+            showDialog(App.getInstance().getString(R.string.loading));
+            AppClient.getInstance().checkPromotionLimit();
+        }
+    });
 
     public void getArticleList() {
         AppClient.getInstance().getArticleList();
     }
 
-    //获取短信验证码
-    public BindingCommand getCodeOnClickCommand = new BindingCommand(new BindingAction() {
-        @Override
-        public void call() {
-            switch (type) {
-                //手机注册
-                case 0:
-                    if (!RegexUtils.isMobileExact(phoneNum.get())) {
-                        Toasty.showError(mContext.getString(R.string.valid_phone));
-                        return;
-                    }
-                    if (StringUtils.isEmpty(strAreaCode) || StringUtils.isEmpty(countryName.get())) {
-                        Toasty.showError(mContext.getString(R.string.choose_country));
-                        return;
-                    }
-                    showDialog(mContext.getString(R.string.loading));
-                    CaptchaGetClient.getInstance().phoneCaptcha(strAreaCode + phoneNum.get());
-                    break;
-                //邮箱注册
-                case 1:
-                    if (!RegexUtils.isEmail(phoneNum.get())) {
-                        Toasty.showError(mContext.getString(R.string.valid_email));
-                        return;
-                    }
+    public UIChangeObservable uc = new UIChangeObservable();
 
-                    showDialog(mContext.getString(R.string.loading));
-                    CaptchaGetClient.getInstance().emailCaptcha(phoneNum.get());
-                    break;
-            }
-        }
-    });
+    public class UIChangeObservable {
+        public SingleLiveEvent<Boolean> mGetCodeSuccessLiveEvent = new SingleLiveEvent<>();
+        public SingleLiveEvent<Boolean> pwdSwitchEvent = new SingleLiveEvent<>();
+        public SingleLiveEvent<Boolean> newpwdSwitchEvent = new SingleLiveEvent<>();
+
+    }
+
+    /**
+     * 获取短信验证码
+     */
+    public void getPhoneCode(int type) {
+        showDialog(App.getInstance().getString(R.string.loading));
+        if (type == 0) {
+            CaptchaGetClient.getInstance().phoneCaptcha(strAreaCode + phoneNum.get());
+        } else
+            CaptchaGetClient.getInstance().emailCaptcha(phoneNum.get());
+    }
+
+
+//    //获取短信验证码
+//    public BindingCommand getCodeOnClickCommand = new BindingCommand(new BindingAction() {
+//        @Override
+//        public void call() {
+//            switch (type) {
+//                //手机注册
+//                case 0:
+//                    if (!RegexUtils.isMobileExact(phoneNum.get())) {
+//                        Toasty.showError(mContext.getString(R.string.valid_phone));
+//                        return;
+//                    }
+//                    if (StringUtils.isEmpty(strAreaCode) || StringUtils.isEmpty(countryName.get())) {
+//                        Toasty.showError(mContext.getString(R.string.choose_country));
+//                        return;
+//                    }
+//                    showDialog(mContext.getString(R.string.loading));
+//                    CaptchaGetClient.getInstance().phoneCaptcha(strAreaCode + phoneNum.get());
+//                    break;
+//                //邮箱注册
+//                case 1:
+//                    if (!RegexUtils.isEmail(phoneNum.get())) {
+//                        Toasty.showError(mContext.getString(R.string.valid_email));
+//                        return;
+//                    }
+//
+//                    showDialog(mContext.getString(R.string.loading));
+//                    CaptchaGetClient.getInstance().emailCaptcha(phoneNum.get());
+//                    break;
+//            }
+//        }
+//    });
 
     public void typeContext(int type) {
         this.type = type;
+        if (type == 0) {
+            hitphoneNum.set(App.getInstance().getResources().getString(R.string.phone_num_hint));
+        } else {
+            hitphoneNum.set(App.getInstance().getResources().getString(R.string.email_address_hint));
+
+        }
     }
 
     //获取国籍列表
@@ -168,9 +300,93 @@ public class RegisterViewModel extends BaseViewModel {
         }
     }
 
+    private void registerRequest() {
+        switch (type) {
+            case 0:
+                if (StringUtils.isNotEmpty(cid, checkData)) {
+                    RegisterClient.getInstance().registerByPhone(cid, checkData, "", newPwd.get(), strAreaCode, inviteCode.get(), phoneNum.get());
+                } else {
+                    RegisterClient.getInstance().registerByPhone("", verifyCode.get(), newPwd.get(), strAreaCode, inviteCode.get(), phoneNum.get());
+                }
+                break;
+            case 1:
+                if (StringUtils.isNotEmpty(cid, checkData)) {
+                    RegisterClient.getInstance().registerByEmail(cid, checkData, "", newPwd.get(), strAreaCode, inviteCode.get(), phoneNum.get());
+                } else {
+                    RegisterClient.getInstance().registerByEmail("", verifyCode.get(), newPwd.get(), strAreaCode, inviteCode.get(), phoneNum.get());
+                }
+                break;
+        }
+
+    }
+
+    private void registerSuccess() {
+        Toasty.showSuccess(App.getInstance().getString(R.string.register_success));
+        AppManager.getAppManager().finishActivity(RegisterActivity.class);
+        AppManager.getAppManager().finishActivity(VerifyCodeActivity.class);
+        ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_LOGIN)
+                .navigation();
+        finish();
+    }
+
+    private void dealError(EventBean eventBean) {
+        if (gt3GeetestUtils != null) {
+            gt3GeetestUtils.gt3TestClose();
+            gt3GeetestUtils = null;
+        }
+
+        BaseResponseError responseError = (BaseResponseError) eventBean.getObject();
+        if (responseError != null) {
+            String msg = responseError.getMessage();
+            if (responseError.getCode() == BaseRequestCode.ERROR_411 && StringUtils.isNotEmpty(msg) && msg.contains("captcha")) {
+                //极验验证 411
+                cid = responseError.getCid();
+                gt3GeetestUtils = new GT3GeetestUtilsBind(mContext);
+                CaptchaGetClient.getInstance().geeCaptcha();
+            } else if (responseError.getCode() == BaseRequestCode.ERROR_412 && StringUtils.isNotEmpty(msg) && msg.contains("Captcha")) {
+                //验证码错误
+                Toasty.showError(App.getInstance().getString(R.string.sms_code_error));
+                finish();
+            } else {
+                CheckErrorUtil.checkError(eventBean);
+            }
+        }
+    }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(EventBean eventBean) {
         switch (eventBean.getOrigin()) {
+            case EvKey.registerByPhone:
+                dismissDialog();
+                if (eventBean.isStatue()) {
+                    registerSuccess();
+                } else {
+                    dealError(eventBean);
+                }
+                break;
+            //是否强制输入邀请码
+            case EvKey.promotionCodeLimit:
+                if (eventBean.isStatue()) {
+                    PromotionCodeLimitResult promotionCodeLimitResult = (PromotionCodeLimitResult) eventBean.getObject();
+                    if (promotionCodeLimitResult.getData().getValue().equals("true")) {
+                        if (TextUtils.isEmpty(inviteCode.get())) {
+                            dismissDialog();
+                            Toasty.showError(App.getInstance().getString(R.string.invite_code_hint));
+                            return;
+                        }
+                        AppClient.getInstance().checkPromotionCode(inviteCode.get().trim());
+                    } else {
+                        if (TextUtils.isEmpty(inviteCode.get())) {
+                            registerRequest();
+                        } else {
+                            AppClient.getInstance().checkPromotionCode(inviteCode.get().trim());
+                        }
+                    }
+                } else {
+                    Toasty.showError(eventBean.getMessage());
+                }
+                break;
+
             //获取国籍列表
             case EvKey.findSupportCountry:
                 dismissDialog();
@@ -209,17 +425,7 @@ public class RegisterViewModel extends BaseViewModel {
                         gt3GeetestUtils.gt3TestFinish();
                         gt3GeetestUtils = null;
                     }
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_VERIFYCODE)
-                                    .withString("phoneNum", strAreaCode + phoneNum.get())
-                                    .withString("strCountry", countryEnName)
-                                    .withInt("type", type)
-                                    .navigation();
-                        }
-                    }, 1000);
-
+                    uc.mGetCodeSuccessLiveEvent.setValue(true);
                 } else {
                     if (gt3GeetestUtils != null) {
                         gt3GeetestUtils.gt3TestClose();
@@ -243,6 +449,50 @@ public class RegisterViewModel extends BaseViewModel {
                         }
                     }
                 }
+//                dismissDialog();
+//                if (eventBean.isStatue()) {
+//                    if (gt3GeetestUtils != null) {
+//                        gt3GeetestUtils.gt3TestFinish();
+//                        gt3GeetestUtils = null;
+//                    }
+//
+//
+//
+////                    new Handler().postDelayed(new Runnable() {
+////                        @Override
+////                        public void run() {
+////                            ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_VERIFYCODE)
+////                                    .withString("phoneNum", strAreaCode + phoneNum.get())
+////                                    .withString("strCountry", countryEnName)
+////                                    .withInt("type", type)
+////                                    .navigation();
+////                        }
+////                    }, 1000);
+//
+//
+//                } else {
+//                    if (gt3GeetestUtils != null) {
+//                        gt3GeetestUtils.gt3TestClose();
+//                        gt3GeetestUtils = null;
+//                    }
+//
+//                    BaseResponseError responseError = (BaseResponseError) eventBean.getObject();
+//                    if (responseError != null) {
+//                        String msg = responseError.getMessage();
+//                        if (responseError.getCode() == BaseRequestCode.ERROR_411 && StringUtils.isNotEmpty(msg) && msg.contains("captcha")) {
+//                            cid = responseError.getCid();
+//                            gt3GeetestUtils = new GT3GeetestUtilsBind(mContext);
+//                            CaptchaGetClient.getInstance().geeCaptcha();
+//                        } else if (responseError.getCode() == BaseRequestCode.ERROR_412 && StringUtils.isNotEmpty(msg) && msg.contains("Captcha")) {
+//                            //解决验证码失效问题
+//                            cid = responseError.getCid();
+//                            gt3GeetestUtils = new GT3GeetestUtilsBind(mContext);
+//                            CaptchaGetClient.getInstance().geeCaptcha();
+//                        } else {
+//                            CheckErrorUtil.checkError(eventBean);
+//                        }
+//                    }
+//                }
                 break;
             //邮箱验证
             case EvKey.emailCaptcha:
@@ -252,16 +502,17 @@ public class RegisterViewModel extends BaseViewModel {
                         gt3GeetestUtils.gt3TestFinish();
                         gt3GeetestUtils = null;
                     }
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_VERIFYCODE)
-                                    .withString("phoneNum", phoneNum.get())
-                                    .withString("strCountry", countryEnName)
-                                    .withInt("type", type)
-                                    .navigation();
-                        }
-                    }, 1000);
+                    uc.mGetCodeSuccessLiveEvent.setValue(true);
+//                    new Handler().postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_VERIFYCODE)
+//                                    .withString("phoneNum", phoneNum.get())
+//                                    .withString("strCountry", countryEnName)
+//                                    .withInt("type", type)
+//                                    .navigation();
+//                        }
+//                    }, 1000);
 
                 } else {
                     if (gt3GeetestUtils != null) {
@@ -301,7 +552,7 @@ public class RegisterViewModel extends BaseViewModel {
                         public void gt3GetDialogResult(boolean status, String result) {
                             if (status) {
                                 Captcha captcha = new Gson().fromJson(result, Captcha.class);
-                                String checkData = "gee::" + captcha.getGeetest_challenge() + "$" + captcha.getGeetest_validate() + "$" + captcha.getGeetest_seccode();
+                                checkData = "gee::" + captcha.getGeetest_challenge() + "$" + captcha.getGeetest_validate() + "$" + captcha.getGeetest_seccode();
                                 switch (type) {
                                     case 0:
                                         CaptchaGetClient.getInstance().phoneCaptchaWithHeader(strAreaCode + phoneNum.get(), checkData, cid);

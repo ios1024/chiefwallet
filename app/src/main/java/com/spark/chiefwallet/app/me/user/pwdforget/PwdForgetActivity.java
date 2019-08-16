@@ -2,8 +2,11 @@ package com.spark.chiefwallet.app.me.user.pwdforget;
 
 import android.arch.lifecycle.Observer;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -54,10 +57,53 @@ public class PwdForgetActivity extends BaseActivity<ActivityPwdForgetBinding, Pw
 
         //TitleSet
         mTitleModel = new TitleBean();
+        mTitleModel.setTitleName(getString(R.string.retrieve_the_password));
         binding.loginTitle.setViewTitle(mTitleModel);
         setTitleListener(binding.loginTitle.titleRootLeft);
 
         viewModel.initContext(this);
+
+
+        //点击切换
+        binding.llMobile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewModel.typeContext(0);
+                binding.mobileTv.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+                binding.mobileTv.setTextColor(getResources().getColor(R.color.mobile_login));
+                binding.mailboxTv.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+                binding.mailboxTv.setTextColor(getResources().getColor(R.color.welcomelogin));
+                binding.mailboxView.setVisibility(View.GONE);
+                binding.mobileView.setVisibility(View.VISIBLE);
+                viewModel.phoneNum.set("");
+                viewModel.verifyCode.set("");
+                viewModel.newPwd.set("");
+                viewModel.newPwd.set("");
+                viewModel.newPwdAgain.set("");
+//                binding.wechatCb.setChecked(false);
+//                viewModel.tiaolie.set("0");
+            }
+        });
+        binding.llMailbox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewModel.typeContext(1);
+                binding.mobileTv.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+                binding.mobileTv.setTextColor(getResources().getColor(R.color.welcomelogin));
+                binding.mailboxTv.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+                binding.mailboxTv.setTextColor(getResources().getColor(R.color.mobile_login));
+                binding.mailboxView.setVisibility(View.VISIBLE);
+                binding.mobileView.setVisibility(View.GONE);
+                viewModel.phoneNum.set("");
+                viewModel.verifyCode.set("");
+                viewModel.newPwd.set("");
+                viewModel.newPwd.set("");
+                viewModel.newPwdAgain.set("");
+//                binding.wechatCb.setChecked(false);
+//                viewModel.tiaolie.set("0");
+
+            }
+        });
     }
 
     @Override
@@ -78,25 +124,64 @@ public class PwdForgetActivity extends BaseActivity<ActivityPwdForgetBinding, Pw
                 Toasty.showSuccess(App.getInstance().getApplicationContext().getString(R.string.str_phone_code_success));
             }
         });
+        //密码显示开关
+        viewModel.uc.pwdSwitchEvent.observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(@Nullable Boolean aBoolean) {
+                binding.passpwdSwitch.setImageDrawable(aBoolean ?
+                        getResources().getDrawable(R.drawable.svg_show) :
+                        getResources().getDrawable(R.drawable.svg_hide));
+                binding.Password.setTransformationMethod(aBoolean ?
+                        HideReturnsTransformationMethod.getInstance() :
+                        PasswordTransformationMethod.getInstance());
+                binding.Password.setSelection(viewModel.newPwd.get().length());
+            }
+        }); //密码显示开关
+        viewModel.uc.newpwdSwitchEvent.observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(@Nullable Boolean aBoolean) {
+                binding.pwdSwitch.setImageDrawable(aBoolean ?
+                        getResources().getDrawable(R.drawable.svg_show) :
+                        getResources().getDrawable(R.drawable.svg_hide));
+                binding.duplicatePassword.setTransformationMethod(aBoolean ?
+                        HideReturnsTransformationMethod.getInstance() :
+                        PasswordTransformationMethod.getInstance());
+                binding.duplicatePassword.setSelection(viewModel.newPwdAgain.get().length());
+            }
+        });
     }
 
     @OnClick({R.id.get_sms_code})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.get_sms_code:
-                if (StringUtils.isEmpty(viewModel.countryCode.get())) {
+                if (StringUtils.isEmpty(viewModel.countryName.get())) {
                     Toasty.showError(getString(R.string.choose_country));
                     return;
                 }
-                if (StringUtils.isEmpty(viewModel.phoneNum.get())) {
-                    Toasty.showError(getString(R.string.phone_num_hint));
-                    return;
+                switch (viewModel.type){
+                    case 0:
+                        if (StringUtils.isEmpty(viewModel.phoneNum.get())) {
+                            Toasty.showError(getString(R.string.phone_num_hint));
+                            return;
+                        }
+                        viewModel.getPhoneCode(0);
+
+                        break;
+                    case 1:
+                        if (StringUtils.isEmpty(viewModel.phoneNum.get())) {
+                            Toasty.showError(getString(R.string.email_address_hint));
+                            return;
+                        }
+                        viewModel.getPhoneCode(1);
+
+                        break;
                 }
-                if (!RegexUtils.isMobileExact(viewModel.phoneNum.get())) {
-                    Toasty.showError(getString(R.string.valid_phone));
-                    return;
-                }
-                viewModel.getPhoneCode();
+
+//                if (!RegexUtils.isMobileExact(viewModel.phoneNum.get())) {
+//                    Toasty.showError(getString(R.string.valid_phone));
+//                    return;
+//                }
                 break;
         }
     }

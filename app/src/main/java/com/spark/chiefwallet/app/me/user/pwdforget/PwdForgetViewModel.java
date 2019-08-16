@@ -5,6 +5,7 @@ import android.content.Context;
 import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.geetest.sdk.Bind.GT3GeetestBindListener;
 import com.geetest.sdk.Bind.GT3GeetestUtilsBind;
 import com.google.gson.Gson;
@@ -12,6 +13,8 @@ import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.interfaces.OnSelectListener;
 import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.R;
+import com.spark.chiefwallet.api.AppClient;
+import com.spark.chiefwallet.base.ARouterPath;
 import com.spark.chiefwallet.ui.toast.Toasty;
 import com.spark.chiefwallet.util.CheckErrorUtil;
 import com.spark.chiefwallet.util.RegexUtils;
@@ -57,8 +60,8 @@ public class PwdForgetViewModel extends BaseViewModel {
     public ObservableField<String> verifyCode = new ObservableField<>("");
     public ObservableField<String> newPwd = new ObservableField<>("");
     public ObservableField<String> newPwdAgain = new ObservableField<>("");
-    public ObservableField<String> countryCode = new ObservableField<>("");
-    public ObservableField<String> countryName = new ObservableField<>("");
+    public ObservableField<String> countryName = new ObservableField<>("中国 +86");
+    public ObservableField<String> hitphoneNum = new ObservableField<>(App.getInstance().getResources().getString(R.string.phone_num_hint));
     private GT3GeetestUtilsBind gt3GeetestUtils;
     private String cid;
     private String[] mCountryArray;
@@ -68,8 +71,12 @@ public class PwdForgetViewModel extends BaseViewModel {
     public int type = 0;                                //0 - 手机注册 1 - 邮箱注册
     public UIChangeObservable uc = new UIChangeObservable();
 
+    private String strAreaCode = "86";
+
     public class UIChangeObservable {
         public SingleLiveEvent<Boolean> mGetCodeSuccessLiveEvent = new SingleLiveEvent<>();
+        public SingleLiveEvent<Boolean> pwdSwitchEvent = new SingleLiveEvent<>();
+        public SingleLiveEvent<Boolean> newpwdSwitchEvent = new SingleLiveEvent<>();
     }
 
     public void initContext(Context context) {
@@ -91,18 +98,43 @@ public class PwdForgetViewModel extends BaseViewModel {
         }
     });
 
+
+    //密码显示开关
+    public BindingCommand pwdSwitchOnClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            uc.pwdSwitchEvent.setValue(uc.pwdSwitchEvent.getValue() == null || !uc.pwdSwitchEvent.getValue());
+        }
+    }); //密码显示开关
+    public BindingCommand newpwdSwitchOnClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            uc.newpwdSwitchEvent.setValue(uc.newpwdSwitchEvent.getValue() == null || !uc.newpwdSwitchEvent.getValue());
+
+        }
+    });
+
     private void pwdReset() {
-        if (StringUtils.isEmpty(phoneNum.get())) {
-            Toasty.showError(App.getInstance().getString(R.string.phone_num_hint));
-            return;
+        if (type == 0) {
+            if (StringUtils.isEmpty(phoneNum.get())) {
+                Toasty.showError(App.getInstance().getString(R.string.phone_num_hint));
+                return;
+            }
+        } else {
+            if (StringUtils.isEmpty(phoneNum.get())) {
+                Toasty.showError(App.getInstance().getString(R.string.email_address_hint));
+                return;
+            }
+
         }
 
-        if (!RegexUtils.isMobileExact(phoneNum.get())) {
-            Toasty.showError(App.getInstance().getString(R.string.valid_phone));
-            return;
-        }
 
-        if (StringUtils.isEmpty(countryCode.get()) || StringUtils.isEmpty(countryName.get())) {
+//        if (!RegexUtils.isMobileExact(phoneNum.get())) {
+//            Toasty.showError(App.getInstance().getString(R.string.valid_phone));
+//            return;
+//        }
+
+        if (StringUtils.isEmpty(strAreaCode) || StringUtils.isEmpty(strAreaCode)) {
             Toasty.showError(mContext.getString(R.string.choose_country));
             return;
         }
@@ -131,16 +163,21 @@ public class PwdForgetViewModel extends BaseViewModel {
             Toasty.showError(App.getInstance().getString(R.string.pwd_inconsistent));
             return;
         }
-
-        SecurityClient.getInstance().forgetLoginPass(countryCode.get() + phoneNum.get(), newPwd.get(), verifyCode.get());
+        if (type == 0) {
+            SecurityClient.getInstance().forgetLoginPass(strAreaCode + phoneNum.get(), newPwd.get(), verifyCode.get());
+        } else
+            SecurityClient.getInstance().forgetLoginPass(phoneNum.get(), newPwd.get(), verifyCode.get());
     }
 
     /**
      * 获取短信验证码
      */
-    public void getPhoneCode() {
+    public void getPhoneCode(int type) {
         showDialog(App.getInstance().getString(R.string.loading));
-        CaptchaGetClient.getInstance().phoneCaptcha(countryCode.get() + phoneNum.get());
+        if (type == 0) {
+            CaptchaGetClient.getInstance().phoneCaptcha(strAreaCode + phoneNum.get());
+        } else
+            CaptchaGetClient.getInstance().emailCaptcha(phoneNum.get());
     }
 
     //获取国籍列表
@@ -153,7 +190,7 @@ public class PwdForgetViewModel extends BaseViewModel {
                                 @Override
                                 public void onSelect(int position, String text) {
                                     countryEnName = mCountryEntityList.get(position).getEnName();
-                                    updateCountryInfo(mCountryEntityList.get(position).getZhName() + "(" + mCountryEntityList.get(position).getEnName() + ")", mCountryEntityList.get(position).getAreaCode());
+                                    updateCountryInfo(mCountryEntityList.get(position).getZhName() + " +" + mCountryEntityList.get(position).getAreaCode(), mCountryEntityList.get(position).getAreaCode());
                                 }
                             })
                     .show();
@@ -163,9 +200,63 @@ public class PwdForgetViewModel extends BaseViewModel {
         }
     }
 
+    public void typeContext(int type) {
+        this.type = type;
+        if (type == 0) {
+            hitphoneNum.set(App.getInstance().getResources().getString(R.string.phone_num_hint));
+        } else {
+            hitphoneNum.set(App.getInstance().getResources().getString(R.string.email_address_hint));
+
+        }
+    }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(EventBean eventBean) {
         switch (eventBean.getOrigin()) {
+            //邮箱验证
+            case EvKey.emailCaptcha:
+                dismissDialog();
+                if (eventBean.isStatue()) {
+                    if (gt3GeetestUtils != null) {
+                        gt3GeetestUtils.gt3TestFinish();
+                        gt3GeetestUtils = null;
+                    }
+                    uc.mGetCodeSuccessLiveEvent.setValue(true);
+//                    new Handler().postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_VERIFYCODE)
+//                                    .withString("phoneNum", phoneNum.get())
+//                                    .withString("strCountry", countryEnName)
+//                                    .withInt("type", type)
+//                                    .navigation();
+//                        }
+//                    }, 1000);
+
+                } else {
+                    if (gt3GeetestUtils != null) {
+                        gt3GeetestUtils.gt3TestClose();
+                        gt3GeetestUtils = null;
+                    }
+
+                    BaseResponseError responseError = (BaseResponseError) eventBean.getObject();
+                    if (responseError != null) {
+                        String msg = responseError.getMessage();
+                        if (responseError.getCode() == BaseRequestCode.ERROR_411 && StringUtils.isNotEmpty(msg) && msg.contains("captcha")) {
+                            cid = responseError.getCid();
+                            gt3GeetestUtils = new GT3GeetestUtilsBind(mContext);
+                            CaptchaGetClient.getInstance().geeCaptcha();
+                        } else if (responseError.getCode() == BaseRequestCode.ERROR_412 && StringUtils.isNotEmpty(msg) && msg.contains("Captcha")) {
+                            //解决验证码失效问题
+                            cid = responseError.getCid();
+                            gt3GeetestUtils = new GT3GeetestUtilsBind(mContext);
+                            CaptchaGetClient.getInstance().geeCaptcha();
+                        } else {
+                            CheckErrorUtil.checkError(eventBean);
+                        }
+                    }
+                }
+                break;
             //获取国籍列表
             case EvKey.findSupportCountry:
                 dismissDialog();
@@ -184,7 +275,7 @@ public class PwdForgetViewModel extends BaseViewModel {
                                                 @Override
                                                 public void onSelect(int position, String text) {
                                                     countryEnName = objList.get(position).getEnName();
-                                                    updateCountryInfo(objList.get(position).getZhName() + "(" + objList.get(position).getEnName() + ")", objList.get(position).getAreaCode());
+                                                    updateCountryInfo(objList.get(position).getZhName() + " +" + objList.get(position).getAreaCode(), mCountryEntityList.get(position).getAreaCode());
                                                 }
                                             })
                                     .show();
@@ -246,7 +337,7 @@ public class PwdForgetViewModel extends BaseViewModel {
                                 String checkData = "gee::" + captcha.getGeetest_challenge() + "$" + captcha.getGeetest_validate() + "$" + captcha.getGeetest_seccode();
                                 switch (type) {
                                     case 0:
-                                        CaptchaGetClient.getInstance().phoneCaptchaWithHeader(countryCode.get() + phoneNum.get(), checkData, cid);
+                                        CaptchaGetClient.getInstance().phoneCaptchaWithHeader(strAreaCode + phoneNum.get(), checkData, cid);
                                         break;
                                     case 1:
                                         CaptchaGetClient.getInstance().emailCaptchaWithHeader(phoneNum.get(), checkData, cid);
@@ -278,13 +369,10 @@ public class PwdForgetViewModel extends BaseViewModel {
      * 更新国籍展示
      *
      * @param strCountry
-     * @param strAreaCode
      */
-    public void updateCountryInfo(String strCountry, String strAreaCode) {
+    public void updateCountryInfo(String strCountry, String code) {
+        strAreaCode = code;
         countryName.set(strCountry);
-        if (type == 0) {
-            countryCode.set(strAreaCode);
-        }
     }
 
     private void dealError(EventBean eventBean) {

@@ -48,8 +48,10 @@
     <color name="subscript2">#B2CCEB</color>
 
     <color name="color_red">#d60b0b</color>
+    <color name="my_bg">#F3F9FD</color>
     <color name="grey_a5a5a5">#f2f2f2</color>
     <color name="black_30">#4d000000</color>
+    <color name="my_division">#E6E9F6</color>
     <color name="mobile_login">#333333</color>
 
 
