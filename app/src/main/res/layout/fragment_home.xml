@@ -143,7 +143,6 @@
                                     <TextView
                                         style="@style/textBlackSmall"
                                         android:text="红包"
-                                        android:textColor="@color/black33"
                                         android:textStyle="bold"/>
 
                                     <TextView
@@ -181,7 +180,6 @@
                                     style="@style/textBlackSmall"
                                     android:layout_marginLeft="10dp"
                                     android:text="非洲合伙人"
-                                    android:textColor="@color/black33"
                                     android:textStyle="bold"/>
                             </LinearLayout>
 
@@ -212,7 +210,6 @@
                                     style="@style/textBlackSmall"
                                     android:layout_marginLeft="10dp"
                                     android:text="超级节点"
-                                    android:textColor="@color/black33"
                                     android:textStyle="bold"/>
                             </LinearLayout>
                         </LinearLayout>

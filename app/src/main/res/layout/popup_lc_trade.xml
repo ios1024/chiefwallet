@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    app:bl_corners_topLeftRadius="14dp"
-    app:bl_corners_topRightRadius="14dp"
+    app:bl_corners_topLeftRadius="6dp"
+    app:bl_corners_topRightRadius="6dp"
     app:bl_solid_color="@color/gray_456">
 
     <LinearLayout

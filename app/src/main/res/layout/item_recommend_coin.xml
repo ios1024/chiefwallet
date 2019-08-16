@@ -46,6 +46,7 @@
             <TextView
                 style="@style/textBlackNormal"
                 android:layout_marginTop="5dp"
+                android:textColor="@color/gray_a4"
                 android:text="@{itemRecommendCoin.initConvert()}"
                 android:textSize="@dimen/font_mini"/>
         </LinearLayout>

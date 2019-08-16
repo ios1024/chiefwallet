@@ -50,7 +50,7 @@ public class LegalCurrencyFilterPopup extends PartShadowPopupView {
     //区域
     private String[] mRegion;
     //支付方式
-    private String[] mPayType = new String[]{App.getInstance().getString(R.string.all), App.getInstance().getString(R.string.str_alipay), App.getInstance().getString(R.string.str_wechat), App.getInstance().getString(R.string.str_bank)};
+    private String[] mPayType = new String[]{App.getInstance().getString(R.string.all), App.getInstance().getString(R.string.str_alipay), App.getInstance().getString(R.string.str_wechat), App.getInstance().getString(R.string.str_bank), App.getInstance().getString(R.string.str_paypal)};
 
     private TagAdapter mTagAdapterRegion, mTagAdapterPayType;
     private Context mContext;

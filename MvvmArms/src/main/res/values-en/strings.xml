@@ -814,4 +814,6 @@
         <item>OTC行情</item>
     </string-array>
     <!--home-->
+    <string name="min">Min</string>
+    <string name="max">Max</string>
 </resources>

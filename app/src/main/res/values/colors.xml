@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#0056BC</color>
-    <color name="colorPrimaryDark">#0056BC</color>
+    <color name="colorPrimary">#FFD000</color>
+    <color name="colorPrimaryDark">#FFC000</color>
     <color name="colorAccent">#718495</color>
 
     <color name="windowBackground">#F3F9FD</color>
     <color name="base">#0056BC</color>
     <color name="base_dark">#0056BC</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="black">#FF000000</color>
+    <color name="black">#FF333333</color>
     <color name="black21">#FF212121</color>
     <color name="black33">#333333</color>
     <color name="black0B">#0B0F15</color>
@@ -45,6 +45,11 @@
     <color name="depth_title">#2a3a46</color>
     <color name="commission_bg">#1B2532</color>
     <color name="transparent">#00000000</color>
+    <color name="color_grey">#B2BAD1</color>
+    <color name="color_blue">#0056BC</color>
+    <color name="color_first_char">#8594C2</color>
+    <color name="color_unchecked">#E6E9F6</color>
+    <color name="color_stroke">#A4ABC0</color>
 
     <!--登录注册-->
     <color name="welcomelogin">#B2BAD1</color>
