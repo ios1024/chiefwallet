@@ -3,11 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CasClient/CasClient.iml" filepath="$PROJECT_DIR$/CasClient/CasClient.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ExChiefWallet.iml" filepath="$PROJECT_DIR$/ExChiefWallet.iml" />
       <module fileurl="file://$PROJECT_DIR$/KlineLib/KlineLib.iml" filepath="$PROJECT_DIR$/KlineLib/KlineLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/MvvmArms/MvvmArms.iml" filepath="$PROJECT_DIR$/MvvmArms/MvvmArms.iml" />
       <module fileurl="file://$PROJECT_DIR$/WsClient/WsClient.iml" filepath="$PROJECT_DIR$/WsClient/WsClient.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chiefwallet.iml" filepath="$PROJECT_DIR$/chiefwallet.iml" />
       <module fileurl="file://$PROJECT_DIR$/moduleAC/moduleAC.iml" filepath="$PROJECT_DIR$/moduleAC/moduleAC.iml" />
       <module fileurl="file://$PROJECT_DIR$/moduleCFD/moduleCFD.iml" filepath="$PROJECT_DIR$/moduleCFD/moduleCFD.iml" />
       <module fileurl="file://$PROJECT_DIR$/moduleOTC/moduleOTC.iml" filepath="$PROJECT_DIR$/moduleOTC/moduleOTC.iml" />

@@ -1,12 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.iwgang:countdownview:2.1.6@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/385437d68870e1665dd54a70772e2725/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/385437d68870e1665dd54a70772e2725/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../../gradle/caches/transforms-2/files-2.1/21e88273327f620c0a4942f8ff42d81f/res" />
+      <root url="jar://$PROJECT_DIR$/../../../gradle/caches/transforms-2/files-2.1/21e88273327f620c0a4942f8ff42d81f/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.iwgang/countdownview/2.1.6/b41ed758da245d7d19edfeffef50b397f7c36107/countdownview-2.1.6-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../gradle/caches/modules-2/files-2.1/com.github.iwgang/countdownview/2.1.6/b41ed758da245d7d19edfeffef50b397f7c36107/countdownview-2.1.6-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

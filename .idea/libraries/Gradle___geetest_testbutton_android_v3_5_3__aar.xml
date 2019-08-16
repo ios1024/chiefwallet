@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: :geetest_testbutton_android_v3.5.3:@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/da76803c39239ead6e636242d1f96e75/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/da76803c39239ead6e636242d1f96e75/res" />
+      <root url="jar://$PROJECT_DIR$/../../../gradle/caches/transforms-2/files-2.1/53c0f317308fc0c7c3713bf2ba53362f/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../../gradle/caches/transforms-2/files-2.1/53c0f317308fc0c7c3713bf2ba53362f/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
