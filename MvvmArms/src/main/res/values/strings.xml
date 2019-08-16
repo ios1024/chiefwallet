@@ -796,4 +796,10 @@
     <string name="str_introduction">简介</string>
     <string name="str_gains">&#160;涨幅</string>
     <string name="str_count">&#160;单</string>
+
+    <!--home-->
+    <string-array name="home_tab">
+        <item>OTC行情</item>
+    </string-array>
+    <!--home-->
 </resources>

@@ -4,11 +4,13 @@
     <color name="colorPrimaryDark">#0056BC</color>
     <color name="colorAccent">#718495</color>
 
+    <color name="windowBackground">#F3F9FD</color>
     <color name="base">#0056BC</color>
     <color name="base_dark">#0056BC</color>
     <color name="white">#FFFFFFFF</color>
     <color name="black">#FF000000</color>
     <color name="black21">#FF212121</color>
+    <color name="black33">#333333</color>
     <color name="black0B">#0B0F15</color>
     <color name="green">#52AF6C</color>
     <color name="green_light">#ECFBEE</color>
@@ -25,6 +27,7 @@
     <color name="gray_f5">#F5F5F5</color>
     <color name="gray_70">#707070</color>
     <color name="gray_456">#F4F5f6</color>
+    <color name="gray_a4">#A4ABC0</color>
     <color name="gray_common">#718495</color>
     <color name="gray_common_8c">#8C718495</color>
     <color name="gray_common_light">#798499</color>
@@ -51,6 +54,12 @@
     <color name="grey_a5a5a5">#f2f2f2</color>
     <color name="black_30">#4d000000</color>
     <color name="mobile_login">#333333</color>
+
+    <color name="tab_indicator_select_color">#0056BC</color>
+    <color name="tab_text_unselected_color">#A4ABC0</color>
+    <color name="tab_text_selected_color">#242C46</color>
+    <color name="rise">#028F76</color>
+    <color name="fall">#CA2C49</color>
 
 
 </resources>

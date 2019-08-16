@@ -149,6 +149,9 @@ public class EvKey {
     public static final String cfdOrderRevoke = "cfdOrderRevoke";
     public static final String cfdTradeOrder = "cfdTradeOrder";
 
+    //ws
+    public static final String klineConnectSuccess = "klineConnectSuccess";
+
 
 
     //--------------------event key------------------------

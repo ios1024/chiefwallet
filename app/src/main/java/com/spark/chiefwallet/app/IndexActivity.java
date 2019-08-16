@@ -12,6 +12,7 @@ import com.spark.chiefwallet.BR;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.api.pojo.UpdateBean;
 import com.spark.chiefwallet.app.emex.EmexFragment;
+import com.spark.chiefwallet.app.home.HomeFragment;
 import com.spark.chiefwallet.app.invite.InviteFragment;
 import com.spark.chiefwallet.app.me.MeFragment;
 import com.spark.chiefwallet.app.quotes.QuotesFragment;
@@ -46,6 +47,7 @@ public class IndexActivity extends BaseActivity<ActivityIndexBinding, IndexViewM
     private MeFragment mMeFragment;
     private QuotesFragment mQuotesFragment;
     private TradeFragment mTradeFragment;
+    private HomeFragment mHomeFragment;
 
     private FragmentManager fragmentManager;
     private FragmentTransaction transaction;
@@ -120,11 +122,11 @@ public class IndexActivity extends BaseActivity<ActivityIndexBinding, IndexViewM
                 //Emex
                 case 0:
                     binding.llTabEmex.setSelected(true);
-                    if (mEmexFragment == null) {
-                        mEmexFragment = new EmexFragment();
-                        transaction.add(R.id.fragment_content, mEmexFragment);
+                    if (mHomeFragment == null) {
+                        mHomeFragment = new HomeFragment();
+                        transaction.add(R.id.fragment_content, mHomeFragment);
                     } else {
-                        transaction.show(mEmexFragment);
+                        transaction.show(mHomeFragment);
                     }
                     Constant.isIndexVisiable = true;
                     break;
@@ -178,8 +180,8 @@ public class IndexActivity extends BaseActivity<ActivityIndexBinding, IndexViewM
     }
 
     private void hideFragments(FragmentTransaction transaction) {
-        if (mEmexFragment != null) {
-            transaction.hide(mEmexFragment);
+        if (mHomeFragment != null) {
+            transaction.hide(mHomeFragment);
         }
         if (mQuotesFragment != null) {
             transaction.hide(mQuotesFragment);

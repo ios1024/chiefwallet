@@ -86,6 +86,8 @@ ext {
             "bugly"                        : "com.tencent.bugly:crashreport:3.0.0",
             //update
             "update"                       : "com.teprinciple:updateapputils:2.0.2",
+            //magicIndicator
+            "magicIndicator"                       : "com.github.hackware1993:MagicIndicator:1.5.0",
     ]
 }
 

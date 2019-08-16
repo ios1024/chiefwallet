@@ -16,4 +16,7 @@
     <dimen name="sp_10">10sp</dimen>
 
     <dimen name="x_design_tab_max_width">264dp</dimen>
+    <dimen name="small_navigator_height">2dp</dimen>
+    <dimen name="small_navigator_width">12dp</dimen>
+
 </resources>

@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/gray_common</item>
         <item name="colorPrimaryDark">@color/gray_common</item>
         <item name="colorAccent">@color/gray_common</item>
+        <item name="android:windowBackground">@color/windowBackground</item>
     </style>
 
     <!--首页底部tab栏布局-->

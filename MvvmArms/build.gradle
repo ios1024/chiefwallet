@@ -141,4 +141,8 @@ dependencies {
     api(rootProject.ext.dependencies["update"]) {
         exclude group: 'com.android.support'
     }
+    //magicIndicator
+    api(rootProject.ext.dependencies["magicIndicator"]) {
+        exclude group: 'com.android.support'
+    }
 }
