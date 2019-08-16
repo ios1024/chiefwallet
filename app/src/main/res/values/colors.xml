@@ -7,7 +7,7 @@
     <color name="base">#FFD000</color>
     <color name="base_dark">#FFC000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="black">#FF000000</color>
+    <color name="black">#333333</color>
     <color name="black21">#FF212121</color>
     <color name="black0B">#0B0F15</color>
     <color name="green">#52AF6C</color>
@@ -42,5 +42,9 @@
     <color name="depth_title">#2a3a46</color>
     <color name="commission_bg">#1B2532</color>
     <color name="transparent">#00000000</color>
-
+    <color name="color_grey">#B2BAD1</color>
+    <color name="color_blue">#0056BC</color>
+    <color name="color_first_char">#8594C2</color>
+    <color name="color_unchecked">#E6E9F6</color>
+    <color name="color_stroke">#A4ABC0</color>
 </resources>

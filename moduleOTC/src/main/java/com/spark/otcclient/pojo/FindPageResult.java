@@ -448,7 +448,7 @@ public class FindPageResult implements Parcelable {
              * @return
              */
             public String formatNum() {
-                return BaseApplication.getInstance().getString(R.string.str_number) + MathUtils.getRundNumber(remainAmount, 2, null) + " " + coinName;
+                return MathUtils.getRundNumber(remainAmount, 2, null) + " " + coinName;
             }
 
             /**
@@ -457,8 +457,7 @@ public class FindPageResult implements Parcelable {
              * @return
              */
             public String formatLimit() {
-                return BaseApplication.getInstance().getString(R.string.str_limit_money) +
-                        MathUtils.getRundNumber(minLimit, 2, null)
+                return MathUtils.getRundNumber(minLimit, 2, null)
                         + " - " +
                         MathUtils.getRundNumber(maxLimit, 2, null)
                         + " " + localCurrency;
@@ -535,7 +534,7 @@ public class FindPageResult implements Parcelable {
                     rangeTimeOrder = 1;
                     rangeTimeSuccessOrder = 0;
                 }
-                return rangeTimeSuccessOrder + "    " + MathUtils.getRundNumber((Double.parseDouble(rangeTimeSuccessOrder+"") / rangeTimeOrder) * 100, 2, null) + "%";
+                return rangeTimeSuccessOrder + "    " + MathUtils.getRundNumber((Double.parseDouble(rangeTimeSuccessOrder + "") / rangeTimeOrder) * 100, 2, null) + "%";
             }
         }
     }

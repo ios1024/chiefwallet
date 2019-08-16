@@ -784,4 +784,6 @@
     <string name="str_introduction">简介</string>
     <string name="str_gains">&#160;涨幅</string>
     <string name="str_count">&#160;单</string>
+    <string name="min">最小</string>
+    <string name="max">最大</string>
 </resources>

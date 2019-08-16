@@ -784,4 +784,6 @@
     <string name="str_introduction">Introduction</string>
     <string name="str_gains">&#160;Gains</string>
     <string name="str_count">&#160;Count</string>
+    <string name="min">Min</string>
+    <string name="max">Max</string>
 </resources>
