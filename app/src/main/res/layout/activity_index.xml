@@ -54,7 +54,7 @@
 
                 <TextView
                     style="@style/tab_bottom_main"
-                    android:text="@string/Emex"/>
+                    android:text="@string/home_page"/>
             </LinearLayout>
 
             <!--行情-->
@@ -112,7 +112,7 @@
 
                 <TextView
                     style="@style/tab_bottom_main"
-                    android:text="@string/invite"/>
+                    android:text="@string/find"/>
             </LinearLayout>
 
             <!--我的-->

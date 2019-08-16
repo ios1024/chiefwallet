@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FFD000</color>
-    <color name="colorPrimaryDark">#FFC000</color>
+    <color name="colorPrimary">#0056BC</color>
+    <color name="colorPrimaryDark">#0056BC</color>
     <color name="colorAccent">#718495</color>
 
-    <color name="base">#FFD000</color>
-    <color name="base_dark">#FFC000</color>
+    <color name="base">#0056BC</color>
+    <color name="base_dark">#0056BC</color>
     <color name="white">#FFFFFFFF</color>
     <color name="black">#FF000000</color>
     <color name="black21">#FF212121</color>
@@ -45,7 +45,12 @@
 
     <!--登录注册-->
     <color name="welcomelogin">#B2BAD1</color>
+    <color name="subscript2">#B2CCEB</color>
 
+    <color name="color_red">#d60b0b</color>
+    <color name="grey_a5a5a5">#f2f2f2</color>
+    <color name="black_30">#4d000000</color>
+    <color name="mobile_login">#333333</color>
 
 
 </resources>

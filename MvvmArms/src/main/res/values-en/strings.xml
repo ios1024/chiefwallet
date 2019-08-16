@@ -6,6 +6,8 @@
     <string name="trade">Trade</string>
     <string name="invite">Invite</string>
     <string name="me">Mine</string>
+    <string name="home_page">首页</string>
+    <string name="find">发现</string>
 
     <!--splash-->
     <string name="favorites">Favorites</string>
@@ -100,6 +102,16 @@
     <string name="register_success">Registration success</string>
 
     <!--登录-->
+    <string name="welcome_to_login">欢迎登录</string>
+    <string name="mobile_login">手机登录</string>
+    <string name="mailbox_login">邮箱登录</string>
+    <string name="pwd_error2">请输入密码(6-20位数字，字母组合密码)</string>
+    <string name="enter_again">请再次输入密码</string>
+    <string name="invitation_code">请输入邀请码(非必填)</string>
+    <string name="reading_clauses">我已阅读并同意 Exchief 的 &#x0020;</string>
+    <string name="terms_of_service">服务条款，</string>
+
+
     <string name="login">Login</string>
     <string name="login_tip">Login to Exchief and start a journey of wealth!</string>
     <string name="user_count">Account</string>
