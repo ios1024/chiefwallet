@@ -40,6 +40,9 @@
 6. If the activity is adjusted, the latest rules of SSCoin shall prevail, and SSCoin shall have the right to the final interpretation of the activity</string>
 
     <!--me-->
+    <string name="online_service">在线客服</string>
+    <string name="advertising_management">广告管理</string>
+    <string name="account_security">账户安全</string>
     <string name="finance">Finance</string>
     <string name="myAssets">MyAssets</string>
     <string name="myBill">MyBill</string>
@@ -63,6 +66,15 @@
     <string name="logout_success_check">Login is invalid. Please login again.</string>
 
     <!--注册-->
+    <string name="checklist">请勾选已阅读并同意</string>
+    <string name="retrieve_the_password">找回密码</string>
+    <string name="cell_phone_number">手机号</string>
+    <string name="mailbox">邮箱</string>
+    <string name="next_steps">下一步</string>
+    <string name="confirmation_of_modifications">确认修改</string>
+    <string name="french_currency_assets">法币资产</string>
+    <string name="currency_assets">币币资产</string>
+    <string name="total_assets">总资产(USDT)</string>
     <string name="register_phone">Sign up by Phone</string>
     <string name="register_email">Sign up by Email</string>
     <string name="register_description">One account with all Exchief services!</string>

@@ -93,10 +93,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="48dp"
-                    android:layout_marginRight="18dp"
-                    binding:onClickCommand="@{registerViewModel.chooseCountryOnClickCommand}"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    binding:onClickCommand="@{registerViewModel.chooseCountryOnClickCommand}">
 
                     <!--<TextView-->
                     <!--android:id="@+id/register_country_code"-->
@@ -130,22 +129,19 @@
 
 
                 <EditText
-                    android:id="@+id/phone_num"
                     style="@style/editext_create_wallet"
                     android:layout_marginTop="28dp"
-                    android:layout_marginRight="18dp"
-                    android:hint="@string/phone_num_hint"
+                    android:hint="@{registerViewModel.hitphoneNum}"
                     android:maxLines="1"
                     android:padding="4dp"
+                    android:text="@={registerViewModel.phoneNum}"
                     android:textSize="@dimen/font_small" />
 
 
-                <LinearLayout
+                <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="28dp"
-
-                    android:layout_marginRight="18dp">
+                    android:layout_marginTop="28dp">
 
                     <EditText
                         style="@style/editext_create_wallet"
@@ -153,67 +149,127 @@
                         android:hint="@string/verify_code_hint"
                         android:maxLines="1"
                         android:padding="4dp"
+                        android:text="@={registerViewModel.verifyCode}"
                         android:textSize="@dimen/font_small" />
 
-                    <TextView
-                        style="@style/textBlueCommonSmall"
-                        android:text="@string/str_send"
-                        android:textStyle="bold" />
 
-                </LinearLayout>
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right">
 
-                <LinearLayout
+                        <TextView
+                            android:id="@+id/get_sms_code"
+                            style="@style/textBlueCommonSmall"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="@string/str_send"
+                            android:textStyle="bold"
+                            android:visibility="visible" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_countdownView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:clickable="false"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <cn.iwgang.countdownview.CountdownView
+                                android:id="@+id/countdownView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                app:isShowHour="false"
+                                app:isShowMinute="false"
+                                app:isShowSecond="true"
+                                app:suffixGravity="center"
+                                app:timeTextColor="@color/base"
+                                app:timeTextSize="@dimen/font_small" />
+
+                            <TextView
+                                style="@style/textBlueCommonSmall"
+                                android:text="@string/resend_load" />
+                        </LinearLayout>
+                    </FrameLayout>
+
+                </FrameLayout>
+
+                <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="28dp"
-                    android:layout_marginRight="18dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <EditText
+                        android:id="@+id/Password"
                         style="@style/editext_create_wallet"
                         android:layout_weight="1"
                         android:hint="@string/pwd_error2"
+                        android:inputType="textPassword"
                         android:maxLines="1"
                         android:padding="4dp"
+                        android:text="@={registerViewModel.newPwd}"
                         android:textSize="@dimen/font_small" />
 
-                    <ImageView
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/svg_hide" />
-                </LinearLayout>
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right"
+                        android:gravity="center_vertical">
 
-                <LinearLayout
+                        <ImageView
+                            android:id="@+id/passpwd_switch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/svg_hide"
+                            binding:onClickCommand="@{registerViewModel.pwdSwitchOnClickCommand}" />
+                    </LinearLayout>
+                </FrameLayout>
+
+                <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="28dp"
-                    android:layout_marginRight="18dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <EditText
+                        android:id="@+id/duplicate_password"
                         style="@style/editext_create_wallet"
                         android:layout_weight="1"
                         android:hint="@string/enter_again"
+                        android:inputType="textPassword"
                         android:maxLines="1"
                         android:padding="4dp"
+                        android:text="@={registerViewModel.newPwdAgain}"
                         android:textSize="@dimen/font_small" />
 
-                    <ImageView
-                        android:id="@+id/pwd_switch"
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/svg_hide" />
-                </LinearLayout>
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:id="@+id/pwd_switch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/svg_hide"
+                            binding:onClickCommand="@{registerViewModel.newpwdSwitchOnClickCommand}" />
+                    </LinearLayout>
+                </FrameLayout>
 
                 <EditText
+                    android:id="@+id/invitation_code"
                     style="@style/editext_create_wallet"
                     android:layout_marginTop="28dp"
-                    android:layout_marginRight="18dp"
                     android:hint="@string/invitation_code"
                     android:maxLines="1"
                     android:padding="4dp"
+                    android:text="@={registerViewModel.inviteCode}"
                     android:textSize="@dimen/font_small" />
 
                 <TextView
@@ -221,15 +277,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginTop="50dp"
-                    android:layout_marginRight="18dp"
                     android:gravity="center"
                     android:text="@string/register"
                     android:textColor="@color/white"
                     android:textSize="@dimen/sp_14"
                     android:textStyle="bold"
-                    app:bl_corners_radius="4dp"
+                    app:bl_corners_radius="2dp"
                     app:bl_pressed_color="@color/subscript2"
-                    app:bl_unpressed_color="@color/base" />
+                    app:bl_unpressed_color="@color/base"
+                    binding:onClickCommand="@{registerViewModel.submissionOnClickCommand}"
+
+                    />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -239,12 +297,12 @@
                     android:orientation="horizontal">
 
                     <com.spark.chiefwallet.ui.SmoothCheckBox
-                        android:id="@+id/sw_ismoney"
-                        android:layout_width="14dp"
-                        android:layout_height="14dp"
-                        android:checked="false"
+                        android:id="@+id/wechat_cb"
+                        android:layout_width="13dp"
+                        android:layout_height="13dp"
                         android:layout_gravity="center"
-                        android:textSize="16sp" />
+                        android:checked="false"
+                        android:textSize="12sp" />
 
                     <TextView
                         style="@style/textBlackLarge"
@@ -260,8 +318,8 @@
                         android:layout_height="wrap_content"
                         android:text="@string/terms_of_service"
                         android:textColor="@color/base"
-                        binding:onClickCommand="@{registerViewModel.termsofserviceOnClickCommand}"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        binding:onClickCommand="@{registerViewModel.termsofserviceOnClickCommand}" />
 
                     <TextView
                         style="@style/textBlackLarge"
@@ -269,22 +327,10 @@
                         android:layout_height="wrap_content"
                         android:text="@string/register_rivacy"
                         android:textColor="@color/base"
-                        binding:onClickCommand="@{registerViewModel.rivacyOnClickCommand}"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        binding:onClickCommand="@{registerViewModel.rivacyOnClickCommand}" />
                 </LinearLayout>
-                <!--<TextView-->
-                <!--android:id="@+id/register_get_code"-->
-                <!--style="@style/textBlackNormal"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="?attr/actionBarSize"-->
-                <!--android:layout_margin="16dp"-->
-                <!--android:gravity="center"-->
-                <!--android:text="@string/get_verify_code"-->
-                <!--android:textStyle="bold"-->
-                <!--app:bl_corners_radius="4dp"-->
-                <!--app:bl_pressed_color="@color/base_dark"-->
-                <!--app:bl_unpressed_color="@color/base"-->
-                <!--binding:onClickCommand="@{registerViewModel.getCodeOnClickCommand}" />-->
+
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

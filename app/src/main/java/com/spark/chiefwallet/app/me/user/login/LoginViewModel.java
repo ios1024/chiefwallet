@@ -155,12 +155,12 @@ public class LoginViewModel extends BaseViewModel {
 
         App.getInstance().deleteCurrentUser();
         showDialog(mContext.getString(R.string.loading));
-        if (RegexUtils.isMobileExact(userName.get().trim())) {
-            loginType = 0;
-            CasClient.getInstance().login(strAreaCode + userName.get(), userPassWord.get(), "true");
-        } else {
+        if (RegexUtils.isEmail(userName.get().trim())) {
             loginType = 1;
             CasClient.getInstance().login(userName.get(), userPassWord.get(), "true");
+        } else {
+            loginType = 0;
+            CasClient.getInstance().login(strAreaCode + userName.get(), userPassWord.get(), "true");
         }
     }
 
