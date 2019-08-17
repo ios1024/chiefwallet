@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="itemRecommendCoin"
+            type="com.spark.wsclient.pojo.RecommendCoinBean.DataBean"/>
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:bl_ripple_color="@color/gray_ccc"
+        app:bl_ripple_enable="true"
+        app:bl_solid_color="@color/white">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/textBlackNormal"
+                android:text="@{itemRecommendCoin.initSymbol()}"/>
+
+            <TextView
+                style="@style/textBlackNormal"
+                android:layout_marginTop="8dp"
+                android:text="@{itemRecommendCoin.initClose()}"
+                android:textColor="@{itemRecommendCoin.isCoinPairPushChgUp() ? @color/rise : @color/fall}"
+                android:textSize="@dimen/font_xlager"
+                android:textStyle="bold"/>
+
+            <TextView
+                style="@style/textBlackSmall"
+                android:layout_marginTop="8dp"
+                android:text="@{itemRecommendCoin.initChg()}"
+                android:textColor="@{itemRecommendCoin.isCoinPairPushChgUp() ? @color/rise : @color/fall}"/>
+
+            <TextView
+                style="@style/textBlackNormal"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/gray_a4"
+                android:text="@{itemRecommendCoin.initConvert()}"
+                android:textSize="@dimen/font_mini"/>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/line"
+            style="@style/line_ccc_vertical"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"/>
+    </LinearLayout>
+</layout>

@@ -4,11 +4,13 @@ import android.arch.lifecycle.Observer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.lxj.xpopup.XPopup;
+import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.BR;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.app.trade.legal_currency.viewpager.LcVPFragment;
@@ -17,9 +19,7 @@ import com.spark.chiefwallet.databinding.FragmentLegalCurrentBinding;
 import com.spark.chiefwallet.ui.adapter.SlideTabPagerNoCacheAdapter;
 import com.spark.chiefwallet.ui.popup.LegalCurrencyFilterPopup;
 import com.spark.chiefwallet.ui.popup.LegalCurrencyMenuPopup;
-import com.spark.chiefwallet.ui.popup.LegalCurrencyTypePopup;
 import com.spark.chiefwallet.ui.popup.impl.OnLcAdFilterListener;
-import com.spark.chiefwallet.ui.popup.impl.OnTypeChooseListener;
 import com.spark.chiefwallet.ui.toast.Toasty;
 import com.spark.otcclient.pojo.LcCoinListResult;
 import com.spark.otcclient.pojo.TradeAreaListResult;
@@ -140,13 +140,14 @@ public class LegalCurrencyFragment extends BaseFragment<FragmentLegalCurrentBind
     }
 
     @OnClick({R.id.legal_current_type,
+            R.id.legal_current_type_sell,
             R.id.legal_current_filter,
             R.id.legal_current_menu})
     public void OnClick(final View view) {
         switch (view.getId()) {
-            //我要买 - 我要卖
+            //我要买
             case R.id.legal_current_type:
-                new XPopup.Builder(getContext())
+                /*new XPopup.Builder(getContext())
                         .atView(view)
                         .asCustom(new LegalCurrencyTypePopup(getContext(), new OnTypeChooseListener() {
                             @Override
@@ -155,7 +156,20 @@ public class LegalCurrencyFragment extends BaseFragment<FragmentLegalCurrentBind
                                 EventBusUtils.postSuccessEvent(EvKey.lcTradeType, type, content);
                             }
                         }))
-                        .show();
+                        .show();*/
+                EventBusUtils.postSuccessEvent(EvKey.lcTradeType, 1, App.getInstance().getString(R.string.str_buy));
+                binding.legalCurrentType.setTextColor(getResources().getColor(R.color.black));
+                binding.legalCurrentType.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.font_normal));
+                binding.legalCurrentTypeSell.setTextColor(getResources().getColor(R.color.color_grey));
+                binding.legalCurrentTypeSell.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.font_small));
+                break;
+            //我要卖
+            case R.id.legal_current_type_sell:
+                EventBusUtils.postSuccessEvent(EvKey.lcTradeType, 0, App.getInstance().getString(R.string.str_sell));
+                binding.legalCurrentType.setTextColor(getResources().getColor(R.color.color_grey));
+                binding.legalCurrentType.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.font_small));
+                binding.legalCurrentTypeSell.setTextColor(getResources().getColor(R.color.black));
+                binding.legalCurrentTypeSell.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.font_normal));
                 break;
             //筛选
             case R.id.legal_current_filter:

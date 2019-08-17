@@ -78,20 +78,26 @@ public class PropertyDetailsActivity extends BaseActivity<ActivityPropertyDetail
 
     @Override
     public void initView() {
-        StatueBarUtils.setStatusBarLightMode(this, true);
-        StatueBarUtils.addMarginTopEqualStatusBarHeight(binding.propertyDetailsTitle.fakeStatusBar);
+        StatueBarUtils.addMarginTopEqualStatusBarHeight(binding.fakeStatusBar);
         StatueBarUtils.setStatusBarColor(this, Color.WHITE);
 
         if (busiType.equals("OTC")) {
-            binding.hide1.setVisibility(View.INVISIBLE);
-            binding.hide2.setVisibility(View.INVISIBLE);
+            binding.hide1.setVisibility(View.GONE);
+            binding.hide2.setVisibility(View.GONE);
+            binding.hide3.setVisibility(View.VISIBLE);
+            binding.hide0.setVisibility(View.GONE);
+        } else {
+            binding.hide1.setVisibility(View.VISIBLE);
+            binding.hide2.setVisibility(View.VISIBLE);
+            binding.hide3.setVisibility(View.GONE);
+            binding.hide0.setVisibility(View.VISIBLE);
         }
         filterTypeList = getResources().getStringArray(R.array.property_details_tab);
         //TitleSet
-        mTitleModel = new TitleBean();
-        mTitleModel.setTitleName(propertDetailsBean.getCoinId() + getString(R.string.details2));
-        binding.propertyDetailsTitle.setViewTitle(mTitleModel);
-        setTitleListener(binding.propertyDetailsTitle.titleRootLeft);
+//        mTitleModel = new TitleBean();
+//        mTitleModel.setTitleName(propertDetailsBean.getCoinId() + getString(R.string.details2));
+//        binding.propertyDetailsTitle.setViewTitle(mTitleModel);
+//        setTitleListener(binding.propertyDetailsTitle.titleRootLeft);
         viewModel.init(this, busiType, propertDetailsBean);
 
 
@@ -252,9 +258,12 @@ public class PropertyDetailsActivity extends BaseActivity<ActivityPropertyDetail
     }
 
 
-    @OnClick({R.id.filter})
+    @OnClick({R.id.filter, R.id.title_left})
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.title_left:
+                finish();
+                break;
             case R.id.filter:
                 new XPopup.Builder(this)
                         .maxHeight((int) (XPopupUtils.getWindowHeight(this) * .85f))

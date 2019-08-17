@@ -9,6 +9,7 @@ import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 
+import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.BR;
@@ -36,6 +37,10 @@ import me.spark.mvvm.utils.StringUtils;
  */
 @Route(path = ARouterPath.ACTIVITY_ME_FORGET_PWD)
 public class PwdForgetActivity extends BaseActivity<ActivityPwdForgetBinding, PwdForgetViewModel> {
+    @Autowired(name = "type")
+    String type; //0 -找回密码  1 - 重置密码
+
+
     private TitleBean mTitleModel;
 
     @Override
@@ -57,7 +62,11 @@ public class PwdForgetActivity extends BaseActivity<ActivityPwdForgetBinding, Pw
 
         //TitleSet
         mTitleModel = new TitleBean();
-        mTitleModel.setTitleName(getString(R.string.retrieve_the_password));
+        if (type.equals("1")) {
+            mTitleModel.setTitleName(getString(R.string.login_pwd_update));
+        } else
+            mTitleModel.setTitleName(getString(R.string.retrieve_the_password));
+
         binding.loginTitle.setViewTitle(mTitleModel);
         setTitleListener(binding.loginTitle.titleRootLeft);
 
@@ -159,7 +168,7 @@ public class PwdForgetActivity extends BaseActivity<ActivityPwdForgetBinding, Pw
                     Toasty.showError(getString(R.string.choose_country));
                     return;
                 }
-                switch (viewModel.type){
+                switch (viewModel.type) {
                     case 0:
                         if (StringUtils.isEmpty(viewModel.phoneNum.get())) {
                             Toasty.showError(getString(R.string.phone_num_hint));

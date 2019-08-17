@@ -32,12 +32,12 @@ public class PropertyViewModel extends BaseViewModel {
         super(application);
     }
 
-    public BindingCommand finishOnClickCommand = new BindingCommand(new BindingAction() {
-        @Override
-        public void call() {
-            finish();
-        }
-    });
+//    public BindingCommand finishOnClickCommand = new BindingCommand(new BindingAction() {
+//        @Override
+//        public void call() {
+//            finish();
+//        }
+//    });
     private OnRequestListener mOnRequestListener;
 
     public void getCoinSupport(OnRequestListener onRequestListener) {

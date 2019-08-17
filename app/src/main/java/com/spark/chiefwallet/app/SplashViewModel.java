@@ -30,6 +30,7 @@ import me.spark.mvvm.base.EvKey;
 import me.spark.mvvm.utils.EventBean;
 import me.spark.mvvm.utils.EventBusUtils;
 import me.spark.mvvm.utils.LogUtils;
+import me.spark.mvvm.utils.StringUtils;
 
 /**
  * ================================================
@@ -100,9 +101,16 @@ public class SplashViewModel extends BaseViewModel {
                         }
                     }
                     //配置聊天ws Url
-                    WsHost.chatWssUrl = casConfig.getData().getWebsocket();
-                    BaseHost.AGENT_HOST = casConfig.getData().getAgentUrl() + "/";
-                    Constant.inviteUrl = casConfig.getData().getAppregister();
+                    //配置聊天ws Url
+                    if (!StringUtils.isEmpty(casConfig.getData().getWebsocket())) {
+                        WsHost.chatWssUrl = casConfig.getData().getWebsocket();
+                    }
+                    if (!StringUtils.isEmpty(casConfig.getData().getAgentUrl())) {
+                        BaseHost.AGENT_HOST = casConfig.getData().getAgentUrl() + "/";
+                    }
+                    if (!StringUtils.isEmpty(casConfig.getData().getAppregister())) {
+                        Constant.inviteUrl = casConfig.getData().getAppregister();
+                    }
                     LogUtils.e("chatWssUrl", WsHost.chatWssUrl);
                     LogUtils.e("AGENT_HOST", BaseHost.AGENT_HOST);
                     LogUtils.e("inviteUrl", Constant.inviteUrl);

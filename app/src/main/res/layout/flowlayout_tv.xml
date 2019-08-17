@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="6dp"
     android:paddingBottom="8dp"
-    android:paddingLeft="12dp"
-    android:paddingRight="12dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
     android:paddingTop="8dp"
-    android:textColor="@color/black"
+    android:textColor="@color/color_blue"
     android:textSize="@dimen/font_small"
-    app:bl_checked_stroke_color="@color/base"
-    app:bl_corners_radius="4dp"
-    app:bl_solid_color="@color/white"
+    app:bl_checked_solid_color="@color/white"
+    app:bl_checked_stroke_color="@color/color_blue"
+    app:bl_checked_textColor="@color/color_blue"
+    app:bl_corners_radius="2dp"
     app:bl_stroke_width="1dp"
-    app:bl_unChecked_stroke_color="@color/gray_ccc">
+    app:bl_unChecked_solid_color="@color/color_unchecked"
+    app:bl_unChecked_stroke_color="@color/color_unchecked"
+    app:bl_unChecked_textColor="@color/black">
 
 </TextView>

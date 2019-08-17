@@ -74,24 +74,24 @@ public class CurAccountFragment extends BaseFragment<FragmentCurAccountBinding, 
             }
         });
 
-        binding.imgIsHideAccount.setImageDrawable(SPUtils.getInstance().isHideAccountSpot() ?
-                getResources().getDrawable(R.drawable.svg_hide) :
-                getResources().getDrawable(R.drawable.svg_show));
+//        binding.imgIsHideAccount.setImageDrawable(SPUtils.getInstance().isHideAccountSpot() ?
+//                getResources().getDrawable(R.drawable.svg_hide) :
+//                getResources().getDrawable(R.drawable.svg_show));
 
     }
 
     @Override
     public void initViewObservable() {
-        viewModel.uc.isHideAccountSwitchEvent.observe(this, new Observer<Boolean>() {
-            @Override
-            public void onChanged(@Nullable Boolean aBoolean) {
-                binding.imgIsHideAccount.setImageDrawable(aBoolean ?
-                        getResources().getDrawable(R.drawable.svg_hide) :
-                        getResources().getDrawable(R.drawable.svg_show));
-                SPUtils.getInstance().setIsHideAccountSpot(aBoolean);
-                viewModel.initAccountText(aBoolean);
-            }
-        });
+//        viewModel.uc.isHideAccountSwitchEvent.observe(this, new Observer<Boolean>() {
+//            @Override
+//            public void onChanged(@Nullable Boolean aBoolean) {
+//                binding.imgIsHideAccount.setImageDrawable(aBoolean ?
+//                        getResources().getDrawable(R.drawable.svg_hide) :
+//                        getResources().getDrawable(R.drawable.svg_show));
+//                SPUtils.getInstance().setIsHideAccountSpot(aBoolean);
+//                viewModel.initAccountText(aBoolean);
+//            }
+//        });
     }
 
     @Override

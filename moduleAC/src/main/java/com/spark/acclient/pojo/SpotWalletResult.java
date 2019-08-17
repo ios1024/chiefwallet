@@ -362,12 +362,17 @@ public class SpotWalletResult implements Parcelable {
             return url;
         }
 
+        public String available() {
+
+            return DfUtils.numberFormat(balance, 4);
+        }
+
         public String formatBlance() {
-            return DfUtils.numberFormat(balance + frozenBalance, 4);
+            return DfUtils.numberFormat(balance + frozenBalance, 8);
         }
 
         public String formatBlanceTrans() {
-            return "≈" + DfUtils.numberFormat(totalLegalAssetBalance, 8) + " CNY";
+            return "≈¥ " + DfUtils.numberFormat(totalLegalAssetBalance, 2);
         }
 
         @Override

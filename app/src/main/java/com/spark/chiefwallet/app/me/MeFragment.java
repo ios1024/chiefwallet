@@ -42,11 +42,12 @@ public class MeFragment extends BaseFragment<FragmentMeBinding, MeViewModel> {
         viewModel.initContext(getContext());
 
         viewModel.updateAccount();
+
         //点击法币
         binding.frenchCurrencyAssets.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                viewModel.qiehuanbizhong.set(0);
+                viewModel.qiehuanbizhong.set("0");
                 viewModel.updateAccount();
                 binding.frenchCurrencyAssets.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
                 binding.currencyAssets.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
@@ -59,7 +60,7 @@ public class MeFragment extends BaseFragment<FragmentMeBinding, MeViewModel> {
         binding.currencyAssets.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                viewModel.qiehuanbizhong.set(1);
+                viewModel.qiehuanbizhong.set("1");
                 viewModel.updateAccount();
                 binding.frenchCurrencyAssets.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
                 binding.currencyAssets.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));

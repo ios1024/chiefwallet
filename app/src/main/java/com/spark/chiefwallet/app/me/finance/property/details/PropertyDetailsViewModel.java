@@ -38,6 +38,7 @@ import com.spark.otcclient.pojo.LcCoinListResult;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import me.spark.mvvm.base.BaseApplication;
 import me.spark.mvvm.base.BaseViewModel;
 import me.spark.mvvm.base.Constant;
 import me.spark.mvvm.base.EvKey;
@@ -48,6 +49,7 @@ import me.spark.mvvm.http.impl.OnRequestListener;
 import me.spark.mvvm.utils.DfUtils;
 import me.spark.mvvm.utils.EventBean;
 import me.spark.mvvm.utils.EventBusUtils;
+import me.spark.mvvm.utils.StringUtils;
 
 /**
  * ================================================
@@ -78,6 +80,8 @@ public class PropertyDetailsViewModel extends BaseViewModel {
     public ObservableField<String> balance = new ObservableField<>();
     public ObservableField<String> frozenBalance = new ObservableField<>();
     public ObservableField<String> transCNY = new ObservableField<>();
+    public ObservableField<String> getCoin = new ObservableField<>();
+    public ObservableField<String> ImgUrl = new ObservableField<>();
 
     //充币
     public BindingCommand coinInCommand = new BindingCommand(new BindingAction() {
@@ -143,12 +147,26 @@ public class PropertyDetailsViewModel extends BaseViewModel {
         FinanceClient.getInstance().getProperyDetails(page, mDataBean.getCoinId(), mBusiType, filterType);
     }
 
+    public String initImgUrl(String coinId) {
+        String url = "";
+        if (!StringUtils.isEmpty(Constant.accountJson)) {
+            CoinSupportBean coinSupportBean = BaseApplication.gson.fromJson(Constant.accountJson, CoinSupportBean.class);
+            for (CoinSupportBean.DataBean dataBean : coinSupportBean.getData()) {
+                if (dataBean.getCoinName().equals(coinId)) {
+                    url = dataBean.getIconUrl();
+                }
+            }
+        }
+        return url;
+    }
 
     private void initViewDate() {
-        coinName.set(DfUtils.numberFormat(mDataBean.getBalance() + mDataBean.getFrozenBalance(), 2) + " " + mDataBean.getCoinId());
+        ImgUrl.set(initImgUrl(mDataBean.getCoinId()));
+        getCoin.set(mDataBean.getCoinId());
+        coinName.set(DfUtils.numberFormat(mDataBean.getBalance() + mDataBean.getFrozenBalance(), 2));
         balance.set(DfUtils.numberFormat(mDataBean.getBalance(), 4));
         frozenBalance.set(DfUtils.numberFormat(mDataBean.getFrozenBalance(), 4));
-        transCNY.set(DfUtils.numberFormat((mDataBean.getBalance() + mDataBean.getFrozenBalance()) * mDataBean.getLegalRate(), 4) + " CNY");
+        transCNY.set("≈¥ " + DfUtils.numberFormat((mDataBean.getBalance() + mDataBean.getFrozenBalance()) * mDataBean.getLegalRate(), 4));
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

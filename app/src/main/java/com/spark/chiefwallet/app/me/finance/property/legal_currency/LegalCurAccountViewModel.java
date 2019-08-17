@@ -70,7 +70,7 @@ public class LegalCurAccountViewModel extends BaseViewModel {
     public void initAccountText(boolean isHide) {
         if (isHide) {
             otcWalletTotalChar.set("****** USDT");
-            otcWalletTransChar.set("≈ **** CNY " + mContext.getString(R.string.total_assets_convert));
+            otcWalletTransChar.set("≈¥ ****");
         } else {
             otcWalletTotalChar.set(initWalletTotal(walletTotal));
             otcWalletTransChar.set(transWalletTotal(walletTotalTrans));
@@ -157,7 +157,7 @@ public class LegalCurAccountViewModel extends BaseViewModel {
 
     private String transWalletTotal(double spotWalletTotal) {
         String close = DfUtils.formatNum(MathUtils.getRundNumber(spotWalletTotal, 6, null));
-        return "≈ " + close + " CNY  " + mContext.getString(R.string.total_assets_convert);
+        return "≈¥ " + close;
     }
 
     private boolean isVisible2User() {

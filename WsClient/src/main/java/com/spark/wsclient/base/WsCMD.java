@@ -17,6 +17,7 @@ public class WsCMD {
     // 首页币币推送模块
     public static final short GET_ALL_THUMB = 22003;                // 查询所有币种信息（行情首页界面显示）
     public static final short GET_OVERVIEW_THUMB = 22004;           // 获取首页缩略图和涨幅榜
+    public static final short GET_RECOMMEND_THUMB = 22005;          // 获取首页推荐
     public static final short ENABLE_SYMBOL = 20009;                // 查询行情可用币种
     public static final short SUBSCRIBE_THUMB = 22011;              // 首页缩略图订阅与取消
     public static final short UN_SUBSCRIBE_THUMB = 22012;

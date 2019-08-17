@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
-        <import type="android.view.View"/>
+        <import type="android.view.View" />
 
         <variable
             name="findPageResult"
-            type="com.spark.otcclient.pojo.FindPageResult.DataBean.RecordsBean"/>
+            type="com.spark.otcclient.pojo.FindPageResult.DataBean.RecordsBean" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_10"
         android:orientation="vertical"
+        app:bl_corners_radius="2dp"
         app:bl_ripple_color="@color/gray_ccc"
         app:bl_ripple_enable="true"
         app:bl_solid_color="@color/white">
@@ -37,6 +41,7 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <TextView
@@ -45,28 +50,58 @@
                         android:layout_height="32dp"
                         android:gravity="center"
                         android:text="@{findPageResult.getNameFirstChar()}"
+                        android:textColor="@color/white"
                         android:textStyle="bold"
                         app:bl_corners_radius="20dp"
-                        app:bl_solid_color="@color/base"/>
+                        app:bl_solid_color="@color/color_first_char" />
 
                     <TextView
                         style="@style/textBlackNormal"
                         android:layout_marginLeft="12dp"
                         android:text="@{findPageResult.realName}"
-                        android:textStyle="bold"/>
+                        android:textSize="@dimen/font_small"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
-                <TextView
-                    style="@style/textGrayCommonSmall"
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@{findPageResult.formatNum()}"
-                    android:textSize="@dimen/font_mini"/>
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-                <TextView
-                    style="@style/textGrayCommonSmall"
-                    android:layout_marginTop="4dp"
-                    android:text="@{findPageResult.formatLimit()}"
-                    android:textSize="@dimen/font_mini"/>
+                    <TextView
+                        style="@style/textGrayCommonSmall"
+                        android:gravity="center"
+                        android:text="@string/str_number"
+                        android:textColor="@color/color_grey"
+                        android:textSize="@dimen/font_mini" />
+
+                    <TextView
+                        style="@style/textGrayCommonSmall"
+                        android:text="@{findPageResult.formatNum()}"
+                        android:textSize="@dimen/font_mini" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/textGrayCommonSmall"
+                        android:text="@string/str_limit_money"
+                        android:textColor="@color/color_grey"
+                        android:textSize="@dimen/font_mini" />
+
+                    <TextView
+                        style="@style/textGrayCommonSmall"
+                        android:text="@{findPageResult.formatLimit()}"
+                        android:textSize="@dimen/font_mini" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -77,36 +112,36 @@
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
+                        android:src="@drawable/svg_bankpay"
+                        android:visibility="@{findPageResult.isSupportBankPay() ? View.VISIBLE : View.GONE}" />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="8dp"
                         android:src="@drawable/svg_alipay"
-                        android:visibility="@{findPageResult.isSupportAliPay() ? View.VISIBLE : View.GONE}"/>
+                        android:visibility="@{findPageResult.isSupportAliPay() ? View.VISIBLE : View.GONE}" />
 
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_marginLeft="8dp"
                         android:src="@drawable/svg_wechatpay"
-                        android:visibility="@{findPageResult.isSupportWeChatPay() ? View.VISIBLE : View.GONE}"/>
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginLeft="8dp"
-                        android:src="@drawable/svg_bankpay"
-                        android:visibility="@{findPageResult.isSupportBankPay() ? View.VISIBLE : View.GONE}"/>
+                        android:visibility="@{findPageResult.isSupportWeChatPay() ? View.VISIBLE : View.GONE}" />
 
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_marginLeft="8dp"
                         android:src="@drawable/svg_pay_paypal"
-                        android:visibility="@{findPageResult.isSupportPaypalPay() ? View.GONE : View.GONE}"/>
+                        android:visibility="@{findPageResult.isSupportPaypalPay() ? View.GONE : View.GONE}" />
 
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_marginLeft="8dp"
                         android:src="@drawable/svg_pay_other"
-                        android:visibility="@{findPageResult.isSupportOtherPay() ? View.VISIBLE : View.GONE}"/>
+                        android:visibility="@{findPageResult.isSupportOtherPay() ? View.VISIBLE : View.GONE}" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -117,31 +152,33 @@
                 android:orientation="vertical">
 
                 <TextView
-                    style="@style/textBlackSmall"
-                    android:layout_marginTop="12dp"
-                    android:text="@{findPageResult.formatPrice()}"
-                    android:textStyle="bold"/>
+                    style="@style/textGrayCommonSmall"
+                    android:layout_marginTop="6dp"
+                    android:text="@{findPageResult.formatRangeTimeOrder()}"
+                    android:textSize="@dimen/font_mini" />
 
                 <TextView
-                    style="@style/textGrayCommonSmall"
-                    android:layout_marginTop="4dp"
-                    android:text="@{findPageResult.formatRangeTimeOrder()}"
-                    android:textSize="@dimen/font_mini"/>
+                    style="@style/textBlackSmall"
+                    android:layout_marginTop="14dp"
+                    android:text="@{findPageResult.formatPrice()}"
+                    android:textStyle="bold" />
 
                 <TextView
                     style="@style/textBlackSmall"
                     android:layout_width="64dp"
                     android:layout_height="32dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="14dp"
                     android:gravity="center"
                     android:text="@{findPageResult.buyOrSell()}"
+                    android:textColor="@color/white"
                     android:textStyle="bold"
-                    app:bl_corners_radius="4dp"
-                    app:bl_solid_color="@color/base"/>
+                    app:bl_corners_radius="2dp"
+                    app:bl_solid_color="@color/color_blue" />
             </LinearLayout>
         </LinearLayout>
 
         <View
-            style="@style/line_ccc"/>
+            style="@style/line_ccc"
+            android:visibility="gone" />
     </LinearLayout>
 </layout>

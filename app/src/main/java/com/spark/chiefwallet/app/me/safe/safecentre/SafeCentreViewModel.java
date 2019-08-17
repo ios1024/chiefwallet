@@ -10,6 +10,7 @@ import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.base.ARouterPath;
 
 import me.spark.mvvm.base.BaseViewModel;
+import me.spark.mvvm.base.Constant;
 import me.spark.mvvm.binding.command.BindingAction;
 import me.spark.mvvm.binding.command.BindingCommand;
 import me.spark.mvvm.bus.event.SingleLiveEvent;
@@ -38,7 +39,9 @@ public class SafeCentreViewModel extends BaseViewModel {
     public ObservableField<String> loginPwd = new ObservableField<>(App.getInstance().getApplicationContext().getString(R.string.has_setting));
     public ObservableField<Boolean> loginPwdHasSet = new ObservableField<>(true);
     public ObservableField<String> legalCurrencyPwd = new ObservableField<>(App.getInstance().getApplicationContext().getString(R.string.no_setting));
+    public ObservableField<String> realnameCurrencyPwd = new ObservableField<>(App.getInstance().getApplicationContext().getString(R.string.unauthorized));
     public ObservableField<Boolean> legalCurrencyPwdHasSet = new ObservableField<>(false);
+    public ObservableField<Boolean> realnameCurrencyPwdHasSet = new ObservableField<>(false);
 
     public UIChangeObservable uc = new UIChangeObservable();
 
@@ -76,7 +79,10 @@ public class SafeCentreViewModel extends BaseViewModel {
     public BindingCommand loginPwdUpdateOnClickCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
-            ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_SAFECENTRE_LOGIN_PWD)
+//            ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_SAFECENTRE_LOGIN_PWD)
+//                    .navigation();
+            ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_FORGET_PWD)
+                    .withString("type", "1")
                     .navigation();
         }
     });
@@ -89,12 +95,20 @@ public class SafeCentreViewModel extends BaseViewModel {
                     .navigation();
         }
     });
+    //实名认证
+    public BindingCommand realnameOnClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            ARouter.getInstance().build(App.getInstance().isAppLogin() ? ARouterPath.ACTIVITY_ME_AUTHENTICATION : ARouterPath.ACTIVITY_ME_LOGIN)
+                    .navigation();
+        }
+    });
 
     public void initItemStatue() {
         phoneNumHasSet.set(App.getInstance().getCurrentUser().getMobilePhone() != null);
         phoneNum.set(App.getInstance().getCurrentUser().getMobilePhone() == null ?
                 App.getInstance().getApplicationContext().getString(R.string.no_setting) :
-                StringUtils.formatPhone(App.getInstance().getCurrentUser().getMobilePhone()));
+                App.getInstance().getCurrentUser().getMobilePhone());
         emailPwdHasSet.set(App.getInstance().getCurrentUser().getEmail() != null);
         emailPwd.set(App.getInstance().getCurrentUser().getEmail() == null ?
                 App.getInstance().getApplicationContext().getString(R.string.no_setting)
@@ -103,6 +117,11 @@ public class SafeCentreViewModel extends BaseViewModel {
         legalCurrencyPwd.set(legalCurrencyPwdHasSet.get() ?
                 App.getInstance().getApplicationContext().getString(R.string.has_setting) :
                 App.getInstance().getApplicationContext().getString(R.string.no_setting));
+        realnameCurrencyPwd.set(realnameCurrencyPwdHasSet.get() ?
+                App.getInstance().getApplicationContext().getString(R.string.authorized) :
+                App.getInstance().getApplicationContext().getString(R.string.unauthorized));
+        realnameCurrencyPwdHasSet.set(App.getInstance().getCurrentUser().getRealNameStatus() == 1);
+
         int level = 2;
         if (App.getInstance().getCurrentUser().getEmail() != null) {
             level += 1;

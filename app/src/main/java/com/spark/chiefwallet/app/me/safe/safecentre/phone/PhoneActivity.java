@@ -55,6 +55,7 @@ public class PhoneActivity extends BaseActivity<ActivityPhoneBinding, PhoneViewM
         //TitleSet
         mTitleModel = new TitleBean();
         binding.phoneTitle.setViewTitle(mTitleModel);
+        mTitleModel.setTitleName(getResources().getString(R.string.phone_bind));
         setTitleListener(binding.phoneTitle.titleRootLeft);
         viewModel.initContext(this);
     }

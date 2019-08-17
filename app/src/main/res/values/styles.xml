@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/gray_common</item>
         <item name="colorPrimaryDark">@color/gray_common</item>
         <item name="colorAccent">@color/gray_common</item>
+        <item name="android:windowBackground">@color/windowBackground</item>
     </style>
 
     <!--首页底部tab栏布局-->
@@ -218,6 +219,11 @@
         <item name="android:orientation">horizontal</item>
         <item name="android:paddingLeft">16dp</item>
         <item name="android:paddingRight">16dp</item>
+    </style> <style name="ll_item_53">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">52dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
     </style>
 
     <style name="ll_item_48">

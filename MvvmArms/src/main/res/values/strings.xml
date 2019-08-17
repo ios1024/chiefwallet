@@ -75,6 +75,8 @@
     <string name="french_currency_assets">法币资产</string>
     <string name="currency_assets">币币资产</string>
     <string name="total_assets">总资产(USDT)</string>
+    <string name="fabi_total_assets">法币总资产(USDT)</string>
+    <string name="bibi_total_assets">币币总资产(USDT)</string>
     <string name="register_phone">手机注册</string>
     <string name="register_email">邮箱注册</string>
     <string name="register_description">一个账户，享受Exchief所有服务。请输入手机号</string>
@@ -142,6 +144,11 @@
         <item>币币账户</item>
         <item>法币账户</item>
     </string-array>
+    <string-array name="property_tab2">
+        <item>法币账户</item>
+        <item>币币账户</item>
+    </string-array>
+    <string name="asset_management">资产管理</string>
     <string name="coin_in">充币</string>
     <string name="coin_out">提币</string>
     <string name="trans_in">转入</string>
@@ -469,6 +476,9 @@
     <string name="freeze">冻结</string>
     <string name="convert2cny">折合(CNY)</string>
     <string name="financial_record">财务记录</string>
+    <string name="financial_log">财务日志>></string>
+    <string name="total">总额</string>
+    <string name="real_name_authentication">实名认证</string>
     <string-array name="open_order_tab">
         <item>当前委托</item>
         <item>历史委托</item>
@@ -808,4 +818,12 @@
     <string name="str_introduction">简介</string>
     <string name="str_gains">&#160;涨幅</string>
     <string name="str_count">&#160;单</string>
+
+    <!--home-->
+    <string-array name="home_tab">
+        <item>OTC行情</item>
+    </string-array>
+    <!--home-->
+    <string name="min">最小</string>
+    <string name="max">最大</string>
 </resources>

@@ -64,7 +64,7 @@ public class MeViewModel extends BaseViewModel {
     public ObservableField<Boolean> isLogOut = new ObservableField<>(App.getInstance().isAppLogin());
     public ObservableField<String> languageSelect = new ObservableField<>("");
     public ObservableField<String> versionName = new ObservableField<>(getApplication().getApplicationContext().getString(R.string.version) + AppUtils.getContextVersionName());
-    public ObservableField<Integer> qiehuanbizhong = new ObservableField<>(0);
+    public ObservableField<String> qiehuanbizhong = new ObservableField<>("0");
     //昵称
     public ObservableField<String> nickname = new ObservableField<>(App.getInstance().isAppLogin() ?
             App.getInstance().getCurrentUser().getUsername() : App.getInstance().getString(R.string.no_login));
@@ -73,11 +73,11 @@ public class MeViewModel extends BaseViewModel {
             (App.getInstance().getCurrentUser().getLogintype() == 0 ? App.getInstance().getCurrentUser().getMobilePhone() : App.getInstance().getCurrentUser().getEmail()) : "");
 
     //
-    public ObservableField<String> otcAcconut = new ObservableField<>();
-    public ObservableField<String> otcAcconutTrans = new ObservableField<>();
+    public ObservableField<String> otcAcconut = new ObservableField<>("------ USDT");
+    public ObservableField<String> otcAcconutTrans = new ObservableField<>("≈ ---- CNY");
     private String otcAcconutText = "------ USDT";
     private String otcAcconutTransText = "≈ ---- CNY";
-    private OnRequestListener onRequestListener, onRequestListenerAnnounce;
+//    private OnRequestListener onRequestListener, onRequestListenerAnnounce;
     private double spotWalletTotal = 0, spotWalletTrans = 0, otcWalletTotal = 0, otcWalletTrans = 0, cfdWalletTotal = 0, cfdWalletTrans = 0;
     private String spotAcconutText = "------ USDT";
     private String spotAcconutTransText = "≈ ---- CNY";
@@ -259,8 +259,8 @@ public class MeViewModel extends BaseViewModel {
         switch (eventBean.getOrigin()) {
             //spot钱包查询业务处理
             case EvKey.coinWallet:
-                if (eventBean.getType() != 0 && eventBean.getType() != 1 && eventBean.getType() != 2)
-                    return;
+//                if (eventBean.getType() != 0 && eventBean.getType() != 1 && eventBean.getType() != 2)
+//                    return;
                 if (eventBean.isStatue()) {
                     if (eventBean.getType() == 0) {
                         updateSpotInfo((SpotWalletResult) eventBean.getObject());
@@ -356,7 +356,7 @@ public class MeViewModel extends BaseViewModel {
      * @param spotWalletResult
      */
     private void updateSpotInfo(SpotWalletResult spotWalletResult) {
-        if (onRequestListener == null) return;
+//        if (onRequestListener == null) return;
         spotWalletTotal = 0;
         spotWalletTrans = 0;
         for (SpotWalletResult.DataBean dataBean : spotWalletResult.getData()) {
@@ -371,7 +371,7 @@ public class MeViewModel extends BaseViewModel {
      * @param spotWalletResult
      */
     private void updateOtcInfo(SpotWalletResult spotWalletResult) {
-        if (onRequestListener == null) return;
+//        if (onRequestListener == null) return;
         otcWalletTotal = 0;
         otcWalletTrans = 0;
         for (SpotWalletResult.DataBean dataBean : spotWalletResult.getData()) {
@@ -395,15 +395,13 @@ public class MeViewModel extends BaseViewModel {
 //            cfdAcconutTrans.set("≈ ---- CNY");
         } else {
             isLoadAcountDate = true;
-            if (SPUtils.getInstance().isHideAccount()) {
-
-
-                otcAcconut.set("****** USDT USDT");
-                otcAcconutTrans.set("≈ **** CNY");
+//            if (SPUtils.getInstance().isHideAccount()) {
+//                otcAcconut.set("****** USDT USDT");
+//                otcAcconutTrans.set("≈ **** CNY");
 //                cfdAcconut.set("****** USDT USDT");
 //                cfdAcconutTrans.set("≈ **** CNY");
-            } else {
-                if (qiehuanbizhong.get() == 0) {
+//            } else {
+                if (qiehuanbizhong.get().equals("0")) {
                     otcAcconut.set(initAccount(Double.valueOf(otcAcconutText)));
                     otcAcconutTrans.set(initAccountTrans(Double.valueOf(otcAcconutTransText)));
                 } else {
@@ -413,7 +411,7 @@ public class MeViewModel extends BaseViewModel {
 
 //                cfdAcconut.set(initAccount(Double.valueOf(cfdAcconutText)));
 //                cfdAcconutTrans.set(initAccountTrans(Double.valueOf(cfdAcconutTransText)));
-            }
+//            }
         }
     }
 
@@ -461,6 +459,7 @@ public class MeViewModel extends BaseViewModel {
     public void onResume() {
         super.onResume();
         isOnPause = false;
+
     }
 
     @Override

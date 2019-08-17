@@ -13,6 +13,7 @@ import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.app.me.finance.property.currency.CurAccountFragment;
 import com.spark.chiefwallet.app.me.finance.property.legal_currency.LegalCurAccountFragment;
 import com.spark.chiefwallet.base.ARouterPath;
+import com.spark.chiefwallet.bean.TitleBean;
 import com.spark.chiefwallet.databinding.ActivityPropertyBinding;
 import com.spark.chiefwallet.ui.adapter.SlideTabPagerAdapter;
 import com.spark.chiefwallet.util.StatueBarUtils;
@@ -38,6 +39,7 @@ public class PropertyActivity extends BaseActivity<ActivityPropertyBinding, Prop
     private ArrayList<Fragment> mFragments = new ArrayList<>();
     private String[] mTitles;
     private SlideTabPagerAdapter mAdapter;
+    private TitleBean mTitleModel;
 
     @Override
     public int initContentView(Bundle savedInstanceState) {
@@ -52,9 +54,19 @@ public class PropertyActivity extends BaseActivity<ActivityPropertyBinding, Prop
     @Override
     public void initView() {
         super.initView();
+
+
         StatueBarUtils.setStatusBarLightMode(this, true);
-        StatueBarUtils.addMarginTopEqualStatusBarHeight(binding.fakeStatusBar);
+        StatueBarUtils.addMarginTopEqualStatusBarHeight(binding.loginTitle.fakeStatusBar);
         StatueBarUtils.setStatusBarColor(this, Color.WHITE);
+
+        mTitleModel = new TitleBean();
+        mTitleModel.setShowRightTV(true);
+        mTitleModel.setTitleName(getResources().getString(R.string.asset_management));
+        binding.loginTitle.titleLeftImg.setImageDrawable(getResources().getDrawable(R.drawable.svg_back));
+        binding.loginTitle.setViewTitle(mTitleModel);
+        setTitleListener(binding.loginTitle.titleRootLeft);
+
     }
 
     @Override
@@ -80,9 +92,9 @@ public class PropertyActivity extends BaseActivity<ActivityPropertyBinding, Prop
     }
 
     private void reInitView() {
-        mTitles = getResources().getStringArray(R.array.property_tab);
-        mFragments.add(new CurAccountFragment());
+        mTitles = getResources().getStringArray(R.array.property_tab2);
         mFragments.add(new LegalCurAccountFragment());
+        mFragments.add(new CurAccountFragment());
 //        mFragments.add(new ContractAccountFragment());
         mAdapter = new SlideTabPagerAdapter(getSupportFragmentManager(),
                 mFragments, mTitles);
