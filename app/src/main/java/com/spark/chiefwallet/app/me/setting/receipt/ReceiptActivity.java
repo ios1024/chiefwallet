@@ -68,8 +68,10 @@ public class ReceiptActivity extends BaseActivity<ActivityReceiptBinding, Receip
         //TitleSet
         mTitleModel = new TitleBean();
         mTitleModel.setShowRightImg(true);
+        mTitleModel.setTitleName(getResources().getString(R.string.str_paypay));
         binding.receiptTitle.titleRightImg.setImageDrawable(getResources().getDrawable(R.drawable.svg_add));
         binding.receiptTitle.setViewTitle(mTitleModel);
+
         setTitleListener(binding.receiptTitle.titleRootLeft, binding.receiptTitle.titleRootRight);
 
         //下拉刷新

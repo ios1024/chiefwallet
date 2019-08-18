@@ -100,7 +100,6 @@ public class PropertyActivity extends BaseActivity<ActivityPropertyBinding, Prop
                 mFragments, mTitles);
         binding.propertyVp.setAdapter(mAdapter);
         binding.propertyTab.setViewPager(binding.propertyVp);
-
         binding.propertyVp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {

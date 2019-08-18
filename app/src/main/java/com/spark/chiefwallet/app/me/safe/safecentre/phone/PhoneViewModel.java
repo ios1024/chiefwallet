@@ -56,8 +56,8 @@ public class PhoneViewModel extends BaseViewModel {
     }
 
     public ObservableField<String> phoneNum = new ObservableField<>("");
-    public ObservableField<String> countryCode = new ObservableField<>("");
-    public ObservableField<String> countryName = new ObservableField<>("");
+//    public ObservableField<String> countryCode = new ObservableField<>("");
+    public ObservableField<String> countryName = new ObservableField<>("中国 +86");
     public ObservableField<String> code = new ObservableField<>("");
     public ObservableField<String> pwd = new ObservableField<>("");
     private GT3GeetestUtilsBind gt3GeetestUtils;
@@ -66,6 +66,9 @@ public class PhoneViewModel extends BaseViewModel {
     private String[] mCountryArray;
     private List<CountryEntity> mCountryEntityList;
     private Context mContext;
+    private String strAreaCode = "86";
+    private String countryEnName = "中国";                      //值传递 国籍 enName
+
 
     public void initContext(Context context) {
         this.mContext = context;
@@ -76,6 +79,14 @@ public class PhoneViewModel extends BaseViewModel {
         @Override
         public void call() {
             loadCountryInfo();
+        }
+    });
+
+    //密码显示开关
+    public BindingCommand pwdSwitchOnClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            uc.pwdSwitchEvent.setValue(uc.pwdSwitchEvent.getValue() == null || !uc.pwdSwitchEvent.getValue());
         }
     });
 
@@ -91,7 +102,7 @@ public class PhoneViewModel extends BaseViewModel {
                 return;
             }
 
-            if (StringUtils.isEmpty(countryCode.get()) || StringUtils.isEmpty(countryName.get())) {
+            if (StringUtils.isEmpty(strAreaCode) || StringUtils.isEmpty(countryName.get())) {
                 Toasty.showError(mContext.getString(R.string.choose_country));
                 return;
             }
@@ -107,9 +118,9 @@ public class PhoneViewModel extends BaseViewModel {
             }
 
             if (StringUtils.isNotEmpty(cid, checkData)) {
-                SecurityClient.getInstance().bindPhone(cid, checkData, countryCode.get() + phoneNum.get().trim(), pwd.get().trim());
+                SecurityClient.getInstance().bindPhone(cid, checkData, strAreaCode + phoneNum.get().trim(), pwd.get().trim());
             } else {
-                SecurityClient.getInstance().bindPhone(countryCode.get() + phoneNum.get().trim(), pwd.get().trim(), code.get().trim());
+                SecurityClient.getInstance().bindPhone(strAreaCode + phoneNum.get().trim(), pwd.get().trim(), code.get().trim());
             }
 
         }
@@ -124,7 +135,8 @@ public class PhoneViewModel extends BaseViewModel {
                             new OnSelectListener() {
                                 @Override
                                 public void onSelect(int position, String text) {
-                                    updateCountryInfo(mCountryEntityList.get(position).getZhName() + "(" + mCountryEntityList.get(position).getEnName() + ")", mCountryEntityList.get(position).getAreaCode());
+                                    countryEnName = mCountryEntityList.get(position).getEnName();
+                                    updateCountryInfo(mCountryEntityList.get(position).getZhName() + " +" + mCountryEntityList.get(position).getAreaCode(), mCountryEntityList.get(position).getAreaCode());
                                 }
                             })
                     .show();
@@ -138,11 +150,13 @@ public class PhoneViewModel extends BaseViewModel {
 
     public class UIChangeObservable {
         public SingleLiveEvent<Boolean> mGetCodeSuccessLiveEvent = new SingleLiveEvent<>();
+        public SingleLiveEvent<Boolean> pwdSwitchEvent = new SingleLiveEvent<>();
+
     }
 
     public void getPhoneCode() {
         showDialog(App.getInstance().getString(R.string.loading));
-        CaptchaGetClient.getInstance().phoneCaptcha(countryCode.get() + phoneNum.get());
+        CaptchaGetClient.getInstance().phoneCaptcha(strAreaCode + phoneNum.get());
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -165,7 +179,8 @@ public class PhoneViewModel extends BaseViewModel {
                                             new OnSelectListener() {
                                                 @Override
                                                 public void onSelect(int position, String text) {
-                                                    updateCountryInfo(objList.get(position).getZhName() + "(" + objList.get(position).getEnName() + ")", objList.get(position).getAreaCode());
+                                                    countryEnName = objList.get(position).getEnName();
+                                                    updateCountryInfo(objList.get(position).getZhName() + " +" + objList.get(position).getAreaCode(), mCountryEntityList.get(position).getAreaCode());
                                                 }
                                             })
                                     .show();
@@ -231,7 +246,7 @@ public class PhoneViewModel extends BaseViewModel {
                                 showDialog(App.getInstance().getString(R.string.loading));
                                 Captcha captcha = new Gson().fromJson(result, Captcha.class);
                                 String checkData = "gee::" + captcha.getGeetest_challenge() + "$" + captcha.getGeetest_validate() + "$" + captcha.getGeetest_seccode();
-                                CaptchaGetClient.getInstance().emailCaptchaWithHeader(countryCode.get() + phoneNum.get(), checkData, cid);
+                                CaptchaGetClient.getInstance().emailCaptchaWithHeader(strAreaCode + phoneNum.get(), checkData, cid);
                             }
                         }
                     });
@@ -275,11 +290,11 @@ public class PhoneViewModel extends BaseViewModel {
      * 更新国籍展示
      *
      * @param strCountry
-     * @param strAreaCode
      */
-    public void updateCountryInfo(String strCountry, String strAreaCode) {
+    public void updateCountryInfo(String strCountry, String code) {
         countryName.set(strCountry);
-        countryCode.set(strAreaCode);
+        strAreaCode = code;
+
     }
 
 

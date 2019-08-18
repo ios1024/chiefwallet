@@ -4,6 +4,8 @@ import android.arch.lifecycle.Observer;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -62,6 +64,19 @@ public class PhoneActivity extends BaseActivity<ActivityPhoneBinding, PhoneViewM
 
     @Override
     public void initViewObservable() {
+        //密码显示开关
+        viewModel.uc.pwdSwitchEvent.observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(@Nullable Boolean aBoolean) {
+                binding.pwdSwitch.setImageDrawable(aBoolean ?
+                        getResources().getDrawable(R.drawable.svg_show) :
+                        getResources().getDrawable(R.drawable.svg_hide));
+                binding.userPassword.setTransformationMethod(aBoolean ?
+                        HideReturnsTransformationMethod.getInstance() :
+                        PasswordTransformationMethod.getInstance());
+                binding.userPassword.setSelection(viewModel.pwd.get().length());
+            }
+        });
         viewModel.uc.mGetCodeSuccessLiveEvent.observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(@Nullable Boolean aBoolean) {
@@ -84,10 +99,10 @@ public class PhoneActivity extends BaseActivity<ActivityPhoneBinding, PhoneViewM
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.get_sms_code:
-                if (StringUtils.isEmpty(viewModel.countryCode.get())) {
-                    Toasty.showError(getString(R.string.choose_country));
-                    return;
-                }
+//                if (StringUtils.isEmpty(viewModel.countryCode.get())) {
+//                    Toasty.showError(getString(R.string.choose_country));
+//                    return;
+//                }
                 if (StringUtils.isEmpty(viewModel.phoneNum.get())) {
                     Toasty.showError(getString(R.string.phone_num_hint));
                     return;

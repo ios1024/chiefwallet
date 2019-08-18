@@ -494,7 +494,7 @@ public class OpenOrdersResult implements Parcelable {
             }
 
             public String initPrice() {
-                return BaseApplication.getInstance().getString(R.string.price) + "(" + baseSymbol + ")";
+                return BaseApplication.getInstance().getString(R.string.entrusted_price) + "(" + baseSymbol + ")";
             }
 
             public String initPriceText() {
@@ -513,7 +513,7 @@ public class OpenOrdersResult implements Parcelable {
             }
 
             public String initNumber() {
-                return BaseApplication.getInstance().getString(R.string.number) + "(" + coinSymbol + ")";
+                return BaseApplication.getInstance().getString(R.string.entrusted_quantity) + "(" + coinSymbol + ")";
             }
 
             public String initNumberText() {

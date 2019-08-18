@@ -78,10 +78,10 @@ public class AuthenticationViewModel extends BaseViewModel {
                 Toasty.showError(App.getInstance().getApplicationContext().getString(R.string.id_card_hint));
                 return;
             }
-            if (!RegexUtils.isIDCard18(authNum.get())) {
-                Toasty.showError(App.getInstance().getApplicationContext().getString(R.string.id_card_verify));
-                return;
-            }
+//            if (!RegexUtils.isIDCard18(authNum.get())) {
+//                Toasty.showError(App.getInstance().getApplicationContext().getString(R.string.id_card_verify));
+//                return;
+//            }
         } else {
             if (StringUtils.isEmpty(authNum.get())) {
                 Toasty.showError(App.getInstance().getApplicationContext().getString(R.string.passport_num_hint));

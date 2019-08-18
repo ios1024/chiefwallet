@@ -142,6 +142,7 @@ public class CasClient extends BaseHttpClient {
                 .execute(new SimpleCallBack<String>() {
                     @Override
                     public void onSuccess(String s) {
+                        LogUtils.e("loginAppTGA", s);
                         try {
                             JSONObject object = new JSONObject(s);
                             int code = object.optInt("code");
@@ -161,10 +162,11 @@ public class CasClient extends BaseHttpClient {
                                 } else if (BaseHost.TYPE_SPOT.equals(type)) {
                                     LogUtils.e("------SPOT登录成功------");
                                     getServiceTicket(SPUtils.getInstance().getTgc(), BaseHost.TYPE_CFD);
-                                } else if (BaseHost.TYPE_CFD.equals(type)) {
+                                }
+//                                else if (BaseHost.TYPE_CFD.equals(type)) {
                                     LogUtils.e("------CFD登录成功------");
                                     EventBusUtils.postSuccessEvent(EvKey.loginApp, BaseRequestCode.OK, "");
-                                }
+//                                }
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

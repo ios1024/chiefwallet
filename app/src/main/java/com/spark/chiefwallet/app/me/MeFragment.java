@@ -48,7 +48,7 @@ public class MeFragment extends BaseFragment<FragmentMeBinding, MeViewModel> {
             @Override
             public void onClick(View view) {
                 viewModel.qiehuanbizhong.set("0");
-                viewModel.updateAccount();
+                viewModel.initText();
                 binding.frenchCurrencyAssets.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
                 binding.currencyAssets.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
                 binding.frenchCurrencyAssets.setTextColor(getResources().getColor(R.color.white));
@@ -61,7 +61,7 @@ public class MeFragment extends BaseFragment<FragmentMeBinding, MeViewModel> {
             @Override
             public void onClick(View view) {
                 viewModel.qiehuanbizhong.set("1");
-                viewModel.updateAccount();
+                viewModel.initText();
                 binding.frenchCurrencyAssets.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
                 binding.currencyAssets.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
                 binding.frenchCurrencyAssets.setTextColor(getResources().getColor(R.color.welcomelogin));

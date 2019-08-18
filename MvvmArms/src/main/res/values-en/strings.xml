@@ -225,6 +225,8 @@
     <string-array name="auth_passport_tab">
         <item>Passports</item>
     </string-array>
+    <string name="authentication_rules">为了您的账户安全，需要验证您的身份才可以进行其他操作，认证信息一经验证不可更改，请务必如实填写。</string>
+    <string name="identity_card_photos">身份证照片</string>
     <string name="country_list_null">Nationality list is empty</string>
     <string name="usernameorpwderror">Incorrect user name or password</string>
     <string name="camera_permission">Permissions are not available, please turn on camera permissions</string>
@@ -417,6 +419,8 @@
     <string name="sell_plate">Sell</string>
     <string name="number">Number</string>
     <string name="price">Price</string>
+    <string name="entrusted_price">委托价格</string>
+    <string name="entrusted_quantity">委托数量</string>
     <string name="save_success">Save success</string>
     <string name="save_failed">Save failed</string>
     <string name="no_notes">No notes at the moment</string>

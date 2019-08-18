@@ -3,17 +3,26 @@ package com.spark.chiefwallet.app.me.safe.safecentre;
 import android.app.Application;
 import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.base.ARouterPath;
+import com.spark.ucclient.SecurityClient;
+import com.spark.ucclient.pojo.AuthInfoEntity;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import me.spark.mvvm.base.BaseViewModel;
 import me.spark.mvvm.base.Constant;
+import me.spark.mvvm.base.EvKey;
 import me.spark.mvvm.binding.command.BindingAction;
 import me.spark.mvvm.binding.command.BindingCommand;
 import me.spark.mvvm.bus.event.SingleLiveEvent;
+import me.spark.mvvm.utils.EventBean;
+import me.spark.mvvm.utils.EventBusUtils;
 import me.spark.mvvm.utils.StringUtils;
 
 /**
@@ -43,6 +52,7 @@ public class SafeCentreViewModel extends BaseViewModel {
     public ObservableField<Boolean> legalCurrencyPwdHasSet = new ObservableField<>(false);
     public ObservableField<Boolean> realnameCurrencyPwdHasSet = new ObservableField<>(false);
 
+    public int realname = 0;
     public UIChangeObservable uc = new UIChangeObservable();
 
     public class UIChangeObservable {
@@ -81,9 +91,12 @@ public class SafeCentreViewModel extends BaseViewModel {
         public void call() {
 //            ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_SAFECENTRE_LOGIN_PWD)
 //                    .navigation();
-            ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_FORGET_PWD)
-                    .withString("type", "1")
-                    .navigation();
+            if (realname == 0 || realname == 2 || realname == 3) {
+                ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_FORGET_PWD)
+                        .withString("type", "1")
+                        .navigation();
+            }
+
         }
     });
     //法币资金密码
@@ -99,6 +112,7 @@ public class SafeCentreViewModel extends BaseViewModel {
     public BindingCommand realnameOnClickCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
+
             ARouter.getInstance().build(App.getInstance().isAppLogin() ? ARouterPath.ACTIVITY_ME_AUTHENTICATION : ARouterPath.ACTIVITY_ME_LOGIN)
                     .navigation();
         }
@@ -117,10 +131,17 @@ public class SafeCentreViewModel extends BaseViewModel {
         legalCurrencyPwd.set(legalCurrencyPwdHasSet.get() ?
                 App.getInstance().getApplicationContext().getString(R.string.has_setting) :
                 App.getInstance().getApplicationContext().getString(R.string.no_setting));
-        realnameCurrencyPwd.set(realnameCurrencyPwdHasSet.get() ?
-                App.getInstance().getApplicationContext().getString(R.string.authorized) :
-                App.getInstance().getApplicationContext().getString(R.string.unauthorized));
-        realnameCurrencyPwdHasSet.set(App.getInstance().getCurrentUser().getRealNameStatus() == 1);
+
+        if (App.getInstance().getCurrentUser().getRealNameStatus() == 0) {
+            realnameCurrencyPwd.set(App.getInstance().getApplicationContext().getString(R.string.unauthorized));
+
+        } else {//1审核 2通过 3失败
+            showDialog("请求中...");
+            SecurityClient.getInstance().getAuthInfo();
+        }
+//        realnameCurrencyPwd.set(realnameCurrencyPwdHasSet.get() ?
+//                App.getInstance().getApplicationContext().getString(R.string.authorized) :
+//                App.getInstance().getApplicationContext().getString(R.string.unauthorized));
 
         int level = 2;
         if (App.getInstance().getCurrentUser().getEmail() != null) {
@@ -135,4 +156,51 @@ public class SafeCentreViewModel extends BaseViewModel {
         uc.safeLevel.setValue(level);
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(EventBean eventBean) {
+        switch (eventBean.getOrigin()) {
+            case EvKey.authInfo:
+                dismissDialog();
+                if (eventBean.isStatue()) {
+                    AuthInfoEntity authInfoEntity = (AuthInfoEntity) eventBean.getObject();
+                    realnameCurrencyPwdHasSet.set(authInfoEntity.getData().getAuditStatus() == 3);
+
+                    switch (authInfoEntity.getData().getAuditStatus()) {
+                        case 1:
+                            realname = 1;
+                            realnameCurrencyPwd.set(App.getInstance().getApplicationContext().getString(R.string.approving));
+                            break;
+                        case 2:
+                            realname = 2;
+                            realnameCurrencyPwd.set(App.getInstance().getApplicationContext().getString(R.string.approving_error));
+                            break;
+                        case 3:
+                            realname = 3;
+                            realnameCurrencyPwd.set(App.getInstance().getApplicationContext().getString(R.string.authorized));
+                            break;
+                        default:
+                            realname = 0;
+                            realnameCurrencyPwd.set(App.getInstance().getApplicationContext().getString(R.string.unauthorized));
+                            break;
+                    }
+                }
+                break;
+            default:
+                break;
+
+        }
+
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        EventBusUtils.register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBusUtils.unRegister(this);
+    }
 }

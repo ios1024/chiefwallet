@@ -224,6 +224,9 @@
     <string-array name="auth_passport_tab">
         <item>护照</item>
     </string-array>
+
+    <string name="authentication_rules">为了您的账户安全，需要验证您的身份才可以进行其他操作，认证信息一经验证不可更改，请务必如实填写。</string>
+    <string name="identity_card_photos">身份证照片</string>
     <string name="country_list_null">国籍列表为空！</string>
     <string name="usernameorpwderror">用户名或密码错误!</string>
     <string name="camera_permission">权限不可用，请开启相机权限</string>
@@ -416,6 +419,8 @@
     <string name="sell_plate">卖盘</string>
     <string name="number">数量</string>
     <string name="price">价格</string>
+    <string name="entrusted_price">委托价格</string>
+    <string name="entrusted_quantity">委托数量</string>
     <string name="save_success">保存成功</string>
     <string name="save_failed">保存失败</string>
     <string name="no_notes">暂无便签</string>

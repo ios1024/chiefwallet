@@ -57,19 +57,24 @@ public class PwdForgetTradeViewModel extends BaseViewModel {
     public ObservableField<String> verifyCode = new ObservableField<>("");
     public ObservableField<String> newPwd = new ObservableField<>("");
     public ObservableField<String> newPwdAgain = new ObservableField<>("");
-    public ObservableField<String> countryCode = new ObservableField<>("");
-    public ObservableField<String> countryName = new ObservableField<>("");
+    //    public ObservableField<String> countryCode = new ObservableField<>("");
+    public ObservableField<String> countryName = new ObservableField<>("中国 +86");
     private GT3GeetestUtilsBind gt3GeetestUtils;
     private String cid;
     private String[] mCountryArray;
     private Context mContext;
     private List<CountryEntity> mCountryEntityList;
-    private String countryEnName;                      //值传递 国籍 enName
     public int type = 0;                                //0 - 手机注册 1 - 邮箱注册
+    private String strAreaCode = "86";
+    private String countryEnName = "中国";                      //值传递 国籍 enName
+
     public UIChangeObservable uc = new UIChangeObservable();
 
     public class UIChangeObservable {
         public SingleLiveEvent<Boolean> mGetCodeSuccessLiveEvent = new SingleLiveEvent<>();
+        public SingleLiveEvent<Boolean> newpwdSwitchEvent = new SingleLiveEvent<>();
+        public SingleLiveEvent<Boolean> newAgainpwdSwitchEvent = new SingleLiveEvent<>();
+
     }
 
     public void initContext(Context context) {
@@ -83,7 +88,21 @@ public class PwdForgetTradeViewModel extends BaseViewModel {
             loadCountryInfo();
         }
     });
+    //密码显示开关
+    public BindingCommand pwdSwitchOnClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            uc.newpwdSwitchEvent.setValue(uc.newpwdSwitchEvent.getValue() == null || !uc.newpwdSwitchEvent.getValue());
 
+        }
+    }); //密码显示开关
+    public BindingCommand newAgainPwdSwitchOnClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            uc.newAgainpwdSwitchEvent.setValue(uc.newAgainpwdSwitchEvent.getValue() == null || !uc.newAgainpwdSwitchEvent.getValue());
+
+        }
+    });
     public BindingCommand pwdResetOnClickCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
@@ -102,7 +121,7 @@ public class PwdForgetTradeViewModel extends BaseViewModel {
             return;
         }
 
-        if (StringUtils.isEmpty(countryCode.get()) || StringUtils.isEmpty(countryName.get())) {
+        if (StringUtils.isEmpty(strAreaCode) || StringUtils.isEmpty(countryName.get())) {
             Toasty.showError(mContext.getString(R.string.choose_country));
             return;
         }
@@ -127,7 +146,7 @@ public class PwdForgetTradeViewModel extends BaseViewModel {
             return;
         }
 
-        SecurityClient.getInstance().forgetTradePass(countryCode.get() + phoneNum.get(), newPwd.get(), verifyCode.get());
+        SecurityClient.getInstance().forgetTradePass(strAreaCode + phoneNum.get(), newPwd.get(), verifyCode.get());
     }
 
     /**
@@ -135,7 +154,7 @@ public class PwdForgetTradeViewModel extends BaseViewModel {
      */
     public void getPhoneCode() {
         showDialog(App.getInstance().getString(R.string.loading));
-        CaptchaGetClient.getInstance().phoneCaptcha(countryCode.get() + phoneNum.get());
+        CaptchaGetClient.getInstance().phoneCaptcha(strAreaCode + phoneNum.get());
     }
 
     //获取国籍列表
@@ -148,7 +167,7 @@ public class PwdForgetTradeViewModel extends BaseViewModel {
                                 @Override
                                 public void onSelect(int position, String text) {
                                     countryEnName = mCountryEntityList.get(position).getEnName();
-                                    updateCountryInfo(mCountryEntityList.get(position).getZhName() + "(" + mCountryEntityList.get(position).getEnName() + ")", mCountryEntityList.get(position).getAreaCode());
+                                    updateCountryInfo(mCountryEntityList.get(position).getZhName() + " +" + mCountryEntityList.get(position).getAreaCode(), mCountryEntityList.get(position).getAreaCode());
                                 }
                             })
                     .show();
@@ -179,7 +198,7 @@ public class PwdForgetTradeViewModel extends BaseViewModel {
                                                 @Override
                                                 public void onSelect(int position, String text) {
                                                     countryEnName = objList.get(position).getEnName();
-                                                    updateCountryInfo(objList.get(position).getZhName() + "(" + objList.get(position).getEnName() + ")", objList.get(position).getAreaCode());
+                                                    updateCountryInfo(objList.get(position).getZhName() + " +" + objList.get(position).getAreaCode(), mCountryEntityList.get(position).getAreaCode());
                                                 }
                                             })
                                     .show();
@@ -241,7 +260,7 @@ public class PwdForgetTradeViewModel extends BaseViewModel {
                                 String checkData = "gee::" + captcha.getGeetest_challenge() + "$" + captcha.getGeetest_validate() + "$" + captcha.getGeetest_seccode();
                                 switch (type) {
                                     case 0:
-                                        CaptchaGetClient.getInstance().phoneCaptchaWithHeader(countryCode.get() + phoneNum.get(), checkData, cid);
+                                        CaptchaGetClient.getInstance().phoneCaptchaWithHeader(strAreaCode + phoneNum.get(), checkData, cid);
                                         break;
                                     case 1:
                                         CaptchaGetClient.getInstance().emailCaptchaWithHeader(phoneNum.get(), checkData, cid);
@@ -275,13 +294,10 @@ public class PwdForgetTradeViewModel extends BaseViewModel {
      * 更新国籍展示
      *
      * @param strCountry
-     * @param strAreaCode
      */
-    public void updateCountryInfo(String strCountry, String strAreaCode) {
+    public void updateCountryInfo(String strCountry, String code) {
+        strAreaCode = code;
         countryName.set(strCountry);
-        if (type == 0) {
-            countryCode.set(strAreaCode);
-        }
     }
 
     private void dealError(EventBean eventBean) {

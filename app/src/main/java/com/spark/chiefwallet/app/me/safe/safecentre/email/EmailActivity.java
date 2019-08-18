@@ -4,6 +4,8 @@ import android.arch.lifecycle.Observer;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -56,11 +58,25 @@ public class EmailActivity extends BaseActivity<ActivityEmailBinding, EmailViewM
         //TitleSet
         mTitleModel = new TitleBean();
         binding.emailTitle.setViewTitle(mTitleModel);
+        mTitleModel.setTitleName(getResources().getString(R.string.email_bind));
         setTitleListener(binding.emailTitle.titleRootLeft);
     }
 
     @Override
     public void initViewObservable() {
+        //密码显示开关
+        viewModel.uc.newpwdSwitchEvent.observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(@Nullable Boolean aBoolean) {
+                binding.pwdSwitch.setImageDrawable(aBoolean ?
+                        getResources().getDrawable(R.drawable.svg_show) :
+                        getResources().getDrawable(R.drawable.svg_hide));
+                binding.etPassword.setTransformationMethod(aBoolean ?
+                        HideReturnsTransformationMethod.getInstance() :
+                        PasswordTransformationMethod.getInstance());
+                binding.etPassword.setSelection(viewModel.pwd.get().length());
+            }
+        });
         viewModel.uc.mGetCodeSuccessLiveEvent.observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(@Nullable Boolean aBoolean) {

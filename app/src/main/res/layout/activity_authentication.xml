@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:binding="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:binding="http://schemas.android.com/tools">
 
     <data>
 
-        <import type="android.view.View"/>
+        <import type="android.view.View" />
 
         <variable
             name="authenticationViewModel"
-            type="com.spark.chiefwallet.app.me.safe.authentication.AuthenticationViewModel"/>
+            type="com.spark.chiefwallet.app.me.safe.authentication.AuthenticationViewModel" />
     </data>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,181 +21,153 @@
 
         <include
             android:id="@+id/authentication_title"
-            layout="@layout/view_title"/>
+            layout="@layout/view_title" />
 
-        <FrameLayout
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/white">
 
-            <!--未认证-->
-            <LinearLayout
-                android:id="@+id/ll_no_auth"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:visibility="gone">
+                android:layout_height="match_parent">
 
-                <com.spark.chiefwallet.ui.tablayout.SlidingTabLayout
-                    android:id="@+id/authentication_tab"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:background="@color/white"
-                    app:tl_indicator_color="#000000"
-                    app:tl_indicator_height="2dp"
-                    app:tl_indicator_width_equal_title="true"
-                    app:tl_tab_padding="6dp"
-                    app:tl_textBold="BOTH"
-                    app:tl_textSelectColor="#000000"
-                    app:tl_textUnselectColor="#94374155"
-                    app:tl_textsize="@dimen/font_xlager"/>
-
-                <View
-                    style="@style/line_ccc"/>
-
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/authentication_vp"
+                <!--未认证-->
+                <LinearLayout
+                    android:id="@+id/ll_no_auth"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"/>
-            </LinearLayout>
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
-            <!--已经认证-->
-            <com.spark.chiefwallet.ui.progresslayout.ProgressLinearLayout
-                android:id="@+id/ll_authed"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white"
-                android:orientation="vertical"
-                android:paddingTop="16dp"
-                android:visibility="gone">
+                    <com.spark.chiefwallet.ui.tablayout.SlidingTabLayout
+                        android:id="@+id/authentication_tab"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginLeft="13dp"
+                        android:background="@color/white"
+                        app:tl_indicator_color="@color/white"
+                        app:tl_indicator_height="2dp"
+                        app:tl_indicator_width_equal_title="true"
+                        app:tl_tab_padding="6dp"
+                        app:tl_textBold="BOTH"
+                        app:tl_textSelectColor="#333333"
+                        app:tl_textUnselectColor="#A4ABC0"
+                        app:tl_textsize="@dimen/font_small" />
 
-                <LinearLayout
+
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/authentication_vp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+                </LinearLayout>
+
+                <!--已经认证-->
+                <com.spark.chiefwallet.ui.progresslayout.ProgressLinearLayout
+                    android:id="@+id/ll_authed"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="match_parent"
+                    android:layout_margin="15dp"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="?attr/actionBarSize"
-                        android:background="@color/gray_ccc"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:paddingLeft="16dp"
-                        android:visibility="@{authenticationViewModel.isSubmitError ? View.VISIBLE : View.GONE}">
+                        android:layout_height="wrap_content">
 
-                        <TextView
-                            style="@style/textBlackSmall"
-                            android:text="@{authenticationViewModel.submitErrorText}"
-                            android:textStyle="bold"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="?attr/actionBarSize"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:visibility="@{authenticationViewModel.isSubmitError ? View.VISIBLE : View.GONE}">
+
+                            <TextView
+                                style="@style/textBlackSmall"
+                                android:text="@{authenticationViewModel.submitErrorText}"
+                                android:textColor="@color/fall"
+                                android:textStyle="bold" />
+                        </LinearLayout>
                     </LinearLayout>
-                </LinearLayout>
 
-                <LinearLayout
-                    style="@style/ll_item_64"
-                    android:layout_height="52dp">
 
                     <TextView
                         style="@style/textBlackSmall"
-                        android:layout_width="72dp"
-                        android:text="@string/name"/>
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/name"
+                        android:textSize="12sp" />
 
                     <EditText
-                        style="@style/textBlackSmall"
-                        android:layout_width="match_parent"
-                        android:background="@null"
+                        style="@style/editext_create_wallet"
+                        android:layout_marginTop="10dp"
                         android:enabled="@{authenticationViewModel.isSubmitError}"
-                        android:text="@={authenticationViewModel.userName}"/>
-                </LinearLayout>
+                        android:hint="@string/name_hint"
+                        android:maxLines="1"
+                        android:padding="4dp"
+                        android:text="@={authenticationViewModel.userName}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_small" />
 
-                <View
-                    style="@style/line_ccc"
-                    android:layout_marginLeft="16dp"/>
-
-                <LinearLayout
-                    style="@style/ll_item_64"
-                    android:layout_height="52dp">
 
                     <TextView
                         style="@style/textBlackSmall"
-                        android:layout_width="72dp"
-                        android:text="@{authenticationViewModel.authType}"/>
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="@{authenticationViewModel.authType}"
+                        android:textSize="12sp" />
 
                     <EditText
-                        style="@style/textBlackSmall"
-                        android:layout_width="match_parent"
-                        android:background="@null"
+                        style="@style/editext_create_wallet"
+                        android:layout_marginTop="10dp"
                         android:enabled="@{authenticationViewModel.isSubmitError}"
-                        android:text="@={authenticationViewModel.authNum}"/>
-                </LinearLayout>
+                        android:hint="@string/id_card_hint"
+                        android:maxLines="1"
+                        android:padding="4dp"
+                        android:text="@={authenticationViewModel.authNum}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_small" />
 
-                <View
-                    style="@style/line_ccc"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="160dp"
-                    android:orientation="horizontal"
-                    android:padding="16dp">
+                    <TextView
+                        style="@style/textBlackSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/identity_card_photos"
+                        android:textSize="12sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:orientation="horizontal">
 
-                        <TextView
-                            style="@style/textGrayCommonSmall"
-                            android:text="@string/front_photo_of_the_document"/>
-
-                        <ImageView
-                            android:id="@+id/img_auth_up"
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="8dp"
-                            android:clickable="false"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/svg_auth_up"
-                            binding:url="@{authenticationViewModel.imgAuthUp}"/>
-                    </LinearLayout>
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
-                    <View
-                        android:layout_width="16dp"
-                        android:layout_height="match_parent"/>
+                            <TextView
+                                style="@style/textGrayCommonSmall"
+                                android:text="@string/front_photo_of_the_document" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                            <ImageView
+                                android:id="@+id/img_auth_up"
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+                                android:layout_marginTop="8dp"
+                                android:clickable="false"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/svg_auth_up"
+                                binding:url="@{authenticationViewModel.imgAuthUp}" />
+                        </LinearLayout>
 
-                        <TextView
-                            style="@style/textGrayCommonSmall"
-                            android:text="@string/handheld_photo_of_the_document"/>
-
-                        <ImageView
-                            android:id="@+id/img_auth_handheld"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="8dp"
-                            android:clickable="false"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/svg_auth_handheld"
-                            binding:url="@{authenticationViewModel.imgAuthHandheld}"/>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:id="@+id/ll_back"
-                        android:layout_width="match_parent"
-                        android:layout_height="144dp"
-                        android:orientation="horizontal"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:paddingBottom="16dp">
+                        <View
+                            android:layout_width="15dp"
+                            android:layout_height="match_parent" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -204,45 +177,84 @@
 
                             <TextView
                                 style="@style/textGrayCommonSmall"
-                                android:text="@string/back_photo_of_the_document"/>
+                                android:text="@string/handheld_photo_of_the_document" />
 
                             <ImageView
-                                android:id="@+id/img_auth_down"
+                                android:id="@+id/img_auth_handheld"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_height="100dp"
                                 android:layout_marginTop="8dp"
                                 android:clickable="false"
                                 android:scaleType="fitXY"
-                                android:src="@drawable/svg_auth_down"
-                                binding:url="@{authenticationViewModel.imgAuthDown}"/>
-                        </LinearLayout>
-
-                        <View
-                            android:layout_width="16dp"
-                            android:layout_height="match_parent"/>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
+                                android:src="@drawable/svg_auth_handheld"
+                                binding:url="@{authenticationViewModel.imgAuthHandheld}" />
                         </LinearLayout>
                     </LinearLayout>
-                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/submit"
-                    style="@style/textBlackNormal"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:layout_margin="16dp"
-                    android:enabled="@{authenticationViewModel.isSubmitError}"
-                    android:gravity="center"
-                    android:text="@{authenticationViewModel.auditStatus}"
-                    android:textStyle="bold"
-                    app:bl_corners_radius="4dp"
-                    app:bl_solid_color="@color/base"/>
-            </com.spark.chiefwallet.ui.progresslayout.ProgressLinearLayout>
-        </FrameLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/ll_back"
+                            android:layout_width="match_parent"
+                            android:layout_height="144dp"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    style="@style/textGrayCommonSmall"
+                                    android:text="@string/back_photo_of_the_document" />
+
+                                <ImageView
+                                    android:id="@+id/img_auth_down"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="100dp"
+                                    android:layout_marginTop="8dp"
+                                    android:clickable="false"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/svg_auth_down"
+                                    binding:url="@{authenticationViewModel.imgAuthDown}" />
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="16dp"
+                                android:layout_height="match_parent" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"></LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/submit"
+                        style="@style/textBlackNormal"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="30dp"
+                        android:enabled="@{authenticationViewModel.isSubmitError}"
+                        android:gravity="center"
+                        android:text="@{authenticationViewModel.auditStatus}"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_14"
+                        android:textStyle="bold"
+                        app:bl_corners_radius="2dp"
+                        app:bl_pressed_color="@color/subscript2"
+                        app:bl_unpressed_color="@color/base" />
+                </com.spark.chiefwallet.ui.progresslayout.ProgressLinearLayout>
+            </FrameLayout>
+        </android.support.v4.widget.NestedScrollView>
     </LinearLayout>
+
 </layout>

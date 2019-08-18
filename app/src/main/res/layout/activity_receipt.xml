@@ -26,12 +26,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                style="@style/textBlackSmall"
-                android:layout_marginLeft="16dp"
-                android:text="@string/receiptset"
-                android:textSize="@dimen/sp_30"
-                android:textStyle="bold"/>
+
 
             <View
                 style="@style/line_ccc"

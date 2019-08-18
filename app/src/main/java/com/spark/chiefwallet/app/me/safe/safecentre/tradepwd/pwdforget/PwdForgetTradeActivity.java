@@ -4,6 +4,8 @@ import android.arch.lifecycle.Observer;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -55,6 +57,7 @@ public class PwdForgetTradeActivity extends BaseActivity<ActivityTradePwdForgetB
         //TitleSet
         mTitleModel = new TitleBean();
         binding.loginTitle.setViewTitle(mTitleModel);
+        mTitleModel.setTitleName(getResources().getString(R.string.lc_pwd_reset));
         setTitleListener(binding.loginTitle.titleRootLeft);
 
         viewModel.initContext(this);
@@ -62,6 +65,33 @@ public class PwdForgetTradeActivity extends BaseActivity<ActivityTradePwdForgetB
 
     @Override
     public void initViewObservable() {
+        //密码显示开关
+        viewModel.uc.newpwdSwitchEvent.observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(@Nullable Boolean aBoolean) {
+                binding.pwdSwitch.setImageDrawable(aBoolean ?
+                        getResources().getDrawable(R.drawable.svg_show) :
+                        getResources().getDrawable(R.drawable.svg_hide));
+                binding.userPassword.setTransformationMethod(aBoolean ?
+                        HideReturnsTransformationMethod.getInstance() :
+                        PasswordTransformationMethod.getInstance());
+                binding.userPassword.setSelection(viewModel.newPwd.get().length());
+            }
+        });
+        //密码显示开关
+        viewModel.uc.newAgainpwdSwitchEvent.observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(@Nullable Boolean aBoolean) {
+                binding.newpwdSwitch.setImageDrawable(aBoolean ?
+                        getResources().getDrawable(R.drawable.svg_show) :
+                        getResources().getDrawable(R.drawable.svg_hide));
+                binding.newuserPassword.setTransformationMethod(aBoolean ?
+                        HideReturnsTransformationMethod.getInstance() :
+                        PasswordTransformationMethod.getInstance());
+                binding.newuserPassword.setSelection(viewModel.newPwdAgain.get().length());
+            }
+        });
+
         viewModel.uc.mGetCodeSuccessLiveEvent.observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(@Nullable Boolean aBoolean) {
@@ -84,18 +114,18 @@ public class PwdForgetTradeActivity extends BaseActivity<ActivityTradePwdForgetB
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.get_sms_code:
-                if (StringUtils.isEmpty(viewModel.countryCode.get())) {
-                    Toasty.showError(getString(R.string.choose_country));
-                    return;
-                }
+//                if (StringUtils.isEmpty(viewModel.countryCode.get())) {
+//                    Toasty.showError(getString(R.string.choose_country));
+//                    return;
+//                }
                 if (StringUtils.isEmpty(viewModel.phoneNum.get())) {
                     Toasty.showError(getString(R.string.phone_num_hint));
                     return;
                 }
-                if (!RegexUtils.isMobileExact(viewModel.phoneNum.get())) {
-                    Toasty.showError(getString(R.string.valid_phone));
-                    return;
-                }
+//                if (!RegexUtils.isMobileExact(viewModel.phoneNum.get())) {
+//                    Toasty.showError(getString(R.string.valid_phone));
+//                    return;
+//                }
                 viewModel.getPhoneCode();
                 break;
         }

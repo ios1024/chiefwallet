@@ -77,7 +77,7 @@ public class MeViewModel extends BaseViewModel {
     public ObservableField<String> otcAcconutTrans = new ObservableField<>("≈ ---- CNY");
     private String otcAcconutText = "------ USDT";
     private String otcAcconutTransText = "≈ ---- CNY";
-//    private OnRequestListener onRequestListener, onRequestListenerAnnounce;
+    //    private OnRequestListener onRequestListener, onRequestListenerAnnounce;
     private double spotWalletTotal = 0, spotWalletTrans = 0, otcWalletTotal = 0, otcWalletTrans = 0, cfdWalletTotal = 0, cfdWalletTrans = 0;
     private String spotAcconutText = "------ USDT";
     private String spotAcconutTransText = "≈ ---- CNY";
@@ -387,6 +387,7 @@ public class MeViewModel extends BaseViewModel {
     }
 
     public void initText() {
+
         if (!App.getInstance().isAppLogin()) {
 
             otcAcconut.set("------ USDT");
@@ -401,13 +402,15 @@ public class MeViewModel extends BaseViewModel {
 //                cfdAcconut.set("****** USDT USDT");
 //                cfdAcconutTrans.set("≈ **** CNY");
 //            } else {
-                if (qiehuanbizhong.get().equals("0")) {
-                    otcAcconut.set(initAccount(Double.valueOf(otcAcconutText)));
-                    otcAcconutTrans.set(initAccountTrans(Double.valueOf(otcAcconutTransText)));
-                } else {
-                    otcAcconut.set(initAccount(Double.valueOf(spotAcconutText)));
-                    otcAcconutTrans.set(initAccountTrans(Double.valueOf(spotAcconutTransText)));
-                }
+            if (qiehuanbizhong.get().equals("0")) {
+                if (spotAcconutText.equals("------ USDT")) return;
+                otcAcconut.set(initAccount(Double.valueOf(otcAcconutText)));
+                otcAcconutTrans.set(initAccountTrans(Double.valueOf(otcAcconutTransText)));
+            } else {
+                if (spotAcconutText.equals("------ USDT")) return;
+                otcAcconut.set(initAccount(Double.valueOf(spotAcconutText)));
+                otcAcconutTrans.set(initAccountTrans(Double.valueOf(spotAcconutTransText)));
+            }
 
 //                cfdAcconut.set(initAccount(Double.valueOf(cfdAcconutText)));
 //                cfdAcconutTrans.set(initAccountTrans(Double.valueOf(cfdAcconutTransText)));

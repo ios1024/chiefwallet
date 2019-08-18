@@ -41,15 +41,18 @@
             <!--app:bl_solid_color="@color/white"-->
             <!--binding:onClickCommand="@{propertyViewModel.finishOnClickCommand}"/>-->
 
+
             <com.spark.chiefwallet.ui.tablayout.SlidingTabLayout
                 android:id="@+id/property_tab"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
+                android:layout_marginLeft="13dp"
                 android:background="@color/my_bg"
                 app:tl_indicator_color="@color/my_bg"
                 app:tl_indicator_height="2dp"
                 app:tl_indicator_width_equal_title="true"
                 app:tl_textSelectColor="#333333"
+                app:tl_tab_padding="6dp"
                 app:tl_textBold="BOTH"
                 app:tl_textUnselectColor="#A4ABC0"
                 app:tl_textsize="@dimen/font_small" />

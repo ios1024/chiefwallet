@@ -71,7 +71,7 @@ public class LoginViewModel extends BaseViewModel {
     private Context mContext;
     private SmsVerifyPopup mSmsVerifyPopup;
     private int loginType;                  //0 - 手机登录 1 - 邮箱登录
-    private String countryEnName;                      //值传递 国籍 enName
+    private String countryEnName = "中国";                      //值传递 国籍 enName
 
     private List<CountryEntity> mCountryEntityList;
 

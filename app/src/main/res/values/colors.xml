@@ -67,6 +67,8 @@
     <color name="tab_text_selected_color">#242C46</color>
     <color name="rise">#028F76</color>
     <color name="fall">#CA2C49</color>
+    <color name="buy_bg">#F4D5DB</color>
+    <color name="sell_bg">#CCE9E4</color>
 
 
 </resources>
