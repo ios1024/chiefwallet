@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="klineHttpViewModel"
+            type="com.spark.chiefwallet.app.quotes.kline.QuotesKlineViewModel"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                android:id="@+id/fake_status_bar"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"/>
+            <!--title-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/title_left"
+                    android:layout_width="?attr/actionBarSize"
+                    android:layout_height="match_parent"
+                    android:padding="18dp"
+                    android:src="@drawable/svg_return"
+                    app:bl_ripple_color="@color/gray_ccc"
+                    app:bl_ripple_enable="true"
+                    app:bl_solid_color="@color/white"/>
+
+                <View
+                    style="@style/line_ccc_vertical"
+                    android:layout_width="1dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:background="@color/gray_b2"/>
+
+                <ImageView
+                    android:layout_width="?attr/actionBarSize"
+                    android:layout_height="match_parent"
+                    android:padding="18dp"
+                    android:src="@drawable/svg_quotes_menu"
+                    app:bl_ripple_color="@color/gray_ccc"
+                    app:bl_ripple_enable="true"
+                    app:bl_solid_color="@color/white"/>
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="BTC/USD"
+                    android:textColor="@color/black_00"
+                    android:textSize="@dimen/font_lager"/>
+
+                <ImageView
+                    android:layout_width="?attr/actionBarSize"
+                    android:layout_height="match_parent"
+                    android:padding="18dp"
+                    android:src="@drawable/svg_quotes_collect"
+                    app:bl_ripple_color="@color/gray_ccc"
+                    app:bl_ripple_enable="true"
+                    app:bl_solid_color="@color/white"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.spark.chiefwallet.ui.VerticalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:descendantFocusability="blocksDescendants"
+                    android:orientation="vertical"
+                    android:paddingBottom="50dp">
+
+                </LinearLayout>
+
+            </com.spark.chiefwallet.ui.VerticalScrollView>
+            <!--bottom-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="bottom"
+                android:background="@color/white"
+                android:paddingLeft="15dp"
+                android:paddingTop="5dp"
+                android:paddingRight="15dp"
+                android:paddingBottom="5dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/buy"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_small"
+                    app:bl_corners_radius="2dp"
+                    app:bl_pressed_color="@color/rise_dark"
+                    app:bl_unpressed_color="@color/rise"/>
+
+                <View
+                    android:layout_width="15dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/sell"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_small"
+                    app:bl_corners_radius="2dp"
+                    app:bl_pressed_color="@color/fall_dark"
+                    app:bl_unpressed_color="@color/fall"/>
+            </LinearLayout>
+        </FrameLayout>
+    </LinearLayout>
+</layout>

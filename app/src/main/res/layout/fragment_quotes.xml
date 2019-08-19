@@ -15,9 +15,37 @@
         android:background="@color/white"
         android:orientation="vertical">
 
-        <include
-            android:id="@+id/quotes_title"
-            layout="@layout/view_title"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="15dp">
+
+            <TextView
+                style="@style/textBlackSmall"
+                android:layout_weight="1"
+                android:text="@string/quotes"
+                android:textSize="@dimen/font_xlager"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:id="@+id/coin_search"
+                android:layout_width="?attr/actionBarSize"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|right"
+                android:orientation="horizontal"
+                android:paddingRight="15dp"
+                app:bl_ripple_color="@color/gray_ccc"
+                app:bl_ripple_enable="true"
+                app:bl_solid_color="@color/white">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/svg_quotes_search"/>
+            </LinearLayout>
+        </LinearLayout>
 
         <com.spark.chiefwallet.ui.progresslayout.ProgressLinearLayout
             android:id="@+id/quotes_root"
@@ -25,25 +53,103 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <com.spark.chiefwallet.ui.tab.XTabLayout
+            <com.spark.chiefwallet.ui.tablayout.SlidingTabLayout
                 android:id="@+id/quotes_tab"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_gravity="center"
-                app:x_tabMinWidth="20dp"
-                app:x_tabMaxWidth="96dp"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
                 android:background="@color/white"
-                app:x_tabIndicatorColor="@color/black"
-                app:x_tabSelectedTextColor="@color/black"
-                app:x_tabTextColor="#94374155"
-                app:x_tabIndicatorAnimation="true"
-                app:x_tabIndicatorRoundRect="true"
-                app:x_tabMode="scrollable"
-                app:x_tabPaddingStart="4dp"
-                app:x_tabPaddingEnd="4dp"/>
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                app:tl_indicator_color="@color/tab_indicator_select_color"
+                app:tl_indicator_height="3dp"
+                app:tl_indicator_width_equal_title="true"
+                app:tl_tab_padding="10dp"
+                app:tl_textBold="BOTH"
+                app:tl_textSelectColor="@color/tab_text_selected_color"
+                app:tl_textUnselectColor="@color/tab_text_unselected_color"
+                app:tl_textsize="@dimen/font_small"/>
 
-            <View
-                style="@style/line_ccc"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/windowBackground"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/coin_filter"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp">
+
+                    <TextView
+                        style="@style/textBlackSmall"
+                        android:text="币种"
+                        android:textColor="@color/gray_b2"
+                        android:textSize="@dimen/font_mini"/>
+
+                    <ImageView
+                        android:id="@+id/img_coin_filter"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_marginLeft="5dp"
+                        android:src="@drawable/svg_quotes_filter"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/close_filter"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp">
+
+                    <TextView
+                        style="@style/textBlackSmall"
+                        android:text="最新价"
+                        android:textColor="@color/gray_b2"
+                        android:textSize="@dimen/font_mini"/>
+
+                    <ImageView
+                        android:id="@+id/img_close_filter"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_marginLeft="5dp"
+                        android:src="@drawable/svg_quotes_filter"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/change_filter"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|right"
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp">
+
+                    <TextView
+                        style="@style/textBlackSmall"
+                        android:text="涨跌幅"
+                        android:textColor="@color/gray_b2"
+                        android:textSize="@dimen/font_mini"/>
+
+                    <ImageView
+                        android:id="@+id/img_change_filter"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_marginLeft="5dp"
+                        android:src="@drawable/svg_quotes_filter"/>
+                </LinearLayout>
+            </LinearLayout>
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/quotes_vp"

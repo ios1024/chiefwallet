@@ -246,5 +246,41 @@
     <orderEntry type="module" module-name="KlineLib" />
     <orderEntry type="module" module-name="moduleCFD" />
     <orderEntry type="module" module-name="moduleUC" />
+    <orderEntry type="module" module-name="moduleSPOT" />
+    <orderEntry type="module" module-name="moduleOTC" />
+    <orderEntry type="module" module-name="WsClient" />
+    <orderEntry type="module" module-name="moduleAC" />
+    <orderEntry type="module" module-name="CasClient" />
+    <orderEntry type="module" module-name="MvvmArms" />
+    <orderEntry type="module" module-name="KlineLib" />
+    <orderEntry type="module" module-name="moduleCFD" />
+    <orderEntry type="module" module-name="moduleUC" />
+    <orderEntry type="module" module-name="moduleSPOT" />
+    <orderEntry type="module" module-name="moduleOTC" />
+    <orderEntry type="module" module-name="WsClient" />
+    <orderEntry type="module" module-name="moduleAC" />
+    <orderEntry type="module" module-name="CasClient" />
+    <orderEntry type="module" module-name="MvvmArms" />
+    <orderEntry type="module" module-name="KlineLib" />
+    <orderEntry type="module" module-name="moduleCFD" />
+    <orderEntry type="module" module-name="moduleUC" />
+    <orderEntry type="module" module-name="moduleSPOT" />
+    <orderEntry type="module" module-name="moduleOTC" />
+    <orderEntry type="module" module-name="WsClient" />
+    <orderEntry type="module" module-name="moduleAC" />
+    <orderEntry type="module" module-name="CasClient" />
+    <orderEntry type="module" module-name="MvvmArms" />
+    <orderEntry type="module" module-name="KlineLib" />
+    <orderEntry type="module" module-name="moduleCFD" />
+    <orderEntry type="module" module-name="moduleUC" />
+    <orderEntry type="module" module-name="moduleSPOT" />
+    <orderEntry type="module" module-name="moduleOTC" />
+    <orderEntry type="module" module-name="WsClient" />
+    <orderEntry type="module" module-name="moduleAC" />
+    <orderEntry type="module" module-name="CasClient" />
+    <orderEntry type="module" module-name="MvvmArms" />
+    <orderEntry type="module" module-name="KlineLib" />
+    <orderEntry type="module" module-name="moduleCFD" />
+    <orderEntry type="module" module-name="moduleUC" />
   </component>
 </module>

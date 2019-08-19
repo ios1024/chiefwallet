@@ -4,16 +4,23 @@ import android.app.Application;
 import android.support.annotation.NonNull;
 
 import com.spark.chiefwallet.App;
-import com.spark.chiefwallet.api.pojo.CoinPairPushBean;
-import com.spark.wsclient.base.WsCMD;
+import com.spark.chiefwallet.R;
+import com.spark.chiefwallet.bean.QuotesFilterBean;
+import com.spark.modulespot.pojo.AllThumbResult;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import me.spark.mvvm.base.BaseViewModel;
+import me.spark.mvvm.base.Constant;
+import me.spark.mvvm.base.EvKey;
 import me.spark.mvvm.bus.event.SingleLiveEvent;
+import me.spark.mvvm.utils.EventBean;
 import me.spark.mvvm.utils.EventBusUtils;
-import me.spark.mvvm.utils.WebSocketResponse;
+import me.spark.mvvm.utils.SPUtils;
 
 /**
  * ================================================
@@ -26,26 +33,69 @@ import me.spark.mvvm.utils.WebSocketResponse;
  */
 public class QuotesVPViewModel extends BaseViewModel {
     private String type;
+    private List<AllThumbResult.DataBean> mThumbList = new ArrayList<>();
+    private int coinType = 0;
+    private QuotesFilterBean mQuotesFilterBean;
 
     public QuotesVPViewModel(@NonNull Application application) {
         super(application);
     }
 
-    public UIChangeObservable mUIChangeObservable = new UIChangeObservable();
+    public UIChangeObservable uc = new UIChangeObservable();
 
     public class UIChangeObservable {
-        //币对的推送的观察
-        public SingleLiveEvent<CoinPairPushBean> mCoinPairPushBean = new SingleLiveEvent<>();
+        public SingleLiveEvent<List<AllThumbResult.DataBean>> mAllThumbResultSingleLiveEvent = new SingleLiveEvent<>();
+        public SingleLiveEvent<Boolean> isLogin = new SingleLiveEvent<>();
+        public SingleLiveEvent<QuotesFilterBean> mQuotesFilterBeanSingleLiveEvent = new SingleLiveEvent<>();
     }
 
+
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEvent(WebSocketResponse webSocketResponse) {
-        switch (webSocketResponse.getCmd()) {
-            //首页缩略图订阅
-            case WsCMD.PUSH_THUMB:
-                CoinPairPushBean coinPairPushBean = App.gson.fromJson(webSocketResponse.getResponse(), CoinPairPushBean.class);
-                if ((!coinPairPushBean.getSymbol().endsWith(type))) return;
-                mUIChangeObservable.mCoinPairPushBean.setValue(coinPairPushBean);
+    public void onEvent(EventBean eventBean) {
+        switch (eventBean.getOrigin()) {
+            //成交全币种缩略图
+            case EvKey.klineThumbAll:
+                synchronized (this) {
+                    if (Constant.isQuotesFilter) return;
+                    if (eventBean.isStatue()) {
+                        mThumbList.clear();
+                        switch (coinType) {
+                            case 0:
+                                if (App.getInstance().isAppLogin()) {
+                                    for (String favor : SPUtils.getInstance().getFavorFindList()) {
+                                        for (AllThumbResult.DataBean dataBean : ((AllThumbResult) eventBean.getObject()).getData()) {
+                                            if (dataBean.getSymbol().equals(favor)) {
+                                                mThumbList.add(dataBean);
+                                            }
+                                        }
+                                    }
+                                    uc.mAllThumbResultSingleLiveEvent.setValue(mThumbList);
+                                }
+                                break;
+                            default:
+                                for (AllThumbResult.DataBean dataBean : ((AllThumbResult) eventBean.getObject()).getData()) {
+                                    if (dataBean.getSymbol().endsWith(type)) {
+                                        mThumbList.add(dataBean);
+                                    }
+                                }
+                                uc.mAllThumbResultSingleLiveEvent.setValue(mThumbList);
+                                break;
+                        }
+                    }
+                }
+                break;
+            //退出登录后隐藏自选
+            case EvKey.loginStatue:
+                if (eventBean.isStatue()) {
+                    uc.isLogin.setValue(App.getInstance().isAppLogin());
+                }
+                break;
+            //刷选
+            case EvKey.quotesFilter:
+                if (eventBean.isStatue()) {
+                    mQuotesFilterBean = (QuotesFilterBean) eventBean.getObject();
+                    uc.mQuotesFilterBeanSingleLiveEvent.setValue(mQuotesFilterBean);
+                }
                 break;
             default:
                 break;
@@ -54,6 +104,7 @@ public class QuotesVPViewModel extends BaseViewModel {
 
     public void initType(String type) {
         this.type = type;
+        coinType = App.getInstance().getString(R.string.favorites).equals(type) ? 0 : 1;
     }
 
     @Override

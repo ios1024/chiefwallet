@@ -216,5 +216,13 @@
     <orderEntry type="library" name="Gradle: com.android.support:support-media-compat:28.0.0@aar" level="project" />
     <orderEntry type="module" module-name="moduleSPOT" />
     <orderEntry type="module" module-name="MvvmArms" />
+    <orderEntry type="module" module-name="moduleSPOT" />
+    <orderEntry type="module" module-name="MvvmArms" />
+    <orderEntry type="module" module-name="moduleSPOT" />
+    <orderEntry type="module" module-name="MvvmArms" />
+    <orderEntry type="module" module-name="moduleSPOT" />
+    <orderEntry type="module" module-name="MvvmArms" />
+    <orderEntry type="module" module-name="moduleSPOT" />
+    <orderEntry type="module" module-name="MvvmArms" />
   </component>
 </module>

@@ -124,4 +124,8 @@ public class Constant {
     public static String lastB2BMarketPushSymbol = "";
     public static String lastCfdMarketPushSymbol = "";
     public static int getCoinSupportRetryTime = 0;
+
+    //行情筛选
+    public static boolean isQuotesFilter = false;
+    public static String searchQuotesJson = "";
 }

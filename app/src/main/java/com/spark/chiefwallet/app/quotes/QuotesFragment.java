@@ -3,6 +3,7 @@ package com.spark.chiefwallet.app.quotes;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,10 +11,9 @@ import android.view.ViewGroup;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.spark.chiefwallet.BR;
 import com.spark.chiefwallet.R;
-import com.spark.chiefwallet.app.quotes.viewpager.QuotesReceiveFragment;
-import com.spark.chiefwallet.app.quotes.viewpager.QuotesThumbFragment;
+import com.spark.chiefwallet.app.quotes.viewpager.QuotesVPFragment;
 import com.spark.chiefwallet.base.ARouterPath;
-import com.spark.chiefwallet.bean.TitleBean;
+import com.spark.chiefwallet.bean.QuotesFilterBean;
 import com.spark.chiefwallet.databinding.FragmentQuotesBinding;
 import com.spark.chiefwallet.ui.adapter.SlideTabPagerNoCacheAdapter;
 import com.spark.modulespot.pojo.SpotCoinResult;
@@ -21,9 +21,13 @@ import com.spark.modulespot.pojo.SpotCoinResult;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import butterknife.OnClick;
 import me.spark.mvvm.base.BaseFragment;
+import me.spark.mvvm.base.BaseRequestCode;
 import me.spark.mvvm.base.Constant;
+import me.spark.mvvm.base.EvKey;
 import me.spark.mvvm.http.impl.OnRequestListener;
+import me.spark.mvvm.utils.EventBusUtils;
 import me.spark.mvvm.utils.LogUtils;
 
 /**
@@ -36,11 +40,13 @@ import me.spark.mvvm.utils.LogUtils;
  * ================================================
  */
 public class QuotesFragment extends BaseFragment<FragmentQuotesBinding, QuotesViewModel> {
-    private TitleBean mTitleModel;
     private ArrayList<Fragment> mFragments = new ArrayList<>();
     private String[] mTitles;
     private SlideTabPagerNoCacheAdapter mAdapter;
     private boolean isInitTabSuccess = false;
+    private int mCoinFilter = 0;  //0 - 默认 1 - 正序 2 - 倒序
+    private int mCloseFilter = 0;
+    private int mChangeFilter = 0;
 
     @Override
     public int initContentView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -61,14 +67,6 @@ public class QuotesFragment extends BaseFragment<FragmentQuotesBinding, QuotesVi
     @Override
     public void initView() {
         super.initView();
-        //TitleSet
-        mTitleModel = new TitleBean();
-        mTitleModel.setTitleName(getResources().getString(R.string.quotes));
-        mTitleModel.setShowLeftImg(false);
-        mTitleModel.setShowRightImg(true);
-        binding.quotesTitle.titleRightImg.setImageDrawable(getResources().getDrawable(R.drawable.svg_search));
-        binding.quotesTitle.setViewTitle(mTitleModel);
-        setTitleListener(binding.quotesTitle.titleRootLeft, binding.quotesTitle.titleRootRight);
     }
 
     @Override
@@ -108,26 +106,117 @@ public class QuotesFragment extends BaseFragment<FragmentQuotesBinding, QuotesVi
         mTitles = Constant.coinPairThumbBeanList.toArray(new String[Constant.coinPairThumbBeanList.size()]);
         LogUtils.e("mTitles", Arrays.toString(mTitles));
         for (String title : mTitles) {
-            if (Constant.isHttpAndWs) {
-                mFragments.add(QuotesReceiveFragment.newInstance(title));
-            } else {
-                mFragments.add(QuotesThumbFragment.newInstance(title));
-            }
+//            if (Constant.isHttpAndWs) {
+//                mFragments.add(QuotesReceiveFragment.newInstance(title));
+//            } else {
+//                mFragments.add(QuotesThumbFragment.newInstance(title));
+//            }
+            mFragments.add(QuotesVPFragment.newInstance(title));
         }
         mAdapter = new SlideTabPagerNoCacheAdapter(getChildFragmentManager(),
                 mFragments, mTitles);
         binding.quotesVp.setAdapter(mAdapter);
-        binding.quotesTab.setupWithViewPager(binding.quotesVp);
+        binding.quotesTab.setViewPager(binding.quotesVp);
         binding.quotesVp.setOffscreenPageLimit(mTitles.length - 1);
         if (!binding.quotesRoot.isContentCurrentState()) {
             binding.quotesRoot.showContent();
         }
     }
 
-    @Override
-    protected void onTitleRightClick() {
-        //搜索页面
-        ARouter.getInstance().build(ARouterPath.ACTIVITY_QUOTES_SERACH)
-                .navigation();
+    @OnClick({R.id.coin_search,
+            R.id.coin_filter,
+            R.id.close_filter,
+            R.id.change_filter})
+    public void onClick(View view) {
+        if (!isInitTabSuccess) return;
+        switch (view.getId()) {
+            case R.id.coin_search:
+                if (TextUtils.isEmpty(Constant.searchQuotesJson)) return;
+                ARouter.getInstance().build(ARouterPath.ACTIVITY_QUOTES_SERACH)
+                        .navigation();
+                break;
+            case R.id.coin_filter:
+                mCoinFilter += 1;
+                if (mCoinFilter == 3) mCoinFilter = 0;
+                switch (mCoinFilter) {
+                    case 0:
+                        binding.imgCoinFilter.setImageDrawable(getResources().getDrawable(R.drawable.svg_quotes_filter));
+                        break;
+                    case 1:
+                        binding.imgCoinFilter.setImageDrawable(getResources().getDrawable(R.drawable.svg_quotes_filter_up));
+                        break;
+                    case 2:
+                        binding.imgCoinFilter.setImageDrawable(getResources().getDrawable(R.drawable.svg_quotes_filter_down));
+                        break;
+                }
+                mCloseFilter = 0;
+                binding.imgCloseFilter.setImageDrawable(getResources().getDrawable(R.drawable.svg_quotes_filter));
+                mChangeFilter = 0;
+                binding.imgChangeFilter.setImageDrawable(getResources().getDrawable(R.drawable.svg_quotes_filter));
+                quotesFilter(0);
+                break;
+            case R.id.close_filter:
+                mCloseFilter += 1;
+                if (mCloseFilter == 3) mCloseFilter = 0;
+                switch (mCloseFilter) {
+                    case 0:
+                        binding.imgCloseFilter.setImageDrawable(getResources().getDrawable(R.drawable.svg_quotes_filter));
+                        break;
+                    case 1:
+                        binding.imgCloseFilter.setImageDrawable(getResources().getDrawable(R.drawable.svg_quotes_filter_up));
+                        break;
+                    case 2:
+                        binding.imgCloseFilter.setImageDrawable(getResources().getDrawable(R.drawable.svg_quotes_filter_down));
+                        break;
+                }
+                mCoinFilter = 0;
+                binding.imgCoinFilter.setImageDrawable(getResources().getDrawable(R.drawable.svg_quotes_filter));
+                mChangeFilter = 0;
+                binding.imgChangeFilter.setImageDrawable(getResources().getDrawable(R.drawable.svg_quotes_filter));
+                quotesFilter(1);
+                break;
+            case R.id.change_filter:
+                mChangeFilter += 1;
+                if (mChangeFilter == 3) mChangeFilter = 0;
+                switch (mChangeFilter) {
+                    case 0:
+                        binding.imgChangeFilter.setImageDrawable(getResources().getDrawable(R.drawable.svg_quotes_filter));
+                        break;
+                    case 1:
+                        binding.imgChangeFilter.setImageDrawable(getResources().getDrawable(R.drawable.svg_quotes_filter_up));
+                        break;
+                    case 2:
+                        binding.imgChangeFilter.setImageDrawable(getResources().getDrawable(R.drawable.svg_quotes_filter_down));
+                        break;
+                }
+                mCoinFilter = 0;
+                binding.imgCoinFilter.setImageDrawable(getResources().getDrawable(R.drawable.svg_quotes_filter));
+                mCloseFilter = 0;
+                binding.imgCloseFilter.setImageDrawable(getResources().getDrawable(R.drawable.svg_quotes_filter));
+                quotesFilter(2);
+                break;
+        }
+    }
+
+    /**
+     * 筛选
+     *
+     * @param type 0 - 币种  1 - 最新价  2 - 涨跌幅
+     */
+    private void quotesFilter(int type) {
+        QuotesFilterBean quotesFilterBean = new QuotesFilterBean();
+        quotesFilterBean.setType(type);
+        switch (type) {
+            case 0:
+                quotesFilterBean.setFilterType(mCoinFilter);
+                break;
+            case 1:
+                quotesFilterBean.setFilterType(mCloseFilter);
+                break;
+            case 2:
+                quotesFilterBean.setFilterType(mChangeFilter);
+                break;
+        }
+        EventBusUtils.postSuccessEvent(EvKey.quotesFilter, BaseRequestCode.OK, "", quotesFilterBean);
     }
 }

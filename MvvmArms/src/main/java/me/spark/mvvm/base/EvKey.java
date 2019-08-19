@@ -135,6 +135,7 @@ public class EvKey {
     public static final String openOrders = "openOrders";
     public static final String openOrdersHistory = "openOrdersHistory";
     public static final String openOrderDetails = "openOrderDetails";
+    public static final String quotesFilter = "quotesFilter";
 
     //cfd
     public static final String cfdSymbolAll = "cfdSymbolAll";

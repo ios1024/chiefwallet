@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="coinPairPushBean"
+            type="com.spark.modulespot.pojo.AllThumbResult.DataBean"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingTop="9dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="9dp"
+        app:bl_ripple_color="@color/gray_ccc"
+        app:bl_ripple_enable="true"
+        app:bl_solid_color="@color/white">
+
+        <TextView
+            style="@style/textBlackNormal"
+            android:layout_weight="1"
+            android:text="@{coinPairPushBean.symbol}"
+            android:textColor="@color/black_00"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:id="@+id/img_favor"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@{coinPairPushBean.isFavor() ? @drawable/svg_quotes_collect_solid : @drawable/svg_quotes_collect}"/>
+    </LinearLayout>
+</layout>

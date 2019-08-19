@@ -33,7 +33,7 @@
                 style="@style/textBlackNormal"
                 android:layout_marginTop="8dp"
                 android:text="@{itemRecommendCoin.initClose()}"
-                android:textColor="@{itemRecommendCoin.isCoinPairPushChgUp() ? @color/rise : @color/fall}"
+                android:textColor="@{itemRecommendCoin.isCoinPairPushChgUp() ? @color/fall : @color/rise}"
                 android:textSize="@dimen/font_xlager"
                 android:textStyle="bold"/>
 
@@ -41,7 +41,7 @@
                 style="@style/textBlackSmall"
                 android:layout_marginTop="8dp"
                 android:text="@{itemRecommendCoin.initChg()}"
-                android:textColor="@{itemRecommendCoin.isCoinPairPushChgUp() ? @color/rise : @color/fall}"/>
+                android:textColor="@{itemRecommendCoin.isCoinPairPushChgUp() ? @color/fall : @color/rise}"/>
 
             <TextView
                 style="@style/textBlackNormal"

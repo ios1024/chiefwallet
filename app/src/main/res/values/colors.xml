@@ -66,7 +66,14 @@
     <color name="tab_text_unselected_color">#A4ABC0</color>
     <color name="tab_text_selected_color">#242C46</color>
     <color name="rise">#028F76</color>
+    <color name="rise_light">#CCE9E4</color>
+    <color name="rise_dark">#027B65</color>
     <color name="fall">#CA2C49</color>
+    <color name="fall_light">#F4D5DB</color>
+    <color name="fall_dark">#AD263F</color>
+    <color name="gray_b2">#B2BAD1</color>
+    <color name="line_e5">#E5E6EB</color>
+    <color name="black_00">#000000</color>
 
 
 </resources>

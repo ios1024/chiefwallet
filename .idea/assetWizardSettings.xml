@@ -14,11 +14,11 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="height" value="73" />
-                            <entry key="outputName" value="ic_quick_buy_coins" />
+                            <entry key="height" value="60" />
+                            <entry key="outputName" value="svg_no_content" />
                             <entry key="overrideSize" value="true" />
-                            <entry key="sourceFile" value="$USER_HOME$/Downloads/首页_svg/快捷买币.svg" />
-                            <entry key="width" value="355" />
+                            <entry key="sourceFile" value="$USER_HOME$/Downloads/行情_svg/8.svg" />
+                            <entry key="width" value="67" />
                           </map>
                         </option>
                       </PersistentState>
