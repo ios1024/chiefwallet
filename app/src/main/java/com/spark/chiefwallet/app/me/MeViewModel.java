@@ -70,17 +70,17 @@ public class MeViewModel extends BaseViewModel {
             App.getInstance().getCurrentUser().getUsername() : App.getInstance().getString(R.string.no_login));
     //昵称
     public ObservableField<String> mobilePhone = new ObservableField<>(App.getInstance().isAppLogin() ?
-            (App.getInstance().getCurrentUser().getLogintype() == 0 ? App.getInstance().getCurrentUser().getMobilePhone() : App.getInstance().getCurrentUser().getEmail()) : "");
+            (App.getInstance().getCurrentUser().getLogintype() == 0 ? "UID:" + App.getInstance().getCurrentUser().getMobilePhone() : "UID:" + App.getInstance().getCurrentUser().getEmail()) : "UID:- -");
 
     //
-    public ObservableField<String> otcAcconut = new ObservableField<>("------ USDT");
-    public ObservableField<String> otcAcconutTrans = new ObservableField<>("≈ ---- CNY");
-    private String otcAcconutText = "------ USDT";
-    private String otcAcconutTransText = "≈ ---- CNY";
+    public ObservableField<String> otcAcconut = new ObservableField<>("- - ");
+    public ObservableField<String> otcAcconutTrans = new ObservableField<>("≈ ¥ - - ");
+    private String otcAcconutText = "- - ";
+    private String otcAcconutTransText = "≈ ¥ - - ";
     //    private OnRequestListener onRequestListener, onRequestListenerAnnounce;
     private double spotWalletTotal = 0, spotWalletTrans = 0, otcWalletTotal = 0, otcWalletTrans = 0, cfdWalletTotal = 0, cfdWalletTrans = 0;
-    private String spotAcconutText = "------ USDT";
-    private String spotAcconutTransText = "≈ ---- CNY";
+    private String spotAcconutText = "- - ";
+    private String spotAcconutTransText = "≈ ¥ - - ";
     private boolean isLoadAcountDate = false;
 
     //修改昵称
@@ -225,6 +225,14 @@ public class MeViewModel extends BaseViewModel {
                     .navigation();
         }
     });
+    //设置
+    public BindingCommand setupOnClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_ABOUSETUP)
+                    .navigation();
+        }
+    });
     //关于
     public BindingCommand aboutOnClickCommand = new BindingCommand(new BindingAction() {
         @Override
@@ -242,14 +250,14 @@ public class MeViewModel extends BaseViewModel {
 
     public void initContext(Context context) {
         mContext = context;
-        switch (LanguageSPUtil.getInstance(App.getInstance()).getSelectLanguage()) {
-            case 0:
-                languageSelect.set(App.getInstance().getString(R.string.simplified_chinese));
-                break;
-            case 1:
-                languageSelect.set(App.getInstance().getString(R.string.str_english));
-                break;
-        }
+//        switch (LanguageSPUtil.getInstance(App.getInstance()).getSelectLanguage()) {
+//            case 0:
+//                languageSelect.set(App.getInstance().getString(R.string.simplified_chinese));
+//                break;
+//            case 1:
+//                languageSelect.set(App.getInstance().getString(R.string.str_english));
+//                break;
+//        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -307,7 +315,7 @@ public class MeViewModel extends BaseViewModel {
                     isLogOut.set(App.getInstance().isAppLogin());
                     if (isLogOut.get()) {
                         nickname.set(curUser.getUsername());
-                        mobilePhone.set(curUser.getLogintype() == 0 ? curUser.getMobilePhone() : curUser.getEmail());
+                        mobilePhone.set(curUser.getLogintype() == 0 ? "UID:" + curUser.getMobilePhone() : "UID:" + curUser.getEmail());
                         initSafeLevel();
                     } else {
                         if (!isLoadAcountDate) {
@@ -390,8 +398,8 @@ public class MeViewModel extends BaseViewModel {
 
         if (!App.getInstance().isAppLogin()) {
 
-            otcAcconut.set("------ USDT");
-            otcAcconutTrans.set("≈ ---- CNY");
+            otcAcconut.set("- - ");
+            otcAcconutTrans.set("≈ ¥ - - ");
 //            cfdAcconut.set("------ USDT");
 //            cfdAcconutTrans.set("≈ ---- CNY");
         } else {
@@ -403,11 +411,11 @@ public class MeViewModel extends BaseViewModel {
 //                cfdAcconutTrans.set("≈ **** CNY");
 //            } else {
             if (qiehuanbizhong.get().equals("0")) {
-                if (spotAcconutText.equals("------ USDT")) return;
+                if (spotAcconutText.equals("- - ")) return;
                 otcAcconut.set(initAccount(Double.valueOf(otcAcconutText)));
                 otcAcconutTrans.set(initAccountTrans(Double.valueOf(otcAcconutTransText)));
             } else {
-                if (spotAcconutText.equals("------ USDT")) return;
+                if (spotAcconutText.equals("- - ")) return;
                 otcAcconut.set(initAccount(Double.valueOf(spotAcconutText)));
                 otcAcconutTrans.set(initAccountTrans(Double.valueOf(spotAcconutTransText)));
             }
@@ -420,12 +428,12 @@ public class MeViewModel extends BaseViewModel {
 
     private String initAccount(double account) {
         String close = DfUtils.formatNum(MathUtils.getRundNumber(account, 4, null));
-        return close + " USDT";
+        return close;
     }
 
     private String initAccountTrans(double accountTrans) {
         String close = DfUtils.formatNum(MathUtils.getRundNumber(accountTrans, 4, null));
-        return "≈ " + close + " CNY";
+        return "≈ ¥ " + close;
     }
 
     private void initSafeLevel() {

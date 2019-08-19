@@ -65,7 +65,6 @@
                     style="@style/textBlackSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
                     android:text="@string/name"
                     android:textSize="12sp" />
 
@@ -320,10 +319,11 @@
                         android:layout_marginTop="20dp"
                         android:text="@string/str_uplo"
                         android:textSize="12sp" />
-
+                    <!--最后改到这 2019-08-19-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_10"
                         android:orientation="horizontal">
 
 
@@ -331,10 +331,7 @@
                             android:id="@+id/receipt_bind_qrcode"
                             android:layout_width="100dp"
                             android:layout_height="100dp"
-                            android:layout_marginTop="@dimen/dp_10"
-                            android:background="@drawable/linl_pay_bg"
-                            app:bl_corners_radius="4dp"
-                            app:bl_solid_color="@color/white">
+                            android:background="@drawable/linl_pay_bg">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -359,6 +356,7 @@
                                 url="@{receiptBindViewModel.qrCodeUrl}"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:layout_margin="1dp"
                                 android:scaleType="fitCenter" />
                         </FrameLayout>
 
