@@ -503,6 +503,13 @@
     <string name="direction">Direction</string>
     <string name="average_transaction_price">Average transaction price</string>
     <string name="transaction_volume">Volume</string>
+    <string name="transaction_volume2">成交数量</string>
+    <string name="in_the_bill_of_lading">挂单中</string>
+    <string name="open">开</string>
+    <string name="shut">关</string>
+    <string name="adding_payment_method">添加支付方式</string>
+    <string name="card_binding_matters">1，最多添加：3张银行卡，3个支付宝，1个微信号</string>
+    <string name="card_binding_matters2">2，添加支付方式后，需要开启才能用于场外交易。如添加多张银行卡，最后只能开启一张</string>
     <string name="time">Time</string>
     <string name="final_price">Final price</string>
     <string-array name="ad_tab">
@@ -536,6 +543,8 @@
         <item>C2C Trade</item>
         <item>B2B Trade</item>
     </string-array>
+    <string name="dealing_time">成交时间</string>
+
     <string name="turnover">Turnover:&#160;</string>
     <string name="buy_after_login">Buy after login</string>
     <string name="sell_after_login">Sell after login</string>
@@ -656,6 +665,8 @@
     <string name="str_pay_success">Pay for success</string>
     <string name="str_enter_login_pass">Please enter your login password</string>
     <string name="str_enter_alipay">Please enter alipay account number</string>
+    <string name="str_uplo">收款二维码</string>
+    <string name="str_upload_text">为确保二维码正确，上传后请自行扫描测试</string>
     <string name="str_upload">Please upload qr code of receipt</string>
     <string name="str_enter_wechat">Please enter your WeChat account</string>
     <string name="str_enter_other">Please enter other account</string>
@@ -673,6 +684,8 @@
     <string name="str_appeal_time">30 minutes after the payment is completed the appeal is allowed.</string>
     <string name="str_set_paypay">Please choose the mode of payment first</string>
     <string name="str_enter_bank_name">Please select your bank account</string>
+    <string name="str_enter_bran">请输入开户行</string>
+
     <string name="str_enter_branch">Please enter bank branch</string>
     <string name="str_enter_bank_number">Please enter user card number</string>
     <string name="str_enter_paypal">Please enter your PayPal account</string>

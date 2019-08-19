@@ -28,7 +28,7 @@
                 android:layout_marginTop="12dp"
                 app:tl_bar_color="@color/white"
                 app:tl_indicator_color="@color/gray_common"
-                app:tl_indicator_corner_radius="30dp"
+                app:tl_indicator_corner_radius="25dp"
                 app:tl_tab_padding="14dp"/>
         </LinearLayout>
 

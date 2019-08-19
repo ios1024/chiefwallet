@@ -67,9 +67,9 @@ public class ReceiptActivity extends BaseActivity<ActivityReceiptBinding, Receip
 
         //TitleSet
         mTitleModel = new TitleBean();
-        mTitleModel.setShowRightImg(true);
+        mTitleModel.setShowRightImg(false);
         mTitleModel.setTitleName(getResources().getString(R.string.str_paypay));
-        binding.receiptTitle.titleRightImg.setImageDrawable(getResources().getDrawable(R.drawable.svg_add));
+//        binding.receiptTitle.titleRightImg.setImageDrawable(getResources().getDrawable(R.drawable.svg_add));
         binding.receiptTitle.setViewTitle(mTitleModel);
 
         setTitleListener(binding.receiptTitle.titleRootLeft, binding.receiptTitle.titleRootRight);
@@ -122,6 +122,14 @@ public class ReceiptActivity extends BaseActivity<ActivityReceiptBinding, Receip
                 return true;
             }
         });
+
+        binding.myreceiptadd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_RECEIPT_ADD)
+                        .navigation();
+            }
+        });
     }
 
     @Override
@@ -142,11 +150,6 @@ public class ReceiptActivity extends BaseActivity<ActivityReceiptBinding, Receip
         });
     }
 
-    @Override
-    protected void onTitleRightClick() {
-        ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_RECEIPT_ADD)
-                .navigation();
-    }
 
     private void refresh() {
         binding.swipeLayout.setRefreshing(true);

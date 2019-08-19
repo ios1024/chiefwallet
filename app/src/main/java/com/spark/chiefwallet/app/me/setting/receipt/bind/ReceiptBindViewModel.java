@@ -71,21 +71,21 @@ public class ReceiptBindViewModel extends BaseViewModel {
     public ObservableField<String> qrCodeUrl = new ObservableField<>("");
     public ObservableField<Boolean> qrCodeVisiable = new ObservableField<>(true);
 
-    public BindingCommand chooseBankList = new BindingCommand(new BindingAction() {
-        @Override
-        public void call() {
-            new XPopup.Builder(mContext)
-                    .maxHeight((int) (XPopupUtils.getWindowHeight(mContext) * .85f))
-                    .asBottomList(App.getInstance().getString(R.string.str_select_bank), bankList,
-                            new OnSelectListener() {
-                                @Override
-                                public void onSelect(int position, String text) {
-                                    bankText.set(text);
-                                }
-                            })
-                    .show();
-        }
-    });
+//    public BindingCommand chooseBankList = new BindingCommand(new BindingAction() {
+//        @Override
+//        public void call() {
+//            new XPopup.Builder(mContext)
+//                    .maxHeight((int) (XPopupUtils.getWindowHeight(mContext) * .85f))
+//                    .asBottomList(App.getInstance().getString(R.string.str_select_bank), bankList,
+//                            new OnSelectListener() {
+//                                @Override
+//                                public void onSelect(int position, String text) {
+//                                    bankText.set(text);
+//                                }
+//                            })
+//                    .show();
+//        }
+//    });
 
 
     public BindingCommand submitCommand = new BindingCommand(new BindingAction() {

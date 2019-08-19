@@ -171,6 +171,7 @@ public class SecurityClient extends BaseHttpClient {
                 .execute(new SimpleCallBack<String>() {
                     @Override
                     public void onSuccess(String s) {
+                        LogUtils.e("gauthInfoUrl", s);
                         try {
                             GeneralResult generalResult = BaseApplication.gson.fromJson(s, GeneralResult.class);
                             if (generalResult.getCode() == BaseRequestCode.OK) {

@@ -36,14 +36,24 @@
                 android:textSize="12sp" />
 
             <EditText
-                style="@style/editext_create_wallet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/linl_pay_bg"
                 android:hint="@string/name_hint"
                 android:maxLines="1"
-                android:padding="4dp"
+                android:padding="10dp"
                 android:text="@={passPortViewModel.userName}"
-                android:textColor="@color/black"
                 android:textSize="@dimen/font_small" />
+            <!--<EditText-->
+                <!--style="@style/editext_create_wallet"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:hint="@string/name_hint"-->
+                <!--android:maxLines="1"-->
+                <!--android:padding="4dp"-->
+                <!--android:text="@={passPortViewModel.userName}"-->
+                <!--android:textColor="@color/black"-->
+                <!--android:textSize="@dimen/font_small" />-->
 
             <TextView
                 style="@style/textBlackSmall"
@@ -52,16 +62,26 @@
                 android:text="@string/passport_num"
                 android:textSize="12sp" />
 
+            <!--<EditText-->
+            <!--style="@style/editext_create_wallet"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:hint="@string/passport_num_hint"-->
+            <!--android:maxLines="1"-->
+            <!--android:padding="4dp"-->
+            <!--android:text="@={passPortViewModel.userPassPortNum}"-->
+            <!--android:textColor="@color/black"-->
+            <!--android:textSize="@dimen/font_small" />-->
+
             <EditText
-                style="@style/editext_create_wallet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/linl_pay_bg"
                 android:hint="@string/passport_num_hint"
                 android:maxLines="1"
-                android:padding="4dp"
+                android:padding="10dp"
                 android:text="@={passPortViewModel.userPassPortNum}"
-                android:textColor="@color/black"
                 android:textSize="@dimen/font_small" />
-
             <TextView
                 style="@style/textBlackSmall"
                 android:layout_width="wrap_content"

@@ -60,6 +60,8 @@ public class MemberClient extends BaseHttpClient {
                 .execute(new SimpleCallBack<String>() {
                     @Override
                     public void onSuccess(String s) {
+                        LogUtils.e("userInfoTGA", s);
+
                         try {
                             LogUtils.e("userInfo", s);
                             JSONObject object = new JSONObject(s);

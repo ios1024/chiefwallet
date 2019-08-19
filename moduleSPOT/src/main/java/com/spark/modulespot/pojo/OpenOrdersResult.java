@@ -480,7 +480,7 @@ public class OpenOrdersResult implements Parcelable {
 
 
             public String formatDate() {
-                return me.spark.mvvm.utils.DateUtils.formatDate("yyyy.MM.dd HH:mm:ss", transactTime);
+                return me.spark.mvvm.utils.DateUtils.formatDate("MM/dd HH:mm", transactTime);
             }
 
             public String initStatueType() {
@@ -526,8 +526,9 @@ public class OpenOrdersResult implements Parcelable {
                 return text;
             }
 
+
             public String initDeal() {
-                return BaseApplication.getInstance().getString(R.string.traded) + "(" + coinSymbol + ")";
+                return BaseApplication.getInstance().getString(R.string.transaction_volume2) + "(" + baseSymbol + ")";
             }
 
             public String initDealText() {

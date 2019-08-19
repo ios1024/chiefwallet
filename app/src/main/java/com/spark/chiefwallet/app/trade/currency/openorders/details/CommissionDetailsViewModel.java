@@ -13,6 +13,7 @@ import com.spark.modulespot.pojo.OpenOrdersResult;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import me.spark.mvvm.base.BaseApplication;
 import me.spark.mvvm.base.BaseViewModel;
 import me.spark.mvvm.base.EvKey;
 import me.spark.mvvm.bus.event.SingleLiveEvent;
@@ -20,6 +21,7 @@ import me.spark.mvvm.http.impl.OnRequestListener;
 import me.spark.mvvm.utils.DfUtils;
 import me.spark.mvvm.utils.EventBean;
 import me.spark.mvvm.utils.EventBusUtils;
+import me.spark.mvvm.utils.MathUtils;
 
 /**
  * ================================================
@@ -42,6 +44,14 @@ public class CommissionDetailsViewModel extends BaseViewModel {
     public ObservableField<Boolean> isBuyType = new ObservableField<>();
     public ObservableField<String> dealEvaluationPrice = new ObservableField<>();
     public ObservableField<String> dealNum = new ObservableField<>();
+    public ObservableField<String> coinSymbol = new ObservableField<>();
+    public ObservableField<String> baseSymbol = new ObservableField<>();
+    public ObservableField<String> initDeal = new ObservableField<>();
+    public ObservableField<String> dealNumVolume = new ObservableField<>();
+    public ObservableField<String> transactionPrice = new ObservableField<>();
+    public ObservableField<String> entrust = new ObservableField<>();
+    public ObservableField<String> entrustVolume = new ObservableField<>();
+    public ObservableField<String> initStatueType = new ObservableField<>();
 
     private OpenOrdersResult.DataBean.ListBean mCommissionDetailsBean;
     private OpenOrderDetailsResult mOpenOrderDetailsResult;
@@ -51,6 +61,7 @@ public class CommissionDetailsViewModel extends BaseViewModel {
     public class UIChangeObservable {
         public SingleLiveEvent<Boolean> isRefresh = new SingleLiveEvent<>();
     }
+
     public void initDetails(OpenOrdersResult.DataBean.ListBean commissionDetailsBean, OnRequestListener onRequestListener) {
         this.mCommissionDetailsBean = commissionDetailsBean;
         this.mOnRequestListener = onRequestListener;
@@ -89,9 +100,26 @@ public class CommissionDetailsViewModel extends BaseViewModel {
             dealPrice += Double.valueOf(dataBean.getPrice());
             dealAmount += Double.valueOf(dataBean.getAmount());
         }
-        dealEvaluationPrice.set(DfUtils.numberFormat(dealPrice / mOpenOrderDetailsResult.getData().size(), 4) + mCommissionDetailsBean.getSymbol().split("/")[1]);
-        dealNum.set(DfUtils.numberFormat(dealAmount, 8) + " " + mCommissionDetailsBean.getSymbol().split("/")[0]);
-        dealAllAccount.set(DfUtils.numberFormat((dealPrice / mOpenOrderDetailsResult.getData().size()) * dealAmount, 4) + " " + mCommissionDetailsBean.getSymbol().split("/")[1]);
+        dealEvaluationPrice.set(DfUtils.numberFormat(dealPrice / mOpenOrderDetailsResult.getData().size(), 4));
+        initDeal.set(App.getInstance().getString(R.string.total_turnover) + "(" + mCommissionDetailsBean.getBaseSymbol() + ")");
+        coinSymbol.set(mCommissionDetailsBean.getCoinSymbol());
+        baseSymbol.set(mCommissionDetailsBean.getBaseSymbol());
+        dealNum.set(DfUtils.numberFormat(dealAmount, 8));
+        dealNumVolume.set(App.getInstance().getString(R.string.transaction_volume2) + "(" + mCommissionDetailsBean.getSymbol().split("/")[0] + ")");
+        transactionPrice.set(App.getInstance().getString(R.string.average_transaction_price) + "(" + mCommissionDetailsBean.getBaseSymbol() + ")");
+//        dealAllAccount.set(DfUtils.numberFormat((dealPrice / mOpenOrderDetailsResult.getData().size()) * dealAmount, 4) + " " + mCommissionDetailsBean.getSymbol().split("/")[1]);
+        dealAllAccount.set(DfUtils.numberFormat((dealPrice / mOpenOrderDetailsResult.getData().size()) * dealAmount, 4));
+        entrustVolume.set(App.getInstance().getString(R.string.entrusted_quantity) + "(" + mCommissionDetailsBean.getCoinSymbol() + ")");
+        if (mCommissionDetailsBean.getPriceType() == 0 && mCommissionDetailsBean.getSide() == 0) {
+            entrust.set("--");
+        } else {
+            entrust.set(MathUtils.getRundNumber(mCommissionDetailsBean.getOrderQty(), 4, null));
+        }
+        if (mCommissionDetailsBean.getStatus() == 5) {
+            initStatueType.set(App.getInstance().getString(R.string.in_the_bill_of_lading));
+        }
+
+
         mOnRequestListener.onSuccess(mOpenOrderDetailsResult);
     }
 

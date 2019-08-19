@@ -55,7 +55,7 @@
                 app:tl_tab_padding="6dp"
                 app:tl_textBold="BOTH"
                 app:tl_textUnselectColor="#A4ABC0"
-                app:tl_textsize="@dimen/font_small" />
+                app:tl_textsize="@dimen/font_lager" />
 
             <!--<View-->
                 <!--android:layout_width="?attr/actionBarSize"-->

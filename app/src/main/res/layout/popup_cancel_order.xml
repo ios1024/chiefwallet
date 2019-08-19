@@ -1,95 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="vertical"
-              app:bl_corners_topLeftRadius="14dp"
-              app:bl_corners_topRightRadius="14dp"
-              app:bl_solid_color="@color/gray_456">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    app:bl_corners_topLeftRadius="2dp"
+    app:bl_corners_topRightRadius="2dp"
+    app:bl_solid_color="@color/white">
 
-    <TextView
-        style="@style/textGrayCommonNormal"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="@string/str_withdrawn_confirm"
-        android:textColor="@color/gray_common"
-        android:textStyle="bold"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="15dp">
+
+        <TextView
+            style="@style/textGrayCommonNormal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/str_withdrawn_confirm"
+            android:textColor="@color/mobile_login"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            style="@style/textGrayCommonNormal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/cancel"
+            android:textColor="@color/base"
+            android:textSize="@dimen/font_small"
+            app:bl_ripple_color="@color/white"
+            app:bl_ripple_enable="true"
+            app:bl_solid_color="@color/white"
+            tools:ignore="MissingPrefix" />
+    </LinearLayout>
 
     <LinearLayout
         style="@style/ll_item_52"
-        android:background="@color/white">
+        android:layout_marginTop="20dp"
+        android:background="@color/white"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
 
         <TextView
             style="@style/textBlackSmall"
-            android:text="type"
-            android:textStyle="bold"/>
+            android:text="@string/type"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_popup_type"
             style="@style/textGrayCommonSmall"
             android:layout_weight="1"
             android:gravity="right"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
     </LinearLayout>
 
-    <View style="@style/line_ccc"/>
+    <View style="@style/line_ccc" />
 
     <LinearLayout
         style="@style/ll_item_52"
-        android:background="@color/white">
+
+        android:background="@color/white"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
 
         <TextView
             style="@style/textBlackSmall"
             android:text="@string/price"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_popup_price"
             style="@style/textGrayCommonSmall"
             android:layout_weight="1"
-            android:gravity="right"/>
+            android:gravity="right" />
     </LinearLayout>
 
-    <View style="@style/line_ccc"/>
+    <View style="@style/line_ccc" />
 
     <LinearLayout
         style="@style/ll_item_52"
-        android:background="@color/white">
+
+        android:background="@color/white"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
 
         <TextView
             style="@style/textBlackSmall"
             android:text="@string/number"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_popup_num"
             style="@style/textGrayCommonSmall"
             android:layout_weight="1"
-            android:gravity="right"/>
+            android:gravity="right" />
     </LinearLayout>
 
-    <View style="@style/line_ccc"/>
+    <View style="@style/line_ccc" />
 
     <LinearLayout
         style="@style/ll_item_52"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
 
         <TextView
             style="@style/textBlackSmall"
             android:text="@string/turnover"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_popup_amount"
             style="@style/textGrayCommonSmall"
             android:layout_weight="1"
-            android:gravity="right"/>
+            android:gravity="right" />
     </LinearLayout>
 
-    <View style="@style/line_ccc"/>
+    <View style="@style/line_ccc" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -101,30 +135,34 @@
             android:id="@+id/tv_confirm"
             style="@style/textBlackNormal"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_margin="16dp"
+            android:layout_height="40dp"
+            android:layout_margin="15dp"
+            android:layout_marginRight="18dp"
             android:gravity="center"
             android:text="@string/str_confirm"
             android:textColor="@color/white"
+            android:textSize="@dimen/sp_14"
             android:textStyle="bold"
-            app:bl_corners_radius="4dp"
-            app:bl_pressed_color="@color/green_dark"
-            app:bl_unpressed_color="@color/green"
-            tools:ignore="MissingPrefix"/>
+            app:bl_corners_radius="2dp"
+            app:bl_pressed_color="@color/subscript2"
+            app:bl_unpressed_color="@color/base"
+            tools:ignore="MissingPrefix" />
+
+        <!--<TextView-->
+        <!--android:id="@+id/tv_confirm"-->
+        <!--style="@style/textBlackNormal"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="?attr/actionBarSize"-->
+        <!--android:layout_margin="16dp"-->
+        <!--android:gravity="center"-->
+        <!--android:text="@string/str_confirm"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:textStyle="bold"-->
+        <!--app:bl_corners_radius="4dp"-->
+        <!--app:bl_pressed_color="@color/green_dark"-->
+        <!--app:bl_unpressed_color="@color/green"-->
+        <!--tools:ignore="MissingPrefix" />-->
     </LinearLayout>
 
 
-    <TextView
-        android:id="@+id/tv_cancel"
-        style="@style/textGrayCommonNormal"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_marginTop="8dp"
-        android:background="@color/white"
-        android:gravity="center"
-        android:text="@string/cancel"
-        app:bl_ripple_color="@color/gray_456"
-        app:bl_ripple_enable="true"
-        app:bl_solid_color="@color/white"
-        tools:ignore="MissingPrefix"/>
 </LinearLayout>

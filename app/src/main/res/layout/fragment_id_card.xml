@@ -36,14 +36,26 @@
                 android:text="@string/name"
                 android:textSize="12sp" />
 
+            <!--<EditText-->
+            <!--style="@style/editext_create_wallet"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:hint="@string/name_hint"-->
+            <!--android:maxLines="1"-->
+            <!--android:padding="4dp"-->
+            <!--android:text="@={idCardViewModel.userName}"-->
+            <!--android:textColor="@color/black"-->
+            <!--android:textSize="@dimen/font_small" />-->
+
             <EditText
-                style="@style/editext_create_wallet"
+                android:id="@+id/phone_num"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/linl_pay_bg"
                 android:hint="@string/name_hint"
                 android:maxLines="1"
-                android:padding="4dp"
+                android:padding="10dp"
                 android:text="@={idCardViewModel.userName}"
-                android:textColor="@color/black"
                 android:textSize="@dimen/font_small" />
 
             <TextView
@@ -53,15 +65,26 @@
                 android:text="@string/id_card"
                 android:textSize="12sp" />
 
+            <!--<EditText-->
+            <!--style="@style/editext_create_wallet"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:hint="@string/id_card_hint"-->
+            <!--android:maxLines="1"-->
+            <!--android:padding="4dp"-->
+            <!--android:text="@={idCardViewModel.userIdCard}"-->
+            <!--android:textColor="@color/black"-->
+            <!--android:textSize="@dimen/font_small" />-->
             <EditText
-                style="@style/editext_create_wallet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/linl_pay_bg"
                 android:hint="@string/id_card_hint"
                 android:maxLines="1"
-                android:padding="4dp"
+                android:padding="10dp"
                 android:text="@={idCardViewModel.userIdCard}"
-                android:textColor="@color/black"
                 android:textSize="@dimen/font_small" />
+
 
             <TextView
                 style="@style/textBlackSmall"
