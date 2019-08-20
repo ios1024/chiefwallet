@@ -6,6 +6,7 @@ import android.databinding.ObservableField;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.lxj.xpopup.XPopup;
@@ -38,6 +39,7 @@ import me.spark.mvvm.utils.DfUtils;
 import me.spark.mvvm.utils.EventBean;
 import me.spark.mvvm.utils.EventBusUtils;
 import me.spark.mvvm.utils.LogUtils;
+import me.spark.mvvm.utils.SpanUtils;
 import me.spark.mvvm.utils.Utils;
 
 /**
@@ -56,6 +58,7 @@ public class LcOrderUnPAYDetailsViewModel extends BaseViewModel {
 
     private Context mContext;
 
+    public ObservableField<String> title = new ObservableField<>();
     public ObservableField<String> titleRightTV = new ObservableField<>();
     public ObservableField<String> money = new ObservableField<>();
     public ObservableField<String> money2 = new ObservableField<>();
@@ -79,6 +82,12 @@ public class LcOrderUnPAYDetailsViewModel extends BaseViewModel {
     public ObservableField<String> bankPayOpenBank = new ObservableField<>();
     public ObservableField<String> bankPayBranch = new ObservableField<>();
     public ObservableField<String> dealNumber = new ObservableField<>();
+    public ObservableField<String> time_tips_1 = new ObservableField<>();
+    public ObservableField<String> time_tips_2 = new ObservableField<>();
+    public ObservableField<String> orderEnd6 = new ObservableField<>();
+    public ObservableField<String> orderBtn1 = new ObservableField<>();
+    public ObservableField<String> orderBtn2 = new ObservableField<>();
+
 
     private LcOrderResult.DataBean.RecordsBean mRecordsBean;
     private PayTypeBean mPayTypeBean;
@@ -138,6 +147,20 @@ public class LcOrderUnPAYDetailsViewModel extends BaseViewModel {
         }
     });
 
+    public BindingCommand alipayOnClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            AppUtils.copy2Clipboard(Utils.getContext(), aliPayAddr.get());
+        }
+    });
+
+    public BindingCommand weChatPayOnClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            AppUtils.copy2Clipboard(Utils.getContext(), weChatAddr.get());
+        }
+    });
+
     public BindingCommand orderSnOnClickCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
@@ -183,7 +206,6 @@ public class LcOrderUnPAYDetailsViewModel extends BaseViewModel {
     }
 
     public void initViewDate(LcOrderResult.DataBean.RecordsBean orderDetailsBean, OnRequestListener onRequestListener) {
-        LogUtils.e("orderDetailsBean", orderDetailsBean.toString());
         this.mRecordsBean = orderDetailsBean;
         this.mOnRequestListener = onRequestListener;
         LcTradeClient.getInstance().orderDetails(true, orderDetailsBean.getOrderSn());
@@ -260,8 +282,7 @@ public class LcOrderUnPAYDetailsViewModel extends BaseViewModel {
             case EvKey.findMerchantDetails:
                 if (eventBean.isStatue()) {
                     FindMerchantDetailsResult findMerchantDetailsResult = (FindMerchantDetailsResult) eventBean.getObject();
-                    dealNumber.set(App.getInstance().getString(R.string.str_deal) + (findMerchantDetailsResult.getData().getTotalSuccessBuyOrder() + findMerchantDetailsResult.getData().getTotalSuccessSellOrder()) +
-                            App.getInstance().getString(R.string.hands));
+                    dealNumber.set(findMerchantDetailsResult.getData().formatRangeTimeOrder());
                 } else {
                     Toasty.showError(eventBean.getMessage());
                 }
@@ -303,7 +324,6 @@ public class LcOrderUnPAYDetailsViewModel extends BaseViewModel {
      */
     private void startFlush() {
         stopFlush();
-        LogUtils.e("开始刷新=============未付款");
         LcTradeClient.getInstance().orderDetails(true, mRecordsBean.getOrderSn());
     }
 
@@ -315,40 +335,61 @@ public class LcOrderUnPAYDetailsViewModel extends BaseViewModel {
     }
 
     private void initDate(OrderDetailsResult orderDetailsResult) {
+        title.set(mRecordsBean.getOrderType().equals("0") ? App.getInstance().getString(R.string.str_order_state_unpay) : App.getInstance().getString(R.string.pending_payment));
+        time_tips_1.set(mRecordsBean.getOrderType().equals("0") ? App.getInstance().getString(R.string.str_please_within) : App.getInstance().getString(R.string.str_please_within2));
+        time_tips_2.set(mRecordsBean.getOrderType().equals("0") ? App.getInstance().getString(R.string.str_please_within_suffix) : App.getInstance().getString(R.string.str_please_within_suffix2));
         titleRightTV.set(mRecordsBean.getOrderType().equals("0") ? App.getInstance().getString(R.string.str_cancel_order) : "");
         mPayTypeBean = App.gson.fromJson("{\"payTypeBean\":" + orderDetailsResult.getData().getPayData() + "}", PayTypeBean.class);
-        for (PayTypeBean.PayTypeBeanBean payTypeBeanBean : mPayTypeBean.getPayTypeBean()) {
-            if (payTypeBeanBean.getPayType().contains(Constant.wechat)) {
-                isWeChatPay.set(true);
-                weChatCodeUrl = payTypeBeanBean.getQrCodeUrl();
-                weChatAddr.set(payTypeBeanBean.getPayAddress());
-                weChatName.set(payTypeBeanBean.getRealName());
-            } else if (payTypeBeanBean.getPayType().contains(Constant.alipay)) {
-                isAliPay.set(true);
-                aliPayCodeUrl = payTypeBeanBean.getQrCodeUrl();
-                aliPayAddr.set(payTypeBeanBean.getPayAddress());
-                aliPayName.set(payTypeBeanBean.getRealName());
-            } else if (payTypeBeanBean.getPayType().contains(Constant.card)) {
-                isBankPay.set(true);
-                bankPayAddr.set(payTypeBeanBean.getPayAddress());
-                bankPayName.set(payTypeBeanBean.getRealName());
-                bankPayOpenBank.set(payTypeBeanBean.getBank());
-                bankPayBranch.set(payTypeBeanBean.getBranch());
+        if (mPayTypeBean != null) {
+            for (PayTypeBean.PayTypeBeanBean payTypeBeanBean : mPayTypeBean.getPayTypeBean()) {
+                if (payTypeBeanBean.getPayType().contains(Constant.wechat)) {
+                    isWeChatPay.set(true);
+                    weChatCodeUrl = payTypeBeanBean.getQrCodeUrl();
+                    weChatAddr.set(payTypeBeanBean.getPayAddress());
+                    weChatName.set(payTypeBeanBean.getRealName());
+                } else if (payTypeBeanBean.getPayType().contains(Constant.alipay)) {
+                    isAliPay.set(true);
+                    aliPayCodeUrl = payTypeBeanBean.getQrCodeUrl();
+                    aliPayAddr.set(payTypeBeanBean.getPayAddress());
+                    aliPayName.set(payTypeBeanBean.getRealName());
+                } else if (payTypeBeanBean.getPayType().contains(Constant.card)) {
+                    isBankPay.set(true);
+                    bankPayAddr.set(payTypeBeanBean.getPayAddress());
+                    bankPayName.set(payTypeBeanBean.getRealName());
+                    bankPayOpenBank.set(payTypeBeanBean.getBank());
+                    bankPayBranch.set(payTypeBeanBean.getBranch());
+                }
             }
         }
+
+
         //0 - 买入 1 - 卖出
         isBuyOrSell.set(mRecordsBean.initTypeColor());
         money.set("￥ " + DfUtils.formatNum(String.valueOf(mRecordsBean.getMoney())));
-        money2.set(DfUtils.numberFormat(mRecordsBean.getMoney(), mRecordsBean.getMoney() == 0 ? 0 : 8) + " CNY");
+        CharSequence text = new SpanUtils()
+                .append(App.getInstance().getString(R.string.str_single_price))
+                .append(mRecordsBean.getPrice() + " CNY").setForegroundColor(ContextCompat.getColor(mContext, R.color.black))
+                .create();
+        money2.set(text.toString());
+        //money2.set(DfUtils.numberFormat(mRecordsBean.getMoney(), mRecordsBean.getMoney() == 0 ? 0 : 8) + " CNY");
         nameShort.set(mRecordsBean.getTradeToUsername().substring(0, 1));
         name.set(mRecordsBean.getTradeToUsername());
         price.set(DfUtils.numberFormat(mRecordsBean.getPrice(), mRecordsBean.getPrice() == 0 ? 0 : 8) + " CNY");
-        number.set(DfUtils.numberFormat(mRecordsBean.getNumber(), mRecordsBean.getNumber() == 0 ? 0 : 8) + " " + mRecordsBean.getCoinName());
+        CharSequence numberText = new SpanUtils()
+                .append(App.getInstance().getString(R.string.str_number))
+                .append(mRecordsBean.getNumber() + " " + mRecordsBean.getCoinName()).setForegroundColor(ContextCompat.getColor(mContext, R.color.black))
+                .create();
+        number.set(numberText.toString());
+        //number.set(DfUtils.numberFormat(mRecordsBean.getNumber(), mRecordsBean.getNumber() == 0 ? 0 : 8) + " " + mRecordsBean.getCoinName());
         createTime.set(DateUtils.formatDate("yyyy.MM.dd HH:mm", mRecordsBean.getCreateTime()));
         orderSn.set(mRecordsBean.getOrderSn());
         referenceSn.set(mRecordsBean.getPayRefer());
         mOnRequestListener.onSuccess(orderDetailsResult);
         AdvertiseScanClient.getInstance().findMerchantDetails(mRecordsBean.getMemberId());
+        orderEnd6.set(mRecordsBean.getOrderSn().length() > 6 ? mRecordsBean.getOrderSn().substring(mRecordsBean.getOrderSn().length() - 6) : mRecordsBean.getOrderSn());
+
+        orderBtn1.set(mRecordsBean.getOrderType().equals("0") ? App.getInstance().getString(R.string.str_cancel_order) : App.getInstance().getString(R.string.str_appeal));
+        orderBtn2.set(mRecordsBean.getOrderType().equals("0") ? App.getInstance().getString(R.string.str_has_paid) : App.getInstance().getString(R.string.str_release) + mRecordsBean.getCoinName());
     }
 
     @Override

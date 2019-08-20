@@ -55,15 +55,33 @@
                     android:visibility="@{viewTitle.isShowLeftTV?View.VISIBLE:View.INVISIBLE}" />
             </FrameLayout>
 
-            <TextView
-                android:id="@+id/title_name"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="@{viewTitle.titleName}"
-                android:textColor="@color/black"
-                android:textSize="@dimen/font_lager" />
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/title_name_left"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="@{viewTitle.titleNameLeft}"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/font_lager" />
+
+                <TextView
+                    android:id="@+id/title_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="@{viewTitle.titleName}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_lager" />
+
+            </RelativeLayout>
 
             <FrameLayout
                 android:id="@+id/title_root_right"

@@ -3,6 +3,9 @@ package com.spark.otcclient.pojo;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import me.spark.mvvm.utils.MathUtils;
+import me.spark.mvvm.utils.StringUtils;
+
 /**
  * ================================================
  * 作    者：v1ncent
@@ -318,6 +321,16 @@ public class FindMerchantDetailsResult implements Parcelable {
 
         public void setTotalSuccessSellOrder(int totalSuccessSellOrder) {
             this.totalSuccessSellOrder = totalSuccessSellOrder;
+        }
+
+        public String formatRangeTimeOrder() {
+            if (StringUtils.isEmpty(String.valueOf(rangeTimeOrder))
+                    || StringUtils.isEmpty(String.valueOf(rangeTimeSuccessOrder))
+                    || rangeTimeSuccessOrder == 0) {
+                rangeTimeOrder = 1;
+                rangeTimeSuccessOrder = 0;
+            }
+            return rangeTimeSuccessOrder + "    " + MathUtils.getRundNumber((Double.parseDouble(rangeTimeSuccessOrder + "") / rangeTimeOrder) * 100, 2, null) + "%";
         }
     }
 }

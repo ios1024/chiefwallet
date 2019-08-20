@@ -1,39 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
-        <import type="android.view.View"/>
-
-        <import type="com.spark.chiefwallet.R"/>
+        <import type="android.view.View" />
 
         <variable
             name="lcOrderPaidDetailsViewModel"
-            type="com.spark.chiefwallet.app.trade.legal_currency.order.details.paid.LcOrderPaidDetailsViewModel"/>
+            type="com.spark.chiefwallet.app.trade.legal_currency.order.details.paid.LcOrderPaidDetailsViewModel" />
     </data>
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/commission_bg"
+        android:background="@color/gray_f5"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:orientation="vertical">
 
             <View
                 android:id="@+id/fake_status_bar"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"/>
+                android:layout_height="0dp" />
+
             <!--title-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -41,38 +42,86 @@
                     android:layout_width="?attr/actionBarSize"
                     android:layout_height="match_parent"
                     android:padding="15dp"
-                    android:src="@drawable/svg_back_white"
-                    app:bl_ripple_color="@color/kline_bg_light"
+                    android:src="@drawable/svg_back"
+                    app:bl_ripple_color="@color/gray_f5"
                     app:bl_ripple_enable="true"
-                    app:bl_solid_color="@color/commission_bg"/>
+                    app:bl_solid_color="@color/white" />
 
                 <TextView
-                    android:id="@+id/title"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/font_lager"/>
+                    android:text="@{lcOrderPaidDetailsViewModel.title}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_lager"
+                    android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/title_right_tv"
-                    onClickCommand="@{lcOrderPaidDetailsViewModel.titleRightOnClickCommand}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:gravity="center"
+                    android:text="@{lcOrderPaidDetailsViewModel.time_tips_1}"
+                    android:textColor="@color/color_grey"
+                    android:textSize="@dimen/font_mini" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:paddingRight="12dp"
-                    android:text="@{lcOrderPaidDetailsViewModel.titleRightTV}"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/font_small"/>
-            </LinearLayout>
-        </LinearLayout>
+                    android:orientation="horizontal">
 
+                    <TextView
+                        style="@style/textBlackSmall"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:gravity="center"
+                        android:text="@{lcOrderPaidDetailsViewModel.nameShort}"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        app:bl_corners_radius="20dp"
+                        app:bl_solid_color="@color/color_first_char" />
+
+                    <TextView
+                        style="@style/textBlackNormal"
+                        android:layout_marginLeft="12dp"
+                        android:text="@{lcOrderPaidDetailsViewModel.name}"
+                        android:textSize="@dimen/font_small" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dp_10"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_4"
+                    android:gravity="center"
+                    android:text="@{lcOrderPaidDetailsViewModel.dealNumber}"
+                    android:textColor="@color/color_grey"
+                    android:textSize="@dimen/font_mini" />
+
+            </LinearLayout>
+
+        </LinearLayout>
 
         <com.spark.chiefwallet.ui.progresslayout.ProgressLinearLayout
             android:id="@+id/root"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <android.support.v4.widget.NestedScrollView
@@ -84,269 +133,685 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
+                    <!--买币和卖币公共部分-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dp_10"
+                        android:orientation="vertical"
+                        android:padding="@dimen/dp_10"
+                        app:bl_corners_radius="2dp"
+                        app:bl_solid_color="@color/white">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/textBlackNormal"
+                                android:layout_width="wrap_content"
+                                android:gravity="center"
+                                android:text="@{lcOrderPaidDetailsViewModel.money}"
+                                android:textColor="@color/base"
+                                android:textSize="@dimen/font_lager"
+                                android:textStyle="bold" />
+
+                            <View
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/dp_10"
+                                android:layout_weight="1" />
+
+                            <TextView
+                                style="@style/textBlackNormal"
+                                android:text="@{lcOrderPaidDetailsViewModel.orderSn}" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_4"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    style="@style/textBlackSmall"
+                                    android:text="@{lcOrderPaidDetailsViewModel.money2}"
+                                    android:textColor="@color/color_grey"
+                                    android:textSize="@dimen/font_mini" />
+
+                                <TextView
+                                    style="@style/textBlackSmall"
+                                    android:text="@{lcOrderPaidDetailsViewModel.number}"
+                                    android:textColor="@color/color_grey"
+                                    android:textSize="@dimen/font_mini" />
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/dp_10"
+                                android:layout_weight="1" />
+
+                            <LinearLayout
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:visibility="gone">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/svg_wechatpay" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!--买-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:orientation="vertical"
+                        android:padding="@dimen/dp_10"
+                        android:visibility="@{lcOrderPaidDetailsViewModel.isBuyOrSell ? View.VISIBLE : View.GONE}"
+                        app:bl_corners_radius="2dp"
+                        app:bl_solid_color="@color/white">
+
+                        <!--银行卡支付-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingBottom="8dp"
+                            android:paddingLeft="@dimen/dp_10"
+                            android:paddingRight="@dimen/dp_10"
+                            android:paddingTop="8dp"
+                            android:visibility="@{lcOrderPaidDetailsViewModel.isBankPay ? View.VISIBLE : View.GONE}">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/svg_bankpay" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp_10"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        style="@style/textBlackSmall"
+                                        android:text="@{lcOrderPaidDetailsViewModel.bankPayName}"
+                                        android:textSize="@dimen/font_mini" />
+
+                                    <TextView
+                                        style="@style/textBlackSmall"
+                                        android:layout_marginLeft="@dimen/dp_10"
+                                        android:text="@{lcOrderPaidDetailsViewModel.bankPayAddr}"
+                                        android:textSize="@dimen/font_mini" />
+
+                                    <ImageView
+                                        onClickCommand="@{lcOrderPaidDetailsViewModel.cardOnClickCommand}"
+                                        android:layout_width="20dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="@dimen/dp_10"
+                                        android:src="@drawable/svg_copy2" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        style="@style/textBlackSmall"
+                                        android:text="@{lcOrderPaidDetailsViewModel.bankPayOpenBank}"
+                                        android:textSize="@dimen/font_xmini" />
+
+                                    <TextView
+                                        style="@style/textBlackSmall"
+                                        android:layout_marginLeft="@dimen/dp_10"
+                                        android:text="@{lcOrderPaidDetailsViewModel.bankPayBranch}"
+                                        android:textSize="@dimen/font_xmini" />
+
+                                    <TextView
+                                        style="@style/textBlackSmall"
+                                        android:text="@string/str_pay_tips"
+                                        android:textColor="@color/base"
+                                        android:textSize="@dimen/font_xmini" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <!--支付宝支付-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingBottom="8dp"
+                            android:paddingLeft="@dimen/dp_10"
+                            android:paddingRight="@dimen/dp_10"
+                            android:paddingTop="8dp"
+                            android:visibility="@{lcOrderPaidDetailsViewModel.isAliPay ? View.VISIBLE : View.GONE}">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/svg_alipay" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp_10"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        style="@style/textBlackSmall"
+                                        android:text="@{lcOrderPaidDetailsViewModel.aliPayName}"
+                                        android:textSize="@dimen/font_mini" />
+
+                                    <TextView
+                                        style="@style/textBlackSmall"
+                                        android:layout_marginLeft="@dimen/dp_10"
+                                        android:text="@{lcOrderPaidDetailsViewModel.aliPayAddr}"
+                                        android:textSize="@dimen/font_mini" />
+
+                                    <ImageView
+                                        onClickCommand="@{lcOrderPaidDetailsViewModel.alipayOnClickCommand}"
+                                        android:layout_width="20dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="@dimen/dp_10"
+                                        android:src="@drawable/svg_copy2" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        style="@style/textBlackSmall"
+                                        android:text="@string/str_pay_tips"
+                                        android:textColor="@color/base"
+                                        android:textSize="@dimen/font_xmini" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <ImageView
+                                onClickCommand="@{lcOrderPaidDetailsViewModel.alPayOnClickCommand}"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp_10"
+                                android:src="@drawable/svg_ali" />
+
+                        </LinearLayout>
+
+                        <!--微信支付-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingBottom="8dp"
+                            android:paddingLeft="@dimen/dp_10"
+                            android:paddingRight="@dimen/dp_10"
+                            android:paddingTop="8dp"
+                            android:visibility="@{lcOrderPaidDetailsViewModel.isWeChatPay ? View.VISIBLE : View.GONE}">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/svg_wechatpay" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp_10"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        style="@style/textBlackSmall"
+                                        android:text="@{lcOrderPaidDetailsViewModel.weChatName}"
+                                        android:textSize="@dimen/font_mini" />
+
+                                    <TextView
+                                        style="@style/textBlackSmall"
+                                        android:layout_marginLeft="@dimen/dp_10"
+                                        android:text="@{lcOrderPaidDetailsViewModel.weChatAddr}"
+                                        android:textSize="@dimen/font_mini" />
+
+                                    <ImageView
+                                        onClickCommand="@{lcOrderPaidDetailsViewModel.weChatPayOnClickCommand}"
+                                        android:layout_width="20dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="@dimen/dp_10"
+                                        android:src="@drawable/svg_copy2" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        style="@style/textBlackSmall"
+                                        android:text="@string/str_pay_tips"
+                                        android:textColor="@color/base"
+                                        android:textSize="@dimen/font_xmini" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <ImageView
+                                onClickCommand="@{lcOrderPaidDetailsViewModel.weChatOnClickCommand}"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp_10"
+                                android:src="@drawable/svg_wechat" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_10"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/textBlackSmall"
+                                android:text="@string/str_order_end_buy"
+                                android:textSize="@dimen/font_mini" />
+
+                            <View
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/dp_10"
+                                android:layout_weight="1" />
+
+                            <TextView
+                                style="@style/textBlackNormal"
+                                android:layout_width="wrap_content"
+                                android:gravity="center"
+                                android:text="@{lcOrderPaidDetailsViewModel.orderEnd6}"
+                                android:textColor="@color/base"
+                                android:textSize="@dimen/font_lager"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!--卖-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:orientation="vertical"
+                        android:padding="@dimen/dp_10"
+                        android:visibility="@{lcOrderPaidDetailsViewModel.isBuyOrSell ? View.GONE : View.VISIBLE}"
+                        app:bl_corners_radius="2dp"
+                        app:bl_solid_color="@color/white">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <!--银行卡支付-->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:paddingBottom="8dp"
+                                android:paddingLeft="@dimen/dp_10"
+                                android:paddingRight="@dimen/dp_10"
+                                android:paddingTop="8dp"
+                                android:visibility="@{lcOrderPaidDetailsViewModel.isBankPay ? View.VISIBLE : View.GONE}">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/svg_bankpay" />
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/dp_10"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            style="@style/textBlackSmall"
+                                            android:text="@{lcOrderPaidDetailsViewModel.bankPayName}" />
+
+                                        <TextView
+                                            style="@style/textBlackSmall"
+                                            android:layout_marginLeft="@dimen/dp_10"
+                                            android:text="@{lcOrderPaidDetailsViewModel.bankPayAddr}" />
+
+                                        <ImageView
+                                            onClickCommand="@{lcOrderPaidDetailsViewModel.cardOnClickCommand}"
+                                            android:layout_width="20dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="@dimen/dp_10"
+                                            android:src="@drawable/svg_copy2" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            style="@style/textBlackSmall"
+                                            android:text="@{lcOrderPaidDetailsViewModel.bankPayOpenBank}" />
+
+                                        <TextView
+                                            style="@style/textBlackSmall"
+                                            android:layout_marginLeft="@dimen/dp_10"
+                                            android:text="@{lcOrderPaidDetailsViewModel.bankPayBranch}" />
+
+                                        <TextView
+                                            style="@style/textBlackSmall"
+                                            android:text="@string/str_pay_tips"
+                                            android:textColor="@color/base" />
+
+                                    </LinearLayout>
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <!--支付宝支付-->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:paddingBottom="8dp"
+                                android:paddingLeft="@dimen/dp_10"
+                                android:paddingRight="@dimen/dp_10"
+                                android:paddingTop="8dp"
+                                android:visibility="@{lcOrderPaidDetailsViewModel.isAliPay ? View.VISIBLE : View.GONE}">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/svg_alipay" />
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/dp_10"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            style="@style/textBlackSmall"
+                                            android:text="@{lcOrderPaidDetailsViewModel.aliPayName}" />
+
+                                        <TextView
+                                            style="@style/textBlackSmall"
+                                            android:layout_marginLeft="@dimen/dp_10"
+                                            android:text="@{lcOrderPaidDetailsViewModel.aliPayAddr}" />
+
+                                        <ImageView
+                                            onClickCommand="@{lcOrderPaidDetailsViewModel.alipayOnClickCommand}"
+                                            android:layout_width="20dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="@dimen/dp_10"
+                                            android:src="@drawable/svg_copy2" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            style="@style/textBlackSmall"
+                                            android:text="@string/str_pay_tips"
+                                            android:textColor="@color/base" />
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <ImageView
+                                    onClickCommand="@{lcOrderPaidDetailsViewModel.alPayOnClickCommand}"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/dp_10"
+                                    android:src="@drawable/svg_ali" />
+
+                            </LinearLayout>
+
+                            <!--微信支付-->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:paddingBottom="8dp"
+                                android:paddingLeft="@dimen/dp_10"
+                                android:paddingRight="@dimen/dp_10"
+                                android:paddingTop="8dp"
+                                android:visibility="@{lcOrderPaidDetailsViewModel.isWeChatPay ? View.VISIBLE : View.GONE}">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/svg_wechatpay" />
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/dp_10"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            style="@style/textBlackSmall"
+                                            android:text="@{lcOrderPaidDetailsViewModel.weChatName}" />
+
+                                        <TextView
+                                            style="@style/textBlackSmall"
+                                            android:layout_marginLeft="@dimen/dp_10"
+                                            android:text="@{lcOrderPaidDetailsViewModel.weChatAddr}" />
+
+                                        <ImageView
+                                            onClickCommand="@{lcOrderPaidDetailsViewModel.weChatPayOnClickCommand}"
+                                            android:layout_width="20dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="@dimen/dp_10"
+                                            android:src="@drawable/svg_copy2" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            style="@style/textBlackSmall"
+                                            android:text="@string/str_pay_tips"
+                                            android:textColor="@color/base" />
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <ImageView
+                                    onClickCommand="@{lcOrderPaidDetailsViewModel.weChatOnClickCommand}"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/dp_10"
+                                    android:src="@drawable/svg_wechat" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_10"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/textBlackSmall"
+                                android:text="@string/str_order_end_sell"
+                                android:textSize="@dimen/font_mini" />
+
+                            <View
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/dp_10"
+                                android:layout_weight="1" />
+
+                            <TextView
+                                style="@style/textBlackNormal"
+                                android:layout_width="wrap_content"
+                                android:gravity="center"
+                                android:text="@{lcOrderPaidDetailsViewModel.orderEnd6}"
+                                android:textColor="@color/base"
+                                android:textSize="@dimen/font_lager"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="16dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center_vertical"
                         android:orientation="vertical"
-                        android:paddingBottom="12dp"
-                        android:paddingTop="12dp"
-                        app:bl_corners_radius="4dp"
-                        app:bl_solid_color="@color/white">
-
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TextView
-                                style="@style/textBlackNormal"
-                                android:layout_width="match_parent"
-                                android:gravity="center"
-                                android:text="@{lcOrderPaidDetailsViewModel.money}"
-                                android:textSize="@dimen/font_xxlager"
-                                android:textStyle="bold"/>
-
-                            <TextView
-                                style="@style/textBlackNormal"
-                                android:layout_width="match_parent"
-                                android:layout_marginBottom="12dp"
-                                android:layout_marginTop="8dp"
-                                android:gravity="center"
-                                android:text="@{lcOrderPaidDetailsViewModel.typeTips}"
-                                android:textColor="@{lcOrderPaidDetailsViewModel.isBuyOrSell ? @color/green : @color/gray_common}"/>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:orientation="horizontal">
-
-                                <View
-                                    android:layout_width="6dp"
-                                    android:layout_height="12dp"
-                                    app:bl_corners_bottomRightRadius="6dp"
-                                    app:bl_corners_topRightRadius="6dp"
-                                    app:bl_solid_color="@color/commission_bg"/>
-
-                                <View
-                                    style="@style/line_ccc"
-                                    android:layout_weight="1"/>
-
-                                <View
-                                    android:layout_width="6dp"
-                                    android:layout_height="12dp"
-                                    app:bl_corners_bottomLeftRadius="6dp"
-                                    app:bl_corners_topLeftRadius="6dp"
-                                    app:bl_solid_color="@color/commission_bg"/>
-                            </LinearLayout>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            style="@style/ll_item_56">
-
-                            <TextView
-                                style="@style/textBlackNormal"
-                                android:layout_width="32dp"
-                                android:layout_height="32dp"
-                                android:gravity="center"
-                                android:text="@{lcOrderPaidDetailsViewModel.nameShort}"
-                                android:textStyle="bold"
-                                app:bl_corners_radius="20dp"
-                                app:bl_solid_color="@color/base"/>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="12dp"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    style="@style/textBlackNormal"
-                                    android:text="@{lcOrderPaidDetailsViewModel.name}"/>
-
-                                <TextView
-                                    style="@style/textGrayCommonFont13"
-                                    android:layout_marginTop="4dp"
-                                    android:text="@{lcOrderPaidDetailsViewModel.tradeUserTips}"/>
-                            </LinearLayout>
-
-                            <TextView
-                                onClickCommand="@{lcOrderPaidDetailsViewModel.chatOnClickCommand}"
-                                style="@style/textGrayCommonNormal"
-                                android:layout_marginLeft="12dp"
-                                android:drawableLeft="@drawable/svg_communicate"
-                                android:drawablePadding="4dp"
-                                android:paddingBottom="6dp"
-                                android:paddingLeft="10dp"
-                                android:paddingRight="10dp"
-                                android:paddingTop="6dp"
-                                android:text="@string/str_go_chat"
-                                app:bl_corners_radius="4dp"
-                                app:bl_solid_color="@color/white"
-                                app:bl_stroke_color="@color/gray_common"
-                                app:bl_stroke_width="1px"/>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <View
-                                style="@style/line_ccc"/>
-
-                            <LinearLayout
-                                style="@style/ll_item_48">
-
-                                <TextView
-                                    style="@style/textBlackNormal"
-                                    android:layout_weight="1"
-                                    android:text="@string/str_paypay"
-                                    android:textStyle="bold"/>
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:src="@drawable/svg_wechatpay"
-                                    android:visibility="@{lcOrderPaidDetailsViewModel.isWeChatPay ? View.VISIBLE : View.GONE}"/>
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="12dp"
-                                    android:src="@drawable/svg_alipay"
-                                    android:visibility="@{lcOrderPaidDetailsViewModel.isAliPay ? View.VISIBLE : View.GONE}"/>
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="12dp"
-                                    android:src="@drawable/svg_bankpay"
-                                    android:visibility="@{lcOrderPaidDetailsViewModel.isBankPay ? View.VISIBLE : View.GONE}"/>
-                            </LinearLayout>
-                        </LinearLayout>
-
-                        <View
-                            style="@style/line_ccc"/>
-
-                        <LinearLayout
-                            style="@style/ll_item_48">
-
-                            <TextView
-                                style="@style/textBlackNormal"
-                                android:layout_weight="1"
-                                android:text="@string/str_price_single"/>
-
-                            <TextView
-                                style="@style/textBlackNormal"
-                                android:text="@{lcOrderPaidDetailsViewModel.price}"/>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            style="@style/ll_item_48">
-
-                            <TextView
-                                style="@style/textBlackNormal"
-                                android:layout_weight="1"
-                                android:text="@string/number"/>
-
-                            <TextView
-                                style="@style/textBlackNormal"
-                                android:text="@{lcOrderPaidDetailsViewModel.number}"/>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            style="@style/ll_item_48">
-
-                            <TextView
-                                style="@style/textBlackNormal"
-                                android:layout_weight="1"
-                                android:text="@string/str_money"/>
-
-                            <TextView
-                                style="@style/textBlackNormal"
-                                android:text="@{lcOrderPaidDetailsViewModel.money2}"/>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            style="@style/ll_item_48">
-
-                            <TextView
-                                style="@style/textBlackNormal"
-                                android:layout_weight="1"
-                                android:text="@string/str_createtime"/>
-
-                            <TextView
-                                style="@style/textBlackNormal"
-                                android:text="@{lcOrderPaidDetailsViewModel.createTime}"/>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            style="@style/ll_item_48">
-
-                            <TextView
-                                style="@style/textBlackNormal"
-                                android:text="@string/str_order_sn"/>
-
-                            <TextView
-                                style="@style/textBlackNormal"
-                                android:layout_weight="1"
-                                android:gravity="right"
-                                android:text="@{lcOrderPaidDetailsViewModel.orderSn}"/>
-
-                            <ImageView
-                                onClickCommand="@{lcOrderPaidDetailsViewModel.orderSnOnClickCommand}"
-                                android:layout_width="22dp"
-                                android:layout_height="22dp"
-                                android:layout_marginLeft="8dp"
-                                android:src="@drawable/svg_copy"/>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            style="@style/ll_item_48">
-
-                            <TextView
-                                style="@style/textBlackNormal"
-                                android:text="@string/str_reference_sn"/>
-
-                            <TextView
-                                style="@style/textBlackNormal"
-                                android:layout_weight="1"
-                                android:gravity="right"
-                                android:text="@{lcOrderPaidDetailsViewModel.referenceSn}"/>
-
-                            <ImageView
-                                onClickCommand="@{lcOrderPaidDetailsViewModel.referenceSnOnClickCommand}"
-                                android:layout_width="22dp"
-                                android:layout_height="22dp"
-                                android:layout_marginLeft="8dp"
-                                android:src="@drawable/svg_copy"/>
-                        </LinearLayout>
+                        android:padding="@dimen/dp_10">
 
                         <TextView
-                            style="@style/textBlackNormal"
-                            onClickCommand="@{lcOrderPaidDetailsViewModel.submitOnClickCommand}"
+                            style="@style/textBlackSmall"
                             android:layout_width="match_parent"
-                            android:layout_height="?attr/actionBarSize"
-                            android:layout_margin="16dp"
                             android:gravity="center"
-                            android:text="@{lcOrderPaidDetailsViewModel.btnTV}"
-                            android:textColor="@color/black"
-                            android:textStyle="bold"
-                            app:bl_corners_radius="4dp"
-                            app:bl_pressed_color="@color/base_dark"
-                            app:bl_unpressed_color="@color/base"
-                            tools:ignore="MissingPrefix"/>
+                            android:text="@string/str_order_warn_title"
+                            android:textColor="@color/color_stroke" />
+
+                        <TextView
+                            style="@style/textBlackSmall"
+                            android:layout_marginTop="20dp"
+                            android:lineSpacingExtra="@dimen/dp_4"
+                            android:text="@string/str_order_warn_content"
+                            android:textColor="@color/color_stroke"
+                            android:textSize="@dimen/font_mini" />
                     </LinearLayout>
 
                 </LinearLayout>
 
             </android.support.v4.widget.NestedScrollView>
-
         </com.spark.chiefwallet.ui.progresslayout.ProgressLinearLayout>
+
+        <!--底部布局-->
+        <LinearLayout
+            style="@style/ll_item_48"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingBottom="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_10">
+
+            <LinearLayout
+                onClickCommand="@{lcOrderPaidDetailsViewModel.chatOnClickCommand}"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@color/base"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/svg_chat" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/textBlackNormal"
+                onClickCommand="@{lcOrderPaidDetailsViewModel.titleRightOnClickCommand}"
+                android:layout_height="40dp"
+                android:layout_marginLeft="16dp"
+                android:layout_weight="1"
+                android:background="@color/color_unchecked"
+                android:gravity="center"
+                android:text="@{lcOrderPaidDetailsViewModel.orderBtn1}"
+                android:textColor="@color/black" />
+
+            <TextView
+                style="@style/textBlackNormal"
+                onClickCommand="@{lcOrderPaidDetailsViewModel.submitOnClickCommand}"
+                android:layout_height="40dp"
+                android:layout_marginLeft="16dp"
+                android:layout_weight="1"
+                android:background="@color/base"
+                android:gravity="center"
+                android:text="@{lcOrderPaidDetailsViewModel.orderBtn2}"
+                android:textColor="@color/white" />
+        </LinearLayout>
     </LinearLayout>
 </layout>

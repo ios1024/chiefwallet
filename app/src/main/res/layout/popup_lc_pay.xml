@@ -5,8 +5,8 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:orientation="vertical"
-              app:bl_corners_topLeftRadius="14dp"
-              app:bl_corners_topRightRadius="14dp"
+              app:bl_corners_topLeftRadius="3dp"
+              app:bl_corners_topRightRadius="3dp"
               app:bl_solid_color="@color/gray_456">
 
     <LinearLayout
@@ -175,7 +175,7 @@
             android:layout_margin="16dp"
             android:gravity="center"
             android:text="@string/str_buy_now"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textStyle="bold"
             app:bl_corners_radius="4dp"
             app:bl_pressed_color="@color/base_dark"

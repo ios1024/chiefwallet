@@ -823,4 +823,32 @@
 
     <string name="buy_only">Buy</string>
     <string name="sell_only">Sell</string>
+    <string name="str_trade_type_buy_money">Purchase amount(CNY)</string>
+    <string name="str_trade_type_sell">The sale amount(CNY)</string>
+    <string name="str_trade_amount_tag">The number of deals</string>
+    <string name="str_trade_pay">Real payment(CNY)</string>
+    <string name="str_can_banlance">Available balance</string>
+    <string name="str_trade_type_sell_amount">Sell quantity</string>
+    <string name="str_enter_buy_money">Purchase amount</string>
+    <string name="str_enter_sell_money">The sale amount</string>
+    <string name="str_enter_buy_amount">Purchase quantity</string>
+    <string name="str_enter_sell_amount">Quantity for sale</string>
+    <string name="str_buy_all">All buy</string>
+    <string name="str_sell_all">All the sale</string>
+    <string name="str_pwd_forget">Forgot password</string>
+    <string name="str_pay_tips">(Please note 6 digits after the end number of the order)</string>
+    <string name="str_appeal">&#160;Complaint&#160;</string>
+    <string name="str_order_warn_title">— Trading to remind —</string>
+    <string name="str_order_warn_content">1.Your remittance will go directly to the sellers account, and the digital assets sold by the seller during the transaction are managed and protected by the platform.\n
+        2.Please complete the payment within the specified time and be sure to click.</string>
+    <string name="str_order_end_buy">Please note 6 digits after the end number of the order in the payment information:</string>
+    <string name="str_order_end_sell">Please note the 6 digits after the end number of the order in the payment information:</string>
+    <string name="str_order_state_unpay">Please payment</string>
+    <string name="str_please_within2">Due in</string>
+    <string name="str_please_within_suffix">Internal payment to seller</string>
+    <string name="str_please_within_suffix2">Within receipt of buyers payment</string>
+    <string name="str_single_price">The unit price:&#160;</string>
+    <string name="str_release">Release&#160;</string>
+    <string name="str_release_please">Please release</string>
+    <string name="str_find_pay_info">Please find the payment collect</string>
 </resources>

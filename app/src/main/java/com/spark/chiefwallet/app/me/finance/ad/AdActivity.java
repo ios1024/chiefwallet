@@ -57,7 +57,7 @@ public class AdActivity extends BaseActivity<ActivityAdBinding, AdViewModel> {
         //TitleSet
         mTitleModel = new TitleBean();
         mTitleModel.setShowRightImg(false);
-        binding.adTitle.titleRightImg.setImageDrawable(getResources().getDrawable(R.drawable.svg_filter));
+        binding.adTitle.titleRightImg.setImageDrawable(getResources().getDrawable(R.drawable.svg_fliter));
         binding.adTitle.setViewTitle(mTitleModel);
         setTitleListener(binding.adTitle.titleRootLeft, binding.adTitle.titleRootRight);
 

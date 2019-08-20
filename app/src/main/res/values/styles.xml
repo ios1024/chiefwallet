@@ -287,4 +287,11 @@
         <item name="android:textSize">@dimen/font_small</item>
         <item name="android:textColor">@color/black</item>
     </style>
+
+    <!--新分割线-->
+    <style name="line_div">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/color_unchecked</item>
+    </style>
 </resources>

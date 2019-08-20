@@ -448,7 +448,7 @@ public class FindPageResult implements Parcelable {
              * @return
              */
             public String formatNum() {
-                return MathUtils.getRundNumber(remainAmount, 2, null) + " " + coinName;
+                return MathUtils.getRundNumber(remainAmount, 8, null) + " " + coinName;
             }
 
             /**

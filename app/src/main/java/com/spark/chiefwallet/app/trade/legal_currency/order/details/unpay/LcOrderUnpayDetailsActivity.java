@@ -20,7 +20,6 @@ import com.spark.otcclient.pojo.OrderDetailsResult;
 
 import me.spark.mvvm.base.BaseActivity;
 import me.spark.mvvm.http.impl.OnRequestListener;
-import me.spark.mvvm.utils.LogUtils;
 
 /**
  * ================================================
@@ -54,7 +53,6 @@ public class LcOrderUnpayDetailsActivity extends BaseActivity<ActivityLcOrderUnp
         StatueBarUtils.setStatusBarLightMode(this, true);
         StatueBarUtils.addMarginTopEqualStatusBarHeight(binding.fakeStatusBar);
         StatueBarUtils.setStatusBarColor(this, ContextCompat.getColor(this, R.color.commission_bg));
-        binding.title.setText(App.getInstance().getApplicationContext().getString(R.string.str_unpay));
         viewModel.initContext(this);
     }
 
@@ -76,13 +74,11 @@ public class LcOrderUnpayDetailsActivity extends BaseActivity<ActivityLcOrderUnp
         viewModel.initViewDate(orderDetailsBean, new OnRequestListener<OrderDetailsResult>() {
             @Override
             public void onSuccess(OrderDetailsResult orderDetailsResult) {
-                binding.timeTips.setText("*" + App.getInstance().getApplicationContext().getString(R.string.str_please_within) + " " + orderDetailsResult.getData().getTimeLimit() + " " + App.getInstance().getApplicationContext().getString(R.string.str_complete_within));
                 timeCountDown = (long) orderDetailsResult.getData().getTimeLimit() * 60 * 1000 - (System.currentTimeMillis() - orderDetailsResult.getData().getCreateTime());
-                LogUtils.e("timeCountDown", timeCountDown);
                 if (orderDetailsResult.getData().getOrderType().equals("0")) {
-                    binding.countdownViewBuy.start(timeCountDown);
+                    binding.countdownView.start(timeCountDown);
                 } else {
-                    binding.countdownViewSell.start(timeCountDown);
+                    binding.countdownView.start(timeCountDown);
                 }
                 if (binding.root.isLoadingCurrentState()) binding.root.showContent();
             }

@@ -52,9 +52,7 @@ public class LcOrderPaidDetailsActivity extends BaseActivity<ActivityLcOrderPaid
         StatueBarUtils.setStatusBarLightMode(this, true);
         StatueBarUtils.addMarginTopEqualStatusBarHeight(binding.fakeStatusBar);
         StatueBarUtils.setStatusBarColor(this, ContextCompat.getColor(this, R.color.commission_bg));
-        binding.title.setText(App.getInstance().getApplicationContext().getString(R.string.str_paid));
         viewModel.initContext(this);
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
     }
 
     @Override

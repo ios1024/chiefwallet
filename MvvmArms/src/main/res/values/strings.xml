@@ -725,7 +725,7 @@
     <string name="str_price_cny">价格(CNY)</string>
     <string name="str_amount_btc">数量(BTC)</string>
     <string name="str_money_acturl">实际成交(CNY)</string>
-    <string name="str_money_all">交易总共(CNY)</string>
+    <string name="str_money_all">交易总额(CNY)</string>
     <string name="str_lock_up">锁仓</string>
     <string name="str_lock_up_amount">锁仓数量</string>
     <string name="str_release_amount">已释放数量</string>
@@ -823,4 +823,32 @@
 
     <string name="buy_only">买</string>
     <string name="sell_only">卖</string>
+    <string name="str_trade_type_buy_money">购买金额(CNY)</string>
+    <string name="str_trade_type_sell">出售金额(CNY)</string>
+    <string name="str_trade_amount_tag">交易数量</string>
+    <string name="str_trade_pay">实付款(CNY)</string>
+    <string name="str_can_banlance">可用余额</string>
+    <string name="str_trade_type_sell_amount">出售数量</string>
+    <string name="str_enter_buy_money">请输入购买金额</string>
+    <string name="str_enter_sell_money">请输入出售金额</string>
+    <string name="str_enter_buy_amount">请输入购买数量</string>
+    <string name="str_enter_sell_amount">请输入出售数量</string>
+    <string name="str_buy_all">全部买入</string>
+    <string name="str_sell_all">全部出售</string>
+    <string name="str_pwd_forget">忘记密码</string>
+    <string name="str_pay_tips">(付款请备注订单尾号后6位)</string>
+    <string name="str_appeal">&#160;申诉&#160;</string>
+    <string name="str_order_warn_title">— 交易提醒 —</string>
+    <string name="str_order_warn_content">1、您的汇款将直接进入卖方账户，交易过程中卖方出售的数字资产由平台托管保护。\n
+        2、请在规定时间内完成付款，并务必点击。我已付款。卖方确认收款后，系统会将数字资产划转到您的账户。</string>
+    <string name="str_order_end_buy">请在付款信息中备注订单尾号后6位：</string>
+    <string name="str_order_end_sell">请留意付款信息中备注订单尾号后6位：</string>
+    <string name="str_order_state_unpay">请付款</string>
+    <string name="str_please_within2">预计在</string>
+    <string name="str_please_within_suffix">内付款给卖家</string>
+    <string name="str_please_within_suffix2">内收到买家付款</string>
+    <string name="str_single_price">单价:&#160;</string>
+    <string name="str_release">释放</string>
+    <string name="str_release_please">请释放</string>
+    <string name="str_find_pay_info">请查收对方付款</string>
 </resources>
