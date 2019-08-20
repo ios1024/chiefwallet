@@ -66,7 +66,6 @@ public class PropertyDetailsActivity extends BaseActivity<ActivityPropertyDetail
     private boolean isFlilterResult = true;
     private String filterTypeSelect = "1,2";//充提
 
-    //改到这  2019-.8-20
     @Override
     public int initContentView(Bundle savedInstanceState) {
         return R.layout.activity_property_details;
@@ -90,7 +89,8 @@ public class PropertyDetailsActivity extends BaseActivity<ActivityPropertyDetail
             binding.hide3.setVisibility(View.VISIBLE);
             binding.hide0.setVisibility(View.GONE);
         } else {
-            filterTypeSelect = "1,2";//充提
+//            filterTypeSelect = "1,2";//充提//好像只能查询某一种
+            filterTypeSelect = "2";//充提
             binding.tvBusiType.setText(getResources().getString(R.string.financial_record2));
             binding.hide1.setVisibility(View.VISIBLE);
             binding.hide2.setVisibility(View.VISIBLE);
@@ -208,6 +208,7 @@ public class PropertyDetailsActivity extends BaseActivity<ActivityPropertyDetail
     private void loadMore() {
 
         if (!isFlilterResult) {
+
             viewModel.loadPageDate(pageIndex, new OnRequestListener<CoinTransDetailsResult>() {
                 @Override
                 public void onSuccess(CoinTransDetailsResult coinTransDetailsResult) {
@@ -296,4 +297,6 @@ public class PropertyDetailsActivity extends BaseActivity<ActivityPropertyDetail
                 break;
         }
     }
+
+
 }

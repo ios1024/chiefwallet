@@ -10,6 +10,7 @@ import com.android.databinding.library.baseAdapters.BR;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.spark.acclient.pojo.CoinTransDetailsResult;
+import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.R;
 
 import java.util.List;
@@ -33,6 +34,27 @@ public class PropertyDetailsAdapter extends BaseQuickAdapter<CoinTransDetailsRes
         ViewDataBinding binding = helper.getBinding();
         binding.setVariable(BR.propertyDetails, item);
         binding.executePendingBindings();
+
+
+            if (item.getValueType().equals("5")) {//币币转法币
+                helper.setVisible(R.id.tv_typeall, false);
+                helper.setVisible(R.id.ll_type, true);
+                helper.setText(R.id.tv_type1, "币币");
+                helper.setTextColor(R.id.tv_type1, App.getInstance().getResources().getColor(R.color.card_bg));
+                helper.setText(R.id.tv_type2, "法币");
+                helper.setTextColor(R.id.tv_type2, App.getInstance().getResources().getColor(R.color.zfb_bg));
+
+            } else if (item.getValueType().equals("3")) {
+                helper.setVisible(R.id.tv_typeall, false);
+                helper.setVisible(R.id.ll_type, true);
+                helper.setText(R.id.tv_type1, "法币");
+                helper.setTextColor(R.id.tv_type1, App.getInstance().getResources().getColor(R.color.zfb_bg));
+                helper.setText(R.id.tv_type2, "币币");
+                helper.setTextColor(R.id.tv_type2, App.getInstance().getResources().getColor(R.color.card_bg));
+            } else
+                helper.setVisible(R.id.ll_type, false);
+
+
     }
 
 

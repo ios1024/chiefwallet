@@ -64,6 +64,7 @@
                 android:gravity="center"
                 android:text="@string/financial_log"
                 android:textColor="@color/gray_a4"
+                onClickCommand="@{propertyDetailsViewModel.financialCommand}"
                 android:textSize="@dimen/font_small" />
 
         </LinearLayout>

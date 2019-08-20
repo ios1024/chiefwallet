@@ -83,6 +83,11 @@ public class PropertyRecordActivity extends BaseActivity<ActivityPropertyRecordB
                 mTitleModel.setTitleName(getString(R.string.mention_record));
                 recordTypeStr = "2";
                 break;
+                //改到这  查询币币全部充值提现记录好像有问题  2019-08-21
+//            case 1:
+//                mTitleModel.setTitleName(getString(R.string.financial_record2));//查询全部提转
+//                recordTypeStr = "1,2";
+//                break;
             case 2:
                 mTitleModel.setTitleName(getString(R.string.transfer_record));
                 recordTypeStr = "3,4";
@@ -99,7 +104,7 @@ public class PropertyRecordActivity extends BaseActivity<ActivityPropertyRecordB
                 coinTypeStr = "CFD";
                 break;
         }
-        mTitleModel.setShowRightImg(true);
+        mTitleModel.setShowRightImg(false);
         mTitleModel.setShowTitleLine(true);
         binding.propertyRecordDetailsTitle.titleRightImg.setImageDrawable(getResources().getDrawable(R.drawable.svg_filter));
         binding.propertyRecordDetailsTitle.setViewTitle(mTitleModel);
