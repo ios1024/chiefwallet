@@ -28,6 +28,7 @@
     <color name="gray_70">#707070</color>
     <color name="gray_456">#F4F5f6</color>
     <color name="gray_a4">#A4ABC0</color>
+    <color name="gray_a9">#A9A9A9</color>
     <color name="gray_common">#718495</color>
     <color name="gray_common_8c">#8C718495</color>
     <color name="gray_common_light">#798499</color>
@@ -74,6 +75,16 @@
     <color name="gray_b2">#B2BAD1</color>
     <color name="line_e5">#E5E6EB</color>
     <color name="black_00">#000000</color>
+    <color name="gray_d6">#D6DAE9</color>
 
-
+    <color name="depth_background">#101724</color>
+    <color name="depth_text_color">#587094</color>
+    <color name="depth_buy_line">#1ABB77</color>
+    <color name="depth_sell_line">#E75A35</color>
+    <color name="depth_buy_path">#0F3031</color>
+    <color name="depth_sell_path">#2E2227</color>
+    <color name="depth_selector">#DA30343C</color>
+    <color name="kc_dif_color">#D2C79D</color>
+    <color name="kc_dea_color">#62BEB2</color>
+    <color name="kc_macd_color">#BA8FE8</color>
 </resources>

@@ -86,7 +86,7 @@ public class RecommendCoinFragment extends BaseFragment<FragmentRecommendCoinBin
                 dataBean.setCoinScale(mDataBeans.get(position).getCoinScale());
                 dataBean.setCoinScreenScale(mDataBeans.get(position).getCoinScreenScale());
 
-                ARouter.getInstance().build(ARouterPath.ACTIVITY_QUOTES_KLINE_HTTP)
+                ARouter.getInstance().build(ARouterPath.ACTIVITY_QUOTES_KLINE_CHIEF)
                         .withParcelable("quotesThumbClick", dataBean)
                         .navigation();
             }

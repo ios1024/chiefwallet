@@ -77,7 +77,7 @@ public class QuotesVPFragment extends BaseFragment<FragmentQuotesVpBinding, Quot
         mQuotesThumbAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                ARouter.getInstance().build(ARouterPath.ACTIVITY_QUOTES_KLINE_HTTP)
+                ARouter.getInstance().build(ARouterPath.ACTIVITY_QUOTES_KLINE_CHIEF)
                         .withParcelable("quotesThumbClick", mThumbList.get(position))
                         .navigation();
             }

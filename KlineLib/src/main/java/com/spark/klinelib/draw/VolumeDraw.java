@@ -3,8 +3,10 @@ package com.spark.klinelib.draw;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 
 import com.spark.klinelib.BaseKLineChartView;
@@ -33,6 +35,14 @@ public class VolumeDraw implements IChartDraw<IVolume> {
         pillarWidth = ViewUtil.Dp2Px(context, 4);
     }
 
+    public VolumeDraw(BaseKLineChartView view, int redColor, int greenColor) {
+        Context context = view.getContext();
+        mRedPaint.setColor(redColor);
+        mGreenPaint.setColor(greenColor);
+        pillarWidth = ViewUtil.Dp2Px(context, 4);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void drawTranslated(
             @Nullable IVolume lastPoint, @NonNull IVolume curPoint, float lastX, float curX,
@@ -47,6 +57,7 @@ public class VolumeDraw implements IChartDraw<IVolume> {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void drawHistogram(
             Canvas canvas, IVolume curPoint, IVolume lastPoint, float curX,
             BaseKLineChartView view, int position) {
@@ -55,9 +66,19 @@ public class VolumeDraw implements IChartDraw<IVolume> {
         float top = view.getVolY(curPoint.getVolume());
         int bottom = view.getVolRect().bottom;
         if (curPoint.getClosePrice() >= curPoint.getOpenPrice()) {//涨
-            canvas.drawRect(curX - r, top, curX + r, bottom, mRedPaint);
+            if (bottom - top >= 5f) {
+                canvas.drawRoundRect(curX - r, top, curX + r, bottom, 5f, 5f, mRedPaint);
+                canvas.drawRect(curX - r, top + 5f, curX + r, bottom, mRedPaint);
+            } else {
+                canvas.drawRect(curX - r, top, curX + r, bottom, mRedPaint);
+            }
         } else {
-            canvas.drawRect(curX - r, top, curX + r, bottom, mGreenPaint);
+            if (bottom - top >= 5f) {
+                canvas.drawRoundRect(curX - r, top, curX + r, bottom, 5f, 5f, mGreenPaint);
+                canvas.drawRect(curX - r, top + 5f, curX + r, bottom, mGreenPaint);
+            } else {
+                canvas.drawRect(curX - r, top, curX + r, bottom, mGreenPaint);
+            }
         }
 
     }

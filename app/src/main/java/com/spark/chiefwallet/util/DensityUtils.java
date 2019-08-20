@@ -1,6 +1,9 @@
 package com.spark.chiefwallet.util;
 
 import android.content.Context;
+import android.support.annotation.ColorRes;
+import android.support.annotation.DimenRes;
+import android.support.v4.content.ContextCompat;
 import android.util.TypedValue;
 
 /**
@@ -62,5 +65,13 @@ public class DensityUtils {
     public static int px2sp(Context context, float pxVal) {
         float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
         return (int) (pxVal / fontScale + 0.5);
+    }
+
+    public static int getColor(Context context, @ColorRes int resId) {
+        return ContextCompat.getColor(context, resId);
+    }
+
+    public static float getDimension(Context context, @DimenRes int resId) {
+        return context.getResources().getDimension(resId);
     }
 }

@@ -68,7 +68,7 @@ public class QuotesSearchActivity extends BaseActivity<ActivityQuotesSearchBindi
         mQuotesSerachAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                ARouter.getInstance().build(ARouterPath.ACTIVITY_QUOTES_KLINE_HTTP)
+                ARouter.getInstance().build(ARouterPath.ACTIVITY_QUOTES_KLINE_CHIEF)
                         .withParcelable("quotesThumbClick", mDataBeans.get(position))
                         .navigation();
             }

@@ -57,6 +57,16 @@ public class MainDraw implements IChartDraw<ICandle> {
         paint.setColor(ContextCompat.getColor(context, R.color.chart_line_background));
     }
 
+    public MainDraw(BaseKLineChartView view, int redColor, int greenColor) {
+        Context context = view.getContext();
+        kChartView = (KLineChartView) view;
+        mContext = context;
+        mRedPaint.setColor(redColor);
+        mGreenPaint.setColor(greenColor);
+        mLinePaint.setColor(ContextCompat.getColor(context, R.color.chart_line));
+        paint.setColor(ContextCompat.getColor(context, R.color.chart_line_background));
+    }
+
     public void setStatus(Status status) {
         this.status = status;
     }

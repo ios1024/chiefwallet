@@ -30,6 +30,18 @@ public class DateUtils {
         return getFormatTime(pattern, new Date(time));
     }
 
+    public static String formatKlineTime2(int type, long time) {
+        String pattern;
+        if (type == 5 || type == 6) {
+            pattern = "yyyy-MM-dd";
+        } else if (type == 0) {
+            pattern = "HH:mm";
+        } else {
+            pattern = "MM-dd HH:mm";
+        }
+        return getFormatTime(pattern, new Date(time));
+    }
+
     /**
      * 将时间戳转化成固定格式（默认 yyyy-MM-dd HH:mm:ss 当前时间 ）
      *

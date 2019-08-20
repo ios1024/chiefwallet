@@ -34,7 +34,7 @@
                     android:id="@+id/title_left"
                     android:layout_width="?attr/actionBarSize"
                     android:layout_height="match_parent"
-                    android:padding="18dp"
+                    android:padding="19dp"
                     android:src="@drawable/svg_return"
                     app:bl_ripple_color="@color/gray_ccc"
                     app:bl_ripple_enable="true"
@@ -48,9 +48,10 @@
                     android:background="@color/gray_b2"/>
 
                 <ImageView
+                    android:id="@+id/kline_menu"
                     android:layout_width="?attr/actionBarSize"
                     android:layout_height="match_parent"
-                    android:padding="18dp"
+                    android:padding="19dp"
                     android:src="@drawable/svg_quotes_menu"
                     app:bl_ripple_color="@color/gray_ccc"
                     app:bl_ripple_enable="true"
@@ -62,7 +63,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
-                    android:text="BTC/USD"
+                    android:text="@{klineHttpViewModel.initTitle()}"
                     android:textColor="@color/black_00"
                     android:textSize="@dimen/font_lager"/>
 
@@ -70,7 +71,7 @@
                     android:layout_width="?attr/actionBarSize"
                     android:layout_height="match_parent"
                     android:padding="18dp"
-                    android:src="@drawable/svg_quotes_collect"
+                    android:src="@{klineHttpViewModel.isFavor ? @drawable/svg_quotes_collect_solid : @drawable/svg_quotes_collect}"
                     app:bl_ripple_color="@color/gray_ccc"
                     app:bl_ripple_enable="true"
                     app:bl_solid_color="@color/white"/>
@@ -91,8 +92,266 @@
                     android:layout_height="match_parent"
                     android:descendantFocusability="blocksDescendants"
                     android:orientation="vertical"
-                    android:paddingBottom="50dp">
+                    android:paddingBottom="60dp">
 
+                    <!--价格-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="16dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/textGrayCommonNormal"
+                                android:maxLines="1"
+                                android:text="@{klineHttpViewModel.close}"
+                                android:textColor="@{klineHttpViewModel.convertColor ? @color/fall : @color/rise}"
+                                android:textSize="@dimen/sp_32"
+                                android:textStyle="bold"/>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="13dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    style="@style/textGrayCommonFont13"
+                                    android:maxLines="1"
+                                    android:text="@{klineHttpViewModel.convert}"
+                                    android:textColor="@color/gray_a9"/>
+
+                                <TextView
+                                    style="@style/textGrayCommonFont13"
+                                    android:layout_marginLeft="10dp"
+                                    android:maxLines="1"
+                                    android:text="@{klineHttpViewModel.chg}"
+                                    android:textColor="@{klineHttpViewModel.convertColor ? @color/fall : @color/rise}"/>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="8dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="36dp"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    style="@style/textGrayCommonSmall"
+                                    android:text="@string/high"
+                                    android:textColor="@color/gray_b2"/>
+
+                                <TextView
+                                    style="@style/textGrayCommonSmall"
+                                    android:layout_marginTop="3dp"
+                                    android:text="@string/low"
+                                    android:textColor="@color/gray_b2"/>
+
+                                <TextView
+                                    style="@style/textGrayCommonSmall"
+                                    android:layout_marginTop="3dp"
+                                    android:text="@string/_24h"
+                                    android:textColor="@color/gray_b2"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="right"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    style="@style/textGrayCommonSmall"
+                                    android:maxLines="1"
+                                    android:text="@{klineHttpViewModel._24hourhigh}"
+                                    android:textColor="@color/tab_text_unselected_color"/>
+
+                                <TextView
+                                    style="@style/textGrayCommonSmall"
+                                    android:layout_marginTop="3dp"
+                                    android:maxLines="1"
+                                    android:text="@{klineHttpViewModel._24hourlow}"
+                                    android:textColor="@color/tab_text_unselected_color"/>
+
+                                <TextView
+                                    style="@style/textGrayCommonSmall"
+                                    android:layout_marginTop="3dp"
+                                    android:maxLines="1"
+                                    android:text="@{klineHttpViewModel._24hourcount}"
+                                    android:textColor="@color/tab_text_unselected_color"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:background="@color/gray_f5"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="15dp">
+
+                        <com.spark.chiefwallet.ui.tablayout.CommonTabLayout
+                            android:id="@+id/kline_tab"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:background="@color/white"
+                            android:textSize="@dimen/font_mini"
+                            app:tl_iconVisible="false"
+                            app:tl_indicator_color="@color/tab_indicator_select_color"
+                            app:tl_indicator_corner_radius="2dp"
+                            app:tl_indicator_height="4dp"
+                            app:tl_indicator_width="4dp"
+                            app:tl_tab_padding="7dp"
+                            app:tl_tab_space_equal="false"
+                            app:tl_textSelectColor="@color/tab_indicator_select_color"
+                            app:tl_textUnselectColor="@color/gray_b2"/>
+
+
+                        <ImageView
+                            android:id="@+id/kline_load_full_screen"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:paddingLeft="20dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:src="@drawable/svg_full_screen"/>
+                    </LinearLayout>
+
+                    <View
+                        style="@style/line_ccc"
+                        android:background="@color/gray_d6"/>
+
+                    <!--kline-->
+                    <com.spark.klinelib.KLineChartView
+                        android:id="@+id/klineChartView"
+                        android:layout_width="match_parent"
+                        android:layout_height="336dp"
+                        app:kc_dea_color="@color/kc_dea_color"
+                        app:kc_dif_color="@color/kc_dif_color"
+                        app:kc_gre_color="@color/rise"
+                        app:kc_grid_line_color="@color/gray_d6"
+                        app:kc_grid_line_width="1px"
+                        app:kc_macd_color="@color/kc_macd_color"
+                        app:kc_red_color="@color/fall"
+                        app:kc_text_color="@color/black"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:background="@color/gray_f5"/>
+
+                    <TextView
+                        style="@style/textBlackSmall"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="深度"
+                        android:textStyle="bold"/>
+
+                    <View
+                        style="@style/line_ccc"
+                        android:background="@color/gray_d6"/>
+
+                    <!--depth view-->
+                    <com.spark.chiefwallet.ui.DepthMapView
+                        android:id="@+id/depthMapView"
+                        android:layout_width="match_parent"
+                        android:layout_height="145dp"
+                        android:paddingTop="5dp"
+                        app:background_color="@color/white"
+                        app:buy_line_color="@color/rise_dark"
+                        app:buy_path_color="@color/rise"
+                        app:circle_radius="8dp"
+                        app:dot_radius="1.5dp"
+                        app:line_count="4"
+                        app:line_width="1.5dp"
+                        app:sell_line_color="@color/fall_dark"
+                        app:sell_path_color="@color/fall"
+                        app:text_color="@color/black"
+                        app:text_size="@dimen/font_xmini"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/textGrayCommonFont13"
+                            android:layout_width="28dp"
+                            android:layout_marginLeft="15dp"
+                            android:text="@string/buy_only"
+                            android:textColor="@color/gray_b2"
+                            android:textSize="@dimen/font_xmini"/>
+
+                        <TextView
+                            style="@style/textGrayCommonFont13"
+                            android:text="数量(BTC)"
+                            android:textColor="@color/gray_b2"
+                            android:textSize="@dimen/font_xmini"/>
+
+                        <TextView
+                            style="@style/textGrayCommonFont13"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="价格(USDT)"
+                            android:textColor="@color/gray_b2"
+                            android:textSize="@dimen/font_xmini"/>
+
+                        <TextView
+                            style="@style/textGrayCommonFont13"
+                            android:text="数量(BTC)"
+                            android:textColor="@color/gray_b2"
+                            android:textSize="@dimen/font_xmini"/>
+
+                        <TextView
+                            style="@style/textGrayCommonFont13"
+                            android:layout_width="28dp"
+                            android:layout_marginRight="15dp"
+                            android:gravity="right"
+                            android:text="@string/sell_only"
+                            android:textColor="@color/gray_b2"
+                            android:textSize="@dimen/font_xmini"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/buy_rv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/sell_rv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
                 </LinearLayout>
 
             </com.spark.chiefwallet.ui.VerticalScrollView>

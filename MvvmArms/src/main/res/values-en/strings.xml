@@ -389,6 +389,7 @@
     <string name="order_number">Order number</string>
     <string name="details">Details</string>
     <string name="to_trade">Go to trade</string>
+    <string name="_24h">24H</string>
     <string name="_24h_high">H</string>
     <string name="_24h_low">L</string>
     <string name="_24h_size">24H&#160;</string>
@@ -816,4 +817,10 @@
     <!--home-->
     <string name="min">Min</string>
     <string name="max">Max</string>
+
+    <string name="trust_price">委托价</string>
+    <string name="trust_quantity">委托量</string>
+
+    <string name="buy_only">Buy</string>
+    <string name="sell_only">Sell</string>
 </resources>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="depthSellViewModel"
+            type="com.spark.modulespot.pojo.MarketSymbolResult.DataBean.AskBean"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:bl_ripple_color="@color/gray_ccc"
+        app:bl_ripple_enable="true"
+        app:bl_solid_color="@color/white">
+
+        <TextView
+            style="@style/textBlackSmall"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:text="@{depthSellViewModel.forMatPrice()}"
+            android:textColor="@color/fall"
+            android:textSize="@dimen/font_mini"/>
+
+
+        <TextView
+            style="@style/textBlackSmall"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:maxLines="1"
+            android:layout_marginRight="18dp"
+            android:text="@{depthSellViewModel.forMatAmount()}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_mini"/>
+
+        <TextView
+            style="@style/textGrayCommonFont13"
+            android:layout_width="28dp"
+            android:gravity="right"
+            android:paddingRight="15dp"
+            android:textSize="@dimen/font_mini"
+            android:maxLines="1"
+            android:textColor="@color/gray_b2"
+            android:text="@{depthSellViewModel.index}"/>
+
+    </LinearLayout>
+</layout>

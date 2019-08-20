@@ -389,6 +389,7 @@
     <string name="order_number">订单编号</string>
     <string name="details">详情</string>
     <string name="to_trade">去交易</string>
+    <string name="_24h">24H</string>
     <string name="_24h_high">24H最高</string>
     <string name="_24h_low">24H最低</string>
     <string name="_24h_size">24H量&#160;</string>
@@ -816,4 +817,10 @@
     <!--home-->
     <string name="min">最小</string>
     <string name="max">最大</string>
+
+    <string name="trust_price">委托价</string>
+    <string name="trust_quantity">委托量</string>
+
+    <string name="buy_only">买</string>
+    <string name="sell_only">卖</string>
 </resources>
