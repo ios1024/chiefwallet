@@ -38,7 +38,6 @@ public class PayWayAdapter extends BaseQuickAdapter<PayListBean.DataBean, PayWay
         this.mOnSelectListener = listener;
     }*/
 
-    //改到这 2019-08-19
     public PayWayAdapter(@Nullable List<PayListBean.DataBean> data) {
         super(R.layout.item_pay_way, data);
     }

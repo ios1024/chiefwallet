@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="setUpViewModel"
+            type="com.spark.chiefwallet.app.me.system.setup.SetUpViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/setup_title"
+            layout="@layout/view_title" />
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <!--语言-->
+                    <LinearLayout
+                        style="@style/meItem"
+                        onClickCommand="@{setUpViewModel.languageOnClickCommand}"
+                        app:bl_ripple_color="@color/gray_ccc"
+                        app:bl_ripple_enable="true"
+                        app:bl_solid_color="@color/white">
+
+                        <TextView
+                            style="@style/textBlackNormal"
+                            android:text="@string/language" />
+
+                        <TextView
+                            style="@style/textGrayCommonSmall"
+                            android:layout_marginLeft="8dp"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:text="@{setUpViewModel.languageSelect}"
+                            android:textSize="@dimen/font_13" />
+
+                        <ImageView style="@style/imgEnter" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+                <!--计价方式-->
+                <LinearLayout
+                    style="@style/meItem"
+                    onClickCommand="@{setUpViewModel.valueTypeOnClickCommand}"
+                    app:bl_ripple_color="@color/gray_ccc"
+                    app:bl_ripple_enable="true"
+                    app:bl_solid_color="@color/white">
+
+                    <TextView
+                        style="@style/textBlackNormal"
+                        android:text="计价货币" />
+
+                    <TextView
+                        style="@style/textGrayCommonSmall"
+                        android:layout_marginLeft="8dp"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="人民币CNY"
+                        android:textSize="@dimen/font_13" />
+
+                    <ImageView style="@style/imgEnter" />
+                </LinearLayout>
+                <!--计价方式-->
+                <LinearLayout
+                    style="@style/meItem"
+                    onClickCommand="@{setUpViewModel.valueTypeOnClickCommand}"
+                    app:bl_ripple_color="@color/gray_ccc"
+                    app:bl_ripple_enable="true"
+                    app:bl_solid_color="@color/white">
+
+                    <TextView
+                        style="@style/textBlackNormal"
+                        android:text="颜色调配" />
+
+                    <TextView
+                        style="@style/textGrayCommonSmall"
+                        android:layout_marginLeft="8dp"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="红涨绿跌"
+                        android:textSize="@dimen/font_13" />
+
+                    <ImageView style="@style/imgEnter" />
+                </LinearLayout>
+                <!--计价方式-->
+                <LinearLayout
+                    style="@style/meItem"
+                    onClickCommand="@{setUpViewModel.valueTypeOnClickCommand}"
+                    app:bl_ripple_color="@color/gray_ccc"
+                    app:bl_ripple_enable="true"
+                    app:bl_solid_color="@color/white">
+
+                    <TextView
+                        style="@style/textBlackNormal"
+                        android:text="夜间模式" />
+
+                    <TextView
+                        style="@style/textGrayCommonSmall"
+                        android:layout_marginLeft="8dp"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text=" "
+                        android:textSize="@dimen/font_13" />
+
+                    <ImageView style="@style/imgEnter" />
+                </LinearLayout>
+
+                <!--版本更新-->
+                <LinearLayout
+                    onClickCommand="@{setUpViewModel.versionUpdateClickCommand}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    app:bl_ripple_color="@color/gray_ccc"
+                    app:bl_ripple_enable="true"
+                    app:bl_solid_color="@color/white">
+
+                    <TextView
+                        style="@style/textBlackSmall"
+                        android:text="@string/version_update" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|right"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/isHasNew"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:src="@drawable/svg_new_version"
+                            android:visibility="gone" />
+
+                        <TextView
+                            style="@style/textGrayCommonSmall"
+                            android:layout_marginLeft="4dp"
+                            android:text="@{setUpViewModel.updateVersion}" />
+                    </LinearLayout>
+
+                    <ImageView style="@style/imgEnter" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </LinearLayout>
+</layout>

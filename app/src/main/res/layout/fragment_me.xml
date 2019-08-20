@@ -82,6 +82,7 @@
                         </LinearLayout>
 
                         <ImageView
+                            onClickCommand="@{meViewModel.setupOnClickCommand}"
                             android:layout_width="20dp"
                             android:layout_height="match_parent"
                             android:src="@drawable/svg_setup" />

@@ -92,6 +92,7 @@ public final class ARouterPath {
     public static final String ACTIVITY_ME_VALUETYPE = "/me/system/ValueTypeActivity";
     public static final String ACTIVITY_ME_LANGUAGE = "/me/system/LanguageActivity";
     public static final String ACTIVITY_ME_ABOUT = "/me/system/AboutActivity";
+    public static final String ACTIVITY_ME_ABOUSETUP = "/me/system/setup/SetUpActivity";
     //-system
 
     //me-module---------------------------------------------------------------
