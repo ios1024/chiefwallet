@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
-        <import type="android.view.View"/>
+        <import type="android.view.View" />
 
         <variable
             name="viewTitle"
-            type="com.spark.chiefwallet.bean.TitleBean"/>
+            type="com.spark.chiefwallet.bean.TitleBean" />
     </data>
 
     <LinearLayout
@@ -19,7 +19,7 @@
         <View
             android:id="@+id/fake_status_bar"
             android:layout_width="match_parent"
-            android:layout_height="0dp"/>
+            android:layout_height="0dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -41,7 +41,7 @@
                     android:layout_height="match_parent"
                     android:padding="15dp"
                     android:src="@drawable/svg_back"
-                    android:visibility="@{viewTitle.isShowLeftImg?View.VISIBLE:View.INVISIBLE}"/>
+                    android:visibility="@{viewTitle.isShowLeftImg?View.VISIBLE:View.INVISIBLE}" />
 
                 <TextView
                     android:id="@+id/title_left_tv"
@@ -52,18 +52,36 @@
                     android:text="@{viewTitle.leftTV}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/font_small"
-                    android:visibility="@{viewTitle.isShowLeftTV?View.VISIBLE:View.INVISIBLE}"/>
+                    android:visibility="@{viewTitle.isShowLeftTV?View.VISIBLE:View.INVISIBLE}" />
             </FrameLayout>
 
-            <TextView
-                android:id="@+id/title_name"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@{viewTitle.titleName}"
-                android:textColor="@color/black"
-                android:textSize="@dimen/font_lager"/>
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/title_name_left"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="@{viewTitle.titleNameLeft}"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/font_lager" />
+
+                <TextView
+                    android:id="@+id/title_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="@{viewTitle.titleName}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_lager" />
+
+            </RelativeLayout>
 
             <FrameLayout
                 android:id="@+id/title_root_right"
@@ -77,8 +95,8 @@
                     android:id="@+id/title_right_img"
                     android:layout_width="?attr/actionBarSize"
                     android:layout_height="match_parent"
-                    android:padding="15dp"
-                    android:visibility="@{viewTitle.isShowRightImg?View.VISIBLE:View.INVISIBLE}"/>
+                    android:padding="20dp"
+                    android:visibility="@{viewTitle.isShowRightImg?View.VISIBLE:View.INVISIBLE}" />
 
                 <TextView
                     android:id="@+id/title_right_tv"
@@ -89,13 +107,13 @@
                     android:text="@{viewTitle.rightTV}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/font_small"
-                    android:visibility="@{viewTitle.isShowRightTV?View.VISIBLE:View.INVISIBLE}"/>
+                    android:visibility="@{viewTitle.isShowRightTV?View.VISIBLE:View.INVISIBLE}" />
             </FrameLayout>
         </LinearLayout>
 
         <View
             android:id="@+id/title_line"
             style="@style/line_ccc"
-            android:visibility="@{viewTitle.isShowTitleLine?View.VISIBLE:View.INVISIBLE}"/>
+            android:visibility="@{viewTitle.isShowTitleLine?View.VISIBLE:View.INVISIBLE}" />
     </LinearLayout>
 </layout>

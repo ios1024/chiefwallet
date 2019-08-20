@@ -101,7 +101,7 @@ public class PropertyRecordActivity extends BaseActivity<ActivityPropertyRecordB
         }
         mTitleModel.setShowRightImg(true);
         mTitleModel.setShowTitleLine(true);
-        binding.propertyRecordDetailsTitle.titleRightImg.setImageDrawable(getResources().getDrawable(R.drawable.svg_filter));
+        binding.propertyRecordDetailsTitle.titleRightImg.setImageDrawable(getResources().getDrawable(R.drawable.svg_fliter));
         binding.propertyRecordDetailsTitle.setViewTitle(mTitleModel);
         setTitleListener(binding.propertyRecordDetailsTitle.titleRootLeft, binding.propertyRecordDetailsTitle.titleRootRight);
 

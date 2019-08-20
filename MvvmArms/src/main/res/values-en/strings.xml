@@ -6,6 +6,8 @@
     <string name="trade">Trade</string>
     <string name="invite">Invite</string>
     <string name="me">Mine</string>
+    <string name="home_page">首页</string>
+    <string name="find">发现</string>
 
     <!--splash-->
     <string name="favorites">Favorites</string>
@@ -38,6 +40,9 @@
 6. If the activity is adjusted, the latest rules of SSCoin shall prevail, and SSCoin shall have the right to the final interpretation of the activity</string>
 
     <!--me-->
+    <string name="online_service">在线客服</string>
+    <string name="advertising_management">广告管理</string>
+    <string name="account_security">账户安全</string>
     <string name="finance">Finance</string>
     <string name="myAssets">MyAssets</string>
     <string name="myBill">MyBill</string>
@@ -61,6 +66,15 @@
     <string name="logout_success_check">Login is invalid. Please login again.</string>
 
     <!--注册-->
+    <string name="checklist">请勾选已阅读并同意</string>
+    <string name="retrieve_the_password">找回密码</string>
+    <string name="cell_phone_number">手机号</string>
+    <string name="mailbox">邮箱</string>
+    <string name="next_steps">下一步</string>
+    <string name="confirmation_of_modifications">确认修改</string>
+    <string name="french_currency_assets">法币资产</string>
+    <string name="currency_assets">币币资产</string>
+    <string name="total_assets">总资产(USDT)</string>
     <string name="register_phone">Sign up by Phone</string>
     <string name="register_email">Sign up by Email</string>
     <string name="register_description">One account with all Exchief services!</string>
@@ -100,6 +114,16 @@
     <string name="register_success">Registration success</string>
 
     <!--登录-->
+    <string name="welcome_to_login">欢迎登录</string>
+    <string name="mobile_login">手机登录</string>
+    <string name="mailbox_login">邮箱登录</string>
+    <string name="pwd_error2">请输入密码(6-20位数字，字母组合密码)</string>
+    <string name="enter_again">请再次输入密码</string>
+    <string name="invitation_code">请输入邀请码(非必填)</string>
+    <string name="reading_clauses">我已阅读并同意 Exchief 的 &#x0020;</string>
+    <string name="terms_of_service">服务条款，</string>
+
+
     <string name="login">Login</string>
     <string name="login_tip">Login to Exchief and start a journey of wealth!</string>
     <string name="user_count">Account</string>
@@ -786,4 +810,32 @@
     <string name="str_count">&#160;Count</string>
     <string name="min">Min</string>
     <string name="max">Max</string>
+    <string name="str_trade_type_buy_money">Purchase amount(CNY)</string>
+    <string name="str_trade_type_sell">The sale amount(CNY)</string>
+    <string name="str_trade_amount_tag">The number of deals</string>
+    <string name="str_trade_pay">Real payment(CNY)</string>
+    <string name="str_can_banlance">Available balance</string>
+    <string name="str_trade_type_sell_amount">Sell quantity</string>
+    <string name="str_enter_buy_money">Purchase amount</string>
+    <string name="str_enter_sell_money">The sale amount</string>
+    <string name="str_enter_buy_amount">Purchase quantity</string>
+    <string name="str_enter_sell_amount">Quantity for sale</string>
+    <string name="str_buy_all">All buy</string>
+    <string name="str_sell_all">All the sale</string>
+    <string name="str_pwd_forget">Forgot password</string>
+    <string name="str_pay_tips">(Please note 6 digits after the end number of the order)</string>
+    <string name="str_appeal">&#160;Complaint&#160;</string>
+    <string name="str_order_warn_title">— Trading to remind —</string>
+    <string name="str_order_warn_content">1.Your remittance will go directly to the seller's account, and the digital assets sold by the seller during the transaction are managed and protected by the platform.\n
+        2.Please complete the payment within the specified time and be sure to click.</string>
+    <string name="str_order_end_buy">Please note 6 digits after the end number of the order in the payment information:</string>
+    <string name="str_order_end_sell">Please note the 6 digits after the end number of the order in the payment information:</string>
+    <string name="str_order_state_unpay">Please payment</string>
+    <string name="str_please_within2">Due in</string>
+    <string name="str_please_within_suffix">Internal payment to seller</string>
+    <string name="str_please_within_suffix2">Within receipt of buyer's payment</string>
+    <string name="str_single_price">The unit price:&#160;</string>
+    <string name="str_release">Release&#160;</string>
+    <string name="str_release_please">Please release</string>
+    <string name="str_find_pay_info">Please find the payment collect</string>
 </resources>

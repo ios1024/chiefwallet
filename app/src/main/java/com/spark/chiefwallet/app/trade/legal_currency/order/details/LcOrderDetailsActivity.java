@@ -54,23 +54,7 @@ public class LcOrderDetailsActivity extends BaseActivity<ActivityLcOrderDetailsB
         StatueBarUtils.setStatusBarLightMode(this, true);
         StatueBarUtils.addMarginTopEqualStatusBarHeight(binding.fakeStatusBar);
         StatueBarUtils.setStatusBarColor(this, ContextCompat.getColor(this, R.color.commission_bg));
-
-        switch (orderDetailsBean.getStatus()) {
-            case 0:
-                titleText = App.getInstance().getString(R.string.cancelled);
-                statusDrawable = getResources().getDrawable(R.mipmap.icon_cancel);
-                break;
-            case 3:
-                titleText = App.getInstance().getString(R.string.completed);
-                statusDrawable = getResources().getDrawable(R.mipmap.icon_completed);
-                break;
-            case 4:
-                titleText = App.getInstance().getString(R.string.str_order_appealing);
-                statusDrawable = getResources().getDrawable(R.mipmap.icon_appeal);
-                break;
-        }
-        binding.title.setText(titleText);
-        binding.imgStatus.setImageDrawable(statusDrawable);
+        viewModel.initContext(this);
     }
 
     @Override
@@ -92,22 +76,6 @@ public class LcOrderDetailsActivity extends BaseActivity<ActivityLcOrderDetailsB
             @Override
             public void onSuccess(OrderDetailsResult orderDetailsResult) {
                 if (binding.root.isLoadingCurrentState()) binding.root.showContent();
-                switch (orderDetailsResult.getData().getStatus()) {
-                    case 0:
-                        titleText = App.getInstance().getString(R.string.cancelled);
-                        statusDrawable = getResources().getDrawable(R.mipmap.icon_cancel);
-                        break;
-                    case 3:
-                        titleText = App.getInstance().getString(R.string.completed);
-                        statusDrawable = getResources().getDrawable(R.mipmap.icon_completed);
-                        break;
-                    case 4:
-                        titleText = App.getInstance().getString(R.string.str_order_appealing);
-                        statusDrawable = getResources().getDrawable(R.mipmap.icon_appeal);
-                        break;
-                }
-                binding.title.setText(titleText);
-                binding.imgStatus.setImageDrawable(statusDrawable);
             }
 
             @Override

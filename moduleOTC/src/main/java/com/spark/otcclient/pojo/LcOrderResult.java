@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 import com.spark.otcclient.R;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import me.spark.mvvm.base.BaseApplication;
@@ -219,7 +220,7 @@ public class LcOrderResult implements Parcelable {
             private String actualPayment;
             private int advertiseId;
             private String coinName;
-            private double commission;
+            private BigDecimal commission;
             private String createTime;
             private int customerId;
             private String customerName;
@@ -245,7 +246,7 @@ public class LcOrderResult implements Parcelable {
                 actualPayment = in.readString();
                 advertiseId = in.readInt();
                 coinName = in.readString();
-                commission = in.readDouble();
+                commission = new BigDecimal(in.readString());
                 createTime = in.readString();
                 customerId = in.readInt();
                 customerName = in.readString();
@@ -304,11 +305,11 @@ public class LcOrderResult implements Parcelable {
                 this.coinName = coinName;
             }
 
-            public double getCommission() {
+            public BigDecimal getCommission() {
                 return commission;
             }
 
-            public void setCommission(double commission) {
+            public void setCommission(BigDecimal commission) {
                 this.commission = commission;
             }
 
@@ -542,12 +543,17 @@ public class LcOrderResult implements Parcelable {
                 return typeText;
             }
 
+            public boolean initStatueTypeColor() {
+                return status == 0;
+            }
+
             public String initNumber() {
                 return BaseApplication.getInstance().getString(R.string.number) + "(" + coinName + ")";
             }
 
             public String initNumberText() {
-                return DfUtils.numberFormat(number, number == 0 ? 0 : 8) + " " + coinName;
+                //return DfUtils.numberFormat(number, number == 0 ? 0 : 8) + " " + coinName;
+                return DfUtils.numberFormat(number, number == 0 ? 0 : 8);
             }
 
             public String initMoneyText() {
@@ -558,12 +564,22 @@ public class LcOrderResult implements Parcelable {
                 return DateUtils.formatDate("yyyy.MM.dd HH:mm", createTime);
             }
 
+            public String formatDate2() {
+                return DateUtils.formatDate("HH:mm:ss", createTime);
+            }
+
+            public String getCommissionText() {
+                return commission.toPlainString();
+            }
+
             public String initTradeToUsername() {
                 if (orderType.equals("0")) {
-                    return (initTypeColor() ? BaseApplication.getInstance().getString(R.string.str_seller) + tradeToUsername : BaseApplication.getInstance().getString(R.string.str_buyer) + trateToRealname);
+                    //return (initTypeColor() ? BaseApplication.getInstance().getString(R.string.str_seller) + tradeToUsername : BaseApplication.getInstance().getString(R.string.str_buyer) + trateToRealname);
+                    return initTypeColor() ? "(" + tradeToUsername + ")" : "(" + trateToRealname + ")";
                 }
                 if (orderType.equals("1")) {
-                    return (initTypeColor() ? BaseApplication.getInstance().getString(R.string.str_seller) + trateToRealname : BaseApplication.getInstance().getString(R.string.str_buyer) + tradeToUsername);
+                    //return (initTypeColor() ? BaseApplication.getInstance().getString(R.string.str_seller) + trateToRealname : BaseApplication.getInstance().getString(R.string.str_buyer) + tradeToUsername);
+                    return (initTypeColor() ? "(" + trateToRealname + ")" : "(" + tradeToUsername + ")");
                 }
                 return "";
             }
@@ -578,7 +594,7 @@ public class LcOrderResult implements Parcelable {
                 dest.writeString(actualPayment);
                 dest.writeInt(advertiseId);
                 dest.writeString(coinName);
-                dest.writeDouble(commission);
+                dest.writeString(commission.toPlainString());
                 dest.writeString(createTime);
                 dest.writeInt(customerId);
                 dest.writeString(customerName);

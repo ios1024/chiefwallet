@@ -89,10 +89,11 @@ public class LcVPFragment extends BaseFragment<FragmentLcVpBinding, LcViewModel>
                         @Override
                         public void onSuccess(SpotWalletResult spotWalletResult) {
                             new XPopup.Builder(getContext())
-                                    .moveUpToKeyboard(false)
+                                    .autoOpenSoftInput(true)
                                     .asCustom(new LcTradePopup(getContext(), spotWalletResult.getData(), Constant.lcBuyOrSell, mRecordsBeanList.get(position), new OnOrderCreateListener() {
                                         @Override
                                         public void onOrderCreate(final OrderCreateBean orderCreateBean) {
+                                            showKeyboard(false);
                                             if (orderCreateBean.getOrderType().equals("1")) {
                                                 showDialog(getString(R.string.loading));
                                                 LcTradeClient.getInstance().orderCreate(orderCreateBean, getArguments().getString(COIN_NAME));

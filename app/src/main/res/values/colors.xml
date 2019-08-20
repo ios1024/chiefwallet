@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FFD000</color>
-    <color name="colorPrimaryDark">#FFC000</color>
+    <color name="colorPrimary">#0056BC</color>
+    <color name="colorPrimaryDark">#0056BC</color>
     <color name="colorAccent">#718495</color>
 
-    <color name="base">#FFD000</color>
-    <color name="base_dark">#FFC000</color>
+    <color name="base">#0056BC</color>
+    <color name="base_dark">#0056BC</color>
     <color name="white">#FFFFFFFF</color>
     <color name="black">#333333</color>
     <color name="black21">#FF212121</color>
@@ -15,7 +15,7 @@
     <color name="green_dark">#22AF6C</color>
     <color name="orange">#FF7D46</color>
     <color name="orange_dark">#e16531</color>
-    <color name="gray_ccc">#CCCCCC</color>
+    <color name="gray_ccc">#E6E9F6</color>
     <color name="gray_f7">#F7F7F7</color>
     <color name="gray_f8">#F8F8F8</color>
     <color name="gray_fb">#FBFBFB</color>
@@ -47,4 +47,17 @@
     <color name="color_first_char">#8594C2</color>
     <color name="color_unchecked">#E6E9F6</color>
     <color name="color_stroke">#A4ABC0</color>
+
+    <!--登录注册-->
+    <color name="welcomelogin">#B2BAD1</color>
+    <color name="subscript2">#B2CCEB</color>
+
+    <color name="color_red">#d60b0b</color>
+    <color name="my_bg">#F3F9FD</color>
+    <color name="grey_a5a5a5">#f2f2f2</color>
+    <color name="black_30">#4d000000</color>
+    <color name="my_division">#E6E9F6</color>
+    <color name="mobile_login">#333333</color>
+
+
 </resources>

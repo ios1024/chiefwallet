@@ -73,8 +73,9 @@ public class LcOrderActivity extends BaseActivity<ActivityLcOrderBinding, LcOrde
 
         //TitleSet
         mTitleModel = new TitleBean();
+        mTitleModel.setTitleNameLeft(App.getInstance().getString(R.string.str_order_record));
         mTitleModel.setShowRightImg(true);
-        binding.orderTitle.titleRightImg.setImageDrawable(getResources().getDrawable(R.drawable.svg_filter));
+        binding.orderTitle.titleRightImg.setImageDrawable(getResources().getDrawable(R.drawable.svg_fliter));
         binding.orderTitle.setViewTitle(mTitleModel);
         setTitleListener(binding.orderTitle.titleRootLeft, binding.orderTitle.titleRootRight);
 
@@ -120,6 +121,7 @@ public class LcOrderActivity extends BaseActivity<ActivityLcOrderBinding, LcOrde
                 loadMore();
             }
         }, binding.rvLvOrder);
+
     }
 
     @Override
@@ -275,7 +277,7 @@ public class LcOrderActivity extends BaseActivity<ActivityLcOrderBinding, LcOrde
         if (isRefresh) {
             mLcOrderAdapter.setNewData(data);
             if (size == 0) {
-                mLcOrderAdapter.setEmptyView(R.layout.view_rv_empty, binding.rvLvOrder);
+                mLcOrderAdapter.setEmptyView(R.layout.view_rv_empty_order, binding.rvLvOrder);
             }
         } else {
             if (size > 0) {

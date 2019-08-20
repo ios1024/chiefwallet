@@ -58,7 +58,14 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">@dimen/font_normal</item>
+        <item name="android:textSize">@dimen/font_small</item>
+    </style>
+
+    <style name="textBlueCommonSmall">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/base</item>
+        <item name="android:textSize">@dimen/font_small</item>
     </style>
 
     <style name="textBlackFont13">
@@ -111,6 +118,13 @@
         <item name="android:src">@drawable/svg_enter</item>
     </style>
 
+    <style name="imgEnter2">
+        <item name="android:layout_width">26dp</item>
+        <item name="android:layout_height">26dp</item>
+        <item name="android:layout_marginRight">15dp</item>
+        <item name="android:src">@drawable/svg_enter</item>
+    </style>
+
     <!--meItem-->
     <style name="meTitle">
         <item name="android:layout_width">match_parent</item>
@@ -129,9 +143,24 @@
         <item name="android:gravity">center_vertical</item>
     </style>
 
+    <style name="meItem2">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:layout_marginTop">25dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
     <style name="meItemImg">
         <item name="android:layout_width">20dp</item>
         <item name="android:layout_height">20dp</item>
+    </style>
+
+    <style name="meItemImg2">
+        <item name="android:layout_width">14dp</item>
+        <item name="android:layout_height">16dp</item>
+        <item name="android:layout_marginRight">10dp</item>
     </style>
 
     <style name="ll_match_horizontal_emex">
@@ -199,6 +228,7 @@
         <item name="android:paddingLeft">16dp</item>
         <item name="android:paddingRight">16dp</item>
     </style>
+
     <style name="ll_item_42">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">42dp</item>
@@ -240,5 +270,27 @@
         <item name="x_tabSelectedTextColor">?android:textColorPrimary</item>
         <item name="x_tabGravity">fill</item>
         <item name="x_tabMode">fixed</item>
+    </style>
+    <!--输入框-->
+
+    <style name="editext_create_wallet">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/edittext_bg_selector</item>
+        <item name="android:textCursorDrawable">@drawable/my_cursor</item>
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingRight">0dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColorHint">@color/black_30</item>
+        <item name="android:textSize">@dimen/font_small</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <!--新分割线-->
+    <style name="line_div">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/color_unchecked</item>
     </style>
 </resources>

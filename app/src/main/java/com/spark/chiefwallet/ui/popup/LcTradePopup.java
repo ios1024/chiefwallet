@@ -2,7 +2,6 @@ package com.spark.chiefwallet.ui.popup;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextUtils;
@@ -12,14 +11,12 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.core.BottomPopupView;
 import com.spark.acclient.pojo.SpotWalletResult;
 import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.ui.PointLengthFilter;
 import com.spark.chiefwallet.ui.popup.impl.OnOrderCreateListener;
-import com.spark.chiefwallet.ui.popup.impl.OnTypeChooseListener;
 import com.spark.chiefwallet.ui.toast.Toasty;
 import com.spark.otcclient.pojo.FindPageResult.DataBean.RecordsBean;
 import com.spark.otcclient.pojo.OrderCreateBean;
@@ -29,7 +26,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import me.spark.mvvm.base.BaseApplication;
 import me.spark.mvvm.utils.MathUtils;
 import me.spark.mvvm.utils.SpanUtils;
 import me.spark.mvvm.utils.StringUtils;
@@ -48,10 +44,6 @@ public class LcTradePopup extends BottomPopupView {
     TextView mCoinName;
     @BindView(R.id.price)
     TextView mPrice;
-    @BindView(R.id.buy_type)
-    TextView mBuyType;
-    @BindView(R.id.buy_type_root)
-    LinearLayout mBuyTypeRoot;
     @BindView(R.id.number)
     EditText mNumber;
     @BindView(R.id.limit)
@@ -64,8 +56,6 @@ public class LcTradePopup extends BottomPopupView {
     TextView mOrder;
     @BindView(R.id.cancel)
     TextView mCancel;
-    @BindView(R.id.type_title)
-    TextView mTypeTitle;
     @BindView(R.id.type_unit)
     TextView mTypeUnit;
     @BindView(R.id.ll_limit)
@@ -74,15 +64,32 @@ public class LcTradePopup extends BottomPopupView {
     TextView tvTradeType;
     @BindView(R.id.trade_use)
     TextView mTradeUse;
+    @BindView(R.id.tv_popup_amount)
+    TextView mTvPopupAmount;
+    @BindView(R.id.tv_all)
+    TextView mTvAll;
+    @BindView(R.id.mobile_tv)
+    TextView mobileTv;
+    @BindView(R.id.mobile_view)
+    TextView mobileView;
+    @BindView(R.id.ll_mobile)
+    LinearLayout llMobile;
+    @BindView(R.id.mailbox_tv)
+    TextView mailboxTv;
+    @BindView(R.id.mailbox_view)
+    TextView mailboxView;
+    @BindView(R.id.ll_mailbox)
+    LinearLayout llMailbox;
 
     private Context mContext;
     private RecordsBean mRecordsBean;
     private PointLengthFilter mPointLengthFilter;
-    private int buyType = 0;// 0 - 按价格购买  1 - 按数量购买
+    private int buyType = 0;// 0 - 按价格  1 - 按数量
     private int mTradeType;// 1 - 买  0 - 卖
     private OnOrderCreateListener mOnOrderCreateListener;
     private double money, number;
     private List<SpotWalletResult.DataBean> walletList;
+    private SpotWalletResult.DataBean mDataBean;
 
     public LcTradePopup(@NonNull Context context, List<SpotWalletResult.DataBean> walletList, int tradeType, RecordsBean recordsBean, OnOrderCreateListener onOrderCreateListener) {
         super(context);
@@ -106,16 +113,12 @@ public class LcTradePopup extends BottomPopupView {
     }
 
     private void initView() {
-        tvTradeType.setText(mTradeType == 1 ? BaseApplication.getInstance().getString(me.spark.mvvm.R.string.str_ad_buy_way) : BaseApplication.getInstance().getString(me.spark.mvvm.R.string.str_ad_sell_way));
-        mCoinName.setText((mTradeType == 1 ? BaseApplication.getInstance().getString(me.spark.mvvm.R.string.buy2) : BaseApplication.getInstance().getString(me.spark.mvvm.R.string.sell2)) + mRecordsBean.getCoinName());
-        mPrice.setText(new SpanUtils().append(BaseApplication.getInstance().getString(me.spark.mvvm.R.string.str_price))
-                .append(String.valueOf(mRecordsBean.getPrice())).setForegroundColor(ContextCompat.getColor(mContext, R.color.green)).setFontSize(16, true)
-                .append(" CNY").create());
-        mBuyType.setText(mTradeType == 1 ? BaseApplication.getInstance().getString(me.spark.mvvm.R.string.str_money_buy) : BaseApplication.getInstance().getString(me.spark.mvvm.R.string.str_money_sell));
-        mTypeTitle.setText(BaseApplication.getInstance().getString(me.spark.mvvm.R.string.price));
+        tvTradeType.setText(mTradeType == 1 ? App.getInstance().getString(R.string.str_trade_type_buy_money) : App.getInstance().getString(R.string.str_trade_type_sell));
+        mCoinName.setText((mTradeType == 1 ? App.getInstance().getString(R.string.buy2) : App.getInstance().getString(R.string.sell2)) + mRecordsBean.getCoinName());
+        mPrice.setText(new SpanUtils().append(String.valueOf(mRecordsBean.getPrice())).append(" CNY").create());
         mTypeUnit.setText("CNY");
-        mLimit.setText(BaseApplication.getInstance().getString(me.spark.mvvm.R.string.limit) + MathUtils.getRundNumber(mRecordsBean.getMinLimit(), 2, null) + " - " + MathUtils.getRundNumber(mRecordsBean.getMaxLimit(), 2, null) + " CNY");
-        mTradeVolume.setText(BaseApplication.getInstance().getString(me.spark.mvvm.R.string.str_trade_amount) + "-- CNY");
+        mLimit.setText(MathUtils.getRundNumber(mRecordsBean.getMinLimit(), 2, null) + " - " + MathUtils.getRundNumber(mRecordsBean.getMaxLimit(), 2, null) + " CNY");
+        mTradeVolume.setText("-- CNY");
         mTradeNum.setText("" + "-- " + mRecordsBean.getCoinName());
 
         mPointLengthFilter = new PointLengthFilter(2);
@@ -136,72 +139,126 @@ public class LcTradePopup extends BottomPopupView {
             public void afterTextChanged(Editable s) {
                 if (StringUtils.isEmpty(s.toString())) return;
                 switch (buyType) {
-                    //按价格购买
+                    //按价格
                     case 0:
                         money = Double.valueOf(MathUtils.getRundNumber(Double.valueOf(s.toString()), 2, null));
                         number = Double.valueOf(MathUtils.getRundNumber(Double.valueOf(s.toString()) / mRecordsBean.getPrice(), 8, null));
                         break;
-                    //按数量购买
+                    //按数量
                     case 1:
                         money = Double.valueOf(MathUtils.getRundNumber(Double.valueOf(s.toString()) * mRecordsBean.getPrice(), 2, null));
                         number = Double.valueOf(MathUtils.getRundNumber(Double.valueOf(s.toString()), 8, null));
                         break;
                 }
                 mTradeVolume.setText(MathUtils.getRundNumber(money, 2, null) + " CNY");
-                mTradeNum.setText(BaseApplication.getInstance().getString(me.spark.mvvm.R.string.str_trade_amount) + MathUtils.getRundNumber(number, 8, null) + mRecordsBean.getCoinName());
+                mTradeNum.setText(MathUtils.getRundNumber(number, 8, null) + mRecordsBean.getCoinName());
             }
         });
 
         getUseMoney();
+
+        mTvPopupAmount.setText(mRecordsBean.formatNum());
+        mNumber.setHint(mTradeType == 1 ? App.getInstance().getString(R.string.str_enter_buy_money) : App.getInstance().getString(R.string.str_enter_sell_money));
+        mTvAll.setText(mTradeType == 1 ? App.getInstance().getString(R.string.str_buy_all) : App.getInstance().getString(R.string.str_sell_all));
+        mobileTv.setText(mTradeType == 1 ? App.getInstance().getString(R.string.str_money_buy) : App.getInstance().getString(R.string.str_money_sell));
+        mailboxTv.setText(mTradeType == 1 ? App.getInstance().getString(R.string.str_amount_buy) : App.getInstance().getString(R.string.str_amount_sell));
     }
 
     private void getUseMoney() {
         for (SpotWalletResult.DataBean dataBean : walletList) {
             if (mRecordsBean.getCoinName().equals(dataBean.getCoinId())) {
-                mTradeUse.setText(App.getInstance().getApplicationContext().getString(R.string.str_coin_can_banlance) + MathUtils.getRundNumber(dataBean.getBalance(), 8, null) + mRecordsBean.getCoinName());
+                mDataBean = dataBean;
+                mTradeUse.setText(App.getInstance().getString(R.string.str_coin_can_banlance) + MathUtils.getRundNumber(dataBean.getBalance(), 8, null) + mRecordsBean.getCoinName());
             }
         }
     }
 
-    @OnClick({R.id.buy_type_root,
+    @OnClick({R.id.ll_mobile,
+            R.id.ll_mailbox,
+            R.id.tv_all,
             R.id.order,
             R.id.cancel})
     public void OnClick(View view) {
         switch (view.getId()) {
-            case R.id.buy_type_root:
-                new XPopup.Builder(getContext())
-                        .atView(view)
-                        .asCustom(new LcBuyTypePopup(getContext(), new OnTypeChooseListener() {
-                            @Override
-                            public void onChooseType(int type, String content) {
-                                mBuyType.setText(content);
-                                buyType = type;
-                                switch (type) {
-                                    case 0:
-                                        mTypeTitle.setText(App.getInstance().getApplicationContext().getString(R.string.price));
-                                        mTypeUnit.setText("CNY");
-                                        mPointLengthFilter = new PointLengthFilter(2);
-                                        mNumber.setFilters(new InputFilter[]{mPointLengthFilter});
-                                        mLlLimit.setVisibility(VISIBLE);
-                                        break;
-                                    case 1:
-                                        mTypeTitle.setText(App.getInstance().getApplicationContext().getString(R.string.number));
-                                        mTypeUnit.setText(mRecordsBean.getCoinName());
-                                        mPointLengthFilter = new PointLengthFilter(8);
-                                        mNumber.setFilters(new InputFilter[]{mPointLengthFilter});
-                                        mLlLimit.setVisibility(GONE);
-                                        break;
-                                }
-                                mNumber.setText("");
-                                mTradeVolume.setText("-- CNY");
-                                mTradeNum.setText(BaseApplication.getInstance().getString(me.spark.mvvm.R.string.str_trade_amount) + " -- " + mRecordsBean.getCoinName());
-                            }
-                        }, mTradeType))
-                        .show();
+            case R.id.ll_mobile://按价格
+                buyType = 0;
+
+                mTypeUnit.setText("CNY");
+                mPointLengthFilter = new PointLengthFilter(2);
+                mNumber.setFilters(new InputFilter[]{mPointLengthFilter});
+
+                mNumber.setText("");
+                mTradeVolume.setText("-- CNY");
+                mTradeNum.setText("-- " + mRecordsBean.getCoinName());
+
+                mobileTv.setTextColor(getResources().getColor(R.color.base));
+                mobileView.setVisibility(VISIBLE);
+                mailboxTv.setTextColor(getResources().getColor(R.color.welcomelogin));
+                mailboxView.setVisibility(INVISIBLE);
+
+                tvTradeType.setText(mTradeType == 1 ? App.getInstance().getString(R.string.str_trade_type_buy_money) : App.getInstance().getString(R.string.str_trade_type_sell));
+                mNumber.setHint(mTradeType == 1 ? App.getInstance().getString(R.string.str_enter_buy_money) : App.getInstance().getString(R.string.str_enter_sell_money));
+                break;
+            case R.id.ll_mailbox:
+                buyType = 1;
+
+                mTypeUnit.setText(mRecordsBean.getCoinName());
+                mPointLengthFilter = new PointLengthFilter(8);
+                mNumber.setFilters(new InputFilter[]{mPointLengthFilter});
+
+                mNumber.setText("");
+                mTradeVolume.setText("-- CNY");
+                mTradeNum.setText("-- " + mRecordsBean.getCoinName());
+
+                mobileTv.setTextColor(getResources().getColor(R.color.welcomelogin));
+                mobileView.setVisibility(INVISIBLE);
+                mailboxTv.setTextColor(getResources().getColor(R.color.base));
+                mailboxView.setVisibility(VISIBLE);
+
+                tvTradeType.setText(mTradeType == 1 ? (App.getInstance().getString(R.string.str_buy_number) + "(" + mRecordsBean.getCoinName() + ")") : (App.getInstance().getString(R.string.str_trade_type_sell_amount) + "(" + mRecordsBean.getCoinName() + ")"));
+                mNumber.setHint(mTradeType == 1 ? App.getInstance().getString(R.string.str_enter_buy_amount) : App.getInstance().getString(R.string.str_enter_sell_amount));
+                break;
+            case R.id.tv_all://全部买入/全部出售
+                if (mTradeType == 1) {// mTradeType;// 1 - 买  0 - 卖
+                    switch (buyType) {// buyType 0 - 按价格  1 - 按数量
+                        //按价格
+                        case 0:
+                            mNumber.setText(MathUtils.getRundNumber(Double.valueOf(MathUtils.getRundNumber(Double.valueOf(mRecordsBean.getRemainAmount()) * mRecordsBean.getPrice(), 8, null)), 2, null));
+                            break;
+                        //按数量
+                        case 1:
+                            mNumber.setText(MathUtils.getRundNumber(mRecordsBean.getRemainAmount(), 8, null));
+                            break;
+                    }
+                } else {
+                    if (mDataBean.getBalance() >= mRecordsBean.getRemainAmount()) {
+                        switch (buyType) {// buyType 0 - 按价格  1 - 按数量
+                            //按价格
+                            case 0:
+                                mNumber.setText(MathUtils.getRundNumber(Double.valueOf(MathUtils.getRundNumber(Double.valueOf(mRecordsBean.getRemainAmount()) * mRecordsBean.getPrice(), 8, null)), 2, null));
+                                break;
+                            //按数量
+                            case 1:
+                                mNumber.setText(MathUtils.getRundNumber(mRecordsBean.getRemainAmount(), 8, null));
+                                break;
+                        }
+                    } else {
+                        switch (buyType) {// buyType 0 - 按价格  1 - 按数量
+                            //按价格
+                            case 0:
+                                mNumber.setText(MathUtils.getRundNumber(Double.valueOf(MathUtils.getRundNumber(Double.valueOf(mDataBean.getBalance()) * mRecordsBean.getPrice(), 8, null)), 2, null));
+                                break;
+                            //按数量
+                            case 1:
+                                mNumber.setText(MathUtils.getRundNumber(mDataBean.getBalance(), 8, null));
+                                break;
+                        }
+                    }
+                }
                 break;
             case R.id.order:
                 if (TextUtils.isEmpty(mNumber.getText().toString().trim())) {
-                    Toasty.showError(buyType == 0 ? BaseApplication.getInstance().getString(me.spark.mvvm.R.string.str_enter_money) : BaseApplication.getInstance().getString(me.spark.mvvm.R.string.str_enter_number));
+                    Toasty.showError(buyType == 0 ? App.getInstance().getString(R.string.str_enter_money) : App.getInstance().getString(R.string.str_enter_number));
                     return;
                 }
 
@@ -210,10 +267,10 @@ public class LcTradePopup extends BottomPopupView {
 
                 if (money > max || money < min) {
                     if (mTradeType == 0) {
-                        Toasty.showError(BaseApplication.getInstance().getString(me.spark.mvvm.R.string.sell2) + " >= " + min + BaseApplication.getInstance().getString(me.spark.mvvm.R.string.str_and) + " <= " + max);
+                        Toasty.showError(App.getInstance().getString(R.string.sell2) + " >= " + min + App.getInstance().getString(R.string.str_and) + " <= " + max);
                         return;
                     } else {
-                        Toasty.showError(BaseApplication.getInstance().getString(me.spark.mvvm.R.string.buy2) + " >= " + min + BaseApplication.getInstance().getString(me.spark.mvvm.R.string.str_and) + " <= " + max);
+                        Toasty.showError(App.getInstance().getString(R.string.buy2) + " >= " + min + App.getInstance().getString(R.string.str_and) + " <= " + max);
                         return;
                     }
                 }
@@ -228,7 +285,7 @@ public class LcTradePopup extends BottomPopupView {
                 if (mTradeType == 1) {
                     orderCreateBean.setTradePwd("");
                 }
-                /* 1按数量购买  2按金额购买 */
+                /* 1按数量  2按金额购买 */
                 orderCreateBean.setTradeType(buyType);
 
                 mOnOrderCreateListener.onOrderCreate(orderCreateBean);
