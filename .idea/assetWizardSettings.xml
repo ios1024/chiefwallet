@@ -14,11 +14,11 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="height" value="60" />
-                            <entry key="outputName" value="svg_no_content" />
+                            <entry key="height" value="18" />
+                            <entry key="outputName" value="svg_full_screen" />
                             <entry key="overrideSize" value="true" />
-                            <entry key="sourceFile" value="$USER_HOME$/Downloads/行情_svg/8.svg" />
-                            <entry key="width" value="67" />
+                            <entry key="sourceFile" value="$USER_HOME$/Downloads/行情k线_svg/全屏.svg" />
+                            <entry key="width" value="18" />
                           </map>
                         </option>
                       </PersistentState>
