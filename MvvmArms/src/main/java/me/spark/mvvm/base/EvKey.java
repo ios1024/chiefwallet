@@ -26,6 +26,7 @@ public class EvKey {
     public static final String promotionCodeLimit = "promotionCodeLimit";
     public static final String promotionCodeCheck = "promotionCodeCheck";
     public static final String checkVersionUpdate = "checkVersionUpdate";
+    public static final String chartBase64Pic = "chartBase64Pic";
 
     //login
     public static final String casConfig = "casConfig";
@@ -135,6 +136,7 @@ public class EvKey {
     public static final String openOrders = "openOrders";
     public static final String openOrdersHistory = "openOrdersHistory";
     public static final String openOrderDetails = "openOrderDetails";
+    public static final String quotesFilter = "quotesFilter";
 
     //cfd
     public static final String cfdSymbolAll = "cfdSymbolAll";

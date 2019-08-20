@@ -431,7 +431,7 @@ public class CoinTransDetailsResult implements Parcelable {
             }
 
             public String formatDate() {
-                return DateUtils.formatDate("yyyy.MM.dd HH:mm:ss", createTime);
+                return DateUtils.formatDate("MM/dd HH:mm", createTime);
             }
 
             public String formatAmount() {

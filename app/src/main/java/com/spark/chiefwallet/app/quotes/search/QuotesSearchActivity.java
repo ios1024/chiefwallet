@@ -2,22 +2,30 @@ package com.spark.chiefwallet.app.quotes.search;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.text.Editable;
 import android.text.TextUtils;
-import android.view.KeyEvent;
+import android.text.TextWatcher;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.BR;
 import com.spark.chiefwallet.R;
+import com.spark.chiefwallet.app.quotes.adapter.QuotesSearchAdapter;
 import com.spark.chiefwallet.base.ARouterPath;
 import com.spark.chiefwallet.databinding.ActivityQuotesSearchBinding;
-import com.spark.chiefwallet.ui.toast.Toasty;
 import com.spark.chiefwallet.util.StatueBarUtils;
+import com.spark.modulespot.pojo.AllThumbResult;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.OnClick;
 import me.spark.mvvm.base.BaseActivity;
+import me.spark.mvvm.base.Constant;
 
 /**
  * ================================================
@@ -30,6 +38,10 @@ import me.spark.mvvm.base.BaseActivity;
  */
 @Route(path = ARouterPath.ACTIVITY_QUOTES_SERACH)
 public class QuotesSearchActivity extends BaseActivity<ActivityQuotesSearchBinding, QuotesSearchViewModel> {
+    private List<AllThumbResult.DataBean> mDataBeans = new ArrayList<>();
+    private QuotesSearchAdapter mQuotesSerachAdapter;
+    private AllThumbResult mAllThumbResult;
+
     @Override
     public int initContentView(Bundle savedInstanceState) {
         return R.layout.activity_quotes_search;
@@ -48,42 +60,87 @@ public class QuotesSearchActivity extends BaseActivity<ActivityQuotesSearchBindi
         StatueBarUtils.addMarginTopEqualStatusBarHeight(binding.fakeStatusBar);
         StatueBarUtils.setStatusBarColor(this, Color.WHITE);
 
+        mAllThumbResult = App.gson.fromJson(Constant.searchQuotesJson, AllThumbResult.class);
+        mQuotesSerachAdapter = new QuotesSearchAdapter(mDataBeans);
+        binding.rv.setLayoutManager(new LinearLayoutManager(this));
+        binding.rv.setAdapter(mQuotesSerachAdapter);
+
+        mQuotesSerachAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                ARouter.getInstance().build(ARouterPath.ACTIVITY_QUOTES_KLINE_HTTP)
+                        .withParcelable("quotesThumbClick", mDataBeans.get(position))
+                        .navigation();
+            }
+        });
+
+        mQuotesSerachAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                switch (view.getId()) {
+                    case R.id.img_favor:
+                        if (!App.getInstance().isAppLogin()) {
+                            ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_LOGIN)
+                                    .navigation();
+                        } else {
+//                            showDialog(App.getInstance().getString(R.string.loading));
+//                            if (mDataBeans.get(position).isFavor()) {
+//                                SpotCoinClient.getInstance().favorDelete(allThumbResult.getSymbol());
+//                            } else {
+//                                SpotCoinClient.getInstance().favorAdd(allThumbResult.getSymbol());
+//                            }
+                        }
+                        break;
+                }
+            }
+        });
+
         initInputListener();
     }
 
     private void initInputListener() {
-        binding.quotesInput.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        binding.quotesInput.addTextChangedListener(new TextWatcher() {
             @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    if (TextUtils.isEmpty(viewModel.quotesInput.get())) {
-                        Toasty.showError(getString(R.string.search_not_null));
-                        return true;
-                    }
-                    showKeyboard(false);
-                    Toasty.showSuccess(viewModel.quotesInput.get());
-                    return true;
-                }
-                return false;
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                search(editable);
             }
         });
     }
 
-    @OnClick({R.id.title_back, R.id.quotes_search})
+    private void search(Editable editable) {
+        mDataBeans.clear();
+        if (TextUtils.isEmpty(editable.toString())) {
+            mQuotesSerachAdapter.notifyDataSetChanged();
+            return;
+        }
+        for (AllThumbResult.DataBean dataBean : mAllThumbResult.getData()) {
+            if (dataBean.getSymbol().contains(editable.toString().toUpperCase())) {
+                mDataBeans.add(dataBean);
+            }
+        }
+        mQuotesSerachAdapter.notifyDataSetChanged();
+        if (mDataBeans.size() == 0) {
+            mQuotesSerachAdapter.setEmptyView(R.layout.view_search_rv_empty, binding.rv);
+        }
+    }
+
+    @OnClick({R.id.title_back})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.title_back:
                 finish();
                 break;
-            case R.id.quotes_search:
-                quotesSerach();
-                break;
 
         }
     }
-
-    private void quotesSerach() {
-
-    }
-
 }

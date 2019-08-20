@@ -8,6 +8,21 @@
         </compositeConfiguration>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/CasClient" />
+            <option value="$PROJECT_DIR$/KlineLib" />
+            <option value="$PROJECT_DIR$/MvvmArms" />
+            <option value="$PROJECT_DIR$/WsClient" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/moduleAC" />
+            <option value="$PROJECT_DIR$/moduleCFD" />
+            <option value="$PROJECT_DIR$/moduleOTC" />
+            <option value="$PROJECT_DIR$/moduleSPOT" />
+            <option value="$PROJECT_DIR$/moduleUC" />
+          </set>
+        </option>
         <option name="resolveModulePerSourceSet" value="false" />
       </GradleProjectSettings>
     </option>

@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
+import android.view.WindowManager;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.spark.chiefwallet.App;
@@ -212,6 +213,16 @@ public class RegisterActivity extends BaseActivity<ActivityRegisterBinding, Regi
                     }
                 });
                 Toasty.showSuccess(App.getInstance().getApplicationContext().getString(R.string.str_phone_code_success));
+            }
+        });
+        viewModel.uc.smsCodePopopShow.observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(@Nullable Boolean aBoolean) {
+                if (aBoolean) {
+                    getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+                } else {
+                    getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+                }
             }
         });
         //密码显示开关

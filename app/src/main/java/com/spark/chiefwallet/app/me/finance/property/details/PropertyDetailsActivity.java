@@ -63,9 +63,10 @@ public class PropertyDetailsActivity extends BaseActivity<ActivityPropertyDetail
     private List<LockProoertDetailsResult.DataBean.RecordsBean> mLockRecordsBeanList = new ArrayList<>();
 
     private String[] filterTypeList;
-    private boolean isFlilterResult = false;
-    private String filterTypeSelect;
+    private boolean isFlilterResult = true;
+    private String filterTypeSelect = "1,2";//充提
 
+    //改到这  2019-.8-20
     @Override
     public int initContentView(Bundle savedInstanceState) {
         return R.layout.activity_property_details;
@@ -82,11 +83,15 @@ public class PropertyDetailsActivity extends BaseActivity<ActivityPropertyDetail
         StatueBarUtils.setStatusBarColor(this, Color.WHITE);
 
         if (busiType.equals("OTC")) {
+            filterTypeSelect = "3,4";//划转记录
+            binding.tvBusiType.setText(getResources().getString(R.string.transfer_record));
             binding.hide1.setVisibility(View.GONE);
             binding.hide2.setVisibility(View.GONE);
             binding.hide3.setVisibility(View.VISIBLE);
             binding.hide0.setVisibility(View.GONE);
         } else {
+            filterTypeSelect = "1,2";//充提
+            binding.tvBusiType.setText(getResources().getString(R.string.financial_record2));
             binding.hide1.setVisibility(View.VISIBLE);
             binding.hide2.setVisibility(View.VISIBLE);
             binding.hide3.setVisibility(View.GONE);

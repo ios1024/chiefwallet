@@ -40,6 +40,8 @@
 6、活动如有调整，以Exchief最新的规则为准，活动最终解释权归Exchief所有</string>
 
     <!--me-->
+    <string name="photo">个人头像</string>
+    <string name="nickname">昵称</string>
     <string name="online_service">在线客服</string>
     <string name="advertising_management">广告管理</string>
     <string name="account_security">账户安全</string>
@@ -86,7 +88,8 @@
     <string name="email_num">邮箱账户</string>
     <string name="email_num_hint">请输入邮箱账户</string>
     <string name="country">国籍</string>
-    <string name="choose_country">请选择国籍</string>
+    <string name="choose_country">请选择国家</string>
+    <string name="choose_country2">请输入国家</string>
     <string name="valid_phone">请输入有效的手机号码！</string>
     <string name="valid_email">请输入有效的邮箱账户！</string>
     <string name="get_verify_code">获取验证码</string>
@@ -481,6 +484,7 @@
     <string name="freeze">冻结</string>
     <string name="convert2cny">折合(CNY)</string>
     <string name="financial_record">财务记录</string>
+    <string name="financial_record2">充提记录</string>
     <string name="financial_log">财务日志>></string>
     <string name="total">总额</string>
     <string name="real_name_authentication">实名认证</string>
@@ -687,6 +691,7 @@
     <string name="str_enter_branch">请输入开户行支行</string>
     <string name="str_enter_bank_number">请输入用户卡号</string>
     <string name="str_enter_paypal">请输入PayPal账号</string>
+    <string name="str_enter_mtn">请输入MTN账号</string>
     <string name="str_pulish_ad_to_up">操作成功，是否去上架？</string>
     <string name="str_confirm_cancel">确认取消订单？</string>
     <string name="str_order_detail">查看订单</string>
@@ -736,6 +741,7 @@
     <string name="str_alipay">支付宝</string>
     <string name="str_bank">银行卡</string>
     <string name="str_paypal">PayPal</string>
+    <string name="str_mtn">MTN</string>
     <string name="str_other">其他</string>
     <string name="str_copy_number">复制卡号</string>
     <string name="str_pay_tip">*请按如上金额打款，打款后点击下方 [我已付款]</string>
@@ -806,12 +812,15 @@
     <string name="str_receive_bind_bank_bind">绑定银行卡收款</string>
     <string name="str_receive_bind_paypal_bind">绑定PayPal收款</string>
     <string name="str_receive_bind_paypal_account">PayPal账号</string>
+    <string name="str_receive_bind_mtn_account">MTN账号</string>
+    <string name="str_receive_bind_mtn_bind">绑定MTN收款</string>
     <string name="str_receive_bind_other_bind">绑定其他收款</string>
     <string name="str_receive_bind_other_account">其他账号</string>
     <string name="str_receive_bind_alipay_edit">编辑支付宝收款</string>
     <string name="str_receive_bind_wechat_edit">编辑微信收款</string>
     <string name="str_receive_bind_bank_edit">编辑银行卡收款</string>
     <string name="str_receive_bind_paypal_edit">编辑PayPal收款</string>
+    <string name="str_receive_bind_mtn_edits">编辑MTN收款</string>
     <string name="str_receive_bind_other_edit">编辑其他收款</string>
     <string name="str_set_sell_amount">请输入卖出数量</string>
     <string name="str_macket_price">当前市场参考价格：&#160;</string>

@@ -80,5 +80,10 @@
     <color name="paypal_bg">#222D65</color>
     <color name="mtn_bg">#01688F</color>
 
+    <color name="rise_dark">#027B65</color>
+    <color name="fall_dark">#AD263F</color>
+    <color name="gray_b2">#B2BAD1</color>
+    <color name="line_e5">#E5E6EB</color>
+    <color name="black_00">#000000</color>
 
 </resources>

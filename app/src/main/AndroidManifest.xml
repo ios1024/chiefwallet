@@ -30,7 +30,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning,UnusedAttribute">
-        <activity android:name=".app.me.system.setup.SetUpActivity"></activity>
+        <activity android:name=".app.me.user.mymessage.MyMessageActivity"></activity>
+        <activity android:name=".app.me.system.setup.SetUpActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

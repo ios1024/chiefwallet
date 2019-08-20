@@ -42,5 +42,9 @@ public class UcHost {
     //修改资金密码
     public static String updateTradePassUrl = "member/update/tradePassword";
     //修改用户用户名
-    public static String updateUserNameUrl = " member/modify/username";
+//    public static String updateUserNameUrl = " member/modify/username";
+    public static String updateUserNameUrl = "member/update/username";
+    //修改头像
+    public static String chartBase64PicUrl = "member/update/avatar";
+
 }

@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
+import android.view.WindowManager;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -145,7 +146,18 @@ public class PwdForgetActivity extends BaseActivity<ActivityPwdForgetBinding, Pw
                         PasswordTransformationMethod.getInstance());
                 binding.Password.setSelection(viewModel.newPwd.get().length());
             }
-        }); //密码显示开关
+        });
+        viewModel.uc.smsCodePopopShow.observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(@Nullable Boolean aBoolean) {
+                if (aBoolean) {
+                    getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+                } else {
+                    getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+                }
+            }
+        });
+        //密码显示开关
         viewModel.uc.newpwdSwitchEvent.observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(@Nullable Boolean aBoolean) {

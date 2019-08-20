@@ -38,6 +38,7 @@ public class QuotesViewModel extends BaseViewModel {
     private SpotCoinResult mSpotCoinResult;
     public boolean isVisible2User = false;
     public boolean isOnPause = true;
+    public boolean isGetThumbAll = false;
 
     public void getSpotCoinAll(Context context, OnRequestListener onRequestListener) {
         this.onRequestListenerCoinAll = onRequestListener;
@@ -64,6 +65,12 @@ public class QuotesViewModel extends BaseViewModel {
 
                 } else {
                     onRequestListenerCoinAll.onFail(eventBean.getMessage());
+                }
+                break;
+            case EvKey.klineThumbAll:
+                if (isGetThumbAll) return;
+                if (eventBean.isStatue()) {
+                    Constant.searchQuotesJson = App.gson.toJson(eventBean.getObject());
                 }
                 break;
             default:

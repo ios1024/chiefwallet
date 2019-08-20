@@ -609,4 +609,37 @@ public class SecurityClient extends BaseHttpClient {
                     }
                 });
     }
+
+    /**
+     * 头像上传
+     *
+     * @param outputFile * @param height
+     */
+    public void chartBase64Pic(String outputFile) {
+        EasyHttp.post(UcHost.chartBase64PicUrl)
+                .baseUrl(BaseHost.UC_HOST)
+                .params("avatar", outputFile)
+                .execute(new SimpleCallBack<String>() {
+                    @Override
+                    public void onSuccess(String s) {
+                        try {
+                            GeneralResult generalResult = BaseApplication.gson.fromJson(s, GeneralResult.class);
+                            if (generalResult.getCode() == BaseRequestCode.OK) {
+                                EventBusUtils.postSuccessEvent(EvKey.chartBase64Pic, generalResult.getCode(), generalResult.getMessage());
+                            } else
+                                EventBusUtils.postSuccessEvent(EvKey.chartBase64Pic, generalResult.getCode(), generalResult.getMessage());
+                        } catch (Exception e) {
+
+                            postException(EvKey.chartBase64Pic, e);
+                        }
+                    }
+
+                    @Override
+                    public void onError(ApiException e) {
+                        postError(EvKey.chartBase64Pic, e);
+                    }
+                });
+    }
+
+
 }

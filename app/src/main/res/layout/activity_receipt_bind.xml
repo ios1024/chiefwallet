@@ -319,7 +319,6 @@
                         android:layout_marginTop="20dp"
                         android:text="@string/str_uplo"
                         android:textSize="12sp" />
-                    <!--最后改到这 2019-08-19-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

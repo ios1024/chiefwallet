@@ -60,6 +60,7 @@ public class Constant {
     public static final String wechat = "wechat";  // 微信
     public static final String card = "card";      // 银行卡
     public static final String PAYPAL = "paypal";  // PAYPAL
+    public static final String MTN = "MTN";  // PAYPAL
     public static final String other = "other";    // 其他
 
     public static int tradePage = 0;               // 1 - 币币  0 - 法币  2 -合约
@@ -124,4 +125,8 @@ public class Constant {
     public static String lastB2BMarketPushSymbol = "";
     public static String lastCfdMarketPushSymbol = "";
     public static int getCoinSupportRetryTime = 0;
+
+    //行情筛选
+    public static boolean isQuotesFilter = false;
+    public static String searchQuotesJson = "";
 }
