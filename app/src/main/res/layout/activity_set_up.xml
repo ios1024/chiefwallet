@@ -166,6 +166,19 @@
 
                 </LinearLayout>
 
+                <TextView
+                    android:id="@+id/tvLogout"
+                    onClickCommand="@{setUpViewModel.logoutOnClickCommand}"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="30dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:text="@string/loginout"
+                    android:textColor="@color/login_out"
+                    android:textSize="@dimen/font_normal"/>
+
+
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
     </LinearLayout>

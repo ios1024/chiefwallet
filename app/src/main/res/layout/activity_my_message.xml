@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:binding="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="myMessageViewModel"
+            type="com.spark.chiefwallet.app.me.user.mymessage.MyMessageViewModel" />
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/open_orders_title"
+            layout="@layout/view_title" />
+
+        <TextView
+            style="@style/textBlackSmall"
+            android:layout_marginLeft="16dp"
+            android:text="@{myMessageViewModel.nickname}"
+            android:textSize="@dimen/sp_30"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/chartOnClickCommand"
+            style="@style/layout_my_info"
+            android:layout_height="60dp"
+            android:layout_marginTop="8dp"
+            android:paddingLeft="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="@string/photo"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_normal" />
+
+            <com.spark.chiefwallet.ui.CircleImageView
+                android:id="@+id/ivHeader"
+                url="@{myMessageViewModel.avatarUser}"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_marginRight="16dp"
+                android:src="@mipmap/head" />
+
+            <ImageView style="@style/imgEnter" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            style="@style/layout_my_info"
+            android:layout_height="60dp"
+            android:layout_marginTop="8dp"
+            android:paddingLeft="16dp"
+            binding:onClickCommand="@{myMessageViewModel.nickNameModifyOnClickCommand}">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="@string/nickname"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_normal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="@{myMessageViewModel.nickname}"
+                android:textColor="@color/gray_a4"
+                android:textSize="@dimen/font_normal" />
+
+
+            <ImageView style="@style/imgEnter" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</layout>

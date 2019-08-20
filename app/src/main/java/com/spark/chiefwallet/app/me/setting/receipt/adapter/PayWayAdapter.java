@@ -84,8 +84,15 @@ public class PayWayAdapter extends BaseQuickAdapter<PayListBean.DataBean, PayWay
                 helper.setVisible(R.id.ivQrCode, false);
 
                 break;
-            case Constant.other:
+            case Constant.MTN:
                 helper.setBackgroundColor(R.id.pay_way_root, App.getInstance().getResources().getColor(R.color.mtn_bg));
+                helper.setImageResource(R.id.ivType, R.drawable.svg_pay_mtn);
+                helper.setText(R.id.tvBankName, App.getInstance().getString(R.string.str_mtn));
+                helper.setVisible(R.id.ivQrCode, false);
+
+                break;
+            case Constant.other:
+                helper.setBackgroundColor(R.id.pay_way_root, App.getInstance().getResources().getColor(R.color.fall_dark));
                 helper.setImageResource(R.id.ivType, R.drawable.svg_pay_other);
                 helper.setText(R.id.tvBankName, App.getInstance().getString(R.string.str_other));
                 helper.setVisible(R.id.ivQrCode, false);
@@ -107,9 +114,8 @@ public class PayWayAdapter extends BaseQuickAdapter<PayListBean.DataBean, PayWay
             helper.getView(R.id.ivStatus).setSelected(false);
             helper.setText(R.id.tvSwitch, R.string.shut);
         }
-
         helper.addOnClickListener(R.id.ivStatus);
-
+        helper.addOnClickListener(R.id.tvupdate);
     }
 
     @Override

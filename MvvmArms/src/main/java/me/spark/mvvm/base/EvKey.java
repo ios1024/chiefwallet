@@ -26,6 +26,7 @@ public class EvKey {
     public static final String promotionCodeLimit = "promotionCodeLimit";
     public static final String promotionCodeCheck = "promotionCodeCheck";
     public static final String checkVersionUpdate = "checkVersionUpdate";
+    public static final String chartBase64Pic = "chartBase64Pic";
 
     //login
     public static final String casConfig = "casConfig";

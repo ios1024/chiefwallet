@@ -40,6 +40,8 @@
 6. If the activity is adjusted, the latest rules of SSCoin shall prevail, and SSCoin shall have the right to the final interpretation of the activity</string>
 
     <!--me-->
+    <string name="photo">个人头像</string>
+    <string name="nickname">昵称</string>
     <string name="online_service">在线客服</string>
     <string name="advertising_management">广告管理</string>
     <string name="account_security">账户安全</string>
@@ -87,6 +89,7 @@
     <string name="email_num_hint">Please enter your email account</string>
     <string name="country">Country</string>
     <string name="choose_country">Please choose country</string>
+    <string name="choose_country2">请输入国家</string>
     <string name="valid_phone">Please enter a valid phone number</string>
     <string name="valid_email">Please enter a valid email account</string>
     <string name="get_verify_code">Get verification code</string>
@@ -481,6 +484,7 @@
     <string name="freeze">Freeze</string>
     <string name="convert2cny">RMB equivalent</string>
     <string name="financial_record">Financial record</string>
+    <string name="financial_record2">充提记录</string>
     <string name="financial_log">财务日志>></string>
     <string name="total">总额</string>
     <string name="real_name_authentication">实名认证</string>
@@ -689,6 +693,7 @@
     <string name="str_enter_branch">Please enter bank branch</string>
     <string name="str_enter_bank_number">Please enter user card number</string>
     <string name="str_enter_paypal">Please enter your PayPal account</string>
+    <string name="str_enter_mtn">请输入MTN账号</string>
     <string name="str_pulish_ad_to_up">Operation successful, whether to shelves?</string>
     <string name="str_confirm_cancel">Confirm cancellation order?</string>
     <string name="str_order_detail">To view the order</string>
@@ -738,6 +743,7 @@
     <string name="str_alipay">Alipay</string>
     <string name="str_bank">Bank</string>
     <string name="str_paypal">PayPal</string>
+    <string name="str_mtn">MTN</string>
     <string name="str_other">Other</string>
     <string name="str_copy_number">Copy Card number</string>
     <string name="str_pay_tip">* please click the above amount and click below [I have paid]</string>
@@ -808,12 +814,15 @@
     <string name="str_receive_bind_bank_bind">Binding bank card collection</string>
     <string name="str_receive_bind_paypal_bind">Bound to PayPal for payment</string>
     <string name="str_receive_bind_paypal_account">PayPal account</string>
+    <string name="str_receive_bind_mtn_account">MTN账号</string>
+    <string name="str_receive_bind_mtn_bind">绑定MTN收款</string>
     <string name="str_receive_bind_other_bind">Bind other collections</string>
     <string name="str_receive_bind_other_account">Other account</string>
     <string name="str_receive_bind_alipay_edit">Edit alipay collection</string>
     <string name="str_receive_bind_wechat_edit">Edit WeChat collection</string>
     <string name="str_receive_bind_bank_edit">Edit bank card collection</string>
     <string name="str_receive_bind_paypal_edit">Edit PayPal collection</string>
+    <string name="str_receive_bind_mtn_edits">编辑MTN收款</string>
     <string name="str_receive_bind_other_edit">Edit Other collection</string>
     <string name="str_set_sell_amount">Please enter quantity sold</string>
     <string name="str_macket_price">Current market reference price:&#160;</string>

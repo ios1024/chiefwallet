@@ -292,4 +292,15 @@
         <item name="android:textSize">@dimen/font_small</item>
         <item name="android:textColor">@color/black</item>
     </style>
+
+    <!--我的信息layout-->
+    <style name="layout_my_info">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">46dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">18dp</item>
+        <item name="android:textSize">@dimen/font_13</item>
+        <item name="android:background">@color/white</item>
+    </style>
 </resources>

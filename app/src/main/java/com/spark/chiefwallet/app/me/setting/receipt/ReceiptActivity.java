@@ -89,12 +89,15 @@ public class ReceiptActivity extends BaseActivity<ActivityReceiptBinding, Receip
 
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                PayListBean.DataBean dataBean = (PayListBean.DataBean) adapter.getItem(position);
-                ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_RECEIPT_BIND)
-                        .withString("type", dataBean.getPayType())
-                        .withParcelable("typeBean", dataBean)
-                        .navigation();
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {//选择修改
+
+//
+//                        PayListBean.DataBean dataBean = (PayListBean.DataBean) adapter.getItem(position);
+//                        ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_RECEIPT_BIND)
+//                                .withString("type", dataBean.getPayType())
+//                                .withParcelable("typeBean", dataBean)
+//                                .navigation();
+
             }
         });
 
@@ -109,6 +112,15 @@ public class ReceiptActivity extends BaseActivity<ActivityReceiptBinding, Receip
                         } else {
                             PayControlClient.getInstance().payTypeUpdate(orderInTransit.getId(), 1);
                         }
+                        break;
+                    case R.id.tvupdate:
+                        PayListBean.DataBean dataBean = (PayListBean.DataBean) adapter.getItem(position);
+                        ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_RECEIPT_BIND)
+                                .withString("type", dataBean.getPayType())
+                                .withParcelable("typeBean", dataBean)
+                                .navigation();
+                        break;
+                    default:
                         break;
                 }
             }

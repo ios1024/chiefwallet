@@ -10,8 +10,11 @@ import com.geetest.sdk.Bind.GT3GeetestUtilsBind;
 import com.google.gson.Gson;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.interfaces.OnSelectListener;
+import com.lxj.xpopup.interfaces.XPopupCallback;
 import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.R;
+import com.spark.chiefwallet.ui.popup.ChoiceOfNationalityPopup;
+import com.spark.chiefwallet.ui.popup.impl.NationalChoiceListener;
 import com.spark.chiefwallet.ui.toast.Toasty;
 import com.spark.chiefwallet.util.CheckErrorUtil;
 import com.spark.chiefwallet.util.RegexUtils;
@@ -21,6 +24,7 @@ import com.spark.ucclient.RegisterClient;
 import com.spark.ucclient.SecurityClient;
 import com.spark.ucclient.pojo.Captcha;
 import com.spark.ucclient.pojo.CountryEntity;
+import com.spark.ucclient.pojo.CountryEntity2;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -56,7 +60,7 @@ public class PhoneViewModel extends BaseViewModel {
     }
 
     public ObservableField<String> phoneNum = new ObservableField<>("");
-//    public ObservableField<String> countryCode = new ObservableField<>("");
+    //    public ObservableField<String> countryCode = new ObservableField<>("");
     public ObservableField<String> countryName = new ObservableField<>("中国 +86");
     public ObservableField<String> code = new ObservableField<>("");
     public ObservableField<String> pwd = new ObservableField<>("");
@@ -69,6 +73,7 @@ public class PhoneViewModel extends BaseViewModel {
     private String strAreaCode = "86";
     private String countryEnName = "中国";                      //值传递 国籍 enName
 
+    public ChoiceOfNationalityPopup choiceOfNationalityPopup;
 
     public void initContext(Context context) {
         this.mContext = context;
@@ -131,15 +136,29 @@ public class PhoneViewModel extends BaseViewModel {
         //避免重复请求
         if (mCountryArray != null) {
             new XPopup.Builder(mContext)
-                    .asBottomList(mContext.getString(R.string.choose_country), mCountryArray,
-                            new OnSelectListener() {
-                                @Override
-                                public void onSelect(int position, String text) {
-                                    countryEnName = mCountryEntityList.get(position).getEnName();
-                                    updateCountryInfo(mCountryEntityList.get(position).getZhName() + " +" + mCountryEntityList.get(position).getAreaCode(), mCountryEntityList.get(position).getAreaCode());
-                                }
-                            })
-                    .show();
+                    .setPopupCallback(new XPopupCallback() {
+                        @Override
+                        public void onShow() {
+                            uc.smsCodePopopShow.setValue(true);
+                        }
+
+                        @Override
+                        public void onDismiss() {
+                            uc.smsCodePopopShow.setValue(false);
+                        }
+
+                    })
+                    .asCustom(choiceOfNationalityPopup).show();
+//            new XPopup.Builder(mContext)
+//                    .asBottomList(mContext.getString(R.string.choose_country), mCountryArray,
+//                            new OnSelectListener() {
+//                                @Override
+//                                public void onSelect(int position, String text) {
+//                                    countryEnName = mCountryEntityList.get(position).getEnName();
+//                                    updateCountryInfo(mCountryEntityList.get(position).getZhName() + " +" + mCountryEntityList.get(position).getAreaCode(), mCountryEntityList.get(position).getAreaCode());
+//                                }
+//                            })
+//                    .show();
         } else {
             showDialog(mContext.getString(R.string.loading));
             RegisterClient.getInstance().findSupportCountry();
@@ -151,6 +170,7 @@ public class PhoneViewModel extends BaseViewModel {
     public class UIChangeObservable {
         public SingleLiveEvent<Boolean> mGetCodeSuccessLiveEvent = new SingleLiveEvent<>();
         public SingleLiveEvent<Boolean> pwdSwitchEvent = new SingleLiveEvent<>();
+        public SingleLiveEvent<Boolean> smsCodePopopShow = new SingleLiveEvent<>();
 
     }
 
@@ -168,23 +188,48 @@ public class PhoneViewModel extends BaseViewModel {
                 if (eventBean.isStatue()) {
                     final List<CountryEntity> objList = (List<CountryEntity>) eventBean.getObject();
                     if (!objList.isEmpty()) {
-                        mCountryEntityList = objList;
-                        mCountryArray = new String[objList.size()];
-                        for (int i = 0; i < objList.size(); i++) {
-                            mCountryArray[i] = objList.get(i).getZhName();
+                        if (choiceOfNationalityPopup == null) {
+                            choiceOfNationalityPopup = new ChoiceOfNationalityPopup(mContext, objList, new NationalChoiceListener() {
+
+                                @Override
+                                public void onClickItem(int position, List<CountryEntity2> countryEntities2) {
+                                    updateCountryInfo(countryEntities2.get(position).getZhName() + " +" + countryEntities2.get(position).getAreaCode(), countryEntities2.get(position).getAreaCode());
+
+
+                                }
+                            });
                         }
-                        if (mCountryArray.length > 0) {
-                            new XPopup.Builder(mContext)
-                                    .asBottomList(mContext.getString(R.string.choose_country), mCountryArray,
-                                            new OnSelectListener() {
-                                                @Override
-                                                public void onSelect(int position, String text) {
-                                                    countryEnName = objList.get(position).getEnName();
-                                                    updateCountryInfo(objList.get(position).getZhName() + " +" + objList.get(position).getAreaCode(), mCountryEntityList.get(position).getAreaCode());
-                                                }
-                                            })
-                                    .show();
-                        }
+                        new XPopup.Builder(mContext)
+                                .setPopupCallback(new XPopupCallback() {
+                                    @Override
+                                    public void onShow() {
+                                        uc.smsCodePopopShow.setValue(true);
+                                    }
+
+                                    @Override
+                                    public void onDismiss() {
+                                        uc.smsCodePopopShow.setValue(false);
+                                    }
+
+                                })
+                                .asCustom(choiceOfNationalityPopup).show();
+//                        mCountryEntityList = objList;
+//                        mCountryArray = new String[objList.size()];
+//                        for (int i = 0; i < objList.size(); i++) {
+//                            mCountryArray[i] = objList.get(i).getZhName();
+//                        }
+//                        if (mCountryArray.length > 0) {
+//                            new XPopup.Builder(mContext)
+//                                    .asBottomList(mContext.getString(R.string.choose_country), mCountryArray,
+//                                            new OnSelectListener() {
+//                                                @Override
+//                                                public void onSelect(int position, String text) {
+//                                                    countryEnName = objList.get(position).getEnName();
+//                                                    updateCountryInfo(objList.get(position).getZhName() + " +" + objList.get(position).getAreaCode(), mCountryEntityList.get(position).getAreaCode());
+//                                                }
+//                                            })
+//                                    .show();
+//                        }
                     } else {
                         Toasty.showInfo(mContext.getString(R.string.country_list_null));
                     }
@@ -323,14 +368,25 @@ public class PhoneViewModel extends BaseViewModel {
     }
 
     @Override
-    public void onCreate() {
-        super.onCreate();
+    public void onResume() {
+        super.onResume();
         EventBusUtils.register(this);
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onStop() {
+        super.onStop();
         EventBusUtils.unRegister(this);
     }
+//    @Override
+//    public void onCreate() {
+//        super.onCreate();
+//        EventBusUtils.register(this);
+//    }
+//
+//    @Override
+//    public void onDestroy() {
+//        super.onDestroy();
+//        EventBusUtils.unRegister(this);
+//    }
 }

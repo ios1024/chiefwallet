@@ -34,6 +34,7 @@ public final class ARouterPath {
     public static final String ACTIVITY_ME_REGISTER = "/me/user/RegisterActivity";
     public static final String ACTIVITY_ME_REGISTER_PWD = "/me/user/RegisterPwdActivity";
     public static final String ACTIVITY_ME_VERIFYCODE = "/me/user/VerifyCodeActivity";
+    public static final String ACTIVITY_ME_MYMESSAGE = "/me/user/mymessage/MyMessageActivity";
     //忘记密码
     public static final String ACTIVITY_ME_FORGET_PWD = "/me/ForgetPwdActivity";
     //---user

@@ -258,7 +258,7 @@ public class MemberClient extends BaseHttpClient {
      * @param nickName
      */
     public void modifyNickName(String nickName) {
-        EasyHttp.get(UcHost.updateUserNameUrl)
+        EasyHttp.post(UcHost.updateUserNameUrl)
                 .baseUrl(BaseHost.UC_HOST)
                 .params("username", nickName)
                 .execute(new SimpleCallBack<String>() {
@@ -268,14 +268,10 @@ public class MemberClient extends BaseHttpClient {
                             GeneralResult generalResult = BaseApplication.gson.fromJson(s, GeneralResult.class);
                             if (generalResult.getCode() == BaseRequestCode.OK) {
                                 EventBusUtils.postSuccessEvent(EvKey.modifyUserName, generalResult.getCode(), generalResult.getMessage());
-                            } else {
-                                if (generalResult.getCode() == BaseRequestCode.ERROR_401) {
-                                    uodateLogin(generalResult);
-                                } else {
-                                    EventBusUtils.postErrorEvent(EvKey.modifyUserName, generalResult.getCode(), generalResult.getMessage());
-                                }
-                            }
+                            } else
+                                EventBusUtils.postSuccessEvent(EvKey.modifyUserName, generalResult.getCode(), generalResult.getMessage());
                         } catch (Exception e) {
+
                             postException(EvKey.modifyUserName, e);
                         }
                     }
@@ -285,6 +281,33 @@ public class MemberClient extends BaseHttpClient {
                         postError(EvKey.modifyUserName, e);
                     }
                 });
+//        EasyHttp.get(UcHost.updateUserNameUrl)
+//                .baseUrl(BaseHost.UC_HOST)
+//                .params("username", nickName)
+//                .execute(new SimpleCallBack<String>() {
+//                    @Override
+//                    public void onSuccess(String s) {
+//                        try {
+//                            GeneralResult generalResult = BaseApplication.gson.fromJson(s, GeneralResult.class);
+//                            if (generalResult.getCode() == BaseRequestCode.OK) {
+//                                EventBusUtils.postSuccessEvent(EvKey.modifyUserName, generalResult.getCode(), generalResult.getMessage());
+//                            } else {
+//                                if (generalResult.getCode() == BaseRequestCode.ERROR_401) {
+//                                    uodateLogin(generalResult);
+//                                } else {
+//                                    EventBusUtils.postErrorEvent(EvKey.modifyUserName, generalResult.getCode(), generalResult.getMessage());
+//                                }
+//                            }
+//                        } catch (Exception e) {
+//                            postException(EvKey.modifyUserName, e);
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onError(ApiException e) {
+//                        postError(EvKey.modifyUserName, e);
+//                    }
+//                });
     }
 
 }

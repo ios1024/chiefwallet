@@ -71,6 +71,9 @@ public class MeViewModel extends BaseViewModel {
     //昵称
     public ObservableField<String> mobilePhone = new ObservableField<>(App.getInstance().isAppLogin() ?
             (App.getInstance().getCurrentUser().getLogintype() == 0 ? "UID:" + App.getInstance().getCurrentUser().getMobilePhone() : "UID:" + App.getInstance().getCurrentUser().getEmail()) : "UID:- -");
+    //头像
+    public ObservableField<String> avatarUser = new ObservableField<>(App.getInstance().isAppLogin() ?
+            App.getInstance().getCurrentUser().getAvatar() : "");
 
     //
     public ObservableField<String> otcAcconut = new ObservableField<>("- - ");
@@ -102,32 +105,33 @@ public class MeViewModel extends BaseViewModel {
         }
     });
 
-    //退出登录
-    public BindingCommand logoutOnClickCommand = new BindingCommand(new BindingAction() {
-        @Override
-        public void call() {
-            if (App.getInstance().isAppLogin()) {
-                new XPopup.Builder(mContext)
-                        .asConfirm(mContext.getString(R.string.tips), mContext.getString(R.string.confirm_2_logout),
-                                mContext.getString(R.string.cancel), mContext.getString(R.string.ensure),
-                                new OnConfirmListener() {
-                                    @Override
-                                    public void onConfirm() {
-                                        showDialog(mContext.getString(R.string.loading));
-                                        CasClient.getInstance().logout(false);
-                                    }
-                                }, null, false)
-                        .show();
-            }
-        }
-    });
+//    //退出登录
+//    public BindingCommand logoutOnClickCommand = new BindingCommand(new BindingAction() {
+//        @Override
+//        public void call() {
+//            if (App.getInstance().isAppLogin()) {
+//                new XPopup.Builder(mContext)
+//                        .asConfirm(mContext.getString(R.string.tips), mContext.getString(R.string.confirm_2_logout),
+//                                mContext.getString(R.string.cancel), mContext.getString(R.string.ensure),
+//                                new OnConfirmListener() {
+//                                    @Override
+//                                    public void onConfirm() {
+//                                        showDialog(mContext.getString(R.string.loading));
+//                                        CasClient.getInstance().logout(false);
+//                                    }
+//                                }, null, false)
+//                        .show();
+//            }
+//        }
+//    });
 
     //登录
     public BindingCommand loginOnClickCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
             if (App.getInstance().isAppLogin()) {
-
+                ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_MYMESSAGE)
+                        .navigation();
             } else {
                 ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_LOGIN)
                         .navigation();
@@ -287,6 +291,7 @@ public class MeViewModel extends BaseViewModel {
                     isUpdateUserName = true;
                     //刷新用户信息
                     MemberClient.getInstance().userInfo();
+
                 } else {
                     dismissDialog();
                     Toasty.showError(eventBean.getMessage());
@@ -314,7 +319,9 @@ public class MeViewModel extends BaseViewModel {
                     User curUser = App.getInstance().getCurrentUser();
                     isLogOut.set(App.getInstance().isAppLogin());
                     if (isLogOut.get()) {
+                        updateAccount();
                         nickname.set(curUser.getUsername());
+                        avatarUser.set(curUser.getAvatar());
                         mobilePhone.set(curUser.getLogintype() == 0 ? "UID:" + curUser.getMobilePhone() : "UID:" + curUser.getEmail());
                         initSafeLevel();
                     } else {
@@ -324,21 +331,22 @@ public class MeViewModel extends BaseViewModel {
                             initText();
                         }
                         nickname.set(App.getInstance().getString(R.string.no_login));
+                        avatarUser.set("");
                         mobilePhone.set("");
                     }
                 }
                 break;
-            //退出登录
-            case EvKey.logout:
-                dismissDialog();
-                if (eventBean.isStatue()) {
-                    App.getInstance().deleteCurrentUser();
-                    EventBusUtils.postSuccessEvent(EvKey.loginStatue, BaseRequestCode.OK, "");
-                    Toasty.showSuccess(App.getInstance().getString(R.string.logout_success));
-                } else {
-                    CheckErrorUtil.checkError(eventBean);
-                }
-                break;
+//            //退出登录
+//            case EvKey.logout:
+//                dismissDialog();
+//                if (eventBean.isStatue()) {
+//                    App.getInstance().deleteCurrentUser();
+//                    EventBusUtils.postSuccessEvent(EvKey.loginStatue, BaseRequestCode.OK, "");
+//                    Toasty.showSuccess(App.getInstance().getString(R.string.logout_success));
+//                } else {
+//                    CheckErrorUtil.checkError(eventBean);
+//                }
+//                break;
             case EvKey.logout_success_401:
                 if (eventBean.isStatue()) {
                     dismissDialog();

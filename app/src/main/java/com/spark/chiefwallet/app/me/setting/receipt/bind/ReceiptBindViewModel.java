@@ -127,6 +127,12 @@ public class ReceiptBindViewModel extends BaseViewModel {
                     typeHintText.set(App.getInstance().getString(R.string.str_enter_paypal));
                     qrCodeVisiable.set(false);
                     break;
+                case Constant.MTN:
+                    titleText.set(App.getInstance().getString(R.string.str_receive_bind_mtn_bind));
+                    typeText.set(App.getInstance().getString(R.string.str_receive_bind_mtn_account));
+                    typeHintText.set(App.getInstance().getString(R.string.str_enter_mtn));
+                    qrCodeVisiable.set(false);
+                    break;
                 case Constant.other:
                     titleText.set(App.getInstance().getString(R.string.str_receive_bind_other_bind));
                     typeText.set(App.getInstance().getString(R.string.str_receive_bind_other_account));
@@ -168,6 +174,13 @@ public class ReceiptBindViewModel extends BaseViewModel {
                     titleText.set(App.getInstance().getString(R.string.str_receive_bind_paypal_edit));
                     typeText.set(App.getInstance().getString(R.string.str_receive_bind_paypal_account));
                     typeHintText.set(App.getInstance().getString(R.string.str_enter_paypal));
+                    typeAddressText.set(typeBean.getPayAddress());
+                    qrCodeVisiable.set(false);
+                    break;
+                case Constant.MTN:
+                    titleText.set(App.getInstance().getString(R.string.str_receive_bind_mtn_edits));
+                    typeText.set(App.getInstance().getString(R.string.str_receive_bind_mtn_account));
+                    typeHintText.set(App.getInstance().getString(R.string.str_enter_mtn));
                     typeAddressText.set(typeBean.getPayAddress());
                     qrCodeVisiable.set(false);
                     break;
@@ -268,6 +281,20 @@ public class ReceiptBindViewModel extends BaseViewModel {
             case Constant.PAYPAL:
                 if (StringUtils.isEmpty(typeAddressText.get())) {
                     Toasty.showError(App.getInstance().getString(R.string.str_enter_paypal));
+                } else {
+                    if (StringUtils.isEmpty(pwdText.get())) {
+                        Toasty.showError(App.getInstance().getString(R.string.trade_pwd_hint));
+                    } else {
+                        payTypeAddBean.setPayAddress(typeAddressText.get().trim());
+                        payTypeAddBean.setTradePwd(pwdText.get().trim());
+                        payTypeAddBean.setPayType(type);
+                        isVerifySuccess = true;
+                    }
+                }
+                break;
+            case Constant.MTN:
+                if (StringUtils.isEmpty(typeAddressText.get())) {
+                    Toasty.showError(App.getInstance().getString(R.string.str_enter_mtn));
                 } else {
                     if (StringUtils.isEmpty(pwdText.get())) {
                         Toasty.showError(App.getInstance().getString(R.string.trade_pwd_hint));

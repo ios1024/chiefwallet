@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-          package="com.spark.chiefwallet">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.spark.chiefwallet">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission
         android:name="android.permission.READ_LOGS"
-        tools:ignore="ProtectedPermissions"/>
-
+        tools:ignore="ProtectedPermissions" />
     <uses-permission
         android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
-        tools:ignore="ProtectedPermissions"/>
-    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
     <application
         android:name=".App"
@@ -31,7 +30,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning,UnusedAttribute">
-        <activity android:name=".app.me.system.setup.SetUpActivity"></activity>
+        <activity android:name=".app.me.user.mymessage.MyMessageActivity"></activity>
+        <activity android:name=".app.me.system.setup.SetUpActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -41,40 +41,33 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"/>
-        </provider>
-
-        <!--适配-->
+                android:resource="@xml/file_paths" />
+        </provider> <!-- 适配 -->
         <meta-data
             android:name="design_width_in_dp"
-            android:value="360"/>
+            android:value="360" />
         <meta-data
             android:name="design_height_in_dp"
-            android:value="640"/>
-        <!--适配-->
-
+            android:value="640" /> <!-- 适配 -->
         <!-- 配置APP ID -->
         <meta-data
             android:name="BUGLY_APPID"
-            android:value="004a8ae7da" />
-        <!-- 配置APP版本号 -->
+            android:value="004a8ae7da" /> <!-- 配置APP版本号 -->
         <meta-data
             android:name="BUGLY_APP_VERSION"
-            android:value="3.1.7" />
-        <!-- 配置APP渠道号 -->
+            android:value="3.1.7" /> <!-- 配置APP渠道号 -->
         <meta-data
             android:name="BUGLY_APP_CHANNEL"
-            android:value="" />
-        <!-- 配置Bugly调试模式（true或者false）-->
+            android:value="" /> <!-- 配置Bugly调试模式（true或者false） -->
         <meta-data
             android:name="BUGLY_ENABLE_DEBUG"
             android:value="true" />
 
         <activity android:name=".app.SplashActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
@@ -138,9 +131,9 @@
             android:name=".app.trade.contract.kline.CfdKlineHorizontalActivity"
             android:screenOrientation="landscape" />
 
-        <service android:name="com.spark.wsclient.WsService"/>
-        <receiver android:name="com.spark.wsclient.base.NetworkChangedReceiver"/>
+        <service android:name="com.spark.wsclient.WsService" />
 
+        <receiver android:name="com.spark.wsclient.base.NetworkChangedReceiver" />
     </application>
 
 </manifest>
