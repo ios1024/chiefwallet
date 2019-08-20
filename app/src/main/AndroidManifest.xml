@@ -53,12 +53,9 @@
         <!--适配-->
 
         <!-- 配置APP ID -->
-        <!--<meta-data-->
-            <!--android:name="BUGLY_APPID"-->
-            <!--android:value="004a8ae7da" />-->
         <meta-data
             android:name="BUGLY_APPID"
-            android:value="427ed9a245" />
+            android:value="004a8ae7da" />
         <!-- 配置APP版本号 -->
         <meta-data
             android:name="BUGLY_APP_VERSION"
@@ -70,7 +67,7 @@
         <!-- 配置Bugly调试模式（true或者false）-->
         <meta-data
             android:name="BUGLY_ENABLE_DEBUG"
-            android:value="true" />
+            android:value="false" />
 
         <activity android:name="com.spark.chiefwallet.app.SplashActivity">
             <intent-filter>
@@ -140,6 +137,7 @@
         <activity
             android:name="com.spark.chiefwallet.app.trade.contract.kline.CfdKlineHorizontalActivity"
             android:screenOrientation="landscape" />
+        <activity android:name=".app.quotes.kline.QuotesKlineActivity" />
 
         <service android:name="com.spark.wsclient.WsService" />
         <receiver android:name="com.spark.wsclient.base.NetworkChangedReceiver" />

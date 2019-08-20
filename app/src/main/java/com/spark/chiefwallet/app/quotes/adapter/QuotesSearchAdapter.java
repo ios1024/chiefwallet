@@ -10,7 +10,7 @@ import com.android.databinding.library.baseAdapters.BR;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.spark.chiefwallet.R;
-import com.spark.chiefwallet.api.pojo.CoinPairPushBean;
+import com.spark.modulespot.pojo.AllThumbResult;
 
 import java.util.List;
 
@@ -23,16 +23,17 @@ import java.util.List;
  * 修订历史：
  * ================================================
  */
-public class QuotesSerachAdapter extends BaseQuickAdapter<CoinPairPushBean, QuotesSerachAdapter.CoinPairPushBeanViewHolder> {
-    public QuotesSerachAdapter(@Nullable List<CoinPairPushBean> data) {
-        super(R.layout.item_quotes_vp, data);
+public class QuotesSearchAdapter extends BaseQuickAdapter<AllThumbResult.DataBean, QuotesSearchAdapter.CoinPairPushBeanViewHolder> {
+    public QuotesSearchAdapter(@Nullable List<AllThumbResult.DataBean> data) {
+        super(R.layout.item_quotes_search, data);
     }
 
     @Override
-    protected void convert(CoinPairPushBeanViewHolder helper, CoinPairPushBean item) {
+    protected void convert(CoinPairPushBeanViewHolder helper, AllThumbResult.DataBean item) {
         ViewDataBinding binding = helper.getBinding();
         binding.setVariable(BR.coinPairPushBean, item);
         binding.executePendingBindings();
+        helper.addOnClickListener(R.id.img_favor);
     }
 
 

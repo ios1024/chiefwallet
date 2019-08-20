@@ -27,52 +27,52 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
+                android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:orientation="horizontal">
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp"
+                android:paddingTop="15dp"
+                android:paddingRight="15dp"
+                android:paddingBottom="9dp">
 
 
                 <ImageView
-                    android:id="@+id/title_back"
-                    android:layout_width="?attr/actionBarSize"
-                    android:layout_height="match_parent"
-                    android:padding="15dp"
-                    android:src="@drawable/svg_back"
-                    app:bl_ripple_color="@color/gray_ccc"
-                    app:bl_ripple_enable="true"
-                    app:bl_solid_color="@color/white"/>
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/svg_quotes_search_dark"/>
 
                 <EditText
                     android:id="@+id/quotes_input"
                     style="@style/trade_input"
                     android:hint="@string/quotes_search_hint"
-                    android:imeOptions="actionSearch"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
                     android:singleLine="true"
                     android:text="@={quotesSearchViewModel.quotesInput}"
-                    android:textSize="@dimen/font_normal"/>
+                    android:textSize="@dimen/font_small"/>
 
-                <ImageView
-                    android:id="@+id/quotes_search"
-                    android:layout_width="?attr/actionBarSize"
+                <TextView
+                    android:id="@+id/title_back"
+                    style="@style/textGrayCommonSmall"
+                    android:layout_width="60dp"
                     android:layout_height="match_parent"
-                    android:padding="15dp"
-                    android:src="@drawable/svg_search"
-                    app:bl_ripple_color="@color/gray_ccc"
-                    app:bl_ripple_enable="true"
-                    app:bl_solid_color="@color/white"/>
+                    android:gravity="center|right"
+                    android:text="@string/cancel"
+                    android:textColor="@color/base"/>
             </LinearLayout>
 
             <View
-                style="@style/line_ccc"/>
+                style="@style/line_ccc"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="60dp"
+                android:background="@color/line_e5"/>
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/quotes_search_rv"
+            android:id="@+id/rv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </android.support.v7.widget.RecyclerView>
+            android:paddingTop="9dp"
+            android:layout_height="match_parent"/>
     </LinearLayout>
 </layout>

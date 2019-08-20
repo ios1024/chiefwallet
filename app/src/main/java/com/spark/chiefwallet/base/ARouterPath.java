@@ -17,6 +17,7 @@ public final class ARouterPath {
     public static final String ACTIVITY_QUOTES_DATAIL = "/quotes/detail/QuotesDetailActivity";
     public static final String ACTIVITY_QUOTES_KLINE = "/quotes/kline/KlineActivity";
     public static final String ACTIVITY_QUOTES_KLINE_HTTP = "/quotes/kline/KlineHttpActivity";
+    public static final String ACTIVITY_QUOTES_KLINE_CHIEF = "/quotes/kline/QuotesKlineActivity";
     public static final String ACTIVITY_QUOTES_KLINE_HTTP_HORIZONTAL = "/quotes/kline/KlineHttpHorizontalActivity";
     //quotes-module---------------------------------------------------------------
 
