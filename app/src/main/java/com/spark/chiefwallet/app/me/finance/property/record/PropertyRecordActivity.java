@@ -80,7 +80,7 @@ public class PropertyRecordActivity extends BaseActivity<ActivityPropertyRecordB
                 recordTypeStr = "1";
                 break;
             case 1:
-                mTitleModel.setTitleName(getString(R.string.mention_record));
+                mTitleModel.setTitleName(getString(R.string.financial_record2));
                 recordTypeStr = "2";
                 break;
                 //改到这  查询币币全部充值提现记录好像有问题  2019-08-21

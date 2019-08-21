@@ -114,7 +114,6 @@ public class PropertyDetailsViewModel extends BaseViewModel {
 
         @Override
         public void call() {
-            //改到 币币 全部记录 好像有问题 2019-08-21
             if (mBusiType.equals("OTC")) {
                 ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_PROPERTY_RECORD)
                         .withInt("coinType", 1)

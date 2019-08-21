@@ -215,6 +215,15 @@ public class CoinTransDetailsResult implements Parcelable {
             private int subType;
             private int type;
             private int status;
+            private String valueType;
+
+            public String getValueType() {
+                return valueType;
+            }
+
+            public void setValueType(String valueType) {
+                this.valueType = valueType;
+            }
 
             public String getAddress() {
                 return address;
@@ -320,6 +329,7 @@ public class CoinTransDetailsResult implements Parcelable {
                         PropertyDetailsTypeResult propertyDetailsTypeResult = BaseApplication.gson.fromJson(Constant.propertyDetailsTypeJson, PropertyDetailsTypeResult.class);
                         for (PropertyDetailsTypeResult.DataBean dataBean : propertyDetailsTypeResult.getData()) {
                             if (subType == Integer.valueOf(dataBean.getValue())) {
+                                setValueType(dataBean.getValue());
                                 typeText = dataBean.getDescript();
                                 break;
                             }
