@@ -551,10 +551,12 @@
 
                                         <TextView
                                             style="@style/textBlackSmall"
+                                            android:textSize="@dimen/font_mini"
                                             android:text="@{lcOrderUnPAYDetailsViewModel.bankPayName}" />
 
                                         <TextView
                                             style="@style/textBlackSmall"
+                                            android:textSize="@dimen/font_mini"
                                             android:layout_marginLeft="@dimen/dp_10"
                                             android:text="@{lcOrderUnPAYDetailsViewModel.bankPayAddr}" />
 
@@ -574,15 +576,18 @@
 
                                         <TextView
                                             style="@style/textBlackSmall"
+                                            android:textSize="@dimen/font_xmini"
                                             android:text="@{lcOrderUnPAYDetailsViewModel.bankPayOpenBank}" />
 
                                         <TextView
                                             style="@style/textBlackSmall"
                                             android:layout_marginLeft="@dimen/dp_10"
+                                            android:textSize="@dimen/font_xmini"
                                             android:text="@{lcOrderUnPAYDetailsViewModel.bankPayBranch}" />
 
                                         <TextView
                                             style="@style/textBlackSmall"
+                                            android:textSize="@dimen/font_xmini"
                                             android:text="@string/str_pay_tips"
                                             android:textColor="@color/base" />
 
@@ -622,11 +627,13 @@
 
                                         <TextView
                                             style="@style/textBlackSmall"
+                                            android:textSize="@dimen/font_mini"
                                             android:text="@{lcOrderUnPAYDetailsViewModel.aliPayName}" />
 
                                         <TextView
                                             style="@style/textBlackSmall"
                                             android:layout_marginLeft="@dimen/dp_10"
+                                            android:textSize="@dimen/font_mini"
                                             android:text="@{lcOrderUnPAYDetailsViewModel.aliPayAddr}" />
 
                                         <ImageView
@@ -645,6 +652,7 @@
 
                                         <TextView
                                             style="@style/textBlackSmall"
+                                            android:textSize="@dimen/font_xmini"
                                             android:text="@string/str_pay_tips"
                                             android:textColor="@color/base" />
 
@@ -692,11 +700,13 @@
 
                                         <TextView
                                             style="@style/textBlackSmall"
+                                            android:textSize="@dimen/font_mini"
                                             android:text="@{lcOrderUnPAYDetailsViewModel.weChatName}" />
 
                                         <TextView
                                             style="@style/textBlackSmall"
                                             android:layout_marginLeft="@dimen/dp_10"
+                                            android:textSize="@dimen/font_mini"
                                             android:text="@{lcOrderUnPAYDetailsViewModel.weChatAddr}" />
 
                                         <ImageView
@@ -716,6 +726,7 @@
                                         <TextView
                                             style="@style/textBlackSmall"
                                             android:text="@string/str_pay_tips"
+                                            android:textSize="@dimen/font_xmini"
                                             android:textColor="@color/base" />
 
                                     </LinearLayout>

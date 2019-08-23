@@ -84,7 +84,7 @@ public final class ARouterPath {
     public static final String ACTIVITY_TRADE_CFD_KLINE = "/trade/cfd/CfdKlineActivity";
     public static final String ACTIVITY_TRADE_CFD_KLINE_HORIZONTAL = "/trade/cfd/CfdKlineHorizontalActivity";
     public static final String ACTIVITY_TRADE_CFD_DETAILS = "/trade/cfd/CfdDetailsActivity";
-
+    public static final String ACTIVITY_TRADE_BUSINESS_DETAILS = "/trade/legal_currency/business/BusinessDetailsActivity";
     //-trade
 
     //-system

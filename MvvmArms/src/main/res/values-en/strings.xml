@@ -6,8 +6,8 @@
     <string name="trade">Trade</string>
     <string name="invite">Invite</string>
     <string name="me">Mine</string>
-    <string name="home_page">首页</string>
-    <string name="find">发现</string>
+    <string name="home_page">Home</string>
+    <string name="find">Found</string>
 
     <!--splash-->
     <string name="favorites">Favorites</string>
@@ -40,9 +40,9 @@
 6. If the activity is adjusted, the latest rules of SSCoin shall prevail, and SSCoin shall have the right to the final interpretation of the activity</string>
 
     <!--me-->
-    <string name="online_service">在线客服</string>
-    <string name="advertising_management">广告管理</string>
-    <string name="account_security">账户安全</string>
+    <string name="online_service">Online customer service</string>
+    <string name="advertising_management">Advertising management</string>
+    <string name="account_security">Account security</string>
     <string name="finance">Finance</string>
     <string name="myAssets">MyAssets</string>
     <string name="myBill">MyBill</string>
@@ -66,15 +66,15 @@
     <string name="logout_success_check">Login is invalid. Please login again.</string>
 
     <!--注册-->
-    <string name="checklist">请勾选已阅读并同意</string>
-    <string name="retrieve_the_password">找回密码</string>
-    <string name="cell_phone_number">手机号</string>
-    <string name="mailbox">邮箱</string>
-    <string name="next_steps">下一步</string>
-    <string name="confirmation_of_modifications">确认修改</string>
-    <string name="french_currency_assets">法币资产</string>
-    <string name="currency_assets">币币资产</string>
-    <string name="total_assets">总资产(USDT)</string>
+    <string name="checklist">Please check read and agree</string>
+    <string name="retrieve_the_password">Retrieve password</string>
+    <string name="cell_phone_number">Mobile phone no.</string>
+    <string name="mailbox">Email</string>
+    <string name="next_steps">The next step</string>
+    <string name="confirmation_of_modifications">Confirm the change</string>
+    <string name="french_currency_assets">Fiat assets</string>
+    <string name="currency_assets">Coin currency assets</string>
+    <string name="total_assets">Total assets(USDT)</string>
     <string name="register_phone">Sign up by Phone</string>
     <string name="register_email">Sign up by Email</string>
     <string name="register_description">One account with all Exchief services!</string>
@@ -114,14 +114,14 @@
     <string name="register_success">Registration success</string>
 
     <!--登录-->
-    <string name="welcome_to_login">欢迎登录</string>
-    <string name="mobile_login">手机登录</string>
-    <string name="mailbox_login">邮箱登录</string>
-    <string name="pwd_error2">请输入密码(6-20位数字，字母组合密码)</string>
-    <string name="enter_again">请再次输入密码</string>
-    <string name="invitation_code">请输入邀请码(非必填)</string>
-    <string name="reading_clauses">我已阅读并同意 Exchief 的 &#x0020;</string>
-    <string name="terms_of_service">服务条款，</string>
+    <string name="welcome_to_login">Welcome to login</string>
+    <string name="mobile_login">Mobile phone login</string>
+    <string name="mailbox_login">Email login</string>
+    <string name="pwd_error2">Password (6-20 digits, alphanumeric)</string>
+    <string name="enter_again">Please enter your password again</string>
+    <string name="invitation_code">Please enter invitation code (non-required)</string>
+    <string name="reading_clauses">I have read and agree Exchief &#x0020;</string>
+    <string name="terms_of_service">Terms of service,</string>
 
 
     <string name="login">Login</string>
@@ -644,7 +644,7 @@
     <string name="str_upload">Please upload qr code of receipt</string>
     <string name="str_enter_wechat">Please enter your WeChat account</string>
     <string name="str_enter_other">Please enter other account</string>
-    <string name="str_payway_only_one">Only one account can be selected for the same collection method</string>
+    <string name="str_pay_way_only_one">Only one account can be selected for the same collection method</string>
     <string name="str_slect_country">Please select location</string>
     <string name="str_set_fixed_price">Please set a fixed price</string>
     <string name="str_set_float_rate">Please enter floating scale</string>
@@ -825,17 +825,52 @@
     <string name="str_pwd_forget">Forgot password</string>
     <string name="str_pay_tips">(Please note 6 digits after the end number of the order)</string>
     <string name="str_appeal">&#160;Complaint&#160;</string>
-    <string name="str_order_warn_title">— Trading to remind —</string>
-    <string name="str_order_warn_content">1.Your remittance will go directly to the seller's account, and the digital assets sold by the seller during the transaction are managed and protected by the platform.\n
+    <string name="str_order_warn_title">The remind</string>
+    <string name="str_order_warn_content">1.Your remittance will go directly to the seller account, and the digital assets sold by the seller during the transaction are managed and protected by the platform.\n
         2.Please complete the payment within the specified time and be sure to click.</string>
     <string name="str_order_end_buy">Please note 6 digits after the end number of the order in the payment information:</string>
     <string name="str_order_end_sell">Please note the 6 digits after the end number of the order in the payment information:</string>
     <string name="str_order_state_unpay">Please payment</string>
     <string name="str_please_within2">Due in</string>
     <string name="str_please_within_suffix">Internal payment to seller</string>
-    <string name="str_please_within_suffix2">Within receipt of buyer's payment</string>
+    <string name="str_please_within_suffix2">Within receipt of buyer payment</string>
     <string name="str_single_price">The unit price:&#160;</string>
     <string name="str_release">Release&#160;</string>
     <string name="str_release_please">Please release</string>
     <string name="str_find_pay_info">Please find the payment collect</string>
+    <string name="str_confirm_cancel_order_title">Confirm cancellation</string>
+    <string name="str_confirm_cancel_order_content">If you have paid the seller, do not cancel the transaction</string>
+    <string name="str_confirm_cancel_order_tip">I'm sure I have not paid them yet</string>
+    <string name="str_think">I think again</string>
+    <string name="str_please_check">Please check the</string>
+    <string name="str_confirm_release_order_title">Confirm to release</string>
+    <string name="str_confirm_release_order_content">Be sure to log into your online bank or third-party payment account\nAcknowledge receipt of the payment</string>
+    <string name="str_confirm_release_order_tip">I confirm receipt of the payment and check it</string>
+    <string name="str_appeal_reason">Appeal reason</string>
+    <string name="str_appeal_reason1">I have finished the payment, the seller did not release the digital currency in time</string>
+    <string name="str_appeal_reason2">I overcharged the seller</string>
+    <string name="str_appeal_reason3">Other</string>
+    <string name="str_appeal_reason4">I have n't received any transfer from the buyer</string>
+    <string name="str_appeal_reason5">Payment received but not in amount</string>
+    <string name="str_appeal_reason6">Received payment from the buyer, but the payment information is inconsistent with the buyer's real name information</string>
+    <string name="str_appeal_warn_content">Assets will be frozen after the appeal is filed, and the ombudsman will intervene in the transaction until the appeal is completed. Malicious appeal is an act that disturbs the normal operation order of the platform. If the case is serious, the account will be frozen.</string>
+    <string name="str_appeal_submit">Submit</string>
+    <string name="str_appeal_hint">Please enter your case</string>
+    <string name="str_appeal_input_1">The remaining</string>
+    <string name="str_appeal_input_2">Word</string>
+    <string name="str_total_money_all">Total money:&#160;</string>
+    <string name="str_order_status">Order status:&#160;</string>
+    <string name="str_me">I</string>
+    <string name="str_business_register_time">|&#160;Registration time&#160;</string>
+    <string name="str_business_total_count">Total successful orders</string>
+    <string name="str_business_count">Time</string>
+    <string name="str_business_rate">Completion</string>
+    <string name="str_business_total_count_30">30 days total successful order</string>
+    <string name="str_business_release">The average release</string>
+    <string name="str_business_email">Email</string>
+    <string name="str_business_phone">Phone</string>
+    <string name="str_business_id">Identity</string>
+    <string name="str_business_high">Senior certification</string>
+    <string name="str_business_sell">Online sale</string>
+    <string name="str_business_buy">Buying online</string>
 </resources>

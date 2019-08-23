@@ -15,7 +15,11 @@ import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.api.pojo.PayTypeBean;
 import com.spark.chiefwallet.base.ARouterPath;
+import com.spark.chiefwallet.ui.popup.CoinChoosePopup;
+import com.spark.chiefwallet.ui.popup.LcConfirmPopup;
 import com.spark.chiefwallet.ui.popup.LcPayPopup;
+import com.spark.chiefwallet.ui.popup.impl.OnB2BBuyListener;
+import com.spark.chiefwallet.ui.popup.impl.OnCoinChooseListener;
 import com.spark.chiefwallet.ui.toast.Toasty;
 import com.spark.chiefwallet.util.AppUtils;
 import com.spark.otcclient.AdvertiseScanClient;
@@ -61,11 +65,11 @@ public class LcOrderUnPAYDetailsViewModel extends BaseViewModel {
     public ObservableField<String> title = new ObservableField<>();
     public ObservableField<String> titleRightTV = new ObservableField<>();
     public ObservableField<String> money = new ObservableField<>();
-    public ObservableField<String> money2 = new ObservableField<>();
+    public ObservableField<CharSequence> money2 = new ObservableField<>();
     public ObservableField<String> nameShort = new ObservableField<>();
     public ObservableField<String> name = new ObservableField<>();
     public ObservableField<String> price = new ObservableField<>();
-    public ObservableField<String> number = new ObservableField<>();
+    public ObservableField<CharSequence> number = new ObservableField<>();
     public ObservableField<String> createTime = new ObservableField<>();
     public ObservableField<String> orderSn = new ObservableField<>();
     public ObservableField<String> referenceSn = new ObservableField<>();
@@ -180,7 +184,7 @@ public class LcOrderUnPAYDetailsViewModel extends BaseViewModel {
             switch (mRecordsBean.getOrderType()) {
                 //取消订单
                 case "0":
-                    new XPopup.Builder(mContext)
+                    /*new XPopup.Builder(mContext)
                             .asConfirm(mContext.getString(R.string.tips), mContext.getString(R.string.str_confirm_cancel),
                                     mContext.getString(R.string.cancel), mContext.getString(R.string.ensure),
                                     new OnConfirmListener() {
@@ -189,6 +193,19 @@ public class LcOrderUnPAYDetailsViewModel extends BaseViewModel {
                                             LcTradeClient.getInstance().orderCancel(mRecordsBean.getOrderSn());
                                         }
                                     }, null, false)
+                            .show();*/
+                    new XPopup.Builder(mContext)
+                            .asCustom(new LcConfirmPopup(mContext
+                                    , mContext.getString(R.string.str_confirm_cancel_order_title)
+                                    , mContext.getString(R.string.str_confirm_cancel_order_content)
+                                    , mContext.getString(R.string.str_confirm_cancel_order_tip)
+                                    , new OnB2BBuyListener() {
+                                @Override
+                                public void onClickConfirm() {
+                                    LcTradeClient.getInstance().orderCancel(mRecordsBean.getOrderSn());
+                                }
+
+                            }))
                             .show();
                     break;
             }
@@ -370,7 +387,7 @@ public class LcOrderUnPAYDetailsViewModel extends BaseViewModel {
                 .append(App.getInstance().getString(R.string.str_single_price))
                 .append(mRecordsBean.getPrice() + " CNY").setForegroundColor(ContextCompat.getColor(mContext, R.color.black))
                 .create();
-        money2.set(text.toString());
+        money2.set(text);
         //money2.set(DfUtils.numberFormat(mRecordsBean.getMoney(), mRecordsBean.getMoney() == 0 ? 0 : 8) + " CNY");
         nameShort.set(mRecordsBean.getTradeToUsername().substring(0, 1));
         name.set(mRecordsBean.getTradeToUsername());
@@ -379,7 +396,7 @@ public class LcOrderUnPAYDetailsViewModel extends BaseViewModel {
                 .append(App.getInstance().getString(R.string.str_number))
                 .append(mRecordsBean.getNumber() + " " + mRecordsBean.getCoinName()).setForegroundColor(ContextCompat.getColor(mContext, R.color.black))
                 .create();
-        number.set(numberText.toString());
+        number.set(numberText);
         //number.set(DfUtils.numberFormat(mRecordsBean.getNumber(), mRecordsBean.getNumber() == 0 ? 0 : 8) + " " + mRecordsBean.getCoinName());
         createTime.set(DateUtils.formatDate("yyyy.MM.dd HH:mm", mRecordsBean.getCreateTime()));
         orderSn.set(mRecordsBean.getOrderSn());

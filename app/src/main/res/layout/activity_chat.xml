@@ -13,12 +13,40 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/gray_f3"
+        android:background="@color/gray_f5"
         android:orientation="vertical">
 
         <include
             android:id="@+id/chat_title"
             layout="@layout/view_title" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <TextView
+                style="@style/textBlackNormal"
+                android:text="@{chatViewModel.money}"
+                android:textColor="@color/color_grey"
+                android:textSize="@dimen/font_mini" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_10"
+                android:layout_weight="1" />
+
+            <TextView
+                style="@style/textBlackNormal"
+                android:text="@{chatViewModel.status}"
+                android:textColor="@color/color_grey"
+                android:textSize="@dimen/font_mini" />
+
+        </LinearLayout>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -46,7 +74,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    android:background="@color/gray_fb"
+                    android:background="@color/white"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -64,23 +92,19 @@
                         android:text="@={chatViewModel.chatPost}"
                         android:textColor="@color/black"
                         android:textSize="@dimen/font_normal"
-                        app:bl_corners_radius="30dp"
+                        app:bl_corners_radius="2dp"
                         app:bl_solid_color="@color/white"
                         app:bl_stroke_color="@color/gray_ccc"
-                        app:bl_stroke_width="1px" />
+                        app:bl_stroke_width="0.5dp" />
 
-                    <TextView
-                        style="@style/textBlackNormal"
+                    <ImageView
                         onClickCommand="@{chatViewModel.postCommand}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
-                        android:paddingBottom="8dp"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp"
-                        android:paddingTop="8dp"
-                        android:text="@string/str_send"
-                        app:bl_corners_radius="4dp"
-                        app:bl_solid_color="@color/base" />
+                        android:padding="8dp"
+                        android:src="@drawable/svg_send" />
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>

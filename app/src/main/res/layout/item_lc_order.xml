@@ -35,13 +35,13 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    style="@style/textBlackNormal"
+                    style="@style/textBlackSmall"
                     android:text="@{lcOrderViewModel.initType()}"
                     android:textColor="@{lcOrderViewModel.initTypeColor() ? @color/base : @color/black}"
                     android:textStyle="bold" />
 
                 <TextView
-                    style="@style/textBlackNormal"
+                    style="@style/textBlackSmall"
                     android:layout_marginLeft="0dp"
                     android:text="@{lcOrderViewModel.coinName}"
                     android:textColor="@{lcOrderViewModel.initTypeColor() ? @color/base : @color/black}"
@@ -50,8 +50,9 @@
                 <TextView
                     style="@style/textGrayCommonSmall"
                     android:layout_marginLeft="8dp"
+                    android:text="@{lcOrderViewModel.initTradeToUsername()}"
                     android:textColor="@color/color_stroke"
-                    android:text="@{lcOrderViewModel.initTradeToUsername()}" />
+                    android:textSize="@dimen/font_mini" />
 
                 <TextView
                     style="@style/textBlackNormal"
@@ -59,7 +60,8 @@
                     android:layout_weight="1"
                     android:gravity="right"
                     android:text="@{lcOrderViewModel.initStatueType()}"
-                    android:textColor="@{lcOrderViewModel.initStatueTypeColor() ? @color/color_stroke : @color/base}" />
+                    android:textColor="@{lcOrderViewModel.initStatueTypeColor() ? @color/color_stroke : @color/base}"
+                    android:textSize="@dimen/font_small" />
 
                 <ImageView style="@style/imgEnter" />
             </LinearLayout>
@@ -79,11 +81,13 @@
                     <TextView
                         style="@style/textGrayCommonFont13"
                         android:text="@string/time"
-                        android:textColor="@color/color_grey" />
+                        android:textColor="@color/color_grey"
+                        android:textSize="@dimen/font_mini" />
 
                     <TextView
                         style="@style/textBlackSmall"
-                        android:text="@{lcOrderViewModel.formatDate2()}" />
+                        android:text="@{lcOrderViewModel.formatDate2()}"
+                        android:textSize="@dimen/font_mini" />
 
                 </LinearLayout>
 
@@ -97,12 +101,14 @@
                         style="@style/textGrayCommonFont13"
                         android:layout_width="80dp"
                         android:text="@{lcOrderViewModel.initNumber()}"
-                        android:textColor="@color/color_grey" />
+                        android:textColor="@color/color_grey"
+                        android:textSize="@dimen/font_mini" />
 
                     <TextView
                         style="@style/textBlackSmall"
                         android:layout_width="80dp"
-                        android:text="@{lcOrderViewModel.initNumberText()}" />
+                        android:text="@{lcOrderViewModel.initNumberText()}"
+                        android:textSize="@dimen/font_mini" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -116,13 +122,15 @@
                         style="@style/textGrayCommonFont13"
                         android:layout_width="wrap_content"
                         android:text="@string/fee2"
-                        android:textColor="@color/color_grey" />
+                        android:textColor="@color/color_grey"
+                        android:textSize="@dimen/font_mini" />
 
                     <TextView
                         style="@style/textBlackSmall"
                         android:layout_width="80dp"
                         android:gravity="right"
-                        android:text="@{lcOrderViewModel.getCommissionText()}" />
+                        android:text="@{lcOrderViewModel.getCommissionText()}"
+                        android:textSize="@dimen/font_mini" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -135,12 +143,13 @@
                     <TextView
                         style="@style/textGrayCommonFont13"
                         android:text="@string/str_money_all"
-                        android:textColor="@color/color_grey" />
+                        android:textColor="@color/color_grey"
+                        android:textSize="@dimen/font_mini" />
 
                     <TextView
                         style="@style/textBlackSmall"
-                        android:maxLines="1"
-                        android:text="@{lcOrderViewModel.initMoneyText()}" />
+                        android:text="@{lcOrderViewModel.initMoneyText()}"
+                        android:textSize="@dimen/font_mini" />
                 </LinearLayout>
 
             </LinearLayout>

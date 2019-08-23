@@ -10,7 +10,7 @@ import com.android.databinding.library.baseAdapters.BR;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.spark.chiefwallet.R;
-import com.spark.otcclient.pojo.FindPageResult;
+import com.spark.otcclient.pojo.FindAdvertiseResult;
 
 import java.util.List;
 
@@ -23,17 +23,16 @@ import java.util.List;
  * 修订历史：
  * ================================================
  */
-public class LcVPAdapter extends BaseQuickAdapter<FindPageResult.DataBean.RecordsBean, LcVPAdapter.FindPageResultViewHolder> {
-    public LcVPAdapter(@Nullable List<FindPageResult.DataBean.RecordsBean> data) {
-        super(R.layout.item_lc_vp, data);
+public class LcBusinessAdAdapter extends BaseQuickAdapter<FindAdvertiseResult.DataBean, LcBusinessAdAdapter.FindPageResultViewHolder> {
+    public LcBusinessAdAdapter(@Nullable List<FindAdvertiseResult.DataBean> data) {
+        super(R.layout.item_lc_business_ad, data);
     }
 
     @Override
-    protected void convert(FindPageResultViewHolder helper, FindPageResult.DataBean.RecordsBean item) {
+    protected void convert(FindPageResultViewHolder helper, FindAdvertiseResult.DataBean item) {
         ViewDataBinding binding = helper.getBinding();
         binding.setVariable(BR.findPageResult, item);
         binding.executePendingBindings();
-        helper.addOnClickListener(R.id.ll_business_info);
     }
 
 

@@ -72,4 +72,6 @@ public class OtcHost {
     public static String selfAdvertiseDelete = "selfAdvertise/delete/";
     //获取历史聊天记录
     public static String getTradeChatListUrl = "trade/order/chat/";
+    //查询指定商家上架的广告
+    public static String getAdvertiseFindUrl = "advertise/find/";
 }

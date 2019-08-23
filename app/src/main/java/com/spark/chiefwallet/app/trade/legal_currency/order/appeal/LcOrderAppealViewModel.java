@@ -35,6 +35,8 @@ public class LcOrderAppealViewModel extends BaseViewModel {
     public ObservableField<String> imgOne = new ObservableField<>("");
     public ObservableField<String> imgTwo = new ObservableField<>("");
     public ObservableField<String> imgThree = new ObservableField<>("");
+    public ObservableField<Boolean> isShow = new ObservableField<>(true);
+    public ObservableField<CharSequence> inputRemain = new ObservableField<>();
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(EventBean eventBean) {
@@ -79,7 +81,6 @@ public class LcOrderAppealViewModel extends BaseViewModel {
         }
     }
 
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -91,4 +92,5 @@ public class LcOrderAppealViewModel extends BaseViewModel {
         super.onDestroy();
         EventBusUtils.unRegister(this);
     }
+
 }

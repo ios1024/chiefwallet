@@ -117,7 +117,8 @@
         <activity android:name="com.spark.chiefwallet.app.trade.currency.openorders.OpenOrdersActivity"/>
         <activity android:name="com.spark.chiefwallet.app.trade.currency.openorders.details.CommissionDetailsActivity"/>
         <activity android:name="com.spark.chiefwallet.app.trade.legal_currency.order.details.unpay.LcOrderUnpayDetailsActivity"/>
-        <activity android:name="com.spark.chiefwallet.app.trade.legal_currency.order.details.paid.LcOrderPaidDetailsActivity"/>
+        <activity android:name="com.spark.chiefwallet.app.trade.legal_currency.order.details.paid.LcOrderPaidDetailsActivity"
+            android:windowSoftInputMode="adjustResize"/>
         <activity android:name="com.spark.chiefwallet.app.trade.legal_currency.order.appeal.LcOrderAppealActivity"/>
         <activity android:name="com.spark.chiefwallet.app.trade.legal_currency.order.receiptcode.LcReceiptCodeActivity"/>
         <activity
@@ -138,6 +139,7 @@
         <activity
             android:name="com.spark.chiefwallet.app.trade.contract.kline.CfdKlineHorizontalActivity"
             android:screenOrientation="landscape"/>
+        <activity android:name=".app.trade.legal_currency.business.BusinessDetailsActivity"/>
 
         <service android:name="com.spark.wsclient.WsService"/>
         <receiver android:name="com.spark.wsclient.base.NetworkChangedReceiver"/>

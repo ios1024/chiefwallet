@@ -117,6 +117,7 @@ public class EvKey {
     public static final String indexCoinList = "indexCoinList";
     public static final String adDelete = "adDelete";
     public static final String chatList = "chatList";
+    public static final String advertiseFind = "advertiseFind";
 
     //spot
     public static final String spotCoinAll = "spotCoinAll";
