@@ -130,6 +130,6 @@
         <View
             android:id="@+id/title_line"
             style="@style/line_ccc"
-            android:visibility="@{viewTitle.isShowTitleLine?View.VISIBLE:View.INVISIBLE}" />
+            android:visibility="@{viewTitle.isShowTitleLine?View.VISIBLE:View.GONE}" />
     </LinearLayout>
 </layout>

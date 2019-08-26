@@ -348,7 +348,7 @@ public class FindMerchantDetailsResult implements Parcelable {
          * @return
          */
         public String getNameFirstChar() {
-            return StringUtils.isEmpty(username) ? "" : username.substring(0, 1);
+            return StringUtils.isEmpty(realName) ? "" : realName.substring(0, 1);
         }
 
         public String formatRangeTimeOrderRate() {

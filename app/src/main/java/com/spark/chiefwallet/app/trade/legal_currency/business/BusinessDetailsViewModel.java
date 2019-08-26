@@ -11,7 +11,6 @@ import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.ui.toast.Toasty;
 import com.spark.otcclient.AdvertiseScanClient;
 import com.spark.otcclient.pojo.FindMerchantDetailsResult;
-import com.spark.otcclient.pojo.FindPageResult;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -19,7 +18,7 @@ import org.greenrobot.eventbus.ThreadMode;
 import me.spark.mvvm.base.BaseViewModel;
 import me.spark.mvvm.base.EvKey;
 import me.spark.mvvm.http.impl.OnRequestListener;
-import me.spark.mvvm.utils.DfUtils;
+import me.spark.mvvm.utils.DateUtils;
 import me.spark.mvvm.utils.EventBean;
 import me.spark.mvvm.utils.EventBusUtils;
 
@@ -67,10 +66,10 @@ public class BusinessDetailsViewModel extends BaseViewModel {
     private void initViewDate(FindMerchantDetailsResult findMerchantDetailsResult) {
         nameShort.set(findMerchantDetailsResult.getData().getNameFirstChar());
         username.set(findMerchantDetailsResult.getData().getRealName());
-        registerTime.set(App.getInstance().getString(R.string.str_business_register_time) + findMerchantDetailsResult.getData().getRegistTime());
-        totalSuccessCount.set((findMerchantDetailsResult.getData().getTotalSuccessBuyOrder() + findMerchantDetailsResult.getData().getTotalSuccessSellOrder()) + App.getInstance().getString(R.string.str_business_total_count));
+        registerTime.set(App.getInstance().getString(R.string.str_business_register_time) + DateUtils.formatDate("yyyy-MM-dd", findMerchantDetailsResult.getData().getRegistTime()));
+        totalSuccessCount.set((findMerchantDetailsResult.getData().getTotalSuccessBuyOrder() + findMerchantDetailsResult.getData().getTotalSuccessSellOrder()) + App.getInstance().getString(R.string.str_business_count));
         tvRate.set(findMerchantDetailsResult.getData().formatRangeTimeOrderRate());
-        totalSuccessCount30.set(findMerchantDetailsResult.getData().getRangeTimeSuccessOrder() + App.getInstance().getString(R.string.str_business_total_count));
+        totalSuccessCount30.set(findMerchantDetailsResult.getData().getRangeTimeSuccessOrder() + App.getInstance().getString(R.string.str_business_count));
         tvRelease.set(findMerchantDetailsResult.getData().getAvgReleaseTime() + App.getInstance().getString(R.string.text_minute));
         isAuthEmail.set(findMerchantDetailsResult.getData().isEmailAuthStatus());
         isAuthPhone.set(findMerchantDetailsResult.getData().isPhoneAuthStatus());
@@ -95,7 +94,6 @@ public class BusinessDetailsViewModel extends BaseViewModel {
             case EvKey.findMerchantDetails:
                 if (eventBean.isStatue()) {
                     FindMerchantDetailsResult findMerchantDetailsResult = (FindMerchantDetailsResult) eventBean.getObject();
-                    //dealNumber.set(findMerchantDetailsResult.getData().formatRangeTimeOrder());
                     initViewDate(findMerchantDetailsResult);
                 } else {
                     Toasty.showError(eventBean.getMessage());

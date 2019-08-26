@@ -88,6 +88,7 @@ public class BusinessDetailsActivity extends BaseActivity<ActivityLcBusinessDeta
         mLcVPAdapterSell.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Constant.lcBuyOrSell = 0;
                 FindAdvertiseResult.DataBean dataBean = (FindAdvertiseResult.DataBean) adapter.getItem(position);
                 goToCreate(dataBean.getCoinName(), dataBean);
             }
@@ -99,18 +100,20 @@ public class BusinessDetailsActivity extends BaseActivity<ActivityLcBusinessDeta
         mLcVPAdapterBuy.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-
+                Constant.lcBuyOrSell = 1;
+                FindAdvertiseResult.DataBean dataBean = (FindAdvertiseResult.DataBean) adapter.getItem(position);
+                goToCreate(dataBean.getCoinName(), dataBean);
             }
         });
 
         //下拉刷新
-//        binding.swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.base));
-//        binding.swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-//            @Override
-//            public void onRefresh() {
-//                refresh();
-//            }
-//        });
+        binding.swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.base));
+        binding.swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refresh();
+            }
+        });
 
     }
 
@@ -140,7 +143,7 @@ public class BusinessDetailsActivity extends BaseActivity<ActivityLcBusinessDeta
      * 下拉刷新
      */
     private void refresh() {
-        //binding.swipeLayout.setRefreshing(true);
+        binding.swipeLayout.setRefreshing(true);
 
         viewModel.init(this, memberId, new OnRequestListener<FindAdvertiseResult>() {
             @Override
@@ -157,13 +160,13 @@ public class BusinessDetailsActivity extends BaseActivity<ActivityLcBusinessDeta
                 }
                 mLcVPAdapterSell.notifyDataSetChanged();
                 mLcVPAdapterBuy.notifyDataSetChanged();
-//                binding.swipeLayout.setRefreshing(false);
+                binding.swipeLayout.setRefreshing(false);
             }
 
             @Override
             public void onFail(String message) {
                 Toasty.showError(message);
-                //binding.swipeLayout.setRefreshing(false);
+                binding.swipeLayout.setRefreshing(false);
             }
         });
     }
@@ -185,9 +188,9 @@ public class BusinessDetailsActivity extends BaseActivity<ActivityLcBusinessDeta
             viewModel.findData(coinName, new OnRequestListener<SpotWalletResult>() {
                 @Override
                 public void onSuccess(SpotWalletResult spotWalletResult) {
-                    new XPopup.Builder(App.getInstance())
+                    new XPopup.Builder(BusinessDetailsActivity.this)
                             .autoOpenSoftInput(true)
-                            .asCustom(new LcTradePopup(App.getInstance(), spotWalletResult.getData(), Constant.lcBuyOrSell, recordsBean, new OnOrderCreateListener() {
+                            .asCustom(new LcTradePopup(BusinessDetailsActivity.this, spotWalletResult.getData(), Constant.lcBuyOrSell, recordsBean, new OnOrderCreateListener() {
                                 @Override
                                 public void onOrderCreate(final OrderCreateBean orderCreateBean) {
                                     showKeyboard(false);
@@ -196,14 +199,14 @@ public class BusinessDetailsActivity extends BaseActivity<ActivityLcBusinessDeta
                                         LcTradeClient.getInstance().orderCreate(orderCreateBean, coinName);
                                     } else {
                                         if (orderCreateBean.getTradePwd() == null) {
-                                            new XPopup.Builder(App.getInstance())
+                                            new XPopup.Builder(BusinessDetailsActivity.this)
                                                     .autoOpenSoftInput(true)
-                                                    .asCustom(new TradePwdPopup(App.getInstance(), new OnEtContentListener() {
+                                                    .asCustom(new TradePwdPopup(BusinessDetailsActivity.this, new OnEtContentListener() {
                                                         @Override
                                                         public void onCEtContentInput(String content) {
                                                             showKeyboard(false);
                                                             orderCreateBean.setTradePwd(content);
-                                                            showDialog(App.getInstance().getString(R.string.loading));
+                                                            showDialog(BusinessDetailsActivity.this.getString(R.string.loading));
                                                             LcTradeClient.getInstance().orderCreate(orderCreateBean, coinName);
                                                         }
                                                     }))

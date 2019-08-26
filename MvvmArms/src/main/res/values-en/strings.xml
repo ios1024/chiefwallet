@@ -840,7 +840,7 @@
     <string name="str_find_pay_info">Please find the payment collect</string>
     <string name="str_confirm_cancel_order_title">Confirm cancellation</string>
     <string name="str_confirm_cancel_order_content">If you have paid the seller, do not cancel the transaction</string>
-    <string name="str_confirm_cancel_order_tip">I'm sure I have not paid them yet</string>
+    <string name="str_confirm_cancel_order_tip">I am sure I have not paid them yet</string>
     <string name="str_think">I think again</string>
     <string name="str_please_check">Please check the</string>
     <string name="str_confirm_release_order_title">Confirm to release</string>
@@ -850,9 +850,9 @@
     <string name="str_appeal_reason1">I have finished the payment, the seller did not release the digital currency in time</string>
     <string name="str_appeal_reason2">I overcharged the seller</string>
     <string name="str_appeal_reason3">Other</string>
-    <string name="str_appeal_reason4">I have n't received any transfer from the buyer</string>
+    <string name="str_appeal_reason4">I have not received any transfer from the buyer</string>
     <string name="str_appeal_reason5">Payment received but not in amount</string>
-    <string name="str_appeal_reason6">Received payment from the buyer, but the payment information is inconsistent with the buyer's real name information</string>
+    <string name="str_appeal_reason6">Received payment from the buyer, but the payment information is inconsistent with the buyer real name information</string>
     <string name="str_appeal_warn_content">Assets will be frozen after the appeal is filed, and the ombudsman will intervene in the transaction until the appeal is completed. Malicious appeal is an act that disturbs the normal operation order of the platform. If the case is serious, the account will be frozen.</string>
     <string name="str_appeal_submit">Submit</string>
     <string name="str_appeal_hint">Please enter your case</string>

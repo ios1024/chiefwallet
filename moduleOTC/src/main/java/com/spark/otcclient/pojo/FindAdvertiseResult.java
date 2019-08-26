@@ -339,7 +339,7 @@ public class FindAdvertiseResult implements Parcelable {
          * @return
          */
         public String getNameFirstChar() {
-            return StringUtils.isEmpty(username) ? "" : username.substring(0, 1);
+            return StringUtils.isEmpty(coinName) ? "" : coinName.substring(0, 1);
         }
 
         /**
