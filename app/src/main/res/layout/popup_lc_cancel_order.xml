@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:bl_corners_radius="3dp"
+    app:bl_solid_color="@color/white">
+
+    <LinearLayout style="@style/ll_item_52">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/textBlackNormal"
+            android:layout_gravity="center_vertical"
+            android:text="@string/str_confirm_cancel_order_title"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/ll_item_52">
+
+        <TextView
+            android:id="@+id/tvContent"
+            style="@style/textBlackSmall"
+            android:lineSpacingExtra="@dimen/dp_4"
+            android:text="@string/str_confirm_cancel_order_content"
+            android:textSize="@dimen/font_small" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/ll_item_52"
+        android:layout_marginTop="10dp">
+
+        <com.spark.chiefwallet.ui.SmoothCheckBox
+            android:id="@+id/mCheckBox"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            app:color_checked="@color/base"
+            app:color_unchecked_stroke="@color/base" />
+
+        <TextView
+            android:id="@+id/tvTip"
+            style="@style/textBlackSmall"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:text="@string/str_confirm_cancel_order_tip" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="@dimen/dp_4"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/cancel"
+            style="@style/textGrayCommonNormal"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/str_think"
+            android:textColor="@color/base"
+            android:textSize="@dimen/font_small"
+            app:bl_ripple_color="@color/gray_456"
+            app:bl_ripple_enable="true"
+            app:bl_solid_color="@color/white"
+            tools:ignore="MissingPrefix" />
+
+        <TextView
+            android:id="@+id/ensure"
+            style="@style/textBlackNormal"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/ensure"
+            android:textColor="@color/color_stroke"
+            android:textSize="@dimen/font_small"
+            app:bl_ripple_color="@color/gray_456"
+            app:bl_ripple_enable="true"
+            app:bl_solid_color="@color/white"
+            tools:ignore="MissingPrefix" />
+    </LinearLayout>
+
+
+</LinearLayout>

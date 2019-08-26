@@ -18,6 +18,7 @@ public final class ARouterPath {
     public static final String ACTIVITY_QUOTES_KLINE = "/quotes/kline/KlineActivity";
     public static final String ACTIVITY_QUOTES_KLINE_HTTP = "/quotes/kline/KlineHttpActivity";
     public static final String ACTIVITY_QUOTES_KLINE_CHIEF = "/quotes/kline/QuotesKlineActivity";
+    public static final String ACTIVITY_QUOTES_KLINE_CHIEF_HORIZONTAL = "/quotes/kline/QuotesKlineHorizontalActivity";
     public static final String ACTIVITY_QUOTES_KLINE_HTTP_HORIZONTAL = "/quotes/kline/KlineHttpHorizontalActivity";
     //quotes-module---------------------------------------------------------------
 
@@ -85,7 +86,7 @@ public final class ARouterPath {
     public static final String ACTIVITY_TRADE_CFD_KLINE = "/trade/cfd/CfdKlineActivity";
     public static final String ACTIVITY_TRADE_CFD_KLINE_HORIZONTAL = "/trade/cfd/CfdKlineHorizontalActivity";
     public static final String ACTIVITY_TRADE_CFD_DETAILS = "/trade/cfd/CfdDetailsActivity";
-
+    public static final String ACTIVITY_TRADE_BUSINESS_DETAILS = "/trade/legal_currency/business/BusinessDetailsActivity";
     //-trade
 
     //-system

@@ -1,9 +1,9 @@
 package com.spark.chiefwallet.app.trade.legal_currency.order.details.unpay;
 
 import android.arch.lifecycle.Observer;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
@@ -52,7 +52,7 @@ public class LcOrderUnpayDetailsActivity extends BaseActivity<ActivityLcOrderUnp
     public void initView() {
         StatueBarUtils.setStatusBarLightMode(this, true);
         StatueBarUtils.addMarginTopEqualStatusBarHeight(binding.fakeStatusBar);
-        StatueBarUtils.setStatusBarColor(this, ContextCompat.getColor(this, R.color.commission_bg));
+        StatueBarUtils.setStatusBarColor(this, Color.WHITE);
         viewModel.initContext(this);
     }
 

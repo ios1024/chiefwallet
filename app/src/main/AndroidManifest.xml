@@ -55,19 +55,19 @@
         <!-- 配置APP ID -->
         <meta-data
             android:name="BUGLY_APPID"
-            android:value="004a8ae7da" />
+            android:value="004a8ae7da"/>
         <!-- 配置APP版本号 -->
         <meta-data
             android:name="BUGLY_APP_VERSION"
-            android:value="3.1.7" />
+            android:value="3.1.7"/>
         <!-- 配置APP渠道号 -->
         <meta-data
             android:name="BUGLY_APP_CHANNEL"
-            android:value="" />
+            android:value=""/>
         <!-- 配置Bugly调试模式（true或者false）-->
         <meta-data
             android:name="BUGLY_ENABLE_DEBUG"
-            android:value="true" />
+            android:value="true"/>
 
         <activity android:name="com.spark.chiefwallet.app.SplashActivity">
             <intent-filter>
@@ -117,7 +117,8 @@
         <activity android:name="com.spark.chiefwallet.app.trade.currency.openorders.OpenOrdersActivity"/>
         <activity android:name="com.spark.chiefwallet.app.trade.currency.openorders.details.CommissionDetailsActivity"/>
         <activity android:name="com.spark.chiefwallet.app.trade.legal_currency.order.details.unpay.LcOrderUnpayDetailsActivity"/>
-        <activity android:name="com.spark.chiefwallet.app.trade.legal_currency.order.details.paid.LcOrderPaidDetailsActivity"/>
+        <activity android:name="com.spark.chiefwallet.app.trade.legal_currency.order.details.paid.LcOrderPaidDetailsActivity"
+            android:windowSoftInputMode="adjustResize"/>
         <activity android:name="com.spark.chiefwallet.app.trade.legal_currency.order.appeal.LcOrderAppealActivity"/>
         <activity android:name="com.spark.chiefwallet.app.trade.legal_currency.order.receiptcode.LcReceiptCodeActivity"/>
         <activity
@@ -139,6 +140,10 @@
             android:name="com.spark.chiefwallet.app.trade.contract.kline.CfdKlineHorizontalActivity"
             android:screenOrientation="landscape"/>
         <activity android:name=".app.quotes.kline.QuotesKlineActivity"/>
+        <activity
+            android:name=".app.quotes.kline.QuotesKlineHorizontalActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".app.trade.legal_currency.business.BusinessDetailsActivity"/>
 
         <service android:name="com.spark.wsclient.WsService"/>
         <receiver android:name="com.spark.wsclient.base.NetworkChangedReceiver"/>

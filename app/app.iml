@@ -105,6 +105,7 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/instant_run_merged_manifests" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/javac" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/legacy_multidex_aapt_derived_proguard_rules" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/legacy_multidex_main_dex_list" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/merged_assets" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/merged_jni_libs" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/merged_manifests" />
@@ -116,7 +117,6 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/shader_assets" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/signing_config" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/symbols" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/tmp" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/transforms" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/validate_signing_config" />
       <excludeFolder url="file://$MODULE_DIR$/build/outputs" />
@@ -234,25 +234,17 @@
     <orderEntry type="library" name="Gradle: com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.46@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:coordinatorlayout:28.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:swiperefreshlayout:28.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.PhilJay:MPAndroidChart:v3.1.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.afollestad.material-dialogs:commons:0.9.4.5@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-media-compat:28.0.0@aar" level="project" />
-    <orderEntry type="module" module-name="moduleSPOT" />
-    <orderEntry type="module" module-name="moduleOTC" />
-    <orderEntry type="module" module-name="WsClient" />
     <orderEntry type="module" module-name="moduleAC" />
-    <orderEntry type="module" module-name="CasClient" />
     <orderEntry type="module" module-name="MvvmArms" />
-    <orderEntry type="module" module-name="KlineLib" />
-    <orderEntry type="module" module-name="moduleCFD" />
-    <orderEntry type="module" module-name="moduleUC" />
     <orderEntry type="module" module-name="moduleSPOT" />
-    <orderEntry type="module" module-name="moduleOTC" />
-    <orderEntry type="module" module-name="WsClient" />
-    <orderEntry type="module" module-name="moduleAC" />
-    <orderEntry type="module" module-name="CasClient" />
-    <orderEntry type="module" module-name="MvvmArms" />
-    <orderEntry type="module" module-name="KlineLib" />
-    <orderEntry type="module" module-name="moduleCFD" />
     <orderEntry type="module" module-name="moduleUC" />
+    <orderEntry type="module" module-name="KlineLib" />
+    <orderEntry type="module" module-name="moduleOTC" />
+    <orderEntry type="module" module-name="moduleCFD" />
+    <orderEntry type="module" module-name="CasClient" />
+    <orderEntry type="module" module-name="WsClient" />
   </component>
 </module>

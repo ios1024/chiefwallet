@@ -169,7 +169,19 @@ public class DrawerWsFragment extends BaseFragment<FragmentQuotesReceiveBinding,
                 mThumbList.addAll(dataBeans);
                 mDrawerAdapter.notifyDataSetChanged();
                 if (mThumbList.isEmpty()) {
-                    mDrawerAdapter.setEmptyView(R.layout.view_rv_empty, binding.thumbRv);
+                    if (getArguments().getString(TYPE).equals(App.getInstance().getString(R.string.favorites))) {
+                        mDrawerAdapter.setEmptyView(R.layout.view_rv_empty_favor, binding.thumbRv);
+                        mDrawerAdapter.getEmptyView().findViewById(R.id.text_title).setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (TextUtils.isEmpty(Constant.searchQuotesJson)) return;
+                                ARouter.getInstance().build(ARouterPath.ACTIVITY_QUOTES_SERACH)
+                                        .navigation();
+                            }
+                        });
+                    } else {
+                        mDrawerAdapter.setEmptyView(R.layout.view_rv_empty_2, binding.thumbRv);
+                    }
                 }
                 if (!binding.thumbRoot.isContentCurrentState())
                     binding.thumbRoot.showContent();

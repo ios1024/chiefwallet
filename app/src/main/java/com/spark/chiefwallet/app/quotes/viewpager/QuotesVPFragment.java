@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -105,7 +106,19 @@ public class QuotesVPFragment extends BaseFragment<FragmentQuotesVpBinding, Quot
                 mThumbList.addAll(dataBeans);
                 filterData();
                 if (mThumbList.isEmpty()) {
-                    mQuotesThumbAdapter.setEmptyView(R.layout.view_rv_empty_2, binding.thumbRv);
+                    if (getArguments().getString(TYPE).equals(App.getInstance().getString(R.string.favorites))) {
+                        mQuotesThumbAdapter.setEmptyView(R.layout.view_rv_empty_favor, binding.thumbRv);
+                        mQuotesThumbAdapter.getEmptyView().findViewById(R.id.text_title).setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (TextUtils.isEmpty(Constant.searchQuotesJson)) return;
+                                ARouter.getInstance().build(ARouterPath.ACTIVITY_QUOTES_SERACH)
+                                        .navigation();
+                            }
+                        });
+                    } else {
+                        mQuotesThumbAdapter.setEmptyView(R.layout.view_rv_empty_2, binding.thumbRv);
+                    }
                 }
                 if (!binding.thumbRoot.isContentCurrentState())
                     binding.thumbRoot.showContent();

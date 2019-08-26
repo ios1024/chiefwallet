@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-
-              android:background="@color/transparent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/transparent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,11 +20,15 @@
             android:layout_marginTop="5dp"
             android:paddingLeft="15dp">
 
-            <ImageView
+            <TextView
                 android:id="@+id/ivHeaderLeft"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@drawable/svg_head"/>
+                style="@style/textBlackSmall"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                app:bl_corners_radius="20dp"
+                app:bl_solid_color="@color/base" />
 
             <TextView
                 android:id="@+id/tvMessageLeft"
@@ -32,13 +36,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_toRightOf="@id/ivHeaderLeft"
-                android:background="@drawable/icon_chat_bg_left"
                 android:gravity="left|center"
-                android:minHeight="48dp"
-                android:paddingBottom="20dp"
+                android:minHeight="32dp"
+                android:minWidth="100dp"
+                android:padding="10dp"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="@dimen/font_normal"/>
+                android:textSize="@dimen/font_small"
+                app:bl_corners_bottomLeftRadius="3dp"
+                app:bl_corners_bottomRightRadius="3dp"
+                app:bl_corners_topLeftRadius="0dp"
+                app:bl_corners_topRightRadius="3dp"
+                app:bl_solid_color="@color/white" />
 
             <TextView
                 android:id="@+id/tvTimeLeft"
@@ -46,8 +55,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignStart="@id/tvMessageLeft"
                 android:layout_below="@id/tvMessageLeft"
-                android:textColor="@color/black"
-                />
+                android:layout_marginTop="@dimen/dp_4"
+                android:text=""
+                android:textColor="@color/color_grey"
+                android:textSize="@dimen/font_mini" />
 
         </RelativeLayout>
 
@@ -60,12 +71,17 @@
             android:orientation="horizontal"
             android:paddingRight="15dp">
 
-            <ImageView
+            <TextView
                 android:id="@+id/ivHeaderRight"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                style="@style/textBlackSmall"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:layout_alignParentEnd="true"
-                android:src="@drawable/svg_head"/>
+                android:gravity="center"
+                android:text="@string/str_me"
+                android:textColor="@color/white"
+                app:bl_corners_radius="20dp"
+                app:bl_solid_color="@color/color_stroke" />
 
             <TextView
                 android:id="@+id/tvMessageRight"
@@ -73,13 +89,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15dp"
                 android:layout_toLeftOf="@id/ivHeaderRight"
-                android:background="@drawable/icon_chat_bg_right"
-                android:gravity="center_vertical"
-                android:minHeight="48dp"
-                android:paddingBottom="20dp"
+                android:gravity="left|center"
+                android:minHeight="32dp"
+                android:minWidth="100dp"
+                android:padding="10dp"
                 android:text=""
-                android:textColor="@color/black"
-                android:textSize="@dimen/font_normal"/>
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_small"
+                app:bl_corners_bottomLeftRadius="3dp"
+                app:bl_corners_bottomRightRadius="3dp"
+                app:bl_corners_topLeftRadius="3dp"
+                app:bl_corners_topRightRadius="0dp"
+                app:bl_solid_color="@color/base" />
 
             <TextView
                 android:id="@+id/tvTimeRight"
@@ -87,7 +108,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignEnd="@id/tvMessageRight"
                 android:layout_below="@id/tvMessageRight"
-                android:textColor="@color/black"/>
+                android:layout_marginTop="@dimen/dp_4"
+                android:text=""
+                android:textColor="@color/color_grey"
+                android:textSize="@dimen/font_mini" />
         </RelativeLayout>
 
     </LinearLayout>

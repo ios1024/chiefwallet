@@ -1,6 +1,10 @@
 package com.spark.chiefwallet.app.home;
 
+import android.arch.lifecycle.Observer;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.DashPathEffect;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,6 +16,14 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IFillFormatter;
+import com.github.mikephil.charting.interfaces.dataprovider.LineDataProvider;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.utils.Utils;
 import com.gongwen.marqueen.MarqueeFactory;
 import com.gongwen.marqueen.util.OnItemClickListener;
 import com.google.common.collect.Lists;
@@ -72,6 +84,10 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
     private List<String> imageUrls = new ArrayList<>();
     private List<RecommendCoinBean.DataBean> mRecommendAllList = new ArrayList<>();
     private List<List<RecommendCoinBean.DataBean>> mRecommendGroupList = new ArrayList<>();
+    private LineDataSet mLineDataSetDate;
+    private ArrayList<Entry> values = new ArrayList<>();
+    private ArrayList<Entry> valuesTemp = new ArrayList<>();
+    private int defaultSize = 10;
 
     @Override
     public int initContentView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -102,8 +118,128 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
                 initData();
             }
         });
-
+        initChart();
         initTab();
+    }
+
+    @Override
+    public void initViewObservable() {
+        viewModel.uc.closeValue.observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(@Nullable String s) {
+                setChartDate(s);
+            }
+        });
+    }
+
+    private void initChart() {
+        // background color
+        binding.lineChart.setBackgroundColor(Color.WHITE);
+        // disable description text
+        binding.lineChart.getDescription().setEnabled(false);
+        // enable touch gestures
+        binding.lineChart.setTouchEnabled(true);
+        binding.lineChart.setDragEnabled(true);
+        binding.lineChart.setDoubleTapToZoomEnabled(false);
+        // set listeners
+        binding.lineChart.setDrawGridBackground(false);
+//        // create marker to display box when values are selected
+//        MyMarkerView mv = new MyMarkerView(this, R.layout.custom_marker_view);
+//        // Set the marker to the chart
+//        mv.setChartView(chart);
+//        chart.setMarker(mv);
+
+        // enable scaling and dragging
+        binding.lineChart.setDragEnabled(true);
+        binding.lineChart.setScaleEnabled(true);
+        binding.lineChart.setPinchZoom(true);
+        binding.lineChart.getXAxis().setEnabled(false);
+        binding.lineChart.getAxisLeft().setEnabled(false);
+        binding.lineChart.getAxisRight().setEnabled(false);
+        Legend l = binding.lineChart.getLegend();
+        l.setForm(Legend.LegendForm.NONE);
+        binding.lineChart.animateX(1500);
+    }
+
+    private void setChartDate(String closeValue) {
+        if (values.size() < defaultSize) {
+            values.add(new Entry(values.size(), Float.parseFloat(closeValue), null));
+        } else {
+            values.add(new Entry(defaultSize, Float.parseFloat(closeValue), null));
+            for (int i = 1; i < values.size(); i++) {
+                Entry entry = values.get(i);
+                entry.setX(values.get(i - 1).getX());
+                values.set(i, entry);
+            }
+            values.remove(0);
+        }
+        LogUtils.e("setChartDate", values.size());
+
+        if (binding.lineChart.getData() != null &&
+                binding.lineChart.getData().getDataSetCount() > 0) {
+            mLineDataSetDate = (LineDataSet) binding.lineChart.getData().getDataSetByIndex(0);
+            mLineDataSetDate.setValues(values);
+            mLineDataSetDate.notifyDataSetChanged();
+            binding.lineChart.getData().notifyDataChanged();
+            binding.lineChart.notifyDataSetChanged();
+        } else {
+            // create a dataset and give it a type
+            mLineDataSetDate = new LineDataSet(values, "");
+
+            mLineDataSetDate.setDrawIcons(false);
+            mLineDataSetDate.setDrawValues(false);
+
+            // draw dashed line
+            mLineDataSetDate.enableDashedLine(10f, 0f, 0f);
+
+            // black lines and points
+            mLineDataSetDate.setColor(Color.parseColor("#CA2C49"));
+            mLineDataSetDate.setDrawCircles(false);
+            // line thickness and point size
+            mLineDataSetDate.setLineWidth(2f);
+            mLineDataSetDate.setCircleRadius(5f);
+            mLineDataSetDate.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+
+            // draw points as solid circles
+            mLineDataSetDate.setDrawCircleHole(false);
+
+            // customize legend entry
+            mLineDataSetDate.setFormLineWidth(1f);
+            mLineDataSetDate.setFormLineDashEffect(new DashPathEffect(new float[]{10f, 5f}, 0f));
+            mLineDataSetDate.setFormSize(15.f);
+            // text size of values
+            mLineDataSetDate.setValueTextSize(9f);
+
+            // draw selection line as dashed
+            mLineDataSetDate.enableDashedHighlightLine(10f, 5f, 0f);
+
+            // set the filled area
+            mLineDataSetDate.setDrawFilled(true);
+            mLineDataSetDate.setFillFormatter(new IFillFormatter() {
+                @Override
+                public float getFillLinePosition(ILineDataSet dataSet, LineDataProvider dataProvider) {
+                    return binding.lineChart.getAxisLeft().getAxisMinimum();
+                }
+            });
+
+            // set color of filled area
+            if (Utils.getSDKInt() >= 18) {
+                // drawables only supported on api level 18 and above
+                Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.fade_red);
+                mLineDataSetDate.setFillDrawable(drawable);
+            } else {
+                mLineDataSetDate.setFillColor(Color.BLACK);
+            }
+
+            ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+            dataSets.add(mLineDataSetDate); // add the data sets
+
+            // create a data object with the data sets
+            LineData data = new LineData(dataSets);
+
+            // set data
+            binding.lineChart.setData(data);
+        }
     }
 
     @Override

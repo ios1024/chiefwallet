@@ -4,10 +4,13 @@ import android.arch.lifecycle.Observer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.lxj.xpopup.XPopup;
 import com.spark.chiefwallet.BR;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.app.quotes.kline.adapter.KlineDepthBuyAdapter;
@@ -16,6 +19,7 @@ import com.spark.chiefwallet.base.ARouterPath;
 import com.spark.chiefwallet.bean.DepthDataBean;
 import com.spark.chiefwallet.bean.TabEntity;
 import com.spark.chiefwallet.databinding.ActivityQuotesKlineBinding;
+import com.spark.chiefwallet.ui.popup.B2BDrawerPopup;
 import com.spark.chiefwallet.ui.tablayout.listener.CustomTabEntity;
 import com.spark.chiefwallet.ui.tablayout.listener.OnTabSelectListener;
 import com.spark.chiefwallet.util.DateUtils;
@@ -46,6 +50,7 @@ public class QuotesKlineActivity extends BaseActivity<ActivityQuotesKlineBinding
     @Autowired(name = "quotesThumbClick")
     AllThumbResult.DataBean allThumbResult;
 
+    private B2BDrawerPopup mB2BDrawerPopup;                     //侧拉栏
     private String[] mTitles = {"1分", "5分", "15分", "30分", "1小时", "1天", "1周"};
     private int[] mIconUnselectIds = {
             R.mipmap.ic_launcher, R.mipmap.ic_launcher,
@@ -93,10 +98,15 @@ public class QuotesKlineActivity extends BaseActivity<ActivityQuotesKlineBinding
 
         binding.klineTab.setTabData(mTabEntities);
 
-        viewModel.initDate(allThumbResult);
+
         //K线图ViewInit
         initKlineRB();
         initKlineView();
+        switchSymbol();
+    }
+
+    private void switchSymbol(){
+        viewModel.initDate(allThumbResult);
         loadKlineDate(loadTypePosition);
 
         //默认配置20个数据
@@ -228,6 +238,20 @@ public class QuotesKlineActivity extends BaseActivity<ActivityQuotesKlineBinding
                 initDepthMapView(mDepthBuyList, mDepthSellList);
             }
         });
+
+        viewModel.uc.mDrawerBean.observe(this, new Observer<AllThumbResult.DataBean>() {
+            @Override
+            public void onChanged(@Nullable AllThumbResult.DataBean dataBean) {
+                if (mB2BDrawerPopup != null && mB2BDrawerPopup.isShow()) {
+                    mB2BDrawerPopup.dismiss();
+                }
+                if (!TextUtils.isEmpty(viewModel.lastResolution)) {
+                    viewModel.unSubscribeKline();
+                }
+                allThumbResult = dataBean;
+                switchSymbol();
+            }
+        });
     }
 
     private void initDepthMapView(List<MarketSymbolResult.DataBean.BidBean> depthBuyList, List<MarketSymbolResult.DataBean.AskBean> depthSellList) {
@@ -280,13 +304,30 @@ public class QuotesKlineActivity extends BaseActivity<ActivityQuotesKlineBinding
     }
 
     @OnClick({R.id.title_left,
-            R.id.kline_load_full_screen})
+            R.id.kline_load_full_screen,
+            R.id.kline_menu})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.title_left:
                 finish();
                 break;
             case R.id.kline_load_full_screen:
+                //取消上一次Tab的订阅，订阅当前选中Tab
+                if (!TextUtils.isEmpty(viewModel.lastResolution)) {
+                    viewModel.unSubscribeKline();
+                }
+                ARouter.getInstance().build(ARouterPath.ACTIVITY_QUOTES_KLINE_CHIEF_HORIZONTAL)
+                        .withParcelable("quotesThumbClick", allThumbResult)
+                        .withString("lastResolution", viewModel.lastResolution)
+                        .navigation();
+                break;
+            case R.id.kline_menu:
+                if (mB2BDrawerPopup == null)
+                    //getParentFragment().getFragmentManager() 获取父容器的FragmentManager()
+                    mB2BDrawerPopup = new B2BDrawerPopup(this, getSupportFragmentManager());
+                new XPopup.Builder(this)
+                        .asCustom(mB2BDrawerPopup)
+                        .show();
                 break;
         }
     }

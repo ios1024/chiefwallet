@@ -30,6 +30,11 @@ public class WsUtils {
         return mHashMap;
     }
 
+    public static HashMap<String, String> setSubscribeThumbOTCJsonMap() {
+        mHashMap.clear();
+        mHashMap.put(WsConstant.service, WsConstant.OTC);
+        return mHashMap;
+    }
     //B2B盘口
     public static HashMap<String, String> setB2BMarketJsonMap(String symbol) {
         mHashMap.clear();

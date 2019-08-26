@@ -33,7 +33,6 @@
             android:layout_weight="1"
             android:gravity="right"
             android:maxLines="1"
-            android:layout_marginRight="18dp"
             android:text="@{depthSellViewModel.forMatAmount()}"
             android:textColor="@color/black"
             android:textSize="@dimen/font_mini"/>
@@ -42,7 +41,7 @@
             style="@style/textGrayCommonFont13"
             android:layout_width="28dp"
             android:gravity="right"
-            android:paddingRight="15dp"
+            android:layout_marginRight="15dp"
             android:textSize="@dimen/font_mini"
             android:maxLines="1"
             android:textColor="@color/gray_b2"

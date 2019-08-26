@@ -21,7 +21,7 @@
         <TextView
             style="@style/textGrayCommonFont13"
             android:layout_width="28dp"
-            android:layout_marginLeft="18dp"
+            android:layout_marginLeft="15dp"
             android:textColor="@color/gray_b2"
             android:textSize="@dimen/font_mini"
             android:text="@{depthBuyViewModel.index}"/>

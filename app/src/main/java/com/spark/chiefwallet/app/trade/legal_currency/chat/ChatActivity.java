@@ -33,6 +33,7 @@ import java.util.List;
 import me.spark.mvvm.base.BaseActivity;
 import me.spark.mvvm.http.impl.OnRequestListener;
 import me.spark.mvvm.utils.EventBusUtils;
+import me.spark.mvvm.utils.LogUtils;
 import me.spark.mvvm.utils.WebSocketRequest;
 
 /**
@@ -69,26 +70,25 @@ public class ChatActivity extends BaseActivity<ActivityChatBinding, ChatViewMode
     @Override
     public void initView() {
         StatueBarUtils.setStatusBarLightMode(this, true);
-        StatueBarUtils.addMarginTopEqualStatusBarHeight(binding.chatTitle.fakeStatusBar);
+        //StatueBarUtils.addMarginTopEqualStatusBarHeight(binding.chatTitle.fakeStatusBar);
         StatueBarUtils.setStatusBarColor(this, Color.WHITE);
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
         //TitleSet
         mTitleModel = new TitleBean();
-        mTitleModel.setTitleName(orderDetailsBean.getTradeToUsername());
-        mTitleModel.setShowTitleLine(true);
-        binding.chatTitle.titleLeftImg.setImageDrawable(getResources().getDrawable(R.drawable.svg_cancel));
-        mTitleModel.setShowRightTV(true);
-        mTitleModel.setRightTV(App.getInstance().getString(R.string.str_order_detail));
+        mTitleModel.setTitleNameLeft(orderDetailsBean.getTradeToUsername());
+        mTitleModel.setShowAvatarImg(true);
+        binding.chatTitle.titleRightTv.setTextColor(getResources().getColor(R.color.color_grey));
+        mTitleModel.setNameShort(orderDetailsBean.getTradeToUsername().substring(0, 1));
         binding.chatTitle.setViewTitle(mTitleModel);
-        setTitleListener(binding.chatTitle.titleRootLeft, binding.chatTitle.titleRootRight);
+        setTitleListener(binding.chatTitle.titleRootLeft);
 
         //
         layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         layoutManager.setStackFromEnd(false);
         binding.rvChat.setLayoutManager(layoutManager);
-        adapter = new ChatAdapter(ChatActivity.this, chatEntities, App.getInstance().getCurrentUser().getId());
+        adapter = new ChatAdapter(ChatActivity.this, chatEntities, App.getInstance().getCurrentUser().getId(), orderDetailsBean);
         binding.rvChat.setAdapter(adapter);
 
         //下拉刷新
@@ -99,7 +99,6 @@ public class ChatActivity extends BaseActivity<ActivityChatBinding, ChatViewMode
                 getHistoyList();
             }
         });
-
     }
 
     @Override
@@ -133,6 +132,14 @@ public class ChatActivity extends BaseActivity<ActivityChatBinding, ChatViewMode
                 }
             }
         });
+        viewModel.uc.mIsRefreshRate.observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(@Nullable String s) {
+                mTitleModel.setRightTV(s);
+                mTitleModel.setShowRightTV(true);
+                binding.chatTitle.setViewTitle(mTitleModel);
+            }
+        });
     }
 
     /**
@@ -151,7 +158,7 @@ public class ChatActivity extends BaseActivity<ActivityChatBinding, ChatViewMode
         } else {
             mChatSendBean.setUidTo(String.valueOf(orderDetailsBean.getMemberId()));
         }
-        mChatSendBean.setNameFrom(App.getInstance().getCurrentUser().getRealName());
+        mChatSendBean.setNameFrom(App.getInstance().getCurrentUser().getUsername());
         mChatSendBean.setNameTo(orderDetailsBean.getTradeToUsername());
         mChatSendBean.setMessageType("1");
         mChatSendBean.setFromAvatar(App.getInstance().getCurrentUser().getAvatar());
@@ -181,6 +188,7 @@ public class ChatActivity extends BaseActivity<ActivityChatBinding, ChatViewMode
     public void initData() {
         super.initData();
         getHistoyList();
+        viewModel.initViewData(orderDetailsBean);
     }
 
     @Override

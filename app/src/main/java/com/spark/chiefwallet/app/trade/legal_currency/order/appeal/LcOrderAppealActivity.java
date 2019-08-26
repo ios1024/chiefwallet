@@ -6,6 +6,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
@@ -17,7 +19,7 @@ import com.spark.chiefwallet.BR;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.base.ARouterPath;
 import com.spark.chiefwallet.bean.TitleBean;
-import com.spark.chiefwallet.databinding.ActivityLcOrderAppealBinding;
+import com.spark.chiefwallet.databinding.ActivityLcOrderAppeal2Binding;
 import com.spark.chiefwallet.ui.toast.Toasty;
 import com.spark.chiefwallet.util.PhotoSelectUtils;
 import com.spark.chiefwallet.util.StatueBarUtils;
@@ -33,6 +35,7 @@ import me.spark.mvvm.base.BaseActivity;
 import me.spark.mvvm.utils.LogUtils;
 import me.spark.mvvm.utils.PermissionConstants;
 import me.spark.mvvm.utils.PermissionUtils;
+import me.spark.mvvm.utils.SpanUtils;
 import me.spark.mvvm.utils.StringUtils;
 
 /**
@@ -46,7 +49,7 @@ import me.spark.mvvm.utils.StringUtils;
  */
 
 @Route(path = ARouterPath.ACTIVITY_TRADE_LC_ORCER_APPEAL)
-public class LcOrderAppealActivity extends BaseActivity<ActivityLcOrderAppealBinding, LcOrderAppealViewModel> {
+public class LcOrderAppealActivity extends BaseActivity<ActivityLcOrderAppeal2Binding, LcOrderAppealViewModel> {
     @Autowired(name = "orderDetails")
     LcOrderResult.DataBean.RecordsBean orderDetailsBean;
 
@@ -55,7 +58,7 @@ public class LcOrderAppealActivity extends BaseActivity<ActivityLcOrderAppealBin
 
     @Override
     public int initContentView(Bundle savedInstanceState) {
-        return R.layout.activity_lc_order_appeal;
+        return R.layout.activity_lc_order_appeal2;
     }
 
     @Override
@@ -71,56 +74,95 @@ public class LcOrderAppealActivity extends BaseActivity<ActivityLcOrderAppealBin
 
         //TitleSet
         mTitleModel = new TitleBean();
-        mTitleModel.setTitleName(App.getInstance().getString(R.string.str_order_appeal));
-        mTitleModel.setShowRightTV(true);
-        mTitleModel.setRightTV(App.getInstance().getString(R.string.commit));
-        binding.orderTitle.titleLeftImg.setImageDrawable(getResources().getDrawable(R.drawable.svg_cancel));
-        binding.orderTitle.titleRightTv.setTextColor(ContextCompat.getColor(this, R.color.base_dark));
+        mTitleModel.setTitleNameLeft(App.getInstance().getString(R.string.str_appeal));
         binding.orderTitle.setViewTitle(mTitleModel);
-        setTitleListener(binding.orderTitle.titleRootLeft, binding.orderTitle.titleRootRight);
+        setTitleListener(binding.orderTitle.titleRootLeft);
+
+        initTextChangedListener();
     }
 
-    @Override
-    protected void onTitleRightClick() {
-        if (StringUtils.isEmpty(viewModel.appealContent.get())) {
-            Toasty.showError(App.getInstance().getString(R.string.str_desc));
-            return;
-        }
-        if (StringUtils.isEmpty(viewModel.imgOne.get())
-                && StringUtils.isEmpty(viewModel.imgTwo.get())
-                && StringUtils.isEmpty(viewModel.imgThree.get())) {
-            Toasty.showError(App.getInstance().getString(R.string.str_at_least_one));
-            return;
-        }
-
-        OrderAppealBean orderAppealBean = new OrderAppealBean();
-        orderAppealBean.setOrderId(orderDetailsBean.getOrderSn());
-        orderAppealBean.setRemark(viewModel.appealContent.get());
-        orderAppealBean.setPicturesOne(viewModel.imgOne.get());
-        orderAppealBean.setPicturesTwo(viewModel.imgTwo.get());
-        orderAppealBean.setPicturesThree(viewModel.imgThree.get());
-
-        showDialog(App.getInstance().getString(R.string.loading));
-        LcTradeClient.getInstance().orderAppeal(orderAppealBean);
-    }
-
-    @OnClick({R.id.pic_one,
-            R.id.pic_two,
-            R.id.pic_three})
+    @OnClick({R.id.btn_ensure
+            , R.id.mCheckBox1
+            , R.id.mCheckBox2
+            , R.id.mCheckBox3
+            , R.id.mCheckBox4
+            , R.id.mCheckBox5
+            , R.id.mCheckBox6
+            , R.id.mCheckBox7
+    })
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.pic_one:
-                selectPic(0, view);
+            case R.id.btn_ensure:
+                if (!orderDetailsBean.getOrderType().equals("0")) {
+                    if (StringUtils.isNotEmpty(binding.minLimit.getText().toString())) {
+                        viewModel.appealContent.set(viewModel.appealContent.get() + " " + binding.minLimit.getText().toString());
+                    }
+                }
+                OrderAppealBean orderAppealBean = new OrderAppealBean();
+                orderAppealBean.setOrderId(orderDetailsBean.getOrderSn());
+                orderAppealBean.setRemark(viewModel.appealContent.get());
+                orderAppealBean.setPicturesOne(viewModel.imgOne.get());
+                orderAppealBean.setPicturesTwo(viewModel.imgTwo.get());
+                orderAppealBean.setPicturesThree(viewModel.imgThree.get());
+
+                showDialog(App.getInstance().getString(R.string.loading));
+                LcTradeClient.getInstance().orderAppeal(orderAppealBean);
                 break;
-            case R.id.pic_two:
-                selectPic(1, view);
+            case R.id.mCheckBox1:
+                if (binding.mCheckBox1.isChecked()) return;
+                binding.mCheckBox1.setChecked(true);
+                binding.mCheckBox2.setChecked(false);
+                binding.mCheckBox3.setChecked(false);
+                viewModel.appealContent.set(binding.mCheckBox1Text.getText().toString());
                 break;
-            case R.id.pic_three:
-                selectPic(2, view);
+            case R.id.mCheckBox2:
+                if (binding.mCheckBox2.isChecked()) return;
+                binding.mCheckBox2.setChecked(true);
+                binding.mCheckBox1.setChecked(false);
+                binding.mCheckBox3.setChecked(false);
+                viewModel.appealContent.set(binding.mCheckBox2Text.getText().toString());
+                break;
+            case R.id.mCheckBox3:
+                if (binding.mCheckBox3.isChecked()) return;
+                binding.mCheckBox3.setChecked(true);
+                binding.mCheckBox2.setChecked(false);
+                binding.mCheckBox1.setChecked(false);
+                viewModel.appealContent.set(binding.mCheckBox3Text.getText().toString());
+                break;
+            case R.id.mCheckBox4:
+                if (binding.mCheckBox4.isChecked()) return;
+                binding.mCheckBox4.setChecked(true);
+                binding.mCheckBox5.setChecked(false);
+                binding.mCheckBox6.setChecked(false);
+                binding.mCheckBox7.setChecked(false);
+                viewModel.appealContent.set(binding.mCheckBox4Text.getText().toString());
+                break;
+            case R.id.mCheckBox5:
+                if (binding.mCheckBox5.isChecked()) return;
+                binding.mCheckBox5.setChecked(true);
+                binding.mCheckBox4.setChecked(false);
+                binding.mCheckBox6.setChecked(false);
+                binding.mCheckBox7.setChecked(false);
+                viewModel.appealContent.set(binding.mCheckBox5Text.getText().toString());
+                break;
+            case R.id.mCheckBox6:
+                if (binding.mCheckBox6.isChecked()) return;
+                binding.mCheckBox6.setChecked(true);
+                binding.mCheckBox4.setChecked(false);
+                binding.mCheckBox5.setChecked(false);
+                binding.mCheckBox7.setChecked(false);
+                viewModel.appealContent.set(binding.mCheckBox6Text.getText().toString());
+                break;
+            case R.id.mCheckBox7:
+                if (binding.mCheckBox7.isChecked()) return;
+                binding.mCheckBox7.setChecked(true);
+                binding.mCheckBox4.setChecked(false);
+                binding.mCheckBox5.setChecked(false);
+                binding.mCheckBox6.setChecked(false);
+                viewModel.appealContent.set(binding.mCheckBox7Text.getText().toString());
                 break;
         }
     }
-
 
     /**
      * 选择图片
@@ -189,5 +231,49 @@ public class LcOrderAppealActivity extends BaseActivity<ActivityLcOrderAppealBin
         super.onActivityResult(requestCode, resultCode, data);
         // 2、在Activity中的onActivityResult()方法里与LQRPhotoSelectUtils关联
         mPhotoSelectUtils.attachToActivityForResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void initData() {
+        viewModel.isShow.set(orderDetailsBean.getOrderType().equals("0"));
+        if (orderDetailsBean.getOrderType().equals("0")) {
+            binding.mCheckBox1.setChecked(true);
+            viewModel.appealContent.set(binding.mCheckBox1Text.getText().toString());
+        } else {
+            binding.mCheckBox4.setChecked(true);
+            viewModel.appealContent.set(binding.mCheckBox4Text.getText().toString());
+            CharSequence text = new SpanUtils()
+                    .append(App.getInstance().getString(R.string.str_appeal_input_1))
+                    .append(" 300 ").setForegroundColor(ContextCompat.getColor(this, R.color.base))
+                    .append(App.getInstance().getString(R.string.str_appeal_input_2))
+                    .create();
+            viewModel.inputRemain.set(text);
+        }
+    }
+
+    private void initTextChangedListener() {
+        //数量监听
+        binding.minLimit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                CharSequence text = new SpanUtils()
+                        .append(App.getInstance().getString(R.string.str_appeal_input_1))
+                        .append(" " + (300 - binding.minLimit.getText().toString().length())).setForegroundColor(ContextCompat.getColor(App.getInstance(), R.color.base))
+                        .append(App.getInstance().getString(R.string.str_appeal_input_2))
+                        .create();
+                viewModel.inputRemain.set(text);
+            }
+        });
+
     }
 }

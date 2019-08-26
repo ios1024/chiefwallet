@@ -1,7 +1,9 @@
 package com.spark.chiefwallet.app.quotes.search;
 
+import android.arch.lifecycle.Observer;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -79,17 +81,7 @@ public class QuotesSearchActivity extends BaseActivity<ActivityQuotesSearchBindi
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 switch (view.getId()) {
                     case R.id.img_favor:
-                        if (!App.getInstance().isAppLogin()) {
-                            ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_LOGIN)
-                                    .navigation();
-                        } else {
-//                            showDialog(App.getInstance().getString(R.string.loading));
-//                            if (mDataBeans.get(position).isFavor()) {
-//                                SpotCoinClient.getInstance().favorDelete(allThumbResult.getSymbol());
-//                            } else {
-//                                SpotCoinClient.getInstance().favorAdd(allThumbResult.getSymbol());
-//                            }
-                        }
+                        viewModel.isFavor(mDataBeans.get(position));
                         break;
                 }
             }
@@ -132,6 +124,17 @@ public class QuotesSearchActivity extends BaseActivity<ActivityQuotesSearchBindi
         if (mDataBeans.size() == 0) {
             mQuotesSerachAdapter.setEmptyView(R.layout.view_search_rv_empty, binding.rv);
         }
+    }
+
+
+    @Override
+    public void initViewObservable() {
+        viewModel.uc.isRefresh.observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(@Nullable Boolean aBoolean) {
+                mQuotesSerachAdapter.notifyDataSetChanged();
+            }
+        });
     }
 
     @OnClick({R.id.title_back})

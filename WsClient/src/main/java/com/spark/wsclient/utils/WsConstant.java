@@ -15,6 +15,7 @@ public class WsConstant {
     public static final String CFD = "CFD";             //CFD
     public static final String SPOT = "SPOT";           //币币
     public static final String SWAP = "SWAP";           //有续
+    public static final String OTC = "OTC";             //otc
 
     public static final int CODE_BB_TRADE = 0; // 币币交易code
     public static final int CODE_CHAT = 1; // 聊天code

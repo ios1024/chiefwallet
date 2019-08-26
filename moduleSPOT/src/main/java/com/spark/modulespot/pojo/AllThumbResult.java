@@ -415,6 +415,16 @@ public class AllThumbResult implements Parcelable {
             return text;
         }
 
+        public CharSequence initSymbol3() {
+            CharSequence text = new SpanUtils()
+                    .append(symbol.split("/")[0]).setBold()
+                    .append("/" + symbol.split("/")[1])
+                    .setFontSize(10, true)
+                    .setForegroundColor(Color.parseColor("#A4ABC0"))
+                    .create();
+            return text;
+        }
+
         public String initChg() {
             return (isCoinPairPushChgUp() ? "+" : "") + MathUtils.getRundNumber(chg * 100, 2, "########0.") + "%";
         }

@@ -529,12 +529,14 @@
 
                                         <TextView
                                             style="@style/textBlackSmall"
-                                            android:text="@{lcOrderPaidDetailsViewModel.bankPayName}" />
+                                            android:text="@{lcOrderPaidDetailsViewModel.bankPayName}"
+                                            android:textSize="@dimen/font_mini" />
 
                                         <TextView
                                             style="@style/textBlackSmall"
                                             android:layout_marginLeft="@dimen/dp_10"
-                                            android:text="@{lcOrderPaidDetailsViewModel.bankPayAddr}" />
+                                            android:text="@{lcOrderPaidDetailsViewModel.bankPayAddr}"
+                                            android:textSize="@dimen/font_mini" />
 
                                         <ImageView
                                             onClickCommand="@{lcOrderPaidDetailsViewModel.cardOnClickCommand}"
@@ -552,17 +554,20 @@
 
                                         <TextView
                                             style="@style/textBlackSmall"
-                                            android:text="@{lcOrderPaidDetailsViewModel.bankPayOpenBank}" />
+                                            android:text="@{lcOrderPaidDetailsViewModel.bankPayOpenBank}"
+                                            android:textSize="@dimen/font_xmini" />
 
                                         <TextView
                                             style="@style/textBlackSmall"
                                             android:layout_marginLeft="@dimen/dp_10"
-                                            android:text="@{lcOrderPaidDetailsViewModel.bankPayBranch}" />
+                                            android:text="@{lcOrderPaidDetailsViewModel.bankPayBranch}"
+                                            android:textSize="@dimen/font_xmini" />
 
                                         <TextView
                                             style="@style/textBlackSmall"
                                             android:text="@string/str_pay_tips"
-                                            android:textColor="@color/base" />
+                                            android:textColor="@color/base"
+                                            android:textSize="@dimen/font_xmini" />
 
                                     </LinearLayout>
                                 </LinearLayout>
@@ -600,12 +605,14 @@
 
                                         <TextView
                                             style="@style/textBlackSmall"
-                                            android:text="@{lcOrderPaidDetailsViewModel.aliPayName}" />
+                                            android:text="@{lcOrderPaidDetailsViewModel.aliPayName}"
+                                            android:textSize="@dimen/font_mini" />
 
                                         <TextView
                                             style="@style/textBlackSmall"
                                             android:layout_marginLeft="@dimen/dp_10"
-                                            android:text="@{lcOrderPaidDetailsViewModel.aliPayAddr}" />
+                                            android:text="@{lcOrderPaidDetailsViewModel.aliPayAddr}"
+                                            android:textSize="@dimen/font_mini" />
 
                                         <ImageView
                                             onClickCommand="@{lcOrderPaidDetailsViewModel.alipayOnClickCommand}"
@@ -624,7 +631,8 @@
                                         <TextView
                                             style="@style/textBlackSmall"
                                             android:text="@string/str_pay_tips"
-                                            android:textColor="@color/base" />
+                                            android:textColor="@color/base"
+                                            android:textSize="@dimen/font_xmini" />
 
                                     </LinearLayout>
 
@@ -670,12 +678,14 @@
 
                                         <TextView
                                             style="@style/textBlackSmall"
-                                            android:text="@{lcOrderPaidDetailsViewModel.weChatName}" />
+                                            android:text="@{lcOrderPaidDetailsViewModel.weChatName}"
+                                            android:textSize="@dimen/font_mini" />
 
                                         <TextView
                                             style="@style/textBlackSmall"
                                             android:layout_marginLeft="@dimen/dp_10"
-                                            android:text="@{lcOrderPaidDetailsViewModel.weChatAddr}" />
+                                            android:text="@{lcOrderPaidDetailsViewModel.weChatAddr}"
+                                            android:textSize="@dimen/font_mini" />
 
                                         <ImageView
                                             onClickCommand="@{lcOrderPaidDetailsViewModel.weChatPayOnClickCommand}"
@@ -693,6 +703,7 @@
 
                                         <TextView
                                             style="@style/textBlackSmall"
+                                            android:textSize="@dimen/font_xmini"
                                             android:text="@string/str_pay_tips"
                                             android:textColor="@color/base" />
 

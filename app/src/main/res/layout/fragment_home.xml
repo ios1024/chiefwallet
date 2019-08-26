@@ -103,6 +103,51 @@
                             app:bl_corners_radius="2dp"
                             app:bl_solid_color="@color/white">
 
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:paddingLeft="10dp"
+                                    android:paddingTop="10dp"
+                                    android:paddingRight="10dp">
+
+                                    <TextView
+                                        style="@style/textBlackSmall"
+                                        android:text="@{homeViewModel.chartSmybol}"
+                                        android:textSize="@dimen/font_lager"
+                                        android:textStyle="bold"/>
+
+                                    <TextView
+                                        style="@style/textBlackSmall"
+                                        android:layout_marginLeft="4dp"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="@{homeViewModel.chartChg}"
+                                        android:textColor="@{homeViewModel.riseOrFall ? @color/fall : @color/rise}"
+                                        android:textSize="@dimen/font_lager"
+                                        android:textStyle="bold"/>
+                                </LinearLayout>
+
+                                <TextView
+                                    style="@style/textBlackSmall"
+                                    android:layout_marginTop="7dp"
+                                    android:gravity="right"
+                                    android:paddingLeft="10dp"
+                                    android:text="@{homeViewModel.chartClose}"
+                                    android:textSize="@dimen/font_xxlager"
+                                    android:textStyle="bold"/>
+                            </LinearLayout>
+
+                            <com.github.mikephil.charting.charts.LineChart
+                                android:id="@+id/lineChart"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"/>
                         </LinearLayout>
 
                         <View

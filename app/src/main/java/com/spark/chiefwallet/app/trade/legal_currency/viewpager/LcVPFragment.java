@@ -132,6 +132,19 @@ public class LcVPFragment extends BaseFragment<FragmentLcVpBinding, LcViewModel>
             }
         });
 
+        mLcVPAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                switch (view.getId()) {
+                    case R.id.ll_business_info:
+                        ARouter.getInstance().build(ARouterPath.ACTIVITY_TRADE_BUSINESS_DETAILS)
+                                .withInt("memberId", mRecordsBeanList.get(position).getMemberId())
+                                .navigation();
+                        break;
+                }
+            }
+        });
+
         //下拉刷新
         binding.swipeLayout.setColorSchemeColors(ContextCompat.getColor(getContext(), R.color.base));
         binding.swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

@@ -21,6 +21,8 @@ public class TitleBean extends BaseObservable {
     private boolean isShowTitleLine;
     private String titleName;
     private String titleNameLeft;
+    private boolean isShowAvatarImg;
+    private String nameShort;
 
     public TitleBean() {
     }
@@ -95,5 +97,21 @@ public class TitleBean extends BaseObservable {
 
     public void setTitleNameLeft(String titleNameLeft) {
         this.titleNameLeft = titleNameLeft;
+    }
+
+    public boolean isShowAvatarImg() {
+        return isShowAvatarImg;
+    }
+
+    public void setShowAvatarImg(boolean showAvatarImg) {
+        isShowAvatarImg = showAvatarImg;
+    }
+
+    public String getNameShort() {
+        return nameShort;
+    }
+
+    public void setNameShort(String nameShort) {
+        this.nameShort = nameShort;
     }
 }

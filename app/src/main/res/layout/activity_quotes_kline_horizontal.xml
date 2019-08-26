@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="klineHttpViewModel"
+            type="com.spark.chiefwallet.app.quotes.kline.QuotesKlineHorizontalViewModel"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+
+        <View
+            android:id="@+id/fake_status_bar"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+        <!--title-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:id="@+id/title"
+                    style="@style/textGrayCommonNormal"
+                    android:text="@{klineHttpViewModel.initTitle()}"
+                    android:textColor="@color/black_00"/>
+
+                <TextView
+                    style="@style/textGrayCommonNormal"
+                    android:layout_marginLeft="10dp"
+                    android:maxLines="1"
+                    android:text="@{klineHttpViewModel.close}"
+                    android:textColor="@{klineHttpViewModel.convertColor ? @color/fall : @color/rise}"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    style="@style/textGrayCommonFont13"
+                    android:layout_marginLeft="5dp"
+                    android:maxLines="1"
+                    android:text="@{klineHttpViewModel.convert}"
+                    android:textColor="@color/gray_a9"
+                    android:textSize="@dimen/font_mini"/>
+
+                <TextView
+                    style="@style/textGrayCommonFont13"
+                    android:layout_marginLeft="20dp"
+                    android:maxLines="1"
+                    android:text="@{klineHttpViewModel.chg}"
+                    android:textColor="@{klineHttpViewModel.convertColor ? @color/fall : @color/rise}"
+                    android:textSize="@dimen/font_mini"/>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/title_left"
+                android:layout_width="?attr/actionBarSize"
+                android:layout_height="match_parent"
+                android:padding="15dp"
+                android:src="@drawable/svg_cancel"
+                app:bl_ripple_color="@color/gray_ccc"
+                app:bl_ripple_enable="true"
+                app:bl_solid_color="@color/white"/>
+        </LinearLayout>
+
+        <com.spark.chiefwallet.ui.tablayout.CommonTabLayout
+            android:id="@+id/kline_tab"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/white"
+            android:paddingLeft="5dp"
+            android:paddingRight="15dp"
+            android:textSize="@dimen/font_mini"
+            app:tl_iconVisible="false"
+            app:tl_indicator_color="@color/tab_indicator_select_color"
+            app:tl_indicator_corner_radius="2dp"
+            app:tl_indicator_height="4dp"
+            app:tl_indicator_width="4dp"
+            app:tl_tab_padding="7dp"
+            app:tl_tab_space_equal="false"
+            app:tl_textSelectColor="@color/tab_indicator_select_color"
+            app:tl_textUnselectColor="@color/gray_b2"/>
+
+        <View
+            style="@style/line_ccc"
+            android:background="@color/gray_d6"/>
+
+        <!--kline-->
+        <com.spark.klinelib.KLineChartView
+            android:id="@+id/klineChartView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:kc_dea_color="@color/kc_dea_color"
+            app:kc_dif_color="@color/kc_dif_color"
+            app:kc_gre_color="@color/rise"
+            app:kc_grid_line_color="@color/gray_d6"
+            app:kc_grid_line_width="1px"
+            app:kc_macd_color="@color/kc_macd_color"
+            app:kc_red_color="@color/fall"
+            app:kc_text_color="@color/black"/>
+    </LinearLayout>
+</layout>

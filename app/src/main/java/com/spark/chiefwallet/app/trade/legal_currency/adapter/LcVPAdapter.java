@@ -33,6 +33,7 @@ public class LcVPAdapter extends BaseQuickAdapter<FindPageResult.DataBean.Record
         ViewDataBinding binding = helper.getBinding();
         binding.setVariable(BR.findPageResult, item);
         binding.executePendingBindings();
+        helper.addOnClickListener(R.id.ll_business_info);
     }
 
 

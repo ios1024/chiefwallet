@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="lcOrderAppealViewModel"
+            type="com.spark.chiefwallet.app.trade.legal_currency.order.appeal.LcOrderAppealViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray_f5"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/order_title"
+            layout="@layout/view_title" />
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp_10"
+                    android:orientation="vertical"
+                    android:padding="@dimen/dp_10"
+                    android:visibility="@{lcOrderAppealViewModel.isShow ? View.VISIBLE : View.GONE}"
+                    app:bl_corners_radius="2dp"
+                    app:bl_solid_color="@color/white">
+
+                    <TextView
+                        style="@style/textBlackNormal"
+                        android:text="@string/str_appeal_reason" />
+
+                    <LinearLayout
+                        style="@style/ll_item_42"
+                        android:paddingLeft="0dp">
+
+                        <com.spark.chiefwallet.ui.SmoothCheckBox
+                            android:id="@+id/mCheckBox1"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            app:color_checked="@color/base"
+                            app:color_unchecked_stroke="@color/base" />
+
+                        <TextView
+                            android:id="@+id/mCheckBox1Text"
+                            style="@style/textBlackSmall"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:text="@string/str_appeal_reason1" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ll_item_42"
+                        android:paddingLeft="0dp">
+
+                        <com.spark.chiefwallet.ui.SmoothCheckBox
+                            android:id="@+id/mCheckBox2"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            app:color_checked="@color/base"
+                            app:color_unchecked_stroke="@color/base" />
+
+                        <TextView
+                            android:id="@+id/mCheckBox2Text"
+                            style="@style/textBlackSmall"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:text="@string/str_appeal_reason2" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ll_item_42"
+                        android:paddingLeft="0dp">
+
+                        <com.spark.chiefwallet.ui.SmoothCheckBox
+                            android:id="@+id/mCheckBox3"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            app:color_checked="@color/base"
+                            app:color_unchecked_stroke="@color/base" />
+
+                        <TextView
+                            android:id="@+id/mCheckBox3Text"
+                            style="@style/textBlackSmall"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:text="@string/str_appeal_reason3" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp_10"
+                    android:orientation="vertical"
+                    android:padding="@dimen/dp_10"
+                    android:visibility="@{lcOrderAppealViewModel.isShow ? View.GONE : View.VISIBLE}"
+                    app:bl_corners_radius="2dp"
+                    app:bl_solid_color="@color/white">
+
+                    <TextView
+                        style="@style/textBlackNormal"
+                        android:text="@string/str_appeal_reason" />
+
+                    <LinearLayout
+                        style="@style/ll_item_42"
+                        android:paddingLeft="0dp">
+
+                        <com.spark.chiefwallet.ui.SmoothCheckBox
+                            android:id="@+id/mCheckBox4"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            app:color_checked="@color/base"
+                            app:color_unchecked_stroke="@color/base" />
+
+                        <TextView
+                            android:id="@+id/mCheckBox4Text"
+                            style="@style/textBlackSmall"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:text="@string/str_appeal_reason4" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ll_item_42"
+                        android:paddingLeft="0dp">
+
+                        <com.spark.chiefwallet.ui.SmoothCheckBox
+                            android:id="@+id/mCheckBox5"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            app:color_checked="@color/base"
+                            app:color_unchecked_stroke="@color/base" />
+
+                        <TextView
+                            android:id="@+id/mCheckBox5Text"
+                            style="@style/textBlackSmall"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:text="@string/str_appeal_reason5" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ll_item_42"
+                        android:paddingLeft="0dp">
+
+                        <com.spark.chiefwallet.ui.SmoothCheckBox
+                            android:id="@+id/mCheckBox6"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            app:color_checked="@color/base"
+                            app:color_unchecked_stroke="@color/base" />
+
+                        <TextView
+                            android:id="@+id/mCheckBox6Text"
+                            style="@style/textBlackSmall"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:text="@string/str_appeal_reason6" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ll_item_42"
+                        android:paddingLeft="0dp">
+
+                        <com.spark.chiefwallet.ui.SmoothCheckBox
+                            android:id="@+id/mCheckBox7"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            app:color_checked="@color/base"
+                            app:color_unchecked_stroke="@color/base" />
+
+                        <TextView
+                            android:id="@+id/mCheckBox7Text"
+                            style="@style/textBlackSmall"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:text="@string/str_appeal_reason3" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:orientation="horizontal"
+                        android:padding="4dp"
+                        app:bl_corners_radius="2dp"
+                        app:bl_solid_color="@color/white"
+                        app:bl_stroke_color="@color/color_stroke"
+                        app:bl_stroke_width="0.5dp">
+
+                        <EditText
+                            android:id="@+id/minLimit"
+                            style="@style/trade_input"
+                            android:layout_height="match_parent"
+                            android:gravity="top"
+                            android:hint="@string/str_appeal_hint"
+                            android:maxLength="200"
+                            android:padding="4dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ll_item_42"
+                        android:gravity="center_vertical|right"
+                        android:paddingLeft="0dp">
+
+                        <TextView
+                            style="@style/textBlackSmall"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:text="@{lcOrderAppealViewModel.inputRemain}"
+                            android:textColor="@color/color_stroke" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:padding="@dimen/dp_10">
+
+                    <TextView
+                        style="@style/textBlackSmall"
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:text="@string/str_order_warn_title"
+                        android:textColor="@color/color_stroke" />
+
+                    <TextView
+                        style="@style/textBlackSmall"
+                        android:layout_marginTop="20dp"
+                        android:lineSpacingExtra="@dimen/dp_4"
+                        android:text="@string/str_appeal_warn_content"
+                        android:textColor="@color/color_stroke"
+                        android:textSize="@dimen/font_mini" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_margin="20dp">
+
+            <TextView
+                android:id="@+id/btn_ensure"
+                style="@style/textBlackSmall"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/str_appeal_submit"
+                android:textColor="@color/white"
+                app:bl_ripple_color="@color/gray_ccc"
+                app:bl_ripple_enable="true"
+                app:bl_solid_color="@color/color_blue" />
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

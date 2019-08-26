@@ -170,6 +170,7 @@ public class FindMerchantDetailsResult implements Parcelable {
         private String registTime;
         private int totalSuccessBuyOrder;
         private int totalSuccessSellOrder;
+        private String username;
 
         public boolean isAdvanceAuthStaus() {
             return advanceAuthStaus;
@@ -323,6 +324,14 @@ public class FindMerchantDetailsResult implements Parcelable {
             this.totalSuccessSellOrder = totalSuccessSellOrder;
         }
 
+        public String getUsername() {
+            return username;
+        }
+
+        public void setUsername(String username) {
+            this.username = username;
+        }
+
         public String formatRangeTimeOrder() {
             if (StringUtils.isEmpty(String.valueOf(rangeTimeOrder))
                     || StringUtils.isEmpty(String.valueOf(rangeTimeSuccessOrder))
@@ -331,6 +340,25 @@ public class FindMerchantDetailsResult implements Parcelable {
                 rangeTimeSuccessOrder = 0;
             }
             return rangeTimeSuccessOrder + "    " + MathUtils.getRundNumber((Double.parseDouble(rangeTimeSuccessOrder + "") / rangeTimeOrder) * 100, 2, null) + "%";
+        }
+
+        /**
+         * 姓名缩写
+         *
+         * @return
+         */
+        public String getNameFirstChar() {
+            return StringUtils.isEmpty(realName) ? "" : realName.substring(0, 1);
+        }
+
+        public String formatRangeTimeOrderRate() {
+            if (StringUtils.isEmpty(String.valueOf(rangeTimeOrder))
+                    || StringUtils.isEmpty(String.valueOf(rangeTimeSuccessOrder))
+                    || rangeTimeSuccessOrder == 0) {
+                rangeTimeOrder = 1;
+                rangeTimeSuccessOrder = 0;
+            }
+            return MathUtils.getRundNumber((Double.parseDouble(rangeTimeSuccessOrder + "") / rangeTimeOrder) * 100, 2, null) + "%";
         }
     }
 }

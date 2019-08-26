@@ -70,12 +70,14 @@ public class QuotesKlineViewModel extends BaseViewModel {
 
     public String lastResolution;//上次传入时间段
     private int type;
+    private boolean isVisiable = false;
 
     //是否收藏
     public ObservableField<Boolean> isFavor = new ObservableField<>(false);
     //现价
     public ObservableField<CharSequence> close = new ObservableField<>();
     //换算
+    public ObservableField<String> title = new ObservableField<>();
     public ObservableField<String> convert = new ObservableField<>();
     public ObservableField<String> chg = new ObservableField<>();
     public ObservableField<Boolean> convertColor = new ObservableField<>();
@@ -132,6 +134,7 @@ public class QuotesKlineViewModel extends BaseViewModel {
         public SingleLiveEvent<List<KLineEntity>> klineHistoryList = new SingleLiveEvent<>();
         public SingleLiveEvent<KLineEntity> klineSubscribe = new SingleLiveEvent<>();
         public SingleLiveEvent<MarketSymbolResult> mMarketSymbolResultSingleLiveEvent = new SingleLiveEvent<>();
+        public SingleLiveEvent<AllThumbResult.DataBean> mDrawerBean = new SingleLiveEvent<>();
     }
 
     public void initDate(AllThumbResult.DataBean allThumbResult) {
@@ -201,13 +204,8 @@ public class QuotesKlineViewModel extends BaseViewModel {
     }
 
     //title
-    public CharSequence initTitle() {
-        CharSequence text = new SpanUtils()
-                .append(allThumbResult.getSymbol().split("/")[0])
-                .append(" / " + allThumbResult.getSymbol().split("/")[1])
-                .setFontSize(13, true)
-                .create();
-        return text;
+    public String initTitle() {
+        return allThumbResult.getSymbol();
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -256,6 +254,7 @@ public class QuotesKlineViewModel extends BaseViewModel {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(EventBean eventBean) {
+        if (!isVisiable) return;
         switch (eventBean.getOrigin()) {
             //K线历史数据
             case EvKey.klineHistory:
@@ -317,6 +316,12 @@ public class QuotesKlineViewModel extends BaseViewModel {
                     Toasty.showError(eventBean.getMessage());
                 }
                 break;
+            //Drawer点击事件
+            case EvKey.drawerClick:
+                if (eventBean.isStatue()) {
+                    uc.mDrawerBean.setValue((AllThumbResult.DataBean) eventBean.getObject());
+                }
+                break;
             default:
                 break;
         }
@@ -354,6 +359,7 @@ public class QuotesKlineViewModel extends BaseViewModel {
 
     //实时更新
     private void updateCoinPairPushBean() {
+        title.set(initTitle());
         close.set(initClose());
         convert.set(initConvert());
         chg.set(initChg());
@@ -451,6 +457,12 @@ public class QuotesKlineViewModel extends BaseViewModel {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        isVisiable = true;
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
         Constant.isKineVisiable = false;
@@ -468,6 +480,7 @@ public class QuotesKlineViewModel extends BaseViewModel {
     @Override
     public void onPause() {
         super.onPause();
+        isVisiable = false;
         EasyHttp.clearCache();
     }
 }

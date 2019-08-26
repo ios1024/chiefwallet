@@ -34,8 +34,8 @@
                     android:id="@+id/current_open_drawer"
                     android:layout_width="?attr/actionBarSize"
                     android:layout_height="?attr/actionBarSize"
-                    android:padding="16dp"
-                    android:src="@drawable/svg_drawer"
+                    android:padding="19dp"
+                    android:src="@drawable/svg_quotes_menu"
                     app:bl_ripple_color="@color/gray_ccc"
                     app:bl_ripple_enable="true"
                     app:bl_solid_color="@color/white"/>
@@ -43,24 +43,15 @@
                 <TextView
                     style="@style/textBlackNormal"
                     android:layout_weight="1"
-                    android:text="@{currentViewModel.symbolNameTV}"/>
+                    android:text="@{currentViewModel.symbolName}"
+                    android:textSize="@dimen/font_lager"/>
 
                 <ImageView
                     onClickCommand="@{currentViewModel.klineClickCommand}"
                     android:layout_width="?attr/actionBarSize"
                     android:layout_height="?attr/actionBarSize"
-                    android:padding="16dp"
-                    android:src="@drawable/svg_kline"
-                    app:bl_ripple_color="@color/gray_ccc"
-                    app:bl_ripple_enable="true"
-                    app:bl_solid_color="@color/white"/>
-
-                <ImageView
-                    android:id="@+id/current_menu"
-                    android:layout_width="?attr/actionBarSize"
-                    android:layout_height="?attr/actionBarSize"
-                    android:padding="16dp"
-                    android:src="@drawable/svg_more"
+                    android:padding="18dp"
+                    android:src="@drawable/svg_kline_logo"
                     app:bl_ripple_color="@color/gray_ccc"
                     app:bl_ripple_enable="true"
                     app:bl_solid_color="@color/white"/>
@@ -82,13 +73,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:padding="16dp">
+                        android:padding="15dp">
 
                         <!--买入/卖出-->
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="3"
+                            android:layout_weight="3.5"
                             android:orientation="vertical">
 
                             <LinearLayout
@@ -100,82 +91,92 @@
                                     android:id="@+id/btn_buy"
                                     style="@style/textGrayCommonSmall"
                                     android:layout_width="match_parent"
-                                    android:layout_height="36dp"
+                                    android:layout_height="30dp"
                                     android:layout_weight="1"
                                     android:gravity="center"
                                     android:text="@string/buy"
                                     android:textStyle="bold"
-                                    app:bl_corners_radius="4dp"
-                                    app:bl_selected_drawable="@color/green"
+                                    app:bl_corners_radius="2dp"
+                                    app:bl_selected_drawable="@color/rise"
                                     app:bl_selected_textColor="@color/white"
-                                    app:bl_unSelected_drawable="@color/gray_f3"
-                                    app:bl_unSelected_textColor="@color/gray_common"/>
+                                    app:bl_unSelected_drawable="@color/color_unchecked"
+                                    app:bl_unSelected_textColor="@color/gray_a4"/>
 
                                 <View
-                                    android:layout_width="8dp"
-                                    android:layout_height="36dp"/>
+                                    android:layout_width="16dp"
+                                    android:layout_height="match_parent"/>
 
                                 <TextView
                                     android:id="@+id/btn_sell"
                                     style="@style/textGrayCommonSmall"
                                     android:layout_width="match_parent"
-                                    android:layout_height="36dp"
+                                    android:layout_height="30dp"
                                     android:layout_weight="1"
                                     android:gravity="center"
                                     android:text="@string/sell"
                                     android:textStyle="bold"
-                                    app:bl_corners_radius="4dp"
-                                    app:bl_selected_drawable="@color/orange"
+                                    app:bl_corners_radius="2dp"
+                                    app:bl_selected_drawable="@color/fall"
                                     app:bl_selected_textColor="@color/white"
-                                    app:bl_unSelected_drawable="@color/gray_f3"
-                                    app:bl_unSelected_textColor="@color/gray_common"/>
+                                    app:bl_unSelected_drawable="@color/color_unchecked"
+                                    app:bl_unSelected_textColor="@color/gray_a4"/>
                             </LinearLayout>
 
                             <!--限价买入-->
                             <TextView
                                 android:id="@+id/current_buy_type"
-                                style="@style/textGrayCommonSmall"
-                                android:layout_marginTop="12dp"
+                                style="@style/textBlackSmall"
+                                android:layout_marginTop="15dp"
                                 android:drawableRight="@drawable/svg_pull_down"
-                                android:drawablePadding="4dp"
+                                android:drawablePadding="8dp"
                                 android:text="@{currentViewModel.currentBuyType}"
+                                android:textSize="@dimen/font_mini"
                                 android:textStyle="bold"/>
                             <!--价格-->
                             <LinearLayout
                                 android:id="@+id/llPrice"
                                 android:layout_width="match_parent"
-                                android:layout_height="42dp"
-                                android:layout_marginTop="12dp"
+                                android:layout_height="32dp"
+                                android:layout_marginTop="15dp"
                                 android:orientation="horizontal"
                                 android:visibility="@{currentViewModel.typeVisiable ? View.GONE : View.VISIBLE}"
-                                app:bl_corners_radius="4dp"
+                                app:bl_corners_radius="2dp"
                                 app:bl_solid_color="@color/white"
                                 app:bl_stroke_color="@color/gray_ccc"
-                                app:bl_stroke_width="1px">
-
-                                <ImageView
-                                    onClickCommand="@{currentViewModel.priceSubtractClickCommand}"
-                                    android:layout_width="40dp"
-                                    android:layout_height="40dp"
-                                    android:padding="6dp"
-                                    android:src="@drawable/svg_decrease"/>
-
-                                <View style="@style/line_ccc_vertical"/>
+                                app:bl_stroke_width="1dp">
 
                                 <EditText
                                     android:id="@+id/et_price"
                                     style="@style/trade_input"
                                     android:hint="@string/price"
                                     android:inputType="numberDecimal"
-                                    android:padding="4dp"
-                                    android:text="@={currentViewModel.priceEt}"/>
+                                    android:paddingLeft="7dp"
+                                    android:paddingRight="7dp"
+                                    android:text="@={currentViewModel.priceEt}"
+                                    android:textColorHint="@color/gray_b2"
+                                    android:textSize="@dimen/font_mini"
+                                    android:textStyle="bold"/>
 
-                                <View style="@style/line_ccc_vertical"/>
+                                <View
+                                    style="@style/line_ccc_vertical"
+                                    android:layout_width="1dp"/>
+
+                                <ImageView
+                                    onClickCommand="@{currentViewModel.priceSubtractClickCommand}"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:padding="6dp"
+                                    android:src="@drawable/svg_decrease"/>
+
+                                <View
+                                    style="@style/line_ccc_vertical"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_marginBottom="5dp"/>
 
                                 <ImageView
                                     onClickCommand="@{currentViewModel.priceAddClickCommand}"
-                                    android:layout_width="40dp"
-                                    android:layout_height="40dp"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
                                     android:padding="6dp"
                                     android:src="@drawable/svg_crease"/>
                             </LinearLayout>
@@ -183,69 +184,70 @@
                             <LinearLayout
                                 android:id="@+id/llMarketPrice"
                                 android:layout_width="match_parent"
-                                android:layout_height="42dp"
-                                android:layout_marginTop="12dp"
-                                android:background="@drawable/grey_cc_bg"
+                                android:layout_height="32dp"
+                                android:layout_marginTop="15dp"
+                                android:background="@drawable/grey_a4_bg"
                                 android:gravity="center"
                                 android:orientation="horizontal"
                                 android:visibility="@{currentViewModel.typeVisiable ? View.VISIBLE : View.GONE}">
 
                                 <TextView
                                     style="@style/textGrayCommonSmall"
-                                    android:text="@string/trade_at_best_price"/>
+                                    android:text="@string/trade_at_best_price"
+                                    android:textColor="@color/gray_a4"
+                                    android:textSize="@dimen/font_mini"
+                                    android:textStyle="bold"/>
                             </LinearLayout>
 
                             <TextView
                                 style="@style/textGrayCommonSmall"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:text="@{currentViewModel.priceCNY}"/>
+                                android:layout_marginTop="3dp"
+                                android:text="@{currentViewModel.priceCNY}"
+                                android:textColor="@color/gray_b2"
+                                android:textSize="@dimen/font_mini"/>
 
                             <!--数量-->
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="42dp"
-                                android:layout_marginTop="8dp"
+                                android:layout_height="32dp"
+                                android:layout_marginTop="14dp"
                                 android:orientation="horizontal"
-                                app:bl_corners_radius="4dp"
+                                app:bl_corners_radius="2dp"
                                 app:bl_solid_color="@color/white"
                                 app:bl_stroke_color="@color/gray_ccc"
-                                app:bl_stroke_width="1px">
-
-                                <ImageView
-                                    onClickCommand="@{currentViewModel.numberSubtractClickCommand}"
-                                    android:layout_width="42dp"
-                                    android:layout_height="42dp"
-                                    android:padding="6dp"
-                                    android:src="@drawable/svg_decrease"/>
-
-                                <View style="@style/line_ccc_vertical"/>
+                                app:bl_stroke_width="1dp">
 
                                 <EditText
                                     android:id="@+id/et_num"
                                     style="@style/trade_input"
                                     android:hint="@string/number"
                                     android:inputType="numberDecimal"
-                                    android:padding="4dp"
-                                    android:text="@={currentViewModel.numberEt}"/>
+                                    android:paddingLeft="7dp"
+                                    android:paddingRight="7dp"
+                                    android:text="@={currentViewModel.numberEt}"
+                                    android:textColorHint="@color/gray_b2"
+                                    android:textSize="@dimen/font_mini"
+                                    android:textStyle="bold"/>
 
-                                <View style="@style/line_ccc_vertical"/>
-
-                                <ImageView
-                                    onClickCommand="@{currentViewModel.numberAddClickCommand}"
-                                    android:layout_width="42dp"
-                                    android:layout_height="42dp"
-                                    android:padding="6dp"
-                                    android:src="@drawable/svg_crease"/>
+                                <TextView
+                                    style="@style/textBlackSmall"
+                                    android:layout_marginLeft="4dp"
+                                    android:layout_marginRight="7dp"
+                                    android:text="@={currentViewModel.symbolNameEnd}"
+                                    android:textColor="@color/gray_a4"
+                                    android:textSize="@dimen/font_mini"/>
                             </LinearLayout>
 
                             <TextView
                                 style="@style/textGrayCommonSmall"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="6dp"
-                                android:text="@{currentViewModel.numberAvailable}"/>
+                                android:layout_marginTop="3dp"
+                                android:text="@{currentViewModel.numberAvailable}"
+                                android:textColor="@color/gray_b2"
+                                android:textSize="@dimen/font_mini"/>
 
                             <!--SeekBar-->
                             <com.spark.chiefwallet.ui.seekbar.SeekBar
@@ -257,43 +259,55 @@
                                 app:bsb_hide_bubble="true"
                                 app:bsb_max="100"
                                 app:bsb_progress="0"
-                                app:bsb_second_track_color="@color/green"
+                                app:bsb_second_track_color="@color/rise"
                                 app:bsb_section_count="4"
                                 app:bsb_show_section_mark="true"
-                                app:bsb_track_color="#f3f6f7"
+                                app:bsb_track_color="@color/gray_ccc"
                                 app:bsb_track_size="4dp"/>
 
                             <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp">
 
                                 <TextView
-                                    style="@style/textGrayCommonSmall"
+                                    style="@style/textBlackSmall"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="2dp"
                                     android:layout_weight="1"
                                     android:text="0"
-                                    android:textSize="@dimen/font_mini"/>
+                                    android:textSize="@dimen/font_xmini"/>
 
                                 <TextView
-                                    style="@style/textGrayCommonSmall"
+                                    style="@style/textBlackSmall"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="4dp"
                                     android:text="@{currentViewModel.seekBarText}"
-                                    android:textSize="@dimen/font_mini"/>
+                                    android:textSize="@dimen/font_xmini"/>
                             </LinearLayout>
 
-                            <TextView
-                                style="@style/textGrayCommonSmall"
-                                android:layout_width="wrap_content"
+                            <LinearLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:ellipsize="end"
-                                android:maxLines="1"
-                                android:text="@{currentViewModel.tradeValue}"
-                                android:visibility="@{currentViewModel.tradeValueVisiable ? View.VISIBLE : View.INVISIBLE}"/>
+                                android:layout_marginTop="15dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    style="@style/textBlackSmall"
+                                    android:text="交易额"
+                                    android:textColor="@color/gray_b2"/>
+
+                                <TextView
+                                    style="@style/textBlackSmall"
+                                    android:layout_marginLeft="4dp"
+                                    android:layout_weight="1"
+                                    android:ellipsize="end"
+                                    android:gravity="right"
+                                    android:maxLines="1"
+                                    android:text="@{currentViewModel.tradeValue}"
+                                    android:visibility="@{currentViewModel.tradeValueVisiable ? View.VISIBLE : View.INVISIBLE}"/>
+                            </LinearLayout>
+
 
                             <!--登录后购买-->
                             <TextView
@@ -301,9 +315,9 @@
                                 style="@style/textGrayCommonNormal"
                                 onClickCommand="@{currentViewModel.currentBuyCommand}"
                                 android:layout_width="match_parent"
-                                android:layout_height="42dp"
-                                android:layout_marginTop="12dp"
-                                android:background="@drawable/green_4dp_bg"
+                                android:layout_height="32dp"
+                                android:layout_marginTop="15dp"
+                                android:background="@drawable/rise_2dp_bg"
                                 android:gravity="center"
                                 android:text="@{currentViewModel.buyText}"
                                 android:textColor="@color/white"
@@ -316,13 +330,13 @@
                             android:layout_height="match_parent"
                             android:layout_weight="2.5"
                             android:orientation="vertical"
-                            android:paddingLeft="16dp">
+                            android:paddingLeft="15dp">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
-                                android:paddingBottom="8dp">
+                                android:paddingBottom="4dp">
 
                                 <TextView
                                     style="@style/textGrayCommonFont13"
@@ -331,7 +345,8 @@
                                     android:gravity="left"
                                     android:maxLines="1"
                                     android:text="@{currentViewModel.priceTag}"
-                                    android:textSize="@dimen/font_mini"/>
+                                    android:textColor="@color/gray_b2"
+                                    android:textSize="@dimen/font_xmini"/>
 
                                 <TextView
                                     style="@style/textGrayCommonFont13"
@@ -340,19 +355,20 @@
                                     android:gravity="right"
                                     android:maxLines="1"
                                     android:text="@{currentViewModel.numberTag}"
-                                    android:textSize="@dimen/font_mini"/>
+                                    android:textColor="@color/gray_b2"
+                                    android:textSize="@dimen/font_xmini"/>
                             </LinearLayout>
 
                             <android.support.v7.widget.RecyclerView
                                 android:id="@+id/rv_sell"
                                 android:layout_width="match_parent"
-                                android:layout_height="140dp"/>
+                                android:layout_height="120dp"/>
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:layout_marginBottom="8dp"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginBottom="2dp"
                                 android:orientation="vertical">
 
                                 <TextView
@@ -360,22 +376,82 @@
                                     style="@style/textGrayCommonNormal"
                                     android:layout_width="wrap_content"
                                     android:text="@{currentViewModel.closePrice}"
-                                    android:textColor="@{currentViewModel.closePriceType ? @color/green : @color/orange}"
+                                    android:textColor="@{currentViewModel.closePriceType ? @color/rise : @color/fall}"
                                     android:textStyle="bold"/>
 
                                 <TextView
                                     style="@style/textGrayCommonFont13"
                                     android:layout_marginTop="2dp"
                                     android:text="@{currentViewModel.priceConvert}"
-                                    android:textColor="@color/gray_common_8c"
-                                    android:textSize="@dimen/font_mini"/>
+                                    android:textColor="@color/gray_b2"
+                                    android:textSize="@dimen/font_xmini"/>
                             </LinearLayout>
 
                             <android.support.v7.widget.RecyclerView
                                 android:id="@+id/rv_buy"
                                 android:layout_width="match_parent"
-                                android:layout_height="140dp"
+                                android:layout_height="120dp"
                                 android:layout_gravity="bottom"/>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="25dp"
+                                android:layout_marginTop="6dp"
+                                android:gravity="center_vertical">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="horizontal"
+                                    android:paddingLeft="5dp"
+                                    android:paddingRight="5dp"
+                                    app:bl_corners_radius="2dp"
+                                    app:bl_solid_color="@color/white"
+                                    app:bl_stroke_color="@color/gray_ccc"
+                                    app:bl_stroke_width="1dp">
+
+                                    <TextView
+                                        style="@style/textBlackSmall"
+                                        android:gravity="center_vertical"
+                                        android:text="档位"
+                                        android:textColor="@color/gray_a4"
+                                        android:textSize="@dimen/font_xmini"/>
+
+                                    <TextView
+                                        style="@style/textBlackSmall"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="50"
+                                        android:textColor="@color/gray_a4"
+                                        android:textSize="@dimen/font_xmini"/>
+
+                                    <ImageView
+                                        android:layout_width="6dp"
+                                        android:layout_height="6dp"
+                                        android:layout_marginLeft="4dp"
+                                        android:src="@drawable/svg_pull_down"/>
+                                </LinearLayout>
+
+                                <View
+                                    android:layout_width="10dp"
+                                    android:layout_height="match_parent"/>
+
+                                <TextView
+                                    style="@style/textBlackSmall"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:text="深度合并"
+                                    android:textColor="@color/gray_a4"
+                                    android:textSize="@dimen/font_xmini"
+                                    app:bl_corners_radius="2dp"
+                                    app:bl_solid_color="@color/white"
+                                    app:bl_stroke_color="@color/gray_ccc"
+                                    app:bl_stroke_width="1dp"/>
+                            </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
 
@@ -407,20 +483,56 @@
                                 android:layout_width="?attr/actionBarSize"
                                 android:layout_height="?attr/actionBarSize"
                                 android:gravity="center"
-                                android:text="@string/all"
+                                android:text="更多>>"
+                                android:textSize="@dimen/font_mini"
                                 app:bl_ripple_color="@color/gray_ccc"
                                 app:bl_ripple_enable="true"
                                 app:bl_solid_color="@color/white"/>
                         </LinearLayout>
                     </LinearLayout>
 
-                    <View style="@style/line_ccc"/>
+                    <LinearLayout
+                        android:id="@+id/commissionLl"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/time"
+                            android:textColor="@color/gray_b2"
+                            android:textSize="@dimen/font_mini"/>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/price"
+                            android:textColor="@color/gray_b2"
+                            android:textSize="@dimen/font_mini"/>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:text="交易量"
+                            android:textColor="@color/gray_b2"
+                            android:textSize="@dimen/font_mini"/>
+
+                    </LinearLayout>
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/rv_open_orders"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:nestedScrollingEnabled="false"></android.support.v7.widget.RecyclerView>
+                        android:nestedScrollingEnabled="false"/>
                 </LinearLayout>
             </android.support.v4.widget.NestedScrollView>
         </com.spark.chiefwallet.ui.progresslayout.ProgressLinearLayout>

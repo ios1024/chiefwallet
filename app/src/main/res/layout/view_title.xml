@@ -61,15 +61,31 @@
                 android:layout_weight="1">
 
                 <TextView
+                    android:id="@+id/title_avatar_img"
+                    style="@style/textBlackSmall"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="12dp"
+                    android:gravity="center"
+                    android:text="@{viewTitle.nameShort}"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:visibility="@{viewTitle.isShowAvatarImg?View.VISIBLE:View.GONE}"
+                    app:bl_corners_radius="20dp"
+                    app:bl_solid_color="@color/color_first_char" />
+
+                <TextView
                     android:id="@+id/title_name_left"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_toRightOf="@id/title_avatar_img"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:text="@{viewTitle.titleNameLeft}"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/font_lager" />
+                    android:textSize="@dimen/font_lager"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/title_name"
@@ -114,6 +130,6 @@
         <View
             android:id="@+id/title_line"
             style="@style/line_ccc"
-            android:visibility="@{viewTitle.isShowTitleLine?View.VISIBLE:View.INVISIBLE}" />
+            android:visibility="@{viewTitle.isShowTitleLine?View.VISIBLE:View.GONE}" />
     </LinearLayout>
 </layout>

@@ -26,6 +26,10 @@ public class WsCMD {
     public static final short PUSH_THUMB = 22101;                   // 首页缩略图接受
     public static final short PUSH_CFD_THUMB = 22107;               // 首页CFD缩略图接受
 
+    //OTC
+    public static final short OTC_SUBSCRIBE_THUMB = 23017;          //订阅OTC缩略图
+    public static final short OTC_PUSH_THUMB = 22110;               //推送法币24小时行情
+
     // 币币收藏模块
     public static final short FIND_FAVOR = 20103;                   // 自选
     public static final short ADD_FAVOR = 20002;                    // 添加取消收藏
