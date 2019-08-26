@@ -389,7 +389,6 @@
     <string name="order_number">Order number</string>
     <string name="details">Details</string>
     <string name="to_trade">Go to trade</string>
-    <string name="_24h">24H</string>
     <string name="_24h_high">H</string>
     <string name="_24h_low">L</string>
     <string name="_24h_size">24H&#160;</string>
@@ -846,7 +845,7 @@
     <string name="str_order_state_unpay">Please payment</string>
     <string name="str_please_within2">Due in</string>
     <string name="str_please_within_suffix">Internal payment to seller</string>
-    <string name="str_please_within_suffix2">Within receipt of buyers payment</string>
+    <string name="str_please_within_suffix2">Within receipt of buyer payment</string>
     <string name="str_single_price">The unit price:&#160;</string>
     <string name="str_release">Release&#160;</string>
     <string name="str_release_please">Please release</string>
