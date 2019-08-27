@@ -487,6 +487,7 @@ public class OpenOrdersResult implements Parcelable {
                 return me.spark.mvvm.utils.DateUtils.formatDate("HH:mm:ss", transactTime);
             }
 
+
             public String initStatueType() {
                 String typeText;
                 if (status == 5) {

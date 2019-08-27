@@ -935,6 +935,28 @@
     <string name="str_gains">&#160;涨幅</string>
     <string name="str_count">&#160;单</string>
 
+
+    <string name="choosing_the_currency_to_trade">请选择交易币种</string>
+    <string name="choose_your_location">请选择所在地</string>
+    <string name="choosing_the_currency_type">请选择货币类型</string>
+
+
+
+    <string name="falvshengm">法律声明</string>
+    <string name="customer_service_mailbox">客服邮箱</string>
+    <string name="business_mailboxs">商务邮箱</string>
+
+
+    <string name="red_green">红涨绿跌</string>
+    <string name="green_red">绿涨红跌</string>
+
+    <string name="currency_cny">人民币 CNY</string>
+    <string name="currency_usdt">美元 USDT</string>
+    <string name="currency_eur">欧元 EUR</string>
+    <string name="currency_ghs">赛地 GHS</string>
+    <string name="currency_nhn">尼日利亚 NGN</string>
+
+
     <!--home-->
     <string-array name="home_tab">
         <item>OTC行情</item>
@@ -976,11 +998,6 @@
     <string name="str_release">释放</string>
     <string name="str_release_please">请释放</string>
     <string name="str_find_pay_info">请查收对方付款</string>
-    <string name="choosing_the_currency_to_trade">请选择交易币种</string>
-    <string name="choose_your_location">请选择所在地</string>
-    <string name="choosing_the_currency_type">请选择货币类型</string>
-
-
     <string name="str_confirm_cancel_order_title">确认取消交易</string>
     <string name="str_confirm_cancel_order_content">如果您已经向卖家付款，请千万不要取消交易</string>
     <string name="str_confirm_cancel_order_tip">我确定还没有付款给对方</string>
@@ -1016,18 +1033,4 @@
     <string name="str_business_high">高级认证</string>
     <string name="str_business_sell">在线出售</string>
     <string name="str_business_buy">在线购买</string>
-    <string name="falvshengm">法律声明</string>
-    <string name="customer_service_mailbox">客服邮箱</string>
-    <string name="business_mailboxs">商务邮箱</string>
-
-
-    <string name="red_green">红涨绿跌</string>
-    <string name="green_red">绿涨红跌</string>
-
-    <string name="currency_cny">人民币 CNY</string>
-    <string name="currency_usdt">美元 USDT</string>
-    <string name="currency_eur">欧元 EUR</string>
-    <string name="currency_ghs">赛地 GHS</string>
-    <string name="currency_nhn">尼日利亚 NGN</string>
-
 </resources>

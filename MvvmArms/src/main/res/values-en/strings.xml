@@ -936,10 +936,7 @@
     <string name="str_gains">&#160;Gains</string>
     <string name="str_count">&#160;Count</string>
 
-    <!--home-->
-    <string-array name="home_tab">
-        <item>OTC market</item>
-    </string-array>
+
     <!--home-->
     <string name="min">Min</string>
     <string name="max">Max</string>
@@ -1030,5 +1027,8 @@
     <string name="currency_eur">EUR EUR</string>
     <string name="currency_ghs">Site GHS</string>
     <string name="currency_nhn">Nigeria NGN</string>
+
+
+
 
 </resources>

@@ -8,6 +8,7 @@ import com.spark.otcclient.pojo.AdSelfDownFindResult;
 import com.spark.otcclient.pojo.AdSelfUpFindResult;
 import com.spark.otcclient.pojo.CurrencyTypeBean;
 import com.spark.otcclient.pojo.FindAdvertiseResult;
+import com.spark.otcclient.pojo.FindAdvertiseResult;
 import com.spark.otcclient.pojo.FindMerchantDetailsResult;
 import com.spark.otcclient.pojo.FindPageBean;
 import com.spark.otcclient.pojo.FindPageResult;
@@ -749,4 +750,37 @@ public class AdvertiseScanClient extends BaseHttpClient {
                     }
                 });
     }
+
+//    /**
+//     * 查询指定商家上架的广告
+//     */
+//    public void getAdvertiseFindUrl(int memberId) {
+//        EasyHttp.get(OtcHost.getAdvertiseFindUrl + memberId)
+//                .baseUrl(BaseHost.OTC_HOST)
+//                .execute(new SimpleCallBack<String>() {
+//                    @Override
+//                    public void onSuccess(String s) {
+//                        try {
+//                            GeneralResult generalResult = BaseApplication.gson.fromJson(s, GeneralResult.class);
+//                            if (generalResult.getCode() == BaseRequestCode.OK) {
+//                                FindAdvertiseResult findPageResult = BaseApplication.gson.fromJson(s, FindAdvertiseResult.class);
+//                                EventBusUtils.postSuccessEvent(EvKey.advertiseFind, generalResult.getCode(), generalResult.getMessage(), findPageResult);
+//                            } else {
+//                                if (generalResult.getCode() == BaseRequestCode.ERROR_401) {
+//                                    uodateLogin(generalResult);
+//                                } else {
+//                                    EventBusUtils.postErrorEvent(EvKey.advertiseFind, generalResult.getCode(), generalResult.getMessage());
+//                                }
+//                            }
+//                        } catch (Exception e) {
+//                            postException(EvKey.advertiseFind, e);
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onError(ApiException e) {
+//                        postError(EvKey.advertiseFind, e);
+//                    }
+//                });
+//    }
 }
