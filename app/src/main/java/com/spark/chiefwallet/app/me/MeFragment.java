@@ -14,7 +14,7 @@ import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.databinding.FragmentMeBinding;
 
 import me.spark.mvvm.base.BaseFragment;
-
+import me.spark.mvvm.ui.dialog.utils.StatusBarUtils;
 /**
  * ================================================
  * 作    者：v1ncent
@@ -30,6 +30,7 @@ public class MeFragment extends BaseFragment<FragmentMeBinding, MeViewModel> {
     public int initContentView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return R.layout.fragment_me;
     }
+
 
     @Override
     public int initVariableId() {

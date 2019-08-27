@@ -5,7 +5,7 @@
 
         <variable
             name="splashViewModel"
-            type="com.spark.chiefwallet.app.SplashViewModel"/>
+            type="com.spark.chiefwallet.app.SplashViewModel" />
     </data>
 
     <LinearLayout
@@ -19,7 +19,7 @@
             android:layout_width="168dp"
             android:layout_height="168dp"
             android:layout_marginTop="96dp"
-            android:src="@drawable/bitrade"/>
+            android:src="@mipmap/ic_launcher" />
 
         <TextView
             style="@style/textBlackNormal"
@@ -27,6 +27,6 @@
             android:layout_marginBottom="24dp"
             android:gravity="bottom"
             android:text="@string/splash_tips"
-            android:textColor="@color/gray_common"/>
+            android:textColor="@color/gray_common" />
     </LinearLayout>
 </layout>

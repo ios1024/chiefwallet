@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:binding="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="individualBusinessmenViewModel"
+            type="com.spark.chiefwallet.app.me.safe.business.individualbusinessmen.IndividualBusinessmenViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/certification_title"
+            layout="@layout/view_title" />
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/textBlackNormal"
+                    android:text="@string/name"
+                    android:textColor="#FF333333"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    style="@style/ll_item_52"
+                    android:layout_height="@dimen/dp_40"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/linl_pay_bg">
+
+                    <EditText
+                        style="@style/textBlackNormal"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="@string/name_hint"
+                        android:text="@={individualBusinessmenViewModel.nametv}" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/textBlackNormal"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/cell_phone_number"
+                    android:textColor="#FF333333"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    style="@style/ll_item_52"
+                    android:layout_height="@dimen/dp_40"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/linl_pay_bg">
+
+                    <EditText
+                        style="@style/textBlackNormal"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="@string/phone_num_hint2"
+                        android:inputType="phone"
+                        android:text="@={individualBusinessmenViewModel.phonetv}" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/textBlackNormal"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/mailbox"
+                    android:textColor="#FF333333"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    style="@style/ll_item_52"
+                    android:layout_height="@dimen/dp_40"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/linl_pay_bg">
+
+                    <EditText
+                        style="@style/textBlackNormal"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="@string/email_num_hint2"
+                        android:text="@={individualBusinessmenViewModel.mailboxtv}" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/textBlackNormal"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/we_chat_wrong"
+                    android:textColor="#FF333333"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    style="@style/ll_item_52"
+                    android:layout_height="@dimen/dp_40"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/linl_pay_bg">
+
+                    <EditText
+                        style="@style/textBlackNormal"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="@string/we_chat_wrong2"
+                        android:text="@={individualBusinessmenViewModel.wechattv}" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/textBlackNormal"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/whats_app_wrong"
+                    android:textColor="#FF333333"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    style="@style/ll_item_52"
+                    android:layout_height="@dimen/dp_40"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/linl_pay_bg">
+
+                    <EditText
+                        style="@style/textBlackNormal"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="@string/we_chat_wrong2"
+                        android:text="@={individualBusinessmenViewModel.whatsapptv}" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/textBlackNormal"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/emergency_contact"
+                    android:textColor="#FF333333"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    style="@style/ll_item_52"
+                    android:layout_height="@dimen/dp_40"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/linl_pay_bg">
+
+                    <EditText
+                        style="@style/textBlackNormal"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="@string/emergency_contact2"
+                        android:text="@={individualBusinessmenViewModel.emergencytv}" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/textBlackNormal"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/emergency_contact_phone"
+                    android:textColor="#FF333333"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    style="@style/ll_item_52"
+                    android:layout_height="@dimen/dp_40"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/linl_pay_bg">
+
+                    <EditText
+                        style="@style/textBlackNormal"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="@string/emergency_contact_phone2"
+                        android:text="@={individualBusinessmenViewModel.emergencyphonetv}" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/textBlackNormal"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/str_emerg_my_concern"
+                    android:textColor="#FF333333"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:id="@+id/ll_concernclink"
+                    style="@style/ll_item_52"
+                    onClickCommand="@{individualBusinessmenViewModel.concernclink}"
+                    android:layout_height="@dimen/dp_40"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/linl_pay_bg">
+
+                    <TextView
+                        android:id="@+id/tv_concern"
+                        style="@style/textBlackNormal"
+                        android:layout_weight="1"
+                        android:hint="@string/text_select"
+                        android:text="@={individualBusinessmenViewModel.selecttv}"
+                        android:textColor="#FF333333"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/svg_pull_down" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/textBlackNormal"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/str_emerg_address"
+                    android:textColor="#FF333333"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    style="@style/ll_item_52"
+                    android:layout_height="@dimen/dp_40"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/linl_pay_bg">
+
+                    <EditText
+                        style="@style/textBlackNormal"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="@string/str_emerg_address2"
+                        android:text="@={individualBusinessmenViewModel.emergaddresstv}" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/tv_part"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/textBlackNormal"
+                        android:layout_marginTop="20dp"
+                        android:text="营业执照"
+                        android:textColor="#FF333333"
+                        android:textSize="12sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp">
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="105dp"
+                            android:layout_marginEnd="6dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/shape_dash_line">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:orientation="vertical"
+                                android:visibility="@{individualBusinessmenViewModel.hiddenpart ? View.VISIBLE : View.GONE}">
+
+                                <ImageView
+                                    url="@{individualBusinessmenViewModel.qrCodeUrl}"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:src="@mipmap/icon_help_photo" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:text="@string/enterprise_business_license"
+                                    android:textColor="@color/black_30"
+                                    android:textSize="@dimen/font_xmini" />
+                            </LinearLayout>
+
+                            <ImageView
+                                android:id="@+id/imgPhoto"
+                                url="@{individualBusinessmenViewModel.qrCodeUrl}"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="0.1dp"
+                                android:scaleType="fitCenter" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="105dp"
+                            android:layout_marginStart="6dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/shape_dash_line">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="0.1dp"
+                                android:scaleType="fitCenter"
+                                android:src="@mipmap/icon_ying_photo" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        style="@style/textBlackNormal"
+                        android:layout_marginTop="15dp"
+                        android:text="必须是申请人为法人代表的企业营业执照，否则不予通过。"
+                        android:textColor="#FFCA2C49"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        style="@style/textBlackNormal"
+                        android:layout_marginTop="20dp"
+                        android:text="保证金"
+                        android:textColor="#FF333333"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tv_bond"
+                        style="@style/textBlackNormal"
+                        android:layout_marginTop="10dp"
+                        android:text="作为保证金，如取消商家认证，保证金将会在取消申请15天后原路退回。"
+                        android:textColor="#FFA4ABC0"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="50dp"
+                        android:orientation="horizontal">
+
+                        <com.spark.chiefwallet.ui.SmoothCheckBox
+                            android:id="@+id/wechat_cb"
+                            android:layout_width="13dp"
+                            android:layout_height="13dp"
+                            android:layout_gravity="center"
+                            android:checked="false"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/unified_check"
+                            style="@style/textBlackLarge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/reading_clauses"
+                            android:textColor="@color/mobile_login"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <TextView
+                    style="@style/textBlackNormal"
+                    onClickCommand="@{individualBusinessmenViewModel.applicationsubmissionClickCommand}"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="50dp"
+                    android:gravity="center"
+                    android:text="@string/application_submission"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_14"
+                    android:textStyle="bold"
+                    app:bl_corners_radius="2dp"
+                    app:bl_pressed_color="@color/subscript2"
+                    app:bl_unpressed_color="@color/base" />
+
+                <!--<ImageView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:padding="0.1dp"-->
+                <!--android:scaleType="fitCenter" />-->
+
+
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+
+    </LinearLayout>
+</layout>

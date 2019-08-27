@@ -60,7 +60,7 @@ public class CoinAddressAddActivity extends BaseActivity<ActivityCoinAddressAddB
         //TitleSet
         mTitleModel = new TitleBean();
         binding.coinAddressAddTitle.setViewTitle(mTitleModel);
-        mTitleModel.setTitleName("新增地址");
+        mTitleModel.setTitleName(getString(R.string.add_address));
         setTitleListener(binding.coinAddressAddTitle.titleRootLeft);
 
         viewModel.setSelectCoinAddress(Coin);

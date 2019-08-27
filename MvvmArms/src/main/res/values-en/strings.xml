@@ -628,6 +628,8 @@
     <string name="successful_withdrawal_of_application">Successful withdrawal of application</string>
     <string name="mention_success">Mention success</string>
     <string name="b2b">B2B</string>
+    <string name="c2c">C2C</string>
+
     <string name="quotes_search_hint">Search for the currency you are interested in</string>
     <string name="search_not_null">Search content cannot be empty</string>
     <string name="add_optional">Add optional</string>
@@ -1027,8 +1029,14 @@
     <string name="currency_eur">EUR EUR</string>
     <string name="currency_ghs">Site GHS</string>
     <string name="currency_nhn">Nigeria NGN</string>
-
-
-
+    <string name="today_s_limit">Today s limit</string>
+    <string name="news">New</string>
+    <string name="please_enter_a_label">Please enter a label</string>
+    <string name="number_of_coins">Number of coins</string>
+    <string name="please_enter_the_number_of_coins">Please enter the number of coins</string>
+    <string name="minimum_number_of_coins">Minimum number of coins:</string>
+    <string name="maximum_number_of_coins">Maximum number of coins:</string>
+    <string name="add_address">Add address</string>
+    <string name="go_add">Go add</string>
 
 </resources>

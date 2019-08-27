@@ -32,6 +32,7 @@ import butterknife.OnClick;
 import me.spark.mvvm.base.BaseFragment;
 import me.spark.mvvm.base.BaseHost;
 import me.spark.mvvm.base.Constant;
+import me.spark.mvvm.ui.dialog.utils.StatusBarUtils;
 import me.spark.mvvm.utils.ImageUtils;
 import me.spark.mvvm.utils.LogUtils;
 import me.spark.mvvm.utils.PermissionConstants;
@@ -73,7 +74,10 @@ public class InviteFragment extends BaseFragment<FragmentInviteBinding, InviteVi
 
     @Override
     public void initData() {
+        StatusBarUtils.setStatusViewAttr(binding.viewStatusBar, getActivity());
+
         viewModel.loadDate();
+
     }
 
     @OnClick({R.id.invite_friend})

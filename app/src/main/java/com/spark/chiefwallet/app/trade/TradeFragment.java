@@ -21,6 +21,7 @@ import com.spark.chiefwallet.ui.tablayout.listener.OnTabSelectListener;
 
 import me.spark.mvvm.base.BaseFragment;
 import me.spark.mvvm.base.Constant;
+import me.spark.mvvm.ui.dialog.utils.StatusBarUtils;
 import me.spark.mvvm.utils.LogUtils;
 
 /**
@@ -51,6 +52,13 @@ public class TradeFragment extends BaseFragment<FragmentTradeBinding, TradeViewM
     @Override
     public int initVariableId() {
         return BR.tradeViewModel;
+    }
+
+    @Override
+    public void initData() {
+        super.initData();
+        StatusBarUtils.setStatusViewAttr(binding.viewStatusBar, getActivity());
+
     }
 
     @Override

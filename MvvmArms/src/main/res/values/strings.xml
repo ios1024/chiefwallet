@@ -628,6 +628,7 @@
     <string name="successful_withdrawal_of_application">撤单申请提交成功</string>
     <string name="mention_success">提币成功</string>
     <string name="b2b">币币</string>
+    <string name="c2c">法币</string>
     <string name="quotes_search_hint">搜索你感兴趣的币种</string>
     <string name="search_not_null">搜索内容不能为空！</string>
     <string name="add_optional">添加自选</string>
@@ -1033,4 +1034,13 @@
     <string name="str_business_high">高级认证</string>
     <string name="str_business_sell">在线出售</string>
     <string name="str_business_buy">在线购买</string>
+    <string name="today_s_limit">今日限额</string>
+    <string name="news">新增</string>
+    <string name="please_enter_a_label">请输入标签</string>
+    <string name="number_of_coins">提币数量</string>
+    <string name="please_enter_the_number_of_coins">请输入提币数量</string>
+    <string name="minimum_number_of_coins">最小提币数量:</string>
+    <string name="maximum_number_of_coins">最大提币数量:</string>
+    <string name="add_address">新增地址</string>
+    <string name="go_add">去添加</string>
 </resources>

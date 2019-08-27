@@ -58,7 +58,7 @@
             <TextView
                 style="@style/textBlackNormal"
                 android:layout_marginTop="20dp"
-                android:text="提币地址"
+                android:text="@string/mentionAddress"
                 android:textColor="#FF333333"
                 android:textSize="12sp" />
 
@@ -150,7 +150,7 @@
                 android:layout_height="40dp"
                 android:layout_marginTop="50dp"
                 android:gravity="center"
-                android:text="新增"
+                android:text="@string/news"
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp_14"
                 android:textStyle="bold"

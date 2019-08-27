@@ -60,6 +60,7 @@ import java.util.List;
 import me.spark.mvvm.base.BaseFragment;
 import me.spark.mvvm.base.Constant;
 import me.spark.mvvm.http.impl.OnRequestListener;
+import me.spark.mvvm.ui.dialog.utils.StatusBarUtils;
 import me.spark.mvvm.utils.DateUtils;
 import me.spark.mvvm.utils.LanguageSPUtil;
 import me.spark.mvvm.utils.LogUtils;
@@ -99,8 +100,11 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
         return BR.homeViewModel;
     }
 
+
     @Override
     public void initView() {
+        StatusBarUtils.setStatusViewAttr(binding.viewStatusBar, getActivity());
+
         binding.banner.setOnBannerListener(new OnBannerListener() {
             @Override
             public void OnBannerClick(int position) {

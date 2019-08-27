@@ -3,6 +3,7 @@ package com.spark.chiefwallet.app.trade.legal_currency.adapter;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -112,30 +113,76 @@ public class SelectPayWayAdapter extends BaseQuickAdapter<PayListBean.DataBean, 
         }
         switch (item.getPayType()) {
             case Constant.alipay:
+                if (item.getIsSelected() == 1) {
+                    helper.setTextColor(R.id.tvName, App.getInstance().getResources().getColor(R.color.base));
+                    helper.setTextColor(R.id.tvBankNum, App.getInstance().getResources().getColor(R.color.base));
+                } else {
+                    helper.setTextColor(R.id.tvName, App.getInstance().getResources().getColor(R.color.black));
+                    helper.setTextColor(R.id.tvBankNum, App.getInstance().getResources().getColor(R.color.black));
+                }
                 helper.setImageResource(R.id.ivType, R.drawable.svg_alipay);
                 helper.setText(R.id.tvBankName, App.getInstance().getString(R.string.str_alipay));
                 break;
             case Constant.wechat:
+                if (item.getIsSelected() == 1) {
+                    helper.setTextColor(R.id.tvName, App.getInstance().getResources().getColor(R.color.base));
+                    helper.setTextColor(R.id.tvBankNum, App.getInstance().getResources().getColor(R.color.base));
+                } else {
+                    helper.setTextColor(R.id.tvName, App.getInstance().getResources().getColor(R.color.black));
+                    helper.setTextColor(R.id.tvBankNum, App.getInstance().getResources().getColor(R.color.black));
+                }
                 helper.setImageResource(R.id.ivType, R.drawable.svg_wechatpay);
                 helper.setText(R.id.tvBankName, App.getInstance().getString(R.string.str_wechat));
                 break;
             case Constant.card:
+                if (item.getIsSelected() == 1) {
+                    helper.setTextColor(R.id.tvName, App.getInstance().getResources().getColor(R.color.base));
+                    helper.setTextColor(R.id.tvBankNum, App.getInstance().getResources().getColor(R.color.base));
+                } else {
+                    helper.setTextColor(R.id.tvName, App.getInstance().getResources().getColor(R.color.black));
+                    helper.setTextColor(R.id.tvBankNum, App.getInstance().getResources().getColor(R.color.black));
+                }
                 helper.setImageResource(R.id.ivType, R.drawable.svg_bankpay);
                 helper.setText(R.id.tvBankName, item.getBank());
                 break;
             case Constant.PAYPAL:
+                if (item.getIsSelected() == 1) {
+                    helper.setTextColor(R.id.tvName, App.getInstance().getResources().getColor(R.color.base));
+                    helper.setTextColor(R.id.tvBankNum, App.getInstance().getResources().getColor(R.color.base));
+                } else {
+                    helper.setTextColor(R.id.tvName, App.getInstance().getResources().getColor(R.color.black));
+                    helper.setTextColor(R.id.tvBankNum, App.getInstance().getResources().getColor(R.color.black));
+                }
                 helper.setImageResource(R.id.ivType, R.drawable.svg_pay_paypal);
                 helper.setText(R.id.tvBankName, App.getInstance().getString(R.string.str_paypal));
                 break;
             case Constant.MTN:
+                if (item.getIsSelected() == 1) {
+                    helper.setTextColor(R.id.tvName, App.getInstance().getResources().getColor(R.color.base));
+                    helper.setTextColor(R.id.tvBankNum, App.getInstance().getResources().getColor(R.color.base));
+                } else {
+                    helper.setTextColor(R.id.tvName, App.getInstance().getResources().getColor(R.color.black));
+                    helper.setTextColor(R.id.tvBankNum, App.getInstance().getResources().getColor(R.color.black));
+                }
                 helper.setImageResource(R.id.ivType, R.drawable.svg_pay_mtn);
                 helper.setText(R.id.tvBankName, App.getInstance().getString(R.string.str_mtn));
                 break;
             case Constant.other:
+                if (item.getIsSelected() == 1) {
+                    helper.setTextColor(R.id.tvName, App.getInstance().getResources().getColor(R.color.base));
+                    helper.setTextColor(R.id.tvBankNum, App.getInstance().getResources().getColor(R.color.base));
+                } else {
+                    helper.setTextColor(R.id.tvName, App.getInstance().getResources().getColor(R.color.black));
+                    helper.setTextColor(R.id.tvBankNum, App.getInstance().getResources().getColor(R.color.black));
+                }
                 helper.setImageResource(R.id.ivType, R.drawable.svg_pay_other);
                 helper.setText(R.id.tvBankName, App.getInstance().getString(R.string.str_other));
                 break;
             default:
+                if (item.getIsSelected() == 1) {
+                    helper.setTextColor(R.id.tvName, App.getInstance().getResources().getColor(R.color.base));
+                    helper.setTextColor(R.id.tvBankNum, App.getInstance().getResources().getColor(R.color.base));
+                }
                 helper.setImageResource(R.id.ivType, R.drawable.svg_pay_other);
                 helper.setText(R.id.tvBankName, App.getInstance().getString(R.string.str_other));
                 break;

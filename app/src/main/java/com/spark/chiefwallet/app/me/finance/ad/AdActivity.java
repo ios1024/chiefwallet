@@ -78,7 +78,9 @@ public class AdActivity extends BaseActivity<ActivityAdBinding, AdViewModel> {
         mFragments.add(AdFragment.newInstance(0));
         mFragments.add(AdFragment.newInstance(1));
         mAdapter = new SlideTabPagerAdapter(getSupportFragmentManager(), mFragments, mTitles);
+
         binding.adVp.setAdapter(mAdapter);
+
         binding.adTab.setViewPager(binding.adVp);
         if (adUp) {
             binding.adVp.setCurrentItem(1);

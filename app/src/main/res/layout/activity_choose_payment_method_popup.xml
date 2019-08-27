@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.spark.chiefwallet.ui.progresslayout.ProgressLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_root"
+    android:layout_width="300dp"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    android:paddingTop="36dp"
+    app:bl_corners_bottomLeftRadius="2dp"
+    app:bl_corners_topLeftRadius="2dp"
+    app:bl_solid_color="@color/white">
+
+    <TextView
+        style="@style/textBlackNormal"
+        android:layout_marginLeft="15dp"
+        android:text="@string/str_paypay"
+        android:textSize="@dimen/font_xlager"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/swipeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_coin_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </android.support.v4.widget.NestedScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="40dp">
+
+            <TextView
+                android:id="@+id/tv_reset"
+                android:layout_width="130dp"
+                android:layout_height="40dp"
+                android:background="#FFE6E9F6"
+                android:gravity="center"
+                android:text="@string/reset"
+                android:textColor="#FF333333"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_determine"
+                android:layout_width="130dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="15dp"
+                android:background="#FF0056BC"
+                android:gravity="center"
+                android:text="@string/ensure"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</com.spark.chiefwallet.ui.progresslayout.ProgressLinearLayout>

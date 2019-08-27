@@ -40,21 +40,21 @@ public class PropertyDetailsAdapter extends BaseQuickAdapter<CoinTransDetailsRes
             helper.setVisible(R.id.tv_typeall, false);
             helper.setVisible(R.id.ll_type, true);
             helper.setVisible(R.id.tv_formatDate, false);
-            helper.setText(R.id.tv_state, "时间");
-            helper.setText(R.id.tv_coinName, "币种");
+            helper.setText(R.id.tv_state, App.getInstance().getString(R.string.time));
+            helper.setText(R.id.tv_coinName, App.getInstance().getString(R.string.coin_type));
             helper.setText(R.id.tv_formatStatue, item.formatDate());
             helper.setText(R.id.tv_formatFee, item.getCoinName());
         }
         if (item.getSubType() == 3) {//币币转法币
-            helper.setText(R.id.tv_type1, "币币");
+            helper.setText(R.id.tv_type1, App.getInstance().getString(R.string.b2b));
             helper.setTextColor(R.id.tv_type1, App.getInstance().getResources().getColor(R.color.card_bg));
-            helper.setText(R.id.tv_type2, "法币");
+            helper.setText(R.id.tv_type2, App.getInstance().getString(R.string.c2c));
             helper.setTextColor(R.id.tv_type2, App.getInstance().getResources().getColor(R.color.zfb_bg));
 
         } else if (item.getSubType() == 5) {
-            helper.setText(R.id.tv_type1, "法币");
+            helper.setText(R.id.tv_type1, App.getInstance().getString(R.string.c2c));
             helper.setTextColor(R.id.tv_type1, App.getInstance().getResources().getColor(R.color.zfb_bg));
-            helper.setText(R.id.tv_type2, "币币");
+            helper.setText(R.id.tv_type2, App.getInstance().getString(R.string.b2b));
             helper.setTextColor(R.id.tv_type2, App.getInstance().getResources().getColor(R.color.card_bg));
 
         } else

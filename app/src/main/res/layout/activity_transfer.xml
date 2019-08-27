@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:binding="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="transferViewModel"
+            type="com.spark.chiefwallet.app.me.finance.property.transfer.TransferViewModel" />
+    </data>
+
+    <com.spark.chiefwallet.ui.progresslayout.ProgressLinearLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+
+        <include
+            android:id="@+id/coinCharging_title"
+            layout="@layout/view_title" />
+
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <!--<android.support.v7.widget.CardView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="112dp"-->
+                <!--android:layout_centerInParent="true"-->
+                <!--android:layout_margin="16dp"-->
+                <!--android:foreground="?android:attr/selectableItemBackground"-->
+                <!--app:cardCornerRadius="6dp"-->
+                <!--app:cardElevation="4dp">-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="81dp"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:background="@drawable/linl_pay_bg"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="20dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:paddingLeft="6dp"
+                        android:paddingRight="6dp">
+
+                        <View
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            app:bl_corners_radius="4dp"
+                            app:bl_solid_color="@color/base" />
+
+                        <View
+                            android:layout_width="4dp"
+                            android:layout_height="4dp"
+                            android:layout_marginTop="6dp"
+                            app:bl_corners_radius="2dp"
+                            app:bl_solid_color="@color/gray_ccc" />
+
+                        <View
+                            android:layout_width="4dp"
+                            android:layout_height="4dp"
+                            android:layout_marginTop="8dp"
+                            app:bl_corners_radius="2dp"
+                            app:bl_solid_color="@color/gray_ccc" />
+
+                        <View
+                            android:layout_width="4dp"
+                            android:layout_height="4dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="6dp"
+                            app:bl_corners_radius="2dp"
+                            app:bl_solid_color="@color/gray_ccc" />
+
+                        <View
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            app:bl_corners_radius="4dp"
+                            app:bl_solid_color="@color/orange" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/textGrayCommonNormal"
+                                android:layout_marginRight="10dp"
+                                android:text="@string/from"
+                                android:textColor="#FFB2BAD1"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/trans_from_tv"
+                                style="@style/textBlackNormal"
+                                android:text="@string/b2b_account"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <View
+                            style="@style/line_ccc"
+                            android:background="#FFD6DAE9" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/textGrayCommonNormal"
+                                android:layout_marginRight="10dp"
+                                android:text="@string/to"
+                                android:textColor="#FFB2BAD1"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/trans_from_to"
+                                style="@style/textBlackNormal"
+                                android:text="@string/c2c_account"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/linl_pay_bg"
+                        android:gravity="center"
+                        android:padding="1dp">
+
+                        <LinearLayout
+                            android:id="@+id/trans_reverse"
+                            android:layout_width="60dp"
+                            android:layout_height="match_parent"
+                            android:background="#FFF3F9FD"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:src="@drawable/svg_trans_white"
+                                app:bl_corners_radius="16dp"
+                                app:bl_solid_color="@color/gray_common" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+                <!--</android.support.v7.widget.CardView>-->
+
+
+                <TextView
+                    style="@style/textBlackNormal"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/coin_type"
+                    android:textColor="#FF333333"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    style="@style/ll_item_52"
+                    android:layout_height="@dimen/dp_40"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/linl_pay_bg">
+
+                    <TextView
+                        android:id="@+id/trans_symbol"
+                        style="@style/textBlackNormal"
+                        android:drawablePadding="4dp"
+                        android:text="BTC"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <View
+                    style="@style/line_ccc"
+                    android:layout_marginLeft="16dp" />
+
+
+                <TextView
+                    style="@style/textBlackNormal"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/transfer_quantity"
+                    android:textColor="#FF333333"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    style="@style/ll_item_52"
+                    android:layout_height="@dimen/dp_40"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/linl_pay_bg">
+
+                    <EditText
+                        android:id="@+id/trans_num"
+                        style="@style/textBlackNormal"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="@string/trans_number_hint"
+                        android:inputType="numberDecimal" />
+
+                    <TextView
+                        android:id="@+id/trans_symbol2"
+                        style="@style/textBlackNormal"
+                        android:drawablePadding="4dp"
+                        android:text="BTC"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="@dimen/dp_10"
+                        android:layout_marginLeft="@dimen/dp_10"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:background="#FFE6E9F6" />
+
+                    <TextView
+                        android:id="@+id/trans_all"
+                        style="@style/textGrayCommonFont13"
+                        android:text="@string/extract_all"
+                        android:textColor="#FF0056BC"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/trans_num_available"
+                    style="@style/textGrayCommonFont13"
+                    android:layout_marginTop="3dp" />
+
+                <TextView
+                    style="@style/textGrayCommonFont13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="@string/transfer_details" />
+
+                <TextView
+                    android:id="@+id/btn_trans"
+                    style="@style/textBlackNormal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="30dp"
+                    android:gravity="center"
+                    android:text="@string/coin_trans"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_14"
+                    android:textStyle="bold"
+                    app:bl_corners_radius="2dp"
+                    app:bl_pressed_color="@color/subscript2"
+                    app:bl_unpressed_color="@color/base" />
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+
+    </com.spark.chiefwallet.ui.progresslayout.ProgressLinearLayout>
+</layout>
