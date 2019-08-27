@@ -86,47 +86,47 @@ public class CurAccountViewModel extends BaseViewModel {
         public SingleLiveEvent<Boolean> isHideAccountSwitchEvent = new SingleLiveEvent<>();
     }
 
-    //资金详情的展示与隐藏
-    public BindingCommand hideAccountOnClickCommand = new BindingCommand(new BindingAction() {
-        @Override
-        public void call() {
-            uc.isHideAccountSwitchEvent.setValue(uc.isHideAccountSwitchEvent.getValue() == null || !uc.isHideAccountSwitchEvent.getValue());
-        }
-    });
+//    //资金详情的展示与隐藏
+//    public BindingCommand hideAccountOnClickCommand = new BindingCommand(new BindingAction() {
+//        @Override
+//        public void call() {
+//            uc.isHideAccountSwitchEvent.setValue(uc.isHideAccountSwitchEvent.getValue() == null || !uc.isHideAccountSwitchEvent.getValue());
+//        }
+//    });
 
     public void initAccountText(boolean isHide) {
         if (isHide) {
             spotWalletTotalChar.set("****** USDT");
-            spotWalletTransChar.set("≈ **** CNY " + mContext.getString(R.string.total_assets_convert));
+            spotWalletTransChar.set("≈¥ **** " + mContext.getString(R.string.total_assets_convert));
         } else {
             spotWalletTotalChar.set(initWalletTotal(walletTotal));
             spotWalletTransChar.set(transWalletTotal(walletTotalTrans));
         }
     }
 
-    public BindingCommand coinInCommand = new BindingCommand(new BindingAction() {
-        @Override
-        public void call() {
-            getCoinSupportType = 0;
-            getCoinSupport();
-        }
-    });
+//    public BindingCommand coinInCommand = new BindingCommand(new BindingAction() {
+//        @Override
+//        public void call() {
+//            getCoinSupportType = 0;
+//            getCoinSupport();
+//        }
+//    });
 
-    public BindingCommand coinOutCommand = new BindingCommand(new BindingAction() {
-        @Override
-        public void call() {
-            getCoinSupportType = 1;
-            getCoinSupport();
-        }
-    });
-
-    public BindingCommand coinTransCommand = new BindingCommand(new BindingAction() {
-        @Override
-        public void call() {
-            getCoinSupportType = 2;
-            getCoinSupport();
-        }
-    });
+//    public BindingCommand coinOutCommand = new BindingCommand(new BindingAction() {
+//        @Override
+//        public void call() {
+//            getCoinSupportType = 1;
+//            getCoinSupport();
+//        }
+//    });
+//
+//    public BindingCommand coinTransCommand = new BindingCommand(new BindingAction() {
+//        @Override
+//        public void call() {
+//            getCoinSupportType = 2;
+//            getCoinSupport();
+//        }
+//    });
 
 
     public void initSpotWallet(Context context, OnRequestListener mOnRequestListener) {
@@ -356,7 +356,7 @@ public class CurAccountViewModel extends BaseViewModel {
         walletTotalTrans = 0;
         for (SpotWalletResult.DataBean dataBean : spotWalletResult.getData()) {
             walletTotal = new BigDecimal(dataBean.getTotalPlatformAssetBalance()).add(new BigDecimal(walletTotal)).doubleValue();
-            walletTotalTrans = new BigDecimal(dataBean.getTotalLegalAssetBalance()).add(new BigDecimal(walletTotalTrans)).doubleValue();
+            walletTotalTrans = new BigDecimal(dataBean.getCnyAssetBalance()).add(new BigDecimal(walletTotalTrans)).doubleValue();
         }
         initAccountText(SPUtils.getInstance().isHideAccountSpot());
         mOnRequestListener.onSuccess(spotWalletResult);
@@ -409,7 +409,7 @@ public class CurAccountViewModel extends BaseViewModel {
 
     private String transWalletTotal(double spotWalletTotal) {
         String close = DfUtils.formatNum(MathUtils.getRundNumber(spotWalletTotal, 6, null));
-        return "≈ " + close + " CNY " + mContext.getString(R.string.total_assets_convert);
+        return "≈¥ " + close;
     }
 
 

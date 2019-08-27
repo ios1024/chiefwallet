@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FFD000</color>
-    <color name="colorPrimaryDark">#FFC000</color>
+    <color name="colorPrimary">#0056BC</color>
+    <color name="colorPrimaryDark">#0056BC</color>
     <color name="colorAccent">#718495</color>
 
-    <color name="base">#FFD000</color>
-    <color name="base_dark">#FFC000</color>
+    <color name="windowBackground">#F3F9FD</color>
+    <color name="base">#0056BC</color>
+    <color name="base_dark">#0056BC</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="black">#FF000000</color>
+    <color name="black">#FF333333</color>
     <color name="black21">#FF212121</color>
+    <color name="black33">#333333</color>
     <color name="black0B">#0B0F15</color>
     <color name="green">#52AF6C</color>
     <color name="green_light">#ECFBEE</color>
     <color name="green_dark">#22AF6C</color>
     <color name="orange">#FF7D46</color>
     <color name="orange_dark">#e16531</color>
-    <color name="gray_ccc">#CCCCCC</color>
+    <color name="gray_ccc">#E6E9F6</color>
     <color name="gray_f7">#F7F7F7</color>
     <color name="gray_f8">#F8F8F8</color>
     <color name="gray_fb">#FBFBFB</color>
@@ -25,6 +27,8 @@
     <color name="gray_f5">#F5F5F5</color>
     <color name="gray_70">#707070</color>
     <color name="gray_456">#F4F5f6</color>
+    <color name="gray_a4">#A4ABC0</color>
+    <color name="gray_a9">#A9A9A9</color>
     <color name="gray_common">#718495</color>
     <color name="gray_common_8c">#8C718495</color>
     <color name="gray_common_light">#798499</color>
@@ -42,5 +46,57 @@
     <color name="depth_title">#2a3a46</color>
     <color name="commission_bg">#1B2532</color>
     <color name="transparent">#00000000</color>
+    <color name="color_grey">#B2BAD1</color>
+    <color name="color_blue">#0056BC</color>
+    <color name="color_first_char">#8594C2</color>
+    <color name="color_unchecked">#E6E9F6</color>
+    <color name="color_stroke">#A4ABC0</color>
 
+    <!--登录注册-->
+    <color name="welcomelogin">#B2BAD1</color>
+    <color name="subscript2">#B2CCEB</color>
+
+    <color name="color_red">#d60b0b</color>
+    <color name="my_bg">#F3F9FD</color>
+    <color name="grey_a5a5a5">#f2f2f2</color>
+    <color name="black_30">#4d000000</color>
+    <color name="my_division">#E6E9F6</color>
+    <color name="mobile_login">#333333</color>
+
+    <color name="tab_indicator_select_color">#0056BC</color>
+    <color name="tab_text_unselected_color">#A4ABC0</color>
+    <color name="tab_text_selected_color">#242C46</color>
+    <!--统一跌 卖-->
+    <color name="rise">#028F76</color>
+    <!--统一跌 卖 背景色-->
+    <color name="rise_light">#CCE9E4</color>
+    <!--统一涨 买-->
+    <color name="fall">#CA2C49</color>
+    <!--统一涨 买 背景色-->
+    <color name="fall_light">#F4D5DB</color>
+
+    <color name="zfb_bg">#00A0EB</color>
+    <color name="wexin_bg">#04DA59</color>
+    <color name="card_bg">#FFAC00</color>
+    <color name="paypal_bg">#222D65</color>
+    <color name="mtn_bg">#01688F</color>
+    <color name="btn_bg">#FFB2CCEA</color>
+
+    <color name="rise_dark">#027B65</color>
+    <color name="fall_dark">#AD263F</color>
+    <color name="gray_b2">#B2BAD1</color>
+    <color name="line_e5">#E5E6EB</color>
+    <color name="black_00">#000000</color>
+    <color name="gray_d6">#D6DAE9</color>
+
+    <color name="depth_background">#101724</color>
+    <color name="depth_text_color">#587094</color>
+    <color name="depth_buy_line">#1ABB77</color>
+    <color name="depth_sell_line">#E75A35</color>
+    <color name="depth_buy_path">#0F3031</color>
+    <color name="depth_sell_path">#2E2227</color>
+    <color name="depth_selector">#DA30343C</color>
+    <color name="kc_dif_color">#D2C79D</color>
+    <color name="kc_dea_color">#62BEB2</color>
+    <color name="kc_macd_color">#BA8FE8</color>
 </resources>

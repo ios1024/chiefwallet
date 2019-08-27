@@ -10,7 +10,7 @@
     </data>
 
     <LinearLayout
-        android:layout_width="268dp"
+        android:layout_width="272dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:bl_ripple_color="@color/gray_ccc"
@@ -22,20 +22,23 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:padding="16dp">
+            android:paddingLeft="15dp"
+            android:paddingTop="10dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="10dp">
 
 
             <TextView
                 android:id="@+id/item_symbol"
                 style="@style/textBlackNormal"
                 android:layout_weight="1"
-                android:text="@{allThumbDrawerResult.initSymbol()}"/>
+                android:text="@{allThumbDrawerResult.initSymbol3()}"/>
 
             <TextView
                 android:id="@+id/item_close_price"
                 style="@style/textBlackSmall"
                 android:text="@{allThumbDrawerResult.initClose()}"
-                android:textColor="@{allThumbDrawerResult.isCoinPairPushChgUp() ? @color/green : @color/red}"/>
+                android:textColor="@{allThumbDrawerResult.isCoinPairPushChgUp() ? @color/rise : @color/fall}"/>
 
         </LinearLayout>
 

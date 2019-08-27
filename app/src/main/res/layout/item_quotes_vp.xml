@@ -6,7 +6,7 @@
 
         <variable
             name="coinPairPushBean"
-            type="com.spark.chiefwallet.api.pojo.CoinPairPushBean"/>
+            type="com.spark.modulespot.pojo.AllThumbResult.DataBean"/>
     </data>
 
     <LinearLayout
@@ -22,77 +22,78 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:padding="16dp">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/svg_btc_img"/>
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/item_symbol"
-                        style="@style/textBlackNormal"
-                        android:text="@{coinPairPushBean.initSymbol()}"/>
-                </LinearLayout>
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingLeft="15dp">
 
                 <TextView
-                    android:id="@+id/item_24hour_count"
-                    style="@style/textGrayCommonSmall"
-                    android:layout_marginTop="8dp"
-                    android:maxLines="1"
+                    style="@style/textBlackNormal"
+                    android:text="@{coinPairPushBean.initSymbol2()}"/>
+
+                <TextView
+                    style="@style/textBlackSmall"
+                    android:layout_marginTop="1dp"
                     android:text="@{coinPairPushBean.init24HourCount()}"
-                    android:textSize="@dimen/font_mini"/>
+                    android:textColor="@color/gray_b2"
+                    android:textSize="@dimen/font_xmini"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_weight="1.2"
-                android:orientation="vertical">
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingLeft="15dp">
 
                 <TextView
-                    android:id="@+id/item_close_price"
-                    style="@style/textBlackSmall"
-                    android:maxLines="1"
+                    style="@style/textBlackNormal"
                     android:text="@{coinPairPushBean.initClose()}"
                     android:textStyle="bold"/>
 
                 <TextView
-                    android:id="@+id/item_price_convert"
-                    style="@style/textGrayCommonSmall"
-                    android:layout_marginTop="8dp"
-                    android:maxLines="1"
+                    style="@style/textBlackSmall"
+                    android:layout_marginTop="1dp"
                     android:text="@{coinPairPushBean.initConvert()}"
+                    android:textColor="@color/gray_b2"
                     android:textSize="@dimen/font_mini"/>
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/item_chg"
-                style="@style/textGrayCommonSmall"
-                android:layout_marginLeft="12dp"
-                android:layout_weight="0.3"
-                android:background="@{coinPairPushBean.isCoinPairPushChgUp() ? @drawable/drawable_green_light : @drawable/drawable_green_red}"
-                android:gravity="center"
-                android:padding="8dp"
-                android:text="@{coinPairPushBean.initChg()}"
-                android:textColor="@{coinPairPushBean.isCoinPairPushChgUp() ? @color/green : @color/red}"
-                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical|right"
+                android:orientation="horizontal"
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:id="@+id/item_chg"
+                    style="@style/textGrayCommonNormal"
+                    android:layout_width="101dp"
+                    android:layout_height="32dp"
+                    android:layout_marginLeft="12dp"
+                    android:background="@{coinPairPushBean.isCoinPairPushChgUp() ? @color/fall_light : @color/rise_light}"
+                    android:gravity="center"
+                    android:text="@{coinPairPushBean.initChg()}"
+                    android:textColor="@{coinPairPushBean.isCoinPairPushChgUp() ? @color/fall : @color/rise}"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
         </LinearLayout>
 
         <View
-            style="@style/line_ccc"/>
+            style="@style/line_ccc"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/line_e5"/>
     </LinearLayout>
 </layout>

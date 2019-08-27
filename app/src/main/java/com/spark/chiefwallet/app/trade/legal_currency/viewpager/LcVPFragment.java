@@ -89,10 +89,11 @@ public class LcVPFragment extends BaseFragment<FragmentLcVpBinding, LcViewModel>
                         @Override
                         public void onSuccess(SpotWalletResult spotWalletResult) {
                             new XPopup.Builder(getContext())
-                                    .moveUpToKeyboard(false)
+                                    .autoOpenSoftInput(true)
                                     .asCustom(new LcTradePopup(getContext(), spotWalletResult.getData(), Constant.lcBuyOrSell, mRecordsBeanList.get(position), new OnOrderCreateListener() {
                                         @Override
                                         public void onOrderCreate(final OrderCreateBean orderCreateBean) {
+                                            showKeyboard(false);
                                             if (orderCreateBean.getOrderType().equals("1")) {
                                                 showDialog(getString(R.string.loading));
                                                 LcTradeClient.getInstance().orderCreate(orderCreateBean, getArguments().getString(COIN_NAME));
@@ -127,6 +128,19 @@ public class LcVPFragment extends BaseFragment<FragmentLcVpBinding, LcViewModel>
                             binding.swipeLayout.setRefreshing(false);
                         }
                     });
+                }
+            }
+        });
+
+        mLcVPAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                switch (view.getId()) {
+                    case R.id.ll_business_info:
+                        ARouter.getInstance().build(ARouterPath.ACTIVITY_TRADE_BUSINESS_DETAILS)
+                                .withInt("memberId", mRecordsBeanList.get(position).getMemberId())
+                                .navigation();
+                        break;
                 }
             }
         });

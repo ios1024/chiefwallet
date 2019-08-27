@@ -1,11 +1,10 @@
 package com.spark.chiefwallet.app.trade.legal_currency.order.details.paid;
 
 import android.arch.lifecycle.Observer;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.view.View;
-import android.view.WindowManager;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -51,10 +50,8 @@ public class LcOrderPaidDetailsActivity extends BaseActivity<ActivityLcOrderPaid
     public void initView() {
         StatueBarUtils.setStatusBarLightMode(this, true);
         StatueBarUtils.addMarginTopEqualStatusBarHeight(binding.fakeStatusBar);
-        StatueBarUtils.setStatusBarColor(this, ContextCompat.getColor(this, R.color.commission_bg));
-        binding.title.setText(App.getInstance().getApplicationContext().getString(R.string.str_paid));
+        StatueBarUtils.setStatusBarColor(this, Color.WHITE);
         viewModel.initContext(this);
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
     }
 
     @Override

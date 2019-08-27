@@ -102,7 +102,7 @@ public class CoinSupportBean implements Parcelable {
 
     }
 
-    public static class DataBean {
+    public static class DataBean implements Parcelable {
         /**
          * coinName : CNT
          * nameCn : CNT
@@ -378,6 +378,14 @@ public class CoinSupportBean implements Parcelable {
         }
 
 
+        @Override
+        public int describeContents() {
+            return 0;
+        }
 
+        @Override
+        public void writeToParcel(Parcel parcel, int i) {
+
+        }
     }
 }

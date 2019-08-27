@@ -6,9 +6,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.view.View;
 
+import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.spark.acclient.pojo.CoinAddressListBean;
+import com.spark.acclient.pojo.CoinWithdrawAddressResult;
 import com.spark.chiefwallet.BR;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.app.me.setting.coinaddress.adapter.CoinAddressAdapter;
@@ -23,7 +28,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.spark.mvvm.base.BaseActivity;
+import me.spark.mvvm.base.Constant;
+import me.spark.mvvm.base.EvKey;
 import me.spark.mvvm.http.impl.OnRequestListener;
+import me.spark.mvvm.utils.EventBusUtils;
 
 /**
  * ================================================
@@ -36,8 +44,11 @@ import me.spark.mvvm.http.impl.OnRequestListener;
  */
 @Route(path = ARouterPath.ACTIVITY_ME_COINADDRESS_COINADDRESS)
 public class CoinAddressActivity extends BaseActivity<ActivityCoinAddressBinding, CoinAddressViewModel> {
+    @Autowired(name = "Coin")
+    String Coin;
+
     private TitleBean mTitleModel;
-    private List<CoinAddressListBean.DataBean> mCoinAddressList = new ArrayList<>();
+    private List<CoinWithdrawAddressResult.DataBean> mCoinAddressList = new ArrayList<>();
     private CoinAddressAdapter mCoinAddressAdapter;
 
     @Override
@@ -60,18 +71,29 @@ public class CoinAddressActivity extends BaseActivity<ActivityCoinAddressBinding
         //TitleSet
         mTitleModel = new TitleBean();
         binding.coinAddressTitle.setViewTitle(mTitleModel);
+        mTitleModel.setTitleName("选择地址");
         setTitleListener(binding.coinAddressTitle.titleRootLeft);
 
+        viewModel.getCoin(Coin);
         mCoinAddressAdapter = new CoinAddressAdapter(mCoinAddressList);
         binding.rvCoinAddress.setLayoutManager(new WrapContentLinearLayoutManager(this));
         binding.rvCoinAddress.setAdapter(mCoinAddressAdapter);
-
-        mCoinAddressAdapter.setOnSelectListener(new CoinAddressAdapter.OnSelectListener() {
+        mCoinAddressAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
-            public void onSelect(List<CoinAddressListBean.DataBean> selectList) {
-                viewModel.observedBottomText(selectList);
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Constant.ispropertyPauseVisiable = false;//拦截放行
+                EventBusUtils.postSuccessEvent(EvKey.CoinAddress, 1, mCoinAddressList.get(position).getAddress());
+                finish();
             }
         });
+
+
+//        mCoinAddressAdapter.setOnSelectListener(new CoinAddressAdapter.OnSelectListener() {
+//            @Override
+//            public void onSelect(List<CoinAddressListBean.DataBean> selectList) {
+//                viewModel.observedBottomText(selectList);
+//            }
+//        });
 
         //下拉刷新
         binding.swipeLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.base));
@@ -101,9 +123,9 @@ public class CoinAddressActivity extends BaseActivity<ActivityCoinAddressBinding
 
     private void refresh() {
         binding.swipeLayout.setRefreshing(true);
-        viewModel.getCoinAddressList(new OnRequestListener<CoinAddressListBean>() {
+        viewModel.getCoinAddressList(new OnRequestListener<CoinWithdrawAddressResult>() {
             @Override
-            public void onSuccess(CoinAddressListBean coinAddressListBean) {
+            public void onSuccess(CoinWithdrawAddressResult coinAddressListBean) {
                 binding.swipeLayout.setRefreshing(false);
                 mCoinAddressList.clear();
                 mCoinAddressList.addAll(coinAddressListBean.getData());

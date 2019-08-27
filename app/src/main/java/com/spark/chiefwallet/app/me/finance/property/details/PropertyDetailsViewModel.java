@@ -38,6 +38,7 @@ import com.spark.otcclient.pojo.LcCoinListResult;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import me.spark.mvvm.base.BaseApplication;
 import me.spark.mvvm.base.BaseViewModel;
 import me.spark.mvvm.base.Constant;
 import me.spark.mvvm.base.EvKey;
@@ -48,6 +49,8 @@ import me.spark.mvvm.http.impl.OnRequestListener;
 import me.spark.mvvm.utils.DfUtils;
 import me.spark.mvvm.utils.EventBean;
 import me.spark.mvvm.utils.EventBusUtils;
+import me.spark.mvvm.utils.MathUtils;
+import me.spark.mvvm.utils.StringUtils;
 
 /**
  * ================================================
@@ -69,6 +72,7 @@ public class PropertyDetailsViewModel extends BaseViewModel {
     private CoinExtractBean mCoinExtractBean;
     private CoinTransPopup mCoinTransPopup;
     private CoinSupportBean mSpotTransSupportBean;
+    public boolean propertyPause = true;
 
     public PropertyDetailsViewModel(@NonNull Application application) {
         super(application);
@@ -78,13 +82,18 @@ public class PropertyDetailsViewModel extends BaseViewModel {
     public ObservableField<String> balance = new ObservableField<>();
     public ObservableField<String> frozenBalance = new ObservableField<>();
     public ObservableField<String> transCNY = new ObservableField<>();
+    public ObservableField<String> getCoin = new ObservableField<>();
+    public ObservableField<String> ImgUrl = new ObservableField<>();
 
     //充币
     public BindingCommand coinInCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
-            getCoinSupportType = 0;
-            getCoinSupport();
+//            getCoinSupportType = 0;
+//            getCoinSupport();
+            ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_COINCHARGING)
+                    .withString("Coin", mDataBean.getCoinId())
+                    .navigation();
         }
     });
 
@@ -92,8 +101,14 @@ public class PropertyDetailsViewModel extends BaseViewModel {
     public BindingCommand coinOutCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
-            getCoinSupportType = 1;
-            getCoinSupport();
+//            getCoinSupportType = 1;
+//            getCoinSupport();
+//            showDialog();
+//            FinanceClient.getInstance().getCoinOutInfo(mDataBean.getCoinId());
+
+            ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_WITHDRAWMONEY)
+                    .withString("Coin", mDataBean.getCoinId())
+                    .navigation();
         }
     });
 
@@ -101,8 +116,30 @@ public class PropertyDetailsViewModel extends BaseViewModel {
     public BindingCommand coinTransCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
-            getCoinSupportType = 2;
-            getCoinSupport();
+//            getCoinSupportType = 2;
+//            getCoinSupport();
+            ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_TRANSFER)
+                    .withString("Coin", mDataBean.getCoinId())
+                    .withString("mBusiType", mBusiType)
+                    .navigation();
+        }
+    });
+    //财务日志
+    public BindingCommand financialCommand = new BindingCommand(new BindingAction() {
+
+        @Override
+        public void call() {
+            if (mBusiType.equals("OTC")) {
+                ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_PROPERTY_RECORD)
+                        .withInt("coinType", 1)
+                        .withInt("recordType", 2)
+                        .navigation();
+            } else {
+                ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_PROPERTY_RECORD)
+                        .withInt("recordType", 1)
+                        .navigation();
+            }
+
         }
     });
 
@@ -125,6 +162,7 @@ public class PropertyDetailsViewModel extends BaseViewModel {
         this.mContext = context;
         this.mDataBean = propertDetailsBean;
         this.mBusiType = busiType;
+//        FinanceClient.getInstance().getCoinOutOtcInfo("/" + mBusiType + "/", propertDetailsBean.getCoinId());
         initViewDate();
     }
 
@@ -143,16 +181,38 @@ public class PropertyDetailsViewModel extends BaseViewModel {
         FinanceClient.getInstance().getProperyDetails(page, mDataBean.getCoinId(), mBusiType, filterType);
     }
 
+    public String initImgUrl(String coinId) {
+        String url = "";
+        if (!StringUtils.isEmpty(Constant.accountJson)) {
+            CoinSupportBean coinSupportBean = BaseApplication.gson.fromJson(Constant.accountJson, CoinSupportBean.class);
+            for (CoinSupportBean.DataBean dataBean : coinSupportBean.getData()) {
+                if (dataBean.getCoinName().equals(coinId)) {
+                    url = dataBean.getIconUrl();
+                }
+            }
+        }
+        return url;
+    }
 
     private void initViewDate() {
-        coinName.set(DfUtils.numberFormat(mDataBean.getBalance() + mDataBean.getFrozenBalance(), 2) + " " + mDataBean.getCoinId());
+        ImgUrl.set(initImgUrl(mDataBean.getCoinId()));
+        getCoin.set(mDataBean.getCoinId());
+        coinName.set(DfUtils.numberFormat(mDataBean.getBalance() + mDataBean.getFrozenBalance(), 2));
         balance.set(DfUtils.numberFormat(mDataBean.getBalance(), 4));
         frozenBalance.set(DfUtils.numberFormat(mDataBean.getFrozenBalance(), 4));
-        transCNY.set(DfUtils.numberFormat((mDataBean.getBalance() + mDataBean.getFrozenBalance()) * mDataBean.getLegalRate(), 4) + " CNY");
+
+//        transCNY.set("≈¥ " + DfUtils.numberFormat((mDataBean.getBalance() + mDataBean.getFrozenBalance()) * mDataBean.getLegalRate(), 4));
+        transCNY.set(initAccountTrans(mDataBean.getCnyAssetBalance()));
+    }
+
+    private String initAccountTrans(double accountTrans) {
+        String close = DfUtils.formatNum(MathUtils.getRundNumber(accountTrans, 4, null));
+        return "≈ ¥ " + close;
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(EventBean eventBean) {
+        if (propertyPause) return;//数据拦截
         switch (eventBean.getOrigin()) {
             case EvKey.propertyDetailsType:
                 if (eventBean.isStatue()) {
@@ -177,141 +237,151 @@ public class PropertyDetailsViewModel extends BaseViewModel {
                 }
                 break;
             //查询平台支持到币种信息
-            case EvKey.coinSupport:
-                dismissDialog();
-                if (eventBean.isStatue()) {
-                    final CoinSupportBean coinSupportBean = (CoinSupportBean) eventBean.getObject();
-                    if (getCoinSupportType == 0 || getCoinSupportType == 1) {
-                        new XPopup.Builder(mContext)
-                                .asCustom(new CoinChoosePopup(mContext, coinSupportBean.getData(), new OnCoinChooseListener() {
-                                    @Override
-                                    public void onClickOrder() {
-                                        //记录
-                                        switch (getCoinSupportType) {
-                                            case 0:
-                                                ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_PROPERTY_RECORD)
-                                                        .withInt("recordType", 0)
-                                                        .navigation();
-                                                break;
-                                            case 1:
-                                                ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_PROPERTY_RECORD)
-                                                        .withInt("recordType", 1)
-                                                        .navigation();
-                                                break;
-                                        }
-                                    }
-
-                                    @Override
-                                    public void onClickItem(int position) {
-                                        mCoinSupportBean = coinSupportBean.getData().get(position);
-                                        //item点击
-                                        switch (getCoinSupportType) {
-                                            case 0:
-                                                getCoinInInfo(coinSupportBean.getData().get(position).getCoinName());
-                                                break;
-                                            case 1:
-                                                getCoinOutInfo(coinSupportBean.getData().get(position).getCoinName());
-                                                break;
-                                        }
-                                    }
-                                }))
-                                .show();
-                    } else {
-                        if (coinSupportBean.getData().isEmpty()) {
-                            Toasty.showError(App.getInstance().getString(R.string.no_support_coin));
-                            return;
-                        }
-                        mSpotTransSupportBean = coinSupportBean;
-                        if (!Constant.lcCoinPairThumbBeanList.isEmpty()) {
-                            mCoinTransPopup = new CoinTransPopup(mContext, mBusiType.equals("SPOT") ? 0 : 1, coinSupportBean, mDataBean.getCoinId());
-                            new XPopup.Builder(mContext)
-                                    .asCustom(mCoinTransPopup)
-                                    .show();
-                        } else {
-                            AdvertiseScanClient.getInstance().getIndexTradeCoinList();
-                        }
-                    }
-                } else {
-                    Toasty.showError(eventBean.getMessage());
-                }
-                break;
-            //查询法币可用币种
-            case EvKey.indexCoinList:
-                if (eventBean.isStatue()) {
-                    Constant.lcCoinPairThumbBeanList.clear();
-                    for (LcCoinListResult.DataBean dataBean : ((LcCoinListResult) eventBean.getObject()).getData()) {
-                        if (!Constant.lcCoinPairThumbBeanList.contains(dataBean.getCoinName()))
-                            Constant.lcCoinPairThumbBeanList.add(dataBean.getCoinName());
-                    }
-                    mCoinTransPopup = new CoinTransPopup(mContext, mBusiType.equals("SPOT") ? 0 : 1, mSpotTransSupportBean, mDataBean.getCoinId());
-                    new XPopup.Builder(mContext)
-                            .asCustom(mCoinTransPopup)
-                            .show();
-                } else {
-                    Toasty.showError(App.getInstance().getString(R.string.network_abnormal));
-                }
-                break;
-            //查询指定币种的钱包地址
-            case EvKey.coinAddress:
-                dismissDialog();
-                if (eventBean.isStatue()) {
-                    CoinAddressBean coinAddressBean = (CoinAddressBean) eventBean.getObject();
-                    new XPopup.Builder(mContext)
-                            .asCustom(new CoinRechargePopup(mContext, coinAddressBean, mCoinSupportBean, new OnCoinRechargeListener() {
-                                @Override
-                                public void onClickOrder() {
-                                    //记录
-                                    // TODO: 2019/5/21
-                                }
-
-                                @Override
-                                public void onClickChoose() {
-                                    //选择币种
-                                    getCoinSupport();
-                                }
-                            }))
-                            .show();
-                } else {
-                    Toasty.showError(eventBean.getMessage());
-                }
-                break;
+//            case EvKey.coinSupport:
+//                dismissDialog();
+//                if (eventBean.isStatue()) {
+//                    final CoinSupportBean coinSupportBean = (CoinSupportBean) eventBean.getObject();
+//
+//                    if (getCoinSupportType == 0 || getCoinSupportType == 1) {
+//                        new XPopup.Builder(mContext)
+//                                .asCustom(new CoinChoosePopup(mContext, coinSupportBean.getData(), new OnCoinChooseListener() {
+//                                    @Override
+//                                    public void onClickOrder() {
+//                                        //记录
+//                                        switch (getCoinSupportType) {
+//                                            case 0:
+//                                                ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_PROPERTY_RECORD)
+//                                                        .withInt("recordType", 0)
+//                                                        .navigation();
+//                                                break;
+//                                            case 1:
+//                                                ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_PROPERTY_RECORD)
+//                                                        .withInt("recordType", 1)
+//                                                        .navigation();
+//                                                break;
+//                                        }
+//                                    }
+//
+//                                    @Override
+//                                    public void onClickItem(int position) {
+//                                        mCoinSupportBean = coinSupportBean.getData().get(position);
+//                                        //item点击
+//                                        switch (getCoinSupportType) {
+//                                            case 0:
+//                                                getCoinInInfo(coinSupportBean.getData().get(position).getCoinName());
+//                                                break;
+//                                            case 1:
+//                                                getCoinOutInfo(coinSupportBean.getData().get(position).getCoinName());
+//                                                break;
+//                                        }
+//                                    }
+//                                }))
+//                                .show();
+//                    } else {
+//                        if (coinSupportBean.getData().isEmpty()) {
+//                            Toasty.showError(App.getInstance().getString(R.string.no_support_coin));
+//                            return;
+//                        }
+//                        mSpotTransSupportBean = coinSupportBean;
+//                        if (!Constant.lcCoinPairThumbBeanList.isEmpty()) {
+//                            mCoinTransPopup = new CoinTransPopup(mContext, mBusiType.equals("SPOT") ? 0 : 1, coinSupportBean, mDataBean.getCoinId());
+//                            new XPopup.Builder(mContext)
+//                                    .asCustom(mCoinTransPopup)
+//                                    .show();
+//                        } else {
+//                            AdvertiseScanClient.getInstance().getIndexTradeCoinList();
+//                        }
+//                    }
+//                } else {
+//                    Toasty.showError(eventBean.getMessage());
+//                }
+//                break;
+//            //查询法币可用币种
+//            case EvKey.indexCoinList:
+//                if (eventBean.isStatue()) {
+//                    Constant.lcCoinPairThumbBeanList.clear();
+//                    for (LcCoinListResult.DataBean dataBean : ((LcCoinListResult) eventBean.getObject()).getData()) {
+//                        if (!Constant.lcCoinPairThumbBeanList.contains(dataBean.getCoinName()))
+//                            Constant.lcCoinPairThumbBeanList.add(dataBean.getCoinName());
+//                    }
+//                    mCoinTransPopup = new CoinTransPopup(mContext, mBusiType.equals("SPOT") ? 0 : 1, mSpotTransSupportBean, mDataBean.getCoinId());
+//                    new XPopup.Builder(mContext)
+//                            .asCustom(mCoinTransPopup)
+//                            .show();
+//                } else {
+//                    Toasty.showError(App.getInstance().getString(R.string.network_abnormal));
+//                }
+//                break;
+//            //查询指定币种的钱包地址
+//            case EvKey.coinAddress:
+//                dismissDialog();
+//                if (eventBean.isStatue()) {
+//                    CoinAddressBean coinAddressBean = (CoinAddressBean) eventBean.getObject();
+//                    new XPopup.Builder(mContext)
+//                            .asCustom(new CoinRechargePopup(mContext, coinAddressBean, mCoinSupportBean, new OnCoinRechargeListener() {
+//                                @Override
+//                                public void onClickOrder() {
+//                                    //记录
+//                                    // TODO: 2019/5/21
+//                                }
+//
+//                                @Override
+//                                public void onClickChoose() {
+//                                    //选择币种
+//                                    getCoinSupport();
+//                                }
+//                            }))
+//                            .show();
+//                } else {
+//                    Toasty.showError(eventBean.getMessage());
+//                }
+//                break;
             //币币选定币种提币信息
-            case EvKey.merberWallet:
-                dismissDialog();
-                if (eventBean.isStatue()) {
-                    MerberWalletResult merberWalletResult = (MerberWalletResult) eventBean.getObject();
-                    mCoinExtractPopup = new CoinExtractPopup(mContext, merberWalletResult, mCoinSupportBean, new OnCoinExtractListener() {
-                        @Override
-                        public void onReceiveCoinExtract(CoinExtractSubmitBean coinExtractSubmitBean) {
-                            new XPopup.Builder(mContext)
-                                    .asCustom(new CoinExtractSubmitPopup(mContext, coinExtractSubmitBean, new OnCoinExtractSubmitListener() {
-                                        @Override
-                                        public void onReceiveCoinExtractSubmit(final CoinExtractBean coinExtractBean) {
-                                            mCoinExtractBean = coinExtractBean;
-                                            showDialog(mContext.getString(R.string.loading));
-                                            CaptchaAcClient.getInstance().phoneCaptcha(App.getInstance().getCurrentUser().getMobilePhone());
-                                        }
-                                    }))
-                                    .show();
-                        }
-                    });
-                    new XPopup.Builder(mContext)
-                            .asCustom(mCoinExtractPopup)
-                            .show();
-                } else {
-                    Toasty.showError(eventBean.getMessage());
-                }
-                break;
-            //法币选定币种提币信息
-            case EvKey.merberOtcWallet:
-                dismissDialog();
-                if (eventBean.isStatue()) {
-                    MerberWalletResult merberWalletResult = (MerberWalletResult) eventBean.getObject();
-                    mCoinTransPopup.updateTransNumAvailable(merberWalletResult);
-                } else {
-                    Toasty.showError(eventBean.getMessage());
-                }
-                break;
+//            case EvKey.merberWallet:
+//                dismissDialog();
+//                if (eventBean.isStatue()) {
+//                    MerberWalletResult merberWalletResult = (MerberWalletResult) eventBean.getObject();
+//                    ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_WITHDRAWMONEY)
+//                            .withParcelable("memberWalletResult", merberWalletResult)
+////                            .withParcelable("coinSupportBean", mCoinSupportBean)
+//                            .navigation();
+
+
+//                    mCoinExtractPopup = new CoinExtractPopup(mContext, merberWalletResult, mCoinSupportBean, new OnCoinExtractListener() {
+//                        @Override
+//                        public void onReceiveCoinExtract(CoinExtractSubmitBean coinExtractSubmitBean) {
+//                            new XPopup.Builder(mContext)
+//                                    .asCustom(new CoinExtractSubmitPopup(mContext, coinExtractSubmitBean, new OnCoinExtractSubmitListener() {
+//                                        @Override
+//                                        public void onReceiveCoinExtractSubmit(final CoinExtractBean coinExtractBean) {
+//                                            mCoinExtractBean = coinExtractBean;
+//                                            showDialog(mContext.getString(R.string.loading));
+//                                            CaptchaAcClient.getInstance().phoneCaptcha(App.getInstance().getCurrentUser().getMobilePhone());
+//                                        }
+//                                    }))
+//                                    .show();
+//                        }
+//                    });
+//                    new XPopup.Builder(mContext)
+//                            .asCustom(mCoinExtractPopup)
+//                            .show();
+//                } else {
+//                    Toasty.showError(eventBean.getMessage());
+//                }
+//                break;
+//            //跳转提币
+//            case EvKey.merberOtcWallet:
+//                dismissDialog();
+//                if (eventBean.isStatue()) {
+//                    MerberWalletResult merberWalletResult = (MerberWalletResult) eventBean.getObject();
+//                    ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_WITHDRAWMONEY)
+//                            .withString("Coin", mDataBean.getCoinId())
+//                            .withParcelable("merberWalletResult", merberWalletResult)
+//                            .navigation();
+//                } else {
+//                    Toasty.showError(eventBean.getMessage());
+//                }
+//                break;
             //获取短信验证码
             case EvKey.acPhoneCaptcha:
                 dismissDialog();
@@ -354,17 +424,17 @@ public class PropertyDetailsViewModel extends BaseViewModel {
                     Toasty.showError(eventBean.getMessage());
                 }
                 break;
-            //划转
-            case EvKey.coinTransfer:
-                if (eventBean.isStatue()) {
-                    if (mCoinTransPopup != null && mCoinTransPopup.isShow()) {
-                        mCoinTransPopup.dismiss();
-                    }
-                    Toasty.showSuccess(App.getInstance().getString(R.string.coin_trans_success));
-                } else {
-                    Toasty.showError(eventBean.getMessage());
-                }
-                break;
+//            //划转
+//            case EvKey.coinTransfer:
+//                if (eventBean.isStatue()) {
+//                    if (mCoinTransPopup != null && mCoinTransPopup.isShow()) {
+//                        mCoinTransPopup.dismiss();
+//                    }
+//                    Toasty.showSuccess(App.getInstance().getString(R.string.coin_trans_success));
+//                } else {
+//                    Toasty.showError(eventBean.getMessage());
+//                }
+//                break;
             default:
                 break;
         }
@@ -409,5 +479,17 @@ public class PropertyDetailsViewModel extends BaseViewModel {
     public void onDestroy() {
         super.onDestroy();
         EventBusUtils.unRegister(this);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        propertyPause = false;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        propertyPause = true;
     }
 }

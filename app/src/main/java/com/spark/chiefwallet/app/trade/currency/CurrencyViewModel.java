@@ -95,6 +95,7 @@ public class CurrencyViewModel extends BaseViewModel {
     //币对名称
     public ObservableField<String> symbolName = new ObservableField<>("");
     public ObservableField<CharSequence> symbolNameTV = new ObservableField<>();
+    public ObservableField<String> symbolNameEnd = new ObservableField<>();
     //交易类型  限价 - 市价
     public ObservableField<String> currentBuyType = new ObservableField<>(App.getInstance().getString(R.string.limit_price_buy));
     //当前价
@@ -167,7 +168,7 @@ public class CurrencyViewModel extends BaseViewModel {
     public BindingCommand klineClickCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
-            ARouter.getInstance().build(ARouterPath.ACTIVITY_QUOTES_KLINE_HTTP)
+            ARouter.getInstance().build(ARouterPath.ACTIVITY_QUOTES_KLINE_CHIEF)
                     .withParcelable("quotesThumbClick", allThumbResult)
                     .navigation();
         }
@@ -176,10 +177,11 @@ public class CurrencyViewModel extends BaseViewModel {
     public BindingCommand priceSubtractClickCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
-            if (StringUtils.isEmpty(priceEt.get()) || Double.valueOf(priceEt.get()) < 1) {
+            int scale = allThumbResult.getBaseCoinScale();
+            if (StringUtils.isEmpty(priceEt.get()) || Double.valueOf(priceEt.get()) < 1 / Math.pow(10, scale) || null == allThumbResult) {
                 return;
             }
-            priceEt.set(String.valueOf(new BigDecimal(priceEt.get()).subtract(new BigDecimal(1))));
+            priceEt.set(new BigDecimal(priceEt.get()).subtract(new BigDecimal(1 / Math.pow(10, scale))).setScale(scale, BigDecimal.ROUND_HALF_UP).toString());
         }
     });
 
@@ -189,27 +191,8 @@ public class CurrencyViewModel extends BaseViewModel {
             if (StringUtils.isEmpty(priceEt.get())) {
                 return;
             }
-            priceEt.set(String.valueOf(new BigDecimal(priceEt.get()).add(new BigDecimal(1))));
-        }
-    });
-
-    public BindingCommand numberSubtractClickCommand = new BindingCommand(new BindingAction() {
-        @Override
-        public void call() {
-            if (StringUtils.isEmpty(numberEt.get()) || Double.valueOf(numberEt.get()) < 1) {
-                return;
-            }
-            numberEt.set(String.valueOf(new BigDecimal(numberEt.get()).subtract(new BigDecimal(1))));
-        }
-    });
-
-    public BindingCommand numberAddClickCommand = new BindingCommand(new BindingAction() {
-        @Override
-        public void call() {
-            if (StringUtils.isEmpty(numberEt.get())) {
-                return;
-            }
-            numberEt.set(String.valueOf(new BigDecimal(numberEt.get()).add(new BigDecimal(1))));
+            int scale = allThumbResult.getBaseCoinScale();
+            priceEt.set(new BigDecimal(priceEt.get()).add(new BigDecimal(1 / Math.pow(10, scale))).setScale(scale, BigDecimal.ROUND_HALF_UP).toString());
         }
     });
 
@@ -648,7 +631,7 @@ public class CurrencyViewModel extends BaseViewModel {
                             priceConvert.set(initConvert(allThumbResult));
                             if (priceType.get() == 0 && !StringUtils.isEmpty(numberEt.get())) {
                                 tradePrice = MathUtils.getRundNumber(Double.valueOf(numberEt.get().trim()) * Double.valueOf(allThumbResult.getClose()), symbolScale, null);
-                                tradeValue.set(mContext.getString(R.string.turnover) + tradePrice + allThumbResult.getSymbol().split("/")[1]);
+                                tradeValue.set(tradePrice);
                             }
                             break;
                         }
@@ -712,7 +695,7 @@ public class CurrencyViewModel extends BaseViewModel {
                     priceConvert.set(initConvert(dataBean));
                     if (priceType.get() == 0 && !StringUtils.isEmpty(numberEt.get())) {
                         tradePrice = MathUtils.getRundNumber(Double.valueOf(numberEt.get().trim()) * Double.valueOf(dataBean.getClose()), symbolScale, null);
-                        tradeValue.set(mContext.getString(R.string.turnover) + tradePrice + dataBean.getSymbol().split("/")[1]);
+                        tradeValue.set(tradePrice);
                     }
                     break;
                 }
@@ -738,9 +721,10 @@ public class CurrencyViewModel extends BaseViewModel {
                 4 : dataBean.getBaseCoinScreenScale();
         symbolName.set(dataBean.getSymbol());
         symbolNameTV.set(initSymbol(dataBean.getSymbol()));
+        symbolNameEnd.set(allThumbResult.getSymbol().split("/")[0]);
 
         priceCNY.set("≈ " + MathUtils.getRundNumber(dataBean.getCnyLegalAsset(), symbolScale, null) + Constant.CNY);
-        priceConvert.set("≈ " + MathUtils.getRundNumber(dataBean.getCnyLegalAsset(), symbolScale, null) + Constant.CNY);
+        priceConvert.set("≈￥" + MathUtils.getRundNumber(dataBean.getCnyLegalAsset(), symbolScale, null));
 
         if (!App.getInstance().isAppLogin()) {
             numberAvailable.set(mContext.getString(R.string.available) + "--" + allThumbResult.getSymbol().split("/")[1]);
@@ -751,7 +735,7 @@ public class CurrencyViewModel extends BaseViewModel {
         closePrice.set(initClose(dataBean));
         closePriceType.set(dataBean.getChg() >= 0);
         priceConvert.set(initConvert(dataBean));
-        tradeValue.set(mContext.getString(R.string.turnover) + "0.0000" + dataBean.getSymbol().split("/")[1]);
+        tradeValue.set("0.0000");
         Constant.currentSymbol = dataBean.getSymbol();
 
         uc.mDataBeanSingleLiveEvent.setValue(dataBean);
@@ -784,7 +768,7 @@ public class CurrencyViewModel extends BaseViewModel {
         } else {
             uc.mFilterSingleLiveEvent.setValue(allThumbResult.getCoinScreenScale());
         }
-        tradeValue.set(mContext.getString(R.string.turnover) + "0.0000" + allThumbResult.getSymbol().split("/")[1]);
+        tradeValue.set("0.0000");
         tradeValueVisiable.set(!currentBuyType.get().contains(mContext.getString(R.string.market_price)));
 
         if (!App.getInstance().isAppLogin()) {
@@ -839,7 +823,7 @@ public class CurrencyViewModel extends BaseViewModel {
                 + "CNY");
         if (!StringUtils.isEmpty(numberEt.get())) {
             tradePrice = MathUtils.getRundNumber(Double.valueOf(price.trim()) * Double.valueOf(numberEt.get().trim()), symbolScale, null);
-            tradeValue.set(mContext.getString(R.string.turnover) + tradePrice + allThumbResult.getSymbol().split("/")[1]);
+            tradeValue.set(tradePrice);
         }
     }
 
@@ -855,9 +839,8 @@ public class CurrencyViewModel extends BaseViewModel {
             } else {
                 tradePrice = MathUtils.getRundNumber(Double.valueOf(s.toString().trim()) * Double.valueOf(priceEt.get()), symbolScale, null);
             }
-            tradeValue.set(mContext.getString(R.string.turnover) + tradePrice + allThumbResult.getSymbol().split("/")[1]);
+            tradeValue.set(tradePrice);
         } else {
-            tradeValue.set(mContext.getString(R.string.turnover) + "0.0000" + allThumbResult.getSymbol().split("/")[1]);
         }
 
     }
@@ -887,8 +870,7 @@ public class CurrencyViewModel extends BaseViewModel {
     }
 
     public String initConvert(AllThumbResult.DataBean dataBean) {
-        return "≈" + MathUtils.getRundNumber(dataBean.getCnyLegalAsset(), 2, null)
-                + "CNY";
+        return "≈￥" + MathUtils.getRundNumber(dataBean.getCnyLegalAsset(), 2, null);
     }
 
     public void initQueryWithSymbol() {

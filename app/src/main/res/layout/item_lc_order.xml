@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
-        <import type="android.view.View"/>
+        <import type="android.view.View" />
 
         <variable
             name="lcOrderViewModel"
-            type="com.spark.otcclient.pojo.LcOrderResult.DataBean.RecordsBean"/>
+            type="com.spark.otcclient.pojo.LcOrderResult.DataBean.RecordsBean" />
     </data>
 
     <LinearLayout
@@ -24,26 +24,35 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingBottom="12dp"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_10"
             android:paddingTop="12dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <TextView
-                    style="@style/textBlackNormal"
+                    style="@style/textBlackSmall"
                     android:text="@{lcOrderViewModel.initType()}"
-                    android:textColor="@{lcOrderViewModel.initTypeColor() ? @color/green : @color/orange}"
-                    android:textStyle="bold"/>
+                    android:textColor="@{lcOrderViewModel.initTypeColor() ? @color/base : @color/black}"
+                    android:textStyle="bold" />
 
                 <TextView
-                    style="@style/textBlackNormal"
-                    android:layout_marginLeft="6dp"
+                    style="@style/textBlackSmall"
+                    android:layout_marginLeft="0dp"
                     android:text="@{lcOrderViewModel.coinName}"
-                    android:textStyle="bold"/>
+                    android:textColor="@{lcOrderViewModel.initTypeColor() ? @color/base : @color/black}"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/textGrayCommonSmall"
+                    android:layout_marginLeft="8dp"
+                    android:text="@{lcOrderViewModel.initTradeToUsername()}"
+                    android:textColor="@color/color_stroke"
+                    android:textSize="@dimen/font_mini" />
 
                 <TextView
                     style="@style/textBlackNormal"
@@ -51,7 +60,10 @@
                     android:layout_weight="1"
                     android:gravity="right"
                     android:text="@{lcOrderViewModel.initStatueType()}"
-                    android:textStyle="bold"/>
+                    android:textColor="@{lcOrderViewModel.initStatueTypeColor() ? @color/color_stroke : @color/base}"
+                    android:textSize="@dimen/font_small" />
+
+                <ImageView style="@style/imgEnter" />
             </LinearLayout>
 
             <LinearLayout
@@ -60,54 +72,93 @@
                 android:layout_marginTop="8dp"
                 android:orientation="horizontal">
 
-                <TextView
-                    style="@style/textGrayCommonFont13"
-                    android:layout_width="78dp"
-                    android:text="@{lcOrderViewModel.initNumber()}"/>
-
-                <TextView
-                    style="@style/textGrayCommonFont13"
-                    android:layout_marginLeft="48dp"
-                    android:text="@string/str_money_all"/>
-
-                <TextView
-                    style="@style/textGrayCommonFont13"
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/textGrayCommonFont13"
+                        android:text="@string/time"
+                        android:textColor="@color/color_grey"
+                        android:textSize="@dimen/font_mini" />
+
+                    <TextView
+                        style="@style/textBlackSmall"
+                        android:text="@{lcOrderViewModel.formatDate2()}"
+                        android:textSize="@dimen/font_mini" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/textGrayCommonFont13"
+                        android:layout_width="80dp"
+                        android:text="@{lcOrderViewModel.initNumber()}"
+                        android:textColor="@color/color_grey"
+                        android:textSize="@dimen/font_mini" />
+
+                    <TextView
+                        style="@style/textBlackSmall"
+                        android:layout_width="80dp"
+                        android:text="@{lcOrderViewModel.initNumberText()}"
+                        android:textSize="@dimen/font_mini" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
                     android:gravity="right"
-                    android:text="@string/time"/>
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/textGrayCommonFont13"
+                        android:layout_width="wrap_content"
+                        android:text="@string/fee2"
+                        android:textColor="@color/color_grey"
+                        android:textSize="@dimen/font_mini" />
+
+                    <TextView
+                        style="@style/textBlackSmall"
+                        android:layout_width="80dp"
+                        android:gravity="right"
+                        android:text="@{lcOrderViewModel.getCommissionText()}"
+                        android:textSize="@dimen/font_mini" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:gravity="right"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/textGrayCommonFont13"
+                        android:text="@string/str_money_all"
+                        android:textColor="@color/color_grey"
+                        android:textSize="@dimen/font_mini" />
+
+                    <TextView
+                        style="@style/textBlackSmall"
+                        android:text="@{lcOrderViewModel.initMoneyText()}"
+                        android:textSize="@dimen/font_mini" />
+                </LinearLayout>
+
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    style="@style/textBlackSmall"
-                    android:layout_width="78dp"
-                    android:text="@{lcOrderViewModel.initNumberText()}"/>
-
-                <TextView
-                    style="@style/textBlackSmall"
-                    android:layout_marginLeft="48dp"
-                    android:maxLines="1"
-                    android:text="@{lcOrderViewModel.initMoneyText()}"/>
-
-                <TextView
-                    style="@style/textBlackSmall"
-                    android:layout_weight="1"
-                    android:gravity="right"
-                    android:text="@{lcOrderViewModel.formatDate()}"/>
-            </LinearLayout>
-
-            <TextView
-                style="@style/textGrayCommonSmall"
-                android:layout_marginTop="8dp"
-                android:text="@{lcOrderViewModel.initTradeToUsername()}"/>
         </LinearLayout>
 
         <View
-            style="@style/line_ccc"/>
+            style="@style/line_ccc"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10" />
     </LinearLayout>
 </layout>

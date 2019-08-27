@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.lxj.xpopup.core.BottomPopupView;
-import com.mylhyl.zxing.scanner.encode.QREncode;
 import com.spark.acclient.pojo.CoinAddressBean;
 import com.spark.acclient.pojo.CoinSupportBean;
 import com.spark.chiefwallet.R;
@@ -82,37 +81,37 @@ public class CoinRechargePopup extends BottomPopupView {
         }
         mCoinRechargeName.setText(mContext.getString(R.string.coin_recharge) + mCoinSupportBean.getCoinName());
         mCoinRechargeAddress.setText(mCoinAddressBean.getData().getAddress());
-        final Bitmap bitmap = new QREncode.Builder(mContext)
-                .setColor(Color.BLACK)
-                .setContents(mCoinAddressBean.getData().getAddress())
-                .setMargin(2)
-                .build().encodeAsBitmap();
-        mCoinRechargeQrCode.setImageBitmap(bitmap);
+//        final Bitmap bitmap = new QREncode.Builder(mContext)
+//                .setColor(Color.BLACK)
+//                .setContents(mCoinAddressBean.getData().getAddress())
+//                .setMargin(2)
+//                .build().encodeAsBitmap();
+//        mCoinRechargeQrCode.setImageBitmap(bitmap);
 
-        //二维码按保存
-        mCoinRechargeQrCode.setOnLongClickListener(new OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                PermissionUtils.permission(PermissionConstants.CAMERA, PermissionConstants.STORAGE).callback(new PermissionUtils.FullCallback() {
-                    @Override
-                    public void onGranted(List<String> permissionsGranted) {
-                        boolean isSaveSUccess = ImageUtils.saveImageToGallery(mContext, bitmap);
-                        if (isSaveSUccess) {
-                            Toasty.showSuccess(mContext.getString(R.string.save_success));
-                        } else {
-                            Toasty.showError(mContext.getString(R.string.save_failed));
-                        }
-                    }
-
-                    @Override
-                    public void onDenied(List<String> permissionsDeniedForever, List<String> permissionsDenied) {
-                        LogUtils.e(permissionsDenied);
-                        Toasty.showError(mContext.getString(R.string.camera_permission));
-                    }
-                }).request();
-                return false;
-            }
-        });
+//        //二维码按保存
+//        mCoinRechargeQrCode.setOnLongClickListener(new OnLongClickListener() {
+//            @Override
+//            public boolean onLongClick(View v) {
+//                PermissionUtils.permission(PermissionConstants.CAMERA, PermissionConstants.STORAGE).callback(new PermissionUtils.FullCallback() {
+//                    @Override
+//                    public void onGranted(List<String> permissionsGranted) {
+//                        boolean isSaveSUccess = ImageUtils.saveImageToGallery(mContext, bitmap);
+//                        if (isSaveSUccess) {
+//                            Toasty.showSuccess(mContext.getString(R.string.save_success));
+//                        } else {
+//                            Toasty.showError(mContext.getString(R.string.save_failed));
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onDenied(List<String> permissionsDeniedForever, List<String> permissionsDenied) {
+//                        LogUtils.e(permissionsDenied);
+//                        Toasty.showError(mContext.getString(R.string.camera_permission));
+//                    }
+//                }).request();
+//                return false;
+//            }
+//        });
         String tips = getResources().getString(R.string.coin_recharge_tips);
         tips = String.format(tips, mCoinSupportBean.getCoinName(), mCoinSupportBean.getCoinName(), mCoinSupportBean.getMinDepositAmount() + mCoinSupportBean.getCoinName(), mCoinSupportBean.getMinDepositAmount() + mCoinSupportBean.getCoinName());
         mTip.setText(tips);

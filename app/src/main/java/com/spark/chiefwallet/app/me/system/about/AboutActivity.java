@@ -1,5 +1,6 @@
 package com.spark.chiefwallet.app.me.system.about;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -56,7 +57,8 @@ public class AboutActivity extends BaseActivity<ActivityAboutBinding, AboutViewM
         binding.aboutTitle.setViewTitle(mTitleModel);
         setTitleListener(binding.aboutTitle.titleRootLeft);
         checkVersion();
-        viewModel.getArticleList();
+        viewModel.myContext(this);
+//        viewModel.getArticleList();
     }
 
     /**

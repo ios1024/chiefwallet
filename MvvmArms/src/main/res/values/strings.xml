@@ -6,6 +6,8 @@
     <string name="trade">交易</string>
     <string name="invite">邀请</string>
     <string name="me">我的</string>
+    <string name="home_page">首页</string>
+    <string name="find">发现</string>
 
     <!--splash-->
     <string name="favorites">自选</string>
@@ -38,6 +40,12 @@
 6、活动如有调整，以Exchief最新的规则为准，活动最终解释权归Exchief所有</string>
 
     <!--me-->
+    <string name="photo">个人头像</string>
+    <string name="nickname">昵称</string>
+    <string name="online_service">在线客服</string>
+    <string name="exchief_customer_service">Exchief客服</string>
+    <string name="advertising_management">广告管理</string>
+    <string name="account_security">账户安全</string>
     <string name="finance">财务</string>
     <string name="myAssets">我的资产</string>
     <string name="myBill">我的订单</string>
@@ -61,16 +69,34 @@
     <string name="logout_success_check">登录失效，请重新登录</string>
 
     <!--注册-->
+    <string name="checklist">请勾选已阅读并同意</string>
+    <string name="retrieve_the_password">找回密码</string>
+    <string name="cell_phone_number">手机号</string>
+    <string name="mailbox">邮箱</string>
+    <string name="next_steps">下一步</string>
+    <string name="confirmation_of_modifications">确认修改</string>
+    <string name="french_currency_assets">法币资产</string>
+    <string name="currency_assets">币币资产</string>
+    <string name="total_assets">总资产(USDT)</string>
+    <string name="fabi_total_assets">法币总资产(USDT)</string>
+    <string name="bibi_total_assets">币币总资产(USDT)</string>
     <string name="register_phone">手机注册</string>
     <string name="register_email">邮箱注册</string>
     <string name="register_description">一个账户，享受Exchief所有服务。请输入手机号</string>
     <string name="register_description_email">一个账户，享受Exchief所有服务。请输入邮箱号</string>
     <string name="phone_num">手机号码</string>
     <string name="phone_num_hint">请输入手机号码</string>
+    <string name="phone_num_hint2">请输入您的手机号</string>
     <string name="email_num">邮箱账户</string>
     <string name="email_num_hint">请输入邮箱账户</string>
+    <string name="email_num_hint2">请输入您的邮箱账号</string>
+    <string name="we_chat_wrong">微信(非必填)</string>
+    <string name="whats_app_wrong">WhatsAPP(非必填)</string>
+    <string name="whats_app_wrong2">请输入您的WhatsAPP账号</string>
+    <string name="we_chat_wrong2">请输入您的微信账号</string>
     <string name="country">国籍</string>
-    <string name="choose_country">请选择国籍</string>
+    <string name="choose_country">请选择国家</string>
+    <string name="choose_country2">请输入国家</string>
     <string name="valid_phone">请输入有效的手机号码！</string>
     <string name="valid_email">请输入有效的邮箱账户！</string>
     <string name="get_verify_code">获取验证码</string>
@@ -99,7 +125,17 @@
     <string name="register_rivacy">隐私政策</string>
     <string name="register_success">注册成功</string>
 
+
     <!--登录-->
+    <string name="welcome_to_login">欢迎登录</string>
+    <string name="mobile_login">手机登录</string>
+    <string name="mailbox_login">邮箱登录</string>
+    <string name="pwd_error2">请输入密码(6-20位数字，字母组合密码)</string>
+    <string name="enter_again">请再次输入密码</string>
+    <string name="invitation_code">请输入邀请码(非必填)</string>
+    <string name="reading_clauses">我已阅读并同意 Exchief 的 &#x0020;</string>
+    <string name="terms_of_service">服务条款，</string>
+
     <string name="login">登录</string>
     <string name="login_tip">登录到Exchief，即刻开启财富之旅！</string>
     <string name="user_count">账户</string>
@@ -118,6 +154,11 @@
         <item>币币账户</item>
         <item>法币账户</item>
     </string-array>
+    <string-array name="property_tab2">
+        <item>法币账户</item>
+        <item>币币账户</item>
+    </string-array>
+    <string name="asset_management">资产管理</string>
     <string name="coin_in">充币</string>
     <string name="coin_out">提币</string>
     <string name="trans_in">转入</string>
@@ -156,6 +197,7 @@
     <string name="in_position">持仓中</string>
     <string name="completed">已完成</string>
     <string name="type">类型</string>
+    <string name="type2">请选择发布类型</string>
     <string name="trade_profitloss">交易盈亏</string>
     <string name="contract_number">合约编号</string>
     <string name="hanging_unit_price">挂单价</string>
@@ -193,6 +235,9 @@
     <string-array name="auth_passport_tab">
         <item>护照</item>
     </string-array>
+
+    <string name="authentication_rules">为了您的账户安全，需要验证您的身份才可以进行其他操作，认证信息一经验证不可更改，请务必如实填写。</string>
+    <string name="identity_card_photos">身份证照片</string>
     <string name="country_list_null">国籍列表为空！</string>
     <string name="usernameorpwderror">用户名或密码错误!</string>
     <string name="camera_permission">权限不可用，请开启相机权限</string>
@@ -240,6 +285,9 @@
     <string name="record">记录</string>
     <string name="cancel">取消</string>
     <string name="copy_address">复制该地址</string>
+    <string name="question_feedback">遇到问题？立即反馈</string>
+    <string name="transfer_details">只有将资产划转到对应账户才可进行交易。账户间的划转不收取手续费。</string>
+    <string name="coinadd_details">1，切勿从智能合约的地址进行充值 \n2，请勿直接提现至众筹或ICO地址，平台不会处理未来代笔的发放。</string>
     <string name="save_img">长按保存二维码至相册</string>
     <string name="coin_recharge">充值</string>
     <string name="coin_recharge_address">提币地址</string>
@@ -365,6 +413,7 @@
     <string name="order_number">订单编号</string>
     <string name="details">详情</string>
     <string name="to_trade">去交易</string>
+    <string name="_24h">24H</string>
     <string name="_24h_high">24H最高</string>
     <string name="_24h_low">24H最低</string>
     <string name="_24h_size">24H量&#160;</string>
@@ -384,11 +433,16 @@
     <string name="buy_plate">买盘</string>
     <string name="sell_plate">卖盘</string>
     <string name="number">数量</string>
+    <string name="transfer_quantity">划转数量</string>
     <string name="price">价格</string>
+    <string name="entrusted_price">委托价格</string>
+    <string name="entrusted_quantity">委托数量</string>
     <string name="save_success">保存成功</string>
     <string name="save_failed">保存失败</string>
     <string name="no_notes">暂无便签</string>
     <string name="coin_recharge_tips">*温馨提示：需要整个网络节点确认才能到账。任何非%1$s资产充值到%2$s地址后不可找回！最小充值额度：%3$s，小于%4$s将无法到账且不可退回</string>
+    <string name="coin_recharge_tips2">1，充值后经过30个网络确认以后会自动到账 \n2，此地址只能接受指定币种充值，向此地址充值其他币种，将导致您的资产损失 \n3，切勿从智能合约的地址进行充值，请使用普通钱包地址 \n4，最小充币额请</string>
+    <string name="coin_recharge_tips3">1，切勿从智能合约的地址进行充值 \n2，请勿直接提现至众筹或ICO地址，平台不会处理未来代笔的发放。</string>
     <string name="coin_out_label_hint">输入或长按粘贴标签</string>
     <string name="coin_out_num_hint">输入提币数量</string>
     <string name="fee">手续费:&#160;</string>
@@ -399,6 +453,61 @@
     <string name="mention_address_cannot_empty">提币地址不能为空</string>
     <string name="label_cannot_empty">标签不能为空</string>
     <string name="number_cannot_empty">数量不能为空</string>
+    <string name="number_cannot_empty2">请输入正确的金额</string>
+    <string name="insufficient_quantity">数量不足</string>
+    <!--商家申请部分-->
+    <string name="personal_business_certification">个人商家认证:</string>
+    <string name="personal_business_certification2">企业商家认证:</string>
+    <string name="application_materials">准备如下申请资料:</string>
+    <string name="application_of_certifie_business">认证商家申请</string>
+    <string name="application_submission">提交申请</string>
+    <string name="str_apply_type_o">个人商家申请</string>
+    <string name="str_apply_type">商家申请</string>
+    <string name="str_apply_o">个人商家</string>
+    <string name="str_apply_type_t">企业商家申请</string>
+    <string name="please_enter_your_reasons">请输入您的理由</string>
+
+    <string name="emergency_contact">紧急联系人</string>
+    <string name="emergency_contact_phone">紧急联系人电话</string>
+    <string name="emergency_contact_phone2">请输入紧急联系人电话</string>
+    <string name="emergency_contact2">请输入您的紧急联系人姓名</string>
+    <string name="str_emerg_my_concern">与本人关系</string>
+    <string name="str_emerg_my_concern2">请选择与本人关系</string>
+    <string name="text_select">请选择</string>
+    <string name="str_emerg_one">亲人</string>
+    <string name="str_emerg_two">朋友</string>
+    <string name="str_emerg_three">同事</string>
+    <string name="str_emerg_address">常住地址</string>
+    <string name="str_emerg_address2">请输入您的常住地址</string>
+    <string name="tvstatustips">您的商家申请信息已提交 正在审核中！</string>
+    <string name="tvstatustips2">您的退保申请信息已提交 正在审核中！</string>
+    <string name="tvstatustipssuccess">您的商家申请信息已 审核通过！</string>
+    <string name="tvstatustipssuccess2">您的退保申请信息已 审核通过！</string>
+    <string name="re_application">重新申请</string>
+    <string name="business_management">商家管理</string>
+    <string name="tvcontentofapplication">我们将在1-2个工作日内对您的商家申请资料进行审核，请随时关注审核状态，可在提交页面查看。审核通过后，您可以在法币交易区发布广告 正在审核中！</string>
+    <string name="tvcontentofapplication2">我们将在1-2个工作日内对您的退保申请进行审核，请随时关注审核状态，可在提交页面查看。审核通过后，您将失去发布广告资格</string>
+    <string name="tvcontentofapplicationsuccess">审核通过，您可以在法币交易区发布广告</string>
+    <string name="publish_advertisements">去发布广告</string>
+    <string name="publish_advertisements2">申请退保</string>
+    <string name="audit_failure1">您的商家申请失败！</string>
+    <string name="audit_failure2">您的退保申请失败！</string>
+    <string name="to_be_a_certified_business_needs_to_be_frozen">成为认证企业商家需要冻结</string>
+    <string name="as_a_deposit">作为保证金，如取消商家认证，保证金将会在取消申请15天后原路退回。</string>
+    <string name="business_license">请上传营业执照</string>
+    <string name="enterprise_business_license">请上传企业营业执照</string>
+    <string name="please_check_freeze">请勾选冻结</string>
+    <string name="str_frost_gold_one">同意冻结</string>
+    <string name="str_frost_gold_two">作为企业商家保证金</string>
+
+    <string name="data_audit">资料审核</string>
+    <string name="unverified">未验证</string>
+    <string name="verified">验证成功</string>
+    <string name="application_submission2">完成需要填写和提交的商家认证资料，点击提交申请。</string>
+    <string name="application_submission3">我们将在1-2个工作日内对您的商家申请资料进行审核，请随时关注审核状态，可在提交页面查看。审核通过后，您可以在法币交易区发布广告</string>
+    <string name="personal_certifications">   需要提交手机，邮箱，微信(选填)，WhatsAPP(选填)，紧急联系人，紧急联系人电话，于本人联系，常住地址</string>
+    <string name="personal_certifications2">   需要提交手机，邮箱，微信(选填)，WhatsAPP(选填)，紧急联系人，紧急联系人电话，于本人联系，常住地址，申请人为法人代表的企业营业执照。 (企业商家认证需要提供</string>
+    <string name="personal_certifications3">作为保证金.如发生交易违约情况下会从保证金中进行赔付，如取消企业商家认证，在没有交易违约的情况下克全额退回保证金。)</string>
     <string name="about_fee">关于手续费</string>
     <string name="about_fee_tips">增加手续费可用提升速度</string>
     <string name="fee_range">手续费范围为</string>
@@ -445,6 +554,10 @@
     <string name="freeze">冻结</string>
     <string name="convert2cny">折合(CNY)</string>
     <string name="financial_record">财务记录</string>
+    <string name="financial_record2">充提记录</string>
+    <string name="financial_log">财务日志>></string>
+    <string name="total">总额</string>
+    <string name="real_name_authentication">实名认证</string>
     <string-array name="open_order_tab">
         <item>当前委托</item>
         <item>历史委托</item>
@@ -464,6 +577,13 @@
     <string name="direction">方向</string>
     <string name="average_transaction_price">成交均价</string>
     <string name="transaction_volume">成交量</string>
+    <string name="transaction_volume2">成交数量</string>
+    <string name="in_the_bill_of_lading">挂单中</string>
+    <string name="open">开</string>
+    <string name="shut">关</string>
+    <string name="adding_payment_method">添加支付方式</string>
+    <string name="card_binding_matters">1，最多添加：3张银行卡，3个支付宝，1个微信号</string>
+    <string name="card_binding_matters2">2，添加支付方式后，需要开启才能用于场外交易。如添加多张银行卡，最后只能开启一张</string>
     <string name="time">时间</string>
     <string name="final_price">成交价</string>
     <string-array name="ad_tab">
@@ -476,6 +596,9 @@
     <string name="has_been_removed">已下架</string>
     <string name="buy2">购买</string>
     <string name="sell2">出售</string>
+    <string name="buy22">购买广告</string>
+    <string name="sell22">出售广告</string>
+
     <string name="limit">限额&#160;</string>
     <string name="lc_pwd_set">设置资金密码</string>
     <string name="lc_pwd_update">修改资金密码</string>
@@ -497,6 +620,7 @@
         <item>法币交易</item>
         <item>币币交易</item>
     </string-array>
+    <string name="dealing_time">成交时间</string>
     <string name="turnover">交易额:&#160;</string>
     <string name="buy_after_login">登录后买入</string>
     <string name="sell_after_login">登录后卖出</string>
@@ -617,16 +741,32 @@
     <string name="str_pay_success">支付成功</string>
     <string name="str_enter_login_pass">请输入登录密码</string>
     <string name="str_enter_alipay">请输入支付宝账号</string>
+    <string name="str_uplo">收款二维码</string>
+    <string name="str_upload_text">为确保二维码正确，上传后请自行扫描测试</string>
     <string name="str_upload">请上传收款二维码</string>
     <string name="str_enter_wechat">请输入微信账号</string>
     <string name="str_enter_other">请输入其他账号</string>
-    <string name="str_payway_only_one">同一种收款方式只能选择一个账户</string>
+    <string name="str_pay_way_only_one">同一种收款方式只能选择一个账户</string>
     <string name="str_slect_country">请选择所在地</string>
     <string name="str_set_fixed_price">请设置固定价格</string>
     <string name="str_set_float_rate">请输入浮动比例</string>
     <string name="str_set_buy_amount">请输入买入数量</string>
     <string name="str_set_payway">请选择收款方式</string>
     <string name="str_set_limit">请输入付款期限（15~30）分钟</string>
+    <string name="str_set_limit2">请输入付款期限</string>
+    <string name="str_set_limit3">请输入整数，输入数值为15-30分钟</string>
+    <string name="transaction_settings">您可以到 「交易设置」 中设定交易支付方式，设定后您的收款帐户将自动呈现在您发布的广告信息中。这样可以让您在交易时，不必再重复发送收款帐户信息，或是收款二维码。</string>
+    <string name="transaction_restrictions">交易限制</string>
+    <string name="transaction_notes">交易备注</string>
+    <string name="trade_note_tips">微信帐号：xxxxx\n联系电话：18900000000\n下单后可以直接加我微信或用电话跟我联系，我会尽快回复。</string>
+    <string name="trade_tips">您可以依据交易方式设定不同的单笔限额，例如将“最大限额”依据银行转帐或支付宝的单笔转帐上限作调整，提高“最小限额”也可避免一直收到交易金额过低的订单，设定合适的限额区间能让您的交易更有效率。</string>
+    <string name="trade_tips2">在订单有效期内，订单金额对应的数字币由系统锁定，您无法主动取消订单。若买家没有在订单有效期内标记付款完成，订单将自动取消，并将数字货币返还至您的帐户中。</string>
+    <string name="trade_tips3">您可以在「交易备注」内填写与您交易所需的信息，例如留下您的收款帐户及联系方式。留下联系方式的用户，一般可提升 30% 的成交机率。该备注将在建立订单后显示给对方。</string>
+    <string name="trade_tips4">平台为了保证用户的交易安全，将采用数字货币托管系统。严禁绕过平台私下交易，违者将自行承担损失，且永久封号。 请在交易说明及交易备注中，详细写下您所希望的交易条件，以及与您交易所需注意的事项，明确的信息将提升您的交易成功机率及评价。 请勿在 本平台 尝试欺诈行为，违者将会导致帐号被冻结，并承担法律责任。 发布广告后请履行契约精神，恶意抬价或者是反悔，被投诉将冻结账户 3-14 天不等。</string>
+    <string name="trade_tips5">注意！务必详细阅读以下信息，以确保您的交易安全</string>
+    <string name="trade_tips6">交易过程中，请先确认款项入帐后再释放数字货币。交易过程中，不要透露与您帐户安全有关的敏感资讯。不要直接透露你的电子邮箱给买家，否则有可能会收到诈骗信件，及对帐户安全造成危害。永远确保你在正确的平台网站上，请将网站记录在书签上，避免误闯钓鱼网站。平台员工将不会以官方名义与您进行交易，请不要与自称是平台的员工交易，避免利益损失。</string>
+    <string name="transaction_rules">交易规则</string>
+    <string name="choose_payment_method">请选择付款方式</string>
     <string name="str_set_min">请输入每笔交易最小限额</string>
     <string name="str_set_max">请输入每笔交易最大限额</string>
     <string name="str_desc">请先描述你的问题</string>
@@ -634,9 +774,11 @@
     <string name="str_appeal_time">付款完成30分钟后才允许申诉！</string>
     <string name="str_set_paypay">请先选择支付方式</string>
     <string name="str_enter_bank_name">请选择开户行</string>
+    <string name="str_enter_bran">请输入开户行</string>
     <string name="str_enter_branch">请输入开户行支行</string>
     <string name="str_enter_bank_number">请输入用户卡号</string>
     <string name="str_enter_paypal">请输入PayPal账号</string>
+    <string name="str_enter_mtn">请输入MTN账号</string>
     <string name="str_pulish_ad_to_up">操作成功，是否去上架？</string>
     <string name="str_confirm_cancel">确认取消订单？</string>
     <string name="str_order_detail">查看订单</string>
@@ -648,6 +790,7 @@
     <string name="str_branch">支行</string>
     <string name="str_bank_number">银行卡号</string>
     <string name="str_country">所在地</string>
+    <string name="str_coin_type2">请选择货币类型</string>
     <string name="str_coin_type">货币类型</string>
     <string name="str_fixed_price">固定价格</string>
     <string name="str_float_rate">浮动比例</string>
@@ -686,6 +829,7 @@
     <string name="str_alipay">支付宝</string>
     <string name="str_bank">银行卡</string>
     <string name="str_paypal">PayPal</string>
+    <string name="str_mtn">MTN</string>
     <string name="str_other">其他</string>
     <string name="str_copy_number">复制卡号</string>
     <string name="str_pay_tip">*请按如上金额打款，打款后点击下方 [我已付款]</string>
@@ -700,7 +844,7 @@
     <string name="str_price_cny">价格(CNY)</string>
     <string name="str_amount_btc">数量(BTC)</string>
     <string name="str_money_acturl">实际成交(CNY)</string>
-    <string name="str_money_all">交易总共(CNY)</string>
+    <string name="str_money_all">交易总额(CNY)</string>
     <string name="str_lock_up">锁仓</string>
     <string name="str_lock_up_amount">锁仓数量</string>
     <string name="str_release_amount">已释放数量</string>
@@ -756,12 +900,15 @@
     <string name="str_receive_bind_bank_bind">绑定银行卡收款</string>
     <string name="str_receive_bind_paypal_bind">绑定PayPal收款</string>
     <string name="str_receive_bind_paypal_account">PayPal账号</string>
+    <string name="str_receive_bind_mtn_account">MTN账号</string>
+    <string name="str_receive_bind_mtn_bind">绑定MTN收款</string>
     <string name="str_receive_bind_other_bind">绑定其他收款</string>
     <string name="str_receive_bind_other_account">其他账号</string>
     <string name="str_receive_bind_alipay_edit">编辑支付宝收款</string>
     <string name="str_receive_bind_wechat_edit">编辑微信收款</string>
     <string name="str_receive_bind_bank_edit">编辑银行卡收款</string>
     <string name="str_receive_bind_paypal_edit">编辑PayPal收款</string>
+    <string name="str_receive_bind_mtn_edits">编辑MTN收款</string>
     <string name="str_receive_bind_other_edit">编辑其他收款</string>
     <string name="str_set_sell_amount">请输入卖出数量</string>
     <string name="str_macket_price">当前市场参考价格：&#160;</string>
@@ -770,6 +917,9 @@
     <string name="str_buyer">买家：&#160;</string>
     <string name="str_number">数量: &#160;</string>
     <string name="str_limit_money">限额: &#160;</string>
+    <string name="str_limit_money2">限额</string>
+    <string name="purchase_price">购买价格</string>
+    <string name="release_time">发布时间</string>
     <string name="str_locking">锁仓中</string>
     <string name="str_locked">锁仓到期</string>
     <string name="str_un_lock">已解锁</string>
@@ -784,4 +934,100 @@
     <string name="str_introduction">简介</string>
     <string name="str_gains">&#160;涨幅</string>
     <string name="str_count">&#160;单</string>
+
+    <!--home-->
+    <string-array name="home_tab">
+        <item>OTC行情</item>
+    </string-array>
+    <!--home-->
+    <string name="min">最小</string>
+    <string name="max">最大</string>
+
+    <string name="trust_price">委托价</string>
+    <string name="trust_quantity">委托量</string>
+
+    <string name="buy_only">买</string>
+    <string name="sell_only">卖</string>
+    <string name="str_trade_type_buy_money">购买金额(CNY)</string>
+    <string name="str_trade_type_sell">出售金额(CNY)</string>
+    <string name="str_trade_amount_tag">交易数量</string>
+    <string name="str_trade_pay">实付款(CNY)</string>
+    <string name="str_can_banlance">可用余额</string>
+    <string name="str_trade_type_sell_amount">出售数量</string>
+    <string name="str_enter_buy_money">请输入购买金额</string>
+    <string name="str_enter_sell_money">请输入出售金额</string>
+    <string name="str_enter_buy_amount">请输入购买数量</string>
+    <string name="str_enter_sell_amount">请输入出售数量</string>
+    <string name="str_buy_all">全部买入</string>
+    <string name="str_sell_all">全部出售</string>
+    <string name="str_pwd_forget">忘记密码</string>
+    <string name="str_pay_tips">(付款请备注订单尾号后6位)</string>
+    <string name="str_appeal">&#160;申诉&#160;</string>
+    <string name="str_order_warn_title">— 交易提醒 —</string>
+    <string name="str_order_warn_content">1、您的汇款将直接进入卖方账户，交易过程中卖方出售的数字资产由平台托管保护。\n
+        2、请在规定时间内完成付款，并务必点击。我已付款。卖方确认收款后，系统会将数字资产划转到您的账户。</string>
+    <string name="str_order_end_buy">请在付款信息中备注订单尾号后6位：</string>
+    <string name="str_order_end_sell">请留意付款信息中备注订单尾号后6位：</string>
+    <string name="str_order_state_unpay">请付款</string>
+    <string name="str_please_within2">预计在</string>
+    <string name="str_please_within_suffix">内付款给卖家</string>
+    <string name="str_please_within_suffix2">内收到买家付款</string>
+    <string name="str_single_price">单价:&#160;</string>
+    <string name="str_release">释放</string>
+    <string name="str_release_please">请释放</string>
+    <string name="str_find_pay_info">请查收对方付款</string>
+    <string name="choosing_the_currency_to_trade">请选择交易币种</string>
+    <string name="choose_your_location">请选择所在地</string>
+    <string name="choosing_the_currency_type">请选择货币类型</string>
+
+
+    <string name="str_confirm_cancel_order_title">确认取消交易</string>
+    <string name="str_confirm_cancel_order_content">如果您已经向卖家付款，请千万不要取消交易</string>
+    <string name="str_confirm_cancel_order_tip">我确定还没有付款给对方</string>
+    <string name="str_think">我再想想</string>
+    <string name="str_please_check">请先勾选</string>
+    <string name="str_confirm_release_order_title">确认释放</string>
+    <string name="str_confirm_release_order_content">请务必登录网上银行或第三方支付账号\n确认收到该比款项</string>
+    <string name="str_confirm_release_order_tip">我确定收到款项，并核对无误</string>
+    <string name="str_appeal_reason">申诉理由</string>
+    <string name="str_appeal_reason1">我已完成付款，卖家未及时放行数字货币</string>
+    <string name="str_appeal_reason2">我向卖家多转了钱</string>
+    <string name="str_appeal_reason3">其他</string>
+    <string name="str_appeal_reason4">我并没有收到买家的转账</string>
+    <string name="str_appeal_reason5">收到买家付款，但金额不符</string>
+    <string name="str_appeal_reason6">收到买家付款，但是付款信息与买家实名信息不符</string>
+    <string name="str_appeal_warn_content">提起申诉后资产将会被冻结，申诉专员将介入本次交易，直至申诉结束。恶意申诉属于扰乱平台正常运营秩序的行为，情节严重将冻结账户。</string>
+    <string name="str_appeal_submit">提交申诉</string>
+    <string name="str_appeal_hint">请输入您的申诉理由</string>
+    <string name="str_appeal_input_1">剩余</string>
+    <string name="str_appeal_input_2">字</string>
+    <string name="str_total_money_all">交易总额:&#160;</string>
+    <string name="str_order_status">当前状态:&#160;</string>
+    <string name="str_me">我</string>
+    <string name="str_business_register_time">|&#160;注册时间&#160;</string>
+    <string name="str_business_total_count">总成单</string>
+    <string name="str_business_count">次</string>
+    <string name="str_business_rate">完成率</string>
+    <string name="str_business_total_count_30">30日成单</string>
+    <string name="str_business_release">平均放行</string>
+    <string name="str_business_email">邮箱认证</string>
+    <string name="str_business_phone">手机认证</string>
+    <string name="str_business_id">身份认证</string>
+    <string name="str_business_high">高级认证</string>
+    <string name="str_business_sell">在线出售</string>
+    <string name="str_business_buy">在线购买</string>
+    <string name="falvshengm">法律声明</string>
+    <string name="customer_service_mailbox">客服邮箱</string>
+    <string name="business_mailboxs">商务邮箱</string>
+
+
+    <string name="red_green">红涨绿跌</string>
+    <string name="green_red">绿涨红跌</string>
+
+    <string name="currency_cny">人民币 CNY</string>
+    <string name="currency_usdt">美元 USDT</string>
+    <string name="currency_eur">欧元 EUR</string>
+    <string name="currency_ghs">赛地 GHS</string>
+    <string name="currency_nhn">尼日利亚 NGN</string>
+
 </resources>

@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawer_root"
-    android:layout_width="268dp"
+    android:layout_width="272dp"
     android:layout_height="match_parent"
     android:background="@color/white"
     android:focusable="true"
@@ -18,48 +18,49 @@
         style="@style/textBlackNormal"
         android:layout_marginLeft="16dp"
         android:text="@string/b2b"
-        android:textSize="@dimen/font_xxlager"
+        android:textSize="@dimen/font_lager"
         android:textStyle="bold"/>
 
     <com.spark.chiefwallet.ui.tablayout.SlidingTabLayout
         android:id="@+id/drawer_tab"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="40dp"
         android:layout_gravity="center"
         android:background="@color/white"
-        app:tl_indicator_color="#000000"
-        app:tl_indicator_height="2dp"
+        app:tl_indicator_color="@color/base"
+        app:tl_indicator_height="3dp"
         app:tl_indicator_width_equal_title="true"
-        app:tl_tab_padding="12dp"
-        app:tl_textSelectColor="#000000"
-        app:tl_textUnselectColor="#94374155"
-        app:tl_textsize="@dimen/font_small"/>
+        app:tl_tab_padding="10dp"
+        app:tl_textBold="BOTH"
+        app:tl_textSelectColor="#242C46"
+        app:tl_textUnselectColor="#A4ABC0"
+        app:tl_textsize="@dimen/font_mini"/>
 
     <View
         style="@style/line_ccc"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="40dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/quotes_search"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
             android:layout_marginLeft="16dp"
-            android:src="@drawable/svg_search"/>
+            android:src="@drawable/svg_quotes_search_dark"/>
 
         <EditText
             android:id="@+id/quotes_input"
             style="@style/trade_input"
-            android:hint="@string/quotes_search_hint"
+            android:hint="搜索币种"
             android:imeOptions="actionSearch"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:singleLine="true"
-            android:textSize="@dimen/font_small"/>
+            android:textSize="@dimen/font_mini"/>
     </LinearLayout>
 
     <View

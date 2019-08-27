@@ -1,129 +1,337 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:binding="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:binding="http://schemas.android.com/tools">
 
     <data>
 
         <variable
             name="registerViewModel"
-            type="com.spark.chiefwallet.app.me.user.register.RegisterViewModel"/>
+            type="com.spark.chiefwallet.app.me.user.register.RegisterViewModel" />
     </data>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        android:gravity="center_horizontal"
         android:orientation="vertical">
 
         <include
             android:id="@+id/register_title"
-            layout="@layout/view_title"/>
+            layout="@layout/view_title" />
 
-        <TextView
-            style="@style/textBlackLarge"
-            android:layout_marginTop="48dp"
-            android:text="@{registerViewModel.title}"
-            android:textSize="@dimen/sp_30"
-            android:textStyle="bold"/>
 
-        <TextView
-            style="@style/textBlackNormal"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:text="@{registerViewModel.subTitle}"
-            android:textColor="@color/gray_70"/>
-
-        <android.support.v7.widget.CardView
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="112dp"
-            android:layout_centerInParent="true"
-            android:layout_margin="16dp"
-            android:foreground="?android:attr/selectableItemBackground"
-            app:cardCornerRadius="6dp"
-            app:cardElevation="4dp">
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="46dp"
                     android:orientation="horizontal">
 
-                    <TextView
-                        style="@style/textBlackNormal"
-                        android:layout_marginLeft="16dp"
-                        android:text="@{registerViewModel.registerType}"
-                        android:textStyle="bold"/>
+                    <LinearLayout
+                        android:id="@+id/ll_mobile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-                    <EditText
-                        style="@style/trade_input"
-                        android:layout_marginLeft="16dp"
-                        android:hint="@{registerViewModel.registerHint}"
-                        android:maxLength="20"
-                        android:maxLines="1"
-                        android:padding="4dp"
-                        android:text="@={registerViewModel.phoneNum}"
-                        android:textSize="@dimen/font_normal"/>
+                        <TextView
+                            android:id="@+id/mobile_tv"
+                            style="@style/textBlackLarge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/register_phone"
+                            android:textColor="@color/mobile_login"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <View
+                            android:id="@+id/mobile_view"
+                            android:layout_width="64dp"
+                            android:layout_height="3dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/base" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_mailbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/mailbox_tv"
+                            style="@style/textBlackLarge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/register_email"
+                            android:textColor="@color/welcomelogin"
+                            android:textSize="16sp" />
+
+                        <View
+                            android:id="@+id/mailbox_view"
+                            android:layout_width="64dp"
+                            android:layout_height="3dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/base"
+                            android:visibility="gone" />
+                    </LinearLayout>
                 </LinearLayout>
-
-                <View style="@style/line_ccc"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_marginTop="48dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     binding:onClickCommand="@{registerViewModel.chooseCountryOnClickCommand}">
 
-                    <TextView
-                        style="@style/textBlackNormal"
-                        android:layout_marginLeft="16dp"
-                        android:text="@string/country"
-                        android:textStyle="bold"/>
-
+                    <!--<TextView-->
+                    <!--android:id="@+id/register_country_code"-->
+                    <!--style="@style/textBlackNormal"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:paddingLeft="32dp"-->
+                    <!--android:text="@{loginViewModel.countryCode}"-->
+                    <!--android:textStyle="bold" /> -->
                     <TextView
                         android:id="@+id/register_country_code"
                         style="@style/textBlackNormal"
-                        android:layout_marginLeft="16dp"
                         android:layout_weight="1"
-                        android:paddingLeft="32dp"
-                        android:text="@{registerViewModel.countryCode}"
-                        android:textStyle="bold"/>
+                        android:text="@{registerViewModel.countryName}"
+                        android:textColor="@color/mobile_login"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/svg_pull_down" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginRight="18dp"
+                    android:background="@color/base" />
+
+
+                <EditText
+                    style="@style/editext_create_wallet"
+                    android:layout_marginTop="28dp"
+                    android:hint="@{registerViewModel.hitphoneNum}"
+                    android:maxLines="1"
+                    android:padding="4dp"
+                    android:text="@={registerViewModel.phoneNum}"
+                    android:textSize="@dimen/font_small" />
+
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp">
+
+                    <EditText
+                        style="@style/editext_create_wallet"
+                        android:layout_weight="1"
+                        android:hint="@string/verify_code_hint"
+                        android:maxLines="1"
+                        android:padding="4dp"
+                        android:text="@={registerViewModel.verifyCode}"
+                        android:textSize="@dimen/font_small" />
+
+
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right">
+
+                        <TextView
+                            android:id="@+id/get_sms_code"
+                            style="@style/textBlueCommonSmall"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="@string/str_send"
+                            android:textStyle="bold"
+                            android:visibility="visible" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_countdownView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:clickable="false"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <cn.iwgang.countdownview.CountdownView
+                                android:id="@+id/countdownView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                app:isShowHour="false"
+                                app:isShowMinute="false"
+                                app:isShowSecond="true"
+                                app:suffixGravity="center"
+                                app:timeTextColor="@color/base"
+                                app:timeTextSize="@dimen/font_small" />
+
+                            <TextView
+                                style="@style/textBlueCommonSmall"
+                                android:text="@string/resend_load" />
+                        </LinearLayout>
+                    </FrameLayout>
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="28dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/Password"
+                        style="@style/editext_create_wallet"
+                        android:layout_weight="1"
+                        android:hint="@string/pwd_error2"
+                        android:inputType="textPassword"
+                        android:maxLines="1"
+                        android:padding="4dp"
+                        android:text="@={registerViewModel.newPwd}"
+                        android:textSize="@dimen/font_small" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:id="@+id/passpwd_switch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/svg_hide"
+                            binding:onClickCommand="@{registerViewModel.pwdSwitchOnClickCommand}" />
+                    </LinearLayout>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="28dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/duplicate_password"
+                        style="@style/editext_create_wallet"
+                        android:layout_weight="1"
+                        android:hint="@string/enter_again"
+                        android:inputType="textPassword"
+                        android:maxLines="1"
+                        android:padding="4dp"
+                        android:text="@={registerViewModel.newPwdAgain}"
+                        android:textSize="@dimen/font_small" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:id="@+id/pwd_switch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/svg_hide"
+                            binding:onClickCommand="@{registerViewModel.newpwdSwitchOnClickCommand}" />
+                    </LinearLayout>
+                </FrameLayout>
+
+                <EditText
+                    android:id="@+id/invitation_code"
+                    style="@style/editext_create_wallet"
+                    android:layout_marginTop="28dp"
+                    android:hint="@string/invitation_code"
+                    android:maxLines="1"
+                    android:padding="4dp"
+                    android:text="@={registerViewModel.inviteCode}"
+                    android:textSize="@dimen/font_small" />
+
+                <TextView
+                    style="@style/textBlackNormal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="50dp"
+                    android:gravity="center"
+                    android:text="@string/register"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_14"
+                    android:textStyle="bold"
+                    app:bl_corners_radius="2dp"
+                    app:bl_pressed_color="@color/subscript2"
+                    app:bl_unpressed_color="@color/base"
+                    binding:onClickCommand="@{registerViewModel.submissionOnClickCommand}"
+
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="50dp"
+                    android:orientation="horizontal">
+
+                    <com.spark.chiefwallet.ui.SmoothCheckBox
+                        android:id="@+id/wechat_cb"
+                        android:layout_width="13dp"
+                        android:layout_height="13dp"
+                        android:layout_gravity="center"
+                        android:checked="false"
+                        android:textSize="12sp" />
 
                     <TextView
-                        android:id="@+id/register_country_name"
-                        style="@style/textGrayCommonSmall"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="16dp"
-                        android:drawableRight="@drawable/svg_pull_down"
-                        android:drawablePadding="8dp"
-                        android:gravity="center_vertical"
-                        android:text="@{registerViewModel.countryName}"
-                        android:textStyle="bold"/>
-                </LinearLayout>
-            </LinearLayout>
-        </android.support.v7.widget.CardView>
+                        style="@style/textBlackLarge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/reading_clauses"
+                        android:textColor="@color/mobile_login"
+                        android:textSize="12sp" />
 
-        <TextView
-            android:id="@+id/register_get_code"
-            style="@style/textBlackNormal"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_margin="16dp"
-            android:gravity="center"
-            android:text="@string/get_verify_code"
-            android:textStyle="bold"
-            app:bl_corners_radius="4dp"
-            app:bl_pressed_color="@color/base_dark"
-            app:bl_unpressed_color="@color/base"
-            binding:onClickCommand="@{registerViewModel.getCodeOnClickCommand}"/>
+                    <TextView
+                        style="@style/textBlackLarge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/terms_of_service"
+                        android:textColor="@color/base"
+                        android:textSize="12sp"
+                        binding:onClickCommand="@{registerViewModel.termsofserviceOnClickCommand}" />
+
+                    <TextView
+                        style="@style/textBlackLarge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/register_rivacy"
+                        android:textColor="@color/base"
+                        android:textSize="12sp"
+                        binding:onClickCommand="@{registerViewModel.rivacyOnClickCommand}" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 </layout>

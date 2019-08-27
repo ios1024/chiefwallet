@@ -11,6 +11,7 @@ import java.util.List;
 import me.spark.mvvm.base.BaseApplication;
 import me.spark.mvvm.base.Constant;
 import me.spark.mvvm.utils.MathUtils;
+import me.spark.mvvm.utils.SPUtils;
 import me.spark.mvvm.utils.SpanUtils;
 import me.spark.mvvm.utils.StringUtils;
 
@@ -381,8 +382,7 @@ public class AllThumbResult implements Parcelable {
 
         //
         public String initConvert() {
-            return MathUtils.getRundNumber(cnyLegalAsset, 2, null)
-                    + "CNY";
+            return "≈￥" + MathUtils.getRundNumber(cnyLegalAsset, 2, null);
         }
 
         //现价
@@ -401,6 +401,26 @@ public class AllThumbResult implements Parcelable {
                     .append(" / " + symbol.split("/")[1])
                     .setFontSize(12, true)
                     .setForegroundColor(Color.parseColor("#718495"))
+                    .create();
+            return text;
+        }
+
+        public CharSequence initSymbol2() {
+            CharSequence text = new SpanUtils()
+                    .append(symbol.split("/")[0]).setBold()
+                    .append("/" + symbol.split("/")[1])
+                    .setFontSize(12, true)
+                    .setForegroundColor(Color.parseColor("#b2bad1"))
+                    .create();
+            return text;
+        }
+
+        public CharSequence initSymbol3() {
+            CharSequence text = new SpanUtils()
+                    .append(symbol.split("/")[0]).setBold()
+                    .append("/" + symbol.split("/")[1])
+                    .setFontSize(10, true)
+                    .setForegroundColor(Color.parseColor("#A4ABC0"))
                     .create();
             return text;
         }
@@ -430,6 +450,16 @@ public class AllThumbResult implements Parcelable {
                 }
             }
             return url;
+        }
+
+        public boolean isFavor() {
+            boolean isFavor = false;
+            if (!BaseApplication.getInstance().isAppLogin()) {
+                isFavor = false;
+            } else if (SPUtils.getInstance().getFavorFindList().contains(symbol)) {
+                isFavor = true;
+            }
+            return isFavor;
         }
 
         @Override

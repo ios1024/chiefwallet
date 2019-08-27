@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="homeViewModel"
+            type="com.spark.chiefwallet.app.home.HomeViewModel"/>
+    </data>
+
+    <com.spark.chiefwallet.ui.progresslayout.ProgressLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <!--title-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="129dp"
+                android:layout_height="26dp"
+                android:src="@mipmap/logo"/>
+        </LinearLayout>
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <!--banner-->
+                    <com.youth.banner.Banner
+                        android:id="@+id/banner"
+                        android:layout_width="match_parent"
+                        android:layout_height="155dp"
+                        android:layout_margin="10dp"
+                        app:banner_layout="@layout/banner_layout"
+                        app:delay_time="3000"
+                        app:image_scale_type="center_crop"
+                        app:indicator_height="6dp"
+                        app:indicator_width="6dp"/>
+                    <!--公告-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/svg_notice"/>
+
+                        <com.gongwen.marqueen.MarqueeView
+                            android:id="@+id/announce"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
+
+                    <!--行情-->
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/recommend_vp"
+                        android:layout_width="match_parent"
+                        android:layout_height="126dp"
+                        android:padding="10dp"/>
+
+                    <net.lucode.hackware.magicindicator.MagicIndicator
+                        android:id="@+id/recommend_indicator"
+                        android:layout_width="42dp"
+                        android:layout_height="2dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="202dp"
+                        android:background="@color/windowBackground"
+                        android:orientation="horizontal"
+                        android:padding="10dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@color/white"
+                            android:orientation="vertical"
+                            app:bl_corners_radius="2dp"
+                            app:bl_solid_color="@color/white">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:paddingLeft="10dp"
+                                    android:paddingTop="10dp"
+                                    android:paddingRight="10dp">
+
+                                    <TextView
+                                        style="@style/textBlackSmall"
+                                        android:text="@{homeViewModel.chartSmybol}"
+                                        android:textSize="@dimen/font_lager"
+                                        android:textStyle="bold"/>
+
+                                    <TextView
+                                        style="@style/textBlackSmall"
+                                        android:layout_marginLeft="4dp"
+                                        android:layout_weight="1"
+                                        android:gravity="right"
+                                        android:text="@{homeViewModel.chartChg}"
+                                        android:textColor="@{homeViewModel.riseOrFall ? @color/fall : @color/rise}"
+                                        android:textSize="@dimen/font_lager"
+                                        android:textStyle="bold"/>
+                                </LinearLayout>
+
+                                <TextView
+                                    style="@style/textBlackSmall"
+                                    android:layout_marginTop="7dp"
+                                    android:gravity="right"
+                                    android:paddingLeft="10dp"
+                                    android:text="@{homeViewModel.chartClose}"
+                                    android:textSize="@dimen/font_xxlager"
+                                    android:textStyle="bold"/>
+                            </LinearLayout>
+
+                            <com.github.mikephil.charting.charts.LineChart
+                                android:id="@+id/lineChart"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"/>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="10dp"
+                            android:layout_height="match_parent"/>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@color/white"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                app:bl_corners_radius="2dp"
+                                app:bl_ripple_color="@color/gray_ccc"
+                                app:bl_ripple_enable="true"
+                                app:bl_solid_color="@color/white">
+
+                                <ImageView
+                                    android:layout_width="22dp"
+                                    android:layout_height="22dp"
+                                    android:src="@drawable/svg_redpacket"/>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        style="@style/textBlackSmall"
+                                        android:text="红包"
+                                        android:textStyle="bold"/>
+
+                                    <TextView
+                                        style="@style/textBlackSmall"
+                                        android:text="邀请好友立享奖励"
+                                        android:textColor="@color/gray_a4"
+                                        android:textSize="@dimen/font_xmini"/>
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="10dp"
+                                android:background="@color/windowBackground"/>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                app:bl_corners_radius="2dp"
+                                app:bl_ripple_color="@color/gray_ccc"
+                                app:bl_ripple_enable="true"
+                                app:bl_solid_color="@color/white">
+
+                                <ImageView
+                                    android:layout_width="22dp"
+                                    android:layout_height="22dp"
+                                    android:src="@drawable/svg_partner"/>
+
+                                <TextView
+                                    style="@style/textBlackSmall"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="非洲合伙人"
+                                    android:textStyle="bold"/>
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="10dp"
+                                android:background="@color/windowBackground"/>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                app:bl_corners_radius="2dp"
+                                app:bl_ripple_color="@color/gray_ccc"
+                                app:bl_ripple_enable="true"
+                                app:bl_solid_color="@color/white">
+
+                                <ImageView
+                                    android:layout_width="22dp"
+                                    android:layout_height="22dp"
+                                    android:src="@drawable/svg_supernode"/>
+
+                                <TextView
+                                    style="@style/textBlackSmall"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="超级节点"
+                                    android:textStyle="bold"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!--快捷买币-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/windowBackground"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="73dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/ic_quick_buy_coins"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/textBlackLarge"
+                                android:layout_marginLeft="20dp"
+                                android:text="快捷买币"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                style="@style/textBlackSmall"
+                                android:layout_marginLeft="20dp"
+                                android:text="支持BTC,ETH,USDT等"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/font_xmini"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <com.spark.chiefwallet.ui.tablayout.SlidingTabLayout
+                        android:id="@+id/quotes_tab"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="@color/white"
+                        app:tl_indicator_color="@color/tab_indicator_select_color"
+                        app:tl_indicator_height="3dp"
+                        app:tl_indicator_width_equal_title="true"
+                        app:tl_tab_padding="12dp"
+                        app:tl_textBold="BOTH"
+                        app:tl_textSelectColor="@color/tab_text_selected_color"
+                        app:tl_textUnselectColor="@color/tab_text_unselected_color"
+                        app:tl_textsize="@dimen/font_small"/>
+
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/tab_vp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </android.support.v4.widget.NestedScrollView>
+        </android.support.v4.widget.SwipeRefreshLayout>
+    </com.spark.chiefwallet.ui.progresslayout.ProgressLinearLayout>
+</layout>

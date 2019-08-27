@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
-        <import type="android.view.View"/>
+        <import type="android.view.View" />
 
         <variable
             name="adDownResult"
-            type="com.spark.otcclient.pojo.AdSelfDownFindResult.DataBean.RecordsBean"/>
+            type="com.spark.otcclient.pojo.AdSelfDownFindResult.DataBean.RecordsBean" />
     </data>
 
     <LinearLayout
@@ -23,10 +23,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingBottom="12dp"
             android:paddingLeft="16dp"
+            android:paddingTop="12dp"
             android:paddingRight="16dp"
-            android:paddingTop="12dp">
+            android:paddingBottom="12dp">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -34,70 +34,191 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <TextView
-                    style="@style/textBlackNormal"
-                    android:text="@{adDownResult.formatType()}"
-                    android:textColor="@{adDownResult.isBuyType() ? @color/green : @color/orange}"
-                    android:textStyle="bold"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-                <TextView
-                    style="@style/textBlackNormal"
-                    android:layout_marginTop="8dp"
-                    android:text="@{adDownResult.coinName}"/>
+                    <TextView
+                        style="@style/textBlackNormal"
+                        android:text="@{adDownResult.formatType()}"
+                        android:textColor="@{adDownResult.isBuyType() ? @color/fall : @color/rise}"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
 
-                <TextView
-                    style="@style/textGrayCommonSmall"
-                    android:layout_marginTop="4dp"
-                    android:text="@{adDownResult.formatLimit()}"
-                    android:textSize="@dimen/font_mini"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/textGrayCommonSmall"
+                            android:layout_marginTop="4dp"
+                            android:text="@string/has_been_removed"
+                            android:textSize="@dimen/font_mini" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:src="@drawable/svg_enter" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:src="@drawable/svg_alipay"
+                        android:visibility="@{adDownResult.isSupportAliPay() ? View.VISIBLE : View.GONE}" />
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/svg_wechatpay"
+                        android:visibility="@{adDownResult.isSupportWeChatPay() ? View.VISIBLE : View.GONE}" />
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/svg_bankpay"
+                        android:visibility="@{adDownResult.isSupportBankPay() ? View.VISIBLE : View.GONE}" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/str_buy_number"
+                            android:textColor="#FFA4ABC0"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            style="@style/textGrayCommonSmall"
+                            android:layout_marginTop="5dp"
+                            android:text="@{adDownResult.Numbers()}"
+                            android:textColor="#FF333333"
+                            android:textSize="@dimen/font_small"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/purchase_price"
+                            android:textColor="#FFA4ABC0"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            style="@style/textGrayCommonSmall"
+                            android:layout_marginTop="5dp"
+                            android:text="@{adDownResult.formatPrice()}"
+                            android:textColor="#FF333333"
+                            android:textSize="@dimen/font_small"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/str_limit_money2"
+                            android:textColor="#FFA4ABC0"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            style="@style/textGrayCommonSmall"
+                            android:layout_marginTop="5dp"
+                            android:text="@{adDownResult.formatLimit()}"
+                            android:textColor="#FF333333"
+                            android:textSize="@dimen/font_small"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/release_time"
+                            android:textColor="#FFA4ABC0"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            style="@style/textGrayCommonSmall"
+                            android:layout_marginTop="5dp"
+                            android:text="@{adDownResult.createTime()}"
+                            android:textColor="#FF333333"
+                            android:textSize="@dimen/font_small"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="right"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/svg_alipay"
-                        android:visibility="@{adDownResult.isSupportAliPay() ? View.VISIBLE : View.GONE}"/>
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginLeft="8dp"
-                        android:src="@drawable/svg_wechatpay"
-                        android:visibility="@{adDownResult.isSupportWeChatPay() ? View.VISIBLE : View.GONE}"/>
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginLeft="8dp"
-                        android:src="@drawable/svg_bankpay"
-                        android:visibility="@{adDownResult.isSupportBankPay() ? View.VISIBLE : View.GONE}"/>
-                </LinearLayout>
-
-                <TextView
-                    style="@style/textBlackNormal"
-                    android:layout_marginTop="8dp"
-                    android:text="@{adDownResult.formatPrice()}"/>
-
-                <TextView
-                    style="@style/textGrayCommonSmall"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/has_been_removed"
-                    android:textSize="@dimen/font_mini"/>
             </LinearLayout>
         </LinearLayout>
 
-        <View
-            style="@style/line_ccc"/>
+        <View style="@style/line_ccc" />
     </LinearLayout>
 </layout>

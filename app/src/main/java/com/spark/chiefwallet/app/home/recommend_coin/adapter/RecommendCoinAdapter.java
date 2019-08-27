@@ -1,4 +1,4 @@
-package com.spark.chiefwallet.app.quotes.adapter;
+package com.spark.chiefwallet.app.home.recommend_coin.adapter;
 
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
@@ -10,7 +10,7 @@ import com.android.databinding.library.baseAdapters.BR;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.spark.chiefwallet.R;
-import com.spark.chiefwallet.api.pojo.CoinPairPushBean;
+import com.spark.wsclient.pojo.RecommendCoinBean;
 
 import java.util.List;
 
@@ -23,16 +23,22 @@ import java.util.List;
  * 修订历史：
  * ================================================
  */
-public class QuotesSerachAdapter extends BaseQuickAdapter<CoinPairPushBean, QuotesSerachAdapter.CoinPairPushBeanViewHolder> {
-    public QuotesSerachAdapter(@Nullable List<CoinPairPushBean> data) {
-        super(R.layout.item_quotes_vp, data);
+public class RecommendCoinAdapter extends BaseQuickAdapter<RecommendCoinBean.DataBean, RecommendCoinAdapter.RecommendCoinViewHolder> {
+    private List<RecommendCoinBean.DataBean> mDataBeans;
+
+    public RecommendCoinAdapter(@Nullable List<RecommendCoinBean.DataBean> data) {
+        super(R.layout.item_recommend_coin, data);
+        this.mDataBeans = data;
     }
 
     @Override
-    protected void convert(CoinPairPushBeanViewHolder helper, CoinPairPushBean item) {
+    protected void convert(RecommendCoinViewHolder helper, RecommendCoinBean.DataBean item) {
         ViewDataBinding binding = helper.getBinding();
-        binding.setVariable(BR.coinPairPushBean, item);
+        binding.setVariable(BR.itemRecommendCoin, item);
         binding.executePendingBindings();
+        if (helper.getAdapterPosition() == mDataBeans.size() - 1) {
+            helper.getView(R.id.line).setVisibility(View.GONE);
+        }
     }
 
 
@@ -47,9 +53,9 @@ public class QuotesSerachAdapter extends BaseQuickAdapter<CoinPairPushBean, Quot
         return view;
     }
 
-    public static class CoinPairPushBeanViewHolder extends BaseViewHolder {
+    public static class RecommendCoinViewHolder extends BaseViewHolder {
 
-        public CoinPairPushBeanViewHolder(View view) {
+        public RecommendCoinViewHolder(View view) {
             super(view);
         }
 

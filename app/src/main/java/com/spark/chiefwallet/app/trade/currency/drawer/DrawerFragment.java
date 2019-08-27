@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.spark.mvvm.base.BaseFragment;
+import me.spark.mvvm.base.Constant;
 import me.spark.mvvm.base.EvKey;
 import me.spark.mvvm.utils.EventBusUtils;
 
@@ -98,7 +100,19 @@ public class DrawerFragment extends BaseFragment<FragmentQuotesThumbBinding, Quo
                 mThumbList.addAll(dataBeans);
                 mDrawerAdapter.notifyDataSetChanged();
                 if (mThumbList.isEmpty()) {
-                    mDrawerAdapter.setEmptyView(R.layout.view_rv_empty, binding.thumbRv);
+                    if (getArguments().getString(TYPE).equals(App.getInstance().getString(R.string.favorites))) {
+                        mDrawerAdapter.setEmptyView(R.layout.view_rv_empty_favor, binding.thumbRv);
+                        mDrawerAdapter.getEmptyView().findViewById(R.id.text_title).setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (TextUtils.isEmpty(Constant.searchQuotesJson)) return;
+                                ARouter.getInstance().build(ARouterPath.ACTIVITY_QUOTES_SERACH)
+                                        .navigation();
+                            }
+                        });
+                    } else {
+                        mDrawerAdapter.setEmptyView(R.layout.view_rv_empty_2, binding.thumbRv);
+                    }
                 }
                 if (binding.thumbRoot.isLoadingCurrentState() || binding.thumbRoot.isErrorCurrentState())
                     binding.thumbRoot.showContent();
@@ -108,11 +122,12 @@ public class DrawerFragment extends BaseFragment<FragmentQuotesThumbBinding, Quo
         viewModel.uc.isLogin.observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(@Nullable Boolean aBoolean) {
-                if (!getArguments().getString(TYPE).equals(App.getInstance().getString(R.string.favorites))) return;
+                if (!getArguments().getString(TYPE).equals(App.getInstance().getString(R.string.favorites)))
+                    return;
                 if (aBoolean) {
                     binding.thumbRoot.showLoading();
                 } else {
-                    binding.thumbRoot.showError(R.drawable.svg_no_data, getString(R.string.no_login), getString(R.string.log2view), getString(R.string.login),new View.OnClickListener() {
+                    binding.thumbRoot.showError(R.drawable.svg_no_data, getString(R.string.no_login), getString(R.string.log2view), getString(R.string.login), new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             binding.thumbRoot.showLoading();

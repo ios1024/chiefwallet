@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:binding="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:binding="http://schemas.android.com/tools">
 
     <data>
 
         <variable
             name="safeCentreViewModel"
-            type="com.spark.chiefwallet.app.me.safe.safecentre.SafeCentreViewModel"/>
+            type="com.spark.chiefwallet.app.me.safe.safecentre.SafeCentreViewModel" />
     </data>
 
     <LinearLayout
@@ -18,7 +18,7 @@
 
         <include
             android:id="@+id/safe_certre_title"
-            layout="@layout/view_title"/>
+            layout="@layout/view_title" />
 
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -29,23 +29,24 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <TextView
-                    style="@style/textBlackSmall"
-                    android:layout_marginLeft="16dp"
-                    android:text="@string/safe_center"
-                    android:textSize="@dimen/sp_30"
-                    android:textStyle="bold"/>
+                <!--<TextView-->
+                <!--style="@style/textBlackSmall"-->
+                <!--android:layout_marginLeft="16dp"-->
+                <!--android:text="@string/safe_center"-->
+                <!--android:textSize="@dimen/sp_30"-->
+                <!--android:textStyle="bold"/>-->
 
-                <View
-                    style="@style/line_ccc"
-                    android:layout_marginTop="16dp"/>
+                <!--<View-->
+                <!--style="@style/line_ccc"-->
+                <!--android:layout_marginTop="16dp"/>-->
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="112dp"
                     android:gravity="center_vertical"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:padding="16dp"
+                    android:visibility="gone">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -54,13 +55,13 @@
 
                         <TextView
                             style="@style/textGrayCommonNormal"
-                            android:text="@string/safe_grade"/>
+                            android:text="@string/safe_grade" />
 
                         <TextView
                             android:id="@+id/safe_level"
                             style="@style/textGrayCommonNormal"
                             android:layout_marginLeft="8dp"
-                            android:textColor="@color/red"/>
+                            android:textColor="@color/red" />
                     </LinearLayout>
 
                     <ProgressBar
@@ -71,18 +72,17 @@
                         android:layout_marginTop="12dp"
                         android:max="100"
                         android:progress="74"
-                        android:progressDrawable="@drawable/pgb_warn"/>
+                        android:progressDrawable="@drawable/pgb_warn" />
 
                     <TextView
                         android:id="@+id/safe_tip"
                         style="@style/textGrayCommonSmall"
                         android:layout_marginTop="12dp"
                         android:textColor="@color/red"
-                        android:textSize="@dimen/font_13"/>
+                        android:textSize="@dimen/font_13" />
                 </LinearLayout>
 
-                <View
-                    style="@style/line_ccc"/>
+                <View style="@style/line_ccc" />
 
                 <!--手机号-->
                 <LinearLayout
@@ -92,15 +92,15 @@
                     app:bl_solid_color="@color/white"
                     binding:onClickCommand="@{safeCentreViewModel.phoneOnClickCommand}">
 
-                    <View
-                        android:layout_width="8dp"
-                        android:layout_height="8dp"
-                        android:layout_marginRight="12dp"
-                        android:background="@{safeCentreViewModel.phoneNumHasSet ? @drawable/dot_green : @drawable/dot_gray}"/>
+                    <!--<View-->
+                    <!--android:layout_width="8dp"-->
+                    <!--android:layout_height="8dp"-->
+                    <!--android:layout_marginRight="12dp"-->
+                    <!--android:background="@{safeCentreViewModel.phoneNumHasSet ? @drawable/dot_green : @drawable/dot_gray}" />-->
 
                     <TextView
                         style="@style/textBlackNormal"
-                        android:text="@string/phone_num"/>
+                        android:text="@string/phone_num" />
 
                     <TextView
                         style="@style/textGrayCommonSmall"
@@ -108,14 +108,13 @@
                         android:layout_marginLeft="16dp"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:text="@{safeCentreViewModel.phoneNum}"/>
+                        android:text="@{safeCentreViewModel.phoneNum}"
+                        android:textColor="@{safeCentreViewModel.phoneNumHasSet ? @color/tab_indicator_select_color : @color/fall}" />
 
-                    <ImageView
-                        style="@style/imgEnter"/>
+                    <ImageView style="@style/imgEnter" />
                 </LinearLayout>
 
-                <View
-                    style="@style/line_ccc"/>
+                <!--<View style="@style/line_ccc" />-->
 
                 <!--邮箱-->
                 <LinearLayout
@@ -125,15 +124,15 @@
                     app:bl_solid_color="@color/white"
                     binding:onClickCommand="@{safeCentreViewModel.emailOnClickCommand}">
 
-                    <View
-                        android:layout_width="8dp"
-                        android:layout_height="8dp"
-                        android:layout_marginRight="12dp"
-                        android:background="@{safeCentreViewModel.emailPwdHasSet ? @drawable/dot_green : @drawable/dot_gray}"/>
+                    <!--<View-->
+                    <!--android:layout_width="8dp"-->
+                    <!--android:layout_height="8dp"-->
+                    <!--android:layout_marginRight="12dp"-->
+                    <!--android:background="@{safeCentreViewModel.emailPwdHasSet ? @drawable/dot_green : @drawable/dot_gray}" />-->
 
                     <TextView
                         style="@style/textBlackNormal"
-                        android:text="@string/email"/>
+                        android:text="@string/email" />
 
                     <TextView
                         style="@style/textGrayCommonSmall"
@@ -141,32 +140,32 @@
                         android:layout_marginLeft="16dp"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:text="@{safeCentreViewModel.emailPwd}"/>
+                        android:text="@{safeCentreViewModel.emailPwd}"
+                        android:textColor="@{safeCentreViewModel.emailPwdHasSet ? @color/tab_indicator_select_color : @color/fall}" />
 
-                    <ImageView
-                        style="@style/imgEnter"/>
+                    <ImageView style="@style/imgEnter" />
                 </LinearLayout>
 
-                <View
-                    style="@style/line_ccc"/>
+                <!--<View style="@style/line_ccc" />-->
 
                 <!--谷歌认证器-->
                 <LinearLayout
                     style="@style/ll_item_52"
+                    android:visibility="gone"
                     app:bl_ripple_color="@color/gray_ccc"
                     app:bl_ripple_enable="true"
                     app:bl_solid_color="@color/white"
                     binding:onClickCommand="@{safeCentreViewModel.googleOpenOnClickCommand}">
 
-                    <View
-                        android:layout_width="8dp"
-                        android:layout_height="8dp"
-                        android:layout_marginRight="12dp"
-                        android:background="@{safeCentreViewModel.googleCertificationHasSet ? @drawable/dot_green : @drawable/dot_gray}"/>
+                    <!--<View-->
+                    <!--android:layout_width="8dp"-->
+                    <!--android:layout_height="8dp"-->
+                    <!--android:layout_marginRight="12dp"-->
+                    <!--android:background="@{safeCentreViewModel.googleCertificationHasSet ? @drawable/dot_green : @drawable/dot_gray}" />-->
 
                     <TextView
                         style="@style/textBlackNormal"
-                        android:text="@string/google_certification"/>
+                        android:text="@string/google_certification" />
 
                     <TextView
                         style="@style/textGrayCommonSmall"
@@ -174,14 +173,12 @@
                         android:layout_marginLeft="16dp"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:text="@{safeCentreViewModel.googleCertification}"/>
+                        android:text="@{safeCentreViewModel.googleCertification}" />
 
-                    <ImageView
-                        style="@style/imgEnter"/>
+                    <ImageView style="@style/imgEnter" />
                 </LinearLayout>
 
-                <View
-                    style="@style/line_ccc"/>
+                <!--<View style="@style/line_ccc" />-->
 
                 <!--登录密码-->
                 <LinearLayout
@@ -191,29 +188,28 @@
                     app:bl_solid_color="@color/white"
                     binding:onClickCommand="@{safeCentreViewModel.loginPwdUpdateOnClickCommand}">
 
-                    <View
-                        android:layout_width="8dp"
-                        android:layout_height="8dp"
-                        android:layout_marginRight="12dp"
-                        android:background="@{safeCentreViewModel.loginPwdHasSet ? @drawable/dot_green : @drawable/dot_gray}"/>
+                    <!--<View-->
+                    <!--android:layout_width="8dp"-->
+                    <!--android:layout_height="8dp"-->
+                    <!--android:layout_marginRight="12dp"-->
+                    <!--android:background="@{safeCentreViewModel.loginPwdHasSet ? @drawable/dot_green : @drawable/dot_gray}" />-->
 
                     <TextView
                         style="@style/textBlackNormal"
-                        android:text="@string/pwd_login"/>
+                        android:text="@string/pwd_login" />
 
                     <TextView
                         style="@style/textGrayCommonSmall"
                         android:layout_width="match_parent"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:text="@{safeCentreViewModel.loginPwd}"/>
+                        android:text="@{safeCentreViewModel.loginPwd}"
+                        android:textColor="@{safeCentreViewModel.loginPwdHasSet ? @color/tab_indicator_select_color : @color/fall}" />
 
-                    <ImageView
-                        style="@style/imgEnter"/>
+                    <ImageView style="@style/imgEnter" />
                 </LinearLayout>
 
-                <View
-                    style="@style/line_ccc"/>
+                <!--<View style="@style/line_ccc" />-->
 
                 <!--法币资金密码-->
                 <LinearLayout
@@ -223,15 +219,15 @@
                     app:bl_solid_color="@color/white"
                     binding:onClickCommand="@{safeCentreViewModel.tradePwdOnClickCommand}">
 
-                    <View
-                        android:layout_width="8dp"
-                        android:layout_height="8dp"
-                        android:layout_marginRight="12dp"
-                        android:background="@{safeCentreViewModel.legalCurrencyPwdHasSet ? @drawable/dot_green : @drawable/dot_gray}"/>
+                    <!--<View-->
+                    <!--android:layout_width="8dp"-->
+                    <!--android:layout_height="8dp"-->
+                    <!--android:layout_marginRight="12dp"-->
+                    <!--android:background="@{safeCentreViewModel.legalCurrencyPwdHasSet ? @drawable/dot_green : @drawable/dot_gray}" />-->
 
                     <TextView
                         style="@style/textBlackNormal"
-                        android:text="@string/legal_currency_pwd"/>
+                        android:text="@string/legal_currency_pwd" />
 
                     <TextView
                         style="@style/textGrayCommonSmall"
@@ -239,14 +235,40 @@
                         android:layout_marginLeft="16dp"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:text="@{safeCentreViewModel.legalCurrencyPwd}"/>
+                        android:text="@{safeCentreViewModel.legalCurrencyPwd}"
+                        android:textColor="@{safeCentreViewModel.legalCurrencyPwdHasSet ? @color/tab_indicator_select_color : @color/fall}" />
 
-                    <ImageView
-                        style="@style/imgEnter"/>
+                    <ImageView style="@style/imgEnter" />
+                </LinearLayout>      <!--法币资金密码-->
+                <LinearLayout
+                    style="@style/ll_item_52"
+                    app:bl_ripple_color="@color/gray_ccc"
+                    app:bl_ripple_enable="true"
+                    app:bl_solid_color="@color/white"
+                    binding:onClickCommand="@{safeCentreViewModel.realnameOnClickCommand}">
+
+                    <!--<View-->
+                    <!--android:layout_width="8dp"-->
+                    <!--android:layout_height="8dp"-->
+                    <!--android:layout_marginRight="12dp"-->
+                    <!--android:background="@{safeCentreViewModel.legalCurrencyPwdHasSet ? @drawable/dot_green : @drawable/dot_gray}" />-->
+
+                    <TextView
+                        style="@style/textBlackNormal"
+                        android:text="@string/real_name_authentication" />
+
+                    <TextView
+                        style="@style/textGrayCommonSmall"
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="16dp"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="@{safeCentreViewModel.realnameCurrencyPwd}"
+                        android:textColor="@{safeCentreViewModel.realnameCurrencyPwdHasSet ? @color/tab_indicator_select_color : @color/fall}" />
+
+                    <ImageView style="@style/imgEnter" />
                 </LinearLayout>
 
-                <View
-                    style="@style/line_ccc"/>
 
                 <!--指纹识别-->
                 <LinearLayout
@@ -259,27 +281,27 @@
                     <View
                         android:layout_width="8dp"
                         android:layout_height="8dp"
-                        android:layout_marginRight="12dp"/>
+                        android:layout_marginRight="12dp" />
 
                     <TextView
                         style="@style/textBlackNormal"
-                        android:text="@string/fingerprint_recognition"/>
+                        android:text="@string/fingerprint_recognition" />
 
                     <View
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"/>
+                        android:layout_weight="1" />
 
                     <com.sevenheaven.iosswitch.ShSwitchView
                         android:layout_width="54dp"
                         android:layout_height="38dp"
                         app:shadowSpace="7dp"
-                        app:tintColor="@color/base"/>
+                        app:tintColor="@color/base" />
                 </LinearLayout>
 
                 <View
                     style="@style/line_ccc"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
 
                 <!--打开程序时-->
                 <LinearLayout
@@ -292,27 +314,27 @@
                     <View
                         android:layout_width="8dp"
                         android:layout_height="8dp"
-                        android:layout_marginRight="12dp"/>
+                        android:layout_marginRight="12dp" />
 
                     <TextView
                         style="@style/textBlackNormal"
-                        android:text="@string/system_opening"/>
+                        android:text="@string/system_opening" />
 
                     <View
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"/>
+                        android:layout_weight="1" />
 
                     <com.sevenheaven.iosswitch.ShSwitchView
                         android:layout_width="54dp"
                         android:layout_height="38dp"
                         app:shadowSpace="7dp"
-                        app:tintColor="@color/base"/>
+                        app:tintColor="@color/base" />
                 </LinearLayout>
 
                 <View
                     style="@style/line_ccc"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
 
                 <!--敏感操作-->
                 <LinearLayout
@@ -325,27 +347,27 @@
                     <View
                         android:layout_width="8dp"
                         android:layout_height="8dp"
-                        android:layout_marginRight="12dp"/>
+                        android:layout_marginRight="12dp" />
 
                     <TextView
                         style="@style/textBlackNormal"
-                        android:text="@string/sensitive_operation"/>
+                        android:text="@string/sensitive_operation" />
 
                     <View
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"/>
+                        android:layout_weight="1" />
 
                     <com.sevenheaven.iosswitch.ShSwitchView
                         android:layout_width="54dp"
                         android:layout_height="38dp"
                         app:shadowSpace="7dp"
-                        app:tintColor="@color/base"/>
+                        app:tintColor="@color/base" />
                 </LinearLayout>
 
                 <View
                     style="@style/line_ccc"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
     </LinearLayout>

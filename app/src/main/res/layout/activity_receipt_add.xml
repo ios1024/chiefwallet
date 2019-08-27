@@ -148,6 +148,36 @@
 
             <LinearLayout
                 style="@style/ll_item_52"
+                onClickCommand="@{receiptAddViewModel.MtnPayOnClickCommand}"
+                app:bl_ripple_color="@color/gray_ccc"
+                app:bl_ripple_enable="true"
+                app:bl_solid_color="@color/white">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/textBlackNormal"
+                        android:drawablePadding="8dp"
+                        android:gravity="center"
+                        android:text="@string/str_mtn" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <View style="@style/line_ccc" />
+
+            <LinearLayout
+                style="@style/ll_item_52"
                 onClickCommand="@{receiptAddViewModel.otherPayOnClickCommand}"
                 app:bl_ripple_color="@color/gray_ccc"
                 app:bl_ripple_enable="true"

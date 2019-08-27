@@ -11,13 +11,16 @@ import com.geetest.sdk.Bind.GT3GeetestBindListener;
 import com.geetest.sdk.Bind.GT3GeetestUtilsBind;
 import com.google.gson.Gson;
 import com.lxj.xpopup.XPopup;
+import com.lxj.xpopup.interfaces.OnSelectListener;
 import com.lxj.xpopup.interfaces.XPopupCallback;
 import com.spark.casclient.CasClient;
 import com.spark.casclient.base.CasHost;
 import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.base.ARouterPath;
+import com.spark.chiefwallet.ui.popup.ChoiceOfNationalityPopup;
 import com.spark.chiefwallet.ui.popup.SmsVerifyPopup;
+import com.spark.chiefwallet.ui.popup.impl.NationalChoiceListener;
 import com.spark.chiefwallet.ui.popup.impl.OnEtContentListener;
 import com.spark.chiefwallet.ui.toast.Toasty;
 import com.spark.chiefwallet.util.CheckErrorUtil;
@@ -25,7 +28,10 @@ import com.spark.chiefwallet.util.RegexUtils;
 import com.spark.modulespot.SpotCoinClient;
 import com.spark.modulespot.pojo.FavorFindResult;
 import com.spark.ucclient.MemberClient;
+import com.spark.ucclient.RegisterClient;
 import com.spark.ucclient.pojo.Captcha;
+import com.spark.ucclient.pojo.CountryEntity;
+import com.spark.ucclient.pojo.CountryEntity2;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -68,22 +74,33 @@ public class LoginViewModel extends BaseViewModel {
     private Context mContext;
     private SmsVerifyPopup mSmsVerifyPopup;
     private int loginType;                  //0 - 手机登录 1 - 邮箱登录
+    private String countryEnName = "中国";                      //值传递 国籍 enName
+
+    private List<CountryEntity> mCountryEntityList;
 
     public void initContext(Context context) {
         this.mContext = context;
         initSmsVerifyPopup();
     }
 
+    public void typeContext(int type) {
+        this.loginType = type;
+    }
+
     public LoginViewModel(@NonNull Application application) {
         super(application);
     }
+
+    private String[] mCountryArray;
 
     //账号
     public ObservableField<String> userName = new ObservableField<>("");
     //密码
     public ObservableField<String> userPassWord = new ObservableField<>("");
-
+    public ObservableField<String> countryName = new ObservableField<>("中国 +86");
     public UIChangeObservable uc = new UIChangeObservable();
+
+    public ChoiceOfNationalityPopup choiceOfNationalityPopup;
 
     public class UIChangeObservable {
         //密码开关观察者
@@ -111,7 +128,23 @@ public class LoginViewModel extends BaseViewModel {
         @Override
         public void call() {
             ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_FORGET_PWD)
+                    .withString("type", "0")
                     .navigation();
+        }
+    });
+    //注册
+    public BindingCommand registerOnClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_REGISTER)
+                    .navigation();
+        }
+    });
+    //国籍选择
+    public BindingCommand chooseCountryOnClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            loadCountryInfo();
         }
     });
 
@@ -128,18 +161,108 @@ public class LoginViewModel extends BaseViewModel {
 
         App.getInstance().deleteCurrentUser();
         showDialog(mContext.getString(R.string.loading));
-        if (RegexUtils.isMobileExact(userName.get().trim())) {
-            loginType = 0;
-            CasClient.getInstance().login(strAreaCode + userName.get(), userPassWord.get(), "true");
-        } else {
+        if (RegexUtils.isEmail(userName.get().trim())) {
             loginType = 1;
             CasClient.getInstance().login(userName.get(), userPassWord.get(), "true");
+        } else {
+            loginType = 0;
+            CasClient.getInstance().login(strAreaCode + userName.get(), userPassWord.get(), "true");
+        }
+    }
+
+    //获取国籍列表
+    private void loadCountryInfo() {
+        //避免重复请求
+        if (mCountryArray != null) {
+            new XPopup.Builder(mContext)
+                    .setPopupCallback(new XPopupCallback() {
+                        @Override
+                        public void onShow() {
+                            uc.smsCodePopopShow.setValue(true);
+                        }
+
+                        @Override
+                        public void onDismiss() {
+                            uc.smsCodePopopShow.setValue(false);
+                        }
+
+                    })
+                    .asCustom(choiceOfNationalityPopup).show();
+//            new XPopup.Builder(mContext)
+//                    .asBottomList(mContext.getString(R.string.choose_country), mCountryArray,
+//                            new OnSelectListener() {
+//                                @Override
+//                                public void onSelect(int position, String text) {
+//
+//                                    countryEnName = mCountryEntityList.get(position).getEnName();
+//                                    updateCountryInfo(mCountryEntityList.get(position).getZhName() + " +" + mCountryEntityList.get(position).getAreaCode(), mCountryEntityList.get(position).getAreaCode());
+//                                }
+//                            })
+//                    .show();
+        } else {
+            showDialog(mContext.getString(R.string.loading));
+            RegisterClient.getInstance().findSupportCountry();
         }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(EventBean eventBean) {
         switch (eventBean.getOrigin()) {
+            //获取国籍列表
+            case EvKey.findSupportCountry:
+                dismissDialog();
+                if (eventBean.isStatue()) {
+                    final List<CountryEntity> objList = (List<CountryEntity>) eventBean.getObject();
+                    if (!objList.isEmpty()) {
+//                        mCountryEntityList = objList;
+//                        mCountryArray = new String[objList.size()];
+//                        for (int i = 0; i < objList.size(); i++) {
+//                            mCountryArray[i] = objList.get(i).getZhName();
+//                        }
+//                        if (mCountryArray.length > 0) {
+                        if (choiceOfNationalityPopup == null) {
+                            choiceOfNationalityPopup = new ChoiceOfNationalityPopup(mContext, objList, new NationalChoiceListener() {
+                                @Override
+                                public void onClickItem(int position, List<CountryEntity2> countryEntity2) {
+                                    updateCountryInfo(countryEntity2.get(position).getZhName() + " +" + countryEntity2.get(position).getAreaCode(), countryEntity2.get(position).getAreaCode());
+                                }
+                            });
+                        }
+
+                        new XPopup.Builder(mContext)
+                                .setPopupCallback(new XPopupCallback() {
+                                    @Override
+                                    public void onShow() {
+                                        uc.smsCodePopopShow.setValue(true);
+                                    }
+
+                                    @Override
+                                    public void onDismiss() {
+                                        uc.smsCodePopopShow.setValue(false);
+                                    }
+
+                                })
+                                .asCustom(choiceOfNationalityPopup).show();
+
+
+//                            new XPopup.Builder(mContext)
+//                                    .asBottomList(mContext.getString(R.string.choose_country), mCountryArray,
+//                                            new OnSelectListener() {
+//                                                @Override
+//                                                public void onSelect(int position, String text) {
+//                                                    countryEnName = objList.get(position).getEnName();
+//                                                    updateCountryInfo(objList.get(position).getZhName() + " +" + objList.get(position).getAreaCode(), mCountryEntityList.get(position).getAreaCode());
+//                                                }
+//                                            })
+//                                    .show();
+//                        }
+                    } else {
+                        Toasty.showInfo(mContext.getString(R.string.country_list_null));
+                    }
+                } else {
+                    CheckErrorUtil.checkError(eventBean);
+                }
+                break;
             case EvKey.login:
                 if (eventBean.isStatue()) {
                     isCasLogin = true;
@@ -289,6 +412,16 @@ public class LoginViewModel extends BaseViewModel {
         }
     }
 
+    /**
+     * 更新国籍展示
+     *
+     * @param strCountry
+     */
+    public void updateCountryInfo(String strCountry, String code) {
+        strAreaCode = code;
+        countryName.set(strCountry);
+    }
+
     private void dealError(EventBean eventBean) {
         int code = eventBean.getCode();
         if (code == BaseRequestCode.ERROR_401 && !isCasLogin) {
@@ -303,7 +436,7 @@ public class LoginViewModel extends BaseViewModel {
                     dismissDialog();
                     CasClient.getInstance().sendVertifyCode(loginType);
                 } else if (StringUtils.isNotEmpty(data) && "gee".equals(data)) {
-                    LogUtils.e("sss","geeeeee");
+                    LogUtils.e("sss", "geeeeee");
                     gt3GeetestUtils = new GT3GeetestUtilsBind(mContext);
                     CasClient.getInstance().geeCaptcha();
                 } else if (StringUtils.isNotEmpty(responseError.getMessage())) {
@@ -338,6 +471,8 @@ public class LoginViewModel extends BaseViewModel {
         mSmsVerifyPopup.updatePhone(loginType == 0 ? strAreaCode + userName.get() : userName.get());
         mSmsVerifyPopup.updateLoginType(loginType);
         new XPopup.Builder(mContext)
+                .dismissOnBackPressed(false) // 按返回键是否关闭弹窗，默认为true
+                .dismissOnTouchOutside(false) // 点击外部是否关闭弹窗，默认为true
                 .setPopupCallback(new XPopupCallback() {
                     @Override
                     public void onShow() {
@@ -354,18 +489,32 @@ public class LoginViewModel extends BaseViewModel {
     }
 
     @Override
-    public void onCreate() {
-        super.onCreate();
+    public void onResume() {
+        super.onResume();
         Constant.isLoginVisiable = true;
         EventBusUtils.register(this);
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onStop() {
+        super.onStop();
         Constant.isLoginVisiable = false;
         EventBusUtils.unRegister(this);
     }
+
+//    @Override
+//    public void onCreate() {
+//        super.onCreate();
+//        Constant.isLoginVisiable = true;
+//        EventBusUtils.register(this);
+//    }
+//
+//    @Override
+//    public void onDestroy() {
+//        super.onDestroy();
+//        Constant.isLoginVisiable = false;
+//        EventBusUtils.unRegister(this);
+//    }
 
 
 }

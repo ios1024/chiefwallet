@@ -14,6 +14,8 @@ import com.spark.chiefwallet.BR;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.databinding.FragmentIdCardBinding;
 import com.spark.chiefwallet.ui.toast.Toasty;
+import com.spark.chiefwallet.ui.SmoothCheckBox;
+
 import com.spark.chiefwallet.util.PhotoSelectUtils;
 import com.spark.ucclient.SecurityClient;
 
@@ -44,8 +46,27 @@ public class IdCardFragment extends BaseFragment<FragmentIdCardBinding, IdCardVi
     }
 
     @Override
+    public void initView() {
+        super.initView();
+        viewModel.getArticleList();
+
+        binding.wechatCb.setOnCheckedChangeListener(new SmoothCheckBox.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(SmoothCheckBox checkBox, boolean isChecked) {
+                if (isChecked) {
+                    viewModel.tiaolie.set("1");
+                } else {
+                    viewModel.tiaolie.set("0");
+                }
+            }
+        });
+    }
+
+    @Override
     public int initVariableId() {
+
         return BR.idCardViewModel;
+
     }
 
     @OnClick({R.id.img_auth_up,
@@ -62,6 +83,7 @@ public class IdCardFragment extends BaseFragment<FragmentIdCardBinding, IdCardVi
             case R.id.img_auth_handheld:
                 selectPic(2, view);
                 break;
+
         }
     }
 

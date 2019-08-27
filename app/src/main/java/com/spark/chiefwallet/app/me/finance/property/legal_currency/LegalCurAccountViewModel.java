@@ -70,7 +70,7 @@ public class LegalCurAccountViewModel extends BaseViewModel {
     public void initAccountText(boolean isHide) {
         if (isHide) {
             otcWalletTotalChar.set("****** USDT");
-            otcWalletTransChar.set("≈ **** CNY " + mContext.getString(R.string.total_assets_convert));
+            otcWalletTransChar.set("≈¥ ****");
         } else {
             otcWalletTotalChar.set(initWalletTotal(walletTotal));
             otcWalletTransChar.set(transWalletTotal(walletTotalTrans));
@@ -80,7 +80,8 @@ public class LegalCurAccountViewModel extends BaseViewModel {
     public void iniOtcWallet(Context context, OnRequestListener mOnRequestListener) {
         this.mContext = context;
         this.mOnRequestListener = mOnRequestListener;
-        LcTradeClient.getInstance().authMerchantFind();
+//        LcTradeClient.getInstance().authMerchantFind();
+        FinanceClient.getInstance().getCoinWallet("OTC");
     }
 
 
@@ -92,7 +93,7 @@ public class LegalCurAccountViewModel extends BaseViewModel {
             return;
         switch (eventBean.getOrigin()) {
             //保证金
-            case EvKey.authMerchantFind:
+            case EvKey.authMerchantFind2:
                 if (eventBean.isStatue()) {
                     AuthMerchantResult authMerchantResult = (AuthMerchantResult) eventBean.getObject();
                     marginAmount.set(mContext.getString(R.string.margin) + DfUtils.numberFormat(authMerchantResult.getData().getMargin(), 2) + " " + authMerchantResult.getData().getCoin());
@@ -132,7 +133,7 @@ public class LegalCurAccountViewModel extends BaseViewModel {
         walletTotalTrans = 0;
         for (SpotWalletResult.DataBean dataBean : spotWalletResult.getData()) {
             walletTotal = new BigDecimal(dataBean.getTotalPlatformAssetBalance()).add(new BigDecimal(walletTotal)).doubleValue();
-            walletTotalTrans = new BigDecimal(dataBean.getTotalLegalAssetBalance()).add(new BigDecimal(walletTotalTrans)).doubleValue();
+            walletTotalTrans = new BigDecimal(dataBean.getCnyAssetBalance()).add(new BigDecimal(walletTotalTrans)).doubleValue();
         }
         initAccountText(SPUtils.getInstance().isHideAccountOtc());
         mOnRequestListener.onSuccess(spotWalletResult);
@@ -157,7 +158,7 @@ public class LegalCurAccountViewModel extends BaseViewModel {
 
     private String transWalletTotal(double spotWalletTotal) {
         String close = DfUtils.formatNum(MathUtils.getRundNumber(spotWalletTotal, 6, null));
-        return "≈ " + close + " CNY  " + mContext.getString(R.string.total_assets_convert);
+        return "≈¥ " + close;
     }
 
     private boolean isVisible2User() {

@@ -10,6 +10,7 @@ import com.android.databinding.library.baseAdapters.BR;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.spark.acclient.pojo.CoinAddressListBean;
+import com.spark.acclient.pojo.CoinWithdrawAddressResult;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.ui.SmoothCheckBox;
 
@@ -25,51 +26,51 @@ import java.util.List;
  * 修订历史：
  * ================================================
  */
-public class CoinAddressAdapter extends BaseQuickAdapter<CoinAddressListBean.DataBean, CoinAddressAdapter.CoinAddressViewHolder> {
-    //选择List
-    private List<CoinAddressListBean.DataBean> mSelectList = new ArrayList<>();
-    private OnSelectListener mOnSelectListener;
+public class CoinAddressAdapter extends BaseQuickAdapter<CoinWithdrawAddressResult.DataBean, CoinAddressAdapter.CoinAddressViewHolder> {
+//    //选择List
+//    private List<CoinAddressListBean.DataBean> mSelectList = new ArrayList<>();
+//    private OnSelectListener mOnSelectListener;
+//
+//    public interface OnSelectListener {
+//        void onSelect(List<CoinAddressListBean.DataBean> mSelectList);
+//    }
 
-    public interface OnSelectListener {
-        void onSelect(List<CoinAddressListBean.DataBean> mSelectList);
-    }
-
-    //设置监听
-    public void setOnSelectListener(OnSelectListener listener) {
-        this.mOnSelectListener = listener;
-    }
+//    //设置监听
+//    public void setOnSelectListener(OnSelectListener listener) {
+//        this.mOnSelectListener = listener;
+//    }
 
 
-    public CoinAddressAdapter(@Nullable List<CoinAddressListBean.DataBean> data) {
+    public CoinAddressAdapter(@Nullable List<CoinWithdrawAddressResult.DataBean> data) {
         super(R.layout.item_coin_address, data);
     }
 
     @Override
-    protected void convert(final CoinAddressViewHolder helper, final CoinAddressListBean.DataBean item) {
+    protected void convert(final CoinAddressViewHolder helper, final CoinWithdrawAddressResult.DataBean item) {
         ViewDataBinding binding = helper.getBinding();
         binding.setVariable(BR.coinAddressBean, item);
         binding.executePendingBindings();
 
-        ((SmoothCheckBox) helper.getView(R.id.coin_address_select)).setChecked(false);
-        helper.getView(R.id.coin_address_root).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((SmoothCheckBox) helper.getView(R.id.coin_address_select)).setChecked(!((SmoothCheckBox) helper.getView(R.id.coin_address_select)).isChecked());
-            }
-        });
-
-        ((SmoothCheckBox) helper.getView(R.id.coin_address_select)).setOnCheckedChangeListener(new SmoothCheckBox.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(SmoothCheckBox checkBox, boolean isChecked) {
-                if (isChecked) {
-                    mSelectList.add(item);
-                } else {
-                    mSelectList.remove(item);
-                }
-                //观察选中项
-                mOnSelectListener.onSelect(mSelectList);
-            }
-        });
+//        ((SmoothCheckBox) helper.getView(R.id.coin_address_select)).setChecked(false);
+//        helper.getView(R.id.coin_address_root).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ((SmoothCheckBox) helper.getView(R.id.coin_address_select)).setChecked(!((SmoothCheckBox) helper.getView(R.id.coin_address_select)).isChecked());
+//            }
+//        });
+//
+//        ((SmoothCheckBox) helper.getView(R.id.coin_address_select)).setOnCheckedChangeListener(new SmoothCheckBox.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(SmoothCheckBox checkBox, boolean isChecked) {
+//                if (isChecked) {
+//                    mSelectList.add(item);
+//                } else {
+//                    mSelectList.remove(item);
+//                }
+//                //观察选中项
+//                mOnSelectListener.onSelect(mSelectList);
+//            }
+//        });
     }
 
     @Override
@@ -95,7 +96,7 @@ public class CoinAddressAdapter extends BaseQuickAdapter<CoinAddressListBean.Dat
     }
 
     public void update() {
-        mSelectList.clear();
+//        mSelectList.clear();
         notifyDataSetChanged();
     }
 }

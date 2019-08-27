@@ -39,6 +39,12 @@ public class MACDDraw implements IChartDraw<IMACD> {
         mGreenPaint.setColor(ContextCompat.getColor(context, R.color.chart_green));
     }
 
+    public MACDDraw(BaseKLineChartView view, int redColor, int greenColor) {
+        Context context = view.getContext();
+        mRedPaint.setColor(redColor);
+        mGreenPaint.setColor(greenColor);
+    }
+
     @Override
     public void drawTranslated(@Nullable IMACD lastPoint, @NonNull IMACD curPoint, float lastX, float curX, @NonNull Canvas canvas, @NonNull BaseKLineChartView view, int position) {
         drawMACD(canvas, view, curX, curPoint.getMacd());

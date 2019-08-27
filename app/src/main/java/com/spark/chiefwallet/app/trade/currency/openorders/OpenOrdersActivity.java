@@ -69,7 +69,7 @@ public class OpenOrdersActivity extends BaseActivity<ActivityOpenOrdersBinding, 
         //TitleSet
         mTitleModel = new TitleBean();
         mTitleModel.setShowRightImg(true);
-        binding.openOrdersTitle.titleRightImg.setImageDrawable(getResources().getDrawable(R.drawable.svg_filter));
+        binding.openOrdersTitle.titleRightImg.setImageDrawable(getResources().getDrawable(R.drawable.svg_fliter));
         binding.openOrdersTitle.setViewTitle(mTitleModel);
         setTitleListener(binding.openOrdersTitle.titleRootLeft, binding.openOrdersTitle.titleRootRight);
 

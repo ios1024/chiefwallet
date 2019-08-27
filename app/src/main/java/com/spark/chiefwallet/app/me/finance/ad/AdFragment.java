@@ -117,7 +117,7 @@ public class AdFragment extends BaseFragment<FragmentAdBinding, AdFgViewModel> {
                                             //修改
                                             case 0:
                                                 AdSelfDownFindResult.DataBean.RecordsBean recordsBean = mAdDownList.get(position);
-                                                ARouter.getInstance().build(App.getInstance().isAppLogin() ? ARouterPath.ACTIVITY_TRADE_AD_CREATE : ARouterPath.ACTIVITY_ME_LOGIN)
+                                                ARouter.getInstance().build(App.getInstance().isAppLogin() ? ARouterPath.ACTIVITY_TRADE_AD_NEWCREATE : ARouterPath.ACTIVITY_ME_LOGIN)
                                                         .withParcelable("ads", recordsBean)
                                                         .navigation();
                                                 break;

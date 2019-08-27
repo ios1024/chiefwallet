@@ -48,6 +48,7 @@ public class SafeCentreActivity extends BaseActivity<ActivitySafeCentreBinding, 
 
         //TitleSet
         mTitleModel = new TitleBean();
+        mTitleModel.setTitleName(getResources().getString(R.string.account_security));
         binding.safeCertreTitle.setViewTitle(mTitleModel);
         setTitleListener(binding.safeCertreTitle.titleRootLeft);
     }

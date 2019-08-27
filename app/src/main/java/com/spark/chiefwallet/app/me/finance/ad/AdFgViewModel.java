@@ -3,16 +3,20 @@ package com.spark.chiefwallet.app.me.finance.ad;
 import android.app.Application;
 import android.support.annotation.NonNull;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.R;
+import com.spark.chiefwallet.base.ARouterPath;
 import com.spark.chiefwallet.ui.toast.Toasty;
 import com.spark.otcclient.AdvertiseScanClient;
 import com.spark.otcclient.pojo.AdSelfUpFindResult;
+import com.spark.otcclient.pojo.AuthMerchantResult;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import me.spark.mvvm.base.BaseViewModel;
+import me.spark.mvvm.base.Constant;
 import me.spark.mvvm.base.EvKey;
 import me.spark.mvvm.bus.event.SingleLiveEvent;
 import me.spark.mvvm.http.impl.OnRequestListener;
@@ -125,6 +129,19 @@ public class AdFgViewModel extends BaseViewModel {
                     uc.isRefresh.setValue(true);
                 }
                 break;
+//            case EvKey.authMerchantFind2:
+//                dismissDialog();
+//                if (eventBean.isStatue()) {
+//                    AuthMerchantResult authMerchantResult = (AuthMerchantResult) eventBean.getObject();
+//                    int certifiedBusinessStatus = authMerchantResult.getData().getCertifiedBusinessStatus();
+//                    if (certifiedBusinessStatus == 2) {
+//                        ARouter.getInstance().build(ARouterPath.ACTIVITY_BUSINESS_SURREND)
+//                                .navigation();
+//                    } else
+//                        ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_CERTIFICATIONDETAILS)
+//                                .navigation();
+//                }
+//                break;
             default:
                 break;
         }
@@ -142,4 +159,6 @@ public class AdFgViewModel extends BaseViewModel {
         super.onDestroy();
         EventBusUtils.unRegister(this);
     }
+
+
 }

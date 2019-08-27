@@ -15,6 +15,7 @@ import com.spark.chiefwallet.app.trade.contract.ContractFragment;
 import com.spark.chiefwallet.app.trade.currency.CurrencyFragment;
 import com.spark.chiefwallet.app.trade.legal_currency.LegalCurrencyFragment;
 import com.spark.chiefwallet.app.trade.lever.LeverFragment;
+import com.spark.chiefwallet.bean.TitleBean;
 import com.spark.chiefwallet.databinding.FragmentTradeBinding;
 import com.spark.chiefwallet.ui.tablayout.listener.OnTabSelectListener;
 
@@ -37,6 +38,7 @@ public class TradeFragment extends BaseFragment<FragmentTradeBinding, TradeViewM
     private LegalCurrencyFragment mLegalCurrencyFragment;
     private ContractFragment mContractFragment;
     private LeverFragment mLeverFragment;
+    private TitleBean mTitleModel;
 
     private TradePagerAdapter mAdapter;
     private Fragment selectFragment;
@@ -60,6 +62,8 @@ public class TradeFragment extends BaseFragment<FragmentTradeBinding, TradeViewM
 
         mTitles = getResources().getStringArray(R.array.trade_tab);
         mAdapter = new TradePagerAdapter(getChildFragmentManager());
+        mTitleModel = new TitleBean();
+        mTitleModel.setTitleName(getResources().getString(R.string.asset_management));
         binding.tradeVp.setAdapter(mAdapter);
         binding.tradeTab.setTabData(mTitles);
         binding.tradeTab.setOnTabSelectListener(new OnTabSelectListener() {
@@ -117,7 +121,7 @@ public class TradeFragment extends BaseFragment<FragmentTradeBinding, TradeViewM
         viewModel.uc.clickPosition.observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(@Nullable Integer integer) {
-                LogUtils.e("clickPosition",integer);
+                LogUtils.e("clickPosition", integer);
                 binding.tradeTab.setCurrentTab(integer);
                 Constant.tradePage = integer;
                 binding.tradeVp.setCurrentItem(integer);

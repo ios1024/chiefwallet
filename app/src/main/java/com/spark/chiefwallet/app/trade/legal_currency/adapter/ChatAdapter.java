@@ -5,12 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.util.DateUtils;
+import com.spark.otcclient.pojo.LcOrderResult;
 import com.spark.wsclient.pojo.ChatBean;
 
 import java.util.Date;
@@ -32,11 +32,13 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     private List<ChatBean> datas;
     private String myId;
     private Context context;
+    private LcOrderResult.DataBean.RecordsBean orderDetailsBean;
 
-    public ChatAdapter(Context context, List<ChatBean> datas, String myId) {
+    public ChatAdapter(Context context, List<ChatBean> datas, String myId, LcOrderResult.DataBean.RecordsBean orderDetailsBean) {
         this.datas = datas;
         this.myId = myId;
         this.context = context;
+        this.orderDetailsBean = orderDetailsBean;
     }
 
     @Override
@@ -53,14 +55,12 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
             holder.llRight.setVisibility(View.VISIBLE);
             holder.tvMessageRight.setText(datas.get(position).getContent());
             if (StringUtils.isNotEmpty(datas.get(position).getSendTime())) {
-                if (StringUtils.isNotEmpty(datas.get(position).getSendTime())) {
-                    if (datas.get(position).getSendTime().length() != 13) {
-                        Date date = new Date(datas.get(position).getSendTime());
-                        holder.tvTimeRight.setText(DateUtils.getFormatTime(null, date));
-                    } else {
-                        Date date = new Date(Long.parseLong(datas.get(position).getSendTime()));
-                        holder.tvTimeRight.setText(DateUtils.getFormatTime(null, date));
-                    }
+                if (datas.get(position).getSendTime().length() != 13) {
+                    Date date = new Date(datas.get(position).getSendTime());
+                    holder.tvTimeRight.setText(DateUtils.getFormatTime(null, date));
+                } else {
+                    Date date = new Date(Long.parseLong(datas.get(position).getSendTime()));
+                    holder.tvTimeRight.setText(DateUtils.getFormatTime(null, date));
                 }
             }
         } else {
@@ -76,6 +76,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
                     holder.tvTimeLeft.setText(DateUtils.getFormatTime(null, date));
                 }
             }
+            holder.ivHeaderLeft.setText(orderDetailsBean.getTradeToUsername().substring(0, 1));
         }
     }
 
@@ -86,10 +87,10 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public ImageView ivHeaderLeft;
+        public TextView ivHeaderLeft;
         public TextView tvMessageLeft;
         public TextView tvTimeLeft;
-        public ImageView ivHeaderRight;
+        public TextView ivHeaderRight;
         public TextView tvMessageRight;
         public TextView tvTimeRight;
         public RelativeLayout llLeft;

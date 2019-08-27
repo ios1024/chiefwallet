@@ -56,22 +56,28 @@ public class KLineChartView extends BaseKLineChartView {
 
     public KLineChartView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initView();
+        initView(attrs);
         initAttrs(attrs);
     }
 
-    private void initView() {
+    private void initView(AttributeSet attrs) {
         mProgressBar = new ProgressBar(getContext());
         LayoutParams layoutParams = new LayoutParams(dp2px(50), dp2px(50));
         layoutParams.addRule(CENTER_IN_PARENT);
         addView(mProgressBar, layoutParams);
         mProgressBar.setVisibility(GONE);
-        mVolumeDraw = new VolumeDraw(this);
-        mMACDDraw = new MACDDraw(this);
+        mVolumeDraw = new VolumeDraw(this,
+                getContext().obtainStyledAttributes(attrs, R.styleable.KLineChartView).getColor(R.styleable.KLineChartView_kc_red_color, getColor(R.color.chart_red)),
+                getContext().obtainStyledAttributes(attrs, R.styleable.KLineChartView).getColor(R.styleable.KLineChartView_kc_gre_color, getColor(R.color.chart_green)));
+        mMACDDraw = new MACDDraw(this,
+                getContext().obtainStyledAttributes(attrs, R.styleable.KLineChartView).getColor(R.styleable.KLineChartView_kc_red_color, getColor(R.color.chart_red)),
+                getContext().obtainStyledAttributes(attrs, R.styleable.KLineChartView).getColor(R.styleable.KLineChartView_kc_gre_color, getColor(R.color.chart_green)));
         mWRDraw = new WRDraw(this);
         mKDJDraw = new KDJDraw(this);
         mRSIDraw = new RSIDraw(this);
-        mMainDraw = new MainDraw(this);
+        mMainDraw = new MainDraw(this,
+                getContext().obtainStyledAttributes(attrs, R.styleable.KLineChartView).getColor(R.styleable.KLineChartView_kc_red_color, getColor(R.color.chart_red)),
+                getContext().obtainStyledAttributes(attrs, R.styleable.KLineChartView).getColor(R.styleable.KLineChartView_kc_gre_color, getColor(R.color.chart_green)));
         addChildDraw(mMACDDraw);
         addChildDraw(mKDJDraw);
         addChildDraw(mRSIDraw);
@@ -96,10 +102,10 @@ public class KLineChartView extends BaseKLineChartView {
 //                setSelectedLineColor(array.getColor(R.styleable.KLineChartView_kc_selected_line_color, getColor(R.color.chart_text)));
 //                setSelectedLineWidth(array.getDimension(R.styleable.KLineChartView_kc_selected_line_width, getDimension(R.dimen.chart_line_width)));
 
-                setSelectedXLineColor(Color.WHITE);
+                setSelectedXLineColor(Color.parseColor("#80B2BAD1"));
                 setSelectedXLineWidth(getDimension(R.dimen.chart_line_width));
 
-                setSelectedYLineColor(Color.parseColor("#8040424D"));
+                setSelectedYLineColor(Color.parseColor("#80B2BAD1"));
                 setSelectedYLineWidth(getDimension(R.dimen.chart_point_width));
 
                 setGridLineWidth(array.getDimension(R.styleable.KLineChartView_kc_grid_line_width, getDimension(R.dimen.chart_grid_line_width)));

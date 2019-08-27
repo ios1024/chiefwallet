@@ -19,17 +19,15 @@ import com.lxj.xpopup.XPopup;
 import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.BR;
 import com.spark.chiefwallet.R;
+import com.spark.chiefwallet.app.trade.currency.adapter.CurrentCommissionAdapter;
 import com.spark.chiefwallet.app.trade.currency.adapter.MarketBuyAdapter;
 import com.spark.chiefwallet.app.trade.currency.adapter.MarketSellAdapter;
-import com.spark.chiefwallet.app.trade.currency.adapter.OpenOrdersAdapter;
 import com.spark.chiefwallet.databinding.FragmentCurrentBinding;
 import com.spark.chiefwallet.ui.PointLengthFilter;
 import com.spark.chiefwallet.ui.RvLoadMoreView;
 import com.spark.chiefwallet.ui.popup.B2BBuyTypePopup;
 import com.spark.chiefwallet.ui.popup.B2BDrawerPopup;
-import com.spark.chiefwallet.ui.popup.B2BMenuPopup;
 import com.spark.chiefwallet.ui.popup.CancelOrderPopup;
-import com.spark.chiefwallet.ui.popup.impl.OnPositionChooseListener;
 import com.spark.chiefwallet.ui.popup.impl.OnTypeChooseListener;
 import com.spark.chiefwallet.ui.seekbar.SeekBar;
 import com.spark.chiefwallet.ui.toast.Toasty;
@@ -70,7 +68,7 @@ public class CurrencyFragment extends BaseFragment<FragmentCurrentBinding, Curre
     private int pageIndex = 1;
     private static final int PAGE_SIZE = 50;
     private List<OpenOrdersResult.DataBean.ListBean> openOrdersResultList = new ArrayList<>();
-    private OpenOrdersAdapter mOpenOrdersAdapter;               //当前委托
+    private CurrentCommissionAdapter mOpenOrdersAdapter;               //当前委托
     private PointLengthFilter mPriceFilter;                     //位数限制
     private PointLengthFilter mNumFilter;
 
@@ -125,7 +123,7 @@ public class CurrencyFragment extends BaseFragment<FragmentCurrentBinding, Curre
 
         initSeekBarListener();
 
-        mOpenOrdersAdapter = new OpenOrdersAdapter(openOrdersResultList);
+        mOpenOrdersAdapter = new CurrentCommissionAdapter(openOrdersResultList);
         binding.rvOpenOrders.setLayoutManager(new LinearLayoutManager(getActivity()));
         binding.rvOpenOrders.setAdapter(mOpenOrdersAdapter);
         mOpenOrdersAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
@@ -285,8 +283,9 @@ public class CurrencyFragment extends BaseFragment<FragmentCurrentBinding, Curre
         final int size = data == null ? 0 : data.size();
         if (isRefresh) {
             mOpenOrdersAdapter.setNewData(data);
+            binding.commissionLl.setVisibility(size != 0 ? View.VISIBLE : View.GONE);
             if (size == 0) {
-                mOpenOrdersAdapter.setEmptyView(R.layout.view_rv_empty, binding.rvOpenOrders);
+                mOpenOrdersAdapter.setEmptyView(R.layout.view_rv_empty_2, binding.rvOpenOrders);
             }
         } else {
             if (size > 0) {
@@ -459,7 +458,6 @@ public class CurrencyFragment extends BaseFragment<FragmentCurrentBinding, Curre
     @OnClick({R.id.btn_buy,
             R.id.btn_sell,
             R.id.current_open_drawer,
-            R.id.current_menu,
             R.id.current_buy_type,
             R.id.tv_market_price})
     public void onClick(View v) {
@@ -479,18 +477,6 @@ public class CurrencyFragment extends BaseFragment<FragmentCurrentBinding, Curre
                     mB2BDrawerPopup = new B2BDrawerPopup(getContext(), getParentFragment().getFragmentManager());
                 new XPopup.Builder(getContext())
                         .asCustom(mB2BDrawerPopup)
-                        .show();
-                break;
-            //菜单
-            case R.id.current_menu:
-                new XPopup.Builder(getContext())
-                        .atView(v)
-                        .asCustom(new B2BMenuPopup(getContext(), viewModel.isFavor.get(), new OnPositionChooseListener() {
-                            @Override
-                            public void onChoosePosition(int type) {
-                                viewModel.onMenuclick(type);
-                            }
-                        }))
                         .show();
                 break;
             //购买类型
@@ -527,12 +513,12 @@ public class CurrencyFragment extends BaseFragment<FragmentCurrentBinding, Curre
         setSeekBar();
         viewModel.initBuyText();
         if (type == 0) {
-            binding.currentBuy.setBackground(getResources().getDrawable(R.drawable.green_4dp_bg));
+            binding.currentBuy.setBackground(getResources().getDrawable(R.drawable.rise_2dp_bg));
             if (viewModel.currentBuyType.get().contains(getString(R.string.sell))) {
                 viewModel.currentBuyType.set(viewModel.currentBuyType.get().replace(getString(R.string.sell), getString(R.string.buy)));
             }
         } else {
-            binding.currentBuy.setBackground(getResources().getDrawable(R.drawable.orange_4dp_bg));
+            binding.currentBuy.setBackground(getResources().getDrawable(R.drawable.fall_2dp_bg));
             if (viewModel.currentBuyType.get().contains(getString(R.string.buy))) {
                 viewModel.currentBuyType.set(viewModel.currentBuyType.get().replace(getString(R.string.buy), getString(R.string.sell)));
             }
@@ -542,8 +528,8 @@ public class CurrencyFragment extends BaseFragment<FragmentCurrentBinding, Curre
 
     private void setSeekBar() {
         binding.buySeekBar.setProgress(0);
-        binding.buySeekBar.setThumbColor(ContextCompat.getColor(getActivity(), viewModel.buyType.get() == 0 ? R.color.green : R.color.orange));
-        binding.buySeekBar.setBubbleColor(ContextCompat.getColor(getActivity(), viewModel.buyType.get() == 0 ? R.color.green : R.color.orange));
-        binding.buySeekBar.setSecondTrackColor(ContextCompat.getColor(getActivity(), viewModel.buyType.get() == 0 ? R.color.green : R.color.orange));
+        binding.buySeekBar.setThumbColor(ContextCompat.getColor(getActivity(), viewModel.buyType.get() == 0 ? R.color.rise : R.color.fall));
+        binding.buySeekBar.setBubbleColor(ContextCompat.getColor(getActivity(), viewModel.buyType.get() == 0 ? R.color.rise : R.color.fall));
+        binding.buySeekBar.setSecondTrackColor(ContextCompat.getColor(getActivity(), viewModel.buyType.get() == 0 ? R.color.rise : R.color.fall));
     }
 }

@@ -5,11 +5,16 @@ import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.lxj.xpopup.XPopup;
 import com.spark.acclient.CoinAddressClient;
+import com.spark.acclient.FinanceClient;
 import com.spark.acclient.pojo.CoinAddressListBean;
+import com.spark.acclient.pojo.CoinWithdrawAddressResult;
 import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.base.ARouterPath;
+import com.spark.chiefwallet.ui.popup.CoinWithdrawAddressPopup;
+import com.spark.chiefwallet.ui.popup.impl.OnEtContentListener;
 import com.spark.chiefwallet.ui.toast.Toasty;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -43,22 +48,26 @@ public class CoinAddressViewModel extends BaseViewModel {
 
     public List<CoinAddressListBean.DataBean> mSelectList = new ArrayList<>();
     private OnRequestListener mOnRequestListener;
-
+    private String mCoin;
     public ObservableField<String> bottomText = new ObservableField<>(App.getInstance().getString(R.string.add));
     public ObservableField<String> titleText = new ObservableField<>(App.getInstance().getString(R.string.mentionAddress));
 
-    //添加提币地址
-    public BindingCommand coinAddressAddOnClickCommand = new BindingCommand(new BindingAction() {
-        @Override
-        public void call() {
-            if (mSelectList.isEmpty()) {
-                ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_COINADDRESS_COINADDRESS_ADD)
-                        .navigation();
-            } else {
-                deleteCoinAddress();
-            }
-        }
-    });
+//    //添加提币地址
+//    public BindingCommand coinAddressAddOnClickCommand = new BindingCommand(new BindingAction() {
+//        @Override
+//        public void call() {
+//            if (mSelectList.isEmpty()) {
+//                ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_COINADDRESS_COINADDRESS_ADD)
+//                        .navigation();
+//            } else {
+//                deleteCoinAddress();
+//            }
+//        }
+//    });
+
+    public void getCoin(String Coin) {
+        this.mCoin = Coin;
+    }
 
     public UIChangeObservable uc = new UIChangeObservable();
 
@@ -71,7 +80,7 @@ public class CoinAddressViewModel extends BaseViewModel {
      */
     public void getCoinAddressList(OnRequestListener onRequestListener) {
         this.mOnRequestListener = onRequestListener;
-        CoinAddressClient.getInstance().getCoinAddressList();
+        FinanceClient.getInstance().getWithdrawAddress(mCoin);
     }
 
     /**
@@ -89,7 +98,8 @@ public class CoinAddressViewModel extends BaseViewModel {
     public void onEvent(EventBean eventBean) {
         switch (eventBean.getOrigin()) {
             //查询用户的某个币种的提币地址信息
-            case EvKey.coinAddressList:
+            case EvKey.coinWithdrawAddress:
+                dismissDialog();
                 if (mOnRequestListener == null) return;
                 if (eventBean.isStatue()) {
                     mOnRequestListener.onSuccess(eventBean.getObject());
@@ -97,6 +107,15 @@ public class CoinAddressViewModel extends BaseViewModel {
                     mOnRequestListener.onFail(eventBean.getMessage());
                 }
                 break;
+//            //查询用户的某个币种的提币地址信息
+//            case EvKey.coinAddressList:
+//                if (mOnRequestListener == null) return;
+//                if (eventBean.isStatue()) {
+//                    mOnRequestListener.onSuccess(eventBean.getObject());
+//                } else {
+//                    mOnRequestListener.onFail(eventBean.getMessage());
+//                }
+//                break;
             //批量删除
             case EvKey.coinAddressDeleteBatch:
                 dismissDialog();

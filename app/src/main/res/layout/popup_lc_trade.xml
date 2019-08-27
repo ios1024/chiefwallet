@@ -1,32 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    app:bl_corners_topLeftRadius="14dp"
-    app:bl_corners_topRightRadius="14dp"
-    app:bl_solid_color="@color/gray_456">
+    app:bl_corners_topLeftRadius="3dp"
+    app:bl_corners_topRightRadius="3dp"
+    app:bl_solid_color="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="78dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp">
+        android:padding="16dp">
 
-        <TextView
-            android:id="@+id/coin_name"
-            style="@style/textBlackNormal"
-            android:textStyle="bold"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
 
-        <TextView
-            android:id="@+id/price"
-            style="@style/textBlackSmall"
-            android:layout_marginTop="8dp"/>
+            <TextView
+                android:id="@+id/coin_name"
+                style="@style/textBlackLarge"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_4"
+                android:layout_weight="1" />
+
+            <TextView
+                style="@style/textGrayCommonSmall"
+                android:text="@string/str_price_single"
+                android:textColor="@color/color_stroke" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical">
+
+                <TextView
+                    style="@style/textGrayCommonSmall"
+                    android:text="@string/number"
+                    android:textColor="@color/color_stroke" />
+
+                <TextView
+                    android:id="@+id/tv_popup_amount"
+                    style="@style/textBlackSmall"
+                    android:layout_marginLeft="@dimen/dp_10" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/price"
+                style="@style/textBlackLarge"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:textStyle="bold" />
+
+        </LinearLayout>
     </LinearLayout>
 
     <android.support.v4.widget.NestedScrollView
@@ -39,156 +80,244 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/ll_mobile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/mobile_tv"
+                        style="@style/textBlackSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/str_money_buy"
+                        android:textColor="@color/base"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/mobile_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@color/base" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_mailbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/mailbox_tv"
+                        style="@style/textBlackSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/str_amount_buy"
+                        android:textColor="@color/welcomelogin" />
+
+                    <TextView
+                        android:id="@+id/mailbox_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@color/base"
+                        android:visibility="invisible" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View style="@style/line_div" />
 
             <TextView
                 android:id="@+id/tvTradeType"
-                style="@style/textGrayCommonSmall"
-                android:text="@string/str_ad_buy_way"
-                android:textStyle="bold"/>
-
-            <LinearLayout
-                android:id="@+id/buy_type_root"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/buy_type"
-                    style="@style/textBlackNormal"
-                    android:layout_weight="1"
-                    android:textStyle="bold"/>
-
-                <ImageView
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:src="@drawable/svg_pull_down"/>
-            </LinearLayout>
-
-            <View
-                style="@style/line_ccc"
-                android:layout_marginTop="8dp"/>
-
-            <TextView
-                android:id="@+id/type_title"
-                style="@style/textGrayCommonSmall"
-                android:layout_marginTop="12dp"
-                android:textStyle="bold"/>
+                style="@style/textBlackSmall"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="@string/str_trade_type_buy_money" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="@dimen/dp_10"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="8dp"
+                app:bl_corners_radius="2dp"
+                app:bl_solid_color="@color/white"
+                app:bl_stroke_color="@color/color_unchecked"
+                app:bl_stroke_width="0.5dp"
+                tools:ignore="MissingPrefix">
 
                 <EditText
                     android:id="@+id/number"
                     style="@style/trade_input"
-                    android:hint="@string/input_hint"
+                    android:layout_height="wrap_content"
                     android:inputType="numberDecimal"
                     android:maxLines="1"
-                    android:textSize="@dimen/font_normal"/>
+                    android:padding="4dp"
+                    android:textSize="@dimen/font_small" />
 
                 <TextView
                     android:id="@+id/type_unit"
-                    style="@style/textGrayCommonNormal"
-                    android:layout_marginLeft="16dp"/>
-            </LinearLayout>
+                    style="@style/textBlackSmall"
+                    android:inputType="numberDecimal"
+                    android:text="CNY" />
 
-            <View
-                style="@style/line_ccc"
-                android:layout_marginTop="8dp"/>
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="@dimen/dp_10"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:background="@color/color_unchecked" />
+
+                <TextView
+                    android:id="@+id/tv_all"
+                    style="@style/textBlackSmall"
+                    android:inputType="numberDecimal"
+                    android:text=""
+                    android:textColor="@color/base" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/ll_limit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_4"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/limit"
-                    style="@style/textGrayCommonFont13"
-                    android:layout_marginTop="8dp"
-                    android:textColor="@color/gray_ccc"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-                <View
-                    style="@style/line_ccc"
-                    android:layout_marginTop="16dp"/>
+                    <TextView
+                        style="@style/textGrayCommonSmall"
+                        android:text="@string/str_limit_money"
+                        android:textColor="@color/color_stroke" />
+
+                    <TextView
+                        android:id="@+id/limit"
+                        style="@style/textBlackSmall"
+                        android:textColor="@color/gray_ccc" />
+                </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingBottom="12dp"
-                android:paddingTop="12dp">
+                android:layout_marginTop="@dimen/dp_10">
 
                 <TextView
-                    style="@style/textBlackNormal"
-                    android:text="@string/turnover"
-                    android:textStyle="bold"/>
+                    style="@style/textGrayCommonSmall"
+                    android:text="@string/str_trade_amount_tag"
+                    android:textColor="@color/color_stroke" />
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:layout_weight="1"
-                    android:gravity="right|center_vertical"
-                    android:orientation="vertical">
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dp_4"
+                    android:layout_weight="1" />
 
-                    <TextView
-                        android:id="@+id/trade_volume"
-                        style="@style/textBlackNormal"
-                        android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/trade_num"
+                    style="@style/textBlackNormal" />
 
-                    <TextView
-                        android:id="@+id/trade_num"
-                        style="@style/textBlackFont13"
-                        android:layout_marginTop="6dp"/>
-
-                    <TextView
-                        android:id="@+id/trade_use"
-                        style="@style/textBlackFont13"
-                        android:layout_marginTop="6dp"/>
-
-                </LinearLayout>
             </LinearLayout>
 
-            <View
-                style="@style/line_ccc"/>
-
-            <TextView
-                android:id="@+id/order"
-                style="@style/textBlackNormal"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_margin="16dp"
-                android:gravity="center"
-                android:text="@string/str_buy_create"
-                android:textStyle="bold"
-                app:bl_corners_radius="4dp"
-                app:bl_pressed_color="@color/base_dark"
-                app:bl_unpressed_color="@color/base"
-                tools:ignore="MissingPrefix"/>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10">
+
+                <TextView
+                    style="@style/textBlackSmall"
+                    android:text="@string/str_trade_pay" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dp_4"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/trade_volume"
+                    style="@style/textBlackNormal"
+                    android:textColor="@color/base"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/textBlackSmall"
+                    android:text="@string/str_can_banlance" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dp_4"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/trade_use"
+                    style="@style/textBlackNormal" />
+
+            </LinearLayout>
 
         </LinearLayout>
+
     </android.support.v4.widget.NestedScrollView>
 
-    <TextView
-        android:id="@+id/cancel"
-        style="@style/textGrayCommonNormal"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_marginTop="8dp"
-        android:background="@color/white"
-        android:gravity="center"
-        android:text="@string/cancel"
-        app:bl_ripple_color="@color/gray_456"
-        app:bl_ripple_enable="true"
-        app:bl_solid_color="@color/white"
-        tools:ignore="MissingPrefix"/>
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/cancel"
+            style="@style/textBlackSmall"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/cancel"
+            android:textColor="@color/black"
+            app:bl_ripple_color="@color/gray_ccc"
+            app:bl_ripple_enable="true"
+            app:bl_solid_color="@color/color_unchecked"
+            tools:ignore="MissingPrefix" />
+
+        <TextView
+            android:id="@+id/order"
+            style="@style/textBlackSmall"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/str_buy_create"
+            android:textColor="@color/white"
+            app:bl_ripple_color="@color/gray_ccc"
+            app:bl_ripple_enable="true"
+            app:bl_solid_color="@color/color_blue"
+            tools:ignore="MissingPrefix" />
+    </LinearLayout>
+
 </LinearLayout>

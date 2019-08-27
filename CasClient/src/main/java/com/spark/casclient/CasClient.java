@@ -1,5 +1,7 @@
 package com.spark.casclient;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.spark.casclient.base.CasHost;
 import com.spark.casclient.pojo.CasConfig;
@@ -59,6 +61,7 @@ public class CasClient extends BaseHttpClient {
     public void login(String username,
                       String password,
                       String rememberMe) {
+
         EasyHttp.post(CasHost.casUrl)
                 .baseUrl(BaseHost.LOGIN_HOST)
                 .headers("tid", DeviceUtils.getTid())
@@ -139,6 +142,7 @@ public class CasClient extends BaseHttpClient {
                 .execute(new SimpleCallBack<String>() {
                     @Override
                     public void onSuccess(String s) {
+                        LogUtils.e("loginAppTGA", s);
                         try {
                             JSONObject object = new JSONObject(s);
                             int code = object.optInt("code");
@@ -158,10 +162,11 @@ public class CasClient extends BaseHttpClient {
                                 } else if (BaseHost.TYPE_SPOT.equals(type)) {
                                     LogUtils.e("------SPOT登录成功------");
                                     getServiceTicket(SPUtils.getInstance().getTgc(), BaseHost.TYPE_CFD);
-                                } else if (BaseHost.TYPE_CFD.equals(type)) {
+                                }
+//                                else if (BaseHost.TYPE_CFD.equals(type)) {
                                     LogUtils.e("------CFD登录成功------");
                                     EventBusUtils.postSuccessEvent(EvKey.loginApp, BaseRequestCode.OK, "");
-                                }
+//                                }
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -332,6 +337,7 @@ public class CasClient extends BaseHttpClient {
 
     /**
      * 验证极验
+     *
      * @param check
      * @param cid
      */

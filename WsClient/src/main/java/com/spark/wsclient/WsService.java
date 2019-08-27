@@ -33,6 +33,7 @@ import java.util.Arrays;
 
 import me.spark.mvvm.base.BaseApplication;
 import me.spark.mvvm.base.Constant;
+import me.spark.mvvm.base.EvKey;
 import me.spark.mvvm.service.AbsWorkService;
 import me.spark.mvvm.utils.EventBusUtils;
 import me.spark.mvvm.utils.LogUtils;
@@ -148,6 +149,7 @@ public class WsService extends AbsWorkService implements WsStatueListener {
         if (null != webSocketRequest.getBody()) {
             LogUtils.d(TAG, webSocketRequest.getCode() + "---" + webSocketRequest.getCmd() + "---" + new String(webSocketRequest.getBody()));
         }
+        LogUtils.e(TAG, webSocketRequest.getCode() + "---" + webSocketRequest.getCmd());
         senBytes(webSocketRequest.getCode(), DataUtils.initBytes(webSocketRequest.getCmd(), webSocketRequest.getBody()));
     }
 
@@ -239,6 +241,7 @@ public class WsService extends AbsWorkService implements WsStatueListener {
                     //BB CfD
                     senBytes(WsConstant.CODE_KLINE, DataUtils.initBytes(WsCMD.SUBSCRIBE_CFD_THUMB, BaseApplication.gson.toJson(WsUtils.setSubscribeThumbCFDJsonMap()).getBytes()));
                 }
+                EventBusUtils.postJumpEvent(EvKey.klineConnectSuccess);
                 break;
             //盘口
             case WsConstant.CODE_MARKET:

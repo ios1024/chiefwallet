@@ -1,6 +1,7 @@
 package com.spark.chiefwallet.app.trade.currency.openorders.details;
 
 import android.arch.lifecycle.Observer;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -56,7 +57,7 @@ public class CommissionDetailsActivity extends BaseActivity<ActivityCommissionDe
     @Override
     public void initView() {
         StatueBarUtils.addMarginTopEqualStatusBarHeight(binding.fakeStatusBar);
-        StatueBarUtils.setStatusBarColor(this, getResources().getColor(R.color.commission_bg));
+        StatueBarUtils.setStatusBarColor(this, Color.WHITE);
         mOpenOrdersDetailsAdapter = new OpenOrdersDetailsAdapter(mDataBeanList);
         binding.rvOpenDetails.setLayoutManager(new LinearLayoutManager(this));
         binding.rvOpenDetails.setAdapter(mOpenOrdersDetailsAdapter);

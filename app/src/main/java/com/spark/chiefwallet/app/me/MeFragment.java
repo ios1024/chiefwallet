@@ -1,11 +1,14 @@
 package com.spark.chiefwallet.app.me;
 
 import android.arch.lifecycle.Observer;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
+import com.spark.acclient.FinanceClient;
 import com.spark.chiefwallet.BR;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.databinding.FragmentMeBinding;
@@ -35,7 +38,37 @@ public class MeFragment extends BaseFragment<FragmentMeBinding, MeViewModel> {
 
     @Override
     public void initView() {
+
         viewModel.initContext(getContext());
+
+        viewModel.updateAccount();
+
+        //点击法币
+        binding.frenchCurrencyAssets.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewModel.qiehuanbizhong.set("0");
+                viewModel.initText();
+                binding.frenchCurrencyAssets.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+                binding.currencyAssets.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+                binding.frenchCurrencyAssets.setTextColor(getResources().getColor(R.color.white));
+                binding.currencyAssets.setTextColor(getResources().getColor(R.color.welcomelogin));
+
+            }
+        });
+        //点击币币
+        binding.currencyAssets.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewModel.qiehuanbizhong.set("1");
+                viewModel.initText();
+                binding.frenchCurrencyAssets.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+                binding.currencyAssets.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+                binding.frenchCurrencyAssets.setTextColor(getResources().getColor(R.color.welcomelogin));
+                binding.currencyAssets.setTextColor(getResources().getColor(R.color.white));
+
+            }
+        });
     }
 
     @Override

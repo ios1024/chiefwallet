@@ -202,19 +202,22 @@ public class OpenOrderDetailsResult implements Parcelable {
 
 
         public String formatTime() {
-            return DateUtils.formatDate("yyyy.MM.dd HH:mm:ss", time);
+            return DateUtils.formatDate("MM/dd HH:mm", time);
         }
 
         public String formatPrice() {
-            return DfUtils.numberFormat(Double.valueOf(price), 4) + " " + symbol.split("/")[1];
+//            return DfUtils.numberFormat(Double.valueOf(price), 4) + " " + symbol.split("/")[1];
+            return DfUtils.numberFormat(Double.valueOf(price), 4);
         }
 
         public String formatNum() {
-            return DfUtils.numberFormat(Double.valueOf(amount), 4) + " " + symbol.split("/")[0];
+//            return DfUtils.numberFormat(Double.valueOf(amount), 4) + " " + symbol.split("/")[0];
+            return DfUtils.numberFormat(Double.valueOf(amount), 4);
         }
 
         public String formatFee() {
-            return DfUtils.numberFormat(Double.valueOf(fee), 8) + " " + (side == 0 ? symbol.split("/")[0] : symbol.split("/")[1]);
+//            return DfUtils.numberFormat(Double.valueOf(fee), 8) + " " + (side == 0 ? symbol.split("/")[0] : symbol.split("/")[1]);
+            return DfUtils.numberFormat(Double.valueOf(fee), 8);
         }
     }
 

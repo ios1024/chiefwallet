@@ -7,6 +7,7 @@ import java.util.List;
 
 import me.spark.mvvm.base.BaseApplication;
 import me.spark.mvvm.base.Constant;
+import me.spark.mvvm.utils.DateUtils;
 import me.spark.mvvm.utils.DfUtils;
 import me.spark.mvvm.utils.MathUtils;
 
@@ -244,6 +245,10 @@ public class AdSelfUpFindResult implements Parcelable {
             this.number = number;
         }
 
+        public String Numbers() {
+            return "" + number;
+        }
+
         public double getRemainAmount() {
             return remainAmount;
         }
@@ -332,6 +337,10 @@ public class AdSelfUpFindResult implements Parcelable {
             this.createTime = createTime;
         }
 
+        public String createTime() {
+            return DateUtils.formatDate("MM/dd HH:mm", createTime);
+        }
+
         public String getUsername() {
             return username;
         }
@@ -340,15 +349,16 @@ public class AdSelfUpFindResult implements Parcelable {
             this.username = username;
         }
 
-        public boolean isBuyType(){
-            return advertiseType == 0 ;
+        public boolean isBuyType() {
+            return advertiseType == 0;
         }
+
         public String formatType() {
-            return advertiseType == 0 ? BaseApplication.getInstance().getString(me.spark.mvvm.R.string.buy2) : BaseApplication.getInstance().getString(me.spark.mvvm.R.string.sell2);
+            return advertiseType == 0 ? BaseApplication.getInstance().getString(me.spark.mvvm.R.string.buy22) + "(" + coinName + ")" : BaseApplication.getInstance().getString(me.spark.mvvm.R.string.sell22) + "(" + coinName + ")";
         }
 
         public String formatLimit() {
-            return BaseApplication.getInstance().getString(me.spark.mvvm.R.string.limit) + MathUtils.getRundNumber(minLimit, 2, null) + " - " + MathUtils.getRundNumber(maxLimit, 2, null) + " CNY";
+            return "" + MathUtils.getRundNumber(minLimit, 2, null) + " - " + MathUtils.getRundNumber(maxLimit, 2, null) + localCurrency;
         }
 
         /**

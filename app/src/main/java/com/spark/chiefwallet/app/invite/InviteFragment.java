@@ -12,14 +12,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.mylhyl.zxing.scanner.encode.QREncode;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.BR;
 import com.spark.chiefwallet.R;
+import com.spark.chiefwallet.app.me.finance.property.coincharging.CoinChargingActivity;
 import com.spark.chiefwallet.base.ARouterPath;
 import com.spark.chiefwallet.databinding.FragmentInviteBinding;
 import com.spark.chiefwallet.ui.toast.Toasty;
 
+import java.util.Hashtable;
 import java.util.List;
 
 import butterknife.OnClick;
@@ -30,6 +36,7 @@ import me.spark.mvvm.utils.ImageUtils;
 import me.spark.mvvm.utils.LogUtils;
 import me.spark.mvvm.utils.PermissionConstants;
 import me.spark.mvvm.utils.PermissionUtils;
+import me.spark.mvvm.utils.StringUtils;
 
 /**
  * ================================================
@@ -45,6 +52,8 @@ public class InviteFragment extends BaseFragment<FragmentInviteBinding, InviteVi
     public int initContentView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return R.layout.fragment_invite;
     }
+
+    private Bitmap saveBitmap;
 
     @Override
     public int initVariableId() {
@@ -79,12 +88,24 @@ public class InviteFragment extends BaseFragment<FragmentInviteBinding, InviteVi
 
                 binding.websiteUrl.setText(BaseHost.HOST.substring(0, BaseHost.HOST.length() - 1));
                 binding.inviteCode.setText(App.getInstance().getCurrentUser().getPromotionCode());
-                final Bitmap mBitmap = new QREncode.Builder(getActivity())
-                        .setColor(Color.BLACK)
-                        .setContents(Constant.inviteUrl + Constant.inviteUrlSub + App.getInstance().getCurrentUser().getPromotionCode())
-                        .setMargin(2)
-                        .build().encodeAsBitmap();
-                binding.qrCode.setImageBitmap(mBitmap);
+//                final Bitmap mBitmap = new QREncode.Builder(getActivity())
+//                        .setColor(Color.BLACK)
+//                        .setContents(Constant.inviteUrl + Constant.inviteUrlSub + App.getInstance().getCurrentUser().getPromotionCode())
+//                        .setMargin(2)
+//                        .build().encodeAsBitmap();
+//                binding.qrCode.setImageBitmap(mBitmap);
+
+
+                binding.qrCode.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (StringUtils.isEmpty(App.getInstance().getCurrentUser().getPromotionCode()))
+                            return;
+                        saveBitmap = createQRCode(Constant.inviteUrl + Constant.inviteUrlSub + App.getInstance().getCurrentUser().getPromotionCode(), Math.min(binding.qrCode.getWidth(), binding.qrCode.getHeight()));
+                        binding.qrCode.setImageBitmap(saveBitmap);
+                    }
+                });
+
                 PermissionUtils.permission(PermissionConstants.CAMERA, PermissionConstants.STORAGE).callback(new PermissionUtils.FullCallback() {
                     @Override
                     public void onGranted(List<String> permissionsGranted) {
@@ -106,4 +127,31 @@ public class InviteFragment extends BaseFragment<FragmentInviteBinding, InviteVi
                 break;
         }
     }
+
+    public static Bitmap createQRCode(String text, int size) {
+        try {
+            Hashtable<EncodeHintType, Object> hints = new Hashtable<>();
+            hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
+            hints.put(EncodeHintType.MARGIN, 2);   //设置白边大小 取值为 0- 4 越大白边越大
+            BitMatrix bitMatrix = new QRCodeWriter().encode(text, BarcodeFormat.QR_CODE, size, size, hints);
+            int[] pixels = new int[size * size];
+            for (int y = 0; y < size; y++) {
+                for (int x = 0; x < size; x++) {
+                    if (bitMatrix.get(x, y)) {
+                        pixels[y * size + x] = 0xff000000;
+                    } else {
+                        pixels[y * size + x] = 0xffffffff;
+                    }
+                }
+            }
+            Bitmap bitmap = Bitmap.createBitmap(size, size,
+                    Bitmap.Config.ARGB_8888);
+            bitmap.setPixels(pixels, 0, size, 0, 0, size, size);
+            return bitmap;
+        } catch (WriterException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }

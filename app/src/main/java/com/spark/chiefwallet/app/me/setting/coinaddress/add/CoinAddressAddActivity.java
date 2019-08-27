@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.WindowManager;
 
+import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.lxj.xpopup.XPopup;
 import com.spark.acclient.pojo.CoinSupportBean;
@@ -32,6 +33,9 @@ import me.spark.mvvm.base.BaseActivity;
  */
 @Route(path = ARouterPath.ACTIVITY_ME_COINADDRESS_COINADDRESS_ADD)
 public class CoinAddressAddActivity extends BaseActivity<ActivityCoinAddressAddBinding, CoinAddressAddViewModel> {
+    @Autowired(name = "Coin")
+    String Coin;
+
     private TitleBean mTitleModel;
 
     @Override
@@ -56,8 +60,10 @@ public class CoinAddressAddActivity extends BaseActivity<ActivityCoinAddressAddB
         //TitleSet
         mTitleModel = new TitleBean();
         binding.coinAddressAddTitle.setViewTitle(mTitleModel);
+        mTitleModel.setTitleName("新增地址");
         setTitleListener(binding.coinAddressAddTitle.titleRootLeft);
 
+        viewModel.setSelectCoinAddress(Coin);
         viewModel.initContext(this);
     }
 

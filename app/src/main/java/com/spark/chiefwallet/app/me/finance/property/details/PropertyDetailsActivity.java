@@ -16,6 +16,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.interfaces.OnSelectListener;
 import com.lxj.xpopup.util.XPopupUtils;
+import com.spark.acclient.FinanceClient;
 import com.spark.acclient.pojo.CoinTransDetailsResult;
 import com.spark.acclient.pojo.SpotWalletResult;
 import com.spark.chiefwallet.App;
@@ -51,8 +52,8 @@ import me.spark.mvvm.http.impl.OnRequestListener;
 public class PropertyDetailsActivity extends BaseActivity<ActivityPropertyDetailsBinding, PropertyDetailsViewModel> {
     @Autowired(name = "propertDetails")
     SpotWalletResult.DataBean propertDetailsBean;
-    @Autowired
-    String busiType;
+    @Autowired(name = "busiTypes")
+    String busiTypes;
 
     private TitleBean mTitleModel;
     private int pageIndex = 1;
@@ -63,8 +64,8 @@ public class PropertyDetailsActivity extends BaseActivity<ActivityPropertyDetail
     private List<LockProoertDetailsResult.DataBean.RecordsBean> mLockRecordsBeanList = new ArrayList<>();
 
     private String[] filterTypeList;
-    private boolean isFlilterResult = false;
-    private String filterTypeSelect;
+    private boolean isFlilterResult = true;
+    private String filterTypeSelect = "1,2";//充提
 
     @Override
     public int initContentView(Bundle savedInstanceState) {
@@ -78,22 +79,32 @@ public class PropertyDetailsActivity extends BaseActivity<ActivityPropertyDetail
 
     @Override
     public void initView() {
-        StatueBarUtils.setStatusBarLightMode(this, true);
-        StatueBarUtils.addMarginTopEqualStatusBarHeight(binding.propertyDetailsTitle.fakeStatusBar);
+        StatueBarUtils.addMarginTopEqualStatusBarHeight(binding.fakeStatusBar);
         StatueBarUtils.setStatusBarColor(this, Color.WHITE);
 
-        if (busiType.equals("OTC")) {
-            binding.hide1.setVisibility(View.INVISIBLE);
-            binding.hide2.setVisibility(View.INVISIBLE);
+        if (busiTypes.equals("OTC")){
+            filterTypeSelect = "3,4";//划转记录
+            binding.tvBusiType.setText(getResources().getString(R.string.transfer_record));
+            binding.hide1.setVisibility(View.GONE);
+            binding.hide2.setVisibility(View.GONE);
+            binding.hide3.setVisibility(View.VISIBLE);
+            binding.hide0.setVisibility(View.GONE);
+        } else{
+            filterTypeSelect = "1,2";
+//            filterTypeSelect = "2";//充提
+            binding.tvBusiType.setText(getResources().getString(R.string.financial_record2));
+            binding.hide1.setVisibility(View.VISIBLE);
+            binding.hide2.setVisibility(View.VISIBLE);
+            binding.hide3.setVisibility(View.GONE);
+            binding.hide0.setVisibility(View.VISIBLE);
         }
-        filterTypeList = getResources().getStringArray(R.array.property_details_tab);
+//        filterTypeList = getResources().getStringArray(R.array.property_details_tab);
         //TitleSet
-        mTitleModel = new TitleBean();
-        mTitleModel.setTitleName(propertDetailsBean.getCoinId() + getString(R.string.details2));
-        binding.propertyDetailsTitle.setViewTitle(mTitleModel);
-        setTitleListener(binding.propertyDetailsTitle.titleRootLeft);
-        viewModel.init(this, busiType, propertDetailsBean);
-
+//        mTitleModel = new TitleBean();
+//        mTitleModel.setTitleName(propertDetailsBean.getCoinId() + getString(R.string.details2));
+//        binding.propertyDetailsTitle.setViewTitle(mTitleModel);
+//        setTitleListener(binding.propertyDetailsTitle.titleRootLeft);
+        viewModel.init(this, busiTypes, propertDetailsBean);
 
         mPropertyDetailsAdapter = new PropertyDetailsAdapter(mRecordsBeanList);
         binding.rvPropertyDetails.setLayoutManager(new LinearLayoutManager(this));
@@ -152,6 +163,7 @@ public class PropertyDetailsActivity extends BaseActivity<ActivityPropertyDetail
      */
     private void refresh() {
         binding.swipeLayout.setRefreshing(true);
+//        FinanceClient.getInstance().getCoinOutOtcInfo("/" + busiType + "/", propertDetailsBean.getCoinId());
         if (!isFlilterResult) {
             pageIndex = 1;
             viewModel.loadPageDate(pageIndex, new OnRequestListener<CoinTransDetailsResult>() {
@@ -197,6 +209,7 @@ public class PropertyDetailsActivity extends BaseActivity<ActivityPropertyDetail
     private void loadMore() {
 
         if (!isFlilterResult) {
+
             viewModel.loadPageDate(pageIndex, new OnRequestListener<CoinTransDetailsResult>() {
                 @Override
                 public void onSuccess(CoinTransDetailsResult coinTransDetailsResult) {
@@ -211,7 +224,7 @@ public class PropertyDetailsActivity extends BaseActivity<ActivityPropertyDetail
                 }
             });
         } else {
-            viewModel.loadPageDateFilter(pageIndex, filterTypeSelect, new OnRequestListener<CoinTransDetailsResult>() {
+            viewModel.loadPageDateFilter(pageFilterIndex, filterTypeSelect, new OnRequestListener<CoinTransDetailsResult>() {
                 @Override
                 public void onSuccess(CoinTransDetailsResult coinTransDetailsResult) {
                     boolean isRefresh = pageFilterIndex == 1;
@@ -252,9 +265,12 @@ public class PropertyDetailsActivity extends BaseActivity<ActivityPropertyDetail
     }
 
 
-    @OnClick({R.id.filter})
+    @OnClick({R.id.filter, R.id.title_left})
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.title_left:
+                finish();
+                break;
             case R.id.filter:
                 new XPopup.Builder(this)
                         .maxHeight((int) (XPopupUtils.getWindowHeight(this) * .85f))
@@ -282,4 +298,6 @@ public class PropertyDetailsActivity extends BaseActivity<ActivityPropertyDetail
                 break;
         }
     }
+
+
 }

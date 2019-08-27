@@ -48,7 +48,8 @@ public class PropertyRecordViewModel extends BaseViewModel {
 
     public void findPropertyRecord(int pageIndex, String coinName, String busiType, String orderType, OnRequestListener onRequestListener) {
         this.onRequestListener = onRequestListener;
-        FinanceClient.getInstance().getProperyOrder(pageIndex, coinName, busiType, orderType);
+//        FinanceClient.getInstance().getProperyOrder(pageIndex, coinName, busiType, orderType);
+        FinanceClient.getInstance().getProperyOrder(pageIndex, "", busiType, orderType);//全部记录
     }
 
     public void findCoinList(Context context) {

@@ -263,6 +263,7 @@ public class AdUploadViewModel extends BaseViewModel {
         adCreateBean.setAutoword(autoResponse.get());
         adCreateBean.setCoinName(coinName.get());
         adCreateBean.setCountry(coinAddressStr);
+        adCreateBean.setLocalCurrency(coinType.get());
         adCreateBean.setMaxLimit(Double.valueOf(maxAmount.get()));
         adCreateBean.setMinLimit(Double.valueOf(minAmount.get()));
         adCreateBean.setNumber(Double.valueOf(tradeNumber.get()));

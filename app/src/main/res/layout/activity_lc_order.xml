@@ -5,7 +5,7 @@
 
         <variable
             name="lcOrderViewModel"
-            type="com.spark.chiefwallet.app.trade.legal_currency.order.LcOrderViewModel"/>
+            type="com.spark.chiefwallet.app.trade.legal_currency.order.LcOrderViewModel" />
     </data>
 
     <LinearLayout
@@ -16,7 +16,7 @@
 
         <include
             android:id="@+id/order_title"
-            layout="@layout/view_title"/>
+            layout="@layout/view_title" />
 
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swipeLayout"
@@ -33,16 +33,18 @@
                     android:layout_marginLeft="16dp"
                     android:text="@string/str_order_record"
                     android:textSize="@dimen/sp_30"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:visibility="gone" />
 
                 <View
-                    style="@style/line_ccc"
-                    android:layout_marginTop="16dp"/>
+                    style="@style/line_ccc" />
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rv_lv_order"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+                    android:layout_height="match_parent">
+
+                </android.support.v7.widget.RecyclerView>
             </LinearLayout>
         </android.support.v4.widget.SwipeRefreshLayout>
     </LinearLayout>

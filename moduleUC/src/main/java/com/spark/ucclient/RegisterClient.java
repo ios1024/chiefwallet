@@ -1,6 +1,8 @@
 package com.spark.ucclient;
 
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.spark.ucclient.base.UcHost;
@@ -101,6 +103,7 @@ public class RegisterClient extends BaseHttpClient {
         registerByPhoneDto.setTid(DeviceUtils.getTid());
         registerByPhoneDto.setUsername(username);
 
+        Log.i("dqwdqdqwdqwd", username + "          " + code + "   " + password + "   " + country + "     " + promotion+ "      "+ phone);
         EasyHttp.post(UcHost.registerByPhoneUrl)
                 .baseUrl(BaseHost.UC_HOST)
                 .headers("check", "phone:" + phone + ":" + code)

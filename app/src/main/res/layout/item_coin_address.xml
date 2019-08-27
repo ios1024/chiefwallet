@@ -1,59 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
             name="coinAddressBean"
-            type="com.spark.acclient.pojo.CoinAddressListBean.DataBean"/>
+            type="com.spark.acclient.pojo.CoinWithdrawAddressResult.DataBean" />
     </data>
 
+
     <LinearLayout
+        android:id="@+id/coin_address_root"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="15dp"
+        app:bl_ripple_color="@color/gray_ccc"
+        app:bl_ripple_enable="true"
+        app:bl_solid_color="@color/white">
 
         <LinearLayout
-            android:id="@+id/coin_address_root"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="16dp"
-            app:bl_ripple_color="@color/gray_ccc"
-            app:bl_ripple_enable="true"
-            app:bl_solid_color="@color/white">
+            android:layout_height="wrap_content">
 
-            <com.spark.chiefwallet.ui.SmoothCheckBox
-                android:id="@+id/coin_address_select"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                app:color_checked="@color/base"
-                app:color_unchecked_stroke="@color/gray_ccc"/>
+            <!--<com.spark.chiefwallet.ui.SmoothCheckBox-->
+            <!--android:id="@+id/coin_address_select"-->
+            <!--android:layout_width="24dp"-->
+            <!--android:layout_height="24dp"-->
+            <!--app:color_checked="@color/base"-->
+            <!--app:color_unchecked_stroke="@color/gray_ccc"/>-->
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="52dp"
-                android:layout_marginLeft="16dp"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
                 <TextView
                     style="@style/textBlackNormal"
                     android:maxLines="1"
-                    android:text="@{coinAddressBean.remark}"/>
+                    android:text="@{coinAddressBean.remark}"
+                    android:textColor="#FF000000"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
-                <TextView
-                    style="@style/textGrayCommonSmall"
-                    android:layout_marginTop="8dp"
-                    android:maxLines="1"
-                    android:text="@{coinAddressBean.address}"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/textGrayCommonSmall"
+                        android:maxLines="1"
+                        android:text="地址"
+                        android:textColor="#FFA4ABC0"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        style="@style/textGrayCommonSmall"
+                        android:layout_marginLeft="10dp"
+                        android:maxLines="1"
+                        android:text="@{coinAddressBean.address}"
+                        android:textColor="#FF333333"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
             </LinearLayout>
         </LinearLayout>
 
-        <View
-            style="@style/line_ccc"/>
+        <View style="@style/line_ccc" />
     </LinearLayout>
+
 </layout>

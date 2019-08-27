@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="openOrdersViewModel"
+            type="com.spark.modulespot.pojo.OpenOrdersResult.DataBean.ListBean"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        app:bl_ripple_color="@color/gray_ccc"
+        app:bl_ripple_enable="true"
+        app:bl_solid_color="@color/white">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@{openOrdersViewModel.formatDateShort()}"
+            android:textColor="@color/black_00"
+            android:textSize="@dimen/font_small"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@{openOrdersViewModel.initPriceText()}"
+            android:textColor="@{openOrdersViewModel.initTypeColor() ? @color/rise : @color/fall}"
+            android:textSize="@dimen/font_small"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="@{openOrdersViewModel.initNumberText()}"
+            android:textColor="@color/black_00"
+            android:textSize="@dimen/font_small"/>
+    </LinearLayout>
+</layout>

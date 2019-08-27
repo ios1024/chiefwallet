@@ -83,6 +83,7 @@ public class LoginPwdUpdateViewModel extends BaseViewModel {
         @Override
         public void call() {
             ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_FORGET_PWD)
+                    .withString("type", "0")
                     .navigation();
         }
     });

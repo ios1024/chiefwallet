@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="KLineChartView">
+        <attr name="kc_red_color" format="color"/>
+        <attr name="kc_gre_color" format="color"/>
         <!--公共的-->
         <attr name="kc_text_size" format="dimension"/>
         <attr name="kc_text_color" format="color"/>

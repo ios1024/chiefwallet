@@ -6,9 +6,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.lxj.xpopup.core.BottomPopupView;
 import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.R;
+import com.spark.chiefwallet.base.ARouterPath;
 import com.spark.chiefwallet.ui.popup.impl.OnEtContentListener;
 import com.spark.chiefwallet.ui.toast.Toasty;
 
@@ -65,7 +67,7 @@ public class TradePwdPopup extends BottomPopupView {
         }
     }
 
-    @OnClick({R.id.btn_ensure, R.id.btn_cancel})
+    @OnClick({R.id.btn_ensure, R.id.btn_cancel, R.id.btn_forget})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_ensure:
@@ -78,6 +80,10 @@ public class TradePwdPopup extends BottomPopupView {
                 break;
             case R.id.btn_cancel:
                 dismiss();
+                break;
+            case R.id.btn_forget:
+                ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_TRADE_PWD_FORGET)
+                        .navigation();
                 break;
         }
     }

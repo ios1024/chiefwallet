@@ -95,7 +95,7 @@ public class TradePwdViewModel extends BaseViewModel {
 
     public void initIsFirst(boolean isFirst) {
         this.isFirst = isFirst;
-        titleText.set(isFirst ? App.getInstance().getString(R.string.lc_pwd_set) : App.getInstance().getString(R.string.lc_pwd_update));
+//        titleText.set(isFirst ? App.getInstance().getString(R.string.lc_pwd_set) : App.getInstance().getString(R.string.lc_pwd_update));
         oldPwdVisiable.set(isFirst);
     }
 

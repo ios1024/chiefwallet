@@ -17,6 +17,7 @@ public class WsCMD {
     // 首页币币推送模块
     public static final short GET_ALL_THUMB = 22003;                // 查询所有币种信息（行情首页界面显示）
     public static final short GET_OVERVIEW_THUMB = 22004;           // 获取首页缩略图和涨幅榜
+    public static final short GET_RECOMMEND_THUMB = 22005;          // 获取首页推荐
     public static final short ENABLE_SYMBOL = 20009;                // 查询行情可用币种
     public static final short SUBSCRIBE_THUMB = 22011;              // 首页缩略图订阅与取消
     public static final short UN_SUBSCRIBE_THUMB = 22012;
@@ -24,6 +25,10 @@ public class WsCMD {
     public static final short UN_SUBSCRIBE_CFD_THUMB = 22014;
     public static final short PUSH_THUMB = 22101;                   // 首页缩略图接受
     public static final short PUSH_CFD_THUMB = 22107;               // 首页CFD缩略图接受
+
+    //OTC
+    public static final short OTC_SUBSCRIBE_THUMB = 23017;          //订阅OTC缩略图
+    public static final short OTC_PUSH_THUMB = 22110;               //推送法币24小时行情
 
     // 币币收藏模块
     public static final short FIND_FAVOR = 20103;                   // 自选

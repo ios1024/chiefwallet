@@ -5,7 +5,7 @@
 
         <variable
             name="propertyRecordViewModel"
-            type="com.spark.chiefwallet.app.me.finance.property.record.PropertyRecordViewModel"/>
+            type="com.spark.chiefwallet.app.me.finance.property.record.PropertyRecordViewModel" />
     </data>
 
     <LinearLayout
@@ -16,18 +16,18 @@
 
         <include
             android:id="@+id/property_record_details_title"
-            layout="@layout/view_title"/>
+            layout="@layout/view_title" />
 
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swipeLayout"
             android:layout_width="match_parent"
+            android:layout_margin="15dp"
             android:layout_height="match_parent">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_property_order"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-            </android.support.v7.widget.RecyclerView>
+                android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
         </android.support.v4.widget.SwipeRefreshLayout>
     </LinearLayout>
 </layout>

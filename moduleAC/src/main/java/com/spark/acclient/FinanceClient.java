@@ -1,6 +1,7 @@
 package com.spark.acclient;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.spark.acclient.base.AcHost;
 import com.spark.acclient.pojo.CoinAddressBean;
@@ -67,6 +68,7 @@ public class FinanceClient extends BaseHttpClient {
                     @Override
                     public void onSuccess(String s) {
                         try {
+
                             GeneralResult generalResult = BaseApplication.gson.fromJson(s, GeneralResult.class);
                             if (generalResult.getCode() == BaseRequestCode.OK) {
                                 CoinSupportBean coinSupportBean = BaseApplication.gson.fromJson(s, CoinSupportBean.class);

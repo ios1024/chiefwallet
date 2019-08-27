@@ -79,9 +79,13 @@ public class PropertyRecordActivity extends BaseActivity<ActivityPropertyRecordB
                 mTitleModel.setTitleName(getString(R.string.charge_record));
                 recordTypeStr = "1";
                 break;
+//            case 1:
+//                mTitleModel.setTitleName(getString(R.string.financial_record2));
+//                recordTypeStr = "2";
+//                break;
             case 1:
-                mTitleModel.setTitleName(getString(R.string.mention_record));
-                recordTypeStr = "2";
+                mTitleModel.setTitleName(getString(R.string.financial_record2));
+                recordTypeStr = "1,2";
                 break;
             case 2:
                 mTitleModel.setTitleName(getString(R.string.transfer_record));
@@ -99,9 +103,9 @@ public class PropertyRecordActivity extends BaseActivity<ActivityPropertyRecordB
                 coinTypeStr = "CFD";
                 break;
         }
-        mTitleModel.setShowRightImg(true);
+        mTitleModel.setShowRightImg(false);
         mTitleModel.setShowTitleLine(true);
-        binding.propertyRecordDetailsTitle.titleRightImg.setImageDrawable(getResources().getDrawable(R.drawable.svg_filter));
+        binding.propertyRecordDetailsTitle.titleRightImg.setImageDrawable(getResources().getDrawable(R.drawable.svg_fliter));
         binding.propertyRecordDetailsTitle.setViewTitle(mTitleModel);
         setTitleListener(binding.propertyRecordDetailsTitle.titleRootLeft, binding.propertyRecordDetailsTitle.titleRootRight);
 
