@@ -51,6 +51,7 @@ import me.spark.mvvm.binding.command.BindingCommand;
 import me.spark.mvvm.bus.event.SingleLiveEvent;
 import me.spark.mvvm.utils.EventBean;
 import me.spark.mvvm.utils.EventBusUtils;
+import me.spark.mvvm.utils.LanguageSPUtil;
 import me.spark.mvvm.utils.SPUtils;
 import me.spark.mvvm.utils.StringUtils;
 
@@ -112,18 +113,54 @@ public class RegisterViewModel extends BaseViewModel {
     public BindingCommand termsofserviceOnClickCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
+
+//            ARouter.getInstance().build(ARouterPath.ACTIVITY_EMEX_WEBDETAILS)
+//                    .withString("title", App.getInstance().getString(R.string.register_clause))
+//                    .withString("link", StringUtils.isEmpty(clauseUrl) ? "" : clauseUrl)
+//                    .navigation();
+            switch (LanguageSPUtil.getInstance(App.getInstance()).getSelectLanguage()) {
+                case 1://中文
+                    bannerPicBean = "https://www.exchief.com/copywriting/protocolZh.html";
+                    break;
+                case 0://英文
+                    bannerPicBean = "https://www.exchief.com/copywriting/protocolEn.html";
+                    break;
+                default:
+                    bannerPicBean = "https://www.exchief.com/copywriting/protocolEn.html";
+                    break;
+            }
+
             ARouter.getInstance().build(ARouterPath.ACTIVITY_EMEX_WEBDETAILS)
-                    .withString("title", App.getInstance().getString(R.string.register_clause))
-                    .withString("link", StringUtils.isEmpty(clauseUrl) ? "" : clauseUrl)
+                    .withString("link", bannerPicBean)
+                    .withString("title", App.getInstance().getResources().getString(R.string.register_clause))
                     .navigation();
+
         }
     }); //隐私政策
     public BindingCommand rivacyOnClickCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
+
+//
+//            ARouter.getInstance().build(ARouterPath.ACTIVITY_EMEX_WEBDETAILS)
+//                    .withString("title", App.getInstance().getString(R.string.register_rivacy))
+//                    .withString("link", StringUtils.isEmpty(rivacyUrl) ? "" : rivacyUrl)
+//                    .navigation();
+            switch (LanguageSPUtil.getInstance(App.getInstance()).getSelectLanguage()) {
+                case 1://中文
+                    bannerPicBean = "https://www.exchief.com/copywriting/privacyZh.html";
+                    break;
+                case 0://英文
+                    bannerPicBean = "https://www.exchief.com/copywriting/privacyEn.html";
+                    break;
+                default:
+                    bannerPicBean = "https://www.exchief.com/copywriting/privacyEn.html";
+                    break;
+            }
+
             ARouter.getInstance().build(ARouterPath.ACTIVITY_EMEX_WEBDETAILS)
-                    .withString("title", App.getInstance().getString(R.string.register_rivacy))
-                    .withString("link", StringUtils.isEmpty(rivacyUrl) ? "" : rivacyUrl)
+                    .withString("link", bannerPicBean)
+                    .withString("title", App.getInstance().getResources().getString(R.string.register_rivacy))
                     .navigation();
         }
     });
@@ -619,24 +656,24 @@ public class RegisterViewModel extends BaseViewModel {
             case EvKey.registerSuccess:
                 finish();
                 break;
-            case EvKey.articleList:
-                if (eventBean.isStatue()) {
-                    ArticleListBean mArticleListBean = (ArticleListBean) eventBean.getObject();
-                    for (int i = 0; i < mArticleListBean.getData().size(); i++) {
-
-                        if (mArticleListBean.getData().get(i).getName().contains("法律")
-                                || mArticleListBean.getData().get(i).getName().contains("政策")) {
-                            rivacyUrl = mArticleListBean.getData().get(i).getRedirectUrl();
-                        }
-                        if (mArticleListBean.getData().get(i).getName().contains("用户")) {
-                            clauseUrl = mArticleListBean.getData().get(i).getRedirectUrl();
-                        }
-
-                    }
-                } else {
-                    Toasty.showError(App.getInstance().getString(R.string.network_abnormal));
-                }
-                break;
+//            case EvKey.articleList:
+//                if (eventBean.isStatue()) {
+//                    ArticleListBean mArticleListBean = (ArticleListBean) eventBean.getObject();
+//                    for (int i = 0; i < mArticleListBean.getData().size(); i++) {
+//
+//                        if (mArticleListBean.getData().get(i).getName().contains("法律")
+//                                || mArticleListBean.getData().get(i).getName().contains("政策")) {
+//                            rivacyUrl = mArticleListBean.getData().get(i).getRedirectUrl();
+//                        }
+//                        if (mArticleListBean.getData().get(i).getName().contains("用户")) {
+//                            clauseUrl = mArticleListBean.getData().get(i).getRedirectUrl();
+//                        }
+//
+//                    }
+//                } else {
+//                    Toasty.showError(App.getInstance().getString(R.string.network_abnormal));
+//                }
+//                break;
             default:
                 break;
         }

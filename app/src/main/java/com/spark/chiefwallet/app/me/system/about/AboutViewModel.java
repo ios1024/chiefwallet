@@ -70,11 +70,11 @@ public class AboutViewModel extends BaseViewModel {
 //                    .navigation();
 
             switch (LanguageSPUtil.getInstance(App.getInstance()).getSelectLanguage()) {
-                case 0://中文
+                case 1://中文
                     bannerPicBean = "https://www.exchief.com/copywriting/aboutusZh.html";
 
                     break;
-                case 1://英文
+                case 0://英文
                     bannerPicBean = "https://www.exchief.com/copywriting/aboutusEn.html";
                     break;
                 default:
@@ -99,10 +99,10 @@ public class AboutViewModel extends BaseViewModel {
 //                    .navigation();
 
             switch (LanguageSPUtil.getInstance(App.getInstance()).getSelectLanguage()) {
-                case 0://中文
+                case 1://中文
                     bannerPicBean = "https://www.exchief.com/copywriting/privacyZh.html";
                     break;
-                case 1://英文
+                case 0://英文
                     bannerPicBean = "https://www.exchief.com/copywriting/privacyEn.html";
                     break;
                 default:
@@ -120,10 +120,10 @@ public class AboutViewModel extends BaseViewModel {
         @Override
         public void call() {
             switch (LanguageSPUtil.getInstance(App.getInstance()).getSelectLanguage()) {
-                case 0://中文
+                case 1://中文
                     bannerPicBean = "https://www.exchief.com/copywriting/legalZh.html";
                     break;
-                case 1://英文
+                case 0://英文
                     bannerPicBean = "https://www.exchief.com/copywriting/legalEn.html";
                     break;
                 default:
@@ -148,10 +148,10 @@ public class AboutViewModel extends BaseViewModel {
 //                    .withString("link", StringUtils.isEmpty(clauseUrl) ? "" : clauseUrl)
 //                    .navigation();
             switch (LanguageSPUtil.getInstance(App.getInstance()).getSelectLanguage()) {
-                case 0://中文
+                case 1://中文
                     bannerPicBean = "https://www.exchief.com/copywriting/protocolZh.html";
                     break;
-                case 1://英文
+                case 0://英文
                     bannerPicBean = "https://www.exchief.com/copywriting/protocolEn.html";
                     break;
                 default:

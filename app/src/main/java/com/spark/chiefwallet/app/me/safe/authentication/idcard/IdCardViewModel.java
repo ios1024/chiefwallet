@@ -25,6 +25,7 @@ import me.spark.mvvm.binding.command.BindingAction;
 import me.spark.mvvm.binding.command.BindingCommand;
 import me.spark.mvvm.utils.EventBean;
 import me.spark.mvvm.utils.EventBusUtils;
+import me.spark.mvvm.utils.LanguageSPUtil;
 import me.spark.mvvm.utils.StringUtils;
 
 /**
@@ -42,6 +43,7 @@ public class IdCardViewModel extends BaseViewModel {
     }
 
     private String aboutAppUrl, rivacyUrl, clauseUrl, helpCenterUrl;
+    public String bannerPicBean;
 
     //账号
     public ObservableField<String> userName = new ObservableField<>("");
@@ -63,9 +65,27 @@ public class IdCardViewModel extends BaseViewModel {
     public BindingCommand termsofserviceOnClickCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
+
+//            ARouter.getInstance().build(ARouterPath.ACTIVITY_EMEX_WEBDETAILS)
+//                    .withString("title", App.getInstance().getString(R.string.register_clause))
+//                    .withString("link", StringUtils.isEmpty(clauseUrl) ? "" : clauseUrl)
+//                    .navigation();
+
+            switch (LanguageSPUtil.getInstance(App.getInstance()).getSelectLanguage()) {
+                case 1://中文
+                    bannerPicBean = "https://www.exchief.com/copywriting/protocolZh.html";
+                    break;
+                case 0://英文
+                    bannerPicBean = "https://www.exchief.com/copywriting/protocolEn.html";
+                    break;
+                default:
+                    bannerPicBean = "https://www.exchief.com/copywriting/protocolEn.html";
+                    break;
+            }
+
             ARouter.getInstance().build(ARouterPath.ACTIVITY_EMEX_WEBDETAILS)
-                    .withString("title", App.getInstance().getString(R.string.register_clause))
-                    .withString("link", StringUtils.isEmpty(clauseUrl) ? "" : clauseUrl)
+                    .withString("link", bannerPicBean)
+                    .withString("title", App.getInstance().getResources().getString(R.string.register_clause))
                     .navigation();
         }
     });
@@ -73,9 +93,25 @@ public class IdCardViewModel extends BaseViewModel {
     public BindingCommand rivacyOnClickCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
+//            ARouter.getInstance().build(ARouterPath.ACTIVITY_EMEX_WEBDETAILS)
+//                    .withString("title", App.getInstance().getString(R.string.register_rivacy))
+//                    .withString("link", StringUtils.isEmpty(rivacyUrl) ? "" : rivacyUrl)
+//                    .navigation();
+            switch (LanguageSPUtil.getInstance(App.getInstance()).getSelectLanguage()) {
+                case 1://中文
+                    bannerPicBean = "https://www.exchief.com/copywriting/privacyZh.html";
+                    break;
+                case 0://英文
+                    bannerPicBean = "https://www.exchief.com/copywriting/privacyEn.html";
+                    break;
+                default:
+                    bannerPicBean = "https://www.exchief.com/copywriting/privacyEn.html";
+                    break;
+            }
+
             ARouter.getInstance().build(ARouterPath.ACTIVITY_EMEX_WEBDETAILS)
-                    .withString("title", App.getInstance().getString(R.string.register_rivacy))
-                    .withString("link", StringUtils.isEmpty(rivacyUrl) ? "" : rivacyUrl)
+                    .withString("link", bannerPicBean)
+                    .withString("title", App.getInstance().getResources().getString(R.string.register_rivacy))
                     .navigation();
         }
     });

@@ -382,7 +382,24 @@ public class AllThumbResult implements Parcelable {
 
         //
         public String initConvert() {
-            return "≈￥" + MathUtils.getRundNumber(cnyLegalAsset, 2, null);
+            //1.人民币 CNY 2.美元 USDT 3.欧元 EUR 4.赛地 GHS 5.尼日利亚 NGN
+            if (SPUtils.getInstance().getPricingCurrency().equals("1")) {
+                return "≈" + MathUtils.getRundNumber(cnyLegalAsset, 2, null) + " cny";
+            } else if (SPUtils.getInstance().getPricingCurrency().equals("2")) {
+                return "≈" + MathUtils.getRundNumber(cnyLegalAsset, 2, null) + " usdt";
+
+            } else if (SPUtils.getInstance().getPricingCurrency().equals("3")) {
+                return "≈" + MathUtils.getRundNumber(cnyLegalAsset, 2, null) + " eur";
+
+            } else if (SPUtils.getInstance().getPricingCurrency().equals("4")) {
+                return "≈" + MathUtils.getRundNumber(cnyLegalAsset, 2, null) + " ghs";
+
+            } else if (SPUtils.getInstance().getPricingCurrency().equals("5")) {
+                return "≈" + MathUtils.getRundNumber(cnyLegalAsset, 2, null) + " ngn";
+
+            } else
+                return "≈" + MathUtils.getRundNumber(cnyLegalAsset, 2, null) + " cny";
+
         }
 
         //现价

@@ -68,7 +68,7 @@ public class RegisterActivity extends BaseActivity<ActivityRegisterBinding, Regi
 
         viewModel.initContext(this);
 
-        viewModel.getArticleList();
+//        viewModel.getArticleList();
 
 
         //点击切换

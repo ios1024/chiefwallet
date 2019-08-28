@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Switch;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.spark.chiefwallet.BR;
@@ -18,6 +19,7 @@ import butterknife.OnClick;
 import me.spark.mvvm.base.AppManager;
 import me.spark.mvvm.base.BaseActivity;
 import me.spark.mvvm.utils.LanguageSPUtil;
+import me.spark.mvvm.utils.SPUtils;
 import me.spark.mvvm.utils.language.LocalManageUtil;
 
 /**
@@ -67,6 +69,8 @@ public class LanguageActivity extends BaseActivity<ActivityLanguageBinding, Lang
         }
         binding.chinese.setClickable(false);
         binding.english.setClickable(false);
+
+
     }
 
     private void selectLanguage(int select) {
