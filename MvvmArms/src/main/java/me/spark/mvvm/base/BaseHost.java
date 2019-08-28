@@ -4,7 +4,7 @@ package me.spark.mvvm.base;
 public class BaseHost {
     //获取域名配置url
 //    public static String HOST = "http://api.bitotc.bench.bitpay.com/";
-//    public static String HOST = "http://www.bitrade.top/";之前地址
+//    public static String HOST = "http://www.bitrade.top/";//之前地址
     public static String HOST = "http://cas.test.camall.com/";
 
     //    public static String LOGIN_HOST = "http://cas.bitotc.bench.bitpay.com/";

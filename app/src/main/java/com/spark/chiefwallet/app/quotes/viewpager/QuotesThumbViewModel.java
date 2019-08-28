@@ -43,6 +43,7 @@ public class QuotesThumbViewModel extends BaseViewModel {
     public class UIChangeObservable {
         public SingleLiveEvent<List<AllThumbResult.DataBean>> mAllThumbResultSingleLiveEvent = new SingleLiveEvent<>();
         public SingleLiveEvent<Boolean> isLogin = new SingleLiveEvent<>();
+        public SingleLiveEvent<String> drawerSearchEvent = new SingleLiveEvent<>();
     }
 
 
@@ -83,6 +84,11 @@ public class QuotesThumbViewModel extends BaseViewModel {
             case EvKey.loginStatue:
                 if (eventBean.isStatue()) {
                     uc.isLogin.setValue(App.getInstance().isAppLogin());
+                }
+                break;
+            case EvKey.drawerSearch:
+                if (eventBean.isStatue()) {
+                    uc.drawerSearchEvent.setValue(eventBean.getMessage());
                 }
                 break;
             default:
