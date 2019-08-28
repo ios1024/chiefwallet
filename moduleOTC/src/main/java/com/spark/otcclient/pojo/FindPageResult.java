@@ -2,6 +2,7 @@ package com.spark.otcclient.pojo;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.TextUtils;
 
 import com.spark.otcclient.R;
 
@@ -240,6 +241,24 @@ public class FindPageResult implements Parcelable {
             private int rangeTimeOrder;
             private int rangeTimeSuccessOrder;
             private String realName;
+            private String avatar;
+            private double businessType;
+
+            public double getBusinessType() {
+                return businessType;
+            }
+
+            public void setBusinessType(double businessType) {
+                this.businessType = businessType;
+            }
+
+            public String getAvatar() {
+                return avatar;
+            }
+
+            public void setAvatar(String avatar) {
+                this.avatar = avatar;
+            }
 
             public int getId() {
                 return id;
@@ -439,8 +458,31 @@ public class FindPageResult implements Parcelable {
              * @return
              */
             public String getNameFirstChar() {
-                return StringUtils.isEmpty(realName) ? "" : realName.substring(0, 1);
+                return StringUtils.isEmpty(username) ? "" : username.substring(0, 1);
             }
+
+            /**
+             * 商家头像
+             */
+            public String Avatar() {
+
+                if (TextUtils.isEmpty(avatar)) {
+                    return "";
+                } else
+                    return avatar;
+            }
+
+            /**
+             * 认证类型
+             */
+            public Boolean businessType() {
+                if ((int) getBusinessType() == 1) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
 
             /**
              * 数量
@@ -497,6 +539,15 @@ public class FindPageResult implements Parcelable {
              */
             public boolean isSupportPaypalPay() {
                 return payMode.contains(Constant.PAYPAL);
+            }
+
+            /**
+             * 是否支持MTN支付
+             *
+             * @return
+             */
+            public boolean isMTNPaypalPay() {
+                return payMode.contains(Constant.MTN);
             }
 
             /**

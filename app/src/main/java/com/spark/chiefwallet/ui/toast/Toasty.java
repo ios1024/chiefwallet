@@ -9,6 +9,7 @@ import android.support.annotation.CheckResult;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -38,20 +39,16 @@ public class Toasty {
 
     private static final
     @ColorInt
-//    int ERROR_COLOR = Color.parseColor("#D50000");
-    int ERROR_COLOR = Color.parseColor("#FF242C46");
+    int ERROR_COLOR = Color.parseColor("#E6242C46");
     private static final
     @ColorInt
-//    int INFO_COLOR = Color.parseColor("#A6000000");
-    int INFO_COLOR = Color.parseColor("#FF242C46");
+    int INFO_COLOR = Color.parseColor("#E6242C46");
     private static final
     @ColorInt
-//    int SUCCESS_COLOR = Color.parseColor("#388E3C");
-    int SUCCESS_COLOR = Color.parseColor("#FF242C46");
+    int SUCCESS_COLOR = Color.parseColor("#E6242C46");
     private static final
     @ColorInt
-//    int WARNING_COLOR = Color.parseColor("#FFA900");
-    int WARNING_COLOR = Color.parseColor("#FF242C46");
+    int WARNING_COLOR = Color.parseColor("#E6242C46");
 
     private static final String TOAST_TYPEFACE = "sans-serif-condensed";
     static Toast currentToast;
@@ -206,7 +203,7 @@ public class Toasty {
             if (shouldTint)
                 drawableFrame = ToastyUtils.tint9PatchDrawableFrame(context, tintColor);
             else
-                drawableFrame = ToastyUtils.getDrawable(context, R.mipmap.toast_frame);
+                drawableFrame = ToastyUtils.getDrawable(context, R.drawable.toast_bg);
             ToastyUtils.setBackground(toastLayout, drawableFrame);
 
             if (withIcon) {
@@ -220,6 +217,7 @@ public class Toasty {
             toastTextView.setText(message);
             toastTextView.setTypeface(Typeface.create(TOAST_TYPEFACE, Typeface.NORMAL));
 
+            currentToast.setGravity(Gravity.CENTER, 0, 0);
             currentToast.setView(toastLayout);
             currentToast.setDuration(duration);
         } else {
@@ -227,7 +225,7 @@ public class Toasty {
             if (shouldTint)
                 drawableFrame = ToastyUtils.tint9PatchDrawableFrame(context, tintColor);
             else
-                drawableFrame = ToastyUtils.getDrawable(context, R.mipmap.toast_frame);
+                drawableFrame = ToastyUtils.getDrawable(context, R.drawable.toast_bg);
             ToastyUtils.setBackground(toastLayout, drawableFrame);
 
             if (withIcon) {
@@ -241,6 +239,7 @@ public class Toasty {
             toastTextView.setText(message);
             toastTextView.setTypeface(Typeface.create(TOAST_TYPEFACE, Typeface.NORMAL));
 
+            currentToast.setGravity(Gravity.CENTER, 0, 0);
             currentToast.setView(toastLayout);
             currentToast.setDuration(duration);
         }
@@ -255,7 +254,7 @@ public class Toasty {
      * @param info
      */
     public static void showInfo(String info) {
-        Toasty.info(Utils.getContext(), info, 3 * 1000, true).show();
+        Toasty.info(Utils.getContext(), info, 3 * 1000, false).show();
     }
 
     /**
@@ -264,7 +263,7 @@ public class Toasty {
      * @param success
      */
     public static void showSuccess(String success) {
-        Toasty.success(Utils.getContext(), success, 3 * 1000, true).show();
+        Toasty.success(Utils.getContext(), success, 3 * 1000, false).show();
     }
 
     /**
@@ -273,7 +272,6 @@ public class Toasty {
      * @param error
      */
     public static void showError(String error) {
-        Toasty.error(Utils.getContext(), error, 3 * 1000, true).show();
-
+        Toasty.error(Utils.getContext(), error, 3 * 1000, false).show();
     }
 }

@@ -72,7 +72,7 @@
                         <com.gongwen.marqueen.MarqueeView
                             android:id="@+id/announce"
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="12dp"
                             android:layout_weight="1"/>
                     </LinearLayout>

@@ -79,9 +79,11 @@ public class LegalCurrencyFilterPopup extends PartShadowPopupView {
     }
 
     private void initView() {
-        mRegion = new String[mTradeAreaListResult.getData().size() + 1];
+//        mRegion = new String[mTradeAreaListResult.getData().size() + 1];
+        mRegion = new String[8 + 1];
         mRegion[0] = App.getInstance().getString(R.string.all);
-        for (int i = 0; i < mTradeAreaListResult.getData().size(); i++) {
+//        for (int i = 0; i < mTradeAreaListResult.getData().size(); i++) {
+        for (int i = 0; i < 8; i++) {
             mRegion[i + 1] = mTradeAreaListResult.getData().get(i).getZhName();
         }
 

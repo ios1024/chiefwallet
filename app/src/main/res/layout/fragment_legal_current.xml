@@ -73,7 +73,7 @@
 
         <com.spark.chiefwallet.ui.tab.XTabLayout
             android:id="@+id/legal_current_tab"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="48dp"
             android:paddingLeft="6dp"
             android:paddingRight="6dp"

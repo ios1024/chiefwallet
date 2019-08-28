@@ -15,8 +15,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp_10"
-        android:layout_marginRight="@dimen/dp_10"
         android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
         android:orientation="vertical"
         app:bl_corners_radius="2dp"
         app:bl_ripple_color="@color/gray_ccc"
@@ -27,10 +27,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingBottom="12dp"
             android:paddingLeft="16dp"
+            android:paddingTop="12dp"
             android:paddingRight="16dp"
-            android:paddingTop="12dp">
+            android:paddingBottom="12dp">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -45,23 +45,74 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
-                    <TextView
-                        style="@style/textBlackSmall"
+                    <!--<TextView-->
+                        <!--style="@style/textBlackSmall"-->
+                        <!--android:layout_width="32dp"-->
+                        <!--android:layout_height="32dp"-->
+                        <!--android:gravity="center"-->
+                        <!--android:text="@{findPageResult.getNameFirstChar()}"-->
+                        <!--android:textColor="@color/white"-->
+                        <!--android:textStyle="bold"-->
+                        <!--android:visibility="gone"-->
+                        <!--app:bl_corners_radius="20dp"-->
+                        <!--app:bl_solid_color="@color/color_first_char" />-->
+
+                    <RelativeLayout
                         android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:gravity="center"
-                        android:text="@{findPageResult.getNameFirstChar()}"
-                        android:textColor="@color/white"
-                        android:textStyle="bold"
-                        app:bl_corners_radius="20dp"
-                        app:bl_solid_color="@color/color_first_char" />
+                        android:layout_height="32dp">
+
+                        <!--<com.spark.chiefwallet.ui.CircleImageView-->
+                            <!--android:id="@+id/ivHeader"-->
+                            <!--url="@{findPageResult.Avatar()}"-->
+                            <!--android:layout_width="38dp"-->
+                            <!--android:layout_height="38dp"-->
+                            <!--android:src="@mipmap/head" />-->
+
+                        <TextView
+                            style="@style/textBlackSmall"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:gravity="center"
+                            android:text="@{findPageResult.getNameFirstChar()}"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            app:bl_corners_radius="20dp"
+                            app:bl_solid_color="@color/color_first_char" />
+                        <ImageView
+                            android:layout_width="14sp"
+                            android:layout_height="14sp"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentBottom="true"
+                            android:src="@drawable/svg_certification_personal"
+                            android:visibility="@{findPageResult.businessType() ? View.VISIBLE : View.GONE}" />
+
+                        <ImageView
+                            android:layout_width="14sp"
+                            android:layout_height="14sp"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentBottom="true"
+                            android:src="@drawable/svg_certification_enterprise"
+                            android:visibility="@{findPageResult.businessType() ? View.GONE: View.VISIBLE }" />
+
+                    </RelativeLayout>
+
 
                     <TextView
                         style="@style/textBlackNormal"
                         android:layout_marginLeft="12dp"
-                        android:text="@{findPageResult.realName}"
+                        android:text="@{findPageResult.username}"
                         android:textSize="@dimen/font_small"
                         android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="12sp"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="5dp"
+                        android:src="@mipmap/enterprise"
+                        android:visibility="@{findPageResult.businessType() ? View.GONE: View.VISIBLE }" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -136,6 +187,13 @@
                         android:layout_marginLeft="8dp"
                         android:src="@drawable/svg_pay_paypal"
                         android:visibility="@{findPageResult.isSupportPaypalPay() ? View.GONE : View.GONE}" />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="8dp"
+                        android:src="@drawable/svg_pay_mtn"
+                        android:visibility="@{findPageResult.isMTNPaypalPay() ? View.GONE : View.GONE}" />
 
                     <ImageView
                         android:layout_width="20dp"

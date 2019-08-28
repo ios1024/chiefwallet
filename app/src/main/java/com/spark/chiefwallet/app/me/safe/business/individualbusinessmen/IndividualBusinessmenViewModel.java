@@ -118,7 +118,7 @@ public class IndividualBusinessmenViewModel extends BaseViewModel {
             if (mbondtype == 0) {
                 LcTradeClient.getInstance().getBusBasicApply(1, nametv.get(), phonetv.get(), mailboxtv.get(), emergencytv.get(), emergencyphonetv.get(), selecttv.get(), emergaddresstv.get(), "", "", "", "");
             } else
-                LcTradeClient.getInstance().getBusBasicApply(1, nametv.get(), phonetv.get(), mailboxtv.get(), emergencytv.get(), emergencyphonetv.get(), selecttv.get(), emergaddresstv.get(), String.valueOf(cmount), coin, qrCodeUrl.get(), "BTC");
+                LcTradeClient.getInstance().getBusBasicApply(2, nametv.get(), phonetv.get(), mailboxtv.get(), emergencytv.get(), emergencyphonetv.get(), selecttv.get(), emergaddresstv.get(), String.valueOf(cmount), coin, qrCodeUrl.get(), "BTC");
 
         }
     });
