@@ -20,6 +20,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import me.spark.mvvm.base.BaseViewModel;
+import me.spark.mvvm.base.Constant;
 import me.spark.mvvm.base.EvKey;
 import me.spark.mvvm.binding.command.BindingAction;
 import me.spark.mvvm.binding.command.BindingCommand;
@@ -148,6 +149,8 @@ public class CoinAddressAddViewModel extends BaseViewModel {
                 dismissDialog();
                 if (eventBean.isStatue()) {
                     Toasty.showSuccess(mContext.getString(R.string.add_success));
+                    Constant.ispropertyPauseVisiable = false;//拦截放行
+                    EventBusUtils.postSuccessEvent(EvKey.CoinAddress, 1, mCoinAddress.get());
                     finish();
                 } else {
                     Toasty.showError(eventBean.getMessage());
@@ -155,7 +158,7 @@ public class CoinAddressAddViewModel extends BaseViewModel {
                 break;
             case EvKey.logout_success_401:
                 if (eventBean.isStatue()) {
-                   dismissDialog();
+                    dismissDialog();
                 }
                 break;
             default:
@@ -175,5 +178,6 @@ public class CoinAddressAddViewModel extends BaseViewModel {
         super.onDestroy();
         EventBusUtils.unRegister(this);
     }
+
 
 }

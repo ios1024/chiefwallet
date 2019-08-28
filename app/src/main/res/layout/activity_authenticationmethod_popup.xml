@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    app:bl_corners_topLeftRadius="2dp"
+    app:bl_corners_topRightRadius="2dp"
+    app:bl_solid_color="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:orientation="vertical"
+        android:paddingTop="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="选择商家认证类型"
+            android:textColor="#FF333333"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="商家类型"
+            android:textColor="#FF333333"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:id="@+id/ll_choice"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/linl_pay_bg"
+            android:gravity="center_vertical"
+            android:padding="@dimen/dp_10">
+
+            <TextView
+                android:id="@+id/tv_business"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/str_apply_type_o"
+                android:textColor="#FF333333"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/svg_pull_down" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_apply"
+            style="@style/textBlackNormal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="18dp"
+            android:gravity="center"
+            android:text="@string/ensure"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_14"
+            android:textStyle="bold"
+            app:bl_corners_radius="2dp"
+            app:bl_pressed_color="@color/subscript2"
+            app:bl_unpressed_color="@color/base"
+            tools:ignore="MissingPrefix" />
+
+    </LinearLayout>
+</LinearLayout>

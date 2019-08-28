@@ -4,11 +4,18 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.qiyukf.unicorn.api.ImageLoaderListener;
+import com.qiyukf.unicorn.api.StatusBarNotificationConfig;
+import com.qiyukf.unicorn.api.Unicorn;
+import com.qiyukf.unicorn.api.UnicornImageLoader;
+import com.qiyukf.unicorn.api.YSFOptions;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.zhouyou.http.EasyHttp;
 import com.zhouyou.http.cache.converter.SerializableDiskConverter;
@@ -59,7 +66,7 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        CrashReport.initCrashReport(getApplicationContext(), "004a8ae7da", true);
+        CrashReport.initCrashReport(getApplicationContext(), "004a8ae7da", false);//腾讯Bugly异常上报集成
         MultiLanguage.init(new LanguageLocalListener() {
             @Override
             public Locale getSetLanguageLocale(Context context) {
@@ -74,6 +81,28 @@ public class BaseApplication extends Application {
         gson = new GsonBuilder().serializeNulls().create();
         cookieManger = new CookieManger(this);
         currentUser = UserUtils.getCurrentUserFromFile();
+
+
+        //客服介入
+        Unicorn.init(this, "6fd48dbe10b74d03d10857e79fd3b7b0 ", options(), new UnicornImageLoader() {
+            @Nullable
+            @Override
+            public Bitmap loadImageSync(String uri, int width, int height) {
+                return null;
+            }
+
+            @Override
+            public void loadImage(String uri, int width, int height, ImageLoaderListener listener) {
+
+            }
+        });
+    }
+
+    // 如果返回值为null，则全部使用默认参数。
+    private YSFOptions options() {
+        YSFOptions options = new YSFOptions();
+        options.statusBarNotificationConfig = new StatusBarNotificationConfig();
+        return options;
     }
 
     /**

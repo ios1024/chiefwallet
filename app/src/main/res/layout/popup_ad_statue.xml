@@ -4,19 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     android:orientation="vertical"
-    app:bl_corners_topLeftRadius="14dp"
-    app:bl_corners_topRightRadius="14dp"
-    app:bl_solid_color="@color/gray_456">
+    app:bl_corners_topLeftRadius="2dp"
+    app:bl_corners_topRightRadius="2dp"
+    app:bl_solid_color="@color/white">
 
-    <TextView
-        style="@style/textBlackNormal"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_gravity="center"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="15dp"
         android:gravity="center"
-        android:text="@string/myAdvertising"
-        android:textSize="@dimen/font_xlager"
-        android:textStyle="bold" />
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/textBlackNormal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/myAdvertising"
+            android:textSize="@dimen/font_xlager"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/btn_cancel"
+            style="@style/textGrayCommonNormal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:text="@string/cancel"
+            android:textColor="@color/base" />
+    </LinearLayout>
 
     <LinearLayout
         style="@style/ll_item_52"
@@ -84,13 +104,13 @@
             android:id="@+id/btn_update"
             style="@style/textBlackNormal"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="40dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textStyle="bold"
-            app:bl_corners_radius="4dp"
-            app:bl_pressed_color="@color/base_dark"
+            app:bl_corners_radius="2dp"
+            app:bl_pressed_color="@color/subscript2"
             app:bl_unpressed_color="@color/base"
             tools:ignore="MissingPrefix" />
 
@@ -102,12 +122,12 @@
             android:id="@+id/btn_statue"
             style="@style/textBlackNormal"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="40dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/black"
+            android:textColor="@color/base"
             android:textStyle="bold"
-            app:bl_corners_radius="4dp"
+            app:bl_corners_radius="2dp"
             app:bl_pressed_color="@color/gray_common_light"
             app:bl_unpressed_color="@color/gray_ccc"
             tools:ignore="MissingPrefix" />
@@ -129,17 +149,5 @@
         app:bl_solid_color="@color/white"
         tools:ignore="MissingPrefix" />
 
-    <TextView
-        android:id="@+id/btn_cancel"
-        style="@style/textGrayCommonNormal"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_marginTop="8dp"
-        android:background="@color/white"
-        android:gravity="center"
-        android:text="@string/cancel"
-        app:bl_ripple_color="@color/gray_456"
-        app:bl_ripple_enable="true"
-        app:bl_solid_color="@color/white"
-        tools:ignore="MissingPrefix" />
+
 </LinearLayout>

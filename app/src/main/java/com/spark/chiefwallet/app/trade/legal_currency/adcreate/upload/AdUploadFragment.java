@@ -64,6 +64,7 @@ public class AdUploadFragment extends BaseFragment<FragmentAdUploadBinding, AdUp
     public void initView() {
         AD_TYPE = getArguments().getInt("type");
         ads = getArguments().getParcelable("ads");
+
         viewModel.initContext(getActivity(), AD_TYPE, ads);
         //是否为固定价格
         binding.isFixedPriceSwitch.setOnSwitchStateChangeListener(new ShSwitchView.OnSwitchStateChangeListener() {

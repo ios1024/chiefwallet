@@ -40,8 +40,11 @@
 6. If the activity is adjusted, the latest rules of SSCoin shall prevail, and SSCoin shall have the right to the final interpretation of the activity</string>
 
     <!--me-->
+    <string name="photo">Personal avatar</string>
+    <string name="nickname">nickname</string>
     <string name="online_service">Online customer service</string>
     <string name="advertising_management">Advertising management</string>
+    <string name="exchief_customer_service">Exchief Customer Service</string>
     <string name="account_security">Account security</string>
     <string name="finance">Finance</string>
     <string name="myAssets">MyAssets</string>
@@ -75,16 +78,25 @@
     <string name="french_currency_assets">Fiat assets</string>
     <string name="currency_assets">Coin currency assets</string>
     <string name="total_assets">Total assets(USDT)</string>
+    <string name="fabi_total_assets">Total assets of legal currency(USDT)</string>
+    <string name="bibi_total_assets">Coin total assets(USDT)</string>
     <string name="register_phone">Sign up by Phone</string>
     <string name="register_email">Sign up by Email</string>
     <string name="register_description">One account with all Exchief services!</string>
     <string name="register_description_email">One account with all Exchief services!</string>
     <string name="phone_num">Phone Number</string>
     <string name="phone_num_hint">Please enter your cell phone number</string>
+    <string name="phone_num_hint2">Please enter your mobile number</string>
     <string name="email_num">Email account</string>
     <string name="email_num_hint">Please enter your email account</string>
+    <string name="email_num_hint2">Please enter your email account</string>
+    <string name="we_chat_wrong">WeChat (not required)</string>
+    <string name="whats_app_wrong">WhatsAPP (not required)</string>
+    <string name="whats_app_wrong2">Please enter your WhatsApp account number</string>
+    <string name="we_chat_wrong2">Please enter your WeChat account</string>
     <string name="country">Country</string>
     <string name="choose_country">Please choose country</string>
+    <string name="choose_country2">Please enter the country</string>
     <string name="valid_phone">Please enter a valid phone number</string>
     <string name="valid_email">Please enter a valid email account</string>
     <string name="get_verify_code">Get verification code</string>
@@ -142,6 +154,12 @@
         <item>B2B Account</item>
         <item>C2C Account</item>
     </string-array>
+    <string-array name="property_tab2">
+        <item>C2C Account</item>
+        <item>B2B Account</item>
+    </string-array>
+    <string name="asset_management">asset Management</string>
+
     <string name="coin_in">Charge</string>
     <string name="coin_out">Mention</string>
     <string name="trans_in">Trans In</string>
@@ -180,6 +198,7 @@
     <string name="in_position">In Position</string>
     <string name="completed">Completed</string>
     <string name="type">Type</string>
+    <string name="type2">Please select a release type</string>
     <string name="trade_profitloss">Trade Profitloss</string>
     <string name="contract_number">Contract Number</string>
     <string name="hanging_unit_price">Hanging Price</string>
@@ -217,6 +236,8 @@
     <string-array name="auth_passport_tab">
         <item>Passports</item>
     </string-array>
+    <string name="authentication_rules">In order to secure your account, you need to verify your identity before you can perform other operations. Once the authentication information cannot be changed, please be sure to fill it out.</string>
+    <string name="identity_card_photos">ID card photo</string>
     <string name="country_list_null">Nationality list is empty</string>
     <string name="usernameorpwderror">Incorrect user name or password</string>
     <string name="camera_permission">Permissions are not available, please turn on camera permissions</string>
@@ -264,6 +285,9 @@
     <string name="record">Record</string>
     <string name="cancel">Cancel</string>
     <string name="copy_address">Copy the address</string>
+    <string name="question_feedback">Encounter problems? Immediate feedback</string>
+    <string name="transfer_details">Only transactions can be made by transferring assets to the corresponding account. There is no handling fee for transfers between accounts.</string>
+    <string name="coinadd_details">1, do not recharge from the address of the smart contract \n2, do not directly withdraw to the crowdfunding or ICO address, the platform will not handle the future generation of the generation of the pen.</string>
     <string name="save_img">Long press to save the QR code to the album</string>
     <string name="coin_recharge">Recharge</string>
     <string name="coin_recharge_address">Mention address</string>
@@ -389,6 +413,7 @@
     <string name="order_number">Order number</string>
     <string name="details">Details</string>
     <string name="to_trade">Go to trade</string>
+    <string name="_24h">24H</string>
     <string name="_24h_high">H</string>
     <string name="_24h_low">L</string>
     <string name="_24h_size">24H&#160;</string>
@@ -408,11 +433,16 @@
     <string name="buy_plate">Buy</string>
     <string name="sell_plate">Sell</string>
     <string name="number">Number</string>
+    <string name="transfer_quantity">Number of transfers</string>
     <string name="price">Price</string>
+    <string name="entrusted_price">Commission price</string>
+    <string name="entrusted_quantity">Number of orders</string>
     <string name="save_success">Save success</string>
     <string name="save_failed">Save failed</string>
     <string name="no_notes">No notes at the moment</string>
     <string name="coin_recharge_tips">*Tips: You need to confirm the entire network node to get the account.Any non %1$s recharge the assets to %2$s cannot be retrieved after the address!Minimum recharge amount:%3$s，less than %4$s will not be able to arrive and cannot be returned.</string>
+    <string name="coin_recharge_tips2">1. After recharging, after 30 network confirmations, it will automatically arrive at \n2. This address can only accept the recharge of the specified currency. Recharging other currencies with this address will result in loss of your assets\n3, never from smart contracts. To recharge the address, please use the ordinary wallet address \n4, the minimum charge amount</string>
+    <string name="coin_recharge_tips3">1, do not recharge from the address of the smart contract \n2, do not directly withdraw to the crowdfunding or ICO address, the platform will not handle the future generation of the generation of the pen.</string>
     <string name="coin_out_label_hint">Enter or long press the paste label</string>
     <string name="coin_out_num_hint">Please enter mention amount</string>
     <string name="fee">Fee:&#160;</string>
@@ -423,6 +453,60 @@
     <string name="mention_address_cannot_empty">Mention cannot be empty</string>
     <string name="label_cannot_empty">Label cannot be empty</string>
     <string name="number_cannot_empty">Number cannot be empty</string>
+    <string name="number_cannot_empty2">Please enter the correct amount</string>
+    <string name="insufficient_quantity">Insufficient quantity</string>
+    <string name="personal_business_certification">Personal business certification:</string>
+    <string name="personal_business_certification2">Corporate business certification:</string>
+    <string name="application_materials">Prepare the following application materials:</string>
+    <string name="application_of_certifie_business">Certified merchant application</string>
+    <string name="application_submission">submit application</string>
+    <string name="str_apply_type_o">Personal business application</string>
+    <string name="str_apply_type">Merchant application</string>
+    <string name="str_apply_o">Personal business</string>
+    <string name="str_apply_type_t">Business application</string>
+    <string name="please_enter_your_reasons">Please enter your reason</string>
+
+    <string name="emergency_contact">emergency contact</string>
+    <string name="emergency_contact_phone">Emergency contact phone</string>
+    <string name="emergency_contact_phone2">Please enter an emergency contact number</string>
+    <string name="emergency_contact2">Please enter your emergency contact name</string>
+    <string name="str_emerg_my_concern">relationship with me</string>
+    <string name="str_emerg_my_concern2">Please choose to relate to me</string>
+    <string name="text_select">please choose</string>
+    <string name="str_emerg_one">Loved ones</string>
+    <string name="str_emerg_two">friend</string>
+    <string name="str_emerg_three">colleague</string>
+    <string name="str_emerg_address">Resident address</string>
+    <string name="str_emerg_address2">Please enter your usual address</string>
+    <string name="tvstatustips">Your business request has been submitted for review!</string>
+    <string name="tvstatustips2">Your claim for surrender has been submitted and is under review!</string>
+    <string name="tvstatustipssuccess">Your business request information has been approved!</string>
+    <string name="tvstatustipssuccess2">Your surrender application information has been approved!</string>
+    <string name="re_application">Re-apply</string>
+    <string name="business_management">Merchant management</string>
+    <string name="tvcontentofapplication">We will review your business application within 1-2 business days. Please stay tuned for the status of the review, which can be viewed on the submission page. Once the review is approved, you can post ads in the fiat trading area. Under review!</string>
+    <string name="tvcontentofapplication2">We will review your surrender application within 1-2 business days. Please feel free to review the status of the review, which can be viewed on the submission page. After the review is approved, you will lose your eligibility to advertise.</string>
+    <string name="tvcontentofapplicationsuccess">After the review, you can post ads in the legal currency trading area.</string>
+    <string name="publish_advertisements">To post an ad</string>
+    <string name="publish_advertisements2">Apply for surrender</string>
+    <string name="audit_failure1">Your business application failed!</string>
+    <string name="audit_failure2">Your surrender application failed!</string>
+    <string name="to_be_a_certified_business_needs_to_be_frozen">Become a certified business, need to freeze</string>
+    <string name="as_a_deposit">As a deposit, if the merchant certification is cancelled, the deposit will be returned 15 days after the cancellation of the application.</string>
+    <string name="business_license">Please upload a business license</string>
+    <string name="enterprise_business_license">Please upload your business license</string>
+    <string name="please_check_freeze">Please tick the freeze</string>
+    <string name="str_frost_gold_one">Agree to freeze</string>
+    <string name="str_frost_gold_two">As a corporate merchant deposit</string>
+
+    <string name="data_audit">Data review</string>
+    <string name="unverified">Unverified</string>
+    <string name="verified">Successful verification</string>
+    <string name="application_submission2">Complete the merchant certification information you need to fill out and submit, click Submit to apply.</string>
+    <string name="application_submission3">We will review your business application within 1-2 business days. Please stay tuned for the status of the review, which can be viewed on the submission page. After the review is approved, you can post ads in the legal currency trading area.</string>
+    <string name="personal_certifications">   Need to submit mobile phone, email, WeChat (optional), WhatsAPP (optional), emergency contact, emergency contact phone, contact me, permanent address</string>
+    <string name="personal_certifications2">   Need to submit mobile phone, email, WeChat (optional), WhatsAPP (optional), emergency contact, emergency contact phone, contact me, permanent address, the applicant s business license for the legal representative. (Enterprise business certification needs to be provided</string>
+    <string name="personal_certifications3">As a margin. In the event of a transaction default, the payment will be made from the deposit. If the company’s business certification is cancelled, the deposit will be refunded in full without a transaction default. )</string>
     <string name="about_fee">About fee</string>
     <string name="about_fee_tips">Increase the fee available to increase the speed&#160;</string>
     <string name="fee_range">The fee range is&#160;</string>
@@ -469,6 +553,10 @@
     <string name="freeze">Freeze</string>
     <string name="convert2cny">RMB equivalent</string>
     <string name="financial_record">Financial record</string>
+    <string name="financial_record2">Recharge record</string>
+    <string name="financial_log">Financial log>></string>
+    <string name="total">lump sum</string>
+    <string name="real_name_authentication">Verified</string>
     <string-array name="open_order_tab">
         <item>Current commission</item>
         <item>Historical commission</item>
@@ -488,6 +576,13 @@
     <string name="direction">Direction</string>
     <string name="average_transaction_price">Average transaction price</string>
     <string name="transaction_volume">Volume</string>
+    <string name="transaction_volume2">The number of transactions</string>
+    <string name="in_the_bill_of_lading">In the pending order</string>
+    <string name="open">open</string>
+    <string name="shut">turn off</string>
+    <string name="adding_payment_method">Add payment method</string>
+    <string name="card_binding_matters">1, the most added: 3 bank cards, 3 Alipay, 1 micro signal</string>
+    <string name="card_binding_matters2">2, after adding the payment method, you need to open it to use for over-the-counter trading. If you add more than one bank card, you can only open one at the end.</string>
     <string name="time">Time</string>
     <string name="final_price">Final price</string>
     <string-array name="ad_tab">
@@ -500,6 +595,9 @@
     <string name="has_been_removed">Has been removed</string>
     <string name="buy2">Buy</string>
     <string name="sell2">Sell</string>
+    <string name="buy22">Purchase advertisement</string>
+    <string name="sell22">Sale advertisement</string>
+
     <string name="limit">Limit&#160;</string>
     <string name="lc_pwd_set">Set the fund password</string>
     <string name="lc_pwd_update">Modify the fund password</string>
@@ -521,6 +619,8 @@
         <item>C2C Trade</item>
         <item>B2B Trade</item>
     </string-array>
+    <string name="dealing_time">Transaction time</string>
+
     <string name="turnover">Turnover:&#160;</string>
     <string name="buy_after_login">Buy after login</string>
     <string name="sell_after_login">Sell after login</string>
@@ -528,6 +628,8 @@
     <string name="successful_withdrawal_of_application">Successful withdrawal of application</string>
     <string name="mention_success">Mention success</string>
     <string name="b2b">B2B</string>
+    <string name="c2c">C2C</string>
+
     <string name="quotes_search_hint">Search for the currency you are interested in</string>
     <string name="search_not_null">Search content cannot be empty</string>
     <string name="add_optional">Add optional</string>
@@ -641,6 +743,8 @@
     <string name="str_pay_success">Pay for success</string>
     <string name="str_enter_login_pass">Please enter your login password</string>
     <string name="str_enter_alipay">Please enter alipay account number</string>
+    <string name="str_uplo">Receipt QR code</string>
+    <string name="str_upload_text">To ensure that the QR code is correct, please scan it yourself after uploading.</string>
     <string name="str_upload">Please upload qr code of receipt</string>
     <string name="str_enter_wechat">Please enter your WeChat account</string>
     <string name="str_enter_other">Please enter other account</string>
@@ -651,6 +755,20 @@
     <string name="str_set_buy_amount">Please enter purchase quantity</string>
     <string name="str_set_payway">Please select payment method</string>
     <string name="str_set_limit">Payment period (15~30 minutes)</string>
+    <string name="str_set_limit2">Please enter the payment term</string>
+    <string name="str_set_limit3">Please enter an integer and enter a value of 15-30 minutes</string>
+    <string name="transaction_settings">You can set the transaction payment method in “Transaction Settings”. After setting, your payment account will be automatically presented in the advertisement information you posted. This will allow you to resend the payment account information or receive the QR code when you trade.</string>
+    <string name="transaction_restrictions">Trading restrictions</string>
+    <string name="transaction_notes">Transaction note</string>
+    <string name="trade_note_tips">Wechat account: xxxxx\n contact number: 18900000000\n After placing the order, you can directly add me to WeChat or contact me by phone, I will reply as soon as possible.</string>
+    <string name="trade_tips">You can set different single limits according to the transaction method. For example, the "maximum limit" can be adjusted according to the bank transfer or Alipay s single transfer limit. Increasing the "minimum limit" can also avoid receiving orders that are too low in transaction amount. Setting a suitable limit range will make your trading more efficient.</string>
+    <string name="trade_tips2">During the validity period of the order, the digital currency corresponding to the order amount is locked by the system, and you cannot cancel the order actively. If the buyer does not mark the payment completed within the validity period of the order, the order will be automatically cancelled and the digital currency will be returned to your account.</string>
+    <string name="trade_tips3">You can fill in the "Transaction Notes" to fill in the information you need to trade with you, such as leaving your payment account and contact details. Users who leave contact information can generally increase their chances of 30%. The note will be displayed to the other party after the order is created.。</string>
+    <string name="trade_tips4">In order to ensure the security of users  transactions, the platform will adopt a digital currency custody system. It is strictly forbidden to bypass the platform for private transactions, and the offender will bear the loss and the permanent title. Please write down the trading conditions you want and the matters you need to pay attention to in the transaction description and transaction notes. The clear information will enhance your trading success rate and evaluation. Do not attempt fraud on this platform. Offenders will result in the account being frozen and legally liable. After the advertisement is posted, please fulfill the spirit of the contract, maliciously raise the price or repent, and the complaint will freeze the account for 3-14 days.</string>
+    <string name="trade_tips5">note! Be sure to read the following information in detail to ensure your transaction is secure</string>
+    <string name="trade_tips6">During the transaction, please confirm the payment and then release the digital currency. Do not disclose sensitive information about your account security during the transaction. Do not directly disclose your e-mail address to the buyer, otherwise you may receive fraudulent letters and damage to account security. Always make sure you are on the right platform website, please record the website on the bookmark to avoid accidental phishing websites. Platform employees will not trade with you on official names. Please do not trade with employees who claim to be platforms to avoid loss of profits.</string>
+    <string name="transaction_rules">Trading Rules</string>
+    <string name="choose_payment_method">Please choose a payment method</string>
     <string name="str_set_min">Please enter the minimum amount per transaction</string>
     <string name="str_set_max">Please enter the maximum amount per transaction</string>
     <string name="str_desc">Please describe your problem first</string>
@@ -658,9 +776,12 @@
     <string name="str_appeal_time">30 minutes after the payment is completed the appeal is allowed.</string>
     <string name="str_set_paypay">Please choose the mode of payment first</string>
     <string name="str_enter_bank_name">Please select your bank account</string>
+    <string name="str_enter_bran">Please enter the bank</string>
+
     <string name="str_enter_branch">Please enter bank branch</string>
     <string name="str_enter_bank_number">Please enter user card number</string>
     <string name="str_enter_paypal">Please enter your PayPal account</string>
+    <string name="str_enter_mtn">Please enter the MTN account number</string>
     <string name="str_pulish_ad_to_up">Operation successful, whether to shelves?</string>
     <string name="str_confirm_cancel">Confirm cancellation order?</string>
     <string name="str_order_detail">To view the order</string>
@@ -672,6 +793,7 @@
     <string name="str_branch">Branch</string>
     <string name="str_bank_number">Bank card number</string>
     <string name="str_country">Home</string>
+    <string name="str_coin_type2">Please select the currency type</string>
     <string name="str_coin_type">Currency type</string>
     <string name="str_fixed_price">Fixed price</string>
     <string name="str_float_rate">A floating rate</string>
@@ -710,6 +832,7 @@
     <string name="str_alipay">Alipay</string>
     <string name="str_bank">Bank</string>
     <string name="str_paypal">PayPal</string>
+    <string name="str_mtn">MTN</string>
     <string name="str_other">Other</string>
     <string name="str_copy_number">Copy Card number</string>
     <string name="str_pay_tip">* please click the above amount and click below [I have paid]</string>
@@ -780,12 +903,15 @@
     <string name="str_receive_bind_bank_bind">Binding bank card collection</string>
     <string name="str_receive_bind_paypal_bind">Bound to PayPal for payment</string>
     <string name="str_receive_bind_paypal_account">PayPal account</string>
+    <string name="str_receive_bind_mtn_account">MTN account</string>
+    <string name="str_receive_bind_mtn_bind">Bind MTN collection</string>
     <string name="str_receive_bind_other_bind">Bind other collections</string>
     <string name="str_receive_bind_other_account">Other account</string>
     <string name="str_receive_bind_alipay_edit">Edit alipay collection</string>
     <string name="str_receive_bind_wechat_edit">Edit WeChat collection</string>
     <string name="str_receive_bind_bank_edit">Edit bank card collection</string>
     <string name="str_receive_bind_paypal_edit">Edit PayPal collection</string>
+    <string name="str_receive_bind_mtn_edits">Edit MTN collection</string>
     <string name="str_receive_bind_other_edit">Edit Other collection</string>
     <string name="str_set_sell_amount">Please enter quantity sold</string>
     <string name="str_macket_price">Current market reference price:&#160;</string>
@@ -794,6 +920,9 @@
     <string name="str_buyer">Buyers:&#160;</string>
     <string name="str_number">Number: &#160;</string>
     <string name="str_limit_money">Limit: &#160;</string>
+    <string name="str_limit_money2">Limit</string>
+    <string name="purchase_price">price</string>
+    <string name="release_time">release time</string>
     <string name="str_locking">In the lock up</string>
     <string name="str_locked">Lock up due to</string>
     <string name="str_un_lock">Are unlocked</string>
@@ -809,16 +938,13 @@
     <string name="str_gains">&#160;Gains</string>
     <string name="str_count">&#160;Count</string>
 
-    <!--home-->
-    <string-array name="home_tab">
-        <item>OTC行情</item>
-    </string-array>
+
     <!--home-->
     <string name="min">Min</string>
     <string name="max">Max</string>
 
-    <string name="trust_price">委托价</string>
-    <string name="trust_quantity">委托量</string>
+    <string name="trust_price">Commission price</string>
+    <string name="trust_quantity">Amount of commission</string>
 
     <string name="buy_only">Buy</string>
     <string name="sell_only">Sell</string>
@@ -850,6 +976,10 @@
     <string name="str_release">Release&#160;</string>
     <string name="str_release_please">Please release</string>
     <string name="str_find_pay_info">Please find the payment collect</string>
+    <string name="choosing_the_currency_to_trade">Please select the transaction currency</string>
+    <string name="choose_your_location">Please select a location</string>
+    <string name="choosing_the_currency_type">Please select the currency type</string>
+
     <string name="str_confirm_cancel_order_title">Confirm cancellation</string>
     <string name="str_confirm_cancel_order_content">If you have paid the seller, do not cancel the transaction</string>
     <string name="str_confirm_cancel_order_tip">I am sure I have not paid them yet</string>
@@ -885,4 +1015,28 @@
     <string name="str_business_high">Senior certification</string>
     <string name="str_business_sell">Online sale</string>
     <string name="str_business_buy">Buying online</string>
+
+    <string name="falvshengm">Legal Notices</string>
+    <string name="customer_service_mailbox">Customer Service Email</string>
+    <string name="business_mailboxs">Business mailbox</string>
+
+
+    <string name="red_green">Red rose green</string>
+    <string name="green_red">Green rose red</string>
+
+    <string name="currency_cny">Renminbi CNY</string>
+    <string name="currency_usdt">Dollar USDT</string>
+    <string name="currency_eur">EUR EUR</string>
+    <string name="currency_ghs">Site GHS</string>
+    <string name="currency_nhn">Nigeria NGN</string>
+    <string name="today_s_limit">Today s limit</string>
+    <string name="news">New</string>
+    <string name="please_enter_a_label">Please enter a label</string>
+    <string name="number_of_coins">Number of coins</string>
+    <string name="please_enter_the_number_of_coins">Please enter the number of coins</string>
+    <string name="minimum_number_of_coins">Minimum number of coins:</string>
+    <string name="maximum_number_of_coins">Maximum number of coins:</string>
+    <string name="add_address">Add address</string>
+    <string name="go_add">Go add</string>
+
 </resources>

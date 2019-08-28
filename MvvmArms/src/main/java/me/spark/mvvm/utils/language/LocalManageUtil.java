@@ -24,11 +24,11 @@ public class LocalManageUtil {
     public static Locale getSetLanguageLocale(Context context) {
         switch (LanguageSPUtil.getInstance(context).getSelectLanguage()) {
             case 0:
-                return Locale.CHINA;
-            case 1:
                 return Locale.ENGLISH;
-            default:
+            case 1:
                 return Locale.CHINA;
+            default:
+                return Locale.ENGLISH;
         }
     }
 

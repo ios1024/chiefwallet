@@ -60,7 +60,7 @@ public class LegalCurAccountFragment extends BaseFragment<FragmentLegalCurAccoun
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_PROPERTY_DETAILS).
-                        withString("busiType", "OTC")
+                        withString("busiTypes", "OTC")
                         .withParcelable("propertDetails", dataBeanList.get(position))
                         .navigation();
             }

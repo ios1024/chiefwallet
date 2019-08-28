@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.spark.mvvm.base.BaseFragment;
+import me.spark.mvvm.base.Constant;
 import me.spark.mvvm.http.impl.OnRequestListener;
 
 /**
@@ -80,6 +82,7 @@ public class AdFragment extends BaseFragment<FragmentAdBinding, AdFgViewModel> {
                 mAdUpAdapter = new AdUpAdapter(mAdUpList);
                 binding.adRv.setLayoutManager(new LinearLayoutManager(getActivity()));
                 binding.adRv.setAdapter(mAdUpAdapter);
+//
                 mAdUpAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(BaseQuickAdapter adapter, View view, final int position) {
@@ -117,7 +120,7 @@ public class AdFragment extends BaseFragment<FragmentAdBinding, AdFgViewModel> {
                                             //修改
                                             case 0:
                                                 AdSelfDownFindResult.DataBean.RecordsBean recordsBean = mAdDownList.get(position);
-                                                ARouter.getInstance().build(App.getInstance().isAppLogin() ? ARouterPath.ACTIVITY_TRADE_AD_CREATE : ARouterPath.ACTIVITY_ME_LOGIN)
+                                                ARouter.getInstance().build(App.getInstance().isAppLogin() ? ARouterPath.ACTIVITY_TRADE_AD_NEWCREATE : ARouterPath.ACTIVITY_ME_LOGIN)
                                                         .withParcelable("ads", recordsBean)
                                                         .navigation();
                                                 break;
@@ -299,7 +302,17 @@ public class AdFragment extends BaseFragment<FragmentAdBinding, AdFgViewModel> {
                 binding.swipeLayout.setRefreshing(false);
                 final int size = mAdUpList == null ? 0 : mAdUpList.size();
                 if (size == 0) {
-                    mAdUpAdapter.setEmptyView(R.layout.view_rv_empty, binding.adRv);
+//                    mAdUpAdapter.setEmptyView(R.layout.view_rv_empty, binding.adRv);
+                    mAdUpAdapter.setEmptyView(R.layout.view_rv_empty_favor, binding.adRv);
+                    mAdUpAdapter.getEmptyView().findViewById(R.id.text_title).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            //跳转发布
+                            ARouter.getInstance().build(ARouterPath.ACTIVITY_TRADE_AD_NEWCREATE)
+                                    .navigation();
+
+                        }
+                    });
                 }
                 mAdUpAdapter.notifyDataSetChanged();
             }

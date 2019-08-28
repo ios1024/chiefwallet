@@ -5,7 +5,7 @@
 
         <variable
             name="openOrderDetailsResultVm"
-            type="com.spark.modulespot.pojo.OpenOrderDetailsResult.DataBean"/>
+            type="com.spark.modulespot.pojo.OpenOrderDetailsResult.DataBean" />
     </data>
 
     <LinearLayout
@@ -14,55 +14,119 @@
         android:orientation="vertical">
 
         <LinearLayout
-            style="@style/ll_item_48">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-            <TextView
-                style="@style/textGrayCommonNormal"
+            <LinearLayout
+                style="@style/ll_item_48"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_weight="1">
+
+                <TextView
+
+                    style="@style/textGrayCommonFont13"
+                    android:text="@string/final_price"
+                    android:textColor="@color/gray_a4"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/textBlackNormal"
+
+                    android:layout_marginLeft="5dp"
+                    android:text="@{openOrderDetailsResultVm.formatPrice()}"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/ll_item_48"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
                 android:layout_weight="1"
-                android:text="@string/time"/>
+                android:orientation="horizontal">
 
-            <TextView
-                style="@style/textGrayCommonNormal"
-                android:text="@{openOrderDetailsResultVm.formatTime()}"/>
+                <TextView
+
+                    style="@style/textGrayCommonFont13"
+                    android:text="@string/fee2"
+                    android:textColor="@color/gray_a4"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/textBlackNormal"
+                    android:layout_marginLeft="15dp"
+                    android:text="@{openOrderDetailsResultVm.formatFee()}"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
-            style="@style/ll_item_48">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-            <TextView
-                style="@style/textGrayCommonNormal"
-                android:layout_weight="1"
-                android:text="@string/final_price"/>
+            <LinearLayout
+                style="@style/ll_item_48"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_weight="1">
 
-            <TextView
-                style="@style/textGrayCommonNormal"
-                android:text="@{openOrderDetailsResultVm.formatPrice()}"/>
+                <TextView
+                    style="@style/textGrayCommonFont13"
+                    android:text="@string/transaction_volume"
+                    android:textColor="@color/gray_a4"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/textBlackNormal"
+                    android:layout_marginLeft="5dp"
+                    android:text="@{openOrderDetailsResultVm.formatNum()}"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/ll_item_48"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_weight="1">
+
+                <TextView
+                    style="@style/textGrayCommonFont13"
+                    android:text="@string/dealing_time"
+                    android:textColor="@color/gray_a4"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/textBlackNormal"
+                    android:layout_marginLeft="5dp"
+                    android:text="@{openOrderDetailsResultVm.formatTime()}"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            style="@style/ll_item_48">
-
-            <TextView
-                style="@style/textGrayCommonNormal"
-                android:layout_weight="1"
-                android:text="@string/transaction_volume"/>
-
-            <TextView
-                style="@style/textGrayCommonNormal"
-                android:text="@{openOrderDetailsResultVm.formatNum()}"/>
-        </LinearLayout>
-
-        <LinearLayout
-            style="@style/ll_item_48">
-
-            <TextView
-                style="@style/textGrayCommonNormal"
-                android:layout_weight="1"
-                android:text="@string/fee2"/>
-
-            <TextView
-                style="@style/textGrayCommonNormal"
-                android:text="@{openOrderDetailsResultVm.formatFee()}"/>
-        </LinearLayout>
+        <View
+            style="@style/line_ccc"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="15dp" />
     </LinearLayout>
 </layout>

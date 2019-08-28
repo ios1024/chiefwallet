@@ -71,21 +71,21 @@ public class ReceiptBindViewModel extends BaseViewModel {
     public ObservableField<String> qrCodeUrl = new ObservableField<>("");
     public ObservableField<Boolean> qrCodeVisiable = new ObservableField<>(true);
 
-    public BindingCommand chooseBankList = new BindingCommand(new BindingAction() {
-        @Override
-        public void call() {
-            new XPopup.Builder(mContext)
-                    .maxHeight((int) (XPopupUtils.getWindowHeight(mContext) * .85f))
-                    .asBottomList(App.getInstance().getString(R.string.str_select_bank), bankList,
-                            new OnSelectListener() {
-                                @Override
-                                public void onSelect(int position, String text) {
-                                    bankText.set(text);
-                                }
-                            })
-                    .show();
-        }
-    });
+//    public BindingCommand chooseBankList = new BindingCommand(new BindingAction() {
+//        @Override
+//        public void call() {
+//            new XPopup.Builder(mContext)
+//                    .maxHeight((int) (XPopupUtils.getWindowHeight(mContext) * .85f))
+//                    .asBottomList(App.getInstance().getString(R.string.str_select_bank), bankList,
+//                            new OnSelectListener() {
+//                                @Override
+//                                public void onSelect(int position, String text) {
+//                                    bankText.set(text);
+//                                }
+//                            })
+//                    .show();
+//        }
+//    });
 
 
     public BindingCommand submitCommand = new BindingCommand(new BindingAction() {
@@ -125,6 +125,12 @@ public class ReceiptBindViewModel extends BaseViewModel {
                     titleText.set(App.getInstance().getString(R.string.str_receive_bind_paypal_bind));
                     typeText.set(App.getInstance().getString(R.string.str_receive_bind_paypal_account));
                     typeHintText.set(App.getInstance().getString(R.string.str_enter_paypal));
+                    qrCodeVisiable.set(false);
+                    break;
+                case Constant.MTN:
+                    titleText.set(App.getInstance().getString(R.string.str_receive_bind_mtn_bind));
+                    typeText.set(App.getInstance().getString(R.string.str_receive_bind_mtn_account));
+                    typeHintText.set(App.getInstance().getString(R.string.str_enter_mtn));
                     qrCodeVisiable.set(false);
                     break;
                 case Constant.other:
@@ -168,6 +174,13 @@ public class ReceiptBindViewModel extends BaseViewModel {
                     titleText.set(App.getInstance().getString(R.string.str_receive_bind_paypal_edit));
                     typeText.set(App.getInstance().getString(R.string.str_receive_bind_paypal_account));
                     typeHintText.set(App.getInstance().getString(R.string.str_enter_paypal));
+                    typeAddressText.set(typeBean.getPayAddress());
+                    qrCodeVisiable.set(false);
+                    break;
+                case Constant.MTN:
+                    titleText.set(App.getInstance().getString(R.string.str_receive_bind_mtn_edits));
+                    typeText.set(App.getInstance().getString(R.string.str_receive_bind_mtn_account));
+                    typeHintText.set(App.getInstance().getString(R.string.str_enter_mtn));
                     typeAddressText.set(typeBean.getPayAddress());
                     qrCodeVisiable.set(false);
                     break;
@@ -268,6 +281,20 @@ public class ReceiptBindViewModel extends BaseViewModel {
             case Constant.PAYPAL:
                 if (StringUtils.isEmpty(typeAddressText.get())) {
                     Toasty.showError(App.getInstance().getString(R.string.str_enter_paypal));
+                } else {
+                    if (StringUtils.isEmpty(pwdText.get())) {
+                        Toasty.showError(App.getInstance().getString(R.string.trade_pwd_hint));
+                    } else {
+                        payTypeAddBean.setPayAddress(typeAddressText.get().trim());
+                        payTypeAddBean.setTradePwd(pwdText.get().trim());
+                        payTypeAddBean.setPayType(type);
+                        isVerifySuccess = true;
+                    }
+                }
+                break;
+            case Constant.MTN:
+                if (StringUtils.isEmpty(typeAddressText.get())) {
+                    Toasty.showError(App.getInstance().getString(R.string.str_enter_mtn));
                 } else {
                     if (StringUtils.isEmpty(pwdText.get())) {
                         Toasty.showError(App.getInstance().getString(R.string.trade_pwd_hint));

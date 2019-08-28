@@ -480,12 +480,13 @@ public class OpenOrdersResult implements Parcelable {
 
 
             public String formatDate() {
-                return me.spark.mvvm.utils.DateUtils.formatDate("yyyy.MM.dd HH:mm:ss", transactTime);
+                return me.spark.mvvm.utils.DateUtils.formatDate("MM/dd HH:mm", transactTime);
             }
 
             public String formatDateShort() {
                 return me.spark.mvvm.utils.DateUtils.formatDate("HH:mm:ss", transactTime);
             }
+
 
             public String initStatueType() {
                 String typeText;
@@ -498,7 +499,7 @@ public class OpenOrdersResult implements Parcelable {
             }
 
             public String initPrice() {
-                return BaseApplication.getInstance().getString(R.string.price) + "(" + baseSymbol + ")";
+                return BaseApplication.getInstance().getString(R.string.entrusted_price) + "(" + baseSymbol + ")";
             }
 
             public String initPriceText() {
@@ -517,7 +518,7 @@ public class OpenOrdersResult implements Parcelable {
             }
 
             public String initNumber() {
-                return BaseApplication.getInstance().getString(R.string.number) + "(" + coinSymbol + ")";
+                return BaseApplication.getInstance().getString(R.string.entrusted_quantity) + "(" + coinSymbol + ")";
             }
 
             public String initNumberText() {
@@ -530,8 +531,9 @@ public class OpenOrdersResult implements Parcelable {
                 return text;
             }
 
+
             public String initDeal() {
-                return BaseApplication.getInstance().getString(R.string.traded) + "(" + coinSymbol + ")";
+                return BaseApplication.getInstance().getString(R.string.transaction_volume2) + "(" + baseSymbol + ")";
             }
 
             public String initDealText() {

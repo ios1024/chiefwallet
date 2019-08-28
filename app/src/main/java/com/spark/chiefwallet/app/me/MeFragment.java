@@ -14,7 +14,7 @@ import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.databinding.FragmentMeBinding;
 
 import me.spark.mvvm.base.BaseFragment;
-
+import me.spark.mvvm.ui.dialog.utils.StatusBarUtils;
 /**
  * ================================================
  * 作    者：v1ncent
@@ -31,6 +31,7 @@ public class MeFragment extends BaseFragment<FragmentMeBinding, MeViewModel> {
         return R.layout.fragment_me;
     }
 
+
     @Override
     public int initVariableId() {
         return BR.meViewModel;
@@ -42,12 +43,13 @@ public class MeFragment extends BaseFragment<FragmentMeBinding, MeViewModel> {
         viewModel.initContext(getContext());
 
         viewModel.updateAccount();
+
         //点击法币
         binding.frenchCurrencyAssets.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                viewModel.qiehuanbizhong.set(0);
-                viewModel.updateAccount();
+                viewModel.qiehuanbizhong.set("0");
+                viewModel.initText();
                 binding.frenchCurrencyAssets.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
                 binding.currencyAssets.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
                 binding.frenchCurrencyAssets.setTextColor(getResources().getColor(R.color.white));
@@ -59,8 +61,8 @@ public class MeFragment extends BaseFragment<FragmentMeBinding, MeViewModel> {
         binding.currencyAssets.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                viewModel.qiehuanbizhong.set(1);
-                viewModel.updateAccount();
+                viewModel.qiehuanbizhong.set("1");
+                viewModel.initText();
                 binding.frenchCurrencyAssets.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
                 binding.currencyAssets.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
                 binding.frenchCurrencyAssets.setTextColor(getResources().getColor(R.color.welcomelogin));

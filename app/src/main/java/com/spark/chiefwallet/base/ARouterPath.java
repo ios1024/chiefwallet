@@ -35,6 +35,7 @@ public final class ARouterPath {
     public static final String ACTIVITY_ME_REGISTER = "/me/user/RegisterActivity";
     public static final String ACTIVITY_ME_REGISTER_PWD = "/me/user/RegisterPwdActivity";
     public static final String ACTIVITY_ME_VERIFYCODE = "/me/user/VerifyCodeActivity";
+    public static final String ACTIVITY_ME_MYMESSAGE = "/me/user/mymessage/MyMessageActivity";
     //忘记密码
     public static final String ACTIVITY_ME_FORGET_PWD = "/me/ForgetPwdActivity";
     //---user
@@ -42,6 +43,9 @@ public final class ARouterPath {
     //---finiance
     public static final String ACTIVITY_ME_PROPERTY = "/me/finance/property/PropertyActivity";
     public static final String ACTIVITY_ME_PROPERTY_DETAILS = "/me/finance/property/details/PropertyDetailsActivity";
+    public static final String ACTIVITY_ME_COINCHARGING = "/me/finance/property/coincharging/CoinChargingActivity";
+    public static final String ACTIVITY_ME_TRANSFER = "/me/finance/property/transfer/TransferActivity";
+    public static final String ACTIVITY_ME_WITHDRAWMONEY = "/me/finance/property/withdrawmoney/WithdrawMoneyActivity";
     public static final String ACTIVITY_ME_PROPERTY_RECORD = "/me/finance/property/PropertyRecordActivity";
     public static final String ACTIVITY_ME_RECORD = "/me/finance/record/RecordActivity";
     public static final String ACTIVITY_ME_AD = "/me/finance/ad/AdActivity";
@@ -60,6 +64,7 @@ public final class ARouterPath {
 
     //-safe
     public static final String ACTIVITY_ME_AUTHENTICATION = "/me/safe/authentication/AuthenticationActivity";
+    public static final String ACTIVITY_ME_CERTIFICATIONDETAILS = "/me/safe/business/CertificationDetailsActivity";
     public static final String ACTIVITY_ME_SAFECENTRE = "/me/safe/safecentre/SafeCentreActivity";
     public static final String ACTIVITY_ME_SAFECENTRE_PHONE = "/me/safe/safecentre/PhoneActivity";
     public static final String ACTIVITY_ME_SAFECENTRE_EMAIL = "/me/safe/safecentre/EmailActivity";
@@ -69,10 +74,13 @@ public final class ARouterPath {
     public static final String ACTIVITY_ME_SAFECENTRE_LOGIN_PWD = "/me/safe/safecentre/LoginPwdUpdateActivity";
     public static final String ACTIVITY_ME_TRADE_PWD = "/me/safe/safecentre/TradePwdActivity";
     public static final String ACTIVITY_ME_TRADE_PWD_FORGET = "/me/safe/safecentre/pwdforget/ForgetPwdActivity";
+    public static final String ACTIVITY_BUSINESS_INDIVIDUAL = "/me/safe/business/individualbusinessmen/IndividualBusinessmenActivity";
+    public static final String ACTIVITY_BUSINESS_SURREND = "/me/safe/business/surrender/SurrenderActivity";
     //-safe
 
     //-trade
     public static final String ACTIVITY_TRADE_AD_CREATE = "/trade/AdCreateActivity";
+    public static final String ACTIVITY_TRADE_AD_NEWCREATE = "/trade/NewAdCreateActivity";
     public static final String ACTIVITY_TRADE_COMMISION_DETAILS = "/trade/CommissionDetailsActivity";
     public static final String ACTIVITY_TRADE_LC_ORDER = "/trade/LcOrderActivity";
     public static final String ACTIVITY_TRADE_LC_DETAILS_ORDER = "/trade/Lc/LcOrderDetailsActivity";
@@ -93,6 +101,7 @@ public final class ARouterPath {
     public static final String ACTIVITY_ME_VALUETYPE = "/me/system/ValueTypeActivity";
     public static final String ACTIVITY_ME_LANGUAGE = "/me/system/LanguageActivity";
     public static final String ACTIVITY_ME_ABOUT = "/me/system/AboutActivity";
+    public static final String ACTIVITY_ME_ABOUSETUP = "/me/system/setup/SetUpActivity";
     //-system
 
     //me-module---------------------------------------------------------------

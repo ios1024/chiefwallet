@@ -65,20 +65,24 @@ public class ReceiptBindActivity extends BaseActivity<ActivityReceiptBindBinding
     public void initView() {
         super.initView();
         StatueBarUtils.setStatusBarLightMode(this, true);
-        StatueBarUtils.addMarginTopEqualStatusBarHeight(binding.receiptBindTitle.fakeStatusBar);
+        StatueBarUtils.addMarginTopEqualStatusBarHeight(binding.fakeStatusBar);
+//        StatueBarUtils.addMarginTopEqualStatusBarHeight(binding.receiptBindTitle.fakeStatusBar);
         StatueBarUtils.setStatusBarColor(this, Color.WHITE);
 
         //TitleSet
-        mTitleModel = new TitleBean();
-        binding.receiptBindTitle.setViewTitle(mTitleModel);
-        setTitleListener(binding.receiptBindTitle.titleRootLeft);
+//        mTitleModel = new TitleBean();
+//        binding.receiptBindTitle.setViewTitle(mTitleModel);
+//        setTitleListener(binding.receiptBindTitle.titleRootLeft);
 
         viewModel.initType(this, type, typeBean);
     }
 
-    @OnClick({R.id.receipt_bind_qrcode})
+    @OnClick({R.id.receipt_bind_qrcode, R.id.title_left})
     public void OnClick(View view) {
         switch (view.getId()) {
+            case R.id.title_left:
+                finish();
+                break;
             case R.id.receipt_bind_qrcode:
                 chooseQrCod(view);
                 break;

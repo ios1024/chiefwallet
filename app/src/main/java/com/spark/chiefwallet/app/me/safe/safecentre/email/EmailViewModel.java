@@ -88,10 +88,20 @@ public class EmailViewModel extends BaseViewModel {
         }
     });
 
+    //密码显示开关
+    public BindingCommand newpwdSwitchOnClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            uc.newpwdSwitchEvent.setValue(uc.newpwdSwitchEvent.getValue() == null || !uc.newpwdSwitchEvent.getValue());
+
+        }
+    });
     public UIChangeObservable uc = new UIChangeObservable();
 
     public class UIChangeObservable {
         public SingleLiveEvent<Boolean> mGetCodeSuccessLiveEvent = new SingleLiveEvent<>();
+        public SingleLiveEvent<Boolean> newpwdSwitchEvent = new SingleLiveEvent<>();
+
     }
 
     public void getEmailCode(Context context) {

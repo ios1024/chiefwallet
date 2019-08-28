@@ -66,11 +66,23 @@
     <color name="tab_indicator_select_color">#0056BC</color>
     <color name="tab_text_unselected_color">#A4ABC0</color>
     <color name="tab_text_selected_color">#242C46</color>
+    <!--统一跌 卖-->
     <color name="rise">#028F76</color>
+    <!--统一跌 卖 背景色-->
     <color name="rise_light">#CCE9E4</color>
-    <color name="rise_dark">#027B65</color>
+    <!--统一涨 买-->
     <color name="fall">#CA2C49</color>
+    <!--统一涨 买 背景色-->
     <color name="fall_light">#F4D5DB</color>
+
+    <color name="zfb_bg">#00A0EB</color>
+    <color name="wexin_bg">#04DA59</color>
+    <color name="card_bg">#FFAC00</color>
+    <color name="paypal_bg">#222D65</color>
+    <color name="mtn_bg">#01688F</color>
+    <color name="btn_bg">#FFB2CCEA</color>
+
+    <color name="rise_dark">#027B65</color>
     <color name="fall_dark">#AD263F</color>
     <color name="gray_b2">#B2BAD1</color>
     <color name="line_e5">#E5E6EB</color>
@@ -87,4 +99,7 @@
     <color name="kc_dif_color">#D2C79D</color>
     <color name="kc_dea_color">#62BEB2</color>
     <color name="kc_macd_color">#BA8FE8</color>
+
+
+
 </resources>

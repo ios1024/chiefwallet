@@ -70,7 +70,7 @@ public class MultiLanguage {
         if (languageLocalListener != null) {
             return languageLocalListener.getSetLanguageLocale(context);
         }
-        return Locale.CHINA;
+        return Locale.ENGLISH;
     }
 
     /**

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:binding="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="coinChargingViewModel"
+            type="com.spark.chiefwallet.app.me.finance.property.coincharging.CoinChargingViewModel" />
+    </data>
+
+    <com.spark.chiefwallet.ui.progresslayout.ProgressLinearLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+
+        <include
+            android:id="@+id/coinCharging_title"
+            layout="@layout/view_title" />
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35dp"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/im_coin"
+                        android:layout_width="27dp"
+                        android:layout_height="27dp"
+                        binding:url="@{coinChargingViewModel.ImgUrl}" />
+
+                    <TextView
+                        android:id="@+id/tv_coin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="BTC"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/coin_recharge_qr_code"
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:layout_marginTop="50dp" />
+
+                <TextView
+                    style="@style/textBlackFont13"
+                    android:layout_marginTop="32dp"
+                    android:text="@string/save_img"
+                    android:textColor="@color/base"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/coin_recharge_address"
+                    style="@style/textBlackFont13"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="26dp"
+                    android:text="- - - - - - - - -  - - - - - - - - - - - - - - - - - - "
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/coin_recharge_copy"
+                    style="@style/textBlackFont13"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/copy_address"
+                    android:textColor="@color/base"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/tip"
+                    style="@style/textGrayCommonFont13"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="20dp"
+                    android:lineSpacingMultiplier="1.2"
+                    android:padding="20dp" />
+
+
+                <TextView
+                    android:id="@+id/tv_feedback"
+                    style="@style/textBlackFont13"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="30dp"
+                    android:text="@string/question_feedback"
+                    android:textColor="@color/base"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+
+    </com.spark.chiefwallet.ui.progresslayout.ProgressLinearLayout>
+</layout>

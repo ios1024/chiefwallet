@@ -160,8 +160,8 @@ public class PayListBean implements Parcelable {
             status = in.readInt();
             createTime = in.readLong();
             updateTime = in.readLong();
-            realName =in.readString();
-            isSelected=in.readInt();
+            realName = in.readString();
+            isSelected = in.readInt();
         }
 
         public static final Creator<DataBean> CREATOR = new Creator<DataBean>() {
@@ -214,6 +214,10 @@ public class PayListBean implements Parcelable {
 
         public void setQrCodeUrl(String qrCodeUrl) {
             this.qrCodeUrl = qrCodeUrl;
+        }
+
+        public String Bank() {
+            return bank + "   " + branch;
         }
 
         public String getBank() {

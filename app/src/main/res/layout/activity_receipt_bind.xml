@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
-        <import type="android.view.View"/>
+        <import type="android.view.View" />
 
         <variable
             name="receiptBindViewModel"
-            type="com.spark.chiefwallet.app.me.setting.receipt.bind.ReceiptBindViewModel"/>
+            type="com.spark.chiefwallet.app.me.setting.receipt.bind.ReceiptBindViewModel" />
     </data>
 
     <LinearLayout
@@ -17,9 +17,39 @@
         android:background="@color/white"
         android:orientation="vertical">
 
-        <include
-            android:id="@+id/receipt_bind_title"
-            layout="@layout/view_title"/>
+        <!--<include-->
+        <!--android:id="@+id/receipt_bind_title"-->
+        <!--layout="@layout/view_title"/>-->
+        <View
+            android:id="@+id/fake_status_bar"
+            android:layout_width="match_parent"
+            android:layout_height="0dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/title_left"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:padding="15dp"
+                android:src="@drawable/svg_back" />
+
+            <TextView
+                android:id="@+id/title"
+                style="@style/textGrayCommonFont13"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="@{receiptBindViewModel.titleText}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_lager" />
+
+
+        </LinearLayout>
 
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -28,62 +58,85 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="15dp"
                 android:orientation="vertical">
 
                 <TextView
                     style="@style/textBlackSmall"
-                    android:layout_marginLeft="16dp"
-                    android:text="@{receiptBindViewModel.titleText}"
-                    android:textSize="@dimen/sp_30"
-                    android:textStyle="bold"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/name"
+                    android:textSize="12sp" />
 
-                <View
-                    style="@style/line_ccc"
-                    android:layout_marginTop="16dp"/>
-
-                <LinearLayout
-                    style="@style/ll_item_64"
-                    android:layout_height="52dp">
-
-                    <TextView
-                        style="@style/textBlackSmall"
-                        android:layout_width="72dp"
-                        android:text="@string/name"/>
-
-                    <EditText
-                        style="@style/trade_input"
-                        android:hint="@string/name_hint"
-                        android:text="@={receiptBindViewModel.nameText}"
-                        android:textSize="@dimen/font_normal"/>
-
-                </LinearLayout>
-
-                <View
-                    style="@style/line_ccc"
-                    android:layout_marginLeft="16dp"
-                    android:visibility="@{receiptBindViewModel.typeVisiable ? View.VISIBLE : View.GONE}"/>
+                <EditText
+                    android:id="@+id/phone_num"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/linl_pay_bg"
+                    android:hint="@string/name_hint"
+                    android:maxLines="1"
+                    android:padding="10dp"
+                    android:text="@={receiptBindViewModel.nameText}"
+                    android:textSize="@dimen/font_small" />
 
                 <LinearLayout
-                    style="@style/ll_item_64"
-                    android:layout_height="52dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
                     android:visibility="@{receiptBindViewModel.typeVisiable ? View.VISIBLE : View.GONE}">
 
                     <TextView
                         style="@style/textBlackSmall"
-                        android:layout_width="72dp"
-                        android:text="@{receiptBindViewModel.typeText}"/>
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="@{receiptBindViewModel.typeText}"
+                        android:textSize="12sp" />
 
                     <EditText
-                        style="@style/trade_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/linl_pay_bg"
                         android:hint="@{receiptBindViewModel.typeHintText}"
+                        android:maxLines="1"
+                        android:padding="10dp"
                         android:text="@={receiptBindViewModel.typeAddressText}"
-                        android:textSize="@dimen/font_normal"/>
-                </LinearLayout>
+                        android:textSize="@dimen/font_small" />
 
-                <View
-                    style="@style/line_ccc"
-                    android:layout_marginLeft="16dp"
-                    android:visibility="@{receiptBindViewModel.typeVisiable ? View.GONE : View.VISIBLE}"/>
+                    <!--<EditText-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginTop="28dp"-->
+                    <!--android:background="@drawable/linl_pay_bg"-->
+                    <!--android:hint="@{receiptBindViewModel.typeHintText}"-->
+                    <!--android:maxLines="1"-->
+                    <!--android:padding="10dp"-->
+                    <!--android:text="@={receiptBindViewModel.typeAddressText}"-->
+                    <!--android:textSize="@dimen/font_small" />-->
+
+                </LinearLayout>
+                <!--<LinearLayout-->
+                <!--style="@style/ll_item_64"-->
+                <!--android:layout_height="52dp"-->
+                <!--android:visibility="@{receiptBindViewModel.typeVisiable ? View.VISIBLE : View.GONE}">-->
+
+                <!--<TextView-->
+                <!--style="@style/textBlackSmall"-->
+                <!--android:layout_width="72dp"-->
+                <!--android:text="@{receiptBindViewModel.typeText}" />-->
+
+                <!--<EditText-->
+                <!--style="@style/trade_input"-->
+                <!--android:hint="@{receiptBindViewModel.typeHintText}"-->
+                <!--android:text="@={receiptBindViewModel.typeAddressText}"-->
+                <!--android:textSize="@dimen/font_normal" />-->
+                <!--</LinearLayout>-->
+
+                <!--<View-->
+                <!--style="@style/line_ccc"-->
+                <!--android:layout_marginLeft="16dp"-->
+                <!--android:visibility="@{receiptBindViewModel.typeVisiable ? View.GONE : View.VISIBLE}" />-->
                 <!--银行卡-->
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -92,143 +145,261 @@
                     android:visibility="@{receiptBindViewModel.typeVisiable ? View.GONE : View.VISIBLE}">
 
                     <LinearLayout
-                        style="@style/ll_item_64"
-                        android:layout_height="52dp">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical">
+
+                        <!--<TextView-->
+                        <!--style="@style/textBlackSmall"-->
+                        <!--android:layout_width="72dp"-->
+                        <!--android:text="@string/str_bank_name" />-->
+
+                        <!--<EditText-->
+                        <!--style="@style/trade_input"-->
+                        <!--android:enabled="false"-->
+                        <!--android:hint="@string/please_choose"-->
+                        <!--android:text="@={receiptBindViewModel.bankText}"-->
+                        <!--android:textSize="@dimen/font_normal" />-->
+
+                        <!--<ImageView-->
+                        <!--onClickCommand="@{receiptBindViewModel.chooseBankList}"-->
+                        <!--android:layout_width="52dp"-->
+                        <!--android:layout_height="52dp"-->
+                        <!--android:padding="8dp"-->
+                        <!--android:src="@drawable/svg_pull_down"-->
+                        <!--app:bl_ripple_color="@color/gray_ccc"-->
+                        <!--app:bl_ripple_enable="true"-->
+                        <!--app:bl_solid_color="@color/white" />-->
 
                         <TextView
                             style="@style/textBlackSmall"
-                            android:layout_width="72dp"
-                            android:text="@string/str_bank_name"/>
+                            android:layout_width="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:text="@string/str_bank_name"
+                            android:textSize="12sp" />
 
                         <EditText
-                            style="@style/trade_input"
-                            android:enabled="false"
-                            android:hint="@string/please_choose"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/linl_pay_bg"
+                            android:hint="@string/str_enter_bran"
+                            android:maxLines="1"
+                            android:padding="10dp"
                             android:text="@={receiptBindViewModel.bankText}"
-                            android:textSize="@dimen/font_normal"/>
-
-                        <ImageView
-                            onClickCommand="@{receiptBindViewModel.chooseBankList}"
-                            android:layout_width="52dp"
-                            android:layout_height="52dp"
-                            android:padding="8dp"
-                            android:src="@drawable/svg_pull_down"
-                            app:bl_ripple_color="@color/gray_ccc"
-                            app:bl_ripple_enable="true"
-                            app:bl_solid_color="@color/white"/>
+                            android:textSize="@dimen/font_small" />
                     </LinearLayout>
 
-                    <View
-                        style="@style/line_ccc"
-                        android:layout_marginLeft="16dp"/>
 
                     <LinearLayout
-                        style="@style/ll_item_64"
-                        android:layout_height="52dp">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical">
 
                         <TextView
                             style="@style/textBlackSmall"
-                            android:layout_width="72dp"
-                            android:text="@string/str_branch"/>
+                            android:layout_width="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:text="@string/str_branch"
+                            android:textSize="12sp" />
 
                         <EditText
-                            style="@style/trade_input"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/linl_pay_bg"
                             android:hint="@string/str_enter_branch"
+                            android:maxLines="1"
+                            android:padding="10dp"
                             android:text="@={receiptBindViewModel.branchText}"
-                            android:textSize="@dimen/font_normal"/>
+                            android:textSize="@dimen/font_small" />
+
+                        <!--<TextView-->
+                        <!--style="@style/textBlackSmall"-->
+                        <!--android:layout_width="72dp"-->
+                        <!--android:text="@string/str_branch" />-->
+
+                        <!--<EditText-->
+                        <!--style="@style/trade_input"-->
+                        <!--android:hint="@string/str_enter_branch"-->
+                        <!--android:text="@={receiptBindViewModel.branchText}"-->
+                        <!--android:textSize="@dimen/font_normal" />-->
                     </LinearLayout>
 
-                    <View
-                        style="@style/line_ccc"
-                        android:layout_marginLeft="16dp"/>
 
                     <LinearLayout
-                        style="@style/ll_item_64"
-                        android:layout_height="52dp">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical">
 
                         <TextView
                             style="@style/textBlackSmall"
-                            android:layout_width="72dp"
-                            android:text="@string/str_bank_number"/>
+                            android:layout_width="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:text="@string/str_bank_number"
+                            android:textSize="12sp" />
 
                         <EditText
-                            style="@style/trade_input"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/linl_pay_bg"
                             android:hint="@string/str_enter_bank_number"
+                            android:maxLines="1"
+                            android:padding="10dp"
                             android:text="@={receiptBindViewModel.bankAddressText}"
-                            android:textSize="@dimen/font_normal"/>
+                            android:textSize="@dimen/font_small" />
+
+                        <!--<TextView-->
+                        <!--style="@style/textBlackSmall"-->
+                        <!--android:layout_width="72dp"-->
+                        <!--android:text="@string/str_bank_number" />-->
+
+                        <!--<EditText-->
+                        <!--style="@style/trade_input"-->
+                        <!--android:hint="@string/str_enter_bank_number"-->
+                        <!--android:text="@={receiptBindViewModel.bankAddressText}"-->
+                        <!--android:textSize="@dimen/font_normal" />-->
                     </LinearLayout>
                 </LinearLayout>
 
-                <View
-                    style="@style/line_ccc"
-                    android:layout_marginLeft="16dp"/>
 
                 <LinearLayout
-                    style="@style/ll_item_64"
-                    android:layout_height="52dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <TextView
                         style="@style/textBlackSmall"
-                        android:layout_width="72dp"
-                        android:text="@string/legal_currency_pwd"/>
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/legal_currency_pwd"
+                        android:textSize="12sp" />
 
                     <EditText
-                        style="@style/trade_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/linl_pay_bg"
                         android:hint="@string/trade_pwd_hint"
                         android:inputType="textPassword"
+                        android:maxLines="1"
+                        android:padding="10dp"
                         android:text="@={receiptBindViewModel.pwdText}"
-                        android:textSize="@dimen/font_normal"/>
+                        android:textSize="@dimen/font_small" />
+
+                    <!--<TextView-->
+                    <!--style="@style/textBlackSmall"-->
+                    <!--android:layout_width="72dp"-->
+                    <!--android:text="@string/legal_currency_pwd" />-->
+
+                    <!--<EditText-->
+                    <!--style="@style/trade_input"-->
+                    <!--android:hint="@string/trade_pwd_hint"-->
+                    <!--android:inputType="textPassword"-->
+                    <!--android:text="@={receiptBindViewModel.pwdText}"-->
+                    <!--android:textSize="@dimen/font_normal" />-->
                 </LinearLayout>
 
-                <View
-                    style="@style/line_ccc"/>
+                <View style="@style/line_ccc" />
 
-                <FrameLayout
-                    android:id="@+id/receipt_bind_qrcode"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="240dp"
-                    android:layout_margin="16dp"
-                    android:visibility="@{receiptBindViewModel.qrCodeVisiable ? View.VISIBLE : View.GONE}"
-                    app:bl_corners_radius="4dp"
-                    app:bl_solid_color="@color/gray_f3">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    android:visibility="@{receiptBindViewModel.qrCodeVisiable ? View.VISIBLE : View.GONE}">
 
+                    <TextView
+                        style="@style/textBlackSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/str_uplo"
+                        android:textSize="12sp" />
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:orientation="horizontal">
 
-                        <ImageView
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
-                            android:src="@drawable/svg_add_solid"/>
+
+                        <FrameLayout
+                            android:id="@+id/receipt_bind_qrcode"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:background="@drawable/linl_pay_bg">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="18dp"
+                                    android:layout_height="18dp"
+                                    android:src="@drawable/svg_pay_lansejia" />
+
+                                <TextView
+                                    style="@style/textGrayCommonNormal"
+                                    android:layout_marginTop="10dp"
+                                    android:text="@string/str_upload"
+                                    android:textColor="@color/base"
+                                    android:textSize="@dimen/dp_10" />
+                            </LinearLayout>
+
+                            <ImageView
+                                url="@{receiptBindViewModel.qrCodeUrl}"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="1dp"
+                                android:scaleType="fitCenter" />
+                        </FrameLayout>
+
 
                         <TextView
-                            style="@style/textGrayCommonNormal"
-                            android:layout_marginTop="12dp"
-                            android:text="@string/str_upload"/>
+                            style="@style/textBlackSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="@dimen/dp_10"
+                            android:text="@string/str_upload_text"
+                            android:textColor="@color/fall"
+                            android:textSize="12sp" />
                     </LinearLayout>
 
-                    <ImageView
-                        url="@{receiptBindViewModel.qrCodeUrl}"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scaleType="fitCenter"/>
-                </FrameLayout>
-
+                </LinearLayout>
 
                 <TextView
                     style="@style/textBlackNormal"
                     onClickCommand="@{receiptBindViewModel.submitCommand}"
                     android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:layout_margin="16dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="50dp"
                     android:gravity="center"
                     android:text="@{receiptBindViewModel.bottomText}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_14"
                     android:textStyle="bold"
-                    app:bl_corners_radius="4dp"
-                    app:bl_pressed_color="@color/base_dark"
-                    app:bl_unpressed_color="@color/base"/>
+                    app:bl_corners_radius="2dp"
+                    app:bl_pressed_color="@color/subscript2"
+                    app:bl_unpressed_color="@color/base" />
+                <!--<TextView-->
+                <!--style="@style/textBlackNormal"-->
+                <!--onClickCommand="@{receiptBindViewModel.submitCommand}"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="?attr/actionBarSize"-->
+                <!--android:layout_margin="16dp"-->
+                <!--android:gravity="center"-->
+                <!--android:text="@{receiptBindViewModel.bottomText}"-->
+                <!--android:textStyle="bold"-->
+                <!--app:bl_corners_radius="4dp"-->
+                <!--app:bl_pressed_color="@color/base_dark"-->
+                <!--app:bl_unpressed_color="@color/base" />-->
+
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
     </LinearLayout>

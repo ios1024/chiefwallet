@@ -1,5 +1,7 @@
 package com.spark.otcclient;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.spark.otcclient.base.OtcHost;
@@ -8,9 +10,14 @@ import com.spark.otcclient.pojo.AdDetailResult;
 import com.spark.otcclient.pojo.AdSelfDownFindResult;
 import com.spark.otcclient.pojo.AdSelfUpFindResult;
 import com.spark.otcclient.pojo.AdvertiseCoinListResult;
+import com.spark.otcclient.pojo.AdvertiseCoinResult;
+import com.spark.otcclient.pojo.BusBasicApplyBean;
+import com.spark.otcclient.pojo.BusBasicApplyEntity;
 import com.zhouyou.http.EasyHttp;
 import com.zhouyou.http.callback.SimpleCallBack;
 import com.zhouyou.http.exception.ApiException;
+
+import org.json.JSONObject;
 
 import me.spark.mvvm.base.BaseApplication;
 import me.spark.mvvm.base.BaseHost;
@@ -153,5 +160,7 @@ public class AdvertiseSelfClient extends BaseHttpClient {
                     }
                 });
     }
+
+
 
 }

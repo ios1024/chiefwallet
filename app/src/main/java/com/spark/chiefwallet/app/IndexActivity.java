@@ -2,10 +2,13 @@ package com.spark.chiefwallet.app;
 
 import android.arch.lifecycle.Observer;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.View;
+import android.view.WindowManager;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.spark.chiefwallet.BR;
@@ -28,6 +31,7 @@ import me.spark.mvvm.base.BaseApplication;
 import me.spark.mvvm.base.Constant;
 import me.spark.mvvm.service.DaemonEnv;
 import me.spark.mvvm.service.IntentWrapper;
+import me.spark.mvvm.ui.dialog.utils.StatusBarUtils;
 import me.spark.mvvm.utils.LogUtils;
 import me.spark.mvvm.utils.StringUtils;
 
@@ -73,11 +77,17 @@ public class IndexActivity extends BaseActivity<ActivityIndexBinding, IndexViewM
     }
 
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        StatusBarUtils.setTranslucentForImageViewInFragment(this, 0, null);
+    }
+
+    @Override
     public void initView() {
         super.initView();
-        StatueBarUtils.setStatusBarLightMode(this, true);
-        StatueBarUtils.addMarginTopEqualStatusBarHeight(binding.fakeStatusBar);
-        StatueBarUtils.setStatusBarColor(this, Color.WHITE);
+//        StatueBarUtils.setStatusBarLightMode(this, true);
+//        StatueBarUtils.addMarginTopEqualStatusBarHeight(binding.fakeStatusBar);
+//        StatueBarUtils.setStatusBarColor(this, Color.WHITE);
     }
 
     @Override

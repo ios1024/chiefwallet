@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="certificationDetailsViewModel"
+            type="com.spark.chiefwallet.app.me.safe.business.CertificationDetailsViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/certification_title"
+            layout="@layout/view_title" />
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:visibility="@{certificationDetailsViewModel.certificationtype1 ? View.VISIBLE : View.GONE}">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <!--<LinearLayout-->
+                        <!--android:layout_width="20dp"-->
+                        <!--android:layout_height="20dp"-->
+                        <!--android:background="#FF0056BC"-->
+                        <!--android:gravity="center"-->
+                        <!--app:bl_corners_radius="100dp"-->
+                        <!--app:bl_solid_color="#FF0056BC">-->
+
+                        <TextView
+                            style="@style/textBlackNormal"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:gravity="center"
+                            android:text="1"
+                            android:textColor="#FFFFFFFF"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            app:bl_corners_radius="20dp"
+                            app:bl_solid_color="@color/base" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="基本条件"
+                            android:textColor="#FF333333"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                        <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="1"-->
+                        <!--android:textColor="#FFFFFFFF"-->
+                        <!--android:textSize="14sp" />-->
+                        <!--</LinearLayout>-->
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/real_name_authentication"
+                            android:textColor="#FF333333"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/im_uncertified"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/svg_adopt" />
+
+                        <TextView
+                            android:id="@+id/tv_realname"
+                            android:layout_width="65dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:text="@string/verified"
+                            android:textColor="#FF333333"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/phone_bind"
+                            android:textColor="#FF333333"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/im_uncertified1"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/svg_adopt" />
+
+                        <TextView
+                            android:id="@+id/tv_realname1"
+                            android:layout_width="65dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:text="@string/verified"
+                            android:textColor="#FF333333"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp">
+
+                        <TextView
+                            style="@style/textBlackNormal"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:gravity="center"
+                            android:text="2"
+                            android:textColor="#FFFFFFFF"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            app:bl_corners_radius="20dp"
+                            app:bl_solid_color="@color/base" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="按要求准备商家申请材料"
+                            android:textColor="#FF333333"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/application_materials"
+                            android:textColor="#FFA4ABC0"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+
+                        <TextView
+                            android:id="@+id/tv_business"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:lineSpacingExtra="5dp"
+                            android:textColor="#FFA4ABC0"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_business2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:lineSpacingExtra="5dp"
+                            android:text="@={certificationDetailsViewModel.tvbushiness}"
+                            android:textColor="#FFA4ABC0"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp">
+
+                        <TextView
+                            style="@style/textBlackNormal"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:gravity="center"
+                            android:text="3"
+                            android:textColor="#FFFFFFFF"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            app:bl_corners_radius="20dp"
+                            app:bl_solid_color="@color/base" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="@string/application_submission"
+                            android:textColor="#FF333333"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:lineSpacingExtra="5dp"
+                        android:text="@string/application_submission2"
+                        android:textColor="#FFA4ABC0"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="25dp">
+
+                        <TextView
+                            style="@style/textBlackNormal"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:gravity="center"
+                            android:text="4"
+                            android:textColor="#FFFFFFFF"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            app:bl_corners_radius="20dp"
+                            app:bl_solid_color="@color/base" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="@string/data_audit"
+                            android:textColor="#FF333333"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:lineSpacingExtra="5dp"
+                        android:text="@string/application_submission3"
+                        android:textColor="#FFA4ABC0"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/application_submission"
+                        style="@style/textBlackNormal"
+                        onClickCommand="@{certificationDetailsViewModel.conmOnClickCommand}"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="80dp"
+                        android:layout_marginBottom="25dp"
+                        android:gravity="center"
+                        android:text="@string/application_submission"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_14"
+                        android:textStyle="bold"
+                        app:bl_corners_radius="2dp"
+                        app:bl_pressed_color="@color/subscript2"
+                        app:bl_unpressed_color="@color/base" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="70dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="@{certificationDetailsViewModel.certificationtype2 ? View.VISIBLE : View.GONE}">
+
+                    <ImageView
+                        android:layout_width="81dp"
+                        android:layout_height="81dp"
+                        android:src="@drawable/svg_waitfor"
+                        android:visibility="@{certificationDetailsViewModel.businesswaitfor ? View.VISIBLE : View.GONE}" />
+
+                    <ImageView
+                        android:layout_width="81dp"
+                        android:layout_height="81dp"
+                        android:src="@drawable/svg_business_success"
+                        android:visibility="@{certificationDetailsViewModel.businesssuccess ? View.VISIBLE : View.GONE}" />
+
+                    <ImageView
+                        android:layout_width="81dp"
+                        android:layout_height="81dp"
+
+                        android:src="@drawable/svg_business_fail"
+                        android:visibility="@{certificationDetailsViewModel.businessfail ? View.VISIBLE : View.GONE}" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="100dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginRight="100dp"
+                        android:gravity="center"
+                        android:text="@={certificationDetailsViewModel.tvstatustips}"
+                        android:textColor="#FF000000"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="60dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="60dp"
+                        android:gravity="center"
+                        android:text="@={certificationDetailsViewModel.tvcontentofapplication}"
+                        android:textColor="#FFA4ABC0"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/application_type1"
+                        style="@style/textBlackNormal"
+                        onClickCommand="@{certificationDetailsViewModel.applyOnClickCommand}"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="90dp"
+                        android:layout_marginBottom="25dp"
+                        android:gravity="center"
+                        android:text="@={certificationDetailsViewModel.tvapply}"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_14"
+                        android:textStyle="bold"
+                        app:bl_corners_radius="2dp"
+                        app:bl_pressed_color="@color/subscript2"
+                        app:bl_unpressed_color="@color/base" />
+
+                </LinearLayout>
+
+            </FrameLayout>
+        </android.support.v4.widget.NestedScrollView>
+
+    </LinearLayout>
+</layout>

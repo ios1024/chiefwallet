@@ -13,6 +13,7 @@ import com.geetest.sdk.Bind.GT3GeetestUtilsBind;
 import com.google.gson.Gson;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.interfaces.OnSelectListener;
+import com.lxj.xpopup.interfaces.XPopupCallback;
 import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.api.AppClient;
@@ -21,6 +22,8 @@ import com.spark.chiefwallet.api.pojo.PromotionCodeLimitResult;
 import com.spark.chiefwallet.app.me.user.pwdforget.PwdForgetViewModel;
 import com.spark.chiefwallet.app.me.user.register.verificationcode.VerifyCodeActivity;
 import com.spark.chiefwallet.base.ARouterPath;
+import com.spark.chiefwallet.ui.popup.ChoiceOfNationalityPopup;
+import com.spark.chiefwallet.ui.popup.impl.NationalChoiceListener;
 import com.spark.chiefwallet.ui.toast.Toasty;
 import com.spark.chiefwallet.util.CheckErrorUtil;
 import com.spark.chiefwallet.util.RegexUtils;
@@ -28,6 +31,7 @@ import com.spark.ucclient.CaptchaGetClient;
 import com.spark.ucclient.RegisterClient;
 import com.spark.ucclient.pojo.Captcha;
 import com.spark.ucclient.pojo.CountryEntity;
+import com.spark.ucclient.pojo.CountryEntity2;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -40,6 +44,7 @@ import me.spark.mvvm.base.BaseHost;
 import me.spark.mvvm.base.BaseRequestCode;
 import me.spark.mvvm.base.BaseResponseError;
 import me.spark.mvvm.base.BaseViewModel;
+import me.spark.mvvm.base.Constant;
 import me.spark.mvvm.base.EvKey;
 import me.spark.mvvm.binding.command.BindingAction;
 import me.spark.mvvm.binding.command.BindingCommand;
@@ -65,7 +70,7 @@ public class RegisterViewModel extends BaseViewModel {
     private String[] mCountryArray;
     private Context mContext;
     private List<CountryEntity> mCountryEntityList;
-    private String countryEnName;                      //值传递 国籍 enName
+    private String countryEnName = "中国";                      //值传递 国籍 enName
     public int type = 0;                                //0 - 手机注册 1 - 邮箱注册
     public String bannerPicBean;
     private String aboutAppUrl, rivacyUrl, clauseUrl, helpCenterUrl;
@@ -93,7 +98,7 @@ public class RegisterViewModel extends BaseViewModel {
     public ObservableField<String> countryName = new ObservableField<>("中国 +86");
 
     public ObservableField<String> tiaolie = new ObservableField<>("0");
-
+    public ChoiceOfNationalityPopup choiceOfNationalityPopup;
 
     //国籍选择
     public BindingCommand chooseCountryOnClickCommand = new BindingCommand(new BindingAction() {
@@ -209,7 +214,9 @@ public class RegisterViewModel extends BaseViewModel {
             }
 
             showDialog(App.getInstance().getString(R.string.loading));
-            AppClient.getInstance().checkPromotionLimit();
+//            AppClient.getInstance().checkPromotionLimit();//
+            registerRequest();
+
         }
     });
 
@@ -223,6 +230,7 @@ public class RegisterViewModel extends BaseViewModel {
         public SingleLiveEvent<Boolean> mGetCodeSuccessLiveEvent = new SingleLiveEvent<>();
         public SingleLiveEvent<Boolean> pwdSwitchEvent = new SingleLiveEvent<>();
         public SingleLiveEvent<Boolean> newpwdSwitchEvent = new SingleLiveEvent<>();
+        public SingleLiveEvent<Boolean> smsCodePopopShow = new SingleLiveEvent<>();
 
     }
 
@@ -285,15 +293,29 @@ public class RegisterViewModel extends BaseViewModel {
         //避免重复请求
         if (mCountryArray != null) {
             new XPopup.Builder(mContext)
-                    .asBottomList(mContext.getString(R.string.choose_country), mCountryArray,
-                            new OnSelectListener() {
-                                @Override
-                                public void onSelect(int position, String text) {
-                                    countryEnName = mCountryEntityList.get(position).getEnName();
-                                    updateCountryInfo(mCountryEntityList.get(position).getZhName() + " +" + mCountryEntityList.get(position).getAreaCode(), mCountryEntityList.get(position).getAreaCode());
-                                }
-                            })
-                    .show();
+                    .setPopupCallback(new XPopupCallback() {
+                        @Override
+                        public void onShow() {
+                            uc.smsCodePopopShow.setValue(true);
+                        }
+
+                        @Override
+                        public void onDismiss() {
+                            uc.smsCodePopopShow.setValue(false);
+                        }
+
+                    })
+                    .asCustom(choiceOfNationalityPopup).show();
+//            new XPopup.Builder(mContext)
+//                    .asBottomList(mContext.getString(R.string.choose_country), mCountryArray,
+//                            new OnSelectListener() {
+//                                @Override
+//                                public void onSelect(int position, String text) {
+//                                    countryEnName = mCountryEntityList.get(position).getEnName();
+//                                    updateCountryInfo(mCountryEntityList.get(position).getZhName() + " +" + mCountryEntityList.get(position).getAreaCode(), mCountryEntityList.get(position).getAreaCode());
+//                                }
+//                            })
+//                    .show();
         } else {
             showDialog(mContext.getString(R.string.loading));
             RegisterClient.getInstance().findSupportCountry();
@@ -304,16 +326,16 @@ public class RegisterViewModel extends BaseViewModel {
         switch (type) {
             case 0:
                 if (StringUtils.isNotEmpty(cid, checkData)) {
-                    RegisterClient.getInstance().registerByPhone(cid, checkData, "", newPwd.get(), strAreaCode, inviteCode.get(), phoneNum.get());
+                    RegisterClient.getInstance().registerByPhone(cid, checkData, "", newPwd.get(), countryEnName, inviteCode.get(), strAreaCode + phoneNum.get());
                 } else {
-                    RegisterClient.getInstance().registerByPhone("", verifyCode.get(), newPwd.get(), strAreaCode, inviteCode.get(), phoneNum.get());
+                    RegisterClient.getInstance().registerByPhone("", verifyCode.get(), newPwd.get(), countryEnName, inviteCode.get(), strAreaCode + phoneNum.get());
                 }
                 break;
             case 1:
                 if (StringUtils.isNotEmpty(cid, checkData)) {
-                    RegisterClient.getInstance().registerByEmail(cid, checkData, "", newPwd.get(), strAreaCode, inviteCode.get(), phoneNum.get());
+                    RegisterClient.getInstance().registerByEmail(cid, checkData, "", newPwd.get(), countryEnName, inviteCode.get(), phoneNum.get());
                 } else {
-                    RegisterClient.getInstance().registerByEmail("", verifyCode.get(), newPwd.get(), strAreaCode, inviteCode.get(), phoneNum.get());
+                    RegisterClient.getInstance().registerByEmail("", verifyCode.get(), newPwd.get(), countryEnName, inviteCode.get(), phoneNum.get());
                 }
                 break;
         }
@@ -393,23 +415,48 @@ public class RegisterViewModel extends BaseViewModel {
                 if (eventBean.isStatue()) {
                     final List<CountryEntity> objList = (List<CountryEntity>) eventBean.getObject();
                     if (!objList.isEmpty()) {
-                        mCountryEntityList = objList;
-                        mCountryArray = new String[objList.size()];
-                        for (int i = 0; i < objList.size(); i++) {
-                            mCountryArray[i] = objList.get(i).getZhName();
+                        if (choiceOfNationalityPopup == null) {
+                            choiceOfNationalityPopup = new ChoiceOfNationalityPopup(mContext, objList, new NationalChoiceListener() {
+
+                                @Override
+                                public void onClickItem(int position, List<CountryEntity2> countryEntities2) {
+
+                                    updateCountryInfo(countryEntities2.get(position).getZhName() + " +" + countryEntities2.get(position).getAreaCode(), countryEntities2.get(position).getAreaCode());
+
+                                }
+                            });
                         }
-                        if (mCountryArray.length > 0) {
-                            new XPopup.Builder(mContext)
-                                    .asBottomList(mContext.getString(R.string.choose_country), mCountryArray,
-                                            new OnSelectListener() {
-                                                @Override
-                                                public void onSelect(int position, String text) {
-                                                    countryEnName = objList.get(position).getEnName();
-                                                    updateCountryInfo(objList.get(position).getZhName() + " +" + objList.get(position).getAreaCode(), mCountryEntityList.get(position).getAreaCode());
-                                                }
-                                            })
-                                    .show();
-                        }
+                        new XPopup.Builder(mContext)
+                                .setPopupCallback(new XPopupCallback() {
+                                    @Override
+                                    public void onShow() {
+                                        uc.smsCodePopopShow.setValue(true);
+                                    }
+
+                                    @Override
+                                    public void onDismiss() {
+                                        uc.smsCodePopopShow.setValue(false);
+                                    }
+
+                                })
+                                .asCustom(choiceOfNationalityPopup).show();
+//                        mCountryEntityList = objList;
+//                        mCountryArray = new String[objList.size()];
+//                        for (int i = 0; i < objList.size(); i++) {
+//                            mCountryArray[i] = objList.get(i).getZhName();
+//                        }
+//                        if (mCountryArray.length > 0) {
+//                            new XPopup.Builder(mContext)
+//                                    .asBottomList(mContext.getString(R.string.choose_country), mCountryArray,
+//                                            new OnSelectListener() {
+//                                                @Override
+//                                                public void onSelect(int position, String text) {
+//                                                    countryEnName = objList.get(position).getEnName();
+//                                                    updateCountryInfo(objList.get(position).getZhName() + " +" + objList.get(position).getAreaCode(), mCountryEntityList.get(position).getAreaCode());
+//                                                }
+//                                            })
+//                                    .show();
+//                        }
                     } else {
                         Toasty.showInfo(mContext.getString(R.string.country_list_null));
                     }
@@ -606,6 +653,7 @@ public class RegisterViewModel extends BaseViewModel {
         countryName.set(strCountry);
     }
 
+
     @Override
     public void onResume() {
         super.onResume();
@@ -613,8 +661,20 @@ public class RegisterViewModel extends BaseViewModel {
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onStop() {
+        super.onStop();
         EventBusUtils.unRegister(this);
     }
+
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        EventBusUtils.register(this);
+//    }
+//
+//    @Override
+//    public void onPause() {
+//        super.onPause();
+//        EventBusUtils.unRegister(this);
+//    }
 }

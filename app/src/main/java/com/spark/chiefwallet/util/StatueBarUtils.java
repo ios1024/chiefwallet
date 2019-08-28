@@ -25,6 +25,8 @@ import android.view.ViewGroup.MarginLayoutParams;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.spark.chiefwallet.R;
+
 import java.lang.reflect.Method;
 
 import me.spark.mvvm.utils.Utils;
@@ -624,5 +626,21 @@ public final class StatueBarUtils {
         }
         Log.e("BarUtils", "the view's Context is not an Activity.");
         return null;
+    }
+
+    /**
+     * 为布局文件中新增的状态栏布局设置背景色和高度
+     */
+    public static void setStatusViewAttr(View view, Activity activity) {
+        if (view == null || activity == null) {
+            return;
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+            layoutParams.height = getStatusBarHeight();
+            view.setLayoutParams(layoutParams);
+
+            view.setBackgroundColor(activity.getResources().getColor(R.color.base));
+        }
     }
 }

@@ -28,15 +28,30 @@
                 android:id="@+id/record_tab"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
+                android:layout_marginLeft="13dp"
                 android:background="@color/white"
-                app:tl_indicator_color="#000000"
+                app:tl_indicator_color="@color/white"
                 app:tl_indicator_height="2dp"
                 app:tl_indicator_width_equal_title="true"
                 app:tl_tab_padding="6dp"
                 app:tl_textBold="BOTH"
-                app:tl_textSelectColor="#000000"
-                app:tl_textUnselectColor="#94374155"
-                app:tl_textsize="@dimen/font_xlager"/>
+                app:tl_textSelectColor="#333333"
+                app:tl_textUnselectColor="#A4ABC0"
+                app:tl_textsize="@dimen/font_lager" />
+
+            <!--<com.spark.chiefwallet.ui.tablayout.SlidingTabLayout-->
+            <!--android:id="@+id/record_tab"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="48dp"-->
+            <!--android:background="@color/white"-->
+            <!--app:tl_indicator_color="#000000"-->
+            <!--app:tl_indicator_height="2dp"-->
+            <!--app:tl_indicator_width_equal_title="true"-->
+            <!--app:tl_tab_padding="6dp"-->
+            <!--app:tl_textBold="BOTH"-->
+            <!--app:tl_textSelectColor="#000000"-->
+            <!--app:tl_textUnselectColor="#94374155"-->
+            <!--app:tl_textsize="@dimen/font_xlager"/>-->
 
             <View
                 style="@style/line_ccc"/>

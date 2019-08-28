@@ -27,6 +27,8 @@ public class EvKey {
     public static final String promotionCodeCheck = "promotionCodeCheck";
     public static final String checkVersionUpdate = "checkVersionUpdate";
     public static final String drawerSearch = "drawerSearch";
+    public static final String chartBase64Pic = "chartBase64Pic";
+    public static final String CoinAddress = "CoinAddress";//向父类传参
 
     //login
     public static final String casConfig = "casConfig";
@@ -84,6 +86,7 @@ public class EvKey {
     public static final String coinTransfer = "coinTransfer";
     public static final String coinCfdTransfer = "coinCfdTransfer";
     public static final String authMerchantFind = "authMerchantFind";
+    public static final String authMerchantFind2 = "authMerchantFind2";
     public static final String propertyDetails = "propertyDetails";
     public static final String propertyLockDetails = "propertyLockDetails";
     public static final String propertyCFDDetails = "propertyCFDDetails";
@@ -115,9 +118,13 @@ public class EvKey {
     public static final String payWaySettingsSelected = "payWaySettingsSelected";
     public static final String advertiseDetail = "advertiseDetail";
     public static final String findMerchantDetails = "findMerchantDetails";
+    public static final String findAdcurrency = "findAdcurrency";
     public static final String indexCoinList = "indexCoinList";
     public static final String adDelete = "adDelete";
     public static final String chatList = "chatList";
+    public static final String authmerchanttype = "authmerchanttype";
+    public static final String businesstype = "businesstype";
+    public static final String application_for_reinsurance_refund = "application_for_reinsurance_refund";
     public static final String advertiseFind = "advertiseFind";
 
     //spot

@@ -145,6 +145,20 @@ dependencies {
     api(rootProject.ext.dependencies["magicIndicator"]) {
         exclude group: 'com.android.support'
     }
+    //qiyu
+    api(rootProject.ext.dependencies["qiyu"]) {
+        exclude group: 'com.android.support'
+    }
+
+    //mpandroidchart
+    api(rootProject.ext.dependencies["mpandroidchart"]) {
+        exclude group: 'com.android.support'
+    }
+
+    //magicIndicator
+    api(rootProject.ext.dependencies["magicIndicator"]) {
+        exclude group: 'com.android.support'
+    }
     //mpandroidchart
     api(rootProject.ext.dependencies["mpandroidchart"]) {
         exclude group: 'com.android.support'

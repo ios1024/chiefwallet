@@ -72,6 +72,17 @@ public class OtcHost {
     public static String selfAdvertiseDelete = "selfAdvertise/delete/";
     //获取历史聊天记录
     public static String getTradeChatListUrl = "trade/order/chat/";
+    //获取保证金
+    public static String authmerchanttype = "authMerchant/authMerchantType/2";
+    //认证商家申请
+    public static String busbasicapply = "authMerchant/apply";
+    //认证商家申请列表
+    public static String businesslist = "authMerchant/listApply";
+    //获取保证金
+    public static String getcancel = "authMerchant/cancel";
     //查询指定商家上架的广告
     public static String getAdvertiseFindUrl = "advertise/find/";
+    //查询指定国家货币类型
+    public static String getAdcurrencyFindUrl = "advertise/currency";
+
 }

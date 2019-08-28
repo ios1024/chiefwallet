@@ -1,6 +1,7 @@
 package com.spark.chiefwallet.app.me.system.about;
 
 import android.app.Application;
+import android.content.Context;
 import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
 
@@ -27,8 +28,11 @@ import me.spark.mvvm.binding.command.BindingAction;
 import me.spark.mvvm.binding.command.BindingCommand;
 import me.spark.mvvm.utils.EventBean;
 import me.spark.mvvm.utils.EventBusUtils;
+import me.spark.mvvm.utils.LanguageSPUtil;
 import me.spark.mvvm.utils.LogUtils;
+import me.spark.mvvm.utils.SPUtils;
 import me.spark.mvvm.utils.StringUtils;
+import me.spark.mvvm.utils.language.MultiLanguage;
 
 /**
  * ================================================
@@ -48,15 +52,39 @@ public class AboutViewModel extends BaseViewModel {
     public ObservableField<String> officeWebSite = new ObservableField<>(BaseHost.HOST.substring(0, BaseHost.HOST.length() - 1));
     public ObservableField<String> versionName = new ObservableField<>(App.getInstance().getString(R.string.version) + AppUtils.getContextVersionName());
     public ObservableField<String> updateVersion = new ObservableField<>(AppUtils.getContextVersionName());
-    private String aboutAppUrl, rivacyUrl, clauseUrl, helpCenterUrl;
+    //    private String aboutAppUrl, rivacyUrl, clauseUrl, helpCenterUrl;
+    public String bannerPicBean;
+    private Context mConstant;
+
+    public void myContext(Context context) {
+        this.mConstant = context;
+    }
 
     //关于App
     public BindingCommand aboutAppClickCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
+//            ARouter.getInstance().build(ARouterPath.ACTIVITY_EMEX_WEBDETAILS)
+//                    .withString("title", App.getInstance().getString(R.string.app_about))
+//                    .withString("link", StringUtils.isEmpty(aboutAppUrl) ? "" : aboutAppUrl)
+//                    .navigation();
+
+            switch (LanguageSPUtil.getInstance(App.getInstance()).getSelectLanguage()) {
+                case 0://中文
+                    bannerPicBean = "https://www.exchief.com/copywriting/aboutusZh.html";
+
+                    break;
+                case 1://英文
+                    bannerPicBean = "https://www.exchief.com/copywriting/aboutusEn.html";
+                    break;
+                default:
+                    bannerPicBean = "https://www.exchief.com/copywriting/aboutusEn.html";
+                    break;
+            }
+
             ARouter.getInstance().build(ARouterPath.ACTIVITY_EMEX_WEBDETAILS)
-                    .withString("title", App.getInstance().getString(R.string.app_about))
-                    .withString("link", StringUtils.isEmpty(aboutAppUrl) ? "" : aboutAppUrl)
+                    .withString("link", bannerPicBean)
+                    .withString("title", App.getInstance().getResources().getString(R.string.app_about))
                     .navigation();
         }
     });
@@ -65,20 +93,76 @@ public class AboutViewModel extends BaseViewModel {
     public BindingCommand rivacyClickCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
+//            ARouter.getInstance().build(ARouterPath.ACTIVITY_EMEX_WEBDETAILS)
+//                    .withString("title", App.getInstance().getString(R.string.register_rivacy))
+//                    .withString("link", StringUtils.isEmpty(rivacyUrl) ? "" : rivacyUrl)
+//                    .navigation();
+
+            switch (LanguageSPUtil.getInstance(App.getInstance()).getSelectLanguage()) {
+                case 0://中文
+                    bannerPicBean = "https://www.exchief.com/copywriting/privacyZh.html";
+                    break;
+                case 1://英文
+                    bannerPicBean = "https://www.exchief.com/copywriting/privacyEn.html";
+                    break;
+                default:
+                    bannerPicBean = "https://www.exchief.com/copywriting/privacyEn.html";
+                    break;
+            }
+
             ARouter.getInstance().build(ARouterPath.ACTIVITY_EMEX_WEBDETAILS)
-                    .withString("title", App.getInstance().getString(R.string.register_rivacy))
-                    .withString("link", StringUtils.isEmpty(rivacyUrl) ? "" : rivacyUrl)
+                    .withString("link", bannerPicBean)
+                    .withString("title", App.getInstance().getResources().getString(R.string.register_rivacy))
                     .navigation();
         }
+    });    //法律声明
+    public BindingCommand falushengm = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            switch (LanguageSPUtil.getInstance(App.getInstance()).getSelectLanguage()) {
+                case 0://中文
+                    bannerPicBean = "https://www.exchief.com/copywriting/legalZh.html";
+                    break;
+                case 1://英文
+                    bannerPicBean = "https://www.exchief.com/copywriting/legalEn.html";
+                    break;
+                default:
+                    bannerPicBean = "https://www.exchief.com/copywriting/legalEn.html";
+                    break;
+            }
+            ARouter.getInstance().build(ARouterPath.ACTIVITY_EMEX_WEBDETAILS)
+                    .withString("link", bannerPicBean)
+                    .withString("title", App.getInstance().getResources().getString(R.string.falvshengm))
+                    .navigation();
+
+        }
     });
+
 
     //用户条款
     public BindingCommand clauseClickCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
+//            ARouter.getInstance().build(ARouterPath.ACTIVITY_EMEX_WEBDETAILS)
+//                    .withString("title", App.getInstance().getString(R.string.register_clause))
+//                    .withString("link", StringUtils.isEmpty(clauseUrl) ? "" : clauseUrl)
+//                    .navigation();
+            switch (LanguageSPUtil.getInstance(App.getInstance()).getSelectLanguage()) {
+                case 0://中文
+                    bannerPicBean = "https://www.exchief.com/copywriting/protocolZh.html";
+                    break;
+                case 1://英文
+                    bannerPicBean = "https://www.exchief.com/copywriting/protocolEn.html";
+                    break;
+                default:
+                    bannerPicBean = "https://www.exchief.com/copywriting/protocolEn.html";
+                    break;
+            }
+
+
             ARouter.getInstance().build(ARouterPath.ACTIVITY_EMEX_WEBDETAILS)
-                    .withString("title", App.getInstance().getString(R.string.register_clause))
-                    .withString("link", StringUtils.isEmpty(clauseUrl) ? "" : clauseUrl)
+                    .withString("link", bannerPicBean)
+                    .withString("title", App.getInstance().getResources().getString(R.string.register_clause))
                     .navigation();
         }
     });
@@ -108,11 +192,11 @@ public class AboutViewModel extends BaseViewModel {
     public BindingCommand helpCenterClickCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
-            LogUtils.e("helpCenterClickCommand", helpCenterUrl);
-            ARouter.getInstance().build(ARouterPath.ACTIVITY_EMEX_WEBDETAILS)
-                    .withString("title", App.getInstance().getString(R.string.help_center))
-                    .withString("link", StringUtils.isEmpty(helpCenterUrl) ? "" : helpCenterUrl)
-                    .navigation();
+//            LogUtils.e("helpCenterClickCommand", helpCenterUrl);
+//            ARouter.getInstance().build(ARouterPath.ACTIVITY_EMEX_WEBDETAILS)
+//                    .withString("title", App.getInstance().getString(R.string.help_center))
+//                    .withString("link", StringUtils.isEmpty(helpCenterUrl) ? "" : helpCenterUrl)
+//                    .navigation();
         }
     });
 
@@ -132,49 +216,61 @@ public class AboutViewModel extends BaseViewModel {
                 LogUtils.e("checkVersion", e.toString());
             }
         }
+    });//客服邮箱
+    public BindingCommand kefuyouxiangClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            AppUtils.copy2Clipboard(mConstant, "support@exchief.com");
+        }
+    });//商务邮箱
+    public BindingCommand shangwukefuClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            AppUtils.copy2Clipboard(mConstant, "info@exchief.com");
+        }
     });
 
-    public void getArticleList() {
-        AppClient.getInstance().getArticleList();
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEvent(EventBean eventBean) {
-        switch (eventBean.getOrigin()) {
-            case EvKey.articleList:
-                if (eventBean.isStatue()) {
-                    ArticleListBean mArticleListBean = (ArticleListBean) eventBean.getObject();
-                    for (int i = 0; i < mArticleListBean.getData().size(); i++) {
-                        if (mArticleListBean.getData().get(i).getName().contains("关于")) {
-                            aboutAppUrl = mArticleListBean.getData().get(i).getRedirectUrl();
-                        }
-                        if (mArticleListBean.getData().get(i).getName().contains("法律")
-                                || mArticleListBean.getData().get(i).getName().contains("政策")) {
-                            rivacyUrl = mArticleListBean.getData().get(i).getRedirectUrl();
-                        }
-                        if (mArticleListBean.getData().get(i).getName().contains("用户")) {
-                            clauseUrl = mArticleListBean.getData().get(i).getRedirectUrl();
-                        }
-                        if (mArticleListBean.getData().get(i).getName().contains("帮助")) {
-                            helpCenterUrl = mArticleListBean.getData().get(i).getRedirectUrl();
-                        }
-                    }
-                } else {
-                    Toasty.showError(App.getInstance().getString(R.string.network_abnormal));
-                }
-                break;
-        }
-    }
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        EventBusUtils.register(this);
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        EventBusUtils.unRegister(this);
-    }
+//    public void getArticleList() {
+//        AppClient.getInstance().getArticleList();
+//    }
+//
+//    @Subscribe(threadMode = ThreadMode.MAIN)
+//    public void onEvent(EventBean eventBean) {
+//        switch (eventBean.getOrigin()) {
+//            case EvKey.articleList:
+//                if (eventBean.isStatue()) {
+//                    ArticleListBean mArticleListBean = (ArticleListBean) eventBean.getObject();
+//                    for (int i = 0; i < mArticleListBean.getData().size(); i++) {
+//                        if (mArticleListBean.getData().get(i).getName().contains("关于")) {
+//                            aboutAppUrl = mArticleListBean.getData().get(i).getRedirectUrl();
+//                        }
+//                        if (mArticleListBean.getData().get(i).getName().contains("法律")
+//                                || mArticleListBean.getData().get(i).getName().contains("政策")) {
+//                            rivacyUrl = mArticleListBean.getData().get(i).getRedirectUrl();
+//                        }
+//                        if (mArticleListBean.getData().get(i).getName().contains("用户")) {
+//                            clauseUrl = mArticleListBean.getData().get(i).getRedirectUrl();
+//                        }
+//                        if (mArticleListBean.getData().get(i).getName().contains("帮助")) {
+//                            helpCenterUrl = mArticleListBean.getData().get(i).getRedirectUrl();
+//                        }
+//                    }
+//                } else {
+//                    Toasty.showError(App.getInstance().getString(R.string.network_abnormal));
+//                }
+//                break;
+//        }
+//    }
+//
+//    @Override
+//    public void onCreate() {
+//        super.onCreate();
+//        EventBusUtils.register(this);
+//    }
+//
+//    @Override
+//    public void onDestroy() {
+//        super.onDestroy();
+//        EventBusUtils.unRegister(this);
+//    }
 }

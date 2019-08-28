@@ -171,6 +171,60 @@ public class SpotWalletResult implements Parcelable {
         private String symbol;
         private double totalLegalAssetBalance;
         private double totalPlatformAssetBalance;
+        private double usdtAssetBalance;
+        private double cnyAssetBalance;
+        private double usdAssetBalance;
+        private double eurAssetBalance;
+        private double ghsAssetBalance;
+        private double ngnAssetBalance;
+
+        public double getUsdtAssetBalance() {
+            return usdtAssetBalance;
+        }
+
+        public void setUsdtAssetBalance(double usdtAssetBalance) {
+            this.usdtAssetBalance = usdtAssetBalance;
+        }
+
+        public double getCnyAssetBalance() {
+            return cnyAssetBalance;
+        }
+
+        public void setCnyAssetBalance(double cnyAssetBalance) {
+            this.cnyAssetBalance = cnyAssetBalance;
+        }
+
+        public double getUsdAssetBalance() {
+            return usdAssetBalance;
+        }
+
+        public void setUsdAssetBalance(double usdAssetBalance) {
+            this.usdAssetBalance = usdAssetBalance;
+        }
+
+        public double getEurAssetBalance() {
+            return eurAssetBalance;
+        }
+
+        public void setEurAssetBalance(double eurAssetBalance) {
+            this.eurAssetBalance = eurAssetBalance;
+        }
+
+        public double getGhsAssetBalance() {
+            return ghsAssetBalance;
+        }
+
+        public void setGhsAssetBalance(double ghsAssetBalance) {
+            this.ghsAssetBalance = ghsAssetBalance;
+        }
+
+        public double getNgnAssetBalance() {
+            return ngnAssetBalance;
+        }
+
+        public void setNgnAssetBalance(double ngnAssetBalance) {
+            this.ngnAssetBalance = ngnAssetBalance;
+        }
 
         protected DataBean(Parcel in) {
             address = in.readString();
@@ -191,6 +245,12 @@ public class SpotWalletResult implements Parcelable {
             symbol = in.readString();
             totalLegalAssetBalance = in.readDouble();
             totalPlatformAssetBalance = in.readDouble();
+            usdtAssetBalance = in.readDouble();
+            cnyAssetBalance = in.readDouble();
+            usdAssetBalance = in.readDouble();
+            eurAssetBalance = in.readDouble();
+            ghsAssetBalance = in.readDouble();
+            ngnAssetBalance = in.readDouble();
         }
 
         public static final Creator<DataBean> CREATOR = new Creator<DataBean>() {
@@ -362,12 +422,17 @@ public class SpotWalletResult implements Parcelable {
             return url;
         }
 
+        public String available() {
+
+            return DfUtils.numberFormat(balance, 4);
+        }
+
         public String formatBlance() {
-            return DfUtils.numberFormat(balance + frozenBalance, 4);
+            return DfUtils.numberFormat(balance + frozenBalance, 8);
         }
 
         public String formatBlanceTrans() {
-            return "≈" + DfUtils.numberFormat(totalLegalAssetBalance, 8) + " CNY";
+            return "≈¥ " + DfUtils.numberFormat(cnyAssetBalance, 2);
         }
 
         @Override
@@ -395,6 +460,12 @@ public class SpotWalletResult implements Parcelable {
             parcel.writeString(symbol);
             parcel.writeDouble(totalLegalAssetBalance);
             parcel.writeDouble(totalPlatformAssetBalance);
+            parcel.writeDouble(usdtAssetBalance);
+            parcel.writeDouble(cnyAssetBalance);
+            parcel.writeDouble(usdAssetBalance);
+            parcel.writeDouble(eurAssetBalance);
+            parcel.writeDouble(ghsAssetBalance);
+            parcel.writeDouble(ngnAssetBalance);
         }
     }
 }

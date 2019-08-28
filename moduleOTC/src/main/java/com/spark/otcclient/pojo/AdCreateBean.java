@@ -36,6 +36,7 @@ public class AdCreateBean implements Parcelable {
     private int autoReply;
     private String autoword;
     private String coinName;
+    private String localCurrency;
     private String country;
     private double maxLimit;
     private double minLimit;
@@ -57,6 +58,7 @@ public class AdCreateBean implements Parcelable {
         autoReply = in.readInt();
         autoword = in.readString();
         coinName = in.readString();
+        localCurrency = in.readString();
         country = in.readString();
         maxLimit = in.readDouble();
         minLimit = in.readDouble();
@@ -82,6 +84,14 @@ public class AdCreateBean implements Parcelable {
             return new AdCreateBean[size];
         }
     };
+
+    public String getLocalCurrency() {
+        return localCurrency;
+    }
+
+    public void setLocalCurrency(String localCurrency) {
+        this.localCurrency = localCurrency;
+    }
 
     public int getAdvertiseType() {
         return advertiseType;

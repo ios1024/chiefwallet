@@ -1,0 +1,789 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="newAdCreateViewModel"
+            type="com.spark.chiefwallet.app.trade.legal_currency.adcreate.NewAdCreateViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/ad_create_title"
+            layout="@layout/view_title" />
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <!--广告类型-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/type"
+                        android:textColor="#FFA4ABC0"
+                        android:textSize="12sp" />
+
+                    <LinearLayout
+                        style="@style/ll_item_56"
+                        onClickCommand="@{newAdCreateViewModel.typecoinNameCoinCommand}"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/linl_pay_bg"
+                        android:padding="10dp">
+
+                        <TextView
+                            style="@style/textBlackNormal"
+                            android:layout_width="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@{newAdCreateViewModel.typecoinName}"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/svg_pull_down" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!--选择币种-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/coin_type"
+                        android:textColor="#FFA4ABC0"
+                        android:textSize="12sp" />
+
+                    <LinearLayout
+                        style="@style/ll_item_56"
+                        onClickCommand="@{newAdCreateViewModel.chooseCoinCommand}"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/linl_pay_bg"
+                        android:padding="10dp">
+
+
+                        <TextView
+                            style="@style/textBlackNormal"
+                            android:layout_width="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="@string/choosing_the_currency_to_trade"
+                            android:text="@{newAdCreateViewModel.coinName}"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/svg_pull_down" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!--所在地-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/str_country"
+                        android:textColor="#FFA4ABC0"
+                        android:textSize="12sp" />
+
+                    <LinearLayout
+                        style="@style/ll_item_56"
+                        onClickCommand="@{newAdCreateViewModel.chooseCoinAddressCommand}"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/linl_pay_bg"
+                        android:padding="10dp">
+
+
+                        <TextView
+                            style="@style/textBlackNormal"
+                            android:layout_width="92dp"
+                            android:layout_weight="1"
+                            android:hint="@string/choose_your_location"
+                            android:text="@{newAdCreateViewModel.coinAddress}"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/svg_pull_down" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <!--货币类型-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/str_coin_type"
+                        android:textColor="#FFA4ABC0"
+                        android:textSize="12sp" />
+
+                    <LinearLayout
+                        style="@style/ll_item_56"
+                        onClickCommand="@{newAdCreateViewModel.chooseCoinTypeCommand}"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/linl_pay_bg"
+                        android:padding="10dp">
+
+
+                        <TextView
+                            style="@style/textBlackNormal"
+                            android:layout_width="92dp"
+                            android:layout_weight="1"
+                            android:hint="@string/choosing_the_currency_type"
+                            android:text="@{newAdCreateViewModel.coinType}"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/svg_pull_down" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{newAdCreateViewModel.adTypeTag}"
+                        android:textColor="#FFA4ABC0"
+                        android:textSize="12sp" />
+
+                    <LinearLayout
+                        style="@style/ll_item_56"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/linl_pay_bg"
+                        android:padding="10dp">
+
+                        <EditText
+                            android:id="@+id/ad_trade_number"
+                            style="@style/trade_input"
+                            android:hint="@{newAdCreateViewModel.tradeNumberHint}"
+                            android:inputType="numberDecimal"
+                            android:text="@={newAdCreateViewModel.tradeNumber}"
+                            android:textSize="@dimen/font_normal" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--固定价格-->
+                <LinearLayout
+                    style="@style/ll_item_56"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        style="@style/textBlackSmall"
+                        android:layout_width="92dp"
+                        android:text="@string/str_fixed_price"
+                        android:textColor="#FF333333"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        style="@style/textBlackNormal"
+                        android:layout_weight="1" />
+
+                    <com.sevenheaven.iosswitch.ShSwitchView
+                        android:id="@+id/isFixedPriceSwitch"
+                        android:layout_width="33dp"
+                        android:layout_height="25dp"
+                        app:tintColor="@color/base" />
+                </LinearLayout>
+
+                <View
+                    style="@style/line_ccc"
+                    android:layout_marginTop="10dp" />
+
+                <!--溢价-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="vertical"
+                    android:visibility="@{newAdCreateViewModel.isFixedPrice ? View.GONE : View.VISIBLE}">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/str_float_rate"
+                        android:textColor="#FFA4ABC0"
+                        android:textSize="12sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            style="@style/ll_item_56"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/linl_pay_bg"
+                            android:padding="10dp">
+
+                            <EditText
+                                android:id="@+id/ad_premium_price"
+                                style="@style/trade_input"
+                                android:hint="@string/str_set_float_rate"
+                                android:inputType="numberDecimal"
+                                android:text="@={newAdCreateViewModel.premiumPrice}"
+                                android:textSize="@dimen/font_normal" />
+
+                            <TextView
+                                style="@style/textGrayCommonNormal"
+                                android:text="%" />
+                        </LinearLayout>
+
+
+                        <TextView
+                            style="@style/textGrayCommonFont13"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="16dp"
+                            android:text="@{newAdCreateViewModel.fixedPriceTips}"
+                            android:textColor="#FFB2BAD1"
+                            android:textSize="@dimen/font_mini" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--固定价格-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="@{newAdCreateViewModel.isFixedPrice ? View.VISIBLE : View.GONE}">
+
+                    <TextView
+                        style="@style/textGrayCommonFont13"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="16dp"
+                        android:text="@{newAdCreateViewModel.premiumPriceTips}"
+                        android:textSize="@dimen/font_mini" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="15dp"
+                        android:orientation="vertical">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/str_fixed_price"
+                            android:textColor="#FFA4ABC0"
+                            android:textSize="12sp" />
+
+                        <LinearLayout
+                            style="@style/ll_item_56"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/linl_pay_bg"
+                            android:padding="10dp">
+
+                            <EditText
+                                android:id="@+id/ad_fix_price"
+                                style="@style/trade_input"
+                                android:hint="@string/str_set_fixed_price"
+                                android:inputType="numberDecimal"
+                                android:text="@={newAdCreateViewModel.fixedPrice}"
+                                android:textSize="@dimen/font_normal" />
+
+                            <TextView
+                                style="@style/textGrayCommonNormal"
+                                android:text="@{newAdCreateViewModel.coinType}" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/str_trade_price"
+                        android:textColor="#FFA4ABC0"
+                        android:textSize="12sp" />
+
+                    <LinearLayout
+                        style="@style/ll_item_56"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/linl_pay_bg"
+                        android:padding="10dp">
+
+
+                        <TextView
+                            style="@style/textBlackNormal"
+                            android:layout_width="92dp"
+                            android:layout_weight="1"
+                            android:text="@{newAdCreateViewModel.tradePrice}" />
+
+                        <TextView
+                            style="@style/textGrayCommonNormal"
+                            android:text="@{newAdCreateViewModel.coinType}" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <!--收款方式-->
+
+                <LinearLayout
+                    android:id="@+id/ad_pay_mode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/str_payway"
+                        android:textColor="#FFA4ABC0"
+                        android:textSize="12sp" />
+
+                    <LinearLayout
+                        style="@style/ll_item_56"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/linl_pay_bg"
+                        android:padding="10dp">
+
+
+                        <TextView
+                            style="@style/textBlackNormal"
+                            android:layout_weight="1"
+                            android:hint="@string/choose_payment_method"
+                            android:text="@{newAdCreateViewModel.payMode}"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/svg_pull_down" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/transaction_settings"
+                            android:textColor="#FF333333"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <!--最小交易额-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/transaction_restrictions"
+                        android:textColor="#FF333333"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <View
+                        style="@style/line_ccc"
+                        android:layout_marginTop="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/str_min"
+                        android:textColor="#FFA4ABC0"
+                        android:textSize="12sp" />
+
+                    <LinearLayout
+                        style="@style/ll_item_56"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/linl_pay_bg"
+                        android:padding="10dp">
+
+                        <EditText
+                            style="@style/trade_input"
+                            android:hint="@string/str_set_min"
+                            android:inputType="numberDecimal"
+                            android:text="@={newAdCreateViewModel.minAmount}"
+                            android:textSize="@dimen/font_normal" />
+
+                        <TextView
+                            style="@style/textGrayCommonNormal"
+                            android:text="@{newAdCreateViewModel.coinType}" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <!--付款期限-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/str_max"
+                        android:textColor="#FFA4ABC0"
+                        android:textSize="12sp" />
+
+                    <LinearLayout
+                        style="@style/ll_item_56"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/linl_pay_bg"
+                        android:padding="10dp">
+
+                        <EditText
+                            style="@style/trade_input"
+                            android:hint="@string/str_set_max"
+                            android:inputType="numberDecimal"
+                            android:text="@={newAdCreateViewModel.maxAmount}"
+                            android:textSize="@dimen/font_normal" />
+
+                        <TextView
+                            style="@style/textGrayCommonNormal"
+                            android:text="@{newAdCreateViewModel.coinType}" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="@string/trade_tips"
+                        android:textColor="#FF333333"
+                        android:textSize="12sp" />
+                </LinearLayout>
+                <!--付款期限-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/str_limit"
+                        android:textColor="#FFA4ABC0"
+                        android:textSize="12sp" />
+
+                    <LinearLayout
+                        style="@style/ll_item_56"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/linl_pay_bg"
+                        android:padding="10dp">
+
+                        <EditText
+                            style="@style/trade_input"
+                            android:hint="@string/str_set_limit2"
+                            android:inputType="number"
+                            android:text="@={newAdCreateViewModel.tradeDeadline}"
+                            android:textSize="@dimen/font_normal" />
+
+                        <TextView
+                            style="@style/textGrayCommonNormal"
+                            android:text="@string/text_minute" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/str_set_limit3"
+                        android:textColor="#FFB2BAD1"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="@string/trade_tips2"
+                        android:textColor="#FF333333"
+                        android:textSize="12sp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="@string/transaction_notes"
+                        android:textColor="#FF333333" />
+
+                    <View
+                        style="@style/line_ccc"
+                        android:layout_marginTop="10dp" />
+                    <!--备注信息-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        android:background="@drawable/linl_pay_bg">
+
+                        <EditText
+                            android:id="@+id/tv_remarks"
+                            style="@style/trade_input"
+                            android:layout_height="wrap_content"
+                            android:gravity="top"
+                            android:hint="@string/trade_note_tips"
+                            android:inputType="textMultiLine"
+                            android:maxLength="300"
+                            android:padding="16dp"
+                            android:text="@={newAdCreateViewModel.remarks}" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_surplus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:gravity="right"
+                        android:textColor="#FFA4ABC0"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="@string/trade_tips3"
+                        android:textColor="#FF333333"
+                        android:textSize="12sp" />
+
+                    <!--自动回复-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp">
+
+                        <TextView
+                            style="@style/textBlackSmall"
+                            android:layout_width="wrap_content"
+                            android:text="@string/str_auto_reply"
+                            android:textColor="#FF333333"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            style="@style/textBlackNormal"
+                            android:layout_weight="1" />
+
+                        <com.sevenheaven.iosswitch.ShSwitchView
+                            android:id="@+id/isAutoResponseSwitch"
+                            android:layout_width="33dp"
+                            android:layout_height="25dp"
+                            app:tintColor="@color/base" />
+                    </LinearLayout>
+
+
+                    <!--回复内容-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="92dp"
+                        android:background="@drawable/linl_pay_bg"
+                        android:orientation="vertical"
+                        android:visibility="@{newAdCreateViewModel.isAutoResponse ? View.VISIBLE : View.GONE}">
+
+                        <EditText
+                            android:id="@+id/tv_autoResponse"
+                            style="@style/trade_input"
+                            android:layout_height="wrap_content"
+                            android:gravity="top"
+                            android:hint="@string/str_enter_reply"
+                            android:inputType="textMultiLine"
+                            android:maxLength="300"
+                            android:padding="16dp"
+                            android:text="@={newAdCreateViewModel.autoResponse}" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/transaction_rules"
+                        android:textColor="#FF333333"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <View
+                        style="@style/line_ccc"
+                        android:layout_marginTop="10dp" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/trade_tips4"
+                        android:textColor="#FF333333"
+                        android:textSize="12sp" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/trade_tips5"
+                        android:textColor="#FFCA2C49"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/trade_tips6"
+                        android:textColor="#FFA4ABC0"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+
+                <TextView
+                    style="@style/textBlackNormal"
+                    onClickCommand="@{newAdCreateViewModel.submitCommand}"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginBottom="50dp"
+                    android:gravity="center"
+                    android:text="@{newAdCreateViewModel.submitBtn}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_14"
+                    android:textStyle="bold"
+                    app:bl_corners_radius="2dp"
+                    app:bl_pressed_color="@color/subscript2"
+                    app:bl_unpressed_color="@color/base" />
+
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </LinearLayout>
+
+</layout>

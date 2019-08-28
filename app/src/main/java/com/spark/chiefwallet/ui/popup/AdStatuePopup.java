@@ -98,11 +98,11 @@ public class AdStatuePopup extends BottomPopupView {
             case 0:
                 mStatueTv.setText(upBean.getAdvertiseType() == 0 ? App.getInstance().getApplicationContext().getString(R.string.buy2) : App.getInstance().getApplicationContext().getString(R.string.sell2));
                 mStatueTv.setTextColor(upBean.getAdvertiseType() == 0 ?
-                        ContextCompat.getColor(mContext, R.color.green) :
-                        ContextCompat.getColor(mContext, R.color.orange));
+                        ContextCompat.getColor(mContext, R.color.fall) :
+                        ContextCompat.getColor(mContext, R.color.rise));
                 mAdLimit.setText(MathUtils.getRundNumber(upBean.getMinLimit(), 2, null)
                         + " - " +
-                        MathUtils.getRundNumber(upBean.getMaxLimit(), 2, null) + " CNY");
+                        MathUtils.getRundNumber(upBean.getMaxLimit(), 2, null) + upBean.getLocalCurrency());
                 mRemainingNum.setText(upBean.getRemainAmount() + " " + upBean.getCoinName());
                 mBtnUpdate.setText(App.getInstance().getApplicationContext().getString(R.string.str_ad_remove));
                 mBtnStatue.setVisibility(GONE);
@@ -112,11 +112,11 @@ public class AdStatuePopup extends BottomPopupView {
             case 1:
                 mStatueTv.setText(downBean.getAdvertiseType() == 0 ? App.getInstance().getApplicationContext().getString(R.string.buy2) : App.getInstance().getApplicationContext().getString(R.string.sell2));
                 mStatueTv.setTextColor(downBean.getAdvertiseType() == 0 ?
-                        ContextCompat.getColor(mContext, R.color.green) :
-                        ContextCompat.getColor(mContext, R.color.orange));
+                        ContextCompat.getColor(mContext, R.color.fall) :
+                        ContextCompat.getColor(mContext, R.color.rise));
                 mAdLimit.setText(MathUtils.getRundNumber(downBean.getMinLimit(), 2, null)
                         + " - " +
-                        MathUtils.getRundNumber(downBean.getMaxLimit(), 2, null) + " CNY");
+                        MathUtils.getRundNumber(downBean.getMaxLimit(), 2, null) + downBean.getLocalCurrency());
                 mRemainingNum.setText(downBean.getRemainAmount() + " " + downBean.getCoinName());
                 mBtnUpdate.setText(App.getInstance().getApplicationContext().getString(R.string.str_update));
                 mBtnStatue.setText(App.getInstance().getApplicationContext().getString(R.string.str_shelves));

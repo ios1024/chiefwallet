@@ -4,7 +4,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import com.spark.otcclient.base.OtcHost;
+import com.spark.otcclient.pojo.AdvertiseCoinResult;
 import com.spark.otcclient.pojo.AuthMerchantResult;
+import com.spark.otcclient.pojo.BusBasicApplyBean;
+import com.spark.otcclient.pojo.BusBasicApplyEntity;
+import com.spark.otcclient.pojo.CancelBean;
 import com.spark.otcclient.pojo.FindPageBean;
 import com.spark.otcclient.pojo.LcOrderResult;
 import com.spark.otcclient.pojo.OrderAppealBean;
@@ -144,7 +148,7 @@ public class LcTradeClient extends BaseHttpClient {
                 .execute(new SimpleCallBack<String>() {
                     @Override
                     public void onSuccess(String s) {
-                        LogUtils.e("getLcOrder",s);
+                        LogUtils.e("getLcOrder", s);
                         try {
                             GeneralResult generalResult = BaseApplication.gson.fromJson(s, GeneralResult.class);
                             if (generalResult.getCode() == BaseRequestCode.OK) {
@@ -169,7 +173,7 @@ public class LcTradeClient extends BaseHttpClient {
                 });
     }
 
-    public void getLcOrderAll(int pageIndex,String adType, String coinName) {
+    public void getLcOrderAll(int pageIndex, String adType, String coinName) {
         FindPageBean findPageBean = new FindPageBean();
         findPageBean.setPageIndex(pageIndex);
         findPageBean.setPageSize(20);
@@ -205,7 +209,7 @@ public class LcTradeClient extends BaseHttpClient {
                 .execute(new SimpleCallBack<String>() {
                     @Override
                     public void onSuccess(String s) {
-                        LogUtils.e("getLcOrderAll",s);
+                        LogUtils.e("getLcOrderAll", s);
                         try {
                             GeneralResult generalResult = BaseApplication.gson.fromJson(s, GeneralResult.class);
                             if (generalResult.getCode() == BaseRequestCode.OK) {
@@ -463,7 +467,8 @@ public class LcTradeClient extends BaseHttpClient {
     }
 
     /**
-     * 查看自己认证商家信息
+     * 查看认证商家信息
+     * certifiedBusinessStatus : 认证状态 0：未认证 1：认证-待审核 2：认证-审核成功 3：认证-审核失败 5：退保-待审核 6：退保-审核失败 7:退保-审核成功
      */
     public void authMerchantFind() {
         EasyHttp.get(OtcHost.authMerchantFindUrl)
@@ -471,18 +476,139 @@ public class LcTradeClient extends BaseHttpClient {
                 .execute(new SimpleCallBack<String>() {
                     @Override
                     public void onSuccess(String s) {
-                        LogUtils.e("authMerchantFind", s);
+                        LogUtils.e("authMerchantFind2", s);
                         try {
                             GeneralResult generalResult = BaseApplication.gson.fromJson(s, GeneralResult.class);
                             if (generalResult.getCode() == BaseRequestCode.OK) {
                                 AuthMerchantResult authMerchantResult = BaseApplication.gson.fromJson(s, AuthMerchantResult.class);
-                                EventBusUtils.postSuccessEvent(EvKey.authMerchantFind, generalResult.getCode(), generalResult.getMessage(), authMerchantResult);
+                                EventBusUtils.postSuccessEvent(EvKey.authMerchantFind2, generalResult.getCode(), generalResult.getMessage(), authMerchantResult);
                             } else {
                                 if (generalResult.getCode() == BaseRequestCode.ERROR_401) {
                                     uodateLogin(generalResult);
                                 } else {
-                                    EventBusUtils.postErrorEvent(EvKey.authMerchantFind, generalResult.getCode(), generalResult.getMessage());
+                                    EventBusUtils.postErrorEvent(EvKey.authMerchantFind2, generalResult.getCode(), generalResult.getMessage());
                                 }
+                            }
+                        } catch (Exception e) {
+                            postException(EvKey.authMerchantFind2, e);
+                        }
+                    }
+
+                    @Override
+                    public void onError(ApiException e) {
+                        postError(EvKey.authMerchantFind2, e);
+                    }
+                });
+    }
+
+    /**
+     * 获取保证金
+     */
+    public void authMerchantType() {
+        EasyHttp.get(OtcHost.authmerchanttype)
+                .baseUrl(BaseHost.OTC_HOST)
+                .execute(new SimpleCallBack<String>() {
+                    @Override
+                    public void onSuccess(String s) {
+                        try {
+                            GeneralResult generalResult = BaseApplication.gson.fromJson(s, GeneralResult.class);
+
+                            if (generalResult.getCode() == BaseRequestCode.OK) {
+//                                JSONObject object = new JSONObject(String.valueOf(generalResult.getData()));
+                                AdvertiseCoinResult advertiseCoinListResult = BaseApplication.gson.fromJson(s, AdvertiseCoinResult.class);
+                                EventBusUtils.postSuccessEvent(EvKey.authmerchanttype, generalResult.getCode(), generalResult.getMessage(), advertiseCoinListResult);
+
+                            } else
+                                EventBusUtils.postSuccessEvent(EvKey.authmerchanttype, generalResult.getCode(), generalResult.getMessage());
+                        } catch (Exception e) {
+                            postException(EvKey.authmerchanttype, e);
+                        }
+                    }
+
+                    @Override
+                    public void onError(ApiException e) {
+                        postError(EvKey.authmerchanttype, e);
+                    }
+                });
+    }
+
+    /**
+     * 商家认证认证上传
+     *
+     * @param applyMarginId 1 - 个人商家   2 - 企业商家
+     * @param username      姓名
+     * @param telno         电话
+     * @param email         邮箱
+     * @param contact       紧急联系人
+     * @param contactTel    紧急联系人电话
+     * @param relationship  与本人关系
+     * @param address       长住地址
+     */
+    public void getBusBasicApply(final long applyMarginId, String username, String telno, String email, String contact, String contactTel, String relationship, String address,String amount, String coinSymbol, final String assetImg, String tradeDataImg) {
+
+        BusBasicApplyEntity busBasicApplyEntity = new BusBasicApplyEntity();
+        busBasicApplyEntity.setUsername(username);
+        busBasicApplyEntity.setTelno(telno);
+        busBasicApplyEntity.setEmail(email);
+        busBasicApplyEntity.setContact(contact);
+        busBasicApplyEntity.setContactTel(contactTel);
+        busBasicApplyEntity.setRelationship(relationship);
+        busBasicApplyEntity.setAddress(address);
+        busBasicApplyEntity.setCoinSymbol(coinSymbol);
+        busBasicApplyEntity.setAmount(amount);
+
+        BusBasicApplyBean busBasicApplyBean = new BusBasicApplyBean();
+        busBasicApplyBean.setApplyMarginId(applyMarginId);
+        busBasicApplyBean.setAssetImg(assetImg);
+        busBasicApplyBean.setDetail(BaseApplication.gson.toJson(busBasicApplyEntity));
+        busBasicApplyBean.setTradeDataImg(tradeDataImg);
+
+        EasyHttp.post(OtcHost.busbasicapply)
+                .baseUrl(BaseHost.OTC_HOST)
+                .headers("Content-Type", "application/json")
+                .upJson(BaseApplication.gson.toJson(busBasicApplyBean))
+                .execute(new SimpleCallBack<String>() {
+                    @Override
+                    public void onSuccess(String s) {
+                        try {
+                            GeneralResult generalResult = BaseApplication.gson.fromJson(s, GeneralResult.class);
+                            if (generalResult.getCode() == BaseRequestCode.OK) {
+                                EventBusUtils.postSuccessEvent(EvKey.businesstype, generalResult.getCode(), "");
+                            } else {
+                                EventBusUtils.postErrorEvent(EvKey.businesstype, generalResult.getCode(), generalResult.getMessage());
+                            }
+                        } catch (Exception e) {
+                            postException(EvKey.businesstype, e);
+                        }
+                    }
+
+                    @Override
+                    public void onError(ApiException e) {
+                        postError(EvKey.businesstype, e);
+                    }
+                });
+    }
+
+    /**
+     * 查看认证商家信息
+     * certifiedBusinessStatus : 认证状态 0：未认证 1：认证-待审核 2：认证-审核成功 3：认证-审核失败 5：退保-待审核 6：退保-审核失败 7:退保-审核成功
+     */
+    public void getBusinessFind() {
+        EasyHttp.get(OtcHost.authMerchantFindUrl)
+                .baseUrl(BaseHost.OTC_HOST)
+                .execute(new SimpleCallBack<String>() {
+                    @Override
+                    public void onSuccess(String s) {
+                        try {
+                            GeneralResult generalResult = BaseApplication.gson.fromJson(s, GeneralResult.class);
+
+                            if (generalResult.getCode() == 30548) {
+                                getBusinesslistApply();
+
+                            } else if (generalResult.getCode() == BaseRequestCode.OK) {
+
+                                AuthMerchantResult businessFindEntity = BaseApplication.gson.fromJson(s, AuthMerchantResult.class);
+                                EventBusUtils.postSuccessEvent(EvKey.authMerchantFind, businessFindEntity.getCode(), businessFindEntity.getMessage(), businessFindEntity);
                             }
                         } catch (Exception e) {
                             postException(EvKey.authMerchantFind, e);
@@ -492,6 +618,66 @@ public class LcTradeClient extends BaseHttpClient {
                     @Override
                     public void onError(ApiException e) {
                         postError(EvKey.authMerchantFind, e);
+                    }
+                });
+    }
+
+    /**
+     * 商家申请列表
+     */
+    public void getBusinesslistApply() {
+        EasyHttp.get(OtcHost.businesslist)
+                .baseUrl(BaseHost.OTC_HOST)
+                .execute(new SimpleCallBack<String>() {
+                    @Override
+                    public void onSuccess(String s) {
+                        try {
+                            GeneralResult generalResult = BaseApplication.gson.fromJson(s, GeneralResult.class);
+                            if (generalResult.getCode() == BaseRequestCode.OK) {
+                                AuthMerchantResult businessFindEntity = BaseApplication.gson.fromJson(s, AuthMerchantResult.class);
+                                EventBusUtils.postSuccessEvent(EvKey.authMerchantFind, businessFindEntity.getCode(), businessFindEntity.getMessage(), businessFindEntity);
+                            }
+
+                        } catch (Exception e) {
+                            postException(EvKey.authMerchantFind, e);
+                        }
+                    }
+
+                    @Override
+                    public void onError(ApiException e) {
+                        postError(EvKey.authMerchantFind, e);
+                    }
+                });
+    }
+
+
+    /**
+     * 认证商家退出申请
+     */
+    public void getBusinessout(String reason) {
+        CancelBean cancelBean = new CancelBean();
+        cancelBean.setReason(reason);
+        EasyHttp.post(OtcHost.getcancel)
+                .baseUrl(BaseHost.OTC_HOST)
+                .headers("Content-Type", "application/json")
+                .upJson(BaseApplication.gson.toJson(cancelBean))
+                .execute(new SimpleCallBack<String>() {
+                    @Override
+                    public void onSuccess(String s) {
+                        try {
+                            GeneralResult generalResult = BaseApplication.gson.fromJson(s, GeneralResult.class);
+                            if (generalResult.getCode() == BaseRequestCode.OK) {
+                                EventBusUtils.postSuccessEvent(EvKey.application_for_reinsurance_refund, generalResult.getCode(), generalResult.getMessage());
+                            }else
+                                EventBusUtils.postSuccessEvent(EvKey.application_for_reinsurance_refund, generalResult.getCode(), generalResult.getMessage());
+                        } catch (Exception e) {
+                            postException(EvKey.application_for_reinsurance_refund, e);
+                        }
+                    }
+
+                    @Override
+                    public void onError(ApiException e) {
+                        postError(EvKey.application_for_reinsurance_refund, e);
                     }
                 });
     }

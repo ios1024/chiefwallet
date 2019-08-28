@@ -9,11 +9,11 @@ public class BaseHost {
 
     //    public static String LOGIN_HOST = "http://cas.bitotc.bench.bitpay.com/";
 //    public static String LOGIN_HOST = "http://cas.www.bitrade.top/";//之前地址
-    public static String LOGIN_HOST = "http://cas.test.camall.com";
+    public static String LOGIN_HOST = "http://cas.test.camall.com/";
 
     //    public static String LOGIN_SUB_HOST = "http://api.bitotc.bench.bitpay.com/";
 //    public static String LOGIN_SUB_HOST = "http://api.bitrade.top/";//之前地址
-    public static String LOGIN_SUB_HOST = "http://api.camall.com";
+    public static String LOGIN_SUB_HOST = "http://api.camall.com/";
 
     public static String UC_HOST = LOGIN_SUB_HOST + "uc/";
     public static String AC_HOST = LOGIN_SUB_HOST + "ac/";
@@ -24,7 +24,7 @@ public class BaseHost {
     public static String CFD_HOST = LOGIN_SUB_HOST + "cfd/";
     public static String PRICE_HOST = LOGIN_SUB_HOST + "price-api/";
     public static String CMS_HOST = LOGIN_SUB_HOST + "cms-api/";
-    public static String AGENT_HOST ="http://api.agent.sscoin.cc/";
+    public static String AGENT_HOST = "http://api.agent.sscoin.cc/";
 
     /**
      * AC,UC,OTC模块地址后缀

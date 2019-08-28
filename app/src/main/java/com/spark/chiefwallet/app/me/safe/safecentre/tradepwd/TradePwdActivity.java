@@ -54,6 +54,11 @@ public class TradePwdActivity extends BaseActivity<ActivityTradePwdBinding, Trad
         //TitleSet
         mTitleModel = new TitleBean();
         binding.phoneTitle.setViewTitle(mTitleModel);
+        if (isFirst == 0) {
+            mTitleModel.setTitleName(getResources().getString(R.string.lc_pwd_set));
+        } else
+            mTitleModel.setTitleName(getResources().getString(R.string.lc_pwd_update));
+
         setTitleListener(binding.phoneTitle.titleRootLeft);
 
         viewModel.initIsFirst(isFirst == 0);

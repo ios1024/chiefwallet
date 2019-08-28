@@ -27,6 +27,7 @@ import me.spark.mvvm.base.BaseRequestCode;
 import me.spark.mvvm.base.Constant;
 import me.spark.mvvm.base.EvKey;
 import me.spark.mvvm.http.impl.OnRequestListener;
+import me.spark.mvvm.ui.dialog.utils.StatusBarUtils;
 import me.spark.mvvm.utils.EventBusUtils;
 import me.spark.mvvm.utils.LogUtils;
 
@@ -71,6 +72,8 @@ public class QuotesFragment extends BaseFragment<FragmentQuotesBinding, QuotesVi
 
     @Override
     public void initData() {
+        StatusBarUtils.setStatusViewAttr(binding.viewStatusBar, getActivity());
+
         isInitTabSuccess = false;
         if (!binding.quotesRoot.isLoadingCurrentState())
             binding.quotesRoot.showLoading();

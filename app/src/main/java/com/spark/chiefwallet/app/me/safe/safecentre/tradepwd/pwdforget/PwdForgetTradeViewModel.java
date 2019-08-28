@@ -10,8 +10,11 @@ import com.geetest.sdk.Bind.GT3GeetestUtilsBind;
 import com.google.gson.Gson;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.interfaces.OnSelectListener;
+import com.lxj.xpopup.interfaces.XPopupCallback;
 import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.R;
+import com.spark.chiefwallet.ui.popup.ChoiceOfNationalityPopup;
+import com.spark.chiefwallet.ui.popup.impl.NationalChoiceListener;
 import com.spark.chiefwallet.ui.toast.Toasty;
 import com.spark.chiefwallet.util.CheckErrorUtil;
 import com.spark.chiefwallet.util.RegexUtils;
@@ -20,6 +23,7 @@ import com.spark.ucclient.RegisterClient;
 import com.spark.ucclient.SecurityClient;
 import com.spark.ucclient.pojo.Captcha;
 import com.spark.ucclient.pojo.CountryEntity;
+import com.spark.ucclient.pojo.CountryEntity2;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -57,19 +61,27 @@ public class PwdForgetTradeViewModel extends BaseViewModel {
     public ObservableField<String> verifyCode = new ObservableField<>("");
     public ObservableField<String> newPwd = new ObservableField<>("");
     public ObservableField<String> newPwdAgain = new ObservableField<>("");
-    public ObservableField<String> countryCode = new ObservableField<>("");
-    public ObservableField<String> countryName = new ObservableField<>("");
+    //    public ObservableField<String> countryCode = new ObservableField<>("");
+    public ObservableField<String> countryName = new ObservableField<>("中国 +86");
     private GT3GeetestUtilsBind gt3GeetestUtils;
     private String cid;
     private String[] mCountryArray;
     private Context mContext;
     private List<CountryEntity> mCountryEntityList;
-    private String countryEnName;                      //值传递 国籍 enName
     public int type = 0;                                //0 - 手机注册 1 - 邮箱注册
+    private String strAreaCode = "86";
+    private String countryEnName = "中国";                      //值传递 国籍 enName
+    public ChoiceOfNationalityPopup choiceOfNationalityPopup;
+
     public UIChangeObservable uc = new UIChangeObservable();
 
     public class UIChangeObservable {
         public SingleLiveEvent<Boolean> mGetCodeSuccessLiveEvent = new SingleLiveEvent<>();
+        public SingleLiveEvent<Boolean> smsCodePopopShow = new SingleLiveEvent<>();
+        public SingleLiveEvent<Boolean> newpwdSwitchEvent = new SingleLiveEvent<>();
+        public SingleLiveEvent<Boolean> newAgainpwdSwitchEvent = new SingleLiveEvent<>();
+
+
     }
 
     public void initContext(Context context) {
@@ -83,7 +95,21 @@ public class PwdForgetTradeViewModel extends BaseViewModel {
             loadCountryInfo();
         }
     });
+    //密码显示开关
+    public BindingCommand pwdSwitchOnClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            uc.newpwdSwitchEvent.setValue(uc.newpwdSwitchEvent.getValue() == null || !uc.newpwdSwitchEvent.getValue());
 
+        }
+    }); //密码显示开关
+    public BindingCommand newAgainPwdSwitchOnClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            uc.newAgainpwdSwitchEvent.setValue(uc.newAgainpwdSwitchEvent.getValue() == null || !uc.newAgainpwdSwitchEvent.getValue());
+
+        }
+    });
     public BindingCommand pwdResetOnClickCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
@@ -102,7 +128,7 @@ public class PwdForgetTradeViewModel extends BaseViewModel {
             return;
         }
 
-        if (StringUtils.isEmpty(countryCode.get()) || StringUtils.isEmpty(countryName.get())) {
+        if (StringUtils.isEmpty(strAreaCode) || StringUtils.isEmpty(countryName.get())) {
             Toasty.showError(mContext.getString(R.string.choose_country));
             return;
         }
@@ -127,7 +153,7 @@ public class PwdForgetTradeViewModel extends BaseViewModel {
             return;
         }
 
-        SecurityClient.getInstance().forgetTradePass(countryCode.get() + phoneNum.get(), newPwd.get(), verifyCode.get());
+        SecurityClient.getInstance().forgetTradePass(strAreaCode + phoneNum.get(), newPwd.get(), verifyCode.get());
     }
 
     /**
@@ -135,23 +161,37 @@ public class PwdForgetTradeViewModel extends BaseViewModel {
      */
     public void getPhoneCode() {
         showDialog(App.getInstance().getString(R.string.loading));
-        CaptchaGetClient.getInstance().phoneCaptcha(countryCode.get() + phoneNum.get());
+        CaptchaGetClient.getInstance().phoneCaptcha(strAreaCode + phoneNum.get());
     }
 
     //获取国籍列表
     private void loadCountryInfo() {
         //避免重复请求
         if (mCountryArray != null) {
+//            new XPopup.Builder(mContext)
+//                    .asBottomList(mContext.getString(R.string.choose_country), mCountryArray,
+//                            new OnSelectListener() {
+//                                @Override
+//                                public void onSelect(int position, String text) {
+//                                    countryEnName = mCountryEntityList.get(position).getEnName();
+//                                    updateCountryInfo(mCountryEntityList.get(position).getZhName() + " +" + mCountryEntityList.get(position).getAreaCode(), mCountryEntityList.get(position).getAreaCode());
+//                                }
+//                            })
+//                    .show();
             new XPopup.Builder(mContext)
-                    .asBottomList(mContext.getString(R.string.choose_country), mCountryArray,
-                            new OnSelectListener() {
-                                @Override
-                                public void onSelect(int position, String text) {
-                                    countryEnName = mCountryEntityList.get(position).getEnName();
-                                    updateCountryInfo(mCountryEntityList.get(position).getZhName() + "(" + mCountryEntityList.get(position).getEnName() + ")", mCountryEntityList.get(position).getAreaCode());
-                                }
-                            })
-                    .show();
+                    .setPopupCallback(new XPopupCallback() {
+                        @Override
+                        public void onShow() {
+                            uc.smsCodePopopShow.setValue(true);
+                        }
+
+                        @Override
+                        public void onDismiss() {
+                            uc.smsCodePopopShow.setValue(false);
+                        }
+
+                    })
+                    .asCustom(choiceOfNationalityPopup).show();
         } else {
             showDialog(mContext.getString(R.string.loading));
             RegisterClient.getInstance().findSupportCountry();
@@ -167,23 +207,47 @@ public class PwdForgetTradeViewModel extends BaseViewModel {
                 if (eventBean.isStatue()) {
                     final List<CountryEntity> objList = (List<CountryEntity>) eventBean.getObject();
                     if (!objList.isEmpty()) {
-                        mCountryEntityList = objList;
-                        mCountryArray = new String[objList.size()];
-                        for (int i = 0; i < objList.size(); i++) {
-                            mCountryArray[i] = objList.get(i).getZhName();
+                        if (choiceOfNationalityPopup == null) {
+                            choiceOfNationalityPopup = new ChoiceOfNationalityPopup(mContext, objList, new NationalChoiceListener() {
+
+                                @Override
+                                public void onClickItem(int position, List<CountryEntity2> countryEntities2) {
+                                    updateCountryInfo(countryEntities2.get(position).getZhName() + " +" + countryEntities2.get(position).getAreaCode(), countryEntities2.get(position).getAreaCode());
+
+                                }
+                            });
                         }
-                        if (mCountryArray.length > 0) {
-                            new XPopup.Builder(mContext)
-                                    .asBottomList(mContext.getString(R.string.choose_country), mCountryArray,
-                                            new OnSelectListener() {
-                                                @Override
-                                                public void onSelect(int position, String text) {
-                                                    countryEnName = objList.get(position).getEnName();
-                                                    updateCountryInfo(objList.get(position).getZhName() + "(" + objList.get(position).getEnName() + ")", objList.get(position).getAreaCode());
-                                                }
-                                            })
-                                    .show();
-                        }
+                        new XPopup.Builder(mContext)
+                                .setPopupCallback(new XPopupCallback() {
+                                    @Override
+                                    public void onShow() {
+                                        uc.smsCodePopopShow.setValue(true);
+                                    }
+
+                                    @Override
+                                    public void onDismiss() {
+                                        uc.smsCodePopopShow.setValue(false);
+                                    }
+
+                                })
+                                .asCustom(choiceOfNationalityPopup).show();
+//                        mCountryEntityList = objList;
+//                        mCountryArray = new String[objList.size()];
+//                        for (int i = 0; i < objList.size(); i++) {
+//                            mCountryArray[i] = objList.get(i).getZhName();
+//                        }
+//                        if (mCountryArray.length > 0) {
+//                            new XPopup.Builder(mContext)
+//                                    .asBottomList(mContext.getString(R.string.choose_country), mCountryArray,
+//                                            new OnSelectListener() {
+//                                                @Override
+//                                                public void onSelect(int position, String text) {
+//                                                    countryEnName = objList.get(position).getEnName();
+//                                                    updateCountryInfo(objList.get(position).getZhName() + " +" + objList.get(position).getAreaCode(), mCountryEntityList.get(position).getAreaCode());
+//                                                }
+//                                            })
+//                                    .show();
+//                        }
                     } else {
                         Toasty.showInfo(mContext.getString(R.string.country_list_null));
                     }
@@ -241,7 +305,7 @@ public class PwdForgetTradeViewModel extends BaseViewModel {
                                 String checkData = "gee::" + captcha.getGeetest_challenge() + "$" + captcha.getGeetest_validate() + "$" + captcha.getGeetest_seccode();
                                 switch (type) {
                                     case 0:
-                                        CaptchaGetClient.getInstance().phoneCaptchaWithHeader(countryCode.get() + phoneNum.get(), checkData, cid);
+                                        CaptchaGetClient.getInstance().phoneCaptchaWithHeader(strAreaCode + phoneNum.get(), checkData, cid);
                                         break;
                                     case 1:
                                         CaptchaGetClient.getInstance().emailCaptchaWithHeader(phoneNum.get(), checkData, cid);
@@ -275,13 +339,10 @@ public class PwdForgetTradeViewModel extends BaseViewModel {
      * 更新国籍展示
      *
      * @param strCountry
-     * @param strAreaCode
      */
-    public void updateCountryInfo(String strCountry, String strAreaCode) {
+    public void updateCountryInfo(String strCountry, String code) {
+        strAreaCode = code;
         countryName.set(strCountry);
-        if (type == 0) {
-            countryCode.set(strAreaCode);
-        }
     }
 
     private void dealError(EventBean eventBean) {
@@ -307,16 +368,26 @@ public class PwdForgetTradeViewModel extends BaseViewModel {
             }
         }
     }
-
     @Override
-    public void onCreate() {
-        super.onCreate();
+    public void onResume() {
+        super.onResume();
         EventBusUtils.register(this);
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onStop() {
+        super.onStop();
         EventBusUtils.unRegister(this);
     }
+//    @Override
+//    public void onCreate() {
+//        super.onCreate();
+//        EventBusUtils.register(this);
+//    }
+//
+//    @Override
+//    public void onDestroy() {
+//        super.onDestroy();
+//        EventBusUtils.unRegister(this);
+//    }
 }
