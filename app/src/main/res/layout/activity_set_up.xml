@@ -70,14 +70,14 @@
 
                     <TextView
                         style="@style/textBlackNormal"
-                        android:text="计价货币" />
+                        android:text="@string/pricing_currency" />
 
                     <TextView
                         style="@style/textGrayCommonSmall"
                         android:layout_marginLeft="8dp"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:text="人民币CNY"
+                        android:text="@{setUpViewModel.valueTypeSelect}"
                         android:textSize="@dimen/font_13" />
 
                     <ImageView style="@style/imgEnter" />
@@ -92,14 +92,14 @@
 
                     <TextView
                         style="@style/textBlackNormal"
-                        android:text="颜色调配" />
+                        android:text="@string/color_matching" />
 
                     <TextView
                         style="@style/textGrayCommonSmall"
                         android:layout_marginLeft="8dp"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:text="红涨绿跌"
+                        android:text="@{setUpViewModel.colorAdjustmentSelect}"
                         android:textSize="@dimen/font_13" />
 
                     <ImageView style="@style/imgEnter" />
@@ -114,7 +114,7 @@
 
                     <TextView
                         style="@style/textBlackNormal"
-                        android:text="夜间模式" />
+                        android:text="@string/night_mode" />
 
                     <TextView
                         style="@style/textGrayCommonSmall"

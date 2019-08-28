@@ -1043,4 +1043,7 @@
     <string name="maximum_number_of_coins">最大提币数量:</string>
     <string name="add_address">新增地址</string>
     <string name="go_add">去添加</string>
+    <string name="pricing_currency">计价货币</string>
+    <string name="color_matching">颜色调配</string>
+    <string name="night_mode">夜间模式</string>
 </resources>

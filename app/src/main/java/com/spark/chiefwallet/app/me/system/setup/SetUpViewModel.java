@@ -41,6 +41,8 @@ public class SetUpViewModel extends BaseViewModel {
 
     private Context mContext;
     public ObservableField<String> languageSelect = new ObservableField<>("");
+    public ObservableField<String> valueTypeSelect = new ObservableField<>("");
+    public ObservableField<String> colorAdjustmentSelect = new ObservableField<>("");
     public ObservableField<String> updateVersion = new ObservableField<>(AppUtils.getContextVersionName());
     private AdsSelectDialog mDialog;
     private AdsSelectDialog mDialog2;
@@ -78,9 +80,9 @@ public class SetUpViewModel extends BaseViewModel {
             @Override
             public void onSelectType(int type) {
                 if (type == 1) {
-
+                    colorAdjustmentSelect.set(App.getInstance().getString(R.string.red_green));
                 } else if (type == 2) {
-
+                    colorAdjustmentSelect.set(App.getInstance().getString(R.string.green_red));
                 }
             }
         });
@@ -90,21 +92,23 @@ public class SetUpViewModel extends BaseViewModel {
     private void showcurrencyTypeDialog() {
         if (mDialog2 == null) {
             mDialog2 = new AdsSelectDialog(mContext);
-            mDialog2.setTitle(App.getInstance().getString(R.string.currency_cny), App.getInstance().getString(R.string.currency_usdt), App.getInstance().getString(R.string.currency_eur), App.getInstance().getString(R.string.currency_ghs), App.getInstance().getString(R.string.currency_nhn));
+            mDialog2.setTitle(App.getInstance().getString(R.string.currency_cny), App.getInstance().getString(R.string.currency_usdt),
+                    App.getInstance().getString(R.string.currency_eur), App.getInstance().getString(R.string.currency_ghs),
+                    App.getInstance().getString(R.string.currency_nhn));
         }
         mDialog2.setInterface(new AdsSelectDialog.LoginSelectInterface() {
             @Override
             public void onSelectType(int type) {
                 if (type == 1) {//人民币 CNY
-
+                    valueTypeSelect.set(App.getInstance().getString(R.string.currency_cny));
                 } else if (type == 2) {//美元 USDT
-
+                    valueTypeSelect.set(App.getInstance().getString(R.string.currency_usdt));
                 } else if (type == 3) {//欧元 EUR
-
+                    valueTypeSelect.set(App.getInstance().getString(R.string.currency_eur));
                 } else if (type == 4) {//赛地 GHS
-
+                    valueTypeSelect.set(App.getInstance().getString(R.string.currency_ghs));
                 } else if (type == 5) {//尼日利亚 NGN
-
+                    valueTypeSelect.set(App.getInstance().getString(R.string.currency_nhn));
                 }
             }
         });

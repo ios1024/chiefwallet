@@ -1038,5 +1038,7 @@
     <string name="maximum_number_of_coins">Maximum number of coins:</string>
     <string name="add_address">Add address</string>
     <string name="go_add">Go add</string>
-
+    <string name="pricing_currency">Pricing currency</string>
+    <string name="color_matching">Color matching</string>
+    <string name="night_mode">Night mode</string>
 </resources>
