@@ -147,6 +147,7 @@
             android:name="com.spark.chiefwallet.app.quotes.kline.QuotesKlineHorizontalActivity"
             android:screenOrientation="landscape" />
         <activity android:name="com.spark.chiefwallet.app.trade.legal_currency.business.BusinessDetailsActivity" />
+        <activity android:name=".app.trade.legal_currency.LegalCurrencyActivity"/>
 
         <service android:name="com.spark.wsclient.WsService" />
 

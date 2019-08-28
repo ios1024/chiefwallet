@@ -18,6 +18,8 @@ import com.spark.klinelib.draw.RSIDraw;
 import com.spark.klinelib.draw.VolumeDraw;
 import com.spark.klinelib.draw.WRDraw;
 
+import me.spark.mvvm.utils.SPUtils;
+
 
 /**
  * k线图
@@ -67,17 +69,26 @@ public class KLineChartView extends BaseKLineChartView {
         addView(mProgressBar, layoutParams);
         mProgressBar.setVisibility(GONE);
         mVolumeDraw = new VolumeDraw(this,
-                getContext().obtainStyledAttributes(attrs, R.styleable.KLineChartView).getColor(R.styleable.KLineChartView_kc_red_color, getColor(R.color.chart_red)),
-                getContext().obtainStyledAttributes(attrs, R.styleable.KLineChartView).getColor(R.styleable.KLineChartView_kc_gre_color, getColor(R.color.chart_green)));
+                SPUtils.getInstance().getGainMode() ? getContext().obtainStyledAttributes(attrs, R.styleable.KLineChartView).getColor(R.styleable.KLineChartView_kc_red_color, getColor(R.color.chart_red)) :
+                        getContext().obtainStyledAttributes(attrs, R.styleable.KLineChartView).getColor(R.styleable.KLineChartView_kc_red_color, getColor(R.color.chart_green))
+                ,
+                SPUtils.getInstance().getGainMode() ? getContext().obtainStyledAttributes(attrs, R.styleable.KLineChartView).getColor(R.styleable.KLineChartView_kc_gre_color, getColor(R.color.chart_green)) :
+                        getContext().obtainStyledAttributes(attrs, R.styleable.KLineChartView).getColor(R.styleable.KLineChartView_kc_gre_color, getColor(R.color.chart_red)));
         mMACDDraw = new MACDDraw(this,
-                getContext().obtainStyledAttributes(attrs, R.styleable.KLineChartView).getColor(R.styleable.KLineChartView_kc_red_color, getColor(R.color.chart_red)),
-                getContext().obtainStyledAttributes(attrs, R.styleable.KLineChartView).getColor(R.styleable.KLineChartView_kc_gre_color, getColor(R.color.chart_green)));
+                SPUtils.getInstance().getGainMode() ? getContext().obtainStyledAttributes(attrs, R.styleable.KLineChartView).getColor(R.styleable.KLineChartView_kc_red_color, getColor(R.color.chart_red)) :
+                        getContext().obtainStyledAttributes(attrs, R.styleable.KLineChartView).getColor(R.styleable.KLineChartView_kc_red_color, getColor(R.color.chart_green))
+                ,
+                SPUtils.getInstance().getGainMode() ? getContext().obtainStyledAttributes(attrs, R.styleable.KLineChartView).getColor(R.styleable.KLineChartView_kc_gre_color, getColor(R.color.chart_green)) :
+                        getContext().obtainStyledAttributes(attrs, R.styleable.KLineChartView).getColor(R.styleable.KLineChartView_kc_gre_color, getColor(R.color.chart_red)));
         mWRDraw = new WRDraw(this);
         mKDJDraw = new KDJDraw(this);
         mRSIDraw = new RSIDraw(this);
         mMainDraw = new MainDraw(this,
-                getContext().obtainStyledAttributes(attrs, R.styleable.KLineChartView).getColor(R.styleable.KLineChartView_kc_red_color, getColor(R.color.chart_red)),
-                getContext().obtainStyledAttributes(attrs, R.styleable.KLineChartView).getColor(R.styleable.KLineChartView_kc_gre_color, getColor(R.color.chart_green)));
+                SPUtils.getInstance().getGainMode() ? getContext().obtainStyledAttributes(attrs, R.styleable.KLineChartView).getColor(R.styleable.KLineChartView_kc_red_color, getColor(R.color.chart_red)) :
+                        getContext().obtainStyledAttributes(attrs, R.styleable.KLineChartView).getColor(R.styleable.KLineChartView_kc_red_color, getColor(R.color.chart_green))
+                ,
+                SPUtils.getInstance().getGainMode() ? getContext().obtainStyledAttributes(attrs, R.styleable.KLineChartView).getColor(R.styleable.KLineChartView_kc_gre_color, getColor(R.color.chart_green)) :
+                        getContext().obtainStyledAttributes(attrs, R.styleable.KLineChartView).getColor(R.styleable.KLineChartView_kc_gre_color, getColor(R.color.chart_red)));
         addChildDraw(mMACDDraw);
         addChildDraw(mKDJDraw);
         addChildDraw(mRSIDraw);

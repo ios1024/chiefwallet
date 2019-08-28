@@ -1,29 +1,23 @@
 package com.spark.chiefwallet.app;
 
 import android.arch.lifecycle.Observer;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
-import android.view.WindowManager;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.spark.chiefwallet.BR;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.api.pojo.UpdateBean;
-import com.spark.chiefwallet.app.emex.EmexFragment;
 import com.spark.chiefwallet.app.home.HomeFragment;
 import com.spark.chiefwallet.app.invite.InviteFragment;
 import com.spark.chiefwallet.app.me.MeFragment;
 import com.spark.chiefwallet.app.quotes.QuotesFragment;
-import com.spark.chiefwallet.app.trade.TradeFragment;
+import com.spark.chiefwallet.app.trade.currency.CurrencyFragment;
 import com.spark.chiefwallet.base.ARouterPath;
 import com.spark.chiefwallet.databinding.ActivityIndexBinding;
 import com.spark.chiefwallet.util.AppUtils;
-import com.spark.chiefwallet.util.StatueBarUtils;
 import com.spark.wsclient.WsService;
 
 import me.spark.mvvm.base.BaseActivity;
@@ -46,11 +40,11 @@ import me.spark.mvvm.utils.StringUtils;
  */
 @Route(path = ARouterPath.ACTIVITY_URL_INDEX)
 public class IndexActivity extends BaseActivity<ActivityIndexBinding, IndexViewModel> {
-    private EmexFragment mEmexFragment;
     private InviteFragment mInviteFragment;
     private MeFragment mMeFragment;
     private QuotesFragment mQuotesFragment;
-    private TradeFragment mTradeFragment;
+    //    private TradeFragment mTradeFragment;
+    private CurrencyFragment mCurrencyFragment;
     private HomeFragment mHomeFragment;
 
     private FragmentManager fragmentManager;
@@ -155,13 +149,14 @@ public class IndexActivity extends BaseActivity<ActivityIndexBinding, IndexViewM
                 //交易
                 case 2:
                     binding.llTabTrade.setSelected(true);
-                    if (mTradeFragment == null) {
-                        mTradeFragment = new TradeFragment();
-                        transaction.add(R.id.fragment_content, mTradeFragment);
+                    if (mCurrencyFragment == null) {
+                        mCurrencyFragment = new CurrencyFragment();
+                        transaction.add(R.id.fragment_content, mCurrencyFragment);
                     } else {
-                        transaction.show(mTradeFragment);
+                        transaction.show(mCurrencyFragment);
                     }
                     Constant.isTradeVisiable = true;
+                    Constant.tradePage = 1;
                     break;
                 //邀请
                 case 3:
@@ -197,8 +192,8 @@ public class IndexActivity extends BaseActivity<ActivityIndexBinding, IndexViewM
         if (mQuotesFragment != null) {
             transaction.hide(mQuotesFragment);
         }
-        if (mTradeFragment != null) {
-            transaction.hide(mTradeFragment);
+        if (mCurrencyFragment != null) {
+            transaction.hide(mCurrencyFragment);
         }
         if (mInviteFragment != null) {
             transaction.hide(mInviteFragment);

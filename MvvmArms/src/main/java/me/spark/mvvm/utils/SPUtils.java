@@ -44,6 +44,8 @@ public final class SPUtils {
     private String OTCCOOKIE = "otcCookie";
     private String SPOTCOOKIE = "spotCookie";
 
+    private String GAINMODE = "gainMode";
+
     /*-----------TGC-----------*/
     public void setTgc(String tgc) {
         getInstance().put(TGC, tgc);
@@ -171,6 +173,16 @@ public final class SPUtils {
         return getInstance().getString(SPOTCOOKIE, "");
     }
     /*-----------cookie-----------*/
+
+    /*-----------K线颜色-----------*/
+    public void setGainMode(boolean gainMode) {
+        getInstance().put(GAINMODE, gainMode);
+    }
+
+    public boolean getGainMode() {
+        return getInstance().getBoolean(GAINMODE, true);
+    }
+    /*-----------K线颜色-----------*/
 
     /**
      * Return the single {@link SPUtils} instance

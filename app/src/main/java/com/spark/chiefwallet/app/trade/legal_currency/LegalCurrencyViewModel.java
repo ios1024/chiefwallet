@@ -188,12 +188,14 @@ public class LegalCurrencyViewModel extends BaseViewModel {
     public void onCreate() {
         super.onCreate();
         EventBusUtils.register(this);
+        Constant.tradePage = 0;
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         EventBusUtils.unRegister(this);
+        Constant.tradePage = 1;
     }
 
     @Override

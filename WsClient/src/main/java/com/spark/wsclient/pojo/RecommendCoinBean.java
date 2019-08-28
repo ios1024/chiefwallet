@@ -7,6 +7,7 @@ import java.util.List;
 
 import me.spark.mvvm.utils.DfUtils;
 import me.spark.mvvm.utils.MathUtils;
+import me.spark.mvvm.utils.SPUtils;
 import me.spark.mvvm.utils.SpanUtils;
 
 /**
@@ -390,11 +391,11 @@ public class RecommendCoinBean implements Parcelable {
 
         // 涨幅是否为 +/-
         public boolean isCoinPairPushChgUp() {
-            return chg >= 0 ? true : false;
+            return SPUtils.getInstance().getGainMode() ? chg >= 0 : chg < 0;
         }
 
         public String initChg() {
-            return (isCoinPairPushChgUp() ? "+" : "") + MathUtils.getRundNumber(chg * 100, 2, "########0.") + "%";
+            return (chg >= 0 ? "+" : "") + MathUtils.getRundNumber(chg * 100, 2, "########0.") + "%";
         }
 
         public String initConvert() {

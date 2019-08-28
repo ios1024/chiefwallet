@@ -210,7 +210,13 @@ public class CurrencyViewModel extends BaseViewModel {
                     .navigation();
         }
     });
-
+    public BindingCommand intoLc = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            ARouter.getInstance().build(ARouterPath.ACTIVITY_TRADE_LC)
+                    .navigation();
+        }
+    });
 
     //提交
     public BindingCommand currentBuyCommand = new BindingCommand(new BindingAction() {
@@ -692,6 +698,7 @@ public class CurrencyViewModel extends BaseViewModel {
                 if (dataBean.getSymbol().equals(symbolName.get())) {
                     mAllThumbResultPolling = dataBean;
                     closePrice.set(initClose(dataBean));
+                    closePriceType.set(SPUtils.getInstance().getGainMode() ? dataBean.getChg() >= 0 : dataBean.getChg() < 0);
                     priceConvert.set(initConvert(dataBean));
                     if (priceType.get() == 0 && !StringUtils.isEmpty(numberEt.get())) {
                         tradePrice = MathUtils.getRundNumber(Double.valueOf(numberEt.get().trim()) * Double.valueOf(dataBean.getClose()), symbolScale, null);
@@ -733,7 +740,7 @@ public class CurrencyViewModel extends BaseViewModel {
 
         priceEt.set(MathUtils.getRundNumber(dataBean.getClose(), symbolScale, null));
         closePrice.set(initClose(dataBean));
-        closePriceType.set(dataBean.getChg() >= 0);
+        closePriceType.set(SPUtils.getInstance().getGainMode() ? dataBean.getChg() >= 0 : dataBean.getChg() < 0);
         priceConvert.set(initConvert(dataBean));
         tradeValue.set("0.0000");
         Constant.currentSymbol = dataBean.getSymbol();

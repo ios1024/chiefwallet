@@ -46,6 +46,7 @@ import butterknife.OnClick;
 import me.spark.mvvm.base.BaseFragment;
 import me.spark.mvvm.base.Constant;
 import me.spark.mvvm.http.impl.OnRequestListener;
+import me.spark.mvvm.ui.dialog.utils.StatusBarUtils;
 import me.spark.mvvm.utils.DfUtils;
 import me.spark.mvvm.utils.LogUtils;
 import me.spark.mvvm.utils.MathUtils;
@@ -90,10 +91,11 @@ public class CurrencyFragment extends BaseFragment<FragmentCurrentBinding, Curre
     public void initView() {
         binding.currentRoot.showLoading();
         viewModel.initContext(getActivity());
+        StatusBarUtils.setStatusViewAttr(binding.viewStatusBar, getActivity());
     }
 
     @Override
-    public void loadLazyData() {
+    public void initData() {
         //价格 - 数量  监听
         initTextChangedListener();
         //默认选中 买入
@@ -549,7 +551,7 @@ public class CurrencyFragment extends BaseFragment<FragmentCurrentBinding, Curre
             case R.id.current_open_drawer:
                 if (mB2BDrawerPopup == null)
                     //getParentFragment().getFragmentManager() 获取父容器的FragmentManager()
-                    mB2BDrawerPopup = new B2BDrawerPopup(getContext(), getParentFragment().getFragmentManager());
+                    mB2BDrawerPopup = new B2BDrawerPopup(getContext(), getActivity().getSupportFragmentManager());
                 new XPopup.Builder(getContext())
                         .asCustom(mB2BDrawerPopup)
                         .show();

@@ -34,6 +34,7 @@ import me.spark.mvvm.utils.EventBean;
 import me.spark.mvvm.utils.EventBusUtils;
 import me.spark.mvvm.utils.LogUtils;
 import me.spark.mvvm.utils.MathUtils;
+import me.spark.mvvm.utils.SPUtils;
 import me.spark.mvvm.utils.SpanUtils;
 import me.spark.mvvm.utils.StringUtils;
 import me.spark.mvvm.utils.WebSocketRequest;
@@ -75,7 +76,7 @@ public class QuotesKlineHorizontalViewModel extends BaseViewModel {
         public SingleLiveEvent<KLineEntity> klineSubscribe = new SingleLiveEvent<>();
     }
 
-    public void initDate(AllThumbResult.DataBean allThumbResult,String lastResolution) {
+    public void initDate(AllThumbResult.DataBean allThumbResult, String lastResolution) {
         this.allThumbResult = allThumbResult;
         this.mResolutionVertical = lastResolution;
         updateCoinPairPushBean();
@@ -255,7 +256,7 @@ public class QuotesKlineHorizontalViewModel extends BaseViewModel {
 
     // 涨幅是否为 +/-
     private boolean isCoinPairPushChgUp() {
-        return allThumbResult.getChg() >= 0 ? true : false;
+        return SPUtils.getInstance().getGainMode() ? allThumbResult.getChg() >= 0 : allThumbResult.getChg() < 0;
     }
 
     //现价
@@ -277,7 +278,7 @@ public class QuotesKlineHorizontalViewModel extends BaseViewModel {
     }
 
     private String initChg() {
-        return (isCoinPairPushChgUp() ? "+" : "") + MathUtils.getRundNumber(allThumbResult.getChg() * 100, 2, "########0.") + "%";
+        return (allThumbResult.getChg() >= 0 ? "+" : "") + MathUtils.getRundNumber(allThumbResult.getChg() * 100, 2, "########0.") + "%";
     }
 
 
