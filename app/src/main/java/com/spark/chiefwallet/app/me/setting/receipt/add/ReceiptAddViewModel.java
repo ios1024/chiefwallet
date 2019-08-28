@@ -63,12 +63,11 @@ public class ReceiptAddViewModel extends BaseViewModel {
         }
     });
 
-    //非洲银行卡   改到这
     public BindingCommand bankAfricaPayOnClickCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
             ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_RECEIPT_BIND)
-                    .withString("type", Constant.card)
+                    .withString("type", Constant.AfricaCard)
                     .withParcelable("typeBean", bankBean)
                     .navigation();
             finish();

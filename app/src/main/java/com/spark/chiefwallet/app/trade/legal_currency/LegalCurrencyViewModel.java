@@ -154,12 +154,12 @@ public class LegalCurrencyViewModel extends BaseViewModel {
                 }
                 break;
             //发布广告
-            case EvKey.authMerchantFind:
+            case EvKey.authMerchantFind2:
                 if (eventBean.isStatue()) {
                     AuthMerchantResult authMerchantResult = (AuthMerchantResult) eventBean.getObject();
                     int certifiedBusinessStatus = authMerchantResult.getData().getCertifiedBusinessStatus();
-                    if (certifiedBusinessStatus == 2) {
-                        ARouter.getInstance().build(ARouterPath.ACTIVITY_TRADE_AD_CREATE)
+                    if (certifiedBusinessStatus == 2 || certifiedBusinessStatus == 5 || certifiedBusinessStatus == 6) {
+                        ARouter.getInstance().build(ARouterPath.ACTIVITY_TRADE_AD_NEWCREATE)
                                 .navigation();
                     } else {
                         Toasty.showError(eventBean.getMessage());

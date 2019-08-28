@@ -81,7 +81,7 @@ public class NewAdCreateViewModel extends BaseViewModel {
     public ObservableField<String> remarks = new ObservableField<>("");
     public ObservableField<Boolean> isAutoResponse = new ObservableField<>(false);
     public ObservableField<String> autoResponse = new ObservableField<>("");
-    public ObservableField<String> tradeNumberHint = new ObservableField<>(App.getInstance().getString(R.string.str_set_buy_amount));
+    public ObservableField<String> tradeNumberHint = new ObservableField<>("");
     public ObservableField<String> adTypeTag = new ObservableField<>(App.getInstance().getString(R.string.str_buy_amount));
     public ObservableField<String> submitBtn = new ObservableField<>(App.getInstance().getString(R.string.str_publish));
 
@@ -110,10 +110,10 @@ public class NewAdCreateViewModel extends BaseViewModel {
         this.adType = adType;
         if (adType == 0) {
             adTypeTag.set(App.getInstance().getString(R.string.str_buy_amount));
-            tradeNumberHint.set(App.getInstance().getString(R.string.str_set_buy_amount));
+            tradeNumberHint.set("");
         } else {
             adTypeTag.set(App.getInstance().getString(R.string.str_sell_amount));
-            tradeNumberHint.set(App.getInstance().getString(R.string.str_set_sell_amount));
+            tradeNumberHint.set("");
         }
         this.ads = ads;
         if (ads != null) {
@@ -147,8 +147,10 @@ public class NewAdCreateViewModel extends BaseViewModel {
                             new OnSelectListener() {
                                 @Override
                                 public void onSelect(int position, String text) {
+                                    if (ads != null) return;
                                     typecoinName.set(text);
                                     uc.adType.setValue(position);
+
                                 }
                             })
                     .show();
@@ -170,9 +172,9 @@ public class NewAdCreateViewModel extends BaseViewModel {
                                             }
                                         }
                                     }
-//                                    if (coinInfo != null) {
-//                                        tradeNumberHint.set(">= " + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit() + "") + App.getInstance().getString(R.string.str_and) + " <= " + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit() + ""));
-//                                    }
+                                    if (coinInfo != null) {
+                                        tradeNumberHint.set(mContext.getString(R.string.number) + ">= " + MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit() + "") + App.getInstance().getString(R.string.str_and) + " <= " + MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit() + ""));
+                                    }
                                     coinName.set(text);
                                     AdvertiseScanClient.getInstance().priceFind(text, coinType.get(), adType);
                                 }
@@ -288,7 +290,7 @@ public class NewAdCreateViewModel extends BaseViewModel {
 
         if (coinInfo != null) {
             String count = tradeNumber.get();
-            //String max = MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit() + "");
+//            String max = MathUtils.subZeroAndDot(coinInfo.getAdvMaxLimit() + "");
             String min = MathUtils.subZeroAndDot(coinInfo.getAdvMinLimit() + "");
 
             if (!StringUtils.isEmpty(count) && !StringUtils.isEmpty(min) && Double.valueOf(min) != 0) {
@@ -368,38 +370,44 @@ public class NewAdCreateViewModel extends BaseViewModel {
                     mCoinAddressList.clear();
                     for (PayListBean.DataBean payWaySetting : payListBean.getData()) {
                         if (payWaySetting.getStatus() == 1) {
-                            if (payWaySetting.getPayType().equals("card"))
+                            if (payWaySetting.getPayType().equals(Constant.card))
                                 mCoinAddressList.add(payWaySetting);
                         }
                     }
                     for (PayListBean.DataBean payWaySetting : payListBean.getData()) {
                         if (payWaySetting.getStatus() == 1) {
-                            if (payWaySetting.getPayType().equals("alipay"))
+                            if (payWaySetting.getPayType().equals(Constant.AfricaCard))
                                 mCoinAddressList.add(payWaySetting);
                         }
                     }
                     for (PayListBean.DataBean payWaySetting : payListBean.getData()) {
                         if (payWaySetting.getStatus() == 1) {
-                            if (payWaySetting.getPayType().equals("wechat"))
+                            if (payWaySetting.getPayType().equals(Constant.alipay))
+                                mCoinAddressList.add(payWaySetting);
+                        }
+                    }
+                    for (PayListBean.DataBean payWaySetting : payListBean.getData()) {
+                        if (payWaySetting.getStatus() == 1) {
+                            if (payWaySetting.getPayType().equals(Constant.wechat))
                                 mCoinAddressList.add(payWaySetting);
                         }
                     }
 
                     for (PayListBean.DataBean payWaySetting : payListBean.getData()) {
                         if (payWaySetting.getStatus() == 1) {
-                            if (payWaySetting.getPayType().equals("PAYPAL"))
+                            if (payWaySetting.getPayType().equals(Constant.PAYPAL))
                                 mCoinAddressList.add(payWaySetting);
                         }
                     }
                     for (PayListBean.DataBean payWaySetting : payListBean.getData()) {
                         if (payWaySetting.getStatus() == 1) {
-                            if (payWaySetting.getPayType().equals("MTN"))
+                            if (payWaySetting.getPayType().equals(Constant.MTN))
                                 mCoinAddressList.add(payWaySetting);
                         }
                     }
                     for (PayListBean.DataBean payWaySetting : payListBean.getData()) {
                         if (payWaySetting.getStatus() == 1) {
-                            if (payWaySetting.getPayType().equals("other"))
+                            if (payWaySetting.getPayType().equals(Constant.other))
                                 mCoinAddressList.add(payWaySetting);
                         }
                     }
@@ -408,7 +416,6 @@ public class NewAdCreateViewModel extends BaseViewModel {
                     choosePaymentMethodPopup = new ChoosePaymentMethodPopup(mContext, mSelectList, adType, mCoinAddressList, new ChoosePaymentMethodListener() {
                         @Override
                         public void onClickItem(ArrayList<PayListBean.DataBean> selectList) {
-
                             EventBusUtils.postSuccessEvent(EvKey.payWaySettingsSelected, 200, "", adType, selectList);
                         }
                     });
@@ -696,6 +703,11 @@ public class NewAdCreateViewModel extends BaseViewModel {
      */
     private void initAdsData(AdSelfDownFindResult.DataBean.RecordsBean ads) {
         LogUtils.e("ads==" + ads);
+//        if (ads.getAdvertiseType() == 0) {
+//            typecoinName.set(App.getInstance().getResources().getString(R.string.buy2));
+//        } else
+//            typecoinName.set(App.getInstance().getResources().getString(R.string.sell2));
+
         coinName.set(ads.getCoinName());
         coinAddressStr = ads.getCountry();
         coinAddress.set(coinAddressStr);

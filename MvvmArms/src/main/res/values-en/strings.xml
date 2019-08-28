@@ -831,6 +831,7 @@
     <string name="str_wechat">WeChat</string>
     <string name="str_alipay">Alipay</string>
     <string name="str_bank">Bank</string>
+    <string name="str_africa_bank">African bank card</string>
     <string name="str_paypal">PayPal</string>
     <string name="str_mtn">MTN</string>
     <string name="str_other">Other</string>
@@ -901,6 +902,7 @@
     <string name="str_receive_bind_wechat_bind">Bind WeChat to collect payment</string>
     <string name="str_receive_bind_wechat_account">WeChat account</string>
     <string name="str_receive_bind_bank_bind">Binding bank card collection</string>
+    <string name="str_receive_bind_africacard_bind">Binding African bank card receipts</string>
     <string name="str_receive_bind_paypal_bind">Bound to PayPal for payment</string>
     <string name="str_receive_bind_paypal_account">PayPal account</string>
     <string name="str_receive_bind_mtn_account">MTN account</string>
@@ -910,6 +912,7 @@
     <string name="str_receive_bind_alipay_edit">Edit alipay collection</string>
     <string name="str_receive_bind_wechat_edit">Edit WeChat collection</string>
     <string name="str_receive_bind_bank_edit">Edit bank card collection</string>
+    <string name="str_receive_bind_africacard_edit">Edit African bank card receipts</string>
     <string name="str_receive_bind_paypal_edit">Edit PayPal collection</string>
     <string name="str_receive_bind_mtn_edits">Edit MTN collection</string>
     <string name="str_receive_bind_other_edit">Edit Other collection</string>
@@ -1041,4 +1044,13 @@
     <string name="pricing_currency">Pricing currency</string>
     <string name="color_matching">Color matching</string>
     <string name="night_mode">Night mode</string>
+    <string name="red_envelope">Red envelope</string>
+    <string name="invite_friends_to_enjoy_rewards">Invite friends to enjoy rewards</string>
+    <string name="african_partner">African partner</string>
+    <string name="super_node">Super node</string>
+    <string name="quick_buy_coins">Quick buy coins</string>
+    <string name="support_etc">Support BTC, ETH, USDT, etc.</string>
+    <string name="latest_price">Latest price</string>
+    <string name="latest_price_cny">Latest price (CNY)</string>
+    <string name="quote_change">Quote change</string>
 </resources>

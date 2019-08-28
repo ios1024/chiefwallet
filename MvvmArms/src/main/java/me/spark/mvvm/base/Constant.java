@@ -59,7 +59,8 @@ public class Constant {
 
     public static final String alipay = "alipay";  // 支付宝
     public static final String wechat = "wechat";  // 微信
-    public static final String card = "card";      // 银行卡
+    public static final String card = "card";      // 中国银行卡
+    public static final String AfricaCard = "AfricaCard";      // 非洲银行卡
     public static final String PAYPAL = "paypal";  // PAYPAL
     public static final String MTN = "MTN";  // PAYPAL
     public static final String other = "other";    // 其他

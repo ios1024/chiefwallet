@@ -899,7 +899,8 @@
     <string name="str_receive_bind_alipay_account">支付宝账号</string>
     <string name="str_receive_bind_wechat_bind">绑定微信收款</string>
     <string name="str_receive_bind_wechat_account">微信账号</string>
-    <string name="str_receive_bind_bank_bind">绑定银行卡收款</string>
+    <string name="str_receive_bind_bank_bind">绑定中国银行卡收款</string>
+    <string name="str_receive_bind_africacard_bind">绑定非洲银行卡收款</string>
     <string name="str_receive_bind_paypal_bind">绑定PayPal收款</string>
     <string name="str_receive_bind_paypal_account">PayPal账号</string>
     <string name="str_receive_bind_mtn_account">MTN账号</string>
@@ -908,7 +909,8 @@
     <string name="str_receive_bind_other_account">其他账号</string>
     <string name="str_receive_bind_alipay_edit">编辑支付宝收款</string>
     <string name="str_receive_bind_wechat_edit">编辑微信收款</string>
-    <string name="str_receive_bind_bank_edit">编辑银行卡收款</string>
+    <string name="str_receive_bind_bank_edit">编辑中国银行卡收款</string>
+    <string name="str_receive_bind_africacard_edit">编辑非洲银行卡收款</string>
     <string name="str_receive_bind_paypal_edit">编辑PayPal收款</string>
     <string name="str_receive_bind_mtn_edits">编辑MTN收款</string>
     <string name="str_receive_bind_other_edit">编辑其他收款</string>
@@ -1047,4 +1049,13 @@
     <string name="pricing_currency">计价货币</string>
     <string name="color_matching">颜色调配</string>
     <string name="night_mode">夜间模式</string>
+    <string name="red_envelope">红包</string>
+    <string name="invite_friends_to_enjoy_rewards">邀请好友立享奖励</string>
+    <string name="african_partner">非洲合伙人</string>
+    <string name="super_node">超级节点</string>
+    <string name="quick_buy_coins">快捷买币</string>
+    <string name="support_etc">支持BTC,ETH,USDT等</string>
+    <string name="latest_price">最新价</string>
+    <string name="latest_price_cny">最新价(CNY)</string>
+    <string name="quote_change">涨跌幅</string>
 </resources>

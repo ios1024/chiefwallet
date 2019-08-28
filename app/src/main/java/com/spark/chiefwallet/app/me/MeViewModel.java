@@ -78,7 +78,7 @@ public class MeViewModel extends BaseViewModel {
             (App.getInstance().getCurrentUser().getLogintype() == 0 ? "UID:" + App.getInstance().getCurrentUser().getMobilePhone() : "UID:" + App.getInstance().getCurrentUser().getEmail()) : "UID:- -");
     //头像
     public ObservableField<String> avatarUser = new ObservableField<>(App.getInstance().isAppLogin() ?
-            App.getInstance().getCurrentUser().getAvatar() : "");
+            App.getInstance().getCurrentUser().getAvatar() : "@mipmap/head");
 
     //
     public ObservableField<String> otcAcconut = new ObservableField<>("- - ");
@@ -380,7 +380,7 @@ public class MeViewModel extends BaseViewModel {
                             initText();
                         }
                         nickname.set(App.getInstance().getString(R.string.no_login));
-                        avatarUser.set("");
+                        avatarUser.set("@mipmap/head");
                         mobilePhone.set("");
                     }
                 }

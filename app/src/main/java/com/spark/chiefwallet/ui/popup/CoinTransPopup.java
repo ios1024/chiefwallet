@@ -235,38 +235,38 @@ public class CoinTransPopup extends BottomPopupView {
                                 })
                         .show();
                 break;
-            case R.id.ll_to:
-                if (mDownTo.getVisibility() != VISIBLE) return;
-                new XPopup.Builder(getContext())
-                        .atView(mDownTo)  // 依附于所点击的View，内部会自动判断在上方或者下方显示
-                        .asAttachList(accountList, null,
-                                new OnSelectListener() {
-                                    @Override
-                                    public void onSelect(int position, String text) {
-                                        mTransFromTo.setText(text);
-                                        if (text.contains(mContext.getString(R.string.cfd_account))
-                                                || mTransFromTv.getText().toString().contains(mContext.getString(R.string.cfd_account))) {
-                                            mTransSymbol.setText("USDT");
-                                            mDownPull.setVisibility(GONE);
-                                            initTo(text);
-                                            getCoinInfo();
-                                            requstFocus();
-                                        } else {
-                                            if (isSingleCoin) {
-                                                initTo(mTransFromTo.getText().toString());
-                                                initIsSingle(mTransFromTv.getText().toString());
-                                            } else {
-                                                mTransSymbol.setText(coinList[0]);
-                                                mDownPull.setVisibility(VISIBLE);
-                                                initTo(text);
-                                                getCoinInfo();
-                                                requstFocus();
-                                            }
-                                        }
-                                    }
-                                })
-                        .show();
-                break;
+//            case R.id.ll_to:
+//                if (mDownTo.getVisibility() != VISIBLE) return;
+//                new XPopup.Builder(getContext())
+//                        .atView(mDownTo)  // 依附于所点击的View，内部会自动判断在上方或者下方显示
+//                        .asAttachList(accountList, null,
+//                                new OnSelectListener() {
+//                                    @Override
+//                                    public void onSelect(int position, String text) {
+//                                        mTransFromTo.setText(text);
+//                                        if (text.contains(mContext.getString(R.string.cfd_account))
+//                                                || mTransFromTv.getText().toString().contains(mContext.getString(R.string.cfd_account))) {
+//                                            mTransSymbol.setText("USDT");
+//                                            mDownPull.setVisibility(GONE);
+//                                            initTo(text);
+//                                            getCoinInfo();
+//                                            requstFocus();
+//                                        } else {
+//                                            if (isSingleCoin) {
+//                                                initTo(mTransFromTo.getText().toString());
+//                                                initIsSingle(mTransFromTv.getText().toString());
+//                                            } else {
+//                                                mTransSymbol.setText(coinList[0]);
+//                                                mDownPull.setVisibility(VISIBLE);
+//                                                initTo(text);
+//                                                getCoinInfo();
+//                                                requstFocus();
+//                                            }
+//                                        }
+//                                    }
+//                                })
+//                        .show();
+//                break;
             //翻转
             case R.id.trans_reverse:
                 mBtnTrans.setEnabled(true);
@@ -276,40 +276,40 @@ public class CoinTransPopup extends BottomPopupView {
                     case 0:
                         if (mTransFromTv.getText().toString().equals(mContext.getString(R.string.b2b_account))) {
                             mTransFromTv.setText(toText);
-                            mDownFrom.setVisibility(VISIBLE);
+//                            mDownFrom.setVisibility(VISIBLE);
                             mTransFromTo.setText(mContext.getString(R.string.b2b_account));
-                            mDownTo.setVisibility(GONE);
+//                            mDownTo.setVisibility(GONE);
                         } else {
                             mTransFromTv.setText(mContext.getString(R.string.b2b_account));
-                            mDownFrom.setVisibility(GONE);
+//                            mDownFrom.setVisibility(GONE);
                             mTransFromTo.setText(fromText);
-                            mDownTo.setVisibility(VISIBLE);
+//                            mDownTo.setVisibility(VISIBLE);
                         }
                         break;
                     case 1:
                         if (mTransFromTv.getText().toString().equals(mContext.getString(R.string.c2c_account))) {
                             mTransFromTv.setText(toText);
-                            mDownFrom.setVisibility(VISIBLE);
+//                            mDownFrom.setVisibility(VISIBLE);
                             mTransFromTo.setText(mContext.getString(R.string.c2c_account));
-                            mDownTo.setVisibility(GONE);
+//                            mDownTo.setVisibility(GONE);
                         } else {
                             mTransFromTv.setText(mContext.getString(R.string.c2c_account));
-                            mDownFrom.setVisibility(GONE);
+//                            mDownFrom.setVisibility(GONE);
                             mTransFromTo.setText(fromText);
-                            mDownTo.setVisibility(VISIBLE);
+//                            mDownTo.setVisibility(VISIBLE);
                         }
                         break;
                     case 2:
                         if (mTransFromTv.getText().toString().equals(mContext.getString(R.string.cfd_account))) {
                             mTransFromTv.setText(toText);
                             mTransFromTo.setText(mContext.getString(R.string.cfd_account));
-                            mDownFrom.setVisibility(VISIBLE);
-                            mDownTo.setVisibility(GONE);
+//                            mDownFrom.setVisibility(VISIBLE);
+//                            mDownTo.setVisibility(GONE);
                         } else {
                             mTransFromTv.setText(mContext.getString(R.string.cfd_account));
-                            mDownFrom.setVisibility(GONE);
+//                            mDownFrom.setVisibility(GONE);
                             mTransFromTo.setText(fromText);
-                            mDownTo.setVisibility(VISIBLE);
+//                            mDownTo.setVisibility(VISIBLE);
                         }
                         break;
                 }
