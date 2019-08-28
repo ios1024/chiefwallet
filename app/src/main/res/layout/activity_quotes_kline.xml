@@ -250,11 +250,9 @@
                         android:layout_height="336dp"
                         app:kc_dea_color="@color/kc_dea_color"
                         app:kc_dif_color="@color/kc_dif_color"
-                        app:kc_gre_color="@color/rise"
                         app:kc_grid_line_color="@color/gray_d6"
                         app:kc_grid_line_width="1px"
                         app:kc_macd_color="@color/kc_macd_color"
-                        app:kc_red_color="@color/fall"
                         app:kc_text_color="@color/black"/>
 
                     <View

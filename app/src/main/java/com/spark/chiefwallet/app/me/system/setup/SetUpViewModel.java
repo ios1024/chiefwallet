@@ -32,6 +32,7 @@ import me.spark.mvvm.utils.EventBean;
 import me.spark.mvvm.utils.EventBusUtils;
 import me.spark.mvvm.utils.LanguageSPUtil;
 import me.spark.mvvm.utils.LogUtils;
+import me.spark.mvvm.utils.SPUtils;
 import me.spark.mvvm.utils.StringUtils;
 
 public class SetUpViewModel extends BaseViewModel {
@@ -42,7 +43,8 @@ public class SetUpViewModel extends BaseViewModel {
     private Context mContext;
     public ObservableField<String> languageSelect = new ObservableField<>("");
     public ObservableField<String> valueTypeSelect = new ObservableField<>("");
-    public ObservableField<String> colorAdjustmentSelect = new ObservableField<>("");
+    public ObservableField<String> colorAdjustmentSelect = new ObservableField<>(SPUtils.getInstance().getGainMode() ?
+            App.getInstance().getString(R.string.red_green) : App.getInstance().getString(R.string.green_red));
     public ObservableField<String> updateVersion = new ObservableField<>(AppUtils.getContextVersionName());
     private AdsSelectDialog mDialog;
     private AdsSelectDialog mDialog2;
@@ -80,8 +82,10 @@ public class SetUpViewModel extends BaseViewModel {
             @Override
             public void onSelectType(int type) {
                 if (type == 1) {
+                    SPUtils.getInstance().setGainMode(true);
                     colorAdjustmentSelect.set(App.getInstance().getString(R.string.red_green));
                 } else if (type == 2) {
+                    SPUtils.getInstance().setGainMode(false);
                     colorAdjustmentSelect.set(App.getInstance().getString(R.string.green_red));
                 }
             }

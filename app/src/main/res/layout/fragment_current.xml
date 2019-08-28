@@ -23,6 +23,63 @@
             android:background="@color/white"
             android:orientation="vertical">
 
+            <View
+                android:id="@+id/view_status_bar"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:gravity="bottom"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/textBlackNormal"
+                        android:text="币币交易"
+                        android:textColor="@color/black_00"
+                        android:textSize="@dimen/font_xlager"
+                        android:textStyle="bold"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@color/base"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    onClickCommand="@{currentViewModel.intoLc}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/textBlackNormal"
+                        android:layout_marginLeft="20dp"
+                        android:text="法币交易"
+                        android:textColor="@color/gray_a4"
+                        android:textSize="@dimen/font_xlager"
+                        android:textStyle="bold"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@color/white"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/windowBackground"/>
             <!--title-->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -376,7 +433,7 @@
                                     style="@style/textGrayCommonNormal"
                                     android:layout_width="wrap_content"
                                     android:text="@{currentViewModel.closePrice}"
-                                    android:textColor="@{currentViewModel.closePriceType ? @color/rise : @color/fall}"
+                                    android:textColor="@{currentViewModel.closePriceType ? @color/fall : @color/rise}"
                                     android:textStyle="bold"/>
 
                                 <TextView
@@ -446,11 +503,11 @@
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
+                                    android:background="@drawable/depth_merge_2dp_bg"
                                     android:gravity="center"
                                     android:text="深度合并"
                                     android:textColor="@color/gray_a4"
-                                    android:textSize="@dimen/font_xmini"
-                                    android:background="@drawable/depth_merge_2dp_bg"/>
+                                    android:textSize="@dimen/font_xmini"/>
                             </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>

@@ -768,7 +768,9 @@ public class StatusBarUtils {
             view.setLayoutParams(layoutParams);
 
             view.setBackgroundColor(activity.getResources().getColor(R.color.white));
+            int vis = view.getSystemUiVisibility();
+            vis |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+            view.setSystemUiVisibility(vis);
         }
     }
-
 }

@@ -371,7 +371,7 @@ public class QuotesKlineViewModel extends BaseViewModel {
 
     // 涨幅是否为 +/-
     private boolean isCoinPairPushChgUp() {
-        return allThumbResult.getChg() >= 0 ? true : false;
+        return SPUtils.getInstance().getGainMode() ? allThumbResult.getChg() >= 0 : allThumbResult.getChg() < 0;
     }
 
     //现价
@@ -393,7 +393,7 @@ public class QuotesKlineViewModel extends BaseViewModel {
     }
 
     private String initChg() {
-        return (isCoinPairPushChgUp() ? "+" : "") + MathUtils.getRundNumber(allThumbResult.getChg() * 100, 2, "########0.") + "%";
+        return (allThumbResult.getChg() >= 0 ? "+" : "") + MathUtils.getRundNumber(allThumbResult.getChg() * 100, 2, "########0.") + "%";
     }
 
 

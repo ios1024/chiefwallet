@@ -7,6 +7,7 @@ import java.util.List;
 
 import me.spark.mvvm.utils.DfUtils;
 import me.spark.mvvm.utils.MathUtils;
+import me.spark.mvvm.utils.SPUtils;
 
 /**
  * ================================================
@@ -149,7 +150,7 @@ public class B2BThumbBean implements Parcelable {
 
         // 涨幅是否为 +/-
         public boolean isCoinPairPushChgUp() {
-            return chg >= 0 ? true : false;
+            return SPUtils.getInstance().getGainMode() ? chg >= 0 : chg < 0;
         }
     }
 }

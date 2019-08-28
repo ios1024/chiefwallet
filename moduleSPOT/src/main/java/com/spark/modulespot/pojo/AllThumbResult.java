@@ -377,7 +377,7 @@ public class AllThumbResult implements Parcelable {
         //--QuotesVPViewModel
         // 涨幅是否为 +/-
         public boolean isCoinPairPushChgUp() {
-            return chg >= 0 ? true : false;
+            return SPUtils.getInstance().getGainMode() ? chg >= 0 : chg < 0;
         }
 
         //
@@ -426,7 +426,7 @@ public class AllThumbResult implements Parcelable {
         }
 
         public String initChg() {
-            return (isCoinPairPushChgUp() ? "+" : "") + MathUtils.getRundNumber(chg * 100, 2, "########0.") + "%";
+            return (chg >= 0 ? "+" : "") + MathUtils.getRundNumber(chg * 100, 2, "########0.") + "%";
         }
 
         public String initFavor() {
