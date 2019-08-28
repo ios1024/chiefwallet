@@ -88,6 +88,7 @@ public class IndexActivity extends BaseActivity<ActivityIndexBinding, IndexViewM
 //        StatueBarUtils.setStatusBarLightMode(this, true);
 //        StatueBarUtils.addMarginTopEqualStatusBarHeight(binding.fakeStatusBar);
 //        StatueBarUtils.setStatusBarColor(this, Color.WHITE);
+
     }
 
     @Override

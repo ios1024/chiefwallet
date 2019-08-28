@@ -828,7 +828,8 @@
     <string name="str_qr_code_pay">付款码</string>
     <string name="str_wechat">微信</string>
     <string name="str_alipay">支付宝</string>
-    <string name="str_bank">银行卡</string>
+    <string name="str_bank">中国银行卡</string>
+    <string name="str_africa_bank">非洲银行卡</string>
     <string name="str_paypal">PayPal</string>
     <string name="str_mtn">MTN</string>
     <string name="str_other">其他</string>

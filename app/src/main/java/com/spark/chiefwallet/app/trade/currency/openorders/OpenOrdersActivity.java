@@ -84,8 +84,10 @@ public class OpenOrdersActivity extends BaseActivity<ActivityOpenOrdersBinding, 
                 if (binding.root.isLoadingCurrentState()) {
                     binding.root.showContent();
                 }
-                mOpenOrdersVpFragemnt = OpenOrdersVpFragemnt.newInstance(0, StringUtils.isEmpty(symbol) ? Constant.allThumbSymbol[0] : symbol);
-                mOpenOrdersVpHistoryFragemnt = OpenOrdersVpFragemnt.newInstance(1, StringUtils.isEmpty(symbol) ? Constant.allThumbSymbol[0] : symbol);
+//                mOpenOrdersVpFragemnt = OpenOrdersVpFragemnt.newInstance(0, StringUtils.isEmpty(symbol) ? Constant.allThumbSymbol[0] : symbol);
+                mOpenOrdersVpFragemnt = OpenOrdersVpFragemnt.newInstance(0, symbol);
+//                mOpenOrdersVpHistoryFragemnt = OpenOrdersVpFragemnt.newInstance(1, StringUtils.isEmpty(symbol) ? Constant.allThumbSymbol[0] : symbol);
+                mOpenOrdersVpHistoryFragemnt = OpenOrdersVpFragemnt.newInstance(1, symbol);
                 mFragments.add(mOpenOrdersVpFragemnt);
                 mFragments.add(mOpenOrdersVpHistoryFragemnt);
 

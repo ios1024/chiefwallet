@@ -107,7 +107,6 @@
                 <!--计价方式-->
                 <LinearLayout
                     style="@style/meItem"
-                    onClickCommand="@{setUpViewModel.valueTypeOnClickCommand}"
                     app:bl_ripple_color="@color/gray_ccc"
                     app:bl_ripple_enable="true"
                     app:bl_solid_color="@color/white">
