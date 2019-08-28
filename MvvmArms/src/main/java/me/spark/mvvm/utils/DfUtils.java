@@ -109,6 +109,12 @@ public class DfUtils {
         return bigDecimal.doubleValue() + "";
     }
 
+    public static double numberFormatDoubleDown(double number, int scale) {
+        BigDecimal bigDecimal = new BigDecimal(number);
+        bigDecimal = bigDecimal.setScale(scale, BigDecimal.ROUND_DOWN);
+        return bigDecimal.doubleValue();
+    }
+
     public static String numberFormat(String number, int scale) {
         double temp = Double.valueOf(number);
         NumberFormat nf = NumberFormat.getInstance();

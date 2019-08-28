@@ -400,6 +400,7 @@
                                 android:gravity="center_vertical">
 
                                 <LinearLayout
+                                    android:id="@+id/gear_position"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
@@ -420,6 +421,7 @@
                                         android:textSize="@dimen/font_xmini"/>
 
                                     <TextView
+                                        android:id="@+id/gear_tv"
                                         style="@style/textBlackSmall"
                                         android:layout_weight="1"
                                         android:gravity="right"
@@ -439,6 +441,7 @@
                                     android:layout_height="match_parent"/>
 
                                 <TextView
+                                    android:id="@+id/depth_merge"
                                     style="@style/textBlackSmall"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
@@ -447,10 +450,7 @@
                                     android:text="深度合并"
                                     android:textColor="@color/gray_a4"
                                     android:textSize="@dimen/font_xmini"
-                                    app:bl_corners_radius="2dp"
-                                    app:bl_solid_color="@color/white"
-                                    app:bl_stroke_color="@color/gray_ccc"
-                                    app:bl_stroke_width="1dp"/>
+                                    android:background="@drawable/depth_merge_2dp_bg"/>
                             </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>

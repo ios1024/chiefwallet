@@ -5,7 +5,11 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
 
 import com.lxj.xpopup.core.DrawerPopupView;
 import com.spark.chiefwallet.R;
@@ -20,7 +24,10 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import me.spark.mvvm.base.BaseRequestCode;
 import me.spark.mvvm.base.Constant;
+import me.spark.mvvm.base.EvKey;
+import me.spark.mvvm.utils.EventBusUtils;
 
 /**
  * ================================================
@@ -32,6 +39,8 @@ import me.spark.mvvm.base.Constant;
  * ================================================
  */
 public class B2BDrawerPopup extends DrawerPopupView {
+    @BindView(R.id.quotes_input)
+    EditText mQuotesInput;
     private ArrayList<Fragment> mFragments = new ArrayList<>();
     private String[] mTitles;
     private SlideTabPagerAdapter mAdapter;
@@ -72,6 +81,26 @@ public class B2BDrawerPopup extends DrawerPopupView {
         mDrawerTabVp.setAdapter(mAdapter);
         mDrawerTab.setViewPager(mDrawerTabVp);
         mDrawerRoot.showContent();
+        initInputListener();
+    }
+
+    private void initInputListener() {
+        mQuotesInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                EventBusUtils.postSuccessEvent(EvKey.drawerSearch, BaseRequestCode.OK, TextUtils.isEmpty(editable.toString()) ? "" : editable.toString().trim());
+            }
+        });
     }
 
     @Override

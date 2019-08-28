@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="itemOtcQuotes"
+            type="com.spark.wsclient.pojo.B2BThumbBean.DateBean"/>
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:bl_ripple_color="@color/gray_ccc"
+        app:bl_ripple_enable="true"
+        app:bl_solid_color="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="15dp"
+            android:paddingTop="7dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="7dp">
+
+            <TextView
+                style="@style/textBlackNormal"
+                android:text="@{itemOtcQuotes.initSymbol()}"
+                android:textColor="@color/black_00"
+                android:textStyle="bold"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+            <TextView
+                style="@style/textBlackNormal"
+                android:text="@{itemOtcQuotes.initClose()}"
+                android:textStyle="bold"
+                android:textColor="@{itemOtcQuotes.isCoinPairPushChgUp() ? @color/fall : @color/rise}"/>
+        </LinearLayout>
+
+        <View
+            style="@style/line_ccc"/>
+    </LinearLayout>
+</layout>

@@ -28,6 +28,7 @@ public class EvKey {
     public static final String checkVersionUpdate = "checkVersionUpdate";
     public static final String chartBase64Pic = "chartBase64Pic";
     public static final String CoinAddress = "CoinAddress";//向父类传参
+    public static final String drawerSearch = "drawerSearch";
 
     //login
     public static final String casConfig = "casConfig";

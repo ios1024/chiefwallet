@@ -28,6 +28,7 @@ import com.spark.chiefwallet.ui.RvLoadMoreView;
 import com.spark.chiefwallet.ui.popup.B2BBuyTypePopup;
 import com.spark.chiefwallet.ui.popup.B2BDrawerPopup;
 import com.spark.chiefwallet.ui.popup.CancelOrderPopup;
+import com.spark.chiefwallet.ui.popup.GearPositionPopup;
 import com.spark.chiefwallet.ui.popup.impl.OnTypeChooseListener;
 import com.spark.chiefwallet.ui.seekbar.SeekBar;
 import com.spark.chiefwallet.ui.toast.Toasty;
@@ -45,6 +46,7 @@ import butterknife.OnClick;
 import me.spark.mvvm.base.BaseFragment;
 import me.spark.mvvm.base.Constant;
 import me.spark.mvvm.http.impl.OnRequestListener;
+import me.spark.mvvm.utils.DfUtils;
 import me.spark.mvvm.utils.LogUtils;
 import me.spark.mvvm.utils.MathUtils;
 import me.spark.mvvm.utils.StringUtils;
@@ -64,13 +66,16 @@ public class CurrencyFragment extends BaseFragment<FragmentCurrentBinding, Curre
     private MarketBuyAdapter mMarketBuyAdapter;                 //盘口 - 买
     private List<AskBean> mMarketSellList = new ArrayList<>();
     private List<BidBean> mMarketBuyList = new ArrayList<>();
-    private final int defaultSize = 50;
+    private List<AskBean> mMarketSellTempList = new ArrayList<>();
+    private List<BidBean> mMarketBuyTempList = new ArrayList<>();
+    private int defaultSize = 50;
     private int pageIndex = 1;
     private static final int PAGE_SIZE = 50;
     private List<OpenOrdersResult.DataBean.ListBean> openOrdersResultList = new ArrayList<>();
     private CurrentCommissionAdapter mOpenOrdersAdapter;               //当前委托
     private PointLengthFilter mPriceFilter;                     //位数限制
     private PointLengthFilter mNumFilter;
+    private boolean isDepthMerge = false;
 
     public int initContentView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return R.layout.fragment_current;
@@ -343,28 +348,96 @@ public class CurrencyFragment extends BaseFragment<FragmentCurrentBinding, Curre
         viewModel.uc.mMarketSymbolResultSingleLiveEvent.observe(this, new Observer<MarketSymbolResult>() {
             @Override
             public void onChanged(@Nullable MarketSymbolResult marketSymbolResult) {
+                mMarketSellList.clear();
+                mMarketBuyList.clear();
                 int askSize = marketSymbolResult.getData().getAsk().size();
+                mMarketSellTempList.clear();
                 for (int i = 0; i < defaultSize; i++) {
                     if (i < askSize) {
                         marketSymbolResult.getData().getAsk().get(i).setType(0);
-                        mMarketSellList.set(i, marketSymbolResult.getData().getAsk().get(i));
+                        mMarketSellTempList.add(marketSymbolResult.getData().getAsk().get(i));
                     } else {
                         AskBean askBean = new AskBean();
                         askBean.setType(0);
-                        mMarketSellList.set(i, askBean);
+                        mMarketSellTempList.add(askBean);
                     }
                 }
 
                 int bidSize = marketSymbolResult.getData().getBid().size();
+                mMarketBuyTempList.clear();
                 for (int i = 0; i < defaultSize; i++) {
                     if (i < bidSize) {
                         marketSymbolResult.getData().getBid().get(i).setType(0);
-                        mMarketBuyList.set(i, marketSymbolResult.getData().getBid().get(i));
+                        mMarketBuyTempList.add(marketSymbolResult.getData().getBid().get(i));
                     } else {
                         BidBean bidBean = new BidBean();
                         bidBean.setType(0);
-                        mMarketBuyList.set(i, bidBean);
+                        mMarketBuyTempList.add(bidBean);
                     }
+                }
+
+                if (isDepthMerge) {
+                    LogUtils.e("depth_merge", "COME");
+                    for (int i = 0; i < mMarketSellTempList.size(); i++) {
+                        if (i == 0) {
+                            mMarketSellList.add(mMarketSellTempList.get(i));
+                        } else {
+                            if (DfUtils.numberFormatDoubleDown(mMarketSellTempList.get(i).getPrice(), 2)
+                                    == DfUtils.numberFormatDoubleDown(mMarketSellList.get(mMarketSellList.size() - 1).getPrice(), 2)) {
+                                AskBean askBean = mMarketSellTempList.get(i);
+                                askBean.setAmount(askBean.getAmount() + mMarketSellTempList.get(i - 1).getAmount());
+                                mMarketSellList.remove(mMarketSellList.size() - 1);
+                                mMarketSellList.add(askBean);
+                            } else {
+                                mMarketSellList.add(mMarketSellTempList.get(i));
+                            }
+                        }
+                    }
+                    mMarketSellTempList.clear();
+                    mMarketSellTempList.addAll(mMarketSellList);
+                    mMarketSellList.clear();
+                    for (int i = 0; i < defaultSize; i++) {
+                        if (i < mMarketSellTempList.size()) {
+                            mMarketSellList.add(mMarketSellTempList.get(i));
+                        } else {
+                            AskBean askBean = new AskBean();
+                            askBean.setType(0);
+                            mMarketSellList.add(askBean);
+                        }
+                    }
+
+
+                    for (int i = 0; i < mMarketBuyTempList.size(); i++) {
+                        if (i == 0) {
+                            mMarketBuyList.add(mMarketBuyTempList.get(i));
+                        } else {
+                            if (DfUtils.numberFormatDoubleDown(mMarketBuyTempList.get(i).getPrice(), 2)
+                                    == DfUtils.numberFormatDoubleDown(mMarketBuyList.get(mMarketBuyList.size() - 1).getPrice(), 2)) {
+                                BidBean bidBean = mMarketBuyTempList.get(i);
+                                bidBean.setAmount(bidBean.getAmount() + mMarketBuyTempList.get(i - 1).getAmount());
+                                mMarketBuyList.remove(mMarketBuyList.size() - 1);
+                                mMarketBuyList.add(bidBean);
+                            } else {
+                                mMarketBuyList.add(mMarketBuyTempList.get(i));
+                            }
+                        }
+                    }
+                    mMarketBuyTempList.clear();
+                    mMarketBuyTempList.addAll(mMarketBuyList);
+                    mMarketBuyList.clear();
+                    for (int i = 0; i < defaultSize; i++) {
+                        if (i < mMarketBuyTempList.size()) {
+                            mMarketBuyList.add(mMarketBuyTempList.get(i));
+                        } else {
+                            BidBean bidBean = new BidBean();
+                            bidBean.setType(0);
+                            mMarketBuyList.add(bidBean);
+                        }
+                    }
+
+                } else {
+                    mMarketSellList.addAll(mMarketSellTempList);
+                    mMarketBuyList.addAll(mMarketBuyTempList);
                 }
 
                 mMarketSellAdapter.notifyDataSetChanged();
@@ -459,7 +532,9 @@ public class CurrencyFragment extends BaseFragment<FragmentCurrentBinding, Curre
             R.id.btn_sell,
             R.id.current_open_drawer,
             R.id.current_buy_type,
-            R.id.tv_market_price})
+            R.id.tv_market_price,
+            R.id.gear_position,
+            R.id.depth_merge})
     public void onClick(View v) {
         switch (v.getId()) {
             //买入
@@ -496,7 +571,22 @@ public class CurrencyFragment extends BaseFragment<FragmentCurrentBinding, Curre
                         .show();
                 break;
             case R.id.tv_market_price:
-
+                break;
+            case R.id.gear_position:
+                new XPopup.Builder(getContext())
+                        .atView(v)
+                        .asCustom(new GearPositionPopup(getContext(), new OnTypeChooseListener() {
+                            @Override
+                            public void onChooseType(int type, String content) {
+                                defaultSize = type;
+                                binding.gearTv.setText(String.valueOf(type));
+                            }
+                        }))
+                        .show();
+                break;
+            case R.id.depth_merge:
+                isDepthMerge = !isDepthMerge;
+                binding.depthMerge.setBackground(getResources().getDrawable(isDepthMerge ? R.drawable.depth_merge_select_2dp_bg : R.drawable.depth_merge_2dp_bg));
                 break;
         }
     }

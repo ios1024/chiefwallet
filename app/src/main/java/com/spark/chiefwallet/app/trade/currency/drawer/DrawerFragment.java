@@ -39,7 +39,9 @@ import me.spark.mvvm.utils.EventBusUtils;
 public class DrawerFragment extends BaseFragment<FragmentQuotesThumbBinding, QuotesThumbViewModel> {
     private static final String TYPE = "type";
     private List<AllThumbResult.DataBean> mThumbList = new ArrayList<>();
+    private List<AllThumbResult.DataBean> mFilterList = new ArrayList<>();
     private DrawerAdapter mDrawerAdapter;
+    private String drawerSearchStr = "";
 
     public static DrawerFragment newInstance(String quotesType) {
         DrawerFragment drawerFragment = new DrawerFragment();
@@ -97,24 +99,17 @@ public class DrawerFragment extends BaseFragment<FragmentQuotesThumbBinding, Quo
             public void onChanged(@Nullable List<AllThumbResult.DataBean> dataBeans) {
                 if (!isVisibleToUser) return;
                 mThumbList.clear();
-                mThumbList.addAll(dataBeans);
-                mDrawerAdapter.notifyDataSetChanged();
-                if (mThumbList.isEmpty()) {
-                    if (getArguments().getString(TYPE).equals(App.getInstance().getString(R.string.favorites))) {
-                        mDrawerAdapter.setEmptyView(R.layout.view_rv_empty_favor, binding.thumbRv);
-                        mDrawerAdapter.getEmptyView().findViewById(R.id.text_title).setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                if (TextUtils.isEmpty(Constant.searchQuotesJson)) return;
-                                ARouter.getInstance().build(ARouterPath.ACTIVITY_QUOTES_SERACH)
-                                        .navigation();
-                            }
-                        });
-                    } else {
-                        mDrawerAdapter.setEmptyView(R.layout.view_rv_empty_2, binding.thumbRv);
+                if (TextUtils.isEmpty(drawerSearchStr)) {
+                    mThumbList.addAll(dataBeans);
+                } else {
+                    for (AllThumbResult.DataBean dataBean : dataBeans) {
+                        if (dataBean.getSymbol().contains(drawerSearchStr.toUpperCase())) {
+                            mThumbList.add(dataBean);
+                        }
                     }
                 }
-                if (binding.thumbRoot.isLoadingCurrentState() || binding.thumbRoot.isErrorCurrentState())
+                updateAdapter();
+                if (!binding.thumbRoot.isContentCurrentState())
                     binding.thumbRoot.showContent();
             }
         });
@@ -138,5 +133,41 @@ public class DrawerFragment extends BaseFragment<FragmentQuotesThumbBinding, Quo
                 }
             }
         });
+
+        viewModel.uc.drawerSearchEvent.observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(@Nullable String s) {
+                drawerSearchStr = s;
+                if (mDrawerAdapter == null || TextUtils.isEmpty(drawerSearchStr)) return;
+                mFilterList.clear();
+                mFilterList.addAll(mThumbList);
+                mThumbList.clear();
+                for (AllThumbResult.DataBean dataBean : mFilterList) {
+                    if (dataBean.getSymbol().contains(drawerSearchStr.toUpperCase())) {
+                        mThumbList.add(dataBean);
+                    }
+                }
+                updateAdapter();
+            }
+        });
+    }
+
+    public void updateAdapter() {
+        mDrawerAdapter.notifyDataSetChanged();
+        if (mThumbList.isEmpty()) {
+            if (getArguments().getString(TYPE).equals(App.getInstance().getString(R.string.favorites))) {
+                mDrawerAdapter.setEmptyView(R.layout.view_rv_empty_favor, binding.thumbRv);
+                mDrawerAdapter.getEmptyView().findViewById(R.id.text_title).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (TextUtils.isEmpty(Constant.searchQuotesJson)) return;
+                        ARouter.getInstance().build(ARouterPath.ACTIVITY_QUOTES_SERACH)
+                                .navigation();
+                    }
+                });
+            } else {
+                mDrawerAdapter.setEmptyView(R.layout.view_rv_empty_2, binding.thumbRv);
+            }
+        }
     }
 }

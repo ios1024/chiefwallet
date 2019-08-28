@@ -5,6 +5,9 @@ import android.os.Parcelable;
 
 import java.util.List;
 
+import me.spark.mvvm.utils.DfUtils;
+import me.spark.mvvm.utils.MathUtils;
+
 /**
  * ================================================
  * 作    者：v1ncent
@@ -133,6 +136,20 @@ public class B2BThumbBean implements Parcelable {
 
         public void setTurnover(double turnover) {
             this.turnover = turnover;
+        }
+
+        public CharSequence initSymbol() {
+            return symbol.split("/")[0];
+        }
+
+        //现价
+        public CharSequence initClose() {
+            return DfUtils.formatNum(MathUtils.getRundNumber(close, 2, null));
+        }
+
+        // 涨幅是否为 +/-
+        public boolean isCoinPairPushChgUp() {
+            return chg >= 0 ? true : false;
         }
     }
 }
