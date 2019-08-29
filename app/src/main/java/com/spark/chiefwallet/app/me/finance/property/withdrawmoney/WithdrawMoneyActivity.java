@@ -23,6 +23,7 @@ import com.spark.acclient.pojo.CoinExtractSubmitBean;
 import com.spark.acclient.pojo.CoinSupportBean;
 import com.spark.acclient.pojo.MerberWalletResult;
 import com.spark.chiefwallet.App;
+import com.spark.chiefwallet.BR;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.app.me.finance.property.coincharging.CoinChargingActivity;
 import com.spark.chiefwallet.base.ARouterPath;
@@ -35,7 +36,6 @@ import com.spark.chiefwallet.ui.toast.Toasty;
 import com.spark.chiefwallet.util.StatueBarUtils;
 
 import butterknife.OnClick;
-import me.spark.mvvm.BR;
 import me.spark.mvvm.base.BaseActivity;
 import me.spark.mvvm.utils.DfUtils;
 import me.spark.mvvm.utils.StringUtils;

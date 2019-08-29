@@ -89,9 +89,9 @@
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
 
-                            <View
+                            <TextView
                                 android:id="@+id/mobile_view"
-                                android:layout_width="64dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="3dp"
                                 android:layout_marginTop="4dp"
                                 android:background="@color/base" />
@@ -113,9 +113,9 @@
                                 android:textColor="@color/welcomelogin"
                                 android:textSize="16sp" />
 
-                            <View
+                            <TextView
                                 android:id="@+id/mailbox_view"
-                                android:layout_width="64dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="3dp"
                                 android:layout_marginTop="4dp"
                                 android:background="@color/base"

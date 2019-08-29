@@ -44,7 +44,7 @@ public class QuotesKlineHorizontalActivity extends BaseActivity<ActivityQuotesKl
     @Autowired(name = "lastResolution")
     String lastResolution;
 
-    private String[] mTitles = {"1分", "5分", "15分", "30分", "1小时", "1天", "1周"};
+    private String[] mTitles;
     private int[] mIconUnselectIds = {
             R.mipmap.ic_launcher, R.mipmap.ic_launcher,
             R.mipmap.ic_launcher, R.mipmap.ic_launcher,
@@ -77,6 +77,7 @@ public class QuotesKlineHorizontalActivity extends BaseActivity<ActivityQuotesKl
         StatueBarUtils.setStatusBarLightMode(this, true);
         StatueBarUtils.addMarginTopEqualStatusBarHeight(binding.fakeStatusBar);
         StatueBarUtils.setStatusBarColor(this, getResources().getColor(R.color.white));
+        mTitles = getResources().getStringArray(R.array.kline_time);
 
         for (int i = 0; i < mTitles.length; i++) {
             mTabEntities.add(new TabEntity(mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]));

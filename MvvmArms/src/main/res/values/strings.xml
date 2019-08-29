@@ -954,11 +954,11 @@
     <string name="red_green">红涨绿跌</string>
     <string name="green_red">绿涨红跌</string>
 
-    <string name="currency_cny">人民币 CNY</string>
-    <string name="currency_usdt">美元 USDT</string>
-    <string name="currency_eur">欧元 EUR</string>
-    <string name="currency_ghs">赛地 GHS</string>
-    <string name="currency_nhn">尼日利亚 NGN</string>
+    <string name="currency_cny">人民币 （CNY）</string>
+    <string name="currency_usdt">美元 （USDT）</string>
+    <string name="currency_eur">欧元 （EUR）</string>
+    <string name="currency_ghs">赛地 （GHS）</string>
+    <string name="currency_nhn">尼日利亚 （NGN）</string>
 
 
     <!--home-->
@@ -1058,4 +1058,20 @@
     <string name="latest_price">最新价</string>
     <string name="latest_price_cny">最新价(CNY)</string>
     <string name="quote_change">涨跌幅</string>
+    <string name="legal_currency_transaction">法币交易</string>//法币
+    <string name="currency_transaction">币币交易</string>//币币
+    <string name="search_currency">搜索币种</string>
+    <string name="gear_position">档位</string>
+    <string name="deep_consolidation">深度合并</string>
+    <string name="more_new">更多>></string>
+
+    <string-array name="kline_time">
+        <item>1分</item>
+        <item>5分</item>
+        <item>15分</item>
+        <item>30分</item>
+        <item>1小时</item>
+        <item>1天</item>
+        <item>1周</item>
+    </string-array>
 </resources>

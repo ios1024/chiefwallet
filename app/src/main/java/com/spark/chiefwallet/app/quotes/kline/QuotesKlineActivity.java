@@ -11,6 +11,7 @@ import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.lxj.xpopup.XPopup;
+import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.BR;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.app.quotes.kline.adapter.KlineDepthBuyAdapter;
@@ -51,7 +52,7 @@ public class QuotesKlineActivity extends BaseActivity<ActivityQuotesKlineBinding
     AllThumbResult.DataBean allThumbResult;
 
     private B2BDrawerPopup mB2BDrawerPopup;                     //侧拉栏
-    private String[] mTitles = {"1分", "5分", "15分", "30分", "1小时", "1天", "1周"};
+    private String[] mTitles;
     private int[] mIconUnselectIds = {
             R.mipmap.ic_launcher, R.mipmap.ic_launcher,
             R.mipmap.ic_launcher, R.mipmap.ic_launcher,
@@ -92,6 +93,7 @@ public class QuotesKlineActivity extends BaseActivity<ActivityQuotesKlineBinding
         StatueBarUtils.addMarginTopEqualStatusBarHeight(binding.fakeStatusBar);
         StatueBarUtils.setStatusBarColor(this, getResources().getColor(R.color.white));
 
+        mTitles = getResources().getStringArray(R.array.kline_time);
         for (int i = 0; i < mTitles.length; i++) {
             mTabEntities.add(new TabEntity(mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]));
         }
@@ -105,7 +107,7 @@ public class QuotesKlineActivity extends BaseActivity<ActivityQuotesKlineBinding
         switchSymbol();
     }
 
-    private void switchSymbol(){
+    private void switchSymbol() {
         viewModel.initDate(allThumbResult);
         loadKlineDate(loadTypePosition);
 

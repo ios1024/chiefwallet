@@ -76,7 +76,7 @@ public class LegalCurrencyActivity extends BaseActivity<ActivityLegalCurrentBind
 
         //TitleSet
         mTitleModel = new TitleBean();
-        mTitleModel.setTitleName("法币交易");
+        mTitleModel.setTitleName(getString(R.string.legal_currency_transaction));
         mTitleModel.setShowTitleLine(true);
         binding.title.setViewTitle(mTitleModel);
         setTitleListener(binding.title.titleRootLeft);

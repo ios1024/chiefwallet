@@ -533,6 +533,15 @@ public class FindPageResult implements Parcelable {
             }
 
             /**
+             * 是否支持非洲银行卡支付
+             *
+             * @return
+             */
+            public boolean isAfricanBankPay() {
+                return payMode.contains(Constant.AfricaCard);
+            }
+
+            /**
              * 是否支持Paypal支付
              *
              * @return

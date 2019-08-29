@@ -73,8 +73,20 @@ public class Constant {
     public static int ContractSymbolRate = 4;      // 合约所选币对汇率
     public static int contractPriceRate = 4;       // 合约价格汇率
     public static int contractNumberRate = 4;      // 合约数量汇率
-    public static String USD = "USD";
+
+    //1.人民币 CNY 2.美元 USD 3.欧元 EUR 4.赛地 GHS 5.尼日利亚 NGN
     public static String CNY = "CNY";
+    public static String USD = "USD";
+    public static String EUR = "EUR";
+    public static String GHS = "GHS";
+    public static String NGN = "NGN";
+
+    public static String CNY_symbol = "¥ ";
+    public static String USD_symbol = "$ ";
+    public static String EUR_symbol = "€ ";
+    public static String GHS_symbol = "₵ ";
+    public static String NGN_symbol = "₦ ";
+
     public static double usd2cnyRate = 1;          //美元对人民币的汇率
 
     public static boolean isCcFirstLoad = true;    //币币页面是否第一次加载

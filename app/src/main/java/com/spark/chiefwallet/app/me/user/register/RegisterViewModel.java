@@ -71,7 +71,7 @@ public class RegisterViewModel extends BaseViewModel {
     private String[] mCountryArray;
     private Context mContext;
     private List<CountryEntity> mCountryEntityList;
-    private String countryEnName = "中国";                      //值传递 国籍 enName
+    private String countryEnName = "China";                      //值传递 国籍 enName
     public int type = 0;                                //0 - 手机注册 1 - 邮箱注册
     public String bannerPicBean;
     private String aboutAppUrl, rivacyUrl, clauseUrl, helpCenterUrl;
@@ -457,8 +457,9 @@ public class RegisterViewModel extends BaseViewModel {
 
                                 @Override
                                 public void onClickItem(int position, List<CountryEntity2> countryEntities2) {
-
+                                    countryEnName = countryEntities2.get(position).getEnName();
                                     updateCountryInfo(countryEntities2.get(position).getZhName() + " +" + countryEntities2.get(position).getAreaCode(), countryEntities2.get(position).getAreaCode());
+
 
                                 }
                             });

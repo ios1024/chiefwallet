@@ -104,7 +104,7 @@ public class CurrencyViewModel extends BaseViewModel {
     public ObservableField<String> priceConvert = new ObservableField<>("");
     //价格
     public ObservableField<String> priceEt = new ObservableField<>("");
-    public ObservableField<String> priceCNY = new ObservableField<>("≈ --CNY");
+    public ObservableField<String> priceCNY = new ObservableField<>("≈ --");
     public ObservableField<String> priceTag = new ObservableField<>(App.getInstance().getString(R.string.price) + "(--)");
     //数量 - 可用数量
     public ObservableField<String> numberEt = new ObservableField<>("");
@@ -730,8 +730,38 @@ public class CurrencyViewModel extends BaseViewModel {
         symbolNameTV.set(initSymbol(dataBean.getSymbol()));
         symbolNameEnd.set(allThumbResult.getSymbol().split("/")[0]);
 
-        priceCNY.set("≈ " + MathUtils.getRundNumber(dataBean.getCnyLegalAsset(), symbolScale, null) + Constant.CNY);
-        priceConvert.set("≈￥" + MathUtils.getRundNumber(dataBean.getCnyLegalAsset(), symbolScale, null));
+
+        priceCNY.set("≈" + MathUtils.getRundNumber(dataBean.getCnyLegalAsset(), symbolScale, null) + Constant.CNY);
+        priceConvert.set("≈" + MathUtils.getRundNumber(dataBean.getCnyLegalAsset(), symbolScale, null) + Constant.CNY);
+        //1.人民币 CNY 2.美元 USDT 3.欧元 EUR 4.赛地 GHS 5.尼日利亚 NGN
+        //待修改
+        switch (SPUtils.getInstance().getPricingCurrency()) {
+            case "1":
+                priceCNY.set("≈" + MathUtils.getRundNumber(dataBean.getCnyLegalAsset(), symbolScale, null) + Constant.CNY);
+                priceConvert.set("≈" + MathUtils.getRundNumber(dataBean.getCnyLegalAsset(), symbolScale, null) + Constant.CNY);
+                break;
+            case "2":
+                priceCNY.set("≈" + MathUtils.getRundNumber(dataBean.getUsdLegalAsset(), symbolScale, null) + Constant.USD);
+                priceConvert.set("≈" + MathUtils.getRundNumber(dataBean.getUsdLegalAsset(), symbolScale, null) + Constant.USD);
+                break;
+            case "3":
+                priceCNY.set("≈" + MathUtils.getRundNumber(dataBean.getEurLegalAsset(), symbolScale, null) + Constant.EUR);
+                priceConvert.set("≈" + MathUtils.getRundNumber(dataBean.getEurLegalAsset(), symbolScale, null) + Constant.EUR);
+                break;
+            case "4":
+                priceCNY.set("≈" + MathUtils.getRundNumber(dataBean.getGhsLegalAsset(), symbolScale, null) + Constant.GHS);
+                priceConvert.set("≈" + MathUtils.getRundNumber(dataBean.getGhsLegalAsset(), symbolScale, null) + Constant.GHS);
+                break;
+            case "5":
+                priceCNY.set("≈" + MathUtils.getRundNumber(dataBean.getNgnLegalAsset(), symbolScale, null) + Constant.NGN);
+                priceConvert.set("≈" + MathUtils.getRundNumber(dataBean.getNgnLegalAsset(), symbolScale, null) + Constant.NGN);
+                break;
+            default:
+                priceCNY.set("≈" + MathUtils.getRundNumber(dataBean.getCnyLegalAsset(), symbolScale, null) + Constant.CNY);
+                priceConvert.set("≈" + MathUtils.getRundNumber(dataBean.getCnyLegalAsset(), symbolScale, null) + Constant.CNY);
+                break;
+        }
+
 
         if (!App.getInstance().isAppLogin()) {
             numberAvailable.set(mContext.getString(R.string.available) + "--" + allThumbResult.getSymbol().split("/")[1]);
@@ -826,7 +856,7 @@ public class CurrencyViewModel extends BaseViewModel {
     public void updatePriceEt(String price) {
         priceEt.set(price);
         priceCNY.set("≈ "
-                + MathUtils.getRundNumber(Double.parseDouble(price) * coin2Usd, 2, null)
+                + MathUtils.getRundNumber(Double.parseDouble(price), 2, null)
                 + "CNY");
         if (!StringUtils.isEmpty(numberEt.get())) {
             tradePrice = MathUtils.getRundNumber(Double.valueOf(price.trim()) * Double.valueOf(numberEt.get().trim()), symbolScale, null);

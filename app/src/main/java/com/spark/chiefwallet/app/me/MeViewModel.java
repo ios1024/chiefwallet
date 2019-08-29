@@ -33,6 +33,7 @@ import java.math.BigDecimal;
 
 import me.spark.mvvm.base.BaseRequestCode;
 import me.spark.mvvm.base.BaseViewModel;
+import me.spark.mvvm.base.Constant;
 import me.spark.mvvm.base.EvKey;
 import me.spark.mvvm.binding.command.BindingAction;
 import me.spark.mvvm.binding.command.BindingCommand;
@@ -442,18 +443,32 @@ public class MeViewModel extends BaseViewModel {
         for (SpotWalletResult.DataBean dataBean : spotWalletResult.getData()) {
             otcWalletTotal = new BigDecimal(dataBean.getTotalPlatformAssetBalance()).add(new BigDecimal(otcWalletTotal)).doubleValue();
             //1.人民币 CNY 2.美元 USDT 3.欧元 EUR 4.赛地 GHS 5.尼日利亚 NGN
-            if (SPUtils.getInstance().getPricingCurrency().equals("1")) {
-                otcWalletTrans = new BigDecimal(dataBean.getCnyAssetBalance()).add(new BigDecimal(otcWalletTrans)).doubleValue();
-            } else if (SPUtils.getInstance().getPricingCurrency().equals("2")) {
-                otcWalletTrans = new BigDecimal(dataBean.getUsdtAssetBalance()).add(new BigDecimal(otcWalletTrans)).doubleValue();
-            } else if (SPUtils.getInstance().getPricingCurrency().equals("3")) {
-                otcWalletTrans = new BigDecimal(dataBean.getEurAssetBalance()).add(new BigDecimal(otcWalletTrans)).doubleValue();
-            } else if (SPUtils.getInstance().getPricingCurrency().equals("4")) {
-                otcWalletTrans = new BigDecimal(dataBean.getGhsAssetBalance()).add(new BigDecimal(otcWalletTrans)).doubleValue();
-            } else if (SPUtils.getInstance().getPricingCurrency().equals("5")) {
-                otcWalletTrans = new BigDecimal(dataBean.getNgnAssetBalance()).add(new BigDecimal(otcWalletTrans)).doubleValue();
-            } else
-                otcWalletTrans = new BigDecimal(dataBean.getCnyAssetBalance()).add(new BigDecimal(otcWalletTrans)).doubleValue();
+            switch (SPUtils.getInstance().getPricingCurrency()) {
+                case "1":
+                    otcWalletTrans = new BigDecimal(dataBean.getCnyAssetBalance()).add(new BigDecimal(otcWalletTrans)).doubleValue();
+
+                    break;
+                case "2":
+                    otcWalletTrans = new BigDecimal(dataBean.getUsdtAssetBalance()).add(new BigDecimal(otcWalletTrans)).doubleValue();
+
+                    break;
+                case "3":
+                    otcWalletTrans = new BigDecimal(dataBean.getEurAssetBalance()).add(new BigDecimal(otcWalletTrans)).doubleValue();
+
+                    break;
+                case "4":
+                    otcWalletTrans = new BigDecimal(dataBean.getGhsAssetBalance()).add(new BigDecimal(otcWalletTrans)).doubleValue();
+
+                    break;
+                case "5":
+                    otcWalletTrans = new BigDecimal(dataBean.getNgnAssetBalance()).add(new BigDecimal(otcWalletTrans)).doubleValue();
+
+                    break;
+                default:
+                    otcWalletTrans = new BigDecimal(dataBean.getCnyAssetBalance()).add(new BigDecimal(otcWalletTrans)).doubleValue();
+
+                    break;
+            }
         }
 
         spotAcconutText = String.valueOf(spotWalletTotal);
@@ -499,25 +514,25 @@ public class MeViewModel extends BaseViewModel {
         String close = DfUtils.formatNum(MathUtils.getRundNumber(account, 4, null));
         return close;
     }
-//改到这 修改 计价货币
+
     private String initAccountTrans(double accountTrans) {
         String close = DfUtils.formatNum(MathUtils.getRundNumber(accountTrans, 4, null));
         //1.人民币 CNY 2.美元 USDT 3.欧元 EUR 4.赛地 GHS 5.尼日利亚 NGN
         if (SPUtils.getInstance().getPricingCurrency().equals("1")) {
-            return "≈ " + close + " cny";
+            return "≈" + close + Constant.CNY;
         } else if (SPUtils.getInstance().getPricingCurrency().equals("2")) {
-            return "≈ " + close + " usdt";
+            return "≈" + close + Constant.USD;
 
         } else if (SPUtils.getInstance().getPricingCurrency().equals("3")) {
-            return "≈ " + close + " eur";
+            return "≈" + close + Constant.EUR;
 
         } else if (SPUtils.getInstance().getPricingCurrency().equals("4")) {
-            return "≈ " + close + " ghs";
+            return "≈" + close + Constant.GHS;
 
         } else if (SPUtils.getInstance().getPricingCurrency().equals("5")) {
-            return "≈ " + close + " ngn";
+            return "≈" + close + Constant.NGN;
         } else
-            return "≈ " + close + " cny";
+            return "≈" + close + Constant.CNY;
 
     }
 

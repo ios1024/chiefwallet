@@ -125,6 +125,7 @@ public class HomeViewModel extends BaseViewModel {
                 try {
                     RecommendCoinBean recommendCoinBean = App.gson.fromJson(webSocketResponse.getResponse(), RecommendCoinBean.class);
                     onRequestListenerRecommendCoin.onSuccess(recommendCoinBean);
+                    LogUtils.e("recommendCoinBean", webSocketResponse.getResponse());
                 } catch (Exception e) {
                     LogUtils.e("PUSH_THUMB", e.toString());
                 }

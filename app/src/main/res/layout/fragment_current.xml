@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
-        <import type="android.view.View"/>
+        <import type="android.view.View" />
 
         <variable
             name="currentViewModel"
-            type="com.spark.chiefwallet.app.trade.currency.CurrencyViewModel"/>
+            type="com.spark.chiefwallet.app.trade.currency.CurrencyViewModel" />
     </data>
 
     <android.support.v4.widget.SwipeRefreshLayout
@@ -26,7 +26,7 @@
             <View
                 android:id="@+id/view_status_bar"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"/>
+                android:layout_height="0dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -42,16 +42,16 @@
 
                     <TextView
                         style="@style/textBlackNormal"
-                        android:text="币币交易"
+                        android:text="@string/currency_transaction"
                         android:textColor="@color/black_00"
                         android:textSize="@dimen/font_xlager"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="3dp"
                         android:layout_marginTop="4dp"
-                        android:background="@color/base"/>
+                        android:background="@color/base" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -63,23 +63,23 @@
                     <TextView
                         style="@style/textBlackNormal"
                         android:layout_marginLeft="20dp"
-                        android:text="法币交易"
+                        android:text="@string/legal_currency_transaction"
                         android:textColor="@color/gray_a4"
                         android:textSize="@dimen/font_xlager"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="3dp"
                         android:layout_marginTop="4dp"
-                        android:background="@color/white"/>
+                        android:background="@color/white" />
                 </LinearLayout>
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
-                android:background="@color/windowBackground"/>
+                android:background="@color/windowBackground" />
             <!--title-->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -95,13 +95,13 @@
                     android:src="@drawable/svg_quotes_menu"
                     app:bl_ripple_color="@color/gray_ccc"
                     app:bl_ripple_enable="true"
-                    app:bl_solid_color="@color/white"/>
+                    app:bl_solid_color="@color/white" />
 
                 <TextView
                     style="@style/textBlackNormal"
                     android:layout_weight="1"
                     android:text="@{currentViewModel.symbolName}"
-                    android:textSize="@dimen/font_lager"/>
+                    android:textSize="@dimen/font_lager" />
 
                 <ImageView
                     onClickCommand="@{currentViewModel.klineClickCommand}"
@@ -111,10 +111,10 @@
                     android:src="@drawable/svg_kline_logo"
                     app:bl_ripple_color="@color/gray_ccc"
                     app:bl_ripple_enable="true"
-                    app:bl_solid_color="@color/white"/>
+                    app:bl_solid_color="@color/white" />
             </LinearLayout>
 
-            <View style="@style/line_ccc"/>
+            <View style="@style/line_ccc" />
 
             <android.support.v4.widget.NestedScrollView
                 android:layout_width="match_parent"
@@ -157,11 +157,11 @@
                                     app:bl_selected_drawable="@color/rise"
                                     app:bl_selected_textColor="@color/white"
                                     app:bl_unSelected_drawable="@color/color_unchecked"
-                                    app:bl_unSelected_textColor="@color/gray_a4"/>
+                                    app:bl_unSelected_textColor="@color/gray_a4" />
 
                                 <View
                                     android:layout_width="16dp"
-                                    android:layout_height="match_parent"/>
+                                    android:layout_height="match_parent" />
 
                                 <TextView
                                     android:id="@+id/btn_sell"
@@ -176,7 +176,7 @@
                                     app:bl_selected_drawable="@color/fall"
                                     app:bl_selected_textColor="@color/white"
                                     app:bl_unSelected_drawable="@color/color_unchecked"
-                                    app:bl_unSelected_textColor="@color/gray_a4"/>
+                                    app:bl_unSelected_textColor="@color/gray_a4" />
                             </LinearLayout>
 
                             <!--限价买入-->
@@ -188,7 +188,7 @@
                                 android:drawablePadding="8dp"
                                 android:text="@{currentViewModel.currentBuyType}"
                                 android:textSize="@dimen/font_mini"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold" />
                             <!--价格-->
                             <LinearLayout
                                 android:id="@+id/llPrice"
@@ -212,30 +212,30 @@
                                     android:text="@={currentViewModel.priceEt}"
                                     android:textColorHint="@color/gray_b2"
                                     android:textSize="@dimen/font_mini"
-                                    android:textStyle="bold"/>
+                                    android:textStyle="bold" />
 
                                 <View
                                     style="@style/line_ccc_vertical"
-                                    android:layout_width="1dp"/>
+                                    android:layout_width="1dp" />
 
                                 <ImageView
                                     onClickCommand="@{currentViewModel.priceSubtractClickCommand}"
                                     android:layout_width="32dp"
                                     android:layout_height="32dp"
                                     android:padding="6dp"
-                                    android:src="@drawable/svg_decrease"/>
+                                    android:src="@drawable/svg_decrease" />
 
                                 <View
                                     style="@style/line_ccc_vertical"
                                     android:layout_marginTop="5dp"
-                                    android:layout_marginBottom="5dp"/>
+                                    android:layout_marginBottom="5dp" />
 
                                 <ImageView
                                     onClickCommand="@{currentViewModel.priceAddClickCommand}"
                                     android:layout_width="32dp"
                                     android:layout_height="32dp"
                                     android:padding="6dp"
-                                    android:src="@drawable/svg_crease"/>
+                                    android:src="@drawable/svg_crease" />
                             </LinearLayout>
 
                             <LinearLayout
@@ -253,7 +253,7 @@
                                     android:text="@string/trade_at_best_price"
                                     android:textColor="@color/gray_a4"
                                     android:textSize="@dimen/font_mini"
-                                    android:textStyle="bold"/>
+                                    android:textStyle="bold" />
                             </LinearLayout>
 
                             <TextView
@@ -263,7 +263,7 @@
                                 android:layout_marginTop="3dp"
                                 android:text="@{currentViewModel.priceCNY}"
                                 android:textColor="@color/gray_b2"
-                                android:textSize="@dimen/font_mini"/>
+                                android:textSize="@dimen/font_mini" />
 
                             <!--数量-->
                             <LinearLayout
@@ -286,7 +286,7 @@
                                     android:text="@={currentViewModel.numberEt}"
                                     android:textColorHint="@color/gray_b2"
                                     android:textSize="@dimen/font_mini"
-                                    android:textStyle="bold"/>
+                                    android:textStyle="bold" />
 
                                 <TextView
                                     style="@style/textBlackSmall"
@@ -294,7 +294,7 @@
                                     android:layout_marginRight="7dp"
                                     android:text="@={currentViewModel.symbolNameEnd}"
                                     android:textColor="@color/gray_a4"
-                                    android:textSize="@dimen/font_mini"/>
+                                    android:textSize="@dimen/font_mini" />
                             </LinearLayout>
 
                             <TextView
@@ -304,7 +304,7 @@
                                 android:layout_marginTop="3dp"
                                 android:text="@{currentViewModel.numberAvailable}"
                                 android:textColor="@color/gray_b2"
-                                android:textSize="@dimen/font_mini"/>
+                                android:textSize="@dimen/font_mini" />
 
                             <!--SeekBar-->
                             <com.spark.chiefwallet.ui.seekbar.SeekBar
@@ -320,7 +320,7 @@
                                 app:bsb_section_count="4"
                                 app:bsb_show_section_mark="true"
                                 app:bsb_track_color="@color/gray_ccc"
-                                app:bsb_track_size="4dp"/>
+                                app:bsb_track_size="4dp" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -333,14 +333,14 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:text="0"
-                                    android:textSize="@dimen/font_xmini"/>
+                                    android:textSize="@dimen/font_xmini" />
 
                                 <TextView
                                     style="@style/textBlackSmall"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@{currentViewModel.seekBarText}"
-                                    android:textSize="@dimen/font_xmini"/>
+                                    android:textSize="@dimen/font_xmini" />
                             </LinearLayout>
 
                             <LinearLayout
@@ -351,8 +351,8 @@
 
                                 <TextView
                                     style="@style/textBlackSmall"
-                                    android:text="交易额"
-                                    android:textColor="@color/gray_b2"/>
+                                    android:text="@string/turnover"
+                                    android:textColor="@color/gray_b2" />
 
                                 <TextView
                                     style="@style/textBlackSmall"
@@ -362,7 +362,7 @@
                                     android:gravity="right"
                                     android:maxLines="1"
                                     android:text="@{currentViewModel.tradeValue}"
-                                    android:visibility="@{currentViewModel.tradeValueVisiable ? View.VISIBLE : View.INVISIBLE}"/>
+                                    android:visibility="@{currentViewModel.tradeValueVisiable ? View.VISIBLE : View.INVISIBLE}" />
                             </LinearLayout>
 
 
@@ -378,7 +378,7 @@
                                 android:gravity="center"
                                 android:text="@{currentViewModel.buyText}"
                                 android:textColor="@color/white"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold" />
                         </LinearLayout>
 
                         <!--价格/数量-->
@@ -403,7 +403,7 @@
                                     android:maxLines="1"
                                     android:text="@{currentViewModel.priceTag}"
                                     android:textColor="@color/gray_b2"
-                                    android:textSize="@dimen/font_xmini"/>
+                                    android:textSize="@dimen/font_xmini" />
 
                                 <TextView
                                     style="@style/textGrayCommonFont13"
@@ -413,13 +413,13 @@
                                     android:maxLines="1"
                                     android:text="@{currentViewModel.numberTag}"
                                     android:textColor="@color/gray_b2"
-                                    android:textSize="@dimen/font_xmini"/>
+                                    android:textSize="@dimen/font_xmini" />
                             </LinearLayout>
 
                             <android.support.v7.widget.RecyclerView
                                 android:id="@+id/rv_sell"
                                 android:layout_width="match_parent"
-                                android:layout_height="120dp"/>
+                                android:layout_height="120dp" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -434,21 +434,21 @@
                                     android:layout_width="wrap_content"
                                     android:text="@{currentViewModel.closePrice}"
                                     android:textColor="@{currentViewModel.closePriceType ? @color/fall : @color/rise}"
-                                    android:textStyle="bold"/>
+                                    android:textStyle="bold" />
 
                                 <TextView
                                     style="@style/textGrayCommonFont13"
                                     android:layout_marginTop="2dp"
                                     android:text="@{currentViewModel.priceConvert}"
                                     android:textColor="@color/gray_b2"
-                                    android:textSize="@dimen/font_xmini"/>
+                                    android:textSize="@dimen/font_xmini" />
                             </LinearLayout>
 
                             <android.support.v7.widget.RecyclerView
                                 android:id="@+id/rv_buy"
                                 android:layout_width="match_parent"
                                 android:layout_height="120dp"
-                                android:layout_gravity="bottom"/>
+                                android:layout_gravity="bottom" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -473,9 +473,9 @@
                                     <TextView
                                         style="@style/textBlackSmall"
                                         android:gravity="center_vertical"
-                                        android:text="档位"
+                                        android:text="@string/gear_position"
                                         android:textColor="@color/gray_a4"
-                                        android:textSize="@dimen/font_xmini"/>
+                                        android:textSize="@dimen/font_xmini" />
 
                                     <TextView
                                         android:id="@+id/gear_tv"
@@ -484,18 +484,18 @@
                                         android:gravity="right"
                                         android:text="50"
                                         android:textColor="@color/gray_a4"
-                                        android:textSize="@dimen/font_xmini"/>
+                                        android:textSize="@dimen/font_xmini" />
 
                                     <ImageView
                                         android:layout_width="6dp"
                                         android:layout_height="6dp"
                                         android:layout_marginLeft="4dp"
-                                        android:src="@drawable/svg_pull_down"/>
+                                        android:src="@drawable/svg_pull_down" />
                                 </LinearLayout>
 
                                 <View
                                     android:layout_width="10dp"
-                                    android:layout_height="match_parent"/>
+                                    android:layout_height="match_parent" />
 
                                 <TextView
                                     android:id="@+id/depth_merge"
@@ -505,14 +505,14 @@
                                     android:layout_weight="1"
                                     android:background="@drawable/depth_merge_2dp_bg"
                                     android:gravity="center"
-                                    android:text="深度合并"
+                                    android:text="@string/deep_consolidation"
                                     android:textColor="@color/gray_a4"
-                                    android:textSize="@dimen/font_xmini"/>
+                                    android:textSize="@dimen/font_xmini" />
                             </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
 
-                    <View style="@style/line_ccc"/>
+                    <View style="@style/line_ccc" />
 
 
                     <!--当前委托-->
@@ -532,7 +532,7 @@
                                 style="@style/textBlackNormal"
                                 android:layout_weight="1"
                                 android:text="@string/current_commission"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold" />
 
                             <TextView
                                 style="@style/textGrayCommonSmall"
@@ -540,11 +540,11 @@
                                 android:layout_width="?attr/actionBarSize"
                                 android:layout_height="?attr/actionBarSize"
                                 android:gravity="center"
-                                android:text="更多>>"
+                                android:text="@string/more_new"
                                 android:textSize="@dimen/font_mini"
                                 app:bl_ripple_color="@color/gray_ccc"
                                 app:bl_ripple_enable="true"
-                                app:bl_solid_color="@color/white"/>
+                                app:bl_solid_color="@color/white" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -564,7 +564,7 @@
                             android:layout_weight="1"
                             android:text="@string/time"
                             android:textColor="@color/gray_b2"
-                            android:textSize="@dimen/font_mini"/>
+                            android:textSize="@dimen/font_mini" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -572,7 +572,7 @@
                             android:layout_weight="1"
                             android:text="@string/price"
                             android:textColor="@color/gray_b2"
-                            android:textSize="@dimen/font_mini"/>
+                            android:textSize="@dimen/font_mini" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -581,7 +581,7 @@
                             android:gravity="right"
                             android:text="交易量"
                             android:textColor="@color/gray_b2"
-                            android:textSize="@dimen/font_mini"/>
+                            android:textSize="@dimen/font_mini" />
 
                     </LinearLayout>
 
@@ -589,7 +589,7 @@
                         android:id="@+id/rv_open_orders"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:nestedScrollingEnabled="false"/>
+                        android:nestedScrollingEnabled="false" />
                 </LinearLayout>
             </android.support.v4.widget.NestedScrollView>
         </com.spark.chiefwallet.ui.progresslayout.ProgressLinearLayout>
