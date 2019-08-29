@@ -90,7 +90,7 @@ public class Constant {
     //cas
     public static final String AC = "AC";
     public static final String UC = "UC";
-    public static final String OTC = "CTC";
+    public static final String OTC = "OTC";
     public static final String SPOT = "SPOT";
     public static final String KLINE = "KLINE";
     public static final String QUOTE = "QUOTE";

@@ -27,6 +27,7 @@ import me.spark.mvvm.utils.EventBean;
 import me.spark.mvvm.utils.EventBusUtils;
 import me.spark.mvvm.utils.LogUtils;
 import me.spark.mvvm.utils.MathUtils;
+import me.spark.mvvm.utils.SPUtils;
 import me.spark.mvvm.utils.SpanUtils;
 import me.spark.mvvm.utils.WebSocketRequest;
 import me.spark.mvvm.utils.WebSocketResponse;
@@ -155,8 +156,8 @@ public class HomeViewModel extends BaseViewModel {
                 .setFontSize(14, true)
                 .create();
         chartSmybol.set(text);
-        riseOrFall.set(dateBean.getChg() >= 0);
-        chartChg.set((riseOrFall.get() ? "+" : "") +
+        riseOrFall.set(SPUtils.getInstance().getGainMode() ? dateBean.getChg() >= 0 : dateBean.getChg() < 0);
+        chartChg.set((dateBean.getChg() >= 0 ? "+" : "") +
                 MathUtils.getRundNumber(dateBean.getChg() * 100, 2, "########0.")
                 + "%");
         chartClose.set(DfUtils.formatNum(MathUtils.getRundNumber(dateBean.getClose(), 2, null)));

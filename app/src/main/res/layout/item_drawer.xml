@@ -38,7 +38,7 @@
                 android:id="@+id/item_close_price"
                 style="@style/textBlackSmall"
                 android:text="@{allThumbDrawerResult.initClose()}"
-                android:textColor="@{allThumbDrawerResult.isCoinPairPushChgUp() ? @color/rise : @color/fall}"/>
+                android:textColor="@{allThumbDrawerResult.isCoinPairPushChgUp() ? @color/fall : @color/rise}"/>
 
         </LinearLayout>
 
