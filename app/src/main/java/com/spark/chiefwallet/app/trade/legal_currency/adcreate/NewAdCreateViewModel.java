@@ -45,6 +45,7 @@ import me.spark.mvvm.bus.event.SingleLiveEvent;
 import me.spark.mvvm.utils.DfUtils;
 import me.spark.mvvm.utils.EventBean;
 import me.spark.mvvm.utils.EventBusUtils;
+import me.spark.mvvm.utils.LanguageSPUtil;
 import me.spark.mvvm.utils.LogUtils;
 import me.spark.mvvm.utils.MathUtils;
 import me.spark.mvvm.utils.StringUtils;
@@ -450,7 +451,16 @@ public class NewAdCreateViewModel extends BaseViewModel {
                     tradeAreaListResult = (TradeAreaListResult) eventBean.getObject();
                     coinAddressArray = new String[8];
                     for (int i = 0; i < 8; i++) {
-                        coinAddressArray[i] = tradeAreaListResult.getData().get(i).getZhName();
+                        switch (LanguageSPUtil.getInstance(App.getInstance()).getSelectLanguage()) {
+                            case 1://中文
+                                coinAddressArray[i] = tradeAreaListResult.getData().get(i).getZhName();
+                                break;
+                            case 0://英文
+                                coinAddressArray[i] = tradeAreaListResult.getData().get(i).getEnName();
+                                break;
+                            default:
+                                break;
+                        }
                     }
                     new XPopup.Builder(mContext)
                             .asBottomList(App.getInstance().getString(R.string.str_slect_country), coinAddressArray,
@@ -650,8 +660,11 @@ public class NewAdCreateViewModel extends BaseViewModel {
             if (payway.contains(Constant.Pay_card)) {
                 stringBuffer = stringBuffer.append(Constant.card).append(",");
             }
-            if (payway.contains("MTN")) {
+            if (payway.contains(Constant.MTN)) {
                 stringBuffer = stringBuffer.append(Constant.MTN).append(",");
+            }
+            if (payway.contains(Constant.Pay_africaCard)) {
+                stringBuffer = stringBuffer.append(Constant.AfricaCard).append(",");
             }
             if (payway.contains(Constant.Pay_PAYPAL)) {
                 stringBuffer = stringBuffer.append(Constant.PAYPAL).append(",");
@@ -682,7 +695,10 @@ public class NewAdCreateViewModel extends BaseViewModel {
             if (payway.contains(Constant.card)) {
                 stringBuffer = stringBuffer.append(Constant.Pay_card).append(",");
             }
-            if (payway.contains("MTN")) {
+            if (payway.contains(Constant.AfricaCard)) {
+                stringBuffer = stringBuffer.append(Constant.Pay_africaCard).append(",");
+            }
+            if (payway.contains(Constant.MTN)) {
                 stringBuffer = stringBuffer.append(Constant.MTN).append(",");
             }
             if (payway.toLowerCase().contains(Constant.PAYPAL)) {

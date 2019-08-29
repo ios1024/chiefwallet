@@ -52,7 +52,7 @@ public class SafeCentreViewModel extends BaseViewModel {
     public ObservableField<Boolean> legalCurrencyPwdHasSet = new ObservableField<>(false);
     public ObservableField<Boolean> realnameCurrencyPwdHasSet = new ObservableField<>(false);
 
-    public int realname = 0;
+    //    public int realname = 0;
     public UIChangeObservable uc = new UIChangeObservable();
 
     public class UIChangeObservable {
@@ -91,11 +91,11 @@ public class SafeCentreViewModel extends BaseViewModel {
         public void call() {
 //            ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_SAFECENTRE_LOGIN_PWD)
 //                    .navigation();
-            if (realname == 0 || realname == 2 || realname == 3) {
-                ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_FORGET_PWD)
-                        .withString("type", "1")
-                        .navigation();
-            }
+//            if (realname == 0 || realname == 2 || realname == 3) {
+            ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_FORGET_PWD)
+                    .withString("type", "1")
+                    .navigation();
+//            }
 
         }
     });
@@ -132,12 +132,31 @@ public class SafeCentreViewModel extends BaseViewModel {
                 App.getInstance().getApplicationContext().getString(R.string.has_setting) :
                 App.getInstance().getApplicationContext().getString(R.string.no_setting));
 
-        if (App.getInstance().getCurrentUser().getRealNameStatus() == 0) {
-            realnameCurrencyPwd.set(App.getInstance().getApplicationContext().getString(R.string.unauthorized));
-
-        } else {//1审核 2通过 3失败
-            showDialog("请求中...");
-            SecurityClient.getInstance().getAuthInfo();
+//        if (App.getInstance().getCurrentUser().getRealNameStatus() == 0) {
+//            realnameCurrencyPwd.set(App.getInstance().getApplicationContext().getString(R.string.unauthorized));
+//
+//        } else {//1审核 2通过 3失败
+//            showDialog("请求中...");
+//            SecurityClient.getInstance().getAuthInfo();
+//        }
+        switch (App.getInstance().getCurrentUser().getRealNameStatus()) {
+            case 1:
+//                            realname = 1;
+                realnameCurrencyPwd.set(App.getInstance().getApplicationContext().getString(R.string.approving));
+                break;
+            case 2:
+//                            realname = 2;
+                realnameCurrencyPwd.set(App.getInstance().getApplicationContext().getString(R.string.approving_error));
+                break;
+            case 3:
+//                            realname = 3;
+                realnameCurrencyPwdHasSet.set(true);
+                realnameCurrencyPwd.set(App.getInstance().getApplicationContext().getString(R.string.authorized));
+                break;
+            default:
+//                            realname = 0;
+                realnameCurrencyPwd.set(App.getInstance().getApplicationContext().getString(R.string.unauthorized));
+                break;
         }
 //        realnameCurrencyPwd.set(realnameCurrencyPwdHasSet.get() ?
 //                App.getInstance().getApplicationContext().getString(R.string.authorized) :
@@ -156,51 +175,51 @@ public class SafeCentreViewModel extends BaseViewModel {
         uc.safeLevel.setValue(level);
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEvent(EventBean eventBean) {
-        switch (eventBean.getOrigin()) {
-            case EvKey.authInfo:
-                dismissDialog();
-                if (eventBean.isStatue()) {
-                    AuthInfoEntity authInfoEntity = (AuthInfoEntity) eventBean.getObject();
-                    realnameCurrencyPwdHasSet.set(authInfoEntity.getData().getAuditStatus() == 3);
+//    @Subscribe(threadMode = ThreadMode.MAIN)
+//    public void onEvent(EventBean eventBean) {
+//        switch (eventBean.getOrigin()) {
+//            case EvKey.authInfo:
+//                dismissDialog();
+//                if (eventBean.isStatue()) {
+//                    AuthInfoEntity authInfoEntity = (AuthInfoEntity) eventBean.getObject();
+//                    realnameCurrencyPwdHasSet.set(authInfoEntity.getData().getAuditStatus() == 3);
+//
+//                    switch (authInfoEntity.getData().getAuditStatus()) {
+//                        case 1:
+////                            realname = 1;
+//                            realnameCurrencyPwd.set(App.getInstance().getApplicationContext().getString(R.string.approving));
+//                            break;
+//                        case 2:
+////                            realname = 2;
+//                            realnameCurrencyPwd.set(App.getInstance().getApplicationContext().getString(R.string.approving_error));
+//                            break;
+//                        case 3:
+////                            realname = 3;
+//                            realnameCurrencyPwd.set(App.getInstance().getApplicationContext().getString(R.string.authorized));
+//                            break;
+//                        default:
+////                            realname = 0;
+//                            realnameCurrencyPwd.set(App.getInstance().getApplicationContext().getString(R.string.unauthorized));
+//                            break;
+//                    }
+//                }
+//                break;
+//            default:
+//                break;
+//
+//        }
+//
+//    }
 
-                    switch (authInfoEntity.getData().getAuditStatus()) {
-                        case 1:
-                            realname = 1;
-                            realnameCurrencyPwd.set(App.getInstance().getApplicationContext().getString(R.string.approving));
-                            break;
-                        case 2:
-                            realname = 2;
-                            realnameCurrencyPwd.set(App.getInstance().getApplicationContext().getString(R.string.approving_error));
-                            break;
-                        case 3:
-                            realname = 3;
-                            realnameCurrencyPwd.set(App.getInstance().getApplicationContext().getString(R.string.authorized));
-                            break;
-                        default:
-                            realname = 0;
-                            realnameCurrencyPwd.set(App.getInstance().getApplicationContext().getString(R.string.unauthorized));
-                            break;
-                    }
-                }
-                break;
-            default:
-                break;
-
-        }
-
-    }
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        EventBusUtils.register(this);
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        EventBusUtils.unRegister(this);
-    }
+//    @Override
+//    public void onCreate() {
+//        super.onCreate();
+//        EventBusUtils.register(this);
+//    }
+//
+//    @Override
+//    public void onDestroy() {
+//        super.onDestroy();
+//        EventBusUtils.unRegister(this);
+//    }
 }

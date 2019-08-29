@@ -2,6 +2,7 @@ package com.spark.otcclient;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 
 import com.spark.otcclient.base.OtcHost;
 import com.spark.otcclient.pojo.PayListBean;

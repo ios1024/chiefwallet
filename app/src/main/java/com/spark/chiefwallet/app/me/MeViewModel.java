@@ -466,7 +466,6 @@ public class MeViewModel extends BaseViewModel {
                     break;
                 default:
                     otcWalletTrans = new BigDecimal(dataBean.getCnyAssetBalance()).add(new BigDecimal(otcWalletTrans)).doubleValue();
-
                     break;
             }
         }
@@ -569,8 +568,8 @@ public class MeViewModel extends BaseViewModel {
     @Override
     public void onResume() {
         super.onResume();
+        updateAccount();
         isOnPause = false;
-
     }
 
     @Override

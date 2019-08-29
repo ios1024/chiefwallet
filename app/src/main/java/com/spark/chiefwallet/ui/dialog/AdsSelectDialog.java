@@ -74,8 +74,6 @@ public class AdsSelectDialog extends Dialog implements View.OnClickListener {
             tvMessThree.setText(msg3);
             tvMessFour.setText(msg4);
             tvMessFive.setText(msg5);
-
-
         }
     }
 

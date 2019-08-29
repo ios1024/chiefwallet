@@ -94,4 +94,5 @@ public class MeFragment extends BaseFragment<FragmentMeBinding, MeViewModel> {
             }
         });
     }
+
 }

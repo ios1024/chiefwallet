@@ -142,6 +142,8 @@ public class PayListBean implements Parcelable {
         private String payAddress;
         private String qrCodeUrl;
         private String bank;
+        private String MTN;
+        private String AfricaCard;
         private String branch;
         private int status;
         private long createTime;
@@ -156,6 +158,8 @@ public class PayListBean implements Parcelable {
             payAddress = in.readString();
             qrCodeUrl = in.readString();
             bank = in.readString();
+            MTN = in.readString();
+            AfricaCard = in.readString();
             branch = in.readString();
             status = in.readInt();
             createTime = in.readLong();
@@ -175,6 +179,22 @@ public class PayListBean implements Parcelable {
                 return new DataBean[size];
             }
         };
+
+        public String getMTN() {
+            return MTN;
+        }
+
+        public void setMTN(String MTN) {
+            this.MTN = MTN;
+        }
+
+        public String getAfricaCard() {
+            return AfricaCard;
+        }
+
+        public void setAfricaCard(String africaCard) {
+            AfricaCard = africaCard;
+        }
 
         public int getId() {
             return id;
@@ -289,6 +309,8 @@ public class PayListBean implements Parcelable {
             dest.writeString(payAddress);
             dest.writeString(qrCodeUrl);
             dest.writeString(bank);
+            dest.writeString(MTN);
+            dest.writeString(AfricaCard);
             dest.writeString(branch);
             dest.writeInt(status);
             dest.writeLong(createTime);

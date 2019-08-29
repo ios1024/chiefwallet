@@ -133,7 +133,33 @@ public class LegalCurAccountViewModel extends BaseViewModel {
         walletTotalTrans = 0;
         for (SpotWalletResult.DataBean dataBean : spotWalletResult.getData()) {
             walletTotal = new BigDecimal(dataBean.getTotalPlatformAssetBalance()).add(new BigDecimal(walletTotal)).doubleValue();
-            walletTotalTrans = new BigDecimal(dataBean.getCnyAssetBalance()).add(new BigDecimal(walletTotalTrans)).doubleValue();
+//            walletTotalTrans = new BigDecimal(dataBean.getCnyAssetBalance()).add(new BigDecimal(walletTotalTrans)).doubleValue();
+            //1.人民币 CNY 2.美元 USDT 3.欧元 EUR 4.赛地 GHS 5.尼日利亚 NGN
+            switch (SPUtils.getInstance().getPricingCurrency()) {
+                case "1":
+                    walletTotalTrans = new BigDecimal(dataBean.getCnyAssetBalance()).add(new BigDecimal(walletTotalTrans)).doubleValue();
+
+                    break;
+                case "2":
+                    walletTotalTrans = new BigDecimal(dataBean.getUsdtAssetBalance()).add(new BigDecimal(walletTotalTrans)).doubleValue();
+
+                    break;
+                case "3":
+                    walletTotalTrans = new BigDecimal(dataBean.getEurAssetBalance()).add(new BigDecimal(walletTotalTrans)).doubleValue();
+
+                    break;
+                case "4":
+                    walletTotalTrans = new BigDecimal(dataBean.getGhsAssetBalance()).add(new BigDecimal(walletTotalTrans)).doubleValue();
+
+                    break;
+                case "5":
+                    walletTotalTrans = new BigDecimal(dataBean.getNgnAssetBalance()).add(new BigDecimal(walletTotalTrans)).doubleValue();
+
+                    break;
+                default:
+                    walletTotalTrans = new BigDecimal(dataBean.getCnyAssetBalance()).add(new BigDecimal(walletTotalTrans)).doubleValue();
+                    break;
+            }
         }
         initAccountText(SPUtils.getInstance().isHideAccountOtc());
         mOnRequestListener.onSuccess(spotWalletResult);
@@ -158,7 +184,23 @@ public class LegalCurAccountViewModel extends BaseViewModel {
 
     private String transWalletTotal(double spotWalletTotal) {
         String close = DfUtils.formatNum(MathUtils.getRundNumber(spotWalletTotal, 6, null));
-        return "≈¥ " + close;
+        //1.人民币 CNY 2.美元 USDT 3.欧元 EUR 4.赛地 GHS 5.尼日利亚 NGN
+        if (SPUtils.getInstance().getPricingCurrency().equals("1")) {
+            return "≈ " + Constant.CNY_symbol + close;
+        } else if (SPUtils.getInstance().getPricingCurrency().equals("2")) {
+            return "≈ " + Constant.USD_symbol + close;
+
+        } else if (SPUtils.getInstance().getPricingCurrency().equals("3")) {
+            return "≈ " + Constant.EUR_symbol + close ;
+
+        } else if (SPUtils.getInstance().getPricingCurrency().equals("4")) {
+            return "≈ " + Constant.GHS_symbol + close;
+
+        } else if (SPUtils.getInstance().getPricingCurrency().equals("5")) {
+            return "≈ " + Constant.NGN_symbol + close;
+        } else
+            return "≈ " + Constant.CNY_symbol + close;
+//        return "≈¥ " + close;
     }
 
     private boolean isVisible2User() {

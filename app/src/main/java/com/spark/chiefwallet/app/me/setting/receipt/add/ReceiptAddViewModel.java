@@ -27,7 +27,7 @@ public class ReceiptAddViewModel extends BaseViewModel {
         super(application);
     }
 
-    private PayListBean.DataBean wechatBean, aliBean, bankBean, paypalBean,MTNBean, otherBean;
+    private PayListBean.DataBean wechatBean, aliBean, bankBean,AfricaCardBean, paypalBean,MTNBean, otherBean;
 
     public BindingCommand aliPayOnClickCommand = new BindingCommand(new BindingAction() {
         @Override
@@ -68,7 +68,7 @@ public class ReceiptAddViewModel extends BaseViewModel {
         public void call() {
             ARouter.getInstance().build(ARouterPath.ACTIVITY_ME_RECEIPT_BIND)
                     .withString("type", Constant.AfricaCard)
-                    .withParcelable("typeBean", bankBean)
+                    .withParcelable("typeBean", AfricaCardBean)
                     .navigation();
             finish();
         }

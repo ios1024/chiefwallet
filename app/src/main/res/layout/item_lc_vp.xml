@@ -163,6 +163,7 @@
                     android:orientation="horizontal">
 
                     <ImageView
+                        android:layout_marginRight="8dp"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:src="@drawable/svg_bankpay"
@@ -170,6 +171,8 @@
 
                     <ImageView
                         android:layout_width="20dp"
+                        android:layout_marginRight="8dp"
+
                         android:layout_height="20dp"
                         android:src="@drawable/svg_bankpay"
                         android:visibility="@{findPageResult.isAfricanBankPay() ? View.VISIBLE : View.GONE}" />
@@ -177,35 +180,40 @@
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+
                         android:src="@drawable/svg_alipay"
                         android:visibility="@{findPageResult.isSupportAliPay() ? View.VISIBLE : View.GONE}" />
 
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+
                         android:src="@drawable/svg_wechatpay"
                         android:visibility="@{findPageResult.isSupportWeChatPay() ? View.VISIBLE : View.GONE}" />
 
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+
                         android:src="@drawable/svg_pay_paypal"
-                        android:visibility="@{findPageResult.isSupportPaypalPay() ? View.GONE : View.GONE}" />
+                        android:visibility="@{findPageResult.isSupportPaypalPay() ? View.VISIBLE : View.GONE}" />
 
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+
                         android:src="@drawable/svg_pay_mtn"
-                        android:visibility="@{findPageResult.isMTNPaypalPay() ? View.GONE : View.GONE}" />
+                        android:visibility="@{findPageResult.isMTNPaypalPay() ? View.VISIBLE : View.GONE}" />
 
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+
                         android:src="@drawable/svg_pay_other"
                         android:visibility="@{findPageResult.isSupportOtherPay() ? View.VISIBLE : View.GONE}" />
                 </LinearLayout>
