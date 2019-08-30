@@ -263,7 +263,8 @@
                                 android:layout_marginTop="3dp"
                                 android:text="@{currentViewModel.priceCNY}"
                                 android:textColor="@color/gray_b2"
-                                android:textSize="@dimen/font_mini" />
+                                android:textSize="@dimen/font_mini"
+                                android:visibility="invisible" />
 
                             <!--数量-->
                             <LinearLayout

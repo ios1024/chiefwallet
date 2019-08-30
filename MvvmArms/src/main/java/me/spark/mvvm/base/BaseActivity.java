@@ -27,6 +27,7 @@ import java.util.Map;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import me.spark.mvvm.R;
 import me.spark.mvvm.base.BaseViewModel.ParameterField;
 import me.spark.mvvm.bus.Messenger;
 import me.spark.mvvm.utils.MaterialDialogUtils;
@@ -176,7 +177,8 @@ public abstract class BaseActivity<V extends ViewDataBinding, VM extends BaseVie
         if (dialog != null) {
             dialog.show();
         } else {
-            MaterialDialog.Builder builder = MaterialDialogUtils.showIndeterminateProgressDialog(this, title, true);
+            //暂时修改 loading提示
+            MaterialDialog.Builder builder = MaterialDialogUtils.showIndeterminateProgressDialog(this, getString(R.string.loading), true);
             dialog = builder.show();
         }
     }

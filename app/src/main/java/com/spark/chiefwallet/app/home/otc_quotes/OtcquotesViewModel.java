@@ -2,6 +2,7 @@ package com.spark.chiefwallet.app.home.otc_quotes;
 
 import android.app.Application;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.spark.chiefwallet.App;
 import com.spark.wsclient.base.WsCMD;

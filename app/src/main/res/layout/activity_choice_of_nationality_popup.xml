@@ -22,9 +22,20 @@
 
             <android.support.v7.widget.SearchView
                 android:id="@+id/et_tex"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 app:queryHint="@string/choose_country2" />
+
+            <TextView
+                android:id="@+id/tv_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:gravity="center"
+                android:text="@string/cancel"
+                android:textColor="#FF0056BC"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView

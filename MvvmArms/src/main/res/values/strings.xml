@@ -945,7 +945,6 @@
     <string name="choosing_the_currency_type">请选择货币类型</string>
 
 
-
     <string name="falvshengm">法律声明</string>
     <string name="customer_service_mailbox">客服邮箱</string>
     <string name="business_mailboxs">商务邮箱</string>
@@ -955,7 +954,7 @@
     <string name="green_red">绿涨红跌</string>
 
     <string name="currency_cny">人民币 （CNY）</string>
-    <string name="currency_usdt">美元 （USDT）</string>
+    <string name="currency_usdt">美元 （USD）</string>
     <string name="currency_eur">欧元 （EUR）</string>
     <string name="currency_ghs">赛地 （GHS）</string>
     <string name="currency_nhn">尼日利亚 （NGN）</string>
@@ -1064,6 +1063,12 @@
     <string name="gear_position">档位</string>
     <string name="deep_consolidation">深度合并</string>
     <string name="more_new">更多>></string>
+    <string name="real_name_certification">请先进行实名认证</string>
+    <string name="basic_conditions">基本条件</string>
+    <string name="prepare_merchant_application_materials">按要求准备商家申请材料</string>
+    <string name="prompt_for_certified_merchants">您需要先申请成为认证商家\n&#160;&#160;&#160;&#160;才可以发布广告</string>
+    <string name="select_merchant_certification_type">选择商家认证类型</string>
+    <string name="business_type">商家类型</string>
 
     <string-array name="kline_time">
         <item>1分</item>

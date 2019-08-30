@@ -606,7 +606,6 @@ public class LcTradeClient extends BaseHttpClient {
                                 getBusinesslistApply();
 
                             } else if (generalResult.getCode() == BaseRequestCode.OK) {
-
                                 AuthMerchantResult businessFindEntity = BaseApplication.gson.fromJson(s, AuthMerchantResult.class);
                                 EventBusUtils.postSuccessEvent(EvKey.authMerchantFind, businessFindEntity.getCode(), businessFindEntity.getMessage(), businessFindEntity);
                             }

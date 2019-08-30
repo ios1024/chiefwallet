@@ -8,11 +8,14 @@ import android.view.ViewGroup;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.BR;
 import com.spark.chiefwallet.R;
 import com.spark.ucclient.pojo.CountryEntity2;
 
 import java.util.List;
+
+import me.spark.mvvm.utils.LanguageSPUtil;
 
 public class ChoiceOfNationalityAdapter extends BaseQuickAdapter<CountryEntity2, ChoiceOfNationalityAdapter.ViewHolder> {
 
@@ -26,6 +29,20 @@ public class ChoiceOfNationalityAdapter extends BaseQuickAdapter<CountryEntity2,
         ViewDataBinding binding = helper.getBinding();
         binding.setVariable(BR.countryEntity, item);
         binding.executePendingBindings();
+
+
+        switch (LanguageSPUtil.getInstance(App.getInstance()).getSelectLanguage()) {
+            case 1://中文
+                helper.setText(R.id.zhName, item.getZhName());
+                break;
+            case 0://英文
+                helper.setText(R.id.zhName, item.getEnName());
+                break;
+            default:
+                helper.setText(R.id.zhName, item.getZhName());
+                break;
+        }
+
     }
 
     @Override

@@ -52,6 +52,7 @@ import me.spark.mvvm.bus.event.SingleLiveEvent;
 import me.spark.mvvm.pojo.User;
 import me.spark.mvvm.utils.EventBean;
 import me.spark.mvvm.utils.EventBusUtils;
+import me.spark.mvvm.utils.LanguageSPUtil;
 import me.spark.mvvm.utils.LogUtils;
 import me.spark.mvvm.utils.SPUtils;
 import me.spark.mvvm.utils.StringUtils;
@@ -74,7 +75,7 @@ public class LoginViewModel extends BaseViewModel {
     private Context mContext;
     private SmsVerifyPopup mSmsVerifyPopup;
     private int loginType;                  //0 - 手机登录 1 - 邮箱登录
-    private String countryEnName = "中国";                      //值传递 国籍 enName
+    private String countryEnName = "China";                      //值传递 国籍 enName
 
     private List<CountryEntity> mCountryEntityList;
 
@@ -97,7 +98,7 @@ public class LoginViewModel extends BaseViewModel {
     public ObservableField<String> userName = new ObservableField<>("");
     //密码
     public ObservableField<String> userPassWord = new ObservableField<>("");
-    public ObservableField<String> countryName = new ObservableField<>("中国 +86");
+    public ObservableField<String> countryName = new ObservableField<>("China +86");
     public UIChangeObservable uc = new UIChangeObservable();
 
     public ChoiceOfNationalityPopup choiceOfNationalityPopup;
@@ -222,9 +223,21 @@ public class LoginViewModel extends BaseViewModel {
 //                        if (mCountryArray.length > 0) {
                         if (choiceOfNationalityPopup == null) {
                             choiceOfNationalityPopup = new ChoiceOfNationalityPopup(mContext, objList, new NationalChoiceListener() {
+
                                 @Override
                                 public void onClickItem(int position, List<CountryEntity2> countryEntity2) {
-                                    updateCountryInfo(countryEntity2.get(position).getZhName() + " +" + countryEntity2.get(position).getAreaCode(), countryEntity2.get(position).getAreaCode());
+                                    switch (LanguageSPUtil.getInstance(App.getInstance()).getSelectLanguage()) {
+                                        case 1://中文
+                                            updateCountryInfo(countryEntity2.get(position).getZhName() + " +" + countryEntity2.get(position).getAreaCode(), countryEntity2.get(position).getAreaCode());
+                                            break;
+                                        case 0://英文
+                                            updateCountryInfo(countryEntity2.get(position).getEnName() + " +" + countryEntity2.get(position).getAreaCode(), countryEntity2.get(position).getAreaCode());
+                                            break;
+                                        default:
+                                            updateCountryInfo(countryEntity2.get(position).getZhName() + " +" + countryEntity2.get(position).getAreaCode(), countryEntity2.get(position).getAreaCode());
+                                            break;
+                                    }
+
                                 }
                             });
                         }
@@ -473,6 +486,7 @@ public class LoginViewModel extends BaseViewModel {
         new XPopup.Builder(mContext)
                 .dismissOnBackPressed(false) // 按返回键是否关闭弹窗，默认为true
                 .dismissOnTouchOutside(false) // 点击外部是否关闭弹窗，默认为true
+                .enableDrag(false)//不能下滑关闭
                 .setPopupCallback(new XPopupCallback() {
                     @Override
                     public void onShow() {

@@ -1,7 +1,6 @@
 package com.spark.acclient;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.spark.acclient.base.AcHost;
 import com.spark.acclient.pojo.CoinAddressBean;

@@ -23,6 +23,7 @@ import java.util.Set;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import me.spark.mvvm.utils.LanguageSPUtil;
 import me.spark.mvvm.utils.LogUtils;
 
 /**
@@ -50,7 +51,8 @@ public class LegalCurrencyFilterPopup extends PartShadowPopupView {
     //区域
     private String[] mRegion;
     //支付方式
-    private String[] mPayType = new String[]{App.getInstance().getString(R.string.all), App.getInstance().getString(R.string.str_alipay), App.getInstance().getString(R.string.str_wechat), App.getInstance().getString(R.string.str_bank), App.getInstance().getString(R.string.str_paypal)};
+    private String[] mPayType = new String[]{App.getInstance().getString(R.string.all), App.getInstance().getString(R.string.str_alipay), App.getInstance().getString(R.string.str_wechat), App.getInstance().getString(R.string.str_bank), App.getInstance().getString(R.string.str_africa_bank), App.getInstance().getString(R.string.str_paypal),
+            App.getInstance().getString(R.string.str_mtn)};
 
     private TagAdapter mTagAdapterRegion, mTagAdapterPayType;
     private Context mContext;
@@ -84,7 +86,16 @@ public class LegalCurrencyFilterPopup extends PartShadowPopupView {
         mRegion[0] = App.getInstance().getString(R.string.all);
 //        for (int i = 0; i < mTradeAreaListResult.getData().size(); i++) {
         for (int i = 0; i < 8; i++) {
-            mRegion[i + 1] = mTradeAreaListResult.getData().get(i).getZhName();
+            switch (LanguageSPUtil.getInstance(App.getInstance()).getSelectLanguage()) {
+                case 1://中文
+                    mRegion[i + 1] = mTradeAreaListResult.getData().get(i).getZhName();
+                    break;
+                case 0://英文
+                    mRegion[i + 1] = mTradeAreaListResult.getData().get(i).getEnName();
+                    break;
+                default:
+                    break;
+            }
         }
 
         mTagAdapterRegion = new TagAdapter<String>(mRegion) {

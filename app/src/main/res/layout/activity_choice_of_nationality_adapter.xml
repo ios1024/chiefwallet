@@ -31,10 +31,10 @@
                 android:paddingLeft="16dp">
 
                 <TextView
+                    android:id="@+id/zhName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
-                    android:text="@{countryEntity.zhName}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/font_small"
                     android:textStyle="bold" />
@@ -44,7 +44,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:text="@{countryEntity.enName}"
-                    android:textSize="@dimen/dp_10" />
+                    android:textSize="@dimen/dp_10"
+                    android:visibility="gone" />
 
             </LinearLayout>
 

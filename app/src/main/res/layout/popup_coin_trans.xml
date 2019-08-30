@@ -317,13 +317,18 @@
                         style="@style/textBlackNormal"
                         android:textColor="#FF333333"
                         android:textSize="12sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:visibility="gone" />
 
-                    <ImageView
+                    <Spinner
                         android:id="@+id/down_pull"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/svg_pull_down_black" />
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <!--<ImageView-->
+                    <!--android:id="@+id/down_pull"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:src="@drawable/svg_pull_down_black" />-->
                 </LinearLayout>
             </LinearLayout>
 

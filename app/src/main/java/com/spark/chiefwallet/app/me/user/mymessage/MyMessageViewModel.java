@@ -94,7 +94,6 @@ public class MyMessageViewModel extends BaseViewModel {
                     if (user != null) {
                         App.getInstance().setCurrentUser(user);
                     }
-                    nickname.set(user.getUsername());
                     Toasty.showSuccess(App.getInstance().getApplicationContext().getString(R.string.successfully_modified));
                 } else {
                     Toasty.showError(eventBean.getMessage());

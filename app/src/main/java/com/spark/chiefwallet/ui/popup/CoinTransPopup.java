@@ -6,9 +6,12 @@ import android.text.InputFilter;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -25,6 +28,7 @@ import com.spark.chiefwallet.base.ARouterPath;
 import com.spark.chiefwallet.ui.PointLengthFilter;
 import com.spark.chiefwallet.ui.toast.Toasty;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -71,8 +75,10 @@ public class CoinTransPopup extends BottomPopupView {
     ImageView mDownFrom;
     @BindView(R.id.down_to)
     ImageView mDownTo;
+    //    @BindView(R.id.down_pull)
+//    ImageView mDownPull;
     @BindView(R.id.down_pull)
-    ImageView mDownPull;
+    Spinner mDownPull;
 
     private int accountType;//0 - 币币账户 1 - 法币账户 2 - 合约账户
     private int from, to;//0 - 币币账户 1 - 法币账户 2 - 合约账户
@@ -85,6 +91,9 @@ public class CoinTransPopup extends BottomPopupView {
     private PointLengthFilter mNumFilter;
     private boolean isSingleCoin = false;
     private String singleCoinName;
+
+    private List<String> data_list;
+    private ArrayAdapter<String> arr_adapter;
 
     public CoinTransPopup(@NonNull Context context, int accountType, CoinSupportBean coinSupportBean) {
         super(context);
@@ -187,7 +196,7 @@ public class CoinTransPopup extends BottomPopupView {
             R.id.trans_reverse,
             R.id.trans_symbol,
             R.id.trans_all,
-            R.id.ll_coin_choose,
+//            R.id.ll_coin_choose,
             R.id.btn_cancel,
             R.id.ll_from,
             R.id.ll_to,
@@ -335,22 +344,25 @@ public class CoinTransPopup extends BottomPopupView {
 
 
                 break;
-            //选择币种
-            case R.id.ll_coin_choose:
-                if (mDownPull.getVisibility() != VISIBLE) return;
-                new XPopup.Builder(getContext())
-                        .atView(view)  // 依附于所点击的View，内部会自动判断在上方或者下方显示
-                        .asAttachList(coinList, null,
-                                new OnSelectListener() {
-                                    @Override
-                                    public void onSelect(int position, String text) {
-                                        mTransSymbol.setText(text);
-                                        getCoinInfo();
-                                        requstFocus();
-                                    }
-                                })
-                        .show();
-                break;
+//            //选择币种
+//            case R.id.ll_coin_choose:
+//                if (mDownPull.getVisibility() != VISIBLE) return;
+
+
+//
+//                new XPopup.Builder(getContext())
+//                        .atView(view)  // 依附于所点击的View，内部会自动判断在上方或者下方显示
+//                        .asAttachList(coinList, null,
+//                                new OnSelectListener() {
+//                                    @Override
+//                                    public void onSelect(int position, String text) {
+//                                        mTransSymbol.setText(text);
+//                                        getCoinInfo();
+//                                        requstFocus();
+//                                    }
+//                                })
+//                        .show();
+//                break;
             //全部提取
             case R.id.trans_all:
                 mTransNum.setText(balance);
@@ -496,6 +508,31 @@ public class CoinTransPopup extends BottomPopupView {
         }
         String[] result = {};
         coinList = common.toArray(result);
+
+        data_list = new ArrayList<String>();
+        for (int i = 0; i < coinList.length; i++) {
+            data_list.add(coinList[i]);
+        }
+        //适配器
+        arr_adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, data_list);
+        //设置样式
+        arr_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //加载适配器
+        mDownPull.setAdapter(arr_adapter);
+
+        mDownPull.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {//选择item的选择点击监听事件
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                // TODO Auto-generated method stub
+                mTransSymbol.setText(data_list.get(arg2));
+                getCoinInfo();
+                requstFocus();
+            }
+
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+            }
+        });
     }
 }
 

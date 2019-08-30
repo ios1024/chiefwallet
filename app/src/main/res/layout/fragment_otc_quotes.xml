@@ -33,6 +33,7 @@
                 android:layout_weight="1"/>
 
             <TextView
+                android:id="@+id/latestCurrency"
                 style="@style/textBlackSmall"
                 android:text="@string/latest_price_cny"
                 android:textColor="@color/gray_b2"

@@ -68,7 +68,10 @@ public class MyMessageActivity extends BaseActivity<ActivityMyMessageBinding, My
     public void OnClick(View view) {
         switch (view.getId()) {
             case R.id.chartOnClickCommand:
-                chooseQrCod(view);
+                if (App.getInstance().getCurrentUser().getRealNameStatus() == 3) {
+                    chooseQrCod(view);
+                } else
+                    Toasty.showError(getString(R.string.real_name_certification));
                 break;
             default:
                 break;
@@ -133,6 +136,7 @@ public class MyMessageActivity extends BaseActivity<ActivityMyMessageBinding, My
                 break;
         }
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

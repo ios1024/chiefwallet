@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.lxj.xpopup.core.BottomPopupView;
@@ -27,6 +28,8 @@ public class ChoiceOfNationalityPopup extends BottomPopupView {
     RecyclerView relist;
     @BindView(R.id.et_tex)
     SearchView editText;
+    @BindView(R.id.tv_cancel)
+    TextView tvCancel;
 
     private NationalChoiceListener OnCoinChooseListener;
     public List<CountryEntity> countryEntities;
@@ -114,6 +117,14 @@ public class ChoiceOfNationalityPopup extends BottomPopupView {
                 dismiss();
             }
         });
+        tvCancel.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dismiss();
+
+            }
+        });
+
     }
 
 

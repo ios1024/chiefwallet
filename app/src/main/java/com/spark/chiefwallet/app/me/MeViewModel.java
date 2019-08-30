@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.lxj.xpopup.XPopup;
+import com.lxj.xpopup.interfaces.OnCancelListener;
 import com.lxj.xpopup.interfaces.OnConfirmListener;
 import com.qiyukf.unicorn.api.ConsultSource;
 import com.qiyukf.unicorn.api.Unicorn;
@@ -79,7 +80,7 @@ public class MeViewModel extends BaseViewModel {
             (App.getInstance().getCurrentUser().getLogintype() == 0 ? "UID:" + App.getInstance().getCurrentUser().getMobilePhone() : "UID:" + App.getInstance().getCurrentUser().getEmail()) : "UID:- -");
     //头像
     public ObservableField<String> avatarUser = new ObservableField<>(App.getInstance().isAppLogin() ?
-            App.getInstance().getCurrentUser().getAvatar() : "@mipmap/head");
+            App.getInstance().getCurrentUser().getAvatar() : "");
 
     //
     public ObservableField<String> otcAcconut = new ObservableField<>("- - ");
@@ -304,13 +305,42 @@ public class MeViewModel extends BaseViewModel {
              */
             case EvKey.authMerchantFind2:
                 dismissDialog();
+                if (eventBean.getCode() == 30548) {
+                    new XPopup.Builder(mContext)
+                            .dismissOnBackPressed(false)
+                            .dismissOnTouchOutside(false)
+                            .asConfirm(mContext.getString(R.string.tips), mContext.getString(R.string.prompt_for_certified_merchants),
+                                    mContext.getString(R.string.cancel), mContext.getString(R.string.ensure),
+                                    new OnConfirmListener() {
+                                        @Override
+                                        public void onConfirm() {
+                                            ARouter.getInstance().build(App.getInstance().isAppLogin() ? ARouterPath.ACTIVITY_ME_CERTIFICATIONDETAILS : ARouterPath.ACTIVITY_ME_LOGIN)
+                                                    .navigation();
+                                        }
+                                    }, null, false)
+
+                            .show();
+
+                }
                 AuthMerchantResult authMerchantResult = (AuthMerchantResult) eventBean.getObject();
                 int certifiedBusinessStatus = authMerchantResult.getData().getCertifiedBusinessStatus();
-                if (authMerchantResult.getCode() == 30548) {
-                    ARouter.getInstance().build(App.getInstance().isAppLogin() ? ARouterPath.ACTIVITY_ME_CERTIFICATIONDETAILS : ARouterPath.ACTIVITY_ME_LOGIN)
-                            .navigation();
-                }
 
+                if (certifiedBusinessStatus == 0) {
+                    new XPopup.Builder(mContext)
+                            .dismissOnBackPressed(false)
+                            .dismissOnTouchOutside(false)
+                            .asConfirm(mContext.getString(R.string.tips), mContext.getString(R.string.prompt_for_certified_merchants),
+                                    mContext.getString(R.string.cancel), mContext.getString(R.string.ensure),
+                                    new OnConfirmListener() {
+                                        @Override
+                                        public void onConfirm() {
+                                            ARouter.getInstance().build(App.getInstance().isAppLogin() ? ARouterPath.ACTIVITY_ME_CERTIFICATIONDETAILS : ARouterPath.ACTIVITY_ME_LOGIN)
+                                                    .navigation();
+                                        }
+                                    }, null, false)
+
+                            .show();
+                }
                 if (certifiedBusinessStatus == 2 || certifiedBusinessStatus == 5 || certifiedBusinessStatus == 6) {
                     ARouter.getInstance().build(App.getInstance().isAppLogin() ? ARouterPath.ACTIVITY_ME_AD : ARouterPath.ACTIVITY_ME_LOGIN)
                             .navigation();
@@ -381,7 +411,7 @@ public class MeViewModel extends BaseViewModel {
                             initText();
                         }
                         nickname.set(App.getInstance().getString(R.string.no_login));
-                        avatarUser.set("@mipmap/head");
+                        avatarUser.set("");
                         mobilePhone.set("");
                     }
                 }

@@ -19,6 +19,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import me.spark.mvvm.base.BaseViewModel;
+import me.spark.mvvm.base.Constant;
 import me.spark.mvvm.base.EvKey;
 import me.spark.mvvm.bus.event.SingleLiveEvent;
 import me.spark.mvvm.http.impl.OnRequestListener;
@@ -27,6 +28,7 @@ import me.spark.mvvm.utils.EventBean;
 import me.spark.mvvm.utils.EventBusUtils;
 import me.spark.mvvm.utils.LogUtils;
 import me.spark.mvvm.utils.MathUtils;
+import me.spark.mvvm.utils.SPUtils;
 import me.spark.mvvm.utils.SpanUtils;
 import me.spark.mvvm.utils.WebSocketRequest;
 import me.spark.mvvm.utils.WebSocketResponse;
@@ -134,8 +136,32 @@ public class HomeViewModel extends BaseViewModel {
                 try {
                     String json = "{\"date\":" + webSocketResponse.getResponse() + "}";
                     B2BThumbBean b2BThumbBean = App.gson.fromJson(json, B2BThumbBean.class);
+                    String currencytype;
+                    //1.人民币 CNY 2.美元 USDT 3.欧元 EUR 4.赛地 GHS 5.尼日利亚 NGN
+                    switch (SPUtils.getInstance().getPricingCurrency()) {
+                        case "1":
+                            currencytype = Constant.CNY;
+                            break;
+                        case "2":
+                            currencytype = Constant.USD;
+                            break;
+                        case "3":
+                            currencytype = Constant.EUR;
+                            break;
+                        case "4":
+                            currencytype = Constant.GHS;
+                            break;
+                        case "5":
+                            currencytype = Constant.NGN;
+                            break;
+                        default:
+                            currencytype = Constant.CNY;
+                            break;
+                    }
                     for (B2BThumbBean.DateBean dateBean : b2BThumbBean.getDate()) {
-                        if (dateBean.getSymbol().equals("BTC/CNY")) {
+
+
+                        if (dateBean.getSymbol().equals("BTC/" + currencytype)) {
                             updateChart(dateBean);
                         }
                     }

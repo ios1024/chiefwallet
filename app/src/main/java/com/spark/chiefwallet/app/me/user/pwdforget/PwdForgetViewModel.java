@@ -44,6 +44,7 @@ import me.spark.mvvm.binding.command.BindingCommand;
 import me.spark.mvvm.bus.event.SingleLiveEvent;
 import me.spark.mvvm.utils.EventBean;
 import me.spark.mvvm.utils.EventBusUtils;
+import me.spark.mvvm.utils.LanguageSPUtil;
 import me.spark.mvvm.utils.StringUtils;
 
 /**
@@ -64,7 +65,7 @@ public class PwdForgetViewModel extends BaseViewModel {
     public ObservableField<String> verifyCode = new ObservableField<>("");
     public ObservableField<String> newPwd = new ObservableField<>("");
     public ObservableField<String> newPwdAgain = new ObservableField<>("");
-    public ObservableField<String> countryName = new ObservableField<>("中国 +86");
+    public ObservableField<String> countryName = new ObservableField<>("China +86");
     public ObservableField<String> hitphoneNum = new ObservableField<>(App.getInstance().getResources().getString(R.string.phone_num_hint));
     private GT3GeetestUtilsBind gt3GeetestUtils;
     private String cid;
@@ -289,7 +290,17 @@ public class PwdForgetViewModel extends BaseViewModel {
 
                                 @Override
                                 public void onClickItem(int position, List<CountryEntity2> countryEntities2) {
-                                    updateCountryInfo(countryEntities2.get(position).getZhName() + " +" + countryEntities2.get(position).getAreaCode(), countryEntities2.get(position).getAreaCode());
+                                    switch (LanguageSPUtil.getInstance(App.getInstance()).getSelectLanguage()) {
+                                        case 1://中文
+                                            updateCountryInfo(countryEntities2.get(position).getZhName() + " +" + countryEntities2.get(position).getAreaCode(), countryEntities2.get(position).getAreaCode());
+                                            break;
+                                        case 0://英文
+                                            updateCountryInfo(countryEntities2.get(position).getEnName() + " +" + countryEntities2.get(position).getAreaCode(), countryEntities2.get(position).getAreaCode());
+                                            break;
+                                        default:
+                                            updateCountryInfo(countryEntities2.get(position).getZhName() + " +" + countryEntities2.get(position).getAreaCode(), countryEntities2.get(position).getAreaCode());
+                                            break;
+                                    }
 
                                 }
                             });

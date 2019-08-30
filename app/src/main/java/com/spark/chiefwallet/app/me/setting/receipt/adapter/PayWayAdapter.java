@@ -79,7 +79,7 @@ public class PayWayAdapter extends BaseQuickAdapter<PayListBean.DataBean, PayWay
                 break;
             case Constant.AfricaCard:
                 helper.setBackgroundColor(R.id.pay_way_root, App.getInstance().getResources().getColor(R.color.card_bg));
-                helper.setImageResource(R.id.ivType, R.drawable.svg_bankpay_white);
+                helper.setImageResource(R.id.ivType, R.mipmap.african_bank);
                 helper.setText(R.id.tvBankName, item.Bank());
                 helper.setVisible(R.id.ivQrCode, false);
                 break;

@@ -111,7 +111,9 @@ public class CurrencyFragment extends BaseFragment<FragmentCurrentBinding, Curre
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 if (mMarketSellList.get(position).getPrice() != 0) {
+
                     viewModel.updatePriceEt(MathUtils.getRundNumber(mMarketSellList.get(position).getPrice(), Constant.currencySymbolRate, null));
+
                 }
             }
         });
@@ -123,6 +125,7 @@ public class CurrencyFragment extends BaseFragment<FragmentCurrentBinding, Curre
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 if (mMarketBuyList.get(position).getPrice() != 0) {
+
                     viewModel.updatePriceEt(MathUtils.getRundNumber(mMarketBuyList.get(position).getPrice(), Constant.currencySymbolRate, null));
                 }
             }

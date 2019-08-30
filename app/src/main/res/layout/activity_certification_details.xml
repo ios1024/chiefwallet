@@ -67,7 +67,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:text="基本条件"
+                            android:text="@string/basic_conditions"
                             android:textColor="#FF333333"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -96,11 +96,20 @@
                             android:textStyle="bold" />
 
                         <ImageView
-                            android:id="@+id/im_uncertified"
+                            android:id="@+id/im_uncertified11"
                             android:layout_width="14dp"
                             android:layout_height="14dp"
                             android:layout_gravity="center"
                             android:src="@drawable/svg_adopt" />
+
+                        <ImageView
+                            android:id="@+id/im_uncertified22"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/svg_uncertified"
+                            android:visibility="gone" />
+
 
                         <TextView
                             android:id="@+id/tv_realname"
@@ -135,6 +144,14 @@
                             android:layout_gravity="center"
                             android:src="@drawable/svg_adopt" />
 
+                        <ImageView
+                            android:id="@+id/im_uncertified2"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/svg_uncertified"
+                            android:visibility="gone" />
+
                         <TextView
                             android:id="@+id/tv_realname1"
                             android:layout_width="65dp"
@@ -168,7 +185,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:text="按要求准备商家申请材料"
+                            android:text="@string/prepare_merchant_application_materials"
                             android:textColor="#FF333333"
                             android:textSize="16sp"
                             android:textStyle="bold" />

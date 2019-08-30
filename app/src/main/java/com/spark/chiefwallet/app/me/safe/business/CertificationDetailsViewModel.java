@@ -135,6 +135,9 @@ public class CertificationDetailsViewModel extends BaseViewModel {
             case EvKey.authMerchantFind:
                 dismissDialog();
                 if (eventBean.isStatue()) {
+                    uc.TitleName.setValue(mContext.getString(R.string.application_of_certifie_business));
+                    certificationtype1.set(true);
+                    certificationtype2.set(false);
                     AuthMerchantResult authMerchantResult = (AuthMerchantResult) eventBean.getObject();
                     int certifiedBusinessStatus = authMerchantResult.getData().getCertifiedBusinessStatus();
                     // 认证状态 0：未认证 1：认证-待审核 2：认证-审核成功 3：认证-审核失败 5：退保-待审核 6：退保-审核失败 7:退保-审核成功
@@ -143,11 +146,8 @@ public class CertificationDetailsViewModel extends BaseViewModel {
                         uc.TitleName.setValue(mContext.getString(R.string.str_apply_type));
                         certificationtype1.set(false);
                         certificationtype2.set(true);
-                    } else {
-                        uc.TitleName.setValue(mContext.getString(R.string.application_of_certifie_business));
-                        certificationtype1.set(true);
-                        certificationtype2.set(false);
                     }
+
 
                     if (certifiedBusinessStatus == 1) {
                         businesswaitfor.set(true);

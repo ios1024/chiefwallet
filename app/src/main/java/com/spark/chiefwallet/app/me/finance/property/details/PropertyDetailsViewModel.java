@@ -50,6 +50,7 @@ import me.spark.mvvm.utils.DfUtils;
 import me.spark.mvvm.utils.EventBean;
 import me.spark.mvvm.utils.EventBusUtils;
 import me.spark.mvvm.utils.MathUtils;
+import me.spark.mvvm.utils.SPUtils;
 import me.spark.mvvm.utils.StringUtils;
 
 /**
@@ -202,12 +203,48 @@ public class PropertyDetailsViewModel extends BaseViewModel {
         frozenBalance.set(DfUtils.numberFormat(mDataBean.getFrozenBalance(), 4));
 
 //        transCNY.set("≈¥ " + DfUtils.numberFormat((mDataBean.getBalance() + mDataBean.getFrozenBalance()) * mDataBean.getLegalRate(), 4));
-        transCNY.set(initAccountTrans(mDataBean.getCnyAssetBalance()));
+        //1.人民币 CNY 2.美元 USDT 3.欧元 EUR 4.赛地 GHS 5.尼日利亚 NGN
+        switch (SPUtils.getInstance().getPricingCurrency()) {
+            case "1":
+                transCNY.set(initAccountTrans(mDataBean.getCnyAssetBalance()));
+                break;
+            case "2":
+                transCNY.set(initAccountTrans(mDataBean.getUsdAssetBalance()));
+                break;
+            case "3":
+                transCNY.set(initAccountTrans(mDataBean.getEurAssetBalance()));
+                break;
+            case "4":
+                transCNY.set(initAccountTrans(mDataBean.getGhsAssetBalance()));
+                break;
+            case "5":
+                transCNY.set(initAccountTrans(mDataBean.getNgnAssetBalance()));
+                break;
+            default:
+                transCNY.set(initAccountTrans(mDataBean.getCnyAssetBalance()));
+                break;
+        }
+
     }
 
     private String initAccountTrans(double accountTrans) {
         String close = DfUtils.formatNum(MathUtils.getRundNumber(accountTrans, 4, null));
-        return "≈ ¥ " + close;
+        //1.人民币 CNY 2.美元 USDT 3.欧元 EUR 4.赛地 GHS 5.尼日利亚 NGN
+        if (SPUtils.getInstance().getPricingCurrency().equals("1")) {
+            return "≈ " + Constant.CNY_symbol + close;
+        } else if (SPUtils.getInstance().getPricingCurrency().equals("2")) {
+            return "≈ " + Constant.USD_symbol + close;
+
+        } else if (SPUtils.getInstance().getPricingCurrency().equals("3")) {
+            return "≈ " + Constant.EUR_symbol + close;
+
+        } else if (SPUtils.getInstance().getPricingCurrency().equals("4")) {
+            return "≈ " + Constant.GHS_symbol + close;
+
+        } else if (SPUtils.getInstance().getPricingCurrency().equals("5")) {
+            return "≈ " + Constant.NGN_symbol + close;
+        } else
+            return "≈ " + Constant.CNY_symbol + close;
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

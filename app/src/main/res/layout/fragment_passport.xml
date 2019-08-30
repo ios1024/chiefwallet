@@ -10,42 +10,46 @@
             type="com.spark.chiefwallet.app.me.safe.authentication.passport.PassPortViewModel" />
     </data>
 
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-        <LinearLayout
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="15dp"
-            android:orientation="vertical">
+            android:background="@color/white">
 
-            <TextView
-                style="@style/textBlackSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/authentication_rules"
-                android:textSize="12sp" />
-
-            <TextView
-                style="@style/textBlackSmall"
-                android:layout_width="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/name"
-                android:textSize="12sp" />
-
-            <EditText
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/linl_pay_bg"
-                android:hint="@string/name_hint"
-                android:maxLines="1"
-                android:padding="10dp"
-                android:text="@={passPortViewModel.userName}"
-                android:textSize="@dimen/font_small" />
-            <!--<EditText-->
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/textBlackSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/authentication_rules"
+                    android:textSize="12sp" />
+
+                <TextView
+                    style="@style/textBlackSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/name"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/linl_pay_bg"
+                    android:hint="@string/name_hint"
+                    android:maxLines="1"
+                    android:padding="10dp"
+                    android:text="@={passPortViewModel.userName}"
+                    android:textSize="@dimen/font_small" />
+                <!--<EditText-->
                 <!--style="@style/editext_create_wallet"-->
                 <!--android:layout_marginTop="10dp"-->
                 <!--android:hint="@string/name_hint"-->
@@ -55,154 +59,170 @@
                 <!--android:textColor="@color/black"-->
                 <!--android:textSize="@dimen/font_small" />-->
 
-            <TextView
-                style="@style/textBlackSmall"
-                android:layout_width="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/passport_num"
-                android:textSize="12sp" />
+                <TextView
+                    style="@style/textBlackSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/passport_num"
+                    android:textSize="12sp" />
 
-            <!--<EditText-->
-            <!--style="@style/editext_create_wallet"-->
-            <!--android:layout_marginTop="10dp"-->
-            <!--android:hint="@string/passport_num_hint"-->
-            <!--android:maxLines="1"-->
-            <!--android:padding="4dp"-->
-            <!--android:text="@={passPortViewModel.userPassPortNum}"-->
-            <!--android:textColor="@color/black"-->
-            <!--android:textSize="@dimen/font_small" />-->
+                <!--<EditText-->
+                <!--style="@style/editext_create_wallet"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:hint="@string/passport_num_hint"-->
+                <!--android:maxLines="1"-->
+                <!--android:padding="4dp"-->
+                <!--android:text="@={passPortViewModel.userPassPortNum}"-->
+                <!--android:textColor="@color/black"-->
+                <!--android:textSize="@dimen/font_small" />-->
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/linl_pay_bg"
-                android:hint="@string/passport_num_hint"
-                android:maxLines="1"
-                android:padding="10dp"
-                android:text="@={passPortViewModel.userPassPortNum}"
-                android:textSize="@dimen/font_small" />
-            <TextView
-                style="@style/textBlackSmall"
-                android:layout_width="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/identity_card_photos"
-                android:textSize="12sp" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/linl_pay_bg"
+                    android:hint="@string/passport_num_hint"
+                    android:maxLines="1"
+                    android:padding="10dp"
+                    android:text="@={passPortViewModel.userPassPortNum}"
+                    android:textSize="@dimen/font_small" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal">
+                <TextView
+                    style="@style/textBlackSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/identity_card_photos"
+                    android:textSize="12sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal">
 
-                    <TextView
-                        style="@style/textGrayCommonSmall"
-                        android:text="@string/passport_up" />
-
-                    <ImageView
-                        android:id="@+id/img_auth_up"
-                        android:layout_width="match_parent"
-                        android:layout_height="100dp"
-                        android:layout_marginTop="8dp"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/svg_auth_up"
-                        binding:url="@{passPortViewModel.imgAuthUp}" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="15dp"
-                    android:layout_height="match_parent" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="@style/textGrayCommonSmall"
-                        android:text="@string/passport_handheld" />
-
-                    <ImageView
-                        android:id="@+id/img_auth_handheld"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="8dp"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/svg_auth_down"
-                        binding:url="@{passPortViewModel.imgAuthHandheld}" />
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/textGrayCommonSmall"
+                            android:text="@string/passport_up" />
+
+                        <ImageView
+                            android:id="@+id/img_auth_up"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:layout_marginTop="8dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/svg_auth_up"
+                            binding:url="@{passPortViewModel.imgAuthUp}" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="15dp"
+                        android:layout_height="match_parent" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/textGrayCommonSmall"
+                            android:text="@string/passport_handheld" />
+
+                        <ImageView
+                            android:id="@+id/img_auth_handheld"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="8dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/svg_auth_down"
+                            binding:url="@{passPortViewModel.imgAuthHandheld}" />
+                    </LinearLayout>
                 </LinearLayout>
+
+                <TextView
+                    style="@style/textGrayCommonSmall"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:text="@string/id_card_auth_description"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.spark.chiefwallet.ui.SmoothCheckBox
+                            android:id="@+id/wechat_cb"
+                            android:layout_width="13dp"
+                            android:layout_height="13dp"
+                            android:layout_gravity="center"
+                            android:checked="false"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            style="@style/textBlackLarge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/reading_clauses"
+                            android:textColor="@color/mobile_login"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right">
+
+
+                        <TextView
+                            style="@style/textBlackLarge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/terms_of_service"
+                            android:textColor="@color/base"
+                            android:textSize="12sp"
+                            binding:onClickCommand="@{passPortViewModel.termsofserviceOnClickCommand}" />
+
+                        <TextView
+                            style="@style/textBlackLarge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/register_rivacy"
+                            android:textColor="@color/base"
+                            android:textSize="12sp"
+                            binding:onClickCommand="@{passPortViewModel.rivacyOnClickCommand}" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/textBlackNormal"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="50dp"
+                    android:gravity="center"
+                    android:text="@string/commit"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_14"
+                    android:textStyle="bold"
+                    app:bl_corners_radius="2dp"
+                    app:bl_pressed_color="@color/subscript2"
+                    app:bl_unpressed_color="@color/base"
+                    binding:onClickCommand="@{passPortViewModel.passPortUploadOnClickCommand}" />
+
             </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </LinearLayout>
 
-            <TextView
-                style="@style/textGrayCommonSmall"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:text="@string/id_card_auth_description"
-                android:visibility="gone" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:orientation="horizontal">
-
-                <com.spark.chiefwallet.ui.SmoothCheckBox
-                    android:id="@+id/wechat_cb"
-                    android:layout_width="13dp"
-                    android:layout_height="13dp"
-                    android:layout_gravity="center"
-                    android:checked="false"
-                    android:textSize="12sp" />
-
-                <TextView
-                    style="@style/textBlackLarge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/reading_clauses"
-                    android:textColor="@color/mobile_login"
-                    android:textSize="12sp" />
-
-                <TextView
-                    style="@style/textBlackLarge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/terms_of_service"
-                    android:textColor="@color/base"
-                    android:textSize="12sp"
-                    binding:onClickCommand="@{passPortViewModel.termsofserviceOnClickCommand}" />
-
-                <TextView
-                    style="@style/textBlackLarge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/register_rivacy"
-                    android:textColor="@color/base"
-                    android:textSize="12sp"
-                    binding:onClickCommand="@{passPortViewModel.rivacyOnClickCommand}" />
-            </LinearLayout>
-
-            <TextView
-                style="@style/textBlackNormal"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="50dp"
-                android:gravity="center"
-                android:text="@string/commit"
-                android:textColor="@color/white"
-                android:textSize="@dimen/sp_14"
-                android:textStyle="bold"
-                app:bl_corners_radius="2dp"
-                app:bl_pressed_color="@color/subscript2"
-                app:bl_unpressed_color="@color/base"
-                binding:onClickCommand="@{passPortViewModel.passPortUploadOnClickCommand}" />
-
-        </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
 </layout>

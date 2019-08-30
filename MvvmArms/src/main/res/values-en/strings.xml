@@ -1034,7 +1034,7 @@
     <!--<string name="currency_nhn">Nigeria NGN</string>-->
 
     <string name="currency_cny">Chinese Yuan（CNY）</string>
-    <string name="currency_usdt">US Dollars （USDT）</string>
+    <string name="currency_usdt">US Dollars （USD）</string>
     <string name="currency_eur">Euro （EUR）</string>
     <string name="currency_ghs">Site （GHS）</string>
     <string name="currency_nhn">Nigeria （NGN）</string>
@@ -1069,7 +1069,10 @@
     <string name="gear_position">Gear</string>
     <string name="deep_consolidation">Deep consolidation</string>
     <string name="more_new">More>></string>
-
+    <string name="real_name_certification">Please first perform real name certification</string>
+    <string name="basic_conditions">Basic conditions</string>
+    <string name="prepare_merchant_application_materials">Prepare merchant application materials as required</string>
+    <string name="prompt_for_certified_merchants">You need to apply to become a certified business first.\n&#160;&#160;&#160;&#160;Can only post ads</string>
     <string-array name="kline_time">
         <item>1min</item>
         <item>5min</item>

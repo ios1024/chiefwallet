@@ -8,6 +8,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
 import android.view.WindowManager;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -67,14 +68,25 @@ public class CertificationDetailsActivity extends BaseActivity<ActivityCertifica
         if (!TextUtils.isEmpty(App.getInstance().getCurrentUser().getMobilePhone())) {
             type++;
             binding.tvRealname1.setText(getString(R.string.verified));
-        } else
+            binding.imUncertified1.setVisibility(View.VISIBLE);
+            binding.imUncertified2.setVisibility(View.GONE);
+        } else {
             binding.tvRealname1.setText(getString(R.string.unverified));
+            binding.imUncertified2.setVisibility(View.VISIBLE);
+            binding.imUncertified1.setVisibility(View.GONE);
+        }
+
 
         if (App.getInstance().getCurrentUser().getCertifiedType() != null) {
             type++;
             binding.tvRealname.setText(getString(R.string.verified));
-        } else
+            binding.imUncertified11.setVisibility(View.VISIBLE);
+            binding.imUncertified22.setVisibility(View.GONE);
+        } else {
             binding.tvRealname.setText(getString(R.string.unverified));
+            binding.imUncertified22.setVisibility(View.VISIBLE);
+            binding.imUncertified11.setVisibility(View.GONE);
+        }
 
 
         if (type == 2) {

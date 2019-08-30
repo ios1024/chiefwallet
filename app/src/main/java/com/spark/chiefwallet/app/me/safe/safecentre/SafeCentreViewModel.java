@@ -9,6 +9,8 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.base.ARouterPath;
+import com.spark.chiefwallet.ui.toast.Toasty;
+import com.spark.ucclient.MemberClient;
 import com.spark.ucclient.SecurityClient;
 import com.spark.ucclient.pojo.AuthInfoEntity;
 
@@ -21,6 +23,7 @@ import me.spark.mvvm.base.EvKey;
 import me.spark.mvvm.binding.command.BindingAction;
 import me.spark.mvvm.binding.command.BindingCommand;
 import me.spark.mvvm.bus.event.SingleLiveEvent;
+import me.spark.mvvm.pojo.User;
 import me.spark.mvvm.utils.EventBean;
 import me.spark.mvvm.utils.EventBusUtils;
 import me.spark.mvvm.utils.StringUtils;
@@ -119,6 +122,9 @@ public class SafeCentreViewModel extends BaseViewModel {
     });
 
     public void initItemStatue() {
+        //刷新用户信息
+        showDialog();
+        MemberClient.getInstance().userInfo();
         phoneNumHasSet.set(App.getInstance().getCurrentUser().getMobilePhone() != null);
         phoneNum.set(App.getInstance().getCurrentUser().getMobilePhone() == null ?
                 App.getInstance().getApplicationContext().getString(R.string.no_setting) :
@@ -175,9 +181,23 @@ public class SafeCentreViewModel extends BaseViewModel {
         uc.safeLevel.setValue(level);
     }
 
-//    @Subscribe(threadMode = ThreadMode.MAIN)
-//    public void onEvent(EventBean eventBean) {
-//        switch (eventBean.getOrigin()) {
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(EventBean eventBean) {
+        switch (eventBean.getOrigin()) {
+            //刷新用户信息
+            case EvKey.userInfo:
+                dismissDialog();
+                if (eventBean.isStatue()) {
+                    User user = (User) eventBean.getObject();
+                    if (user != null) {
+                        App.getInstance().setCurrentUser(user);
+                    }
+                    Toasty.showSuccess(App.getInstance().getApplicationContext().getString(R.string.successfully_modified));
+                } else {
+                    Toasty.showError(eventBean.getMessage());
+                }
+                break;
+
 //            case EvKey.authInfo:
 //                dismissDialog();
 //                if (eventBean.isStatue()) {
@@ -204,22 +224,22 @@ public class SafeCentreViewModel extends BaseViewModel {
 //                    }
 //                }
 //                break;
-//            default:
-//                break;
-//
-//        }
-//
-//    }
+            default:
+                break;
 
-//    @Override
-//    public void onCreate() {
-//        super.onCreate();
-//        EventBusUtils.register(this);
-//    }
-//
-//    @Override
-//    public void onDestroy() {
-//        super.onDestroy();
-//        EventBusUtils.unRegister(this);
-//    }
+        }
+
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        EventBusUtils.register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBusUtils.unRegister(this);
+    }
 }

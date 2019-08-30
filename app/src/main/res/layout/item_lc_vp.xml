@@ -163,18 +163,17 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_marginRight="8dp"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
+                        android:layout_marginRight="8dp"
                         android:src="@drawable/svg_bankpay"
                         android:visibility="@{findPageResult.isSupportBankPay() ? View.VISIBLE : View.GONE}" />
 
                     <ImageView
                         android:layout_width="20dp"
-                        android:layout_marginRight="8dp"
-
                         android:layout_height="20dp"
-                        android:src="@drawable/svg_bankpay"
+                        android:layout_marginRight="8dp"
+                        android:src="@mipmap/african_bank"
                         android:visibility="@{findPageResult.isAfricanBankPay() ? View.VISIBLE : View.GONE}" />
 
                     <ImageView

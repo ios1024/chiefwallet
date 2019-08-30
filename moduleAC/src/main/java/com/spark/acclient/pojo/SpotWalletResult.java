@@ -133,7 +133,7 @@ public class SpotWalletResult implements Parcelable {
     public static class CountBean {
     }
 
-    public static class DataBean implements Parcelable {
+    public static class DataBean  implements Parcelable {
         /**
          * address : string
          * balance : 0.21

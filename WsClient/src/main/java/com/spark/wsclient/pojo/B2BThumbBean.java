@@ -145,7 +145,9 @@ public class B2BThumbBean implements Parcelable {
 
         //现价
         public CharSequence initClose() {
+
             return DfUtils.formatNum(MathUtils.getRundNumber(close, 2, null));
+
         }
 
         // 涨幅是否为 +/-

@@ -733,34 +733,35 @@ public class CurrencyViewModel extends BaseViewModel {
 
         priceCNY.set("≈" + MathUtils.getRundNumber(dataBean.getCnyLegalAsset(), symbolScale, null) + Constant.CNY);
         priceConvert.set("≈" + MathUtils.getRundNumber(dataBean.getCnyLegalAsset(), symbolScale, null) + Constant.CNY);
+
         //1.人民币 CNY 2.美元 USDT 3.欧元 EUR 4.赛地 GHS 5.尼日利亚 NGN
         //待修改
-        switch (SPUtils.getInstance().getPricingCurrency()) {
-            case "1":
-                priceCNY.set("≈" + MathUtils.getRundNumber(dataBean.getCnyLegalAsset(), symbolScale, null) + Constant.CNY);
-                priceConvert.set("≈" + MathUtils.getRundNumber(dataBean.getCnyLegalAsset(), symbolScale, null) + Constant.CNY);
-                break;
-            case "2":
-                priceCNY.set("≈" + MathUtils.getRundNumber(dataBean.getUsdLegalAsset(), symbolScale, null) + Constant.USD);
-                priceConvert.set("≈" + MathUtils.getRundNumber(dataBean.getUsdLegalAsset(), symbolScale, null) + Constant.USD);
-                break;
-            case "3":
-                priceCNY.set("≈" + MathUtils.getRundNumber(dataBean.getEurLegalAsset(), symbolScale, null) + Constant.EUR);
-                priceConvert.set("≈" + MathUtils.getRundNumber(dataBean.getEurLegalAsset(), symbolScale, null) + Constant.EUR);
-                break;
-            case "4":
-                priceCNY.set("≈" + MathUtils.getRundNumber(dataBean.getGhsLegalAsset(), symbolScale, null) + Constant.GHS);
-                priceConvert.set("≈" + MathUtils.getRundNumber(dataBean.getGhsLegalAsset(), symbolScale, null) + Constant.GHS);
-                break;
-            case "5":
-                priceCNY.set("≈" + MathUtils.getRundNumber(dataBean.getNgnLegalAsset(), symbolScale, null) + Constant.NGN);
-                priceConvert.set("≈" + MathUtils.getRundNumber(dataBean.getNgnLegalAsset(), symbolScale, null) + Constant.NGN);
-                break;
-            default:
-                priceCNY.set("≈" + MathUtils.getRundNumber(dataBean.getCnyLegalAsset(), symbolScale, null) + Constant.CNY);
-                priceConvert.set("≈" + MathUtils.getRundNumber(dataBean.getCnyLegalAsset(), symbolScale, null) + Constant.CNY);
-                break;
-        }
+//        switch (SPUtils.getInstance().getPricingCurrency()) {
+//            case "1":
+//                priceCNY.set("≈" + MathUtils.getRundNumber(dataBean.getCnyLegalAsset(), symbolScale, null) + Constant.CNY);
+//                priceConvert.set("≈" + MathUtils.getRundNumber(dataBean.getCnyLegalAsset(), symbolScale, null) + Constant.CNY);
+//                break;
+//            case "2":
+//                priceCNY.set("≈" + MathUtils.getRundNumber(dataBean.getUsdLegalAsset(), symbolScale, null) + Constant.USD);
+//                priceConvert.set("≈" + MathUtils.getRundNumber(dataBean.getUsdLegalAsset(), symbolScale, null) + Constant.USD);
+//                break;
+//            case "3":
+//                priceCNY.set("≈" + MathUtils.getRundNumber(dataBean.getEurLegalAsset(), symbolScale, null) + Constant.EUR);
+//                priceConvert.set("≈" + MathUtils.getRundNumber(dataBean.getEurLegalAsset(), symbolScale, null) + Constant.EUR);
+//                break;
+//            case "4":
+//                priceCNY.set("≈" + MathUtils.getRundNumber(dataBean.getGhsLegalAsset(), symbolScale, null) + Constant.GHS);
+//                priceConvert.set("≈" + MathUtils.getRundNumber(dataBean.getGhsLegalAsset(), symbolScale, null) + Constant.GHS);
+//                break;
+//            case "5":
+//                priceCNY.set("≈" + MathUtils.getRundNumber(dataBean.getNgnLegalAsset(), symbolScale, null) + Constant.NGN);
+//                priceConvert.set("≈" + MathUtils.getRundNumber(dataBean.getNgnLegalAsset(), symbolScale, null) + Constant.NGN);
+//                break;
+//            default:
+//                priceCNY.set("≈" + MathUtils.getRundNumber(dataBean.getCnyLegalAsset(), symbolScale, null) + Constant.CNY);
+//                priceConvert.set("≈" + MathUtils.getRundNumber(dataBean.getCnyLegalAsset(), symbolScale, null) + Constant.CNY);
+//                break;
+//        }
 
 
         if (!App.getInstance().isAppLogin()) {
@@ -907,7 +908,21 @@ public class CurrencyViewModel extends BaseViewModel {
     }
 
     public String initConvert(AllThumbResult.DataBean dataBean) {
-        return "≈￥" + MathUtils.getRundNumber(dataBean.getCnyLegalAsset(), 2, null);
+
+        //1.人民币 CNY 2.美元 USDT 3.欧元 EUR 4.赛地 GHS 5.尼日利亚 NGN
+        if (SPUtils.getInstance().getPricingCurrency().equals("1")) {
+            return "≈ " + Constant.CNY_symbol + MathUtils.getRundNumber(dataBean.getCnyLegalAsset(), 2, null);
+        } else if (SPUtils.getInstance().getPricingCurrency().equals("2")) {
+            return "≈ " + Constant.USD_symbol + MathUtils.getRundNumber(dataBean.getUsdLegalAsset(), 2, null);
+        } else if (SPUtils.getInstance().getPricingCurrency().equals("3")) {
+            return "≈ " + Constant.EUR_symbol + MathUtils.getRundNumber(dataBean.getEurLegalAsset(), 2, null);
+        } else if (SPUtils.getInstance().getPricingCurrency().equals("4")) {
+            return "≈ " + Constant.GHS_symbol + MathUtils.getRundNumber(dataBean.getGhsLegalAsset(), 2, null);
+        } else if (SPUtils.getInstance().getPricingCurrency().equals("5")) {
+            return "≈ " + Constant.NGN_symbol + MathUtils.getRundNumber(dataBean.getNgnLegalAsset(), 2, null);
+        } else
+            return "≈ " + Constant.CNY_symbol + MathUtils.getRundNumber(dataBean.getCnyLegalAsset(), 2, null);
+
     }
 
     public void initQueryWithSymbol() {

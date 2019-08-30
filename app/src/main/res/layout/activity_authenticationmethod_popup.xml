@@ -20,7 +20,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="选择商家认证类型"
+            android:text="@string/select_merchant_certification_type"
             android:textColor="#FF333333"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="商家类型"
+            android:text="@string/business_type"
             android:textColor="#FF333333"
             android:textSize="12sp" />
 

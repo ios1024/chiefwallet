@@ -71,7 +71,7 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
     }
 
     public void showDialog(String title) {
-        uc.showDialogEvent.postValue(title);
+        uc.showDialogEvent.postValue(BaseApplication.getInstance().getString(R.string.str_wait));
     }
 
     public void dismissDialog() {

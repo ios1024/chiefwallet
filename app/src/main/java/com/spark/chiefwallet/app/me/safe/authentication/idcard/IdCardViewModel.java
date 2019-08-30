@@ -186,23 +186,23 @@ public class IdCardViewModel extends BaseViewModel {
                     dismissDialog();
                 }
                 break;
-            case EvKey.articleList:
-                if (eventBean.isStatue()) {
-                    ArticleListBean mArticleListBean = (ArticleListBean) eventBean.getObject();
-                    for (int i = 0; i < mArticleListBean.getData().size(); i++) {
-                        if (mArticleListBean.getData().get(i).getName().contains("法律")
-                                || mArticleListBean.getData().get(i).getName().contains("政策")) {
-                            rivacyUrl = mArticleListBean.getData().get(i).getRedirectUrl();
-                        }
-                        if (mArticleListBean.getData().get(i).getName().contains("用户")) {
-                            clauseUrl = mArticleListBean.getData().get(i).getRedirectUrl();
-                        }
-
-                    }
-                } else {
-                    Toasty.showError(App.getInstance().getString(R.string.network_abnormal));
-                }
-                break;
+//            case EvKey.articleList:
+//                if (eventBean.isStatue()) {
+//                    ArticleListBean mArticleListBean = (ArticleListBean) eventBean.getObject();
+//                    for (int i = 0; i < mArticleListBean.getData().size(); i++) {
+//                        if (mArticleListBean.getData().get(i).getName().contains("法律")
+//                                || mArticleListBean.getData().get(i).getName().contains("政策")) {
+//                            rivacyUrl = mArticleListBean.getData().get(i).getRedirectUrl();
+//                        }
+//                        if (mArticleListBean.getData().get(i).getName().contains("用户")) {
+//                            clauseUrl = mArticleListBean.getData().get(i).getRedirectUrl();
+//                        }
+//
+//                    }
+//                } else {
+//                    Toasty.showError(App.getInstance().getString(R.string.network_abnormal));
+//                }
+//                break;
             default:
                 break;
 
