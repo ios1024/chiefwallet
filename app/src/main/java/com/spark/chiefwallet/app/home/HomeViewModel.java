@@ -182,8 +182,8 @@ public class HomeViewModel extends BaseViewModel {
                 .setFontSize(14, true)
                 .create();
         chartSmybol.set(text);
-        riseOrFall.set(dateBean.getChg() >= 0);
-        chartChg.set((riseOrFall.get() ? "+" : "") +
+        riseOrFall.set(SPUtils.getInstance().getGainMode() ? dateBean.getChg() >= 0 : dateBean.getChg() < 0);
+        chartChg.set((dateBean.getChg() >= 0 ? "+" : "") +
                 MathUtils.getRundNumber(dateBean.getChg() * 100, 2, "########0.")
                 + "%");
         chartClose.set(DfUtils.formatNum(MathUtils.getRundNumber(dateBean.getClose(), 2, null)));

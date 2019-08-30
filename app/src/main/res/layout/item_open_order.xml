@@ -244,7 +244,7 @@
                         <TextView
                             style="@style/textGrayCommonFont13"
                             android:layout_height="match_parent"
-                            android:text="@string/dealing_time"
+                            android:text="@string/commission_time"
                             android:textColor="@color/gray_a4"
                             android:textSize="12sp"
                             android:textStyle="bold" />

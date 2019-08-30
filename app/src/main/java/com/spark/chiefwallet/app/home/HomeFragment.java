@@ -39,6 +39,7 @@ import com.spark.chiefwallet.base.ARouterPath;
 import com.spark.chiefwallet.bean.AnnounceItemBean;
 import com.spark.chiefwallet.databinding.FragmentHomeBinding;
 import com.spark.chiefwallet.ui.AnnounceView;
+import com.spark.chiefwallet.ui.MyMarkerView;
 import com.spark.chiefwallet.ui.adapter.SlideTabPagerNoCacheAdapter;
 import com.spark.chiefwallet.ui.adapter.SlideTabPagerNormalAdapter;
 import com.spark.chiefwallet.ui.toast.Toasty;
@@ -89,6 +90,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
     private ArrayList<Entry> values = new ArrayList<>();
     private ArrayList<Entry> valuesTemp = new ArrayList<>();
     private int defaultSize = 10;
+    private boolean isChartInt = false;
 
     @Override
     public int initContentView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -131,6 +133,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
         viewModel.uc.closeValue.observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
+                if (!isChartInt) return;
                 setChartDate(s);
             }
         });
@@ -143,15 +146,16 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
         binding.lineChart.getDescription().setEnabled(false);
         // enable touch gestures
         binding.lineChart.setTouchEnabled(true);
+        binding.lineChart.setNoDataText("数据加载中");
         binding.lineChart.setDragEnabled(true);
         binding.lineChart.setDoubleTapToZoomEnabled(false);
         // set listeners
         binding.lineChart.setDrawGridBackground(false);
-//        // create marker to display box when values are selected
-//        MyMarkerView mv = new MyMarkerView(this, R.layout.custom_marker_view);
-//        // Set the marker to the chart
-//        mv.setChartView(chart);
-//        chart.setMarker(mv);
+        // create marker to display box when values are selected
+        MyMarkerView mv = new MyMarkerView(getActivity(), R.layout.custom_marker_view);
+        // Set the marker to the chart
+        mv.setChartView(binding.lineChart);
+        binding.lineChart.setMarker(mv);
 
         // enable scaling and dragging
         binding.lineChart.setDragEnabled(true);
@@ -163,24 +167,27 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
         Legend l = binding.lineChart.getLegend();
         l.setForm(Legend.LegendForm.NONE);
         binding.lineChart.animateX(1500);
+        isChartInt = true;
     }
 
     private void setChartDate(String closeValue) {
         if (values.size() < defaultSize) {
             values.add(new Entry(values.size(), Float.parseFloat(closeValue), null));
         } else {
-            values.add(new Entry(defaultSize, Float.parseFloat(closeValue), null));
-            for (int i = 1; i < values.size(); i++) {
-                Entry entry = values.get(i);
-                entry.setX(values.get(i - 1).getX());
-                values.set(i, entry);
+            valuesTemp.clear();
+            valuesTemp.addAll(values);
+            values.clear();
+            for (int i = 0; i < 9; i++) {
+                values.add(new Entry(i, valuesTemp.get(i + 1).getY(), null));
             }
-            values.remove(0);
+            values.add(new Entry(9, Float.parseFloat(closeValue), null));
         }
         LogUtils.e("setChartDate", values.size());
-
+        if (values.size() != defaultSize) return;
         if (binding.lineChart.getData() != null &&
                 binding.lineChart.getData().getDataSetCount() > 0) {
+            LogUtils.e("getXMax", mLineDataSetDate.getXMax());
+
             mLineDataSetDate = (LineDataSet) binding.lineChart.getData().getDataSetByIndex(0);
             mLineDataSetDate.setValues(values);
             mLineDataSetDate.notifyDataSetChanged();
@@ -194,7 +201,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
             mLineDataSetDate.setDrawValues(false);
 
             // draw dashed line
-            mLineDataSetDate.enableDashedLine(10f, 0f, 0f);
+//            mLineDataSetDate.enableDashedLine(10f, 0f, 0f);
 
             // black lines and points
             mLineDataSetDate.setColor(Color.parseColor("#CA2C49"));
@@ -213,9 +220,8 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
             mLineDataSetDate.setFormSize(15.f);
             // text size of values
             mLineDataSetDate.setValueTextSize(9f);
-
             // draw selection line as dashed
-            mLineDataSetDate.enableDashedHighlightLine(10f, 5f, 0f);
+            mLineDataSetDate.enableDashedHighlightLine(100000f, 100000f, 100000f);
 
             // set the filled area
             mLineDataSetDate.setDrawFilled(true);
@@ -243,6 +249,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
 
             // set data
             binding.lineChart.setData(data);
+            binding.lineChart.invalidate();
         }
     }
 

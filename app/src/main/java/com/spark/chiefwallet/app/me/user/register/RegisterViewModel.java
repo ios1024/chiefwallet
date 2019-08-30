@@ -3,7 +3,6 @@ package com.spark.chiefwallet.app.me.user.register;
 import android.app.Application;
 import android.content.Context;
 import android.databinding.ObservableField;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
@@ -12,14 +11,11 @@ import com.geetest.sdk.Bind.GT3GeetestBindListener;
 import com.geetest.sdk.Bind.GT3GeetestUtilsBind;
 import com.google.gson.Gson;
 import com.lxj.xpopup.XPopup;
-import com.lxj.xpopup.interfaces.OnSelectListener;
 import com.lxj.xpopup.interfaces.XPopupCallback;
 import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.api.AppClient;
-import com.spark.chiefwallet.api.pojo.ArticleListBean;
 import com.spark.chiefwallet.api.pojo.PromotionCodeLimitResult;
-import com.spark.chiefwallet.app.me.user.pwdforget.PwdForgetViewModel;
 import com.spark.chiefwallet.app.me.user.register.verificationcode.VerifyCodeActivity;
 import com.spark.chiefwallet.base.ARouterPath;
 import com.spark.chiefwallet.ui.popup.ChoiceOfNationalityPopup;
@@ -44,7 +40,6 @@ import me.spark.mvvm.base.BaseHost;
 import me.spark.mvvm.base.BaseRequestCode;
 import me.spark.mvvm.base.BaseResponseError;
 import me.spark.mvvm.base.BaseViewModel;
-import me.spark.mvvm.base.Constant;
 import me.spark.mvvm.base.EvKey;
 import me.spark.mvvm.binding.command.BindingAction;
 import me.spark.mvvm.binding.command.BindingCommand;
@@ -52,7 +47,6 @@ import me.spark.mvvm.bus.event.SingleLiveEvent;
 import me.spark.mvvm.utils.EventBean;
 import me.spark.mvvm.utils.EventBusUtils;
 import me.spark.mvvm.utils.LanguageSPUtil;
-import me.spark.mvvm.utils.SPUtils;
 import me.spark.mvvm.utils.StringUtils;
 
 /**

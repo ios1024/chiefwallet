@@ -24,7 +24,7 @@
             android:layout_weight="1"
             android:gravity="left"
             android:text="@{depthSellViewModel.forMatPrice()}"
-            android:textColor="@color/fall"
+            android:textColor="@color/rise"
             android:textSize="@dimen/font_mini"/>
 
 

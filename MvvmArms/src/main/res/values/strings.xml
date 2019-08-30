@@ -621,6 +621,7 @@
         <item>币币交易</item>
     </string-array>
     <string name="dealing_time">成交时间</string>
+    <string name="commission_time">委托时间</string>
     <string name="turnover">交易额:&#160;</string>
     <string name="buy_after_login">登录后买入</string>
     <string name="sell_after_login">登录后卖出</string>

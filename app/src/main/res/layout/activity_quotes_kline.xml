@@ -279,14 +279,14 @@
                         android:layout_height="145dp"
                         android:paddingTop="5dp"
                         app:background_color="@color/white"
-                        app:buy_line_color="@color/rise_dark"
-                        app:buy_path_color="@color/rise"
+                        app:buy_line_color="@color/fall_dark"
+                        app:buy_path_color="@color/fall"
                         app:circle_radius="8dp"
                         app:dot_radius="1.5dp"
                         app:line_count="4"
                         app:line_width="1.5dp"
-                        app:sell_line_color="@color/fall_dark"
-                        app:sell_path_color="@color/fall"
+                        app:sell_line_color="@color/rise_dark"
+                        app:sell_path_color="@color/rise"
                         app:text_color="@color/black"
                         app:text_size="@dimen/font_xmini" />
 
@@ -376,8 +376,8 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/font_small"
                     app:bl_corners_radius="2dp"
-                    app:bl_pressed_color="@color/rise_dark"
-                    app:bl_unpressed_color="@color/rise" />
+                    app:bl_pressed_color="@color/fall_dark"
+                    app:bl_unpressed_color="@color/fall"/>
 
                 <View
                     android:layout_width="15dp"
@@ -393,8 +393,9 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/font_small"
                     app:bl_corners_radius="2dp"
-                    app:bl_pressed_color="@color/fall_dark"
-                    app:bl_unpressed_color="@color/fall" />
+                    app:bl_pressed_color="@color/rise_dark"
+                    app:bl_unpressed_color="@color/rise"
+                     />
             </LinearLayout>
         </FrameLayout>
     </LinearLayout>

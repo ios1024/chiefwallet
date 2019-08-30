@@ -620,6 +620,7 @@
         <item>SPOT Trade</item>//币币
     </string-array>
     <string name="dealing_time">Transaction time</string>
+    <string name="commission_time">Commission time</string>
 
     <string name="turnover">Turnover:&#160;</string>
     <string name="buy_after_login">Buy after login</string>
