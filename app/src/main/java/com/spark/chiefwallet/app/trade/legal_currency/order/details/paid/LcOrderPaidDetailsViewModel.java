@@ -372,7 +372,7 @@ public class LcOrderPaidDetailsViewModel extends BaseViewModel {
                     FindMerchantDetailsResult findMerchantDetailsResult = (FindMerchantDetailsResult) eventBean.getObject();
                     dealNumber.set(findMerchantDetailsResult.getData().formatRangeTimeOrder());
                 } else {
-                    Toasty.showError(eventBean.getMessage());
+                    //Toasty.showError(eventBean.getMessage());
                 }
                 break;
             case EvKey.logout_success_401:
