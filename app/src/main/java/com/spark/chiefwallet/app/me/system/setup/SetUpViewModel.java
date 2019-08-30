@@ -105,15 +105,24 @@ public class SetUpViewModel extends BaseViewModel {
             public void onSelectType(int type) {
                 if (type == 1) {//人民币 CNY
                     valueTypeSelect.set(App.getInstance().getString(R.string.currency_cny));
+                    SPUtils.getInstance().setPricingCurrency("1");
                 } else if (type == 2) {//美元 USDT
                     valueTypeSelect.set(App.getInstance().getString(R.string.currency_usdt));
+                    SPUtils.getInstance().setPricingCurrency("2");
                 } else if (type == 3) {//欧元 EUR
                     valueTypeSelect.set(App.getInstance().getString(R.string.currency_eur));
+                    SPUtils.getInstance().setPricingCurrency("3");
                 } else if (type == 4) {//赛地 GHS
                     valueTypeSelect.set(App.getInstance().getString(R.string.currency_ghs));
+                    SPUtils.getInstance().setPricingCurrency("4");
                 } else if (type == 5) {//尼日利亚 NGN
                     valueTypeSelect.set(App.getInstance().getString(R.string.currency_nhn));
+                    SPUtils.getInstance().setPricingCurrency("5");
+                } else {
+                    valueTypeSelect.set(App.getInstance().getString(R.string.currency_cny));
+                    SPUtils.getInstance().setPricingCurrency("1");
                 }
+
             }
         });
         mDialog2.show();
@@ -162,11 +171,35 @@ public class SetUpViewModel extends BaseViewModel {
         mContext = context;
         switch (LanguageSPUtil.getInstance(App.getInstance()).getSelectLanguage()) {
             case 0:
-                languageSelect.set(App.getInstance().getString(R.string.simplified_chinese));
+                languageSelect.set(App.getInstance().getString(R.string.str_english));
+
                 break;
             case 1:
-                languageSelect.set(App.getInstance().getString(R.string.str_english));
+                languageSelect.set(App.getInstance().getString(R.string.simplified_chinese));
+
                 break;
+        }
+
+        switch (SPUtils.getInstance().getPricingCurrency()) {
+            case "1":
+                valueTypeSelect.set(App.getInstance().getString(R.string.currency_cny));
+                break;
+            case "2":
+                valueTypeSelect.set(App.getInstance().getString(R.string.currency_usdt));
+                break;
+            case "3":
+                valueTypeSelect.set(App.getInstance().getString(R.string.currency_eur));
+                break;
+            case "4":
+                valueTypeSelect.set(App.getInstance().getString(R.string.currency_ghs));
+                break;
+            case "5":
+                valueTypeSelect.set(App.getInstance().getString(R.string.currency_nhn));
+                break;
+            default:
+                valueTypeSelect.set(App.getInstance().getString(R.string.currency_cny));
+                break;
+
         }
     }
 

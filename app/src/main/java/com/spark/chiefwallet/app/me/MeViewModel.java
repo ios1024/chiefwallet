@@ -33,6 +33,7 @@ import java.math.BigDecimal;
 
 import me.spark.mvvm.base.BaseRequestCode;
 import me.spark.mvvm.base.BaseViewModel;
+import me.spark.mvvm.base.Constant;
 import me.spark.mvvm.base.EvKey;
 import me.spark.mvvm.binding.command.BindingAction;
 import me.spark.mvvm.binding.command.BindingCommand;
@@ -78,17 +79,17 @@ public class MeViewModel extends BaseViewModel {
             (App.getInstance().getCurrentUser().getLogintype() == 0 ? "UID:" + App.getInstance().getCurrentUser().getMobilePhone() : "UID:" + App.getInstance().getCurrentUser().getEmail()) : "UID:- -");
     //头像
     public ObservableField<String> avatarUser = new ObservableField<>(App.getInstance().isAppLogin() ?
-            App.getInstance().getCurrentUser().getAvatar() : "");
+            App.getInstance().getCurrentUser().getAvatar() : "@mipmap/head");
 
     //
     public ObservableField<String> otcAcconut = new ObservableField<>("- - ");
-    public ObservableField<String> otcAcconutTrans = new ObservableField<>("≈ ¥ - - ");
+    public ObservableField<String> otcAcconutTrans = new ObservableField<>("≈  - - ");
     private String otcAcconutText = "- - ";
-    private String otcAcconutTransText = "≈ ¥ - - ";
+    private String otcAcconutTransText = "≈  - - ";
     //    private OnRequestListener onRequestListener, onRequestListenerAnnounce;
     private double spotWalletTotal = 0, spotWalletTrans = 0, otcWalletTotal = 0, otcWalletTrans = 0, cfdWalletTotal = 0, cfdWalletTrans = 0;
     private String spotAcconutText = "- - ";
-    private String spotAcconutTransText = "≈ ¥ - - ";
+    private String spotAcconutTransText = "≈  - - ";
     private boolean isLoadAcountDate = false;
 
     //修改昵称
@@ -380,7 +381,7 @@ public class MeViewModel extends BaseViewModel {
                             initText();
                         }
                         nickname.set(App.getInstance().getString(R.string.no_login));
-                        avatarUser.set("");
+                        avatarUser.set("@mipmap/head");
                         mobilePhone.set("");
                     }
                 }
@@ -441,7 +442,33 @@ public class MeViewModel extends BaseViewModel {
         otcWalletTrans = 0;
         for (SpotWalletResult.DataBean dataBean : spotWalletResult.getData()) {
             otcWalletTotal = new BigDecimal(dataBean.getTotalPlatformAssetBalance()).add(new BigDecimal(otcWalletTotal)).doubleValue();
-            otcWalletTrans = new BigDecimal(dataBean.getCnyAssetBalance()).add(new BigDecimal(otcWalletTrans)).doubleValue();
+            //1.人民币 CNY 2.美元 USDT 3.欧元 EUR 4.赛地 GHS 5.尼日利亚 NGN
+            switch (SPUtils.getInstance().getPricingCurrency()) {
+                case "1":
+                    otcWalletTrans = new BigDecimal(dataBean.getCnyAssetBalance()).add(new BigDecimal(otcWalletTrans)).doubleValue();
+
+                    break;
+                case "2":
+                    otcWalletTrans = new BigDecimal(dataBean.getUsdtAssetBalance()).add(new BigDecimal(otcWalletTrans)).doubleValue();
+
+                    break;
+                case "3":
+                    otcWalletTrans = new BigDecimal(dataBean.getEurAssetBalance()).add(new BigDecimal(otcWalletTrans)).doubleValue();
+
+                    break;
+                case "4":
+                    otcWalletTrans = new BigDecimal(dataBean.getGhsAssetBalance()).add(new BigDecimal(otcWalletTrans)).doubleValue();
+
+                    break;
+                case "5":
+                    otcWalletTrans = new BigDecimal(dataBean.getNgnAssetBalance()).add(new BigDecimal(otcWalletTrans)).doubleValue();
+
+                    break;
+                default:
+                    otcWalletTrans = new BigDecimal(dataBean.getCnyAssetBalance()).add(new BigDecimal(otcWalletTrans)).doubleValue();
+
+                    break;
+            }
         }
 
         spotAcconutText = String.valueOf(spotWalletTotal);
@@ -456,7 +483,7 @@ public class MeViewModel extends BaseViewModel {
         if (!App.getInstance().isAppLogin()) {
 
             otcAcconut.set("- - ");
-            otcAcconutTrans.set("≈ ¥ - - ");
+            otcAcconutTrans.set("≈  - - ");
 //            cfdAcconut.set("------ USDT");
 //            cfdAcconutTrans.set("≈ ---- CNY");
         } else {
@@ -490,7 +517,23 @@ public class MeViewModel extends BaseViewModel {
 
     private String initAccountTrans(double accountTrans) {
         String close = DfUtils.formatNum(MathUtils.getRundNumber(accountTrans, 4, null));
-        return "≈ ¥ " + close;
+        //1.人民币 CNY 2.美元 USDT 3.欧元 EUR 4.赛地 GHS 5.尼日利亚 NGN
+        if (SPUtils.getInstance().getPricingCurrency().equals("1")) {
+            return "≈" + close + Constant.CNY;
+        } else if (SPUtils.getInstance().getPricingCurrency().equals("2")) {
+            return "≈" + close + Constant.USD;
+
+        } else if (SPUtils.getInstance().getPricingCurrency().equals("3")) {
+            return "≈" + close + Constant.EUR;
+
+        } else if (SPUtils.getInstance().getPricingCurrency().equals("4")) {
+            return "≈" + close + Constant.GHS;
+
+        } else if (SPUtils.getInstance().getPricingCurrency().equals("5")) {
+            return "≈" + close + Constant.NGN;
+        } else
+            return "≈" + close + Constant.CNY;
+
     }
 
     private void initSafeLevel() {

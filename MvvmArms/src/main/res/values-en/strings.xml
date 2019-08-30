@@ -151,12 +151,12 @@
 
     <!--我的资产-->
     <string-array name="property_tab">
-        <item>B2B Account</item>
-        <item>C2C Account</item>
+        <item>SPOT Account</item>
+        <item>OTC Account</item>
     </string-array>
     <string-array name="property_tab2">
-        <item>C2C Account</item>
-        <item>B2B Account</item>
+        <item>OTC Account</item>
+        <item>SPOT Account</item>
     </string-array>
     <string name="asset_management">asset Management</string>
 
@@ -520,8 +520,8 @@
     <string name="safety_verification">Safety Verification</string>
     <string name="confirm_order">Confirm Order</string>
     <string name="actual_arrival">Actual arrival</string>
-    <string name="b2b_account">B2B Account</string>
-    <string name="c2c_account">C2C Account</string>
+    <string name="b2b_account">SPOT Account</string>//币币
+    <string name="c2c_account">OTC Account</string>//法币
     <string name="cfd_account">CFD Account</string>
     <string name="from">From</string>
     <string name="to">To</string>
@@ -616,8 +616,8 @@
     <string name="commission_num_bigger_0">The number of delegates must be greater than 0</string>
     <string name="sms_code_error">SMS verification code error</string>
     <string-array name="trade_tab">
-        <item>C2C Trade</item>
-        <item>B2B Trade</item>
+        <item>OTC Trade</item>//法币
+        <item>SPOT Trade</item>//币币
     </string-array>
     <string name="dealing_time">Transaction time</string>
 
@@ -627,8 +627,8 @@
     <string name="submit_success">Submit success</string>
     <string name="successful_withdrawal_of_application">Successful withdrawal of application</string>
     <string name="mention_success">Mention success</string>
-    <string name="b2b">B2B</string>
-    <string name="c2c">C2C</string>
+    <string name="b2b">SPOT</string>
+    <string name="c2c">OTC</string>
 
     <string name="quotes_search_hint">Search for the currency you are interested in</string>
     <string name="search_not_null">Search content cannot be empty</string>
@@ -712,8 +712,8 @@
     <string name="str_ad_remove">The Shelves</string>
     <string name="str_update">Update</string>
     <string name="str_shelves">Shelves</string>
-    <string name="str_b2b_account_no_support">B2B account does not support the currency</string>
-    <string name="str_c2c_account_no_support">C2C account does not support the currency</string>
+    <string name="str_b2b_account_no_support">SPOT account does not support the currency</string>
+    <string name="str_c2c_account_no_support">OTC account does not support the currency</string>
     <string name="str_amount_buy">Buy by quantity</string>
     <string name="str_money_buy">Buy at price</string>
     <string name="str_amount_sell">Sell by quantity</string>
@@ -831,6 +831,7 @@
     <string name="str_wechat">WeChat</string>
     <string name="str_alipay">Alipay</string>
     <string name="str_bank">Bank</string>
+    <string name="str_africa_bank">African bank card</string>
     <string name="str_paypal">PayPal</string>
     <string name="str_mtn">MTN</string>
     <string name="str_other">Other</string>
@@ -901,6 +902,7 @@
     <string name="str_receive_bind_wechat_bind">Bind WeChat to collect payment</string>
     <string name="str_receive_bind_wechat_account">WeChat account</string>
     <string name="str_receive_bind_bank_bind">Binding bank card collection</string>
+    <string name="str_receive_bind_africacard_bind">Binding African bank card receipts</string>
     <string name="str_receive_bind_paypal_bind">Bound to PayPal for payment</string>
     <string name="str_receive_bind_paypal_account">PayPal account</string>
     <string name="str_receive_bind_mtn_account">MTN account</string>
@@ -910,6 +912,7 @@
     <string name="str_receive_bind_alipay_edit">Edit alipay collection</string>
     <string name="str_receive_bind_wechat_edit">Edit WeChat collection</string>
     <string name="str_receive_bind_bank_edit">Edit bank card collection</string>
+    <string name="str_receive_bind_africacard_edit">Edit African bank card receipts</string>
     <string name="str_receive_bind_paypal_edit">Edit PayPal collection</string>
     <string name="str_receive_bind_mtn_edits">Edit MTN collection</string>
     <string name="str_receive_bind_other_edit">Edit Other collection</string>
@@ -1024,11 +1027,18 @@
     <string name="red_green">Red rose green</string>
     <string name="green_red">Green rose red</string>
 
-    <string name="currency_cny">Renminbi CNY</string>
-    <string name="currency_usdt">Dollar USDT</string>
-    <string name="currency_eur">EUR EUR</string>
-    <string name="currency_ghs">Site GHS</string>
-    <string name="currency_nhn">Nigeria NGN</string>
+    <!--<string name="currency_cny">Renminbi CNY</string>-->
+    <!--<string name="currency_usdt">Dollar USDT</string>-->
+    <!--<string name="currency_eur">EUR EUR</string>-->
+    <!--<string name="currency_ghs">Site GHS</string>-->
+    <!--<string name="currency_nhn">Nigeria NGN</string>-->
+
+    <string name="currency_cny">Chinese Yuan（CNY）</string>
+    <string name="currency_usdt">US Dollars （USDT）</string>
+    <string name="currency_eur">Euro （EUR）</string>
+    <string name="currency_ghs">Site （GHS）</string>
+    <string name="currency_nhn">Nigeria （NGN）</string>
+
     <string name="today_s_limit">Today s limit</string>
     <string name="news">New</string>
     <string name="please_enter_a_label">Please enter a label</string>
@@ -1041,4 +1051,32 @@
     <string name="pricing_currency">Pricing currency</string>
     <string name="color_matching">Color matching</string>
     <string name="night_mode">Night mode</string>
+    <string name="red_envelope">Red envelope</string>
+    <string name="invite_friends_to_enjoy_rewards">Invite friends to enjoy rewards</string>
+    <string name="african_partner">African partner</string>
+    <string name="super_node">Super node</string>
+    <string name="quick_buy_coins">Quick buy coins</string>
+    <string name="support_etc">Support BTC, ETH, USDT, etc.</string>
+    <string name="latest_price">Latest price</string>
+    <string name="latest_price_cny">Latest price (CNY)</string>
+    <string name="quote_change">Quote change</string>
+    <string-array name="home_tab">
+        <item>OTC market</item>
+    </string-array>
+    <string name="legal_currency_transaction">OTC</string>//法币
+    <string name="currency_transaction">SPOT</string>//币币
+    <string name="search_currency">Search currency</string>
+    <string name="gear_position">Gear</string>
+    <string name="deep_consolidation">Deep consolidation</string>
+    <string name="more_new">More>></string>
+
+    <string-array name="kline_time">
+        <item>1min</item>
+        <item>5min</item>
+        <item>15min</item>
+        <item>30min</item>
+        <item>1hour</item>
+        <item>1day</item>
+        <item>1week</item>
+    </string-array>
 </resources>

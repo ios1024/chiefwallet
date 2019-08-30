@@ -121,6 +121,11 @@ public class ReceiptBindViewModel extends BaseViewModel {
                     typeVisiable.set(false);
                     qrCodeVisiable.set(false);
                     break;
+                case Constant.AfricaCard:
+                    titleText.set(App.getInstance().getString(R.string.str_receive_bind_africacard_bind));
+                    typeVisiable.set(false);
+                    qrCodeVisiable.set(false);
+                    break;
                 case Constant.PAYPAL:
                     titleText.set(App.getInstance().getString(R.string.str_receive_bind_paypal_bind));
                     typeText.set(App.getInstance().getString(R.string.str_receive_bind_paypal_account));
@@ -164,6 +169,14 @@ public class ReceiptBindViewModel extends BaseViewModel {
                     break;
                 case Constant.card:
                     titleText.set(App.getInstance().getString(R.string.str_receive_bind_bank_edit));
+                    typeVisiable.set(false);
+                    qrCodeVisiable.set(false);
+                    bankText.set(typeBean.getBank());
+                    branchText.set(typeBean.getBranch());
+                    bankAddressText.set(typeBean.getPayAddress());
+                    break;
+                case Constant.AfricaCard:
+                    titleText.set(App.getInstance().getString(R.string.str_receive_bind_africacard_edit));
                     typeVisiable.set(false);
                     qrCodeVisiable.set(false);
                     bankText.set(typeBean.getBank());
@@ -261,6 +274,24 @@ public class ReceiptBindViewModel extends BaseViewModel {
                 }
                 break;
             case Constant.card:
+                if (StringUtils.isEmpty(bankText.get())) {
+                    Toasty.showError(App.getInstance().getString(R.string.str_enter_bank_name));
+                } else if (StringUtils.isEmpty(branchText.get())) {
+                    Toasty.showError(App.getInstance().getString(R.string.str_enter_branch));
+                } else if (StringUtils.isEmpty(bankAddressText.get())) {
+                    Toasty.showError(App.getInstance().getString(R.string.str_enter_bank_number));
+                } else if (StringUtils.isEmpty(pwdText.get())) {
+                    Toasty.showError(App.getInstance().getString(R.string.trade_pwd_hint));
+                } else {
+                    payTypeAddBean.setBank(bankText.get());
+                    payTypeAddBean.setBranch(branchText.get());
+                    payTypeAddBean.setPayAddress(bankAddressText.get().trim());
+                    payTypeAddBean.setTradePwd(pwdText.get().trim());
+                    payTypeAddBean.setPayType(type);
+                    isVerifySuccess = true;
+                }
+                break;
+            case Constant.AfricaCard:
                 if (StringUtils.isEmpty(bankText.get())) {
                     Toasty.showError(App.getInstance().getString(R.string.str_enter_bank_name));
                 } else if (StringUtils.isEmpty(branchText.get())) {

@@ -23,7 +23,7 @@
 
             <TextView
                 style="@style/textBlackSmall"
-                android:text="币种"
+                android:text="@string/coin_type"
                 android:textColor="@color/gray_b2"
                 android:textSize="@dimen/font_mini"/>
 
@@ -34,7 +34,7 @@
 
             <TextView
                 style="@style/textBlackSmall"
-                android:text="最新价(CNY)"
+                android:text="@string/latest_price_cny"
                 android:textColor="@color/gray_b2"
                 android:textSize="@dimen/font_mini"/>
         </LinearLayout>

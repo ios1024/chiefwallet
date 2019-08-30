@@ -91,7 +91,7 @@
 
                     <TextView
                         style="@style/textBlackSmall"
-                        android:text="币种"
+                        android:text="@string/coin_type"
                         android:textColor="@color/gray_b2"
                         android:textSize="@dimen/font_mini"/>
 
@@ -116,7 +116,7 @@
 
                     <TextView
                         style="@style/textBlackSmall"
-                        android:text="最新价"
+                        android:text="@string/latest_price"
                         android:textColor="@color/gray_b2"
                         android:textSize="@dimen/font_mini"/>
 
@@ -141,7 +141,7 @@
 
                     <TextView
                         style="@style/textBlackSmall"
-                        android:text="涨跌幅"
+                        android:text="@string/quote_change"
                         android:textColor="@color/gray_b2"
                         android:textSize="@dimen/font_mini"/>
 

@@ -88,6 +88,7 @@ public class QuotesKlineViewModel extends BaseViewModel {
     //24H最低
     public ObservableField<String> _24hourlow = new ObservableField<>();
 
+
     //收藏 - 取消收藏
     public BindingCommand favorCommond = new BindingCommand(new BindingAction() {
         @Override
@@ -389,13 +390,35 @@ public class QuotesKlineViewModel extends BaseViewModel {
 
     //换算
     private String initConvert() {
-        return "≈￥" + MathUtils.getRundNumber(allThumbResult.getCnyLegalAsset(), 2, null);
+        //1.人民币 CNY 2.美元 USDT 3.欧元 EUR 4.赛地 GHS 5.尼日利亚 NGN
+        if (SPUtils.getInstance().getPricingCurrency().equals("1")) {
+            return "≈ " + Constant.CNY_symbol + MathUtils.getRundNumber(allThumbResult.getCnyLegalAsset(), 2, null);
+        } else if (SPUtils.getInstance().getPricingCurrency().equals("2")) {
+            return "≈ " + Constant.USD_symbol + MathUtils.getRundNumber(allThumbResult.getUsdLegalAsset(), 2, null);
+        } else if (SPUtils.getInstance().getPricingCurrency().equals("3")) {
+            return "≈ " + Constant.EUR_symbol + MathUtils.getRundNumber(allThumbResult.getEurLegalAsset(), 2, null);
+        } else if (SPUtils.getInstance().getPricingCurrency().equals("4")) {
+            return "≈ " + Constant.GHS_symbol + MathUtils.getRundNumber(allThumbResult.getGhsLegalAsset(), 2, null);
+        } else if (SPUtils.getInstance().getPricingCurrency().equals("5")) {
+            return "≈ " + Constant.NGN_symbol + MathUtils.getRundNumber(allThumbResult.getNgnLegalAsset(), 2, null);
+        } else
+            return "≈ " + Constant.CNY_symbol + MathUtils.getRundNumber(allThumbResult.getCnyLegalAsset(), 2, null);
+
     }
 
     private String initChg() {
         return (allThumbResult.getChg() >= 0 ? "+" : "") + MathUtils.getRundNumber(allThumbResult.getChg() * 100, 2, "########0.") + "%";
     }
 
+    //买盘 - 卖盘 数量
+    public String initNumTv() {
+        return App.getInstance().getString(R.string.number) + "(" + allThumbResult.getSymbol().split("/")[0] + ")";
+    }
+
+    //价格
+    public String initPriceTv() {
+        return App.getInstance().getString(R.string.price) + "(" + allThumbResult.getSymbol().split("/")[1] + ")";
+    }
 
     //24H量
     private String init24HourCount() {

@@ -45,6 +45,7 @@ public final class SPUtils {
     private String SPOTCOOKIE = "spotCookie";
 
     private String GAINMODE = "gainMode";
+    private String PRICINGCURRENCY = "pricingCurrency";
 
     /*-----------TGC-----------*/
     public void setTgc(String tgc) {
@@ -182,7 +183,18 @@ public final class SPUtils {
     public boolean getGainMode() {
         return getInstance().getBoolean(GAINMODE, true);
     }
+
     /*-----------K线颜色-----------*/
+    /*-----------计价货币-----------*/
+    public void setPricingCurrency(String pricingCurrency) {
+        getInstance().put(PRICINGCURRENCY, pricingCurrency);
+    }
+
+    //1.人民币 CNY 2.美元 USDT 3.欧元 EUR 4.赛地 GHS 5.尼日利亚 NGN
+    public String getPricingCurrency() {
+        return getInstance().getString(PRICINGCURRENCY, "1");
+    }
+    /*-----------计价货币-----------*/
 
     /**
      * Return the single {@link SPUtils} instance

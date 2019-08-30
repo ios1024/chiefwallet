@@ -154,6 +154,9 @@ public class AllThumbResult implements Parcelable {
         private int fundRates;
         private double usdLegalAsset;
         private double cnyLegalAsset;
+        private double eurLegalAsset;
+        private double ghsLegalAsset;
+        private double ngnLegalAsset;
         private String baseCoin;
         private String tradeCoin;
 
@@ -181,6 +184,9 @@ public class AllThumbResult implements Parcelable {
             fundRates = in.readInt();
             usdLegalAsset = in.readDouble();
             cnyLegalAsset = in.readDouble();
+            eurLegalAsset = in.readDouble();
+            ghsLegalAsset = in.readDouble();
+            ngnLegalAsset = in.readDouble();
             baseCoin = in.readString();
             tradeCoin = in.readString();
         }
@@ -196,6 +202,30 @@ public class AllThumbResult implements Parcelable {
                 return new DataBean[size];
             }
         };
+
+        public double getEurLegalAsset() {
+            return eurLegalAsset;
+        }
+
+        public void setEurLegalAsset(double eurLegalAsset) {
+            this.eurLegalAsset = eurLegalAsset;
+        }
+
+        public double getGhsLegalAsset() {
+            return ghsLegalAsset;
+        }
+
+        public void setGhsLegalAsset(double ghsLegalAsset) {
+            this.ghsLegalAsset = ghsLegalAsset;
+        }
+
+        public double getNgnLegalAsset() {
+            return ngnLegalAsset;
+        }
+
+        public void setNgnLegalAsset(double ngnLegalAsset) {
+            this.ngnLegalAsset = ngnLegalAsset;
+        }
 
         public String getSymbol() {
             return symbol;
@@ -382,7 +412,20 @@ public class AllThumbResult implements Parcelable {
 
         //
         public String initConvert() {
-            return "≈￥" + MathUtils.getRundNumber(cnyLegalAsset, 2, null);
+            //1.人民币 CNY 2.美元 USDT 3.欧元 EUR 4.赛地 GHS 5.尼日利亚 NGN
+            if (SPUtils.getInstance().getPricingCurrency().equals("1")) {
+                return "≈ " + Constant.CNY_symbol + MathUtils.getRundNumber(cnyLegalAsset, 2, null);
+            } else if (SPUtils.getInstance().getPricingCurrency().equals("2")) {
+                return "≈ " + Constant.USD_symbol + MathUtils.getRundNumber(usdLegalAsset, 2, null);
+            } else if (SPUtils.getInstance().getPricingCurrency().equals("3")) {
+                return "≈ " + Constant.EUR_symbol + MathUtils.getRundNumber(eurLegalAsset, 2, null);
+            } else if (SPUtils.getInstance().getPricingCurrency().equals("4")) {
+                return "≈ " + Constant.GHS_symbol + MathUtils.getRundNumber(ghsLegalAsset, 2, null);
+            } else if (SPUtils.getInstance().getPricingCurrency().equals("5")) {
+                return "≈ " + Constant.NGN_symbol + MathUtils.getRundNumber(ngnLegalAsset, 2, null);
+            } else
+                return "≈ " + Constant.CNY_symbol + MathUtils.getRundNumber(cnyLegalAsset, 2, null);
+
         }
 
         //现价
@@ -489,6 +532,9 @@ public class AllThumbResult implements Parcelable {
             dest.writeInt(fundRates);
             dest.writeDouble(usdLegalAsset);
             dest.writeDouble(cnyLegalAsset);
+            dest.writeDouble(eurLegalAsset);
+            dest.writeDouble(ghsLegalAsset);
+            dest.writeDouble(ngnLegalAsset);
             dest.writeString(baseCoin);
             dest.writeString(tradeCoin);
         }

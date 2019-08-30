@@ -222,12 +222,19 @@
                         <EditText
                             android:id="@+id/ad_trade_number"
                             style="@style/trade_input"
-                            android:hint="@{newAdCreateViewModel.tradeNumberHint}"
+                            android:hint="@string/str_set_buy_amount"
                             android:inputType="numberDecimal"
                             android:text="@={newAdCreateViewModel.tradeNumber}"
                             android:textSize="@dimen/font_normal" />
 
                     </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="@{newAdCreateViewModel.tradeNumberHint}"
+                        android:textColor="#FFA4ABC0"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <!--固定价格-->

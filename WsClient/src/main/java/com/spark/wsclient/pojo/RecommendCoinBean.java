@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 import java.util.List;
 
+import me.spark.mvvm.base.Constant;
 import me.spark.mvvm.utils.DfUtils;
 import me.spark.mvvm.utils.MathUtils;
 import me.spark.mvvm.utils.SPUtils;
@@ -131,6 +132,10 @@ public class RecommendCoinBean implements Parcelable {
         private double high;
         private int coinScreenScale;
         private double cnyLegalAsset;
+        private double eurLegalAsset;
+        private double ghsLegalAsset;
+        private double ngnLegalAsset;
+
         private int baseCoinScale;
         private double low;
         private String zone;
@@ -143,6 +148,9 @@ public class RecommendCoinBean implements Parcelable {
 
         protected DataBean(Parcel in) {
             usdLegalAsset = in.readDouble();
+            eurLegalAsset = in.readDouble();
+            ghsLegalAsset = in.readDouble();
+            ngnLegalAsset = in.readDouble();
             symbol = in.readString();
             chg = in.readDouble();
             coinScale = in.readInt();
@@ -175,6 +183,30 @@ public class RecommendCoinBean implements Parcelable {
                 return new DataBean[size];
             }
         };
+
+        public double getEurLegalAsset() {
+            return eurLegalAsset;
+        }
+
+        public void setEurLegalAsset(double eurLegalAsset) {
+            this.eurLegalAsset = eurLegalAsset;
+        }
+
+        public double getGhsLegalAsset() {
+            return ghsLegalAsset;
+        }
+
+        public void setGhsLegalAsset(double ghsLegalAsset) {
+            this.ghsLegalAsset = ghsLegalAsset;
+        }
+
+        public double getNgnLegalAsset() {
+            return ngnLegalAsset;
+        }
+
+        public void setNgnLegalAsset(double ngnLegalAsset) {
+            this.ngnLegalAsset = ngnLegalAsset;
+        }
 
         public double getUsdLegalAsset() {
             return usdLegalAsset;
@@ -399,8 +431,26 @@ public class RecommendCoinBean implements Parcelable {
         }
 
         public String initConvert() {
-            return "≈" + MathUtils.getRundNumber(cnyLegalAsset, 2, null)
-                    + " CNY";
+            //1.人民币 CNY 2.美元 USDT 3.欧元 EUR 4.赛地 GHS 5.尼日利亚 NGN
+            if (SPUtils.getInstance().getPricingCurrency().equals("1")) {
+                return "≈" + MathUtils.getRundNumber(cnyLegalAsset, 2, null)
+                        + Constant.CNY;
+            } else if (SPUtils.getInstance().getPricingCurrency().equals("2")) {
+                return "≈" + MathUtils.getRundNumber(usdLegalAsset, 2, null)
+                        + Constant.USD;
+            } else if (SPUtils.getInstance().getPricingCurrency().equals("3")) {
+                return "≈" + MathUtils.getRundNumber(eurLegalAsset, 2, null)
+                        + Constant.EUR;
+            } else if (SPUtils.getInstance().getPricingCurrency().equals("4")) {
+                return "≈" + MathUtils.getRundNumber(ghsLegalAsset, 2, null)
+                        + Constant.GHS;
+            } else if (SPUtils.getInstance().getPricingCurrency().equals("5")) {
+                return "≈" + MathUtils.getRundNumber(ngnLegalAsset, 2, null)
+                        + Constant.NGN;
+            } else
+                return "≈" + MathUtils.getRundNumber(cnyLegalAsset, 2, null)
+                        + Constant.CNY;
+
         }
     }
 }

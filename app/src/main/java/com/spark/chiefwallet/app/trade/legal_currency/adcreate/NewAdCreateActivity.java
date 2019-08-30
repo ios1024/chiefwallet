@@ -152,7 +152,7 @@ public class NewAdCreateActivity extends BaseActivity<ActivityNewAdCreateBinding
 
             @Override
             public void afterTextChanged(Editable s) {
-//                viewModel.countChange();
+                viewModel.countChange();
             }
         });
 

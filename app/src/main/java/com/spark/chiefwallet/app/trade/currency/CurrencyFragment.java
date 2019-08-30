@@ -28,6 +28,7 @@ import com.spark.chiefwallet.ui.RvLoadMoreView;
 import com.spark.chiefwallet.ui.popup.B2BBuyTypePopup;
 import com.spark.chiefwallet.ui.popup.B2BDrawerPopup;
 import com.spark.chiefwallet.ui.popup.CancelOrderPopup;
+import com.spark.chiefwallet.ui.popup.DepthmergePopup;
 import com.spark.chiefwallet.ui.popup.GearPositionPopup;
 import com.spark.chiefwallet.ui.popup.impl.OnTypeChooseListener;
 import com.spark.chiefwallet.ui.seekbar.SeekBar;
@@ -77,6 +78,7 @@ public class CurrencyFragment extends BaseFragment<FragmentCurrentBinding, Curre
     private PointLengthFilter mPriceFilter;                     //位数限制
     private PointLengthFilter mNumFilter;
     private boolean isDepthMerge = false;
+    private int isDepthMergeValue = 4;
 
     public int initContentView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return R.layout.fragment_current;
@@ -343,6 +345,13 @@ public class CurrencyFragment extends BaseFragment<FragmentCurrentBinding, Curre
                 if (App.getInstance().isAppLogin()) {
                     refresh();
                 }
+
+                defaultSize = 50;
+                binding.gearTv.setText("50");
+
+                isDepthMerge = true;
+                isDepthMergeValue = 4;
+                binding.depthMerge.setText("深度合并");
             }
         });
 
@@ -384,8 +393,8 @@ public class CurrencyFragment extends BaseFragment<FragmentCurrentBinding, Curre
                         if (i == 0) {
                             mMarketSellList.add(mMarketSellTempList.get(i));
                         } else {
-                            if (DfUtils.numberFormatDoubleDown(mMarketSellTempList.get(i).getPrice(), 2)
-                                    == DfUtils.numberFormatDoubleDown(mMarketSellList.get(mMarketSellList.size() - 1).getPrice(), 2)) {
+                            if (DfUtils.numberFormatDoubleDown(mMarketSellTempList.get(i).getPrice(), isDepthMergeValue)
+                                    == DfUtils.numberFormatDoubleDown(mMarketSellList.get(mMarketSellList.size() - 1).getPrice(), isDepthMergeValue)) {
                                 AskBean askBean = mMarketSellTempList.get(i);
                                 askBean.setAmount(askBean.getAmount() + mMarketSellTempList.get(i - 1).getAmount());
                                 mMarketSellList.remove(mMarketSellList.size() - 1);
@@ -413,8 +422,8 @@ public class CurrencyFragment extends BaseFragment<FragmentCurrentBinding, Curre
                         if (i == 0) {
                             mMarketBuyList.add(mMarketBuyTempList.get(i));
                         } else {
-                            if (DfUtils.numberFormatDoubleDown(mMarketBuyTempList.get(i).getPrice(), 2)
-                                    == DfUtils.numberFormatDoubleDown(mMarketBuyList.get(mMarketBuyList.size() - 1).getPrice(), 2)) {
+                            if (DfUtils.numberFormatDoubleDown(mMarketBuyTempList.get(i).getPrice(), isDepthMergeValue)
+                                    == DfUtils.numberFormatDoubleDown(mMarketBuyList.get(mMarketBuyList.size() - 1).getPrice(), isDepthMergeValue)) {
                                 BidBean bidBean = mMarketBuyTempList.get(i);
                                 bidBean.setAmount(bidBean.getAmount() + mMarketBuyTempList.get(i - 1).getAmount());
                                 mMarketBuyList.remove(mMarketBuyList.size() - 1);
@@ -587,8 +596,17 @@ public class CurrencyFragment extends BaseFragment<FragmentCurrentBinding, Curre
                         .show();
                 break;
             case R.id.depth_merge:
-                isDepthMerge = !isDepthMerge;
-                binding.depthMerge.setBackground(getResources().getDrawable(isDepthMerge ? R.drawable.depth_merge_select_2dp_bg : R.drawable.depth_merge_2dp_bg));
+                new XPopup.Builder(getContext())
+                        .atView(v)
+                        .asCustom(new DepthmergePopup(getContext(), viewModel.allThumbResult.getBaseCoinScreenScale(), new OnTypeChooseListener() {
+                            @Override
+                            public void onChooseType(int type, String content) {
+                                isDepthMerge = true;
+                                isDepthMergeValue = type;
+                                binding.depthMerge.setText(content);
+                            }
+                        }))
+                        .show();
                 break;
         }
     }

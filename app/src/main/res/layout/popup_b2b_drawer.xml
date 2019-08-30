@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.spark.chiefwallet.ui.progresslayout.ProgressLinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.spark.chiefwallet.ui.progresslayout.ProgressLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawer_root"
     android:layout_width="272dp"
@@ -19,7 +18,7 @@
         android:layout_marginLeft="16dp"
         android:text="@string/b2b"
         android:textSize="@dimen/font_lager"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <com.spark.chiefwallet.ui.tablayout.SlidingTabLayout
         android:id="@+id/drawer_tab"
@@ -34,10 +33,9 @@
         app:tl_textBold="BOTH"
         app:tl_textSelectColor="#242C46"
         app:tl_textUnselectColor="#A4ABC0"
-        app:tl_textsize="@dimen/font_mini"/>
+        app:tl_textsize="@dimen/font_mini" />
 
-    <View
-        style="@style/line_ccc"/>
+    <View style="@style/line_ccc" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -50,25 +48,24 @@
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:layout_marginLeft="16dp"
-            android:src="@drawable/svg_quotes_search_dark"/>
+            android:src="@drawable/svg_quotes_search_dark" />
 
         <EditText
             android:id="@+id/quotes_input"
             style="@style/trade_input"
-            android:hint="搜索币种"
+            android:hint="@string/search_currency"
             android:imeOptions="actionSearch"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:singleLine="true"
-            android:textSize="@dimen/font_mini"/>
+            android:textSize="@dimen/font_mini" />
     </LinearLayout>
 
-    <View
-        style="@style/line_ccc"/>
+    <View style="@style/line_ccc" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/drawer_tab_vp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
 </com.spark.chiefwallet.ui.progresslayout.ProgressLinearLayout>

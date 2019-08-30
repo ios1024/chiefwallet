@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,6 +62,7 @@ public class RecommendCoinFragment extends BaseFragment<FragmentRecommendCoinBin
     public void initView() {
         mDataBeans = App.gson.fromJson(getArguments().getString(ListJson), new TypeToken<List<RecommendCoinBean.DataBean>>() {
         }.getType());
+        Log.i("dwqdqasdsdd", getArguments().getString(ListJson));
         viewModel.initRecommendCoinData(mDataBeans);
         mRecommendCoinAdapter = new RecommendCoinAdapter(mDataBeans);
         binding.rv.setLayoutManager(new GridLayoutManager(getContext(), 3));
@@ -68,6 +70,7 @@ public class RecommendCoinFragment extends BaseFragment<FragmentRecommendCoinBin
         mRecommendCoinAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+
                 AllThumbResult.DataBean dataBean = new AllThumbResult.DataBean();
                 dataBean.setUsdLegalAsset(mDataBeans.get(position).getUsdLegalAsset());
                 dataBean.setChg(mDataBeans.get(position).getChg());

@@ -46,27 +46,27 @@
                     android:orientation="horizontal">
 
                     <!--<TextView-->
-                        <!--style="@style/textBlackSmall"-->
-                        <!--android:layout_width="32dp"-->
-                        <!--android:layout_height="32dp"-->
-                        <!--android:gravity="center"-->
-                        <!--android:text="@{findPageResult.getNameFirstChar()}"-->
-                        <!--android:textColor="@color/white"-->
-                        <!--android:textStyle="bold"-->
-                        <!--android:visibility="gone"-->
-                        <!--app:bl_corners_radius="20dp"-->
-                        <!--app:bl_solid_color="@color/color_first_char" />-->
+                    <!--style="@style/textBlackSmall"-->
+                    <!--android:layout_width="32dp"-->
+                    <!--android:layout_height="32dp"-->
+                    <!--android:gravity="center"-->
+                    <!--android:text="@{findPageResult.getNameFirstChar()}"-->
+                    <!--android:textColor="@color/white"-->
+                    <!--android:textStyle="bold"-->
+                    <!--android:visibility="gone"-->
+                    <!--app:bl_corners_radius="20dp"-->
+                    <!--app:bl_solid_color="@color/color_first_char" />-->
 
                     <RelativeLayout
                         android:layout_width="32dp"
                         android:layout_height="32dp">
 
                         <!--<com.spark.chiefwallet.ui.CircleImageView-->
-                            <!--android:id="@+id/ivHeader"-->
-                            <!--url="@{findPageResult.Avatar()}"-->
-                            <!--android:layout_width="38dp"-->
-                            <!--android:layout_height="38dp"-->
-                            <!--android:src="@mipmap/head" />-->
+                        <!--android:id="@+id/ivHeader"-->
+                        <!--url="@{findPageResult.Avatar()}"-->
+                        <!--android:layout_width="38dp"-->
+                        <!--android:layout_height="38dp"-->
+                        <!--android:src="@mipmap/head" />-->
 
                         <TextView
                             style="@style/textBlackSmall"
@@ -78,6 +78,7 @@
                             android:textStyle="bold"
                             app:bl_corners_radius="20dp"
                             app:bl_solid_color="@color/color_first_char" />
+
                         <ImageView
                             android:layout_width="14sp"
                             android:layout_height="14sp"
@@ -166,6 +167,12 @@
                         android:layout_height="20dp"
                         android:src="@drawable/svg_bankpay"
                         android:visibility="@{findPageResult.isSupportBankPay() ? View.VISIBLE : View.GONE}" />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/svg_bankpay"
+                        android:visibility="@{findPageResult.isAfricanBankPay() ? View.VISIBLE : View.GONE}" />
 
                     <ImageView
                         android:layout_width="20dp"

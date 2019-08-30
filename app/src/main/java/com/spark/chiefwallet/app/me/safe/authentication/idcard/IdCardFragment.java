@@ -48,7 +48,7 @@ public class IdCardFragment extends BaseFragment<FragmentIdCardBinding, IdCardVi
     @Override
     public void initView() {
         super.initView();
-        viewModel.getArticleList();
+//        viewModel.getArticleList();
 
         binding.wechatCb.setOnCheckedChangeListener(new SmoothCheckBox.OnCheckedChangeListener() {
             @Override

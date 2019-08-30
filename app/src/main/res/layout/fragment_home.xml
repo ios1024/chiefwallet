@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
             name="homeViewModel"
-            type="com.spark.chiefwallet.app.home.HomeViewModel"/>
+            type="com.spark.chiefwallet.app.home.HomeViewModel" />
     </data>
 
     <com.spark.chiefwallet.ui.progresslayout.ProgressLinearLayout
@@ -28,7 +28,7 @@
             <ImageView
                 android:layout_width="129dp"
                 android:layout_height="26dp"
-                android:src="@mipmap/logo"/>
+                android:src="@mipmap/logo" />
         </LinearLayout>
 
         <android.support.v4.widget.SwipeRefreshLayout
@@ -76,14 +76,15 @@
                         <ImageView
                             android:layout_width="16dp"
                             android:layout_height="16dp"
-                            android:src="@drawable/svg_notice"/>
+                            android:padding="2dp"
+                            android:src="@drawable/svg_notice" />
 
                         <com.gongwen.marqueen.MarqueeView
                             android:id="@+id/announce"
                             android:layout_width="0dp"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_marginLeft="12dp"
-                            android:layout_weight="1"/>
+                            android:layout_weight="1" />
                     </LinearLayout>
 
                     <!--行情-->
@@ -91,14 +92,14 @@
                         android:id="@+id/recommend_vp"
                         android:layout_width="match_parent"
                         android:layout_height="126dp"
-                        android:padding="10dp"/>
+                        android:padding="10dp" />
 
                     <net.lucode.hackware.magicindicator.MagicIndicator
                         android:id="@+id/recommend_indicator"
                         android:layout_width="42dp"
                         android:layout_height="2dp"
                         android:layout_gravity="center"
-                        android:layout_marginBottom="10dp"/>
+                        android:layout_marginBottom="10dp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -133,17 +134,19 @@
                                         style="@style/textBlackSmall"
                                         android:text="@{homeViewModel.chartSmybol}"
                                         android:textSize="@dimen/font_lager"
-                                        android:textStyle="bold"/>
+                                        android:textStyle="bold" />
 
                                     <TextView
                                         style="@style/textBlackSmall"
                                         android:layout_marginLeft="4dp"
                                         android:layout_weight="1"
+                                        android:layout_width="0dp"
+                                        android:maxLines="1"
                                         android:gravity="right"
                                         android:text="@{homeViewModel.chartChg}"
                                         android:textColor="@{homeViewModel.riseOrFall ? @color/fall : @color/rise}"
                                         android:textSize="@dimen/font_lager"
-                                        android:textStyle="bold"/>
+                                        android:textStyle="bold" />
                                 </LinearLayout>
 
                                 <TextView
@@ -153,19 +156,19 @@
                                     android:paddingLeft="10dp"
                                     android:text="@{homeViewModel.chartClose}"
                                     android:textSize="@dimen/font_xxlager"
-                                    android:textStyle="bold"/>
+                                    android:textStyle="bold" />
                             </LinearLayout>
 
                             <com.github.mikephil.charting.charts.LineChart
                                 android:id="@+id/lineChart"
                                 android:layout_width="match_parent"
                                 android:layout_height="0dp"
-                                android:layout_weight="1"/>
+                                android:layout_weight="1" />
                         </LinearLayout>
 
                         <View
                             android:layout_width="10dp"
-                            android:layout_height="match_parent"/>
+                            android:layout_height="match_parent" />
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -190,7 +193,7 @@
                                 <ImageView
                                     android:layout_width="22dp"
                                     android:layout_height="22dp"
-                                    android:src="@drawable/svg_redpacket"/>
+                                    android:src="@drawable/svg_redpacket" />
 
                                 <LinearLayout
                                     android:layout_width="wrap_content"
@@ -200,21 +203,21 @@
 
                                     <TextView
                                         style="@style/textBlackSmall"
-                                        android:text="红包"
-                                        android:textStyle="bold"/>
+                                        android:text="@string/red_envelope"
+                                        android:textStyle="bold" />
 
                                     <TextView
                                         style="@style/textBlackSmall"
-                                        android:text="邀请好友立享奖励"
+                                        android:text="@string/invite_friends_to_enjoy_rewards"
                                         android:textColor="@color/gray_a4"
-                                        android:textSize="@dimen/font_xmini"/>
+                                        android:textSize="@dimen/font_xmini" />
                                 </LinearLayout>
                             </LinearLayout>
 
                             <View
                                 android:layout_width="match_parent"
                                 android:layout_height="10dp"
-                                android:background="@color/windowBackground"/>
+                                android:background="@color/windowBackground" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -232,19 +235,19 @@
                                 <ImageView
                                     android:layout_width="22dp"
                                     android:layout_height="22dp"
-                                    android:src="@drawable/svg_partner"/>
+                                    android:src="@drawable/svg_partner" />
 
                                 <TextView
                                     style="@style/textBlackSmall"
                                     android:layout_marginLeft="10dp"
-                                    android:text="非洲合伙人"
-                                    android:textStyle="bold"/>
+                                    android:text="@string/african_partner"
+                                    android:textStyle="bold" />
                             </LinearLayout>
 
                             <View
                                 android:layout_width="match_parent"
                                 android:layout_height="10dp"
-                                android:background="@color/windowBackground"/>
+                                android:background="@color/windowBackground" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -262,13 +265,13 @@
                                 <ImageView
                                     android:layout_width="22dp"
                                     android:layout_height="22dp"
-                                    android:src="@drawable/svg_supernode"/>
+                                    android:src="@drawable/svg_supernode" />
 
                                 <TextView
                                     style="@style/textBlackSmall"
                                     android:layout_marginLeft="10dp"
-                                    android:text="超级节点"
-                                    android:textStyle="bold"/>
+                                    android:text="@string/super_node"
+                                    android:textStyle="bold" />
                             </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
@@ -293,16 +296,16 @@
                             <TextView
                                 style="@style/textBlackLarge"
                                 android:layout_marginLeft="20dp"
-                                android:text="快捷买币"
+                                android:text="@string/quick_buy_coins"
                                 android:textColor="@color/white"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold" />
 
                             <TextView
                                 style="@style/textBlackSmall"
                                 android:layout_marginLeft="20dp"
-                                android:text="支持BTC,ETH,USDT等"
+                                android:text="@string/support_etc"
                                 android:textColor="@color/white"
-                                android:textSize="@dimen/font_xmini"/>
+                                android:textSize="@dimen/font_xmini" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -319,12 +322,12 @@
                         app:tl_textBold="BOTH"
                         app:tl_textSelectColor="@color/tab_text_selected_color"
                         app:tl_textUnselectColor="@color/tab_text_unselected_color"
-                        app:tl_textsize="@dimen/font_small"/>
+                        app:tl_textsize="@dimen/font_small" />
 
                     <com.spark.chiefwallet.ui.AutoHeightViewPager
                         android:id="@+id/tab_vp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
             </android.support.v4.widget.NestedScrollView>
         </android.support.v4.widget.SwipeRefreshLayout>

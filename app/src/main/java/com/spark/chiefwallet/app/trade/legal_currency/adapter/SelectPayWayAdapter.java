@@ -31,12 +31,12 @@ import me.spark.mvvm.base.Constant;
 public class SelectPayWayAdapter extends BaseQuickAdapter<PayListBean.DataBean, SelectPayWayAdapter.PayWayViewHolder> {
     private OnSelectListener mOnSelectListener;
 
-    private int card = 0;
-    private int alipay = 0;
-    private int wechat = 0;
-    private int PAYPAL = 0;
-    private int MTN = 0;
-    private int other = 0;
+//    private int card;
+//    private int alipay;
+//    private int wechat;
+//    private int PAYPAL;
+//    private int MTN;
+//    private int other;
 
     public interface OnSelectListener {
         void onSelect(PayListBean.DataBean dataBean);
@@ -74,43 +74,43 @@ public class SelectPayWayAdapter extends BaseQuickAdapter<PayListBean.DataBean, 
             }
         });
 
-        if (item.getPayType().equals(Constant.card) && card == 0) {
-            helper.setVisible(R.id.ll_ivt, true);
-            helper.setImageResource(R.id.ivType2, R.drawable.svg_bankpay);
-            helper.setText(R.id.tvBankName2, App.getInstance().getString(R.string.str_bank));
-            card = 1;
-        }
-
-        if (item.getPayType().equals(Constant.alipay) && alipay == 0) {
-            helper.setVisible(R.id.ll_ivt, true);
-            helper.setImageResource(R.id.ivType2, R.drawable.svg_alipay);
-            helper.setText(R.id.tvBankName2, App.getInstance().getString(R.string.str_alipay));
-            alipay = 1;
-        }
-        if (item.getPayType().equals(Constant.wechat) && wechat == 0) {
-            helper.setVisible(R.id.ll_ivt, true);
-            helper.setImageResource(R.id.ivType2, R.drawable.svg_wechatpay);
-            helper.setText(R.id.tvBankName2, App.getInstance().getString(R.string.str_wechat));
-            wechat = 1;
-        }
-        if (item.getPayType().equals(Constant.PAYPAL) && PAYPAL == 0) {
-            helper.setVisible(R.id.ll_ivt, true);
-            helper.setImageResource(R.id.ivType2, R.drawable.svg_pay_paypal);
-            helper.setText(R.id.tvBankName2, App.getInstance().getString(R.string.str_paypal));
-            PAYPAL = 1;
-        }
-        if (item.getPayType().equals(Constant.MTN) && MTN == 0) {
-            helper.setVisible(R.id.ll_ivt, true);
-            helper.setImageResource(R.id.ivType2, R.drawable.svg_pay_mtn);
-            helper.setText(R.id.tvBankName2, App.getInstance().getString(R.string.str_mtn));
-            MTN = 1;
-        }
-        if (item.getPayType().equals(Constant.other) && other == 0) {
-            helper.setVisible(R.id.ll_ivt, true);
-            helper.setImageResource(R.id.ivType2, R.drawable.svg_pay_other);
-            helper.setText(R.id.tvBankName2, App.getInstance().getString(R.string.str_other));
-            other = 1;
-        }
+//        if (item.getPayType().equals(Constant.card) && card == 0) {
+//            helper.setVisible(R.id.ll_ivt, true);
+//            helper.setImageResource(R.id.ivType2, R.drawable.svg_bankpay);
+//            helper.setText(R.id.tvBankName2, App.getInstance().getString(R.string.str_bank));
+//            card = 1;
+//        }
+//
+//        if (item.getPayType().equals(Constant.alipay) && alipay == 0) {
+//            helper.setVisible(R.id.ll_ivt, true);
+//            helper.setImageResource(R.id.ivType2, R.drawable.svg_alipay);
+//            helper.setText(R.id.tvBankName2, App.getInstance().getString(R.string.str_alipay));
+//            alipay = 1;
+//        }
+//        if (item.getPayType().equals(Constant.wechat) && wechat == 0) {
+//            helper.setVisible(R.id.ll_ivt, true);
+//            helper.setImageResource(R.id.ivType2, R.drawable.svg_wechatpay);
+//            helper.setText(R.id.tvBankName2, App.getInstance().getString(R.string.str_wechat));
+//            wechat = 1;
+//        }
+//        if (item.getPayType().equals(Constant.PAYPAL) && PAYPAL == 0) {
+//            helper.setVisible(R.id.ll_ivt, true);
+//            helper.setImageResource(R.id.ivType2, R.drawable.svg_pay_paypal);
+//            helper.setText(R.id.tvBankName2, App.getInstance().getString(R.string.str_paypal));
+//            PAYPAL = 1;
+//        }
+//        if (item.getPayType().equals(Constant.MTN) && MTN == 0) {
+//            helper.setVisible(R.id.ll_ivt, true);
+//            helper.setImageResource(R.id.ivType2, R.drawable.svg_pay_mtn);
+//            helper.setText(R.id.tvBankName2, App.getInstance().getString(R.string.str_mtn));
+//            MTN = 1;
+//        }
+//        if (item.getPayType().equals(Constant.other) && other == 0) {
+//            helper.setVisible(R.id.ll_ivt, true);
+//            helper.setImageResource(R.id.ivType2, R.drawable.svg_pay_other);
+//            helper.setText(R.id.tvBankName2, App.getInstance().getString(R.string.str_other));
+//            other = 1;
+//        }
         switch (item.getPayType()) {
             case Constant.alipay:
                 if (item.getIsSelected() == 1) {
@@ -120,6 +120,8 @@ public class SelectPayWayAdapter extends BaseQuickAdapter<PayListBean.DataBean, 
                     helper.setTextColor(R.id.tvName, App.getInstance().getResources().getColor(R.color.black));
                     helper.setTextColor(R.id.tvBankNum, App.getInstance().getResources().getColor(R.color.black));
                 }
+                helper.setImageResource(R.id.ivType2, R.drawable.svg_alipay);
+                helper.setText(R.id.tvBankName2, App.getInstance().getString(R.string.str_alipay));
                 helper.setImageResource(R.id.ivType, R.drawable.svg_alipay);
                 helper.setText(R.id.tvBankName, App.getInstance().getString(R.string.str_alipay));
                 break;
@@ -131,6 +133,8 @@ public class SelectPayWayAdapter extends BaseQuickAdapter<PayListBean.DataBean, 
                     helper.setTextColor(R.id.tvName, App.getInstance().getResources().getColor(R.color.black));
                     helper.setTextColor(R.id.tvBankNum, App.getInstance().getResources().getColor(R.color.black));
                 }
+                helper.setImageResource(R.id.ivType2, R.drawable.svg_wechatpay);
+                helper.setText(R.id.tvBankName2, App.getInstance().getString(R.string.str_wechat));
                 helper.setImageResource(R.id.ivType, R.drawable.svg_wechatpay);
                 helper.setText(R.id.tvBankName, App.getInstance().getString(R.string.str_wechat));
                 break;
@@ -142,6 +146,21 @@ public class SelectPayWayAdapter extends BaseQuickAdapter<PayListBean.DataBean, 
                     helper.setTextColor(R.id.tvName, App.getInstance().getResources().getColor(R.color.black));
                     helper.setTextColor(R.id.tvBankNum, App.getInstance().getResources().getColor(R.color.black));
                 }
+                helper.setImageResource(R.id.ivType2, R.drawable.svg_bankpay);
+                helper.setText(R.id.tvBankName2, App.getInstance().getString(R.string.str_bank));
+                helper.setImageResource(R.id.ivType, R.drawable.svg_bankpay);
+                helper.setText(R.id.tvBankName, item.getBank());
+                break;
+            case Constant.AfricaCard:
+                if (item.getIsSelected() == 1) {
+                    helper.setTextColor(R.id.tvName, App.getInstance().getResources().getColor(R.color.base));
+                    helper.setTextColor(R.id.tvBankNum, App.getInstance().getResources().getColor(R.color.base));
+                } else {
+                    helper.setTextColor(R.id.tvName, App.getInstance().getResources().getColor(R.color.black));
+                    helper.setTextColor(R.id.tvBankNum, App.getInstance().getResources().getColor(R.color.black));
+                }
+                helper.setImageResource(R.id.ivType2, R.drawable.svg_bankpay);
+                helper.setText(R.id.tvBankName2, App.getInstance().getString(R.string.str_africa_bank));
                 helper.setImageResource(R.id.ivType, R.drawable.svg_bankpay);
                 helper.setText(R.id.tvBankName, item.getBank());
                 break;
@@ -153,6 +172,8 @@ public class SelectPayWayAdapter extends BaseQuickAdapter<PayListBean.DataBean, 
                     helper.setTextColor(R.id.tvName, App.getInstance().getResources().getColor(R.color.black));
                     helper.setTextColor(R.id.tvBankNum, App.getInstance().getResources().getColor(R.color.black));
                 }
+                helper.setImageResource(R.id.ivType2, R.drawable.svg_pay_paypal);
+                helper.setText(R.id.tvBankName2, App.getInstance().getString(R.string.str_paypal));
                 helper.setImageResource(R.id.ivType, R.drawable.svg_pay_paypal);
                 helper.setText(R.id.tvBankName, App.getInstance().getString(R.string.str_paypal));
                 break;
@@ -164,6 +185,8 @@ public class SelectPayWayAdapter extends BaseQuickAdapter<PayListBean.DataBean, 
                     helper.setTextColor(R.id.tvName, App.getInstance().getResources().getColor(R.color.black));
                     helper.setTextColor(R.id.tvBankNum, App.getInstance().getResources().getColor(R.color.black));
                 }
+                helper.setImageResource(R.id.ivType2, R.drawable.svg_pay_mtn);
+                helper.setText(R.id.tvBankName2, App.getInstance().getString(R.string.str_mtn));
                 helper.setImageResource(R.id.ivType, R.drawable.svg_pay_mtn);
                 helper.setText(R.id.tvBankName, App.getInstance().getString(R.string.str_mtn));
                 break;
@@ -175,6 +198,8 @@ public class SelectPayWayAdapter extends BaseQuickAdapter<PayListBean.DataBean, 
                     helper.setTextColor(R.id.tvName, App.getInstance().getResources().getColor(R.color.black));
                     helper.setTextColor(R.id.tvBankNum, App.getInstance().getResources().getColor(R.color.black));
                 }
+                helper.setImageResource(R.id.ivType2, R.drawable.svg_pay_other);
+                helper.setText(R.id.tvBankName2, App.getInstance().getString(R.string.str_other));
                 helper.setImageResource(R.id.ivType, R.drawable.svg_pay_other);
                 helper.setText(R.id.tvBankName, App.getInstance().getString(R.string.str_other));
                 break;
@@ -183,6 +208,8 @@ public class SelectPayWayAdapter extends BaseQuickAdapter<PayListBean.DataBean, 
                     helper.setTextColor(R.id.tvName, App.getInstance().getResources().getColor(R.color.base));
                     helper.setTextColor(R.id.tvBankNum, App.getInstance().getResources().getColor(R.color.base));
                 }
+                helper.setImageResource(R.id.ivType2, R.drawable.svg_pay_other);
+                helper.setText(R.id.tvBankName2, App.getInstance().getString(R.string.str_other));
                 helper.setImageResource(R.id.ivType, R.drawable.svg_pay_other);
                 helper.setText(R.id.tvBankName, App.getInstance().getString(R.string.str_other));
                 break;
@@ -218,6 +245,13 @@ public class SelectPayWayAdapter extends BaseQuickAdapter<PayListBean.DataBean, 
     }
 
     public void update() {
+
+//        card = 0;
+//        alipay = 0;
+//        wechat = 0;
+//        PAYPAL = 0;
+//        MTN = 0;
+//        other = 0;
         notifyDataSetChanged();
     }
 }

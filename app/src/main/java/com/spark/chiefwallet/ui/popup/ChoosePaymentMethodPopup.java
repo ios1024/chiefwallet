@@ -37,7 +37,7 @@ public class ChoosePaymentMethodPopup extends DrawerPopupView {
     private ChoosePaymentMethodListener mchoosePaymentMethodListener;
     @BindView(R.id.rv_coin_address)
     RecyclerView recyclerView;
-//    @BindView(R.id.swipeLayout)
+    //    @BindView(R.id.swipeLayout)
 //    SwipeRefreshLayout swipeLayout;
     @BindView(R.id.tv_determine)
     TextView tvDetermine;
