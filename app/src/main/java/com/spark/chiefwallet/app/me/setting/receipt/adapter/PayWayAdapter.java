@@ -115,10 +115,10 @@ public class PayWayAdapter extends BaseQuickAdapter<PayListBean.DataBean, PayWay
 
         if (item.getStatus() == 1) {
             helper.getView(R.id.ivStatus).setSelected(true);
-            helper.setText(R.id.tvSwitch, R.string.open);
+//            helper.setText(R.id.tvSwitch, R.string.open);
         } else {
             helper.getView(R.id.ivStatus).setSelected(false);
-            helper.setText(R.id.tvSwitch, R.string.shut);
+//            helper.setText(R.id.tvSwitch, R.string.shut);
         }
         helper.addOnClickListener(R.id.ivStatus);
         helper.addOnClickListener(R.id.tvupdate);

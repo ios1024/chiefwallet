@@ -11,7 +11,6 @@ import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.api.pojo.PayTypeBean;
 import com.spark.chiefwallet.base.ARouterPath;
-import com.spark.chiefwallet.ui.toast.Toasty;
 import com.spark.chiefwallet.util.AppUtils;
 import com.spark.otcclient.AdvertiseScanClient;
 import com.spark.otcclient.LcTradeClient;
@@ -144,7 +143,7 @@ public class LcOrderDetailsViewModel extends BaseViewModel {
                     FindMerchantDetailsResult findMerchantDetailsResult = (FindMerchantDetailsResult) eventBean.getObject();
                     dealNumber.set(findMerchantDetailsResult.getData().formatRangeTimeOrder());
                 } else {
-                    Toasty.showError(eventBean.getMessage());
+                    //Toasty.showError(eventBean.getMessage());
                 }
                 break;
             case EvKey.logout_success_401:
@@ -169,6 +168,10 @@ public class LcOrderDetailsViewModel extends BaseViewModel {
                 break;
             case 4:
                 titleText = App.getInstance().getString(R.string.str_order_appealing);
+                break;
+            default:
+                mRecordsBean.setStatus(0);
+                titleText = App.getInstance().getString(R.string.cancelled);
                 break;
         }
         title.set(titleText);

@@ -193,7 +193,7 @@ public class SafeCentreViewModel extends BaseViewModel {
                         App.getInstance().setCurrentUser(user);
                     }
                 } else {
-                    Toasty.showError(eventBean.getMessage());
+//                    Toasty.showError(eventBean.getMessage());
                 }
                 break;
 

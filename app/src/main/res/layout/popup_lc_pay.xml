@@ -78,6 +78,31 @@
             android:gravity="right"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/ll_alipay"
+        style="@style/ll_item_52"
+        android:visibility="gone"
+        android:background="@color/white">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/svg_alipay"/>
+
+        <TextView
+            style="@style/textBlackSmall"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_weight="1"
+            android:text="@string/str_alipay"/>
+
+        <com.spark.chiefwallet.ui.SmoothCheckBox
+            android:id="@+id/alipay_cb"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            app:color_checked="@color/base"
+            app:color_unchecked_stroke="@color/gray_ccc"/>
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ll_wechat"
@@ -105,9 +130,8 @@
             app:color_unchecked_stroke="@color/gray_ccc"/>
     </LinearLayout>
 
-
     <LinearLayout
-        android:id="@+id/ll_alipay"
+        android:id="@+id/ll_MTN"
         style="@style/ll_item_52"
         android:visibility="gone"
         android:background="@color/white">
@@ -115,23 +139,48 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/svg_alipay"/>
+            android:src="@drawable/svg_mtn"/>
 
         <TextView
             style="@style/textBlackSmall"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
             android:layout_weight="1"
-            android:text="@string/str_alipay"/>
+            android:text="@string/str_mtn"/>
 
         <com.spark.chiefwallet.ui.SmoothCheckBox
-            android:id="@+id/alipay_cb"
+            android:id="@+id/mtn_cb"
             android:layout_width="24dp"
             android:layout_height="24dp"
             app:color_checked="@color/base"
             app:color_unchecked_stroke="@color/gray_ccc"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/ll_PayPal"
+        style="@style/ll_item_52"
+        android:visibility="gone"
+        android:background="@color/white">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/svg_pay_paypal"/>
+
+        <TextView
+            style="@style/textBlackSmall"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_weight="1"
+            android:text="@string/str_paypal"/>
+
+        <com.spark.chiefwallet.ui.SmoothCheckBox
+            android:id="@+id/paypal_cb"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            app:color_checked="@color/base"
+            app:color_unchecked_stroke="@color/gray_ccc"/>
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ll_bank"
@@ -149,10 +198,36 @@
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
             android:layout_weight="1"
-            android:text="@string/str_bank"/>
+            android:text="@string/str_card"/>
 
         <com.spark.chiefwallet.ui.SmoothCheckBox
             android:id="@+id/bank_cb"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            app:color_checked="@color/base"
+            app:color_unchecked_stroke="@color/gray_ccc"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_africa_bank"
+        style="@style/ll_item_52"
+        android:visibility="gone"
+        android:background="@color/white">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/svg_africa_card"/>
+
+        <TextView
+            style="@style/textBlackSmall"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_weight="1"
+            android:text="@string/str_africa_card"/>
+
+        <com.spark.chiefwallet.ui.SmoothCheckBox
+            android:id="@+id/africa_bank_cb"
             android:layout_width="24dp"
             android:layout_height="24dp"
             app:color_checked="@color/base"

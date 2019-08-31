@@ -5,16 +5,19 @@ import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.R;
+import com.spark.chiefwallet.base.ARouterPath;
 import com.spark.chiefwallet.ui.toast.Toasty;
 import com.spark.otcclient.AdvertiseScanClient;
 import com.spark.otcclient.ChatClient;
 import com.spark.otcclient.pojo.ChatListResult;
 import com.spark.otcclient.pojo.FindMerchantDetailsResult;
 import com.spark.otcclient.pojo.LcOrderResult;
+import com.spark.otcclient.pojo.OrderDetailsResult;
 import com.spark.wsclient.base.WsCMD;
 import com.spark.wsclient.pojo.ChatBean;
 
@@ -56,7 +59,7 @@ public class ChatViewModel extends BaseViewModel {
     public ObservableField<String> chatPost = new ObservableField<>("");
     public ObservableField<CharSequence> money = new ObservableField<>();
     public ObservableField<CharSequence> status = new ObservableField<>();
-
+    private OrderDetailsResult orderDetailsResult;//订单详情
     public UIChangeObservable uc = new UIChangeObservable();
 
     public class UIChangeObservable {
@@ -130,7 +133,20 @@ public class ChatViewModel extends BaseViewModel {
                     FindMerchantDetailsResult findMerchantDetailsResult = (FindMerchantDetailsResult) eventBean.getObject();
                     uc.mIsRefreshRate.setValue(findMerchantDetailsResult.getData().formatRangeTimeOrder());
                 } else {
-                    Toasty.showError(eventBean.getMessage());
+//                    Toasty.showError(eventBean.getMessage());
+                }
+                break;
+            case EvKey.lcOrderTypeDetails:
+                if (eventBean.isStatue()) {
+                    orderDetailsResult = (OrderDetailsResult) eventBean.getObject();
+                    //status订单状态 0-已取消 1-未付款 2-已付款 3-已完成 4-申诉中
+                    int state = orderDetailsResult.getData().getStatus();
+                    String curStatus = initStatueType(state);
+                    CharSequence stateStr = new SpanUtils()
+                            .append(App.getInstance().getString(R.string.str_order_status))
+                            .append(curStatus).setForegroundColor(ContextCompat.getColor(App.getInstance(), R.color.base)).setBold()
+                            .create();
+                    status.set(stateStr);
                 }
                 break;
             case EvKey.logout_success_401:
@@ -141,6 +157,29 @@ public class ChatViewModel extends BaseViewModel {
             default:
                 break;
         }
+    }
+
+    public String initStatueType(int status) {
+        String typeText = "";
+        switch (status) {
+            case 0:
+                typeText = BaseApplication.getInstance().getString(R.string.cancelled);
+                break;
+            case 1:
+                typeText = BaseApplication.getInstance().getString(R.string.str_un_pay);
+                break;
+            case 2:
+                typeText = BaseApplication.getInstance().getString(R.string.str_paid);
+                break;
+            case 3:
+                typeText = BaseApplication.getInstance().getString(R.string.completed);
+                break;
+            case 4:
+                typeText = BaseApplication.getInstance().getString(R.string.str_order_appealing);
+                break;
+        }
+
+        return typeText;
     }
 
     @Override

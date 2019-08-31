@@ -10,16 +10,13 @@ import android.support.v4.content.ContextCompat;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.lxj.xpopup.XPopup;
-import com.lxj.xpopup.interfaces.OnConfirmListener;
 import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.api.pojo.PayTypeBean;
 import com.spark.chiefwallet.base.ARouterPath;
-import com.spark.chiefwallet.ui.popup.CoinChoosePopup;
 import com.spark.chiefwallet.ui.popup.LcConfirmPopup;
 import com.spark.chiefwallet.ui.popup.LcPayPopup;
 import com.spark.chiefwallet.ui.popup.impl.OnB2BBuyListener;
-import com.spark.chiefwallet.ui.popup.impl.OnCoinChooseListener;
 import com.spark.chiefwallet.ui.toast.Toasty;
 import com.spark.chiefwallet.util.AppUtils;
 import com.spark.otcclient.AdvertiseScanClient;
@@ -42,7 +39,6 @@ import me.spark.mvvm.utils.DateUtils;
 import me.spark.mvvm.utils.DfUtils;
 import me.spark.mvvm.utils.EventBean;
 import me.spark.mvvm.utils.EventBusUtils;
-import me.spark.mvvm.utils.LogUtils;
 import me.spark.mvvm.utils.SpanUtils;
 import me.spark.mvvm.utils.Utils;
 
@@ -74,12 +70,15 @@ public class LcOrderUnPAYDetailsViewModel extends BaseViewModel {
     public ObservableField<String> orderSn = new ObservableField<>();
     public ObservableField<String> referenceSn = new ObservableField<>();
     public ObservableField<Boolean> isBuyOrSell = new ObservableField<>();
+    /*微信*/
     public ObservableField<Boolean> isWeChatPay = new ObservableField<>(false);
     public ObservableField<String> weChatAddr = new ObservableField<>();
     public ObservableField<String> weChatName = new ObservableField<>();
+    /*支付宝*/
     public ObservableField<Boolean> isAliPay = new ObservableField<>(false);
     public ObservableField<String> aliPayAddr = new ObservableField<>();
     public ObservableField<String> aliPayName = new ObservableField<>();
+    /*中国银行卡*/
     public ObservableField<Boolean> isBankPay = new ObservableField<>(false);
     public ObservableField<String> bankPayAddr = new ObservableField<>();
     public ObservableField<String> bankPayName = new ObservableField<>();
@@ -91,6 +90,20 @@ public class LcOrderUnPAYDetailsViewModel extends BaseViewModel {
     public ObservableField<String> orderEnd6 = new ObservableField<>();
     public ObservableField<String> orderBtn1 = new ObservableField<>();
     public ObservableField<String> orderBtn2 = new ObservableField<>();
+    /*MTN*/
+    public ObservableField<Boolean> isMTNPay = new ObservableField<>(false);
+    public ObservableField<String> MTNPayAddr = new ObservableField<>();
+    public ObservableField<String> MTNPayName = new ObservableField<>();
+    /*PayPal*/
+    public ObservableField<Boolean> isPayPalPay = new ObservableField<>(false);
+    public ObservableField<String> PayPalAddr = new ObservableField<>();
+    public ObservableField<String> PayPalName = new ObservableField<>();
+    /*非洲银行卡*/
+    public ObservableField<Boolean> isAfricaCardPay = new ObservableField<>(false);
+    public ObservableField<String> AfricaCardPayAddr = new ObservableField<>();
+    public ObservableField<String> AfricaCardPayName = new ObservableField<>();
+    public ObservableField<String> AfricaCardPayOpenBank = new ObservableField<>();
+    public ObservableField<String> AfricaCardPayBranch = new ObservableField<>();
 
 
     private LcOrderResult.DataBean.RecordsBean mRecordsBean;
@@ -144,13 +157,6 @@ public class LcOrderUnPAYDetailsViewModel extends BaseViewModel {
         }
     });
 
-    public BindingCommand cardOnClickCommand = new BindingCommand(new BindingAction() {
-        @Override
-        public void call() {
-            AppUtils.copy2Clipboard(Utils.getContext(), bankPayAddr.get());
-        }
-    });
-
     public BindingCommand alipayOnClickCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
@@ -165,12 +171,41 @@ public class LcOrderUnPAYDetailsViewModel extends BaseViewModel {
         }
     });
 
+    public BindingCommand MTNOnClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            AppUtils.copy2Clipboard(Utils.getContext(), MTNPayAddr.get());
+        }
+    });
+
+    public BindingCommand PayPalOnClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            AppUtils.copy2Clipboard(Utils.getContext(), PayPalAddr.get());
+        }
+    });
+
+    public BindingCommand cardOnClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            AppUtils.copy2Clipboard(Utils.getContext(), bankPayAddr.get());
+        }
+    });
+
+    public BindingCommand AfricaCardOnClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            AppUtils.copy2Clipboard(Utils.getContext(), AfricaCardPayAddr.get());
+        }
+    });
+
     public BindingCommand orderSnOnClickCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
             AppUtils.copy2Clipboard(Utils.getContext(), orderSn.get());
         }
     });
+
     public BindingCommand referenceSnOnClickCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
@@ -301,7 +336,7 @@ public class LcOrderUnPAYDetailsViewModel extends BaseViewModel {
                     FindMerchantDetailsResult findMerchantDetailsResult = (FindMerchantDetailsResult) eventBean.getObject();
                     dealNumber.set(findMerchantDetailsResult.getData().formatRangeTimeOrder());
                 } else {
-                    Toasty.showError(eventBean.getMessage());
+                    //Toasty.showError(eventBean.getMessage());
                 }
                 break;
             case EvKey.lcOrderCancel:
@@ -375,6 +410,20 @@ public class LcOrderUnPAYDetailsViewModel extends BaseViewModel {
                     bankPayName.set(payTypeBeanBean.getRealName());
                     bankPayOpenBank.set(payTypeBeanBean.getBank());
                     bankPayBranch.set(payTypeBeanBean.getBranch());
+                } else if (payTypeBeanBean.getPayType().contains(Constant.MTN)) {
+                    isMTNPay.set(true);
+                    MTNPayAddr.set(payTypeBeanBean.getPayAddress());
+                    MTNPayName.set(payTypeBeanBean.getRealName());
+                } else if (payTypeBeanBean.getPayType().contains(Constant.PAYPAL)) {
+                    isPayPalPay.set(true);
+                    PayPalAddr.set(payTypeBeanBean.getPayAddress());
+                    PayPalName.set(payTypeBeanBean.getRealName());
+                }else if (payTypeBeanBean.getPayType().contains(Constant.AfricaCard)) {
+                    isAfricaCardPay.set(true);
+                    AfricaCardPayAddr.set(payTypeBeanBean.getPayAddress());
+                    AfricaCardPayName.set(payTypeBeanBean.getRealName());
+                    AfricaCardPayOpenBank.set(payTypeBeanBean.getBank());
+                    AfricaCardPayBranch.set(payTypeBeanBean.getBranch());
                 }
             }
         }

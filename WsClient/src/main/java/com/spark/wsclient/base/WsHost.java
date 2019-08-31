@@ -10,9 +10,14 @@ package com.spark.wsclient.base;
  * ================================================
  */
 public class WsHost {
-    public static String klineWssUrl = "ws://ws.bitotc.bench.bitpay.com/kline";         //K线
-    public static String bbTradeWssUrl = "ws://ws.bitotc.bench.bitpay.com/trade";       //BB交易
-    public static String cfdTradeWssUrl = "ws://ws.bitotc.bench.bitpay.com/cfdTrade";   //CFD交易
-    public static String handicapWssUrl = "ws://ws.bitotc.bench.bitpay.com/quote";      //盘口
-    public static String chatWssUrl = "ws://192.168.2.12:28905/ws";                     //聊天
+    public static String wsHost = "wss://ws.exchief.com";//正式
+//    public static String wsHost = "ws://ws.bitotc.bench.bitpay.com";//测试
+
+
+    public static String klineWssUrl = wsHost + "/kline";         //K线
+    public static String bbTradeWssUrl = wsHost + "/trade";       //BB交易
+    public static String cfdTradeWssUrl = wsHost + "/cfdTrade";   //CFD交易
+    public static String handicapWssUrl = wsHost + "/quote";      //盘口
+    //    public static String chatWssUrl = "ws://192.168.2.12:28905/ws";                     //聊天测试
+    public static String chatWssUrl = "wss://ws.exchief.com/ws";                     //聊天正式
 }

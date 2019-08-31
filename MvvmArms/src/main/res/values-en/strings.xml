@@ -581,8 +581,8 @@
     <string name="open">open</string>
     <string name="shut">turn off</string>
     <string name="adding_payment_method">Add payment method</string>
-    <string name="card_binding_matters">1, the most added: 3 bank cards, 3 Alipay, 1 micro signal</string>
-    <string name="card_binding_matters2">2, after adding the payment method, you need to open it to use for over-the-counter trading. If you add more than one bank card, you can only open one at the end.</string>
+    <string name="card_binding_matters">1, the most added: 1 WeChat account, 3 Alipay account, 3 bank card account</string>
+    <string name="card_binding_matters2">2, after adding the payment method, you need to open it for use in over-the-counter trading. If you add more than one bank card, you can only open one at most.</string>
     <string name="time">Time</string>
     <string name="final_price">Final price</string>
     <string-array name="ad_tab">
@@ -745,7 +745,7 @@
     <string name="str_enter_login_pass">Please enter your login password</string>
     <string name="str_enter_alipay">Please enter alipay account number</string>
     <string name="str_uplo">Receipt QR code</string>
-    <string name="str_upload_text">To ensure that the QR code is correct, please scan it yourself after uploading.</string>
+    <string name="str_upload_text">To ensure safe collection, please test if the QR code is correct.</string>
     <string name="str_upload">Please upload qr code of receipt</string>
     <string name="str_enter_wechat">Please enter your WeChat account</string>
     <string name="str_enter_other">Please enter other account</string>
@@ -1074,6 +1074,9 @@
     <string name="basic_conditions">Basic conditions</string>
     <string name="prepare_merchant_application_materials">Prepare merchant application materials as required</string>
     <string name="prompt_for_certified_merchants">You need to apply to become a certified business first.\n&#160;&#160;&#160;&#160;Can only post ads</string>
+    <string name="select_merchant_certification_type">Select a merchant certification type</string>
+    <string name="business_type">Business type</string>
+    <string name="default_country">China</string>
     <string-array name="kline_time">
         <item>1min</item>
         <item>5min</item>
@@ -1083,4 +1086,8 @@
         <item>1day</item>
         <item>1week</item>
     </string-array>
+    <string name="str_card">China bank card</string>
+    <string name="str_africa_card">African bank card</string>
+    <string name="to_be_open">To be open</string>
+
 </resources>

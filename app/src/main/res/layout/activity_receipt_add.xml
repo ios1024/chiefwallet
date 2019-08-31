@@ -26,34 +26,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout
-                style="@style/ll_item_52"
-                onClickCommand="@{receiptAddViewModel.aliPayOnClickCommand}"
-                app:bl_ripple_color="@color/gray_ccc"
-                app:bl_ripple_enable="true"
-                app:bl_solid_color="@color/white">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="@style/textBlackNormal"
-                        android:drawablePadding="8dp"
-                        android:gravity="center"
-                        android:text="@string/str_alipay" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
-            </LinearLayout>
-
             <View style="@style/line_ccc" />
 
             <LinearLayout
@@ -83,6 +55,35 @@
                     android:layout_weight="1" />
 
             </LinearLayout>
+
+            <LinearLayout
+                style="@style/ll_item_52"
+                onClickCommand="@{receiptAddViewModel.aliPayOnClickCommand}"
+                app:bl_ripple_color="@color/gray_ccc"
+                app:bl_ripple_enable="true"
+                app:bl_solid_color="@color/white">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/textBlackNormal"
+                        android:drawablePadding="8dp"
+                        android:gravity="center"
+                        android:text="@string/str_alipay" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
 
             <View style="@style/line_ccc" />
 
@@ -118,7 +119,7 @@
 
             <LinearLayout
                 style="@style/ll_item_52"
-                onClickCommand="@{receiptAddViewModel.bankAfricaPayOnClickCommand}"
+                onClickCommand="@{receiptAddViewModel.MtnPayOnClickCommand}"
                 app:bl_ripple_color="@color/gray_ccc"
                 app:bl_ripple_enable="true"
                 app:bl_solid_color="@color/white">
@@ -133,7 +134,7 @@
                         style="@style/textBlackNormal"
                         android:drawablePadding="8dp"
                         android:gravity="center"
-                        android:text="@string/str_africa_bank" />
+                        android:text="@string/str_mtn" />
 
                 </LinearLayout>
 
@@ -178,7 +179,7 @@
 
             <LinearLayout
                 style="@style/ll_item_52"
-                onClickCommand="@{receiptAddViewModel.MtnPayOnClickCommand}"
+                onClickCommand="@{receiptAddViewModel.bankAfricaPayOnClickCommand}"
                 app:bl_ripple_color="@color/gray_ccc"
                 app:bl_ripple_enable="true"
                 app:bl_solid_color="@color/white">
@@ -193,7 +194,7 @@
                         style="@style/textBlackNormal"
                         android:drawablePadding="8dp"
                         android:gravity="center"
-                        android:text="@string/str_mtn" />
+                        android:text="@string/str_africa_bank" />
 
                 </LinearLayout>
 
@@ -203,6 +204,7 @@
                     android:layout_weight="1" />
 
             </LinearLayout>
+
 
             <View style="@style/line_ccc" />
 

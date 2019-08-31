@@ -5,15 +5,18 @@ public class BaseHost {
     //获取域名配置url
 //    public static String HOST = "http://api.bitotc.bench.bitpay.com/";
 //    public static String HOST = "http://www.bitrade.top/";//之前地址
-    public static String HOST = "http://cas.test.camall.com/";
+//    public static String HOST = "http://cas.test.camall.com/";//测试服
+    public static String HOST = "https://cas.www.exchief.com/";//正式服
 
     //    public static String LOGIN_HOST = "http://cas.bitotc.bench.bitpay.com/";
 //    public static String LOGIN_HOST = "http://cas.www.bitrade.top/";//之前地址
-    public static String LOGIN_HOST = "http://cas.test.camall.com/";
+//    public static String LOGIN_HOST = "http://cas.test.camall.com/";//测试服
+    public static String LOGIN_HOST = "https://cas.www.exchief.com/";//正式服
 
     //    public static String LOGIN_SUB_HOST = "http://api.bitotc.bench.bitpay.com/";
 //    public static String LOGIN_SUB_HOST = "http://api.bitrade.top/";//之前地址
-    public static String LOGIN_SUB_HOST = "http://api.camall.com/";
+//    public static String LOGIN_SUB_HOST = "http://api.camall.com/";//测试服
+    public static String LOGIN_SUB_HOST = "https://api.exchief.com/";//正式服
 
     public static String UC_HOST = LOGIN_SUB_HOST + "uc/";
     public static String AC_HOST = LOGIN_SUB_HOST + "ac/";

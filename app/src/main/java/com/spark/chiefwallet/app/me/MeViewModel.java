@@ -540,12 +540,12 @@ public class MeViewModel extends BaseViewModel {
     }
 
     private String initAccount(double account) {
-        String close = DfUtils.formatNum(MathUtils.getRundNumber(account, 4, null));
+        String close = DfUtils.formatNum(MathUtils.getRundNumber(account, 8, null));
         return close;
     }
 
     private String initAccountTrans(double accountTrans) {
-        String close = DfUtils.formatNum(MathUtils.getRundNumber(accountTrans, 4, null));
+        String close = DfUtils.formatNum(MathUtils.getRundNumber(accountTrans, 2, null));
         //1.人民币 CNY 2.美元 USDT 3.欧元 EUR 4.赛地 GHS 5.尼日利亚 NGN
         if (SPUtils.getInstance().getPricingCurrency().equals("1")) {
             return "≈" + close + Constant.CNY;

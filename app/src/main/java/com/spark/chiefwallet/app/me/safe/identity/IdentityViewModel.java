@@ -74,7 +74,7 @@ public class IdentityViewModel extends BaseViewModel {
                     if (user != null) {
                         App.getInstance().setCurrentUser(user);
                     }
-                    Toasty.showSuccess(App.getInstance().getApplicationContext().getString(R.string.upload_success));
+//                    Toasty.showSuccess(App.getInstance().getApplicationContext().getString(R.string.upload_success));
                     finish();
                 } else {
                     Toasty.showError(eventBean.getMessage());

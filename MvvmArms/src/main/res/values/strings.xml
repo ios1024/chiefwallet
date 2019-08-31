@@ -582,8 +582,8 @@
     <string name="open">开</string>
     <string name="shut">关</string>
     <string name="adding_payment_method">添加支付方式</string>
-    <string name="card_binding_matters">1，最多添加：3张银行卡，3个支付宝，1个微信号</string>
-    <string name="card_binding_matters2">2，添加支付方式后，需要开启才能用于场外交易。如添加多张银行卡，最后只能开启一张</string>
+    <string name="card_binding_matters">1，最多添加：1个微信账号，3个支付宝账号，3张银行卡账号</string>
+    <string name="card_binding_matters2">2，添加支付方式后，需要开启才可用于场外交易。如添加多张银行卡，最多只能开启一张</string>
     <string name="time">时间</string>
     <string name="final_price">成交价</string>
     <string-array name="ad_tab">
@@ -744,7 +744,7 @@
     <string name="str_enter_login_pass">请输入登录密码</string>
     <string name="str_enter_alipay">请输入支付宝账号</string>
     <string name="str_uplo">收款二维码</string>
-    <string name="str_upload_text">为确保二维码正确，上传后请自行扫描测试</string>
+    <string name="str_upload_text">为确保安全收款，请测试上传二维码是否正确</string>
     <string name="str_upload">请上传收款二维码</string>
     <string name="str_enter_wechat">请输入微信账号</string>
     <string name="str_enter_other">请输入其他账号</string>
@@ -1081,4 +1081,7 @@
         <item>1天</item>
         <item>1周</item>
     </string-array>
+    <string name="str_card">中国银行卡</string>
+    <string name="str_africa_card">非洲银行卡</string>
+    <string name="to_be_open">待开放</string>
 </resources>

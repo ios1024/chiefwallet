@@ -364,7 +364,6 @@
                             style="@style/textBlackSmall"
                             android:layout_width="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginTop="@dimen/dp_10"
                             android:text="@string/str_upload_text"
                             android:textColor="@color/fall"
                             android:textSize="12sp" />

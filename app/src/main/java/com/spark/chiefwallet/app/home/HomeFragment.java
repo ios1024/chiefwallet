@@ -110,10 +110,10 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
         binding.banner.setOnBannerListener(new OnBannerListener() {
             @Override
             public void OnBannerClick(int position) {
-                ARouter.getInstance().build(ARouterPath.ACTIVITY_EMEX_WEBDETAILS)
-                        .withString("title", App.getInstance().getString(R.string.details))
-                        .withString("link", bannerPicBean.getAppCarousel().get(position).getLink())
-                        .navigation();
+//                ARouter.getInstance().build(ARouterPath.ACTIVITY_EMEX_WEBDETAILS)
+////                        .withString("title", App.getInstance().getString(R.string.details))
+////                        .withString("link", bannerPicBean.getAppCarousel().get(position).getLink())
+////                        .navigation();
             }
         });
 
@@ -256,6 +256,13 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
     @Override
     public void initData() {
         binding.swipeLayout.setRefreshing(true);
+        imageUrls.clear();
+        imageUrls.add("https://bitrade.oss-cn-hongkong.aliyuncs.com/logo/bitrade/app.png");//轮播图 先写死
+        binding.banner
+                .setImageLoader(new GlideImageLoader())
+                .setImages(imageUrls)
+                .start();
+
         viewModel.loadBanner(getContext(), new OnRequestListener<BannerBean>() {
             @Override
             public void onSuccess(BannerBean bannerBean) {
@@ -289,7 +296,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
             @Override
             public void onFail(String message) {
                 binding.swipeLayout.setRefreshing(false);
-                Toasty.showError(message);
+//                Toasty.showError(message);
             }
         });
 

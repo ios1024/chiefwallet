@@ -371,55 +371,55 @@ public class NewAdCreateViewModel extends BaseViewModel {
                     mCoinAddressList.clear();
                     for (PayListBean.DataBean payWaySetting : payListBean.getData()) {
                         if (payWaySetting.getStatus() == 1) {
-                            if (payWaySetting.getPayType().equals(Constant.card))
-                                mCoinAddressList.add(payWaySetting);
+//                            if (payWaySetting.getPayType().equals(Constant.card))
+                            mCoinAddressList.add(payWaySetting);
                         }
                     }
-                    for (PayListBean.DataBean payWaySetting : payListBean.getData()) {
-                        if (payWaySetting.getStatus() == 1) {
-                            if (payWaySetting.getPayType().equals(Constant.AfricaCard))
-                                mCoinAddressList.add(payWaySetting);
-                        }
-                    }
-                    for (PayListBean.DataBean payWaySetting : payListBean.getData()) {
-                        if (payWaySetting.getStatus() == 1) {
-                            if (payWaySetting.getPayType().equals(Constant.alipay))
-                                mCoinAddressList.add(payWaySetting);
-                        }
-                    }
-                    for (PayListBean.DataBean payWaySetting : payListBean.getData()) {
-                        if (payWaySetting.getStatus() == 1) {
-                            if (payWaySetting.getPayType().equals(Constant.wechat))
-                                mCoinAddressList.add(payWaySetting);
-                        }
-                    }
-
-                    for (PayListBean.DataBean payWaySetting : payListBean.getData()) {
-                        if (payWaySetting.getStatus() == 1) {
-                            if (payWaySetting.getPayType().equals(Constant.PAYPAL))
-                                mCoinAddressList.add(payWaySetting);
-                        }
-                    }
-                    for (PayListBean.DataBean payWaySetting : payListBean.getData()) {
-                        if (payWaySetting.getStatus() == 1) {
-                            if (payWaySetting.getPayType().equals(Constant.MTN))
-                                mCoinAddressList.add(payWaySetting);
-                        }
-                    }
-                    for (PayListBean.DataBean payWaySetting : payListBean.getData()) {
-                        if (payWaySetting.getStatus() == 1) {
-                            if (payWaySetting.getPayType().equals(Constant.other))
-                                mCoinAddressList.add(payWaySetting);
-                        }
-                    }
+//                    for (PayListBean.DataBean payWaySetting : payListBean.getData()) {
+//                        if (payWaySetting.getStatus() == 1) {
+//                            if (payWaySetting.getPayType().equals(Constant.AfricaCard))
+//                                mCoinAddressList.add(payWaySetting);
+//                        }
+//                    }
+//                    for (PayListBean.DataBean payWaySetting : payListBean.getData()) {
+//                        if (payWaySetting.getStatus() == 1) {
+//                            if (payWaySetting.getPayType().equals(Constant.alipay))
+//                                mCoinAddressList.add(payWaySetting);
+//                        }
+//                    }
+//                    for (PayListBean.DataBean payWaySetting : payListBean.getData()) {
+//                        if (payWaySetting.getStatus() == 1) {
+//                            if (payWaySetting.getPayType().equals(Constant.wechat))
+//                                mCoinAddressList.add(payWaySetting);
+//                        }
+//                    }
+//
+//                    for (PayListBean.DataBean payWaySetting : payListBean.getData()) {
+//                        if (payWaySetting.getStatus() == 1) {
+//                            if (payWaySetting.getPayType().equals(Constant.PAYPAL))
+//                                mCoinAddressList.add(payWaySetting);
+//                        }
+//                    }
+//                    for (PayListBean.DataBean payWaySetting : payListBean.getData()) {
+//                        if (payWaySetting.getStatus() == 1) {
+//                            if (payWaySetting.getPayType().equals(Constant.MTN))
+//                                mCoinAddressList.add(payWaySetting);
+//                        }
+//                    }
+//                    for (PayListBean.DataBean payWaySetting : payListBean.getData()) {
+//                        if (payWaySetting.getStatus() == 1) {
+//                            if (payWaySetting.getPayType().equals(Constant.other))
+//                                mCoinAddressList.add(payWaySetting);
+//                        }
+//                    }
 
 //                    if (choosePaymentMethodPopup == null)
-                    choosePaymentMethodPopup = new ChoosePaymentMethodPopup(mContext, mSelectList, adType, mCoinAddressList, new ChoosePaymentMethodListener() {
-                        @Override
-                        public void onClickItem(ArrayList<PayListBean.DataBean> selectList) {
-                            EventBusUtils.postSuccessEvent(EvKey.payWaySettingsSelected, 200, "", adType, selectList);
-                        }
-                    });
+                        choosePaymentMethodPopup = new ChoosePaymentMethodPopup(mContext, mSelectList, adType, mCoinAddressList, new ChoosePaymentMethodListener() {
+                            @Override
+                            public void onClickItem(ArrayList<PayListBean.DataBean> selectList) {
+                                EventBusUtils.postSuccessEvent(EvKey.payWaySettingsSelected, 200, "", adType, selectList);
+                            }
+                        });
 
                     new XPopup.Builder(mContext)
                             .popupPosition(PopupPosition.Right)//右边

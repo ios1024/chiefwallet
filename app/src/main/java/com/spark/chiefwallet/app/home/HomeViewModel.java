@@ -9,6 +9,7 @@ import android.support.v4.content.ContextCompat;
 import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.api.AppClient;
+import com.spark.chiefwallet.ui.toast.Toasty;
 import com.spark.wsclient.base.WsCMD;
 import com.spark.wsclient.pojo.B2BThumbBean;
 import com.spark.wsclient.pojo.RecommendCoinBean;
@@ -21,6 +22,8 @@ import org.greenrobot.eventbus.ThreadMode;
 import me.spark.mvvm.base.BaseViewModel;
 import me.spark.mvvm.base.Constant;
 import me.spark.mvvm.base.EvKey;
+import me.spark.mvvm.binding.command.BindingAction;
+import me.spark.mvvm.binding.command.BindingCommand;
 import me.spark.mvvm.bus.event.SingleLiveEvent;
 import me.spark.mvvm.http.impl.OnRequestListener;
 import me.spark.mvvm.utils.DfUtils;
@@ -73,6 +76,31 @@ public class HomeViewModel extends BaseViewModel {
         AppClient.getInstance().getBanner();
     }
 
+
+    //红包待开发
+    public BindingCommand redEnvelopeOnClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+
+            Toasty.showSuccess(mContext.getString(R.string.to_be_open));
+        }
+    });    //非洲合伙人待开发
+    public BindingCommand partnerOnClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+
+            Toasty.showSuccess(mContext.getString(R.string.to_be_open));
+        }
+    });  //超级节点待开发
+    public BindingCommand superNodeOnClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+
+            Toasty.showSuccess(mContext.getString(R.string.to_be_open));
+        }
+    });
+
+
     /**
      * 公告
      *
@@ -82,7 +110,7 @@ public class HomeViewModel extends BaseViewModel {
     public void loadAnnounce(Context context, OnRequestListener onRequestListener) {
         this.mContext = context;
         this.onRequestListenerAnnounce = onRequestListener;
-        AppClient.getInstance().getAnnounce();
+//        AppClient.getInstance().getAnnounce();
     }
 
     /**
