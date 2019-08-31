@@ -111,7 +111,7 @@
                     android:id="@+id/title_right_img"
                     android:layout_width="?attr/actionBarSize"
                     android:layout_height="match_parent"
-                    android:padding="15dp"
+                    android:padding="19dp"
                     android:visibility="@{viewTitle.isShowRightImg?View.VISIBLE:View.INVISIBLE}" />
 
                 <TextView

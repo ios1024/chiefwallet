@@ -90,7 +90,7 @@ public class RegisterViewModel extends BaseViewModel {
     public ObservableField<String> newPwdAgain = new ObservableField<>("");
     public ObservableField<String> hitphoneNum = new ObservableField<>(App.getInstance().getResources().getString(R.string.phone_num_hint));
     public ObservableField<String> inviteCode = new ObservableField<>("");
-    public ObservableField<String> countryName = new ObservableField<>("China +86");
+    public ObservableField<String> countryName = new ObservableField<>(App.getInstance().getResources().getString(R.string.default_country));
 
     public ObservableField<String> tiaolie = new ObservableField<>("0");
     public ChoiceOfNationalityPopup choiceOfNationalityPopup;
@@ -454,13 +454,13 @@ public class RegisterViewModel extends BaseViewModel {
                                     countryEnName = countryEntities2.get(position).getEnName();
                                     switch (LanguageSPUtil.getInstance(App.getInstance()).getSelectLanguage()) {
                                         case 1://中文
-                                            updateCountryInfo(countryEntities2.get(position).getZhName() + " +" + countryEntities2.get(position).getAreaCode(), countryEntities2.get(position).getAreaCode());
+                                            updateCountryInfo(countryEntities2.get(position).getZhName() , countryEntities2.get(position).getAreaCode());
                                             break;
                                         case 0://英文
-                                            updateCountryInfo(countryEntities2.get(position).getEnName() + " +" + countryEntities2.get(position).getAreaCode(), countryEntities2.get(position).getAreaCode());
+                                            updateCountryInfo(countryEntities2.get(position).getEnName() , countryEntities2.get(position).getAreaCode());
                                             break;
                                         default:
-                                            updateCountryInfo(countryEntities2.get(position).getZhName() + " +" + countryEntities2.get(position).getAreaCode(), countryEntities2.get(position).getAreaCode());
+                                            updateCountryInfo(countryEntities2.get(position).getZhName(), countryEntities2.get(position).getAreaCode());
                                             break;
                                     }
                                 }

@@ -198,9 +198,9 @@ public class PropertyDetailsViewModel extends BaseViewModel {
     private void initViewDate() {
         ImgUrl.set(initImgUrl(mDataBean.getCoinId()));
         getCoin.set(mDataBean.getCoinId());
-        coinName.set(DfUtils.numberFormat(mDataBean.getBalance() + mDataBean.getFrozenBalance(), 2));
-        balance.set(DfUtils.numberFormat(mDataBean.getBalance(), 4));
-        frozenBalance.set(DfUtils.numberFormat(mDataBean.getFrozenBalance(), 4));
+        coinName.set(MathUtils.getRundNumber(mDataBean.getBalance() + mDataBean.getFrozenBalance(), 8, null));
+        balance.set(MathUtils.getRundNumber(mDataBean.getBalance(), 8, null));
+        frozenBalance.set(MathUtils.getRundNumber(mDataBean.getFrozenBalance(), 8, null));
 
 //        transCNY.set("≈¥ " + DfUtils.numberFormat((mDataBean.getBalance() + mDataBean.getFrozenBalance()) * mDataBean.getLegalRate(), 4));
         //1.人民币 CNY 2.美元 USDT 3.欧元 EUR 4.赛地 GHS 5.尼日利亚 NGN
@@ -228,7 +228,7 @@ public class PropertyDetailsViewModel extends BaseViewModel {
     }
 
     private String initAccountTrans(double accountTrans) {
-        String close = DfUtils.formatNum(MathUtils.getRundNumber(accountTrans, 4, null));
+        String close = DfUtils.formatNum(MathUtils.getRundNumber(accountTrans, 2, null));
         //1.人民币 CNY 2.美元 USDT 3.欧元 EUR 4.赛地 GHS 5.尼日利亚 NGN
         if (SPUtils.getInstance().getPricingCurrency().equals("1")) {
             return "≈ " + Constant.CNY_symbol + close;

@@ -142,7 +142,7 @@
     <string name="user_count_hint">Mobile phone number / mailbox</string>
     <string name="user_password">Password</string>
     <string name="user_password_hint">Please enter your password</string>
-    <string name="pwd_forget">Forgot Password ?</string>
+    <string name="pwd_forget">Forgot Password</string>
     <string name="count_not_null">Account cannot be empty</string>
     <string name="pwd_not_null">Password cannot be empty</string>
     <string name="loading">Loading</string>

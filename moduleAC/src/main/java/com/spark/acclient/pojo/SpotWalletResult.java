@@ -9,6 +9,7 @@ import java.util.List;
 import me.spark.mvvm.base.BaseApplication;
 import me.spark.mvvm.base.Constant;
 import me.spark.mvvm.utils.DfUtils;
+import me.spark.mvvm.utils.MathUtils;
 import me.spark.mvvm.utils.SPUtils;
 import me.spark.mvvm.utils.StringUtils;
 
@@ -133,7 +134,7 @@ public class SpotWalletResult implements Parcelable {
     public static class CountBean {
     }
 
-    public static class DataBean  implements Parcelable {
+    public static class DataBean implements Parcelable {
         /**
          * address : string
          * balance : 0.21
@@ -426,28 +427,28 @@ public class SpotWalletResult implements Parcelable {
 
         public String available() {
 
-            return DfUtils.numberFormat(balance, 4);
+            return MathUtils.getRundNumber(balance, 8, null);
         }
 
         public String formatBlance() {
-            return DfUtils.numberFormat(balance + frozenBalance, 8);
+            return MathUtils.getRundNumber(balance + frozenBalance, 8,null);
         }
 
         public String formatBlanceTrans() {
 
             //1.人民币 CNY 2.美元 USDT 3.欧元 EUR 4.赛地 GHS 5.尼日利亚 NGN
             if (SPUtils.getInstance().getPricingCurrency().equals("1")) {
-                return "≈ " + Constant.CNY_symbol + DfUtils.numberFormat(cnyAssetBalance, 2);
+                return "≈ " + Constant.CNY_symbol + MathUtils.getRundNumber(cnyAssetBalance, 2,null);
             } else if (SPUtils.getInstance().getPricingCurrency().equals("2")) {
-                return "≈ " + Constant.USD_symbol + DfUtils.numberFormat(usdAssetBalance, 2);
+                return "≈ " + Constant.USD_symbol + MathUtils.getRundNumber(usdAssetBalance, 2,null);
             } else if (SPUtils.getInstance().getPricingCurrency().equals("3")) {
-                return "≈ " + Constant.EUR_symbol + DfUtils.numberFormat(eurAssetBalance, 2);
+                return "≈ " + Constant.EUR_symbol + MathUtils.getRundNumber(eurAssetBalance, 2,null);
             } else if (SPUtils.getInstance().getPricingCurrency().equals("4")) {
-                return "≈ " + Constant.GHS_symbol + DfUtils.numberFormat(ghsAssetBalance, 2);
+                return "≈ " + Constant.GHS_symbol + MathUtils.getRundNumber(ghsAssetBalance, 2,null);
             } else if (SPUtils.getInstance().getPricingCurrency().equals("5")) {
-                return "≈ " + Constant.NGN_symbol + DfUtils.numberFormat(ngnAssetBalance, 2);
+                return "≈ " + Constant.NGN_symbol + MathUtils.getRundNumber(ngnAssetBalance, 2,null);
             } else
-                return "≈ " + Constant.CNY_symbol + DfUtils.numberFormat(cnyAssetBalance, 2);
+                return "≈ " + Constant.CNY_symbol + MathUtils.getRundNumber(cnyAssetBalance, 2,null);
         }
 
         @Override

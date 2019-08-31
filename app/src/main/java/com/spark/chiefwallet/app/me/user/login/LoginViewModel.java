@@ -98,7 +98,7 @@ public class LoginViewModel extends BaseViewModel {
     public ObservableField<String> userName = new ObservableField<>("");
     //密码
     public ObservableField<String> userPassWord = new ObservableField<>("");
-    public ObservableField<String> countryName = new ObservableField<>("China +86");
+    public ObservableField<String> countryName = new ObservableField<>(App.getInstance().getResources().getString(R.string.default_country));
     public UIChangeObservable uc = new UIChangeObservable();
 
     public ChoiceOfNationalityPopup choiceOfNationalityPopup;
@@ -228,13 +228,13 @@ public class LoginViewModel extends BaseViewModel {
                                 public void onClickItem(int position, List<CountryEntity2> countryEntity2) {
                                     switch (LanguageSPUtil.getInstance(App.getInstance()).getSelectLanguage()) {
                                         case 1://中文
-                                            updateCountryInfo(countryEntity2.get(position).getZhName() + " +" + countryEntity2.get(position).getAreaCode(), countryEntity2.get(position).getAreaCode());
+                                            updateCountryInfo(countryEntity2.get(position).getZhName(), countryEntity2.get(position).getAreaCode());
                                             break;
                                         case 0://英文
-                                            updateCountryInfo(countryEntity2.get(position).getEnName() + " +" + countryEntity2.get(position).getAreaCode(), countryEntity2.get(position).getAreaCode());
+                                            updateCountryInfo(countryEntity2.get(position).getEnName(), countryEntity2.get(position).getAreaCode());
                                             break;
                                         default:
-                                            updateCountryInfo(countryEntity2.get(position).getZhName() + " +" + countryEntity2.get(position).getAreaCode(), countryEntity2.get(position).getAreaCode());
+                                            updateCountryInfo(countryEntity2.get(position).getZhName(), countryEntity2.get(position).getAreaCode());
                                             break;
                                     }
 
@@ -243,6 +243,8 @@ public class LoginViewModel extends BaseViewModel {
                         }
 
                         new XPopup.Builder(mContext)
+                                .dismissOnTouchOutside(false) // 点击外部是否关闭弹窗，默认为true
+                                .enableDrag(false)//不能下滑关闭
                                 .setPopupCallback(new XPopupCallback() {
                                     @Override
                                     public void onShow() {
@@ -463,6 +465,7 @@ public class LoginViewModel extends BaseViewModel {
     }
 
     private void initSmsVerifyPopup() {
+
         if (mSmsVerifyPopup == null) {
             mSmsVerifyPopup = new SmsVerifyPopup(mContext, loginType, true, strAreaCode + userName.get(), new OnEtContentListener() {
                 @Override

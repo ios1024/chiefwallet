@@ -21,6 +21,7 @@ import com.spark.chiefwallet.databinding.ActivityLoginBinding;
 import com.spark.chiefwallet.util.StatueBarUtils;
 
 import me.spark.mvvm.base.BaseActivity;
+import me.spark.mvvm.utils.LanguageSPUtil;
 
 /**
  * ================================================

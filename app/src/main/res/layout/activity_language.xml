@@ -28,7 +28,7 @@
                 style="@style/textBlackSmall"
                 android:layout_marginLeft="16dp"
                 android:text="@string/language_selection"
-                android:textSize="@dimen/sp_30"
+                android:textSize="@dimen/font_xlager"
                 android:textStyle="bold" />
 
             <View
@@ -48,8 +48,10 @@
                     android:id="@+id/english"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    app:color_checked="@color/base"
-                    app:color_unchecked_stroke="@color/gray_ccc" />
+                    app:color_checked="@color/white"
+                    app:color_tick="@color/base"
+                    app:color_unchecked="@color/white"
+                    app:color_unchecked_stroke="@color/white" />
             </LinearLayout>
 
 
@@ -68,8 +70,10 @@
                     android:id="@+id/chinese"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    app:color_checked="@color/base"
-                    app:color_unchecked_stroke="@color/gray_ccc" />
+                    app:color_checked="@color/white"
+                    app:color_tick="@color/base"
+                    app:color_unchecked="@color/white"
+                    app:color_unchecked_stroke="@color/white" />
             </LinearLayout>
 
 

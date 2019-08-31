@@ -172,7 +172,7 @@ public class LegalCurAccountViewModel extends BaseViewModel {
      * @return
      */
     private CharSequence initWalletTotal(double spotWalletTotal) {
-        String close = DfUtils.formatNum(MathUtils.getRundNumber(spotWalletTotal, 6, null));
+        String close = DfUtils.formatNum(MathUtils.getRundNumber(spotWalletTotal, 8, null));
         if (!close.contains(".")) return close;
         CharSequence text = new SpanUtils()
                 .append(close.split("\\.")[0])
@@ -183,7 +183,7 @@ public class LegalCurAccountViewModel extends BaseViewModel {
     }
 
     private String transWalletTotal(double spotWalletTotal) {
-        String close = DfUtils.formatNum(MathUtils.getRundNumber(spotWalletTotal, 6, null));
+        String close = DfUtils.formatNum(MathUtils.getRundNumber(spotWalletTotal, 2, null));
         //1.人民币 CNY 2.美元 USDT 3.欧元 EUR 4.赛地 GHS 5.尼日利亚 NGN
         if (SPUtils.getInstance().getPricingCurrency().equals("1")) {
             return "≈ " + Constant.CNY_symbol + close;
