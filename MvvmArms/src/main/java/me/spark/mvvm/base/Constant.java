@@ -58,8 +58,10 @@ public class Constant {
 
     public static final String alipay = "alipay";  // 支付宝
     public static final String wechat = "wechat";  // 微信
-    public static final String card = "card";      // 银行卡
+    public static final String MTN = "MTN";        // MTN
     public static final String PAYPAL = "paypal";  // PAYPAL
+    public static final String card = "ChinaCard";      // 中国银行卡
+    public static final String AfricaCard = "AfricaCard";      // 非洲银行卡
     public static final String other = "other";    // 其他
 
     public static int tradePage = 0;               // 1 - 币币  0 - 法币  2 -合约
@@ -88,7 +90,7 @@ public class Constant {
     //cas
     public static final String AC = "AC";
     public static final String UC = "UC";
-    public static final String OTC = "CTC";
+    public static final String OTC = "OTC";
     public static final String SPOT = "SPOT";
     public static final String KLINE = "KLINE";
     public static final String QUOTE = "QUOTE";

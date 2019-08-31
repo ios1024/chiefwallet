@@ -873,4 +873,7 @@
     <string name="str_business_high">高级认证</string>
     <string name="str_business_sell">在线出售</string>
     <string name="str_business_buy">在线购买</string>
+    <string name="str_mtn">MTN</string>
+    <string name="str_card">中国银行卡</string>
+    <string name="str_africa_card">非洲银行卡</string>
 </resources>

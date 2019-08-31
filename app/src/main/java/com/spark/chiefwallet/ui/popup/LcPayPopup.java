@@ -56,6 +56,18 @@ public class LcPayPopup extends BottomPopupView {
     LinearLayout mLlAlipay;
     @BindView(R.id.ll_bank)
     LinearLayout mLlBank;
+    @BindView(R.id.mtn_cb)
+    SmoothCheckBox mtnCb;
+    @BindView(R.id.ll_MTN)
+    LinearLayout llMTN;
+    @BindView(R.id.paypal_cb)
+    SmoothCheckBox paypalCb;
+    @BindView(R.id.ll_PayPal)
+    LinearLayout llPayPal;
+    @BindView(R.id.africa_bank_cb)
+    SmoothCheckBox africaBankCb;
+    @BindView(R.id.ll_africa_bank)
+    LinearLayout llAfricaBank;
 
     private LcOrderResult.DataBean.RecordsBean mRecordsBean;
     private PayTypeBean mPayTypeBean;
@@ -91,6 +103,12 @@ public class LcPayPopup extends BottomPopupView {
                 mLlAlipay.setVisibility(VISIBLE);
             } else if (payTypeBeanBean.getPayType().contains(Constant.card)) {
                 mLlBank.setVisibility(VISIBLE);
+            } else if (payTypeBeanBean.getPayType().contains(Constant.PAYPAL)) {
+                llPayPal.setVisibility(VISIBLE);
+            } else if (payTypeBeanBean.getPayType().contains(Constant.MTN)) {
+                llMTN.setVisibility(VISIBLE);
+            } else if (payTypeBeanBean.getPayType().contains(Constant.AfricaCard)) {
+                llAfricaBank.setVisibility(VISIBLE);
             }
         }
 
@@ -104,6 +122,9 @@ public class LcPayPopup extends BottomPopupView {
                 if (isChecked) {
                     mAlipayCb.setChecked(false);
                     mBankCb.setChecked(false);
+                    mtnCb.setChecked(false);
+                    paypalCb.setChecked(false);
+                    africaBankCb.setChecked(false);
                     actualPayment = Constant.wechat;
                 }
             }
@@ -115,6 +136,9 @@ public class LcPayPopup extends BottomPopupView {
                 if (isChecked) {
                     mWechatCb.setChecked(false);
                     mBankCb.setChecked(false);
+                    mtnCb.setChecked(false);
+                    paypalCb.setChecked(false);
+                    africaBankCb.setChecked(false);
                     actualPayment = Constant.alipay;
                 }
             }
@@ -126,7 +150,52 @@ public class LcPayPopup extends BottomPopupView {
                 if (isChecked) {
                     mWechatCb.setChecked(false);
                     mAlipayCb.setChecked(false);
+                    mtnCb.setChecked(false);
+                    paypalCb.setChecked(false);
+                    africaBankCb.setChecked(false);
                     actualPayment = Constant.card;
+                }
+            }
+        });
+
+        mtnCb.setOnCheckedChangeListener(new SmoothCheckBox.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(SmoothCheckBox checkBox, boolean isChecked) {
+                if (isChecked) {
+                    mWechatCb.setChecked(false);
+                    mAlipayCb.setChecked(false);
+                    mBankCb.setChecked(false);
+                    paypalCb.setChecked(false);
+                    africaBankCb.setChecked(false);
+                    actualPayment = Constant.MTN;
+                }
+            }
+        });
+
+        paypalCb.setOnCheckedChangeListener(new SmoothCheckBox.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(SmoothCheckBox checkBox, boolean isChecked) {
+                if (isChecked) {
+                    mWechatCb.setChecked(false);
+                    mAlipayCb.setChecked(false);
+                    mBankCb.setChecked(false);
+                    mtnCb.setChecked(false);
+                    africaBankCb.setChecked(false);
+                    actualPayment = Constant.PAYPAL;
+                }
+            }
+        });
+
+        africaBankCb.setOnCheckedChangeListener(new SmoothCheckBox.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(SmoothCheckBox checkBox, boolean isChecked) {
+                if (isChecked) {
+                    mWechatCb.setChecked(false);
+                    mAlipayCb.setChecked(false);
+                    mBankCb.setChecked(false);
+                    mtnCb.setChecked(false);
+                    paypalCb.setChecked(false);
+                    actualPayment = Constant.AfricaCard;
                 }
             }
         });
@@ -137,7 +206,7 @@ public class LcPayPopup extends BottomPopupView {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ensure:
-                if (mWechatCb.isChecked() || mAlipayCb.isChecked() || mBankCb.isChecked()) {
+                if (mWechatCb.isChecked() || mAlipayCb.isChecked() || mBankCb.isChecked() || paypalCb.isChecked() || mtnCb.isChecked() || africaBankCb.isChecked()) {
                     OrderPayBean orderPayBean = new OrderPayBean();
                     orderPayBean.setActualPayment(actualPayment);
                     orderPayBean.setOrderSn(mRecordsBean.getOrderSn());

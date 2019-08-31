@@ -10,7 +10,6 @@ import android.support.v4.content.ContextCompat;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.lxj.xpopup.XPopup;
-import com.lxj.xpopup.interfaces.OnConfirmListener;
 import com.spark.chiefwallet.App;
 import com.spark.chiefwallet.R;
 import com.spark.chiefwallet.api.pojo.PayTypeBean;
@@ -96,6 +95,20 @@ public class LcOrderPaidDetailsViewModel extends BaseViewModel {
     public ObservableField<String> bankPayOpenBank = new ObservableField<>();
     public ObservableField<String> bankPayBranch = new ObservableField<>();
     public ObservableField<String> dealNumber = new ObservableField<>();
+    /*MTN*/
+    public ObservableField<Boolean> isMTNPay = new ObservableField<>(false);
+    public ObservableField<String> MTNPayAddr = new ObservableField<>();
+    public ObservableField<String> MTNPayName = new ObservableField<>();
+    /*PayPal*/
+    public ObservableField<Boolean> isPayPalPay = new ObservableField<>(false);
+    public ObservableField<String> PayPalAddr = new ObservableField<>();
+    public ObservableField<String> PayPalName = new ObservableField<>();
+    /*非洲银行卡*/
+    public ObservableField<Boolean> isAfricaCardPay = new ObservableField<>(false);
+    public ObservableField<String> AfricaCardPayAddr = new ObservableField<>();
+    public ObservableField<String> AfricaCardPayName = new ObservableField<>();
+    public ObservableField<String> AfricaCardPayOpenBank = new ObservableField<>();
+    public ObservableField<String> AfricaCardPayBranch = new ObservableField<>();
 
     private String weChatCodeUrl, aliPayCodeUrl;
     private PayTypeBean mPayTypeBean;
@@ -259,10 +272,31 @@ public class LcOrderPaidDetailsViewModel extends BaseViewModel {
         }
     });
 
+    public BindingCommand MTNOnClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            AppUtils.copy2Clipboard(Utils.getContext(), MTNPayAddr.get());
+        }
+    });
+
+    public BindingCommand PayPalOnClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            AppUtils.copy2Clipboard(Utils.getContext(), PayPalAddr.get());
+        }
+    });
+
     public BindingCommand cardOnClickCommand = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
             AppUtils.copy2Clipboard(Utils.getContext(), bankPayAddr.get());
+        }
+    });
+
+    public BindingCommand AfricaCardOnClickCommand = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            AppUtils.copy2Clipboard(Utils.getContext(), AfricaCardPayAddr.get());
         }
     });
 
@@ -444,11 +478,28 @@ public class LcOrderPaidDetailsViewModel extends BaseViewModel {
                         bankPayName.set(payTypeBeanBean.getRealName());
                         bankPayOpenBank.set(payTypeBeanBean.getBank());
                         bankPayBranch.set(payTypeBeanBean.getBranch());
+                    } else if (actualPayment.contains(Constant.MTN)) {
+                        isMTNPay.set(true);
+                        MTNPayAddr.set(payTypeBeanBean.getPayAddress());
+                        MTNPayName.set(payTypeBeanBean.getRealName());
+                    } else if (actualPayment.contains(Constant.PAYPAL)) {
+                        isPayPalPay.set(true);
+                        PayPalAddr.set(payTypeBeanBean.getPayAddress());
+                        PayPalName.set(payTypeBeanBean.getRealName());
+                    }else if (actualPayment.contains(Constant.AfricaCard)) {
+                        isAfricaCardPay.set(true);
+                        AfricaCardPayAddr.set(payTypeBeanBean.getPayAddress());
+                        AfricaCardPayName.set(payTypeBeanBean.getRealName());
+                        AfricaCardPayOpenBank.set(payTypeBeanBean.getBank());
+                        AfricaCardPayBranch.set(payTypeBeanBean.getBranch());
                     }
                 } else {
                     isWeChatPay.set(false);
                     isAliPay.set(false);
                     isBankPay.set(false);
+                    isMTNPay.set(false);
+                    isPayPalPay.set(false);
+                    isAfricaCardPay.set(false);
                 }
             }
         }

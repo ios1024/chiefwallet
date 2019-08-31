@@ -873,4 +873,7 @@
     <string name="str_business_high">Senior certification</string>
     <string name="str_business_sell">Online sale</string>
     <string name="str_business_buy">Buying online</string>
+    <string name="str_mtn">MTN</string>
+    <string name="str_card">China bank card</string>
+    <string name="str_africa_card">African bank card</string>
 </resources>
